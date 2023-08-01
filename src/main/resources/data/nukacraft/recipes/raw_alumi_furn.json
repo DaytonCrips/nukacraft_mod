@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 180,
+  "ingredient": {
+    "item": "nukacraft:aluminium_ore"
+  },
+  "result": "nukacraft:raw_alumi"
+}

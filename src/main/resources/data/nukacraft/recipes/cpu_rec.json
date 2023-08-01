@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "343",
+    "666"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:alumicond"
+    },
+    "3": {
+      "item": "nukacraft:lamp"
+    },
+    "4": {
+      "item": "minecraft:flint"
+    },
+    "6": {
+      "item": "nuka_craft:electronum"
+    }
+  },
+  "result": {
+    "item": "nuka_craft:aimproccesor",
+    "count": 1
+  }
+}

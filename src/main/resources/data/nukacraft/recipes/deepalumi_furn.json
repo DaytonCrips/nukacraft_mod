@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 165,
+  "ingredient": {
+    "item": "nukacraft:deepalumi_block"
+  },
+  "result": "nukacraft:raw_alumi"
+}

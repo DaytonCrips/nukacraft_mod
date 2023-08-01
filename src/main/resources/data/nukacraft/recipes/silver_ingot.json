@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:silver"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:silvernugget",
+    "count": 9
+  }
+}

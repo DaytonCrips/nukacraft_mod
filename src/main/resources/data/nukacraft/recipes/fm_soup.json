@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:carrot"
+    },
+    "1": {
+      "item": "nukacraft:firemushroom"
+    },
+    "2": {
+      "item": "nukacraft:nbloodleafi"
+    },
+    "4": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "nukacraft:firemushsoup",
+    "count": 1
+  }
+}

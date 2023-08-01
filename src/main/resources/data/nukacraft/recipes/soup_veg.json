@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    " 4 ",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:carrot"
+    },
+    "1": {
+      "item": "nukacraft:wildtato"
+    },
+    "2": {
+      "item": "minecraft:potato"
+    },
+    "4": {
+      "item": "minecraft:sugar"
+    },
+    "7": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "nukacraft:veg_soup",
+    "count": 1
+  }
+}

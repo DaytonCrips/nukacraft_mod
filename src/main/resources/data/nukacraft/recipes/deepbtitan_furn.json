@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 4,
+  "cookingtime": 210,
+  "ingredient": {
+    "item": "nukacraft:deepbtitan_block"
+  },
+  "result": "nukacraft:raw_btitan"
+}

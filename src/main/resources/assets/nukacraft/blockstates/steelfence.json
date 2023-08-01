@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/steelfence" },
+    "facing=east": { "model": "nukacraft:block/steelfence", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/steelfence", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/steelfence", "y": 270 }
+  }
+}

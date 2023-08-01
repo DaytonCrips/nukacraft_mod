@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:quantumleaf"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:quantumleaf_",
+    "count": 1
+  }
+}

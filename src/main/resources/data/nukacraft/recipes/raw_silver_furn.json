@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 190,
+  "ingredient": {
+    "item": "nukacraft:silver_ore"
+  },
+  "result": "nukacraft:raw_silver"
+}

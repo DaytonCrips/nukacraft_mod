@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 2 ",
+    "131",
+    " 0 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:water_bucket"
+    },
+    "1": {
+      "item": "nukacraft:ashrose"
+    },
+    "2": {
+      "item": "minecraft:dandelion"
+    },
+    "3": {
+      "item": "nukacraft:filter"
+    }
+  },
+  "result": {
+    "item": "nukacraft:ash_tea",
+    "count": 1
+  }
+}

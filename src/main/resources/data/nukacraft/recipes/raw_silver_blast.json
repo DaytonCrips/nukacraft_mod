@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 2,
+  "cookingtime": 170,
+  "ingredient": {
+    "item": "nukacraft:silver_ore"
+  },
+  "result": "nukacraft:raw_silver"
+}

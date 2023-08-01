@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/cranberry0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/cranberry1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/cranberry2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/cranberry3"
+    }
+  }
+}

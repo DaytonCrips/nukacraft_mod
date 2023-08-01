@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "nukacraft:blocks/hollyhock_bottom"
+  }
+}

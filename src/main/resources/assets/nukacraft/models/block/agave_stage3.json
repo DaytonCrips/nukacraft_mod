@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "nukacraft:blocks/agave_stage3"
+  }
+}

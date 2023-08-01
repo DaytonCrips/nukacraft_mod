@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 2,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "nukacraft:deepalumi_block"
+  },
+  "result": "nukacraft:raw_alumi"
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/gbloodleaf0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/gbloodleaf1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/gbloodleaf2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/gbloodleaf3"
+    }
+  }
+}

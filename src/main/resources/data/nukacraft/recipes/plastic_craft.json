@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 1,
+  "cookingtime": 300,
+  "ingredient": {
+    "item": "nukacraft:pmt1"
+  },
+  "result": "nukacraft:plastic"
+}

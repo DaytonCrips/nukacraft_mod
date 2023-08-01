@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "nukacraft:block/hollyhock_bottom"
+    },
+    "half=upper": {
+      "model": "nukacraft:block/hollyhock_top"
+    }
+  }
+}

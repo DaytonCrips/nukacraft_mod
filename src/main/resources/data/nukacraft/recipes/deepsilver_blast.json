@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 2,
+  "cookingtime": 120,
+  "ingredient": {
+    "item": "nukacraft:deepsilver_block"
+  },
+  "result": "nukacraft:raw_silver"
+}

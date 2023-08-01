@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nukacraft:block/whitesteelslab"
+    },
+    "type=double": {
+      "model": "nukacraft:block/whitesteel"
+    },
+    "type=top": {
+      "model": "nukacraft:block/whitesteelslab_top"
+    }
+  }
+}

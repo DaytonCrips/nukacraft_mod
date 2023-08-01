@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x":{
+      "model":  "nukacraft:block/dwoodlog_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model":  "nukacraft:block/dwoodlog"
+    },
+    "axis=z":{
+      "model":  "nukacraft:block/dwoodlog_horizontal",
+      "x": 90
+    }
+  }
+}

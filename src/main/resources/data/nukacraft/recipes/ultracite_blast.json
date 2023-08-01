@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 4,
+  "cookingtime": 120,
+  "ingredient": {
+    "item": "nukacraft:ultracite_ore"
+  },
+  "result": "nukacraft:ultracite"
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/gold_cranberry0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/gold_cranberry1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/gold_cranberry2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/gold_cranberry3"
+    }
+  }
+}

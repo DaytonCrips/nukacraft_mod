@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/vent1" },
+    "facing=east": { "model": "nukacraft:block/vent1", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/vent1", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/vent1", "y": 270 }
+  }
+}

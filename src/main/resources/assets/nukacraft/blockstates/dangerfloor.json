@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/dangerfloor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nukacraft:block/dangerfloor"
+    },
+    "facing=south": {
+      "model": "nukacraft:block/dangerfloor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nukacraft:block/dangerfloor",
+      "y": 270
+    }
+  }
+}

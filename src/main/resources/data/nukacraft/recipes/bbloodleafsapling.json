@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:bbloodleafl"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:bbloodleafl_",
+    "count": 1
+  }
+}

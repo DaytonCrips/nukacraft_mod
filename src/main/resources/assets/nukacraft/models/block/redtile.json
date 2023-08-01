@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "nukacraft:blocks/downtile",
+    "up": "nukacraft:blocks/rtile_top",
+    "north": "nukacraft:blocks/rtile",
+    "east": "nukacraft:blocks/rtile",
+    "south": "nukacraft:blocks/rtile",
+    "west": "nukacraft:blocks/rtile",
+    "particle": "nukacraft:blocks/rtile"
+  }
+}

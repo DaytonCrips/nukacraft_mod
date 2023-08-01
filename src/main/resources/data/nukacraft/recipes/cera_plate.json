@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23",
+    "45"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:ceramic"
+    },
+    "1": {
+      "item": "nukacraft:ceramic"
+    },
+    "2": {
+      "item": "nukacraft:leadplate"
+    },
+    "3": {
+      "item": "nukacraft:leadplate"
+    },
+    "4": {
+      "item": "nukacraft:steel"
+    },
+    "5": {
+      "item": "nukacraft:steel"
+    }
+  },
+  "result": {
+    "item": "nukacraft:cerplate",
+    "count": 1
+  }
+}

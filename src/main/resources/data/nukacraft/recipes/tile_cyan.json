@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "nukacraft:slitile"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:cyantile",
+    "count": 1
+  }
+}

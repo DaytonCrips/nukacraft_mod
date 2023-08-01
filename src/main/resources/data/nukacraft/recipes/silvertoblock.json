@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    "000",
+    "000"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:silver"
+    }
+  },
+  "result": {
+    "item": "nukacraft:silver_block",
+    "count": 1
+  }
+}

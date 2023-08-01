@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "343",
+    " 3 "
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:coal"
+    },
+    "3": {
+      "item": "nukacraft:dogwood"
+    },
+    "4": {
+      "item": "nukacraft:adhesive"
+    }
+  },
+  "result": {
+    "item": "nukacraft:filter",
+    "count": 1
+  }
+}

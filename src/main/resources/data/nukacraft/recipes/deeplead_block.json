@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 130,
+  "ingredient": {
+    "item": "nukacraft:deeplead_block"
+  },
+  "result": "nukacraft:raw_lead"
+}

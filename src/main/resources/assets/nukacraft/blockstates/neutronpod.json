@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/neutronpod0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/neutronpod1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/neutronpod2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/neutronpod3"
+    },
+    "age=4": {
+      "model": "nukacraft:block/neutronpod4"
+    },
+    "age=5": {
+      "model": "nukacraft:block/neutronpod5"
+    },
+    "age=6": {
+      "model": "nukacraft:block/neutronpod6"
+    },
+    "age=7": {
+      "model": "nukacraft:block/neutronpod7"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/largelamp" },
+    "facing=east": { "model": "nukacraft:block/largelamp", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/largelamp", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/largelamp", "y": 270 }
+  }
+}

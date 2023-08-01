@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/smalllamp" },
+    "facing=east": { "model": "nukacraft:block/smalllamp", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/smalllamp", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/smalllamp", "y": 270 }
+  }
+}

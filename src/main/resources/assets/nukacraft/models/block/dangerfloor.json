@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "down": "nukacraft:blocks/downtile",
+    "up": "nukacraft:blocks/dangerfloor",
+    "north": "nukacraft:blocks/rtile",
+    "east": "nukacraft:blocks/rtile",
+    "south": "nukacraft:blocks/rtile",
+    "west": "nukacraft:blocks/rtile",
+    "particle": "nukacraft:blocks/rtile"
+  }
+}

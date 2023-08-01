@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "303"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:aluminugget"
+    },
+    "3": {
+      "item": "nukacraft:alumi_ingot"
+    }
+  },
+  "result": {
+    "item": "nukacraft:alumicond",
+    "count": 1
+  }
+}

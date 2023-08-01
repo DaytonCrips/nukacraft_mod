@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "nukacraft:block/vaultpillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "nukacraft:block/vaultpillar"
+    },
+    "axis=z": {
+      "model": "nukacraft:block/vaultpillar_horizontal",
+      "x": 90
+    }
+  }
+}

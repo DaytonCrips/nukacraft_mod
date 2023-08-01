@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "nukacraft:blocks/crackberrybush3"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:ceramic"
+    },
+    "1": {
+      "item": "nukacraft:ceramic"
+    },
+    "2": {
+      "item": "nukacraft:ceramic"
+    },
+    "3": {
+      "item": "nukacraft:ceramic"
+    }
+  },
+  "result": {
+    "item": "nukacraft:slitile",
+    "count": 1
+  }
+}

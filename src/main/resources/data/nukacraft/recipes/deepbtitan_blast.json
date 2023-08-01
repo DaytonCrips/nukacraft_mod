@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 4,
+  "cookingtime": 175,
+  "ingredient": {
+    "item": "nukacraft:deepbtitan_block"
+  },
+  "result": "nukacraft:raw_btitan"
+}

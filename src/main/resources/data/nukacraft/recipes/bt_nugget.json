@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:btitan"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:btitannugget",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:lead_block"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:lead",
+    "count": 9
+  }
+}

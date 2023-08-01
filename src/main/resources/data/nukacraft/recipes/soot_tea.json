@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "3 2",
+    "1s1",
+    " 0 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:water_bucket"
+    },
+    "1": {
+      "item": "nukacraft:sootflower"
+    },
+    "2": {
+      "item": "minecraft:dandelion"
+    },
+    "3": {
+      "item": "minecraft:sugar"
+    },
+    "s": {
+      "item": "nukacraft:filter"
+    }
+  },
+  "result": {
+    "item": "nukacraft:soot_tea",
+    "count": 1
+  }
+}

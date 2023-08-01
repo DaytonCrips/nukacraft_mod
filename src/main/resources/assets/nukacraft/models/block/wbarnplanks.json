@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "nukacraft:blocks/wbp_topdown",
+    "up": "nukacraft:blocks/wbp_topdown",
+    "north": "nukacraft:blocks/wbp_side",
+    "east": "nukacraft:blocks/wbp_side",
+    "south": "nukacraft:blocks/wbp_side",
+    "west": "nukacraft:blocks/wbp_side",
+    "particle": "nukacraft:blocks/wbp_topdown"
+  }
+}

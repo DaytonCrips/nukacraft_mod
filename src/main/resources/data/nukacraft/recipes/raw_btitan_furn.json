@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 280,
+  "ingredient": {
+    "item": "nukacraft:btitan_ore"
+  },
+  "result": "nukacraft:raw_btitan"
+}

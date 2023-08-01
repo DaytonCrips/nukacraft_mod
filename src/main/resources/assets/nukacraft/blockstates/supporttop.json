@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/supporttop" },
+    "facing=east": { "model": "nukacraft:block/supporttop", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/supporttop", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/supporttop", "y": 270 }
+  }
+}

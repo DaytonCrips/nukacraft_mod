@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "nukacraft:block/blacksteel2_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "nukacraft:block/blacksteel2"
+    },
+    "axis=z": {
+      "model": "nukacraft:block/blacksteel2_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nukacraft:block/redsteelslab"
+    },
+    "type=double": {
+      "model": "nukacraft:block/redsteel"
+    },
+    "type=top": {
+      "model": "nukacraft:block/redsteelslab_top"
+    }
+  }
+}

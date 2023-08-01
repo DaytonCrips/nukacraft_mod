@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "nukacraft:blocks/root_daturan_stage0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/crkbrick_pipe",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nukacraft:block/crkbrick_pipe"
+    },
+    "facing=south": {
+      "model": "nukacraft:block/crkbrick_pipe",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nukacraft:block/crkbrick_pipe",
+      "y": 270
+    }
+  }
+}

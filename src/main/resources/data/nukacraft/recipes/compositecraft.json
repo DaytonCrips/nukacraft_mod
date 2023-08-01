@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0",
+    "1",
+    "2"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:plastic"
+    },
+    "1": {
+      "item": "nukacraft:leadplate"
+    },
+    "2": {
+      "item": "nukacraft:rubber"
+    }
+  },
+  "result": {
+    "item": "nukacraft:composite",
+    "count": 1
+  }
+}

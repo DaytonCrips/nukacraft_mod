@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:lead"
+    },
+    "1": {
+      "item": "nukacraft:threads"
+    },
+    "2": {
+      "item": "nukacraft:lead"
+    }
+  },
+  "result": {
+    "item": "nukacraft:leadplate",
+    "count": 1
+  }
+}

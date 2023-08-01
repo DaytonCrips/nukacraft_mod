@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "nukacraft:blocks/whitesteel",
+    "top": "nukacraft:blocks/whitesteel",
+    "side": "nukacraft:blocks/whitesteel"
+  }
+}

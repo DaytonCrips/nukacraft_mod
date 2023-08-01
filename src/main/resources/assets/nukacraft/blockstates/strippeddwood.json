@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x":{
+      "model":  "nukacraft:block/strippeddwood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model":  "nukacraft:block/strippeddwood"
+    },
+    "axis=z":{
+      "model":  "nukacraft:block/strippeddwood_horizontal",
+      "x": 90
+    }
+  }
+}
