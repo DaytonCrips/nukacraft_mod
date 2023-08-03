@@ -1,13 +1,13 @@
 package com.dayton.nukacraft;
 
-import com.dayton.nukacraft.common.effects.ModAttributesClass;
-import com.dayton.nukacraft.common.effects.ModEffect;
-import com.dayton.nukacraft.common.world.gen.ModBiomeGeneration;
-import com.dayton.nukacraft.init.biomes.ModBiomes;
-import com.dayton.nukacraft.init.blocks.ModBlocksClass;
-import com.dayton.nukacraft.init.gui.RadiationHudOverlay;
-import com.dayton.nukacraft.init.items.ModItemsClass;
-import com.dayton.nukacraft.init.particles.ModParticles;
+import com.dayton.nukacraft.server.effects.ModAttributesClass;
+import com.dayton.nukacraft.server.effects.ModEffect;
+import com.dayton.nukacraft.common.world.ModBiomeGeneration;
+import com.dayton.nukacraft.common.world.ModBiomes;
+import com.dayton.nukacraft.common.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.gui.RadiationHudOverlay;
+import com.dayton.nukacraft.common.items.ModItemsClass;
+import com.dayton.nukacraft.common.particles.ModParticles;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -121,6 +121,9 @@ public class NukaCraftMod
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.DATURAN.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.AGAVE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.PUNGA.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.NEOAGAVE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.GINSENG.get(), RenderType.cutout());
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
