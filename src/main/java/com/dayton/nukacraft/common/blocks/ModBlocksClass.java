@@ -296,6 +296,8 @@ public class ModBlocksClass {
             () -> new NeoagaveBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> GINSENG = registerBlockWithoutItem("ginseng",
             () -> new GinsengBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> NUKAROOT = registerBlockWithoutItem("nukaroot",
+            () -> new NukaRootBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 
 

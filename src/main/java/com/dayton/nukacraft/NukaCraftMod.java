@@ -5,7 +5,7 @@ import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.world.ModBiomes;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
-import com.dayton.nukacraft.client.helpers.gui.RadiationHudOverlay;
+import com.dayton.nukacraft.client.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.mojang.logging.LogUtils;
@@ -123,7 +123,7 @@ public class NukaCraftMod
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.PUNGA.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.NEOAGAVE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.GINSENG.get(), RenderType.cutout());
-
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.NUKAROOT.get(), RenderType.cutout());
     }
 
     private void setup(final FMLCommonSetupEvent event)

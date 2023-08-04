@@ -107,6 +107,9 @@ public class MutationFloraClass {
         if (state.getBlock().defaultBlockState() == ModBlocksClass.AGAVE.get().defaultBlockState()) {
             mutationStart(level, pos, state, ModBlocksClass.NEOAGAVE.get().defaultBlockState());
         }
+        if (state.getBlock().defaultBlockState() == ModBlocksClass.GINSENG.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocksClass.NUKAROOT.get().defaultBlockState());
+        }
         NukaCraftMod.LOGGER.debug("Block" + state.getBlock().getRegistryName());
     }
     public static void mutationStart(Level level, BlockPos pos, BlockState state, BlockState newstate) {

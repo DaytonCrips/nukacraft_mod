@@ -117,6 +117,8 @@ public class ModItemsClass {
             () -> new ModNamedItem(ModBlocksClass.PUNGA.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
     public static final RegistryObject<Item> XANDER_ROOT = ITEMS.register("xander_root",
             () -> new ModNamedItem(ModBlocksClass.ZANDER.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
+    public static final RegistryObject<Item> NUKAROOT = ITEMS.register("nukaroot",
+            () -> new ModNamedItem(ModBlocksClass.NUKAROOT.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
     public static final RegistryObject<Item> GINSENG_ROOT = ITEMS.register("ginsengroot",
             () -> new ModNamedItem(ModBlocksClass.GINSENG.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
     public static final RegistryObject<Item> CAP = ITEMS.register("cap",
