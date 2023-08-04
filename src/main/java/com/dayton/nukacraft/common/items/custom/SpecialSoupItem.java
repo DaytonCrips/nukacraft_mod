@@ -19,18 +19,16 @@ public class SpecialSoupItem extends Item {
     public SpecialSoupItem(Item.Properties item) {super(item);}
 //
     @Override
-    public ItemStack finishUsingItem(ItemStack p_40684_, Level p_40685_, LivingEntity p_40686_) {
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         //p_40686_.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-        if (p_40684_.getItem() == ModItemsClass.FMSOUP.get()) {
-            p_40686_.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-            NukaCraftMod.LOGGER.debug("This is " + p_40684_.getItem());
+        if (stack.getItem() == ModItemsClass.FMSOUP.get()) {
+            entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
         }
-        if (p_40684_.getItem() == ModItemsClass.FMPUREE.get()) {
-            p_40686_.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-            NukaCraftMod.LOGGER.debug("This is " + p_40684_.getItem());
+        if (stack.getItem() == ModItemsClass.FMPUREE.get()) {
+            entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
         }
-        ItemStack itemstack = super.finishUsingItem(p_40684_, p_40685_, p_40686_);
-        return p_40686_ instanceof Player && ((Player)p_40686_).getAbilities().instabuild ? itemstack : new ItemStack(Items.BOWL);
+        ItemStack itemstack = super.finishUsingItem(stack, level, entity);
+        return entity instanceof Player && ((Player)entity).getAbilities().instabuild ? itemstack : new ItemStack(Items.BOWL);
     }
 
 //    @Override

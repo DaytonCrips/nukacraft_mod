@@ -1,13 +1,13 @@
 package com.dayton.nukacraft;
 
-import com.dayton.nukacraft.server.effects.ModAttributesClass;
-import com.dayton.nukacraft.server.effects.ModEffect;
+import com.dayton.nukacraft.common.effects.ModAttributesClass;
+import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.world.ModBiomes;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
-import com.dayton.nukacraft.common.gui.RadiationHudOverlay;
+import com.dayton.nukacraft.client.helpers.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.common.items.ModItemsClass;
-import com.dayton.nukacraft.common.particles.ModParticles;
+import com.dayton.nukacraft.client.particles.ModParticles;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;

@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.server.effects;
+package com.dayton.nukacraft.common.effects;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.world.entity.EntityType;

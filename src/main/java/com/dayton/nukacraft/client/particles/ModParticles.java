@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.particles;
+package com.dayton.nukacraft.client.particles;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.particles.ParticleType;

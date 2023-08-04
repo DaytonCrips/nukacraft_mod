@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.server.effects;
+package com.dayton.nukacraft.common.effects;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

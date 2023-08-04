@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.gui;
+package com.dayton.nukacraft.client.gui;
 
 
 

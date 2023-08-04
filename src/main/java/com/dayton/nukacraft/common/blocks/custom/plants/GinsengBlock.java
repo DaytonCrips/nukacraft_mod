@@ -28,8 +28,8 @@ public class GinsengBlock extends BushBlock implements BonemealableBlock {
     public static final VoxelShape GROWING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
 
 
-    public GinsengBlock(Properties p_51021_) {
-        super(p_51021_);
+    public GinsengBlock(Properties properties) {
+        super(properties);
     }
 
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
@@ -58,31 +58,31 @@ public class GinsengBlock extends BushBlock implements BonemealableBlock {
 
 
     @Override
-    public void setPlacedBy(Level p_49847_, BlockPos p_49848_, BlockState p_49849_, @Nullable LivingEntity p_49850_, ItemStack p_49851_) {
-        if (new ResourceLocation("nukacraft:glow_sea").equals(p_49847_.getBiome(p_49848_).value().getRegistryName())) {
-            MutationFloraClass.mutatePlants(p_49849_, p_49848_, p_49847_);
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
+            MutationFloraClass.mutatePlants(state, pos, level);
         }
-        super.setPlacedBy(p_49847_, p_49848_, p_49849_, p_49850_, p_49851_);
+        super.setPlacedBy(level, pos, state, entity, stack);
     }
 
 
 
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_57282_) {
-        p_57282_.add(AGE);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
+        stateBuilder.add(AGE);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_57260_, BlockPos p_57261_, BlockState p_57262_, boolean p_57263_) {
-        return p_57262_.getValue(AGE) < 5;
+    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
+        return state.getValue(AGE) < 5;
     }
 
-    public boolean isBonemealSuccess(Level p_57265_, Random p_57266_, BlockPos p_57267_, BlockState p_57268_) {
+    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }
 
 
-    public void performBonemeal(ServerLevel p_57251_, Random p_57252_, BlockPos p_57253_, BlockState p_57254_) {
-        int i = Math.min(3, p_57254_.getValue(AGE) + 1);
-        p_57251_.setBlock(p_57253_, p_57254_.setValue(AGE, Integer.valueOf(i)), 2);
+    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
+        int i = Math.min(3, state.getValue(AGE) + 1);
+        serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }
 }

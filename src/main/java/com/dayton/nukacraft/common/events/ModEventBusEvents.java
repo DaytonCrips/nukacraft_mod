@@ -1,8 +1,8 @@
-package com.dayton.nukacraft.common.event;
+package com.dayton.nukacraft.common.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.particles.GammaParticles;
-import com.dayton.nukacraft.common.particles.ModParticles;
+import com.dayton.nukacraft.client.particles.GammaParticles;
+import com.dayton.nukacraft.client.particles.ModParticles;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

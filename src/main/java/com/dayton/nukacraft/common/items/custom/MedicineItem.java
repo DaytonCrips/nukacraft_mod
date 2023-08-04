@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.items.custom;
 
-import com.dayton.nukacraft.server.effects.ModEffect;
-import com.dayton.nukacraft.server.helpers.RadiationMath;
+import com.dayton.nukacraft.common.effects.ModEffect;
+import com.dayton.nukacraft.client.helpers.RadiationMath;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -33,16 +33,19 @@ public class MedicineItem extends Item {
                 RadiationMath.attributeUpdate(entity, false, 4.0f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
+
             if (stack.getItem() == ModItemsClass.GLOWBLOOD.get()) {
                 RadiationMath.attributeUpdate(entity, true, 3.0f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
                 entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 140, 0, false, false));
             }
+
             if (stack.getItem() == ModItemsClass.RADX.get()) {
                 entity.addEffect(new MobEffectInstance(ModEffect.RAD_RES.get(), 600, 0, false, false));
             }
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
-        stack.shrink(1);
+
         return stack;
     }
 

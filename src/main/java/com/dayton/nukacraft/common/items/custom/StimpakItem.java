@@ -25,13 +25,12 @@ public class StimpakItem extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
             if (stack.getItem() == ModItemsClass.STIMPAK.get()) {
-                entity.addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 0, false, false));
-            }
+                entity.addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 0, false, false));}
+
             if (stack.getItem() == ModItemsClass.SUPER_STIMPAK.get()) {
-                entity.addEffect(new MobEffectInstance(MobEffects.HEAL, 2, 0, false, false));
-            }
+                entity.addEffect(new MobEffectInstance(MobEffects.HEAL, 2, 0, false, false));}
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
-        stack.shrink(1);
         return stack;
     }
 
@@ -50,7 +49,7 @@ public class StimpakItem extends Item {
     public int getUseDuration(ItemStack stack) {return 22;}
 
     @Override
-    public UseAnim getUseAnimation(ItemStack p_41452_) {
+    public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.BOW;
     }
 

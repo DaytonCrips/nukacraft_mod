@@ -3,7 +3,7 @@ package com.dayton.nukacraft.common.blocks.custom.blocks;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
-import com.dayton.nukacraft.common.particles.ModParticles;
+import com.dayton.nukacraft.client.particles.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;

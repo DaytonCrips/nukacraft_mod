@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.particles;
+package com.dayton.nukacraft.client.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

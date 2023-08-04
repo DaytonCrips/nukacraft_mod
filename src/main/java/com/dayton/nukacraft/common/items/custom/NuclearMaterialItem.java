@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class NuclearMaterialItem extends Item {
-    public NuclearMaterialItem(Properties p_41383_) {
-        super(p_41383_);
+    public NuclearMaterialItem(Properties prop) {
+        super(prop);
     }
     @Override
     public InteractionResult useOn(UseOnContext context) {

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.items.custom;
 
-import com.dayton.nukacraft.server.helpers.RadiationMath;
+import com.dayton.nukacraft.client.helpers.RadiationMath;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -23,13 +23,19 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class NukaColaItem extends Item {
-    public NukaColaItem(Properties p_41383_) {
-        super(p_41383_);
+    public NukaColaItem(Properties properties) {
+        super(properties);
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
+            ItemStack items = new ItemStack(ModItemsClass.CAP.get());
+            items.setCount(1);
+            ItemHandlerHelper.giveItemToPlayer((Player) entity, items);
+
+
+
             if (stack.getItem() == ModItemsClass.NUKACOLA.get()) {
                 RadiationMath.attributeUpdate(entity, true, 0.08f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
@@ -38,12 +44,7 @@ public class NukaColaItem extends Item {
                 RadiationMath.attributeUpdate(entity, false, 0.09f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
-        }
-        stack.shrink(1);
-        if (entity instanceof Player) {
-            ItemStack items = new ItemStack(ModItemsClass.CAP.get());
-            items.setCount(1);
-            ItemHandlerHelper.giveItemToPlayer((Player) entity, items);
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
         entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false));
         return stack;

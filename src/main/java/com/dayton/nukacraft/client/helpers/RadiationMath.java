@@ -1,7 +1,7 @@
-package com.dayton.nukacraft.server.helpers;
+package com.dayton.nukacraft.client.helpers;
 
-import com.dayton.nukacraft.server.effects.ModAttributesClass;
-import com.dayton.nukacraft.server.effects.ModEffect;
+import com.dayton.nukacraft.common.effects.ModAttributesClass;
+import com.dayton.nukacraft.common.effects.ModEffect;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;

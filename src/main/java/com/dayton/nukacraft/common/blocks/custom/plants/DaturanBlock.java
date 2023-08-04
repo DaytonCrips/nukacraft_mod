@@ -77,60 +77,60 @@ public class DaturanBlock extends BushBlock implements BonemealableBlock, Liquid
         }
     }
     @Override
-    public BlockState updateShape(BlockState p_154530_, Direction p_154531_, BlockState p_154532_, LevelAccessor p_154533_, BlockPos p_154534_, BlockPos p_154535_) {
-        BlockState blockstate = super.updateShape(p_154530_, p_154531_, p_154532_, p_154533_, p_154534_, p_154535_);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState stateto, LevelAccessor accessor, BlockPos pos, BlockPos post) {
+        BlockState blockstate = super.updateShape(state, direction, state, accessor, pos, post);
         if (!blockstate.isAir()) {
-            p_154533_.scheduleTick(p_154534_, Fluids.WATER, Fluids.WATER.getTickDelay(p_154533_));
+            accessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
         }
 
         return blockstate;
     }
 
     @Override
-    public boolean canPlaceLiquid(BlockGetter p_54766_, BlockPos p_54767_, BlockState p_54768_, Fluid p_54769_) {
+    public boolean canPlaceLiquid(BlockGetter getter, BlockPos pos, BlockState state, Fluid fluid) {
         return false;
     }
 
 
-    public InteractionResult use(BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
-        int i = p_57275_.getValue(AGE);
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        int i = state.getValue(AGE);
         boolean flag = i == 3;
-        if (!flag && p_57278_.getItemInHand(p_57279_).is(Items.BONE_MEAL)) {
+        if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
         } else if (i > 1) {
-            int j = 1 + p_57276_.random.nextInt(2);
-            popResource(p_57276_, p_57277_, new ItemStack(ModItemsClass.DATURAN_ROOT.get(), j + (flag ? 1 : 0)));
-            p_57276_.playSound((Player)null, p_57277_, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + p_57276_.random.nextFloat() * 0.4F);
-            p_57276_.setBlock(p_57277_, p_57275_.setValue(AGE, Integer.valueOf(1)), 2);
-            return InteractionResult.sidedSuccess(p_57276_.isClientSide);
+            int j = 1 + level.random.nextInt(2);
+            popResource(level, pos, new ItemStack(ModItemsClass.DATURAN_ROOT.get(), j + (flag ? 1 : 0)));
+            level.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.setBlock(pos, state.setValue(AGE, Integer.valueOf(1)), 2);
+            return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
-            return super.use(p_57275_, p_57276_, p_57277_, p_57278_, p_57279_, p_57280_);
+            return super.use(state, level, pos, player, hand, result);
         }
     }
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_57282_) {
-        p_57282_.add(AGE);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
+        stateBuilder.add(AGE);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_57260_, BlockPos p_57261_, BlockState p_57262_, boolean p_57263_) {
-        return p_57262_.getValue(AGE) < 3;
+    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
+        return state.getValue(AGE) < 3;
     }
 
-    public boolean isBonemealSuccess(Level p_57265_, Random p_57266_, BlockPos p_57267_, BlockState p_57268_) {
+    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_154503_) {
-        FluidState fluidstate = p_154503_.getLevel().getFluidState(p_154503_.getClickedPos());
-        return fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(p_154503_) : null;
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(context) : null;
     }
 
 
-    public void performBonemeal(ServerLevel p_57251_, Random p_57252_, BlockPos p_57253_, BlockState p_57254_) {
-        int i = Math.min(3, p_57254_.getValue(AGE) + 1);
-        p_57251_.setBlock(p_57253_, p_57254_.setValue(AGE, Integer.valueOf(i)), 2);
+    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
+        int i = Math.min(3, state.getValue(AGE) + 1);
+        serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }
     @Override
-    public boolean placeLiquid(LevelAccessor p_54770_, BlockPos p_54771_, BlockState p_54772_, FluidState p_54773_) {
+    public boolean placeLiquid(LevelAccessor accessor, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
     }
 }

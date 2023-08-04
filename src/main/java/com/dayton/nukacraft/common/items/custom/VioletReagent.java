@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class VioletReagent extends Item {
-    public VioletReagent(Properties p_41383_) {
-        super(p_41383_);
+    public VioletReagent(Properties properties) {
+        super(properties);
     }
 
     @Override

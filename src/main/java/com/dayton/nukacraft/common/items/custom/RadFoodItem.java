@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.items.custom;
 
-import com.dayton.nukacraft.server.helpers.RadiationMath;
+import com.dayton.nukacraft.client.helpers.RadiationMath;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -26,31 +26,18 @@ public class RadFoodItem extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-        if (p_41411_ instanceof Player) {
-            RadiationMath.attributeUpdate(p_41411_, true, 0.08f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (entity instanceof Player) {
+            RadiationMath.attributeUpdate(entity, true, 0.08f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                     (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
-            if (p_41409_.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
-                p_41411_.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
+            if (stack.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
+                entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
             }
         }
 
-        return super.finishUsingItem(p_41409_, p_41410_, p_41411_);
+        return super.finishUsingItem(stack, level, entity);
     }
-    //    @Override
-//    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-//        if (entity instanceof Player) {
-//            RadiationMath.attributeUpdate(entity, true, 0.08f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-//                    (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
-//            if (stack.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
-//                entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
-//
-//            }
-//        }
-//        stack.shrink(1);
-//        ItemStack itemstack = super.finishUsingItem(stack, level, entity);
-//        return this.isEdible() ? entity.eat(level, stack) : stack;
-//    }
+
 
 
 

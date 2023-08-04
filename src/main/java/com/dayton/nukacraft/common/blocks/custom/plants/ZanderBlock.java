@@ -21,48 +21,47 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ZanderBlock extends BushBlock implements BonemealableBlock, LiquidBlockContainer, net.minecraftforge.common.IForgeShearable {
-    public ZanderBlock(Properties p_51021_) {
-        super(p_51021_);
+    public ZanderBlock(Properties prop) {
+        super(prop);
     }
     public BlockBehaviour.OffsetType getOffsetType() {
         return BlockBehaviour.OffsetType.XZ;
     }
     @Override
-    public boolean isValidBonemealTarget(BlockGetter p_50897_, BlockPos p_50898_, BlockState p_50899_, boolean p_50900_) {
+    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
         return false;
     }
     @Override
-    public FluidState getFluidState(BlockState p_154537_) {
+    public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getSource(false);
     }
     @Override
-    public boolean isBonemealSuccess(Level p_50901_, Random p_50902_, BlockPos p_50903_, BlockState p_50904_) {
+    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return false;
     }
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext p_154503_) {
-        FluidState fluidstate = p_154503_.getLevel().getFluidState(p_154503_.getClickedPos());
-        return fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(p_154503_) : null;
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        return fluidstate.is(FluidTags.WATER) && fluidstate.getAmount() == 8 ? super.getStateForPlacement(context) : null;
     }
     @Override
-    public void performBonemeal(ServerLevel p_50893_, Random p_50894_, BlockPos p_50895_, BlockState p_50896_) {
+    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
     }
     @Override
-    public BlockState updateShape(BlockState p_154530_, Direction p_154531_, BlockState p_154532_, LevelAccessor p_154533_, BlockPos p_154534_, BlockPos p_154535_) {
-        BlockState blockstate = super.updateShape(p_154530_, p_154531_, p_154532_, p_154533_, p_154534_, p_154535_);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState state2, LevelAccessor accessor, BlockPos pos, BlockPos pos2) {
+        BlockState blockstate = super.updateShape(state, direction, state2, accessor, pos, pos2);
         if (!blockstate.isAir()) {
-            p_154533_.scheduleTick(p_154534_, Fluids.WATER, Fluids.WATER.getTickDelay(p_154533_));
+            accessor.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
         }
-
         return blockstate;
     }
     @Override
-    public boolean canPlaceLiquid(BlockGetter p_54766_, BlockPos p_54767_, BlockState p_54768_, Fluid p_54769_) {
+    public boolean canPlaceLiquid(BlockGetter getter, BlockPos pos, BlockState state, Fluid fluid) {
         return false;
     }
 
     @Override
-    public boolean placeLiquid(LevelAccessor p_54770_, BlockPos p_54771_, BlockState p_54772_, FluidState p_54773_) {
+    public boolean placeLiquid(LevelAccessor accessor, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
     }
 }

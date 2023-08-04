@@ -61,10 +61,10 @@ public class GoldCranberryBlock extends BushBlock implements BonemealableBlock {
     }
 
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         int i = state.getValue(AGE);
         boolean flag = i == 3;
-        if (!flag && p_57278_.getItemInHand(p_57279_).is(Items.BONE_MEAL)) {
+        if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
@@ -73,24 +73,24 @@ public class GoldCranberryBlock extends BushBlock implements BonemealableBlock {
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(1)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
-            return super.use(state, level, pos, p_57278_, p_57279_, p_57280_);
+            return super.use(state, level, pos, player, hand, result);
         }
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_57282_) {
-        p_57282_.add(AGE);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
+        stateBuilder.add(AGE);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter p_57260_, BlockPos p_57261_, BlockState p_57262_, boolean p_57263_) {
-        return p_57262_.getValue(AGE) < 3;
+    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
+        return state.getValue(AGE) < 3;
     }
 
-    public boolean isBonemealSuccess(Level p_57265_, Random p_57266_, BlockPos p_57267_, BlockState p_57268_) {
+    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void performBonemeal(ServerLevel p_57251_, Random p_57252_, BlockPos p_57253_, BlockState p_57254_) {
-        int i = Math.min(3, p_57254_.getValue(AGE) + 1);
-        p_57251_.setBlock(p_57253_, p_57254_.setValue(AGE, Integer.valueOf(i)), 2);
+    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
+        int i = Math.min(3, state.getValue(AGE) + 1);
+        serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }
 }

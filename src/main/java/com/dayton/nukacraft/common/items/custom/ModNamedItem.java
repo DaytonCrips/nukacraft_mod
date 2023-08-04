@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.items.custom;
 
-import com.dayton.nukacraft.server.helpers.RadiationMath;
+import com.dayton.nukacraft.client.helpers.RadiationMath;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -20,38 +20,43 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class ModNamedItem extends ItemNameBlockItem {
-    public ModNamedItem(Block p_41579_, Item.Properties p_41580_) {
-        super(p_41579_, p_41580_);
+    public ModNamedItem(Block block, Item.Properties prop) {
+        super(block, prop);
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-        if (p_41411_ instanceof Player) {
-            if (p_41409_.getItem() == ModItemsClass.CRACKBERRY.get()) {
-                p_41411_.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-                RadiationMath.attributeUpdate(p_41411_, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (entity instanceof Player) {
+
+            if (stack.getItem() == ModItemsClass.CRACKBERRY.get()) {
+                entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
+                RadiationMath.attributeUpdate(entity, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
-            if (p_41409_.getItem() == ModItemsClass.BOMBBERRY.get()) {
-                RadiationMath.attributeUpdate(p_41411_, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+
+            if (stack.getItem() == ModItemsClass.BOMBBERRY.get()) {
+                RadiationMath.attributeUpdate(entity, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
-            if (p_41409_.getItem() == ModItemsClass.FUSFRUIT.get()) {
-                RadiationMath.attributeUpdate(p_41411_, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+
+            if (stack.getItem() == ModItemsClass.FUSFRUIT.get()) {
+                RadiationMath.attributeUpdate(entity, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
-            if (p_41409_.getItem() == ModItemsClass.NEUTRONROD.get()) {
-                RadiationMath.attributeUpdate(p_41411_, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+
+            if (stack.getItem() == ModItemsClass.NEUTRONROD.get()) {
+                RadiationMath.attributeUpdate(entity, true, 0.1f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
             }
-            if (p_41409_.getItem() == ModItemsClass.XANDER_ROOT.get()) {
-                RadiationMath.attributeUpdate(p_41411_, true, 0.3f, Stream.of(new AbstractMap.SimpleEntry<>("entity", p_41411_)).collect(HashMap::new,
+
+            if (stack.getItem() == ModItemsClass.XANDER_ROOT.get()) {
+                RadiationMath.attributeUpdate(entity, true, 0.3f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
-                p_41411_.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
 
             }
         }
-        return super.finishUsingItem(p_41409_, p_41410_, p_41411_);
+        return super.finishUsingItem(stack, level, entity);
     }
 
     //    @Override
