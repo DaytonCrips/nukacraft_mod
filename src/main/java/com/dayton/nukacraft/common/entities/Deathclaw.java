@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.entities;
 
+import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,6 +24,8 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.Objects;
+
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.PLAY_ONCE;
 
@@ -42,31 +45,36 @@ public class Deathclaw extends Monster implements IAnimatable {
     }
 
     protected void registerGoals() {
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-//        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-//        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 0.2D, false));
-//        this.goalSelector.addGoal(1, new FloatGoal(this));
-//        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-
-        this.goalSelector.addGoal(2, new RestrictSunGoal(this));
-        this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Wolf.class, 6.0F, 1.0D, 1.2D));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Turtle.class, 10, true, false, Turtle.BABY_ON_LAND_SELECTOR));
     }
+
 
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController((new AnimationController<>(this, "arm_controller", 0, this::animateArms)));
+    }
+
+    private boolean isRunning = false;
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(getTarget() != null) {
+            setSpeed((float) getAttributeBaseValue(Attributes.MOVEMENT_SPEED) + 1f);
+            isRunning = true;
+        }
+        else {
+            setSpeed((float) getAttributeBaseValue(Attributes.MOVEMENT_SPEED));
+            isRunning = false;
+        }
+        //NukaCraftMod.LOGGER.error("is running: " + isRunning + " client: " + level.isClientSide);
     }
 
     private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
@@ -77,10 +85,10 @@ public class Deathclaw extends Monster implements IAnimatable {
             setAnimation(controller, "attack_right", PLAY_ONCE);
         }
         else if(event.isMoving()){
-            if(getTarget() != null){
+            if(isRunning)
                 setAnimation(controller, "run", LOOP);
-            }
-            setAnimation(controller, "walk", LOOP);
+            else
+                setAnimation(controller, "walk", LOOP);
         }
         else {
             setAnimation(controller, "idle", LOOP);
