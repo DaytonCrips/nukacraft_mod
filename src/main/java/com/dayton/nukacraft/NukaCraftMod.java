@@ -124,6 +124,13 @@ public class NukaCraftMod
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.NEOAGAVE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.GINSENG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.NUKAROOT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.CORALLEAF.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.PRISMLEAF.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.BROC.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.INVERT.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.POTTED_BROC.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.POTTED_INVERT.get(), RenderType.cutout());
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -143,6 +150,8 @@ public class NukaCraftMod
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksClass.GUTSHROOM.getId(), ModBlocksClass.POTTED_GUTSHROOM);
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksClass.BBLIGHT.getId(), ModBlocksClass.POTTED_BBLIGHT);
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksClass.MARYGOLD.getId(), ModBlocksClass.POTTED_MARYGOLD);
+        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksClass.BROC.getId(), ModBlocksClass.POTTED_BROC);
+        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocksClass.INVERT.getId(), ModBlocksClass.POTTED_INVERT);
 
 
         LOGGER.info("HELLO FROM PREINIT");

@@ -48,6 +48,7 @@ public class TeaItem extends Item {
             if (stack.getItem() == ModItemsClass.THISTLE_TEA.get()) {
                 RadiationMath.attributeUpdate(entity, true, 0.04f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));}
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
 
         }
         return super.finishUsingItem(stack, level, entity);

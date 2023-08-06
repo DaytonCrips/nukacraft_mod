@@ -33,6 +33,7 @@ public class RadFoodItem extends Item {
             if (stack.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
                 entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
             }
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
 
         return super.finishUsingItem(stack, level, entity);

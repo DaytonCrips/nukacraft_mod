@@ -27,9 +27,10 @@ public class ModItemsClass {
     public static final RegistryObject<Item> ANTISEPT = ITEMS.register("antisept",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+            () -> new FertilizerItem(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> OIL = ITEMS.register("oil",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+
     public static final RegistryObject<Item> FIBER = ITEMS.register("fiber",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> OPTOFIBER = ITEMS.register("optofiber",
@@ -121,6 +122,10 @@ public class ModItemsClass {
             () -> new ModNamedItem(ModBlocksClass.NUKAROOT.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
     public static final RegistryObject<Item> GINSENG_ROOT = ITEMS.register("ginsengroot",
             () -> new ModNamedItem(ModBlocksClass.GINSENG.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.XANDER)));
+    public static final RegistryObject<Item> CORAL_LEAF = ITEMS.register("coral_leaf",
+            () -> new ModNamedItem(ModBlocksClass.CORALLEAF.get(), new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> PRISM_LEAF = ITEMS.register("prism_leafs",
+            () -> new ModNamedItem(ModBlocksClass.PRISMLEAF.get(), new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> CAP = ITEMS.register("cap",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> DOGWOOD = ITEMS.register("dogwood",
