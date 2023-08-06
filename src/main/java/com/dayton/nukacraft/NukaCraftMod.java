@@ -68,8 +68,6 @@ public class NukaCraftMod
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-
-
     private void clientSetup(final FMLCommonSetupEvent event) {
         setRenderLayer(ModBlocksClass.CRACKBERRY_BUSH.get(), RenderType.cutout());
         setRenderLayer(ModBlocksClass.BLOODLEAF_BUSH.get(), RenderType.cutout());
