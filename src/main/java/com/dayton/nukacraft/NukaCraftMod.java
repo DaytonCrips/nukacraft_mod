@@ -2,6 +2,7 @@ package com.dayton.nukacraft;
 
 import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
+import com.dayton.nukacraft.common.entities.EntityTypes;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.world.ModBiomes;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -37,6 +39,7 @@ public class NukaCraftMod
 
     public NukaCraftMod()
     {
+        GeckoLib.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
         ModItemsClass.register(eventBus);
@@ -46,7 +49,7 @@ public class NukaCraftMod
         ModBiomes.register(eventBus);
         ModParticles.register(eventBus);
         RadiationHudOverlay.register();
-
+        EntityTypes.register(eventBus);
 
         eventBus.addListener(this::clientSetup);
 
