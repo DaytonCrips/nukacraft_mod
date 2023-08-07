@@ -170,6 +170,18 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> ASTER = registerBlock("aster",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+    public static final RegistryObject<Block> BROC = registerBlock("brocflower",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+    public static final RegistryObject<Block> INVERT = registerBlock("invertflower",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+    public static final RegistryObject<Block> POTTED_BROC = registerBlockWithoutItem("potted_broc",
+            () -> new FlowerPotBlock(null, ModBlocksClass.BROC,
+                    BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+    public static final RegistryObject<Block> POTTED_INVERT = registerBlockWithoutItem("potted_invert",
+            () -> new FlowerPotBlock(null, ModBlocksClass.INVERT,
+                    BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> POTTED_ASTER = registerBlockWithoutItem("potted_aster",
             () -> new FlowerPotBlock(null, ModBlocksClass.ASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
@@ -298,6 +310,10 @@ public class ModBlocksClass {
             () -> new GinsengBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> NUKAROOT = registerBlockWithoutItem("nukaroot",
             () -> new NukaRootBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> CORALLEAF = registerBlockWithoutItem("coral_leaf",
+            () -> new CoralLeafBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> PRISMLEAF = registerBlockWithoutItem("prism_leaf",
+            () -> new PrismLeafBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 
 

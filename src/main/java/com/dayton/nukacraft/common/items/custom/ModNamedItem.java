@@ -53,8 +53,8 @@ public class ModNamedItem extends ItemNameBlockItem {
                 RadiationMath.attributeUpdate(entity, true, 0.3f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
                 entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
-
             }
+            if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
         return super.finishUsingItem(stack, level, entity);
     }

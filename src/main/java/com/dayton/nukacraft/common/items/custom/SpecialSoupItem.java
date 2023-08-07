@@ -27,6 +27,7 @@ public class SpecialSoupItem extends Item {
         if (stack.getItem() == ModItemsClass.FMPUREE.get()) {
             entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
         }
+        if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         ItemStack itemstack = super.finishUsingItem(stack, level, entity);
         return entity instanceof Player && ((Player)entity).getAbilities().instabuild ? itemstack : new ItemStack(Items.BOWL);
     }

@@ -26,6 +26,7 @@ public class NuclearMaterialItem extends Item {
             if (!player.isCreative()) {player.getMainHandItem().shrink(1);}
             return InteractionResult.SUCCESS;
         }
+        if (!player.isCreative()) {player.getMainHandItem().shrink(1);}
         return InteractionResult.FAIL;
     }
 }
