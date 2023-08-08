@@ -98,15 +98,6 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> REDROCKETPANEL = registerBlock("redrocketpanel",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.2f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> CRKBRICK_I = registerBlock("crkbrick_i",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(1.1f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> CRKBRICK_R = registerBlock("crkbrick_r",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2, 6).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> CRKBRICK_T = registerBlock("crkbrick_t",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2, 6).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> DANGERFLOOR = registerBlock("dangerfloor",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of(Material.STONE)
