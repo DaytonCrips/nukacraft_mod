@@ -13,12 +13,16 @@
   "item.nukacraft.raw_alumi": "Рудный Алюминий",
   "item.nukacraft.nukaroot": "Ядер Корень",
   "item.nukacraft.coral_leaf": "Коралловые Листья",
+  "item.nukacraft.spoiled_tato": "Тухлая Тошка",
+  "item.nukacraft.irrad_beetroot": "Облучённая Свекла",
   "item.nukacraft.prism_leafs": "Призма Листья",
   "item.nukacraft.purple_reagent": "Пурпурный Реагент",
   "item.nukacraft.gold_cranberry": "Золотая Клюква",
   "item.nukacraft.nukamelon_piece": "Ломтик Мегатонн-Арбуза",
   "block.nukacraft.glowfungus": "Светящийся гриб",
+  "block.nukacraft.irrad_beetroots": "Семена Облучённой Свеклы",
   "block.nukacraft.mutshootfungus": "Светящийся гриб мутострел",
+  "item.nukacraft.ufcarrot": "Ультрафиолетовая Морковь",
   "item.nukacraft.raw_btitan": "Рудный Черный Титан",
   "item.nukacraft.bbloodleafl_": "Росток Чёрного Кроволиста",
   "item.nukacraft.nbloodleafi_": "Росток Кроволиста",
@@ -279,5 +283,18 @@
   "effect.nukacraft.speed": "§9Скорость (0:10)",
   "effect.nukacraft.radres_berry": "§9Рад-Защита (0:05)",
   "tooltip.nukacraft.bush_fire": "§9Огнестойкость (0:05)",
-  "tooltip.nukacraft.rad_effect1": "§cРад +0.1"
+  "tooltip.nukacraft.rad_effect1": "§cРад +0.1",
+
+
+
+
+
+
+
+
+
+
+  "catalogue.nukacraft.test": "Основной Каталог",
+  "catalogue.nukacraft.string_d1": "Парни, вы издеваетесь?",
+  "catalogue.nukacraft.string_d2": "Пожалуйста, свяжитесь с специалистом"
 }

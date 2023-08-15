@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/ufcarrots_stage0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/ufcarrots_stage0"
+    },
+    "age=2": {
+      "model": "nukacraft:block/ufcarrots_stage1"
+    },
+    "age=3": {
+      "model": "nukacraft:block/ufcarrots_stage1"
+    },
+    "age=4": {
+      "model": "nukacraft:block/ufcarrots_stage2"
+    },
+    "age=5": {
+      "model": "nukacraft:block/ufcarrots_stage2"
+    },
+    "age=6": {
+      "model": "nukacraft:block/ufcarrots_stage2"
+    },
+    "age=7": {
+      "model": "nukacraft:block/ufcarrots_stage3"
+    }
+  }
+}

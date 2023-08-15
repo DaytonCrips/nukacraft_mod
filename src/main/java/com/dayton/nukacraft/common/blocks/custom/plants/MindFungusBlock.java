@@ -70,13 +70,7 @@ public class MindFungusBlock extends BushBlock implements BonemealableBlock {
 
 
 
-    @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
-        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            MutationFloraClass.mutatePlants(state, pos, level);
-        }
-        super.setPlacedBy(level, pos, state, entity, stack);
-    }
+
 
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player p_57278_, InteractionHand hand, BlockHitResult result) {

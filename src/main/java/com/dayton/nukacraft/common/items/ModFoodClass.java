@@ -25,6 +25,7 @@ public class ModFoodClass {
     public static final FoodProperties FCAKES = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(1.1f).build();
     public static final FoodProperties MCCHESSE = (new FoodProperties.Builder()).nutrition(6).alwaysEat().saturationMod(1.5f).build();
     public static final FoodProperties PURES = (new FoodProperties.Builder()).nutrition(6).alwaysEat().saturationMod(2.2f).build();
+    public static final FoodProperties SPOILED = (new FoodProperties.Builder()).alwaysEat().nutrition(1).saturationMod(0.0f).effect(new MobEffectInstance(MobEffects.POISON, 140, 0), 0.3f).build();
     //public static final FoodProperties COTTONCANDY = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(1.7f).build();
     public static final FoodProperties BUBBLEAPPLE = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.4f).build();
     public static final FoodProperties TEA = (new FoodProperties.Builder()).nutrition(1).fast().saturationMod(0.5f).build();

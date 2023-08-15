@@ -158,6 +158,12 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> POTTED_DEATH_FLOWER = registerBlockWithoutItem("potted_death_flower",
             () -> new FlowerPotBlock(null, ModBlocksClass.DEATH_FLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+    public static final RegistryObject<Block> TATO = registerBlockWithoutItem("tato_plant",
+            () -> new TatoCropBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
+    public static final RegistryObject<Block> IRRADROOT = registerBlockWithoutItem("irrad_beetroots",
+            () -> new IrradRootBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
+    public static final RegistryObject<Block> UFCARROT = registerBlockWithoutItem("ufcarrots",
+            () -> new UltravioletCarrotBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
     public static final RegistryObject<Block> ASTER = registerBlock("aster",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));

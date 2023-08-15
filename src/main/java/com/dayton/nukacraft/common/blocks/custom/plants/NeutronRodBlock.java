@@ -49,16 +49,7 @@ public class NeutronRodBlock extends BushBlock implements BonemealableBlock {
             return state.getValue(AGE) < 7 ? GROWING_SHAPE : super.getShape(state, getter, pos, context);
         }
     }
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            ticks++;
-            if (ticks >= 240) {
-                MutationFloraClass.mutatePlants(state, pos, level);
-                ticks = 0;}
-        }
-        super.animateTick(state, level, pos, random);
-    }
+
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < 7;
     }

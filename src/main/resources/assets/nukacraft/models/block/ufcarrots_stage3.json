@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "nukacraft:blocks/ufcarrots_stage3"
+  }
+}

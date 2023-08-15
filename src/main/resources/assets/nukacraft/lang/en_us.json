@@ -14,7 +14,11 @@
   "item.nukacraft.nukaroot": "Nuka Root",
   "item.nukacraft.coral_leaf": "Coral Leaves",
   "item.nukacraft.prism_leafs": "Prisma Leaves",
+  "item.nukacraft.spoiled_tato": "Spoiled Tato",
+  "item.nukacraft.irrad_beetroot": "Irradiated Beetroot",
+  "block.nukacraft.irrad_beetroots": "Irradiated Beetroot Seeds",
   "item.nukacraft.beerempty": "Empty Beer Bottle",
+  "item.nukacraft.ufcarrot": "Ultraviolet Carrot",
   "item.nukacraft.brainfungus": "Brain Fungus",
   "item.nukacraft.btitan": "Black Titan Ingot",
   "item.nukacraft.raw_alumi": "Raw Aluminium",
@@ -279,6 +283,11 @@
   "effect.nukacraft.radres_berry": "§9Rad Resistance (0:05)",
   "tooltip.nukacraft.cola_rad-": "§aRad -0.09",
   "effect.nukacraft.speed": "§9Speed (0:10)",
-  "tooltip.nukacraft.rad_effect1": "§cRad +0.1"
+  "tooltip.nukacraft.rad_effect1": "§cRad +0.1",
 
+
+
+  "catalogue.nukacraft.test": "Main Catalogue",
+  "catalogue.nukacraft.string_d1": "Pip-OS is crashed...",
+  "catalogue.nukacraft.string_d2": "Contact a RobCo. Industries specialist"
 }

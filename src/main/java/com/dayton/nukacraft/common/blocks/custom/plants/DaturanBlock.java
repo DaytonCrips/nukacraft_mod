@@ -1,14 +1,17 @@
 package com.dayton.nukacraft.common.blocks.custom.plants;
 
+import com.dayton.nukacraft.common.blocks.custom.blocks.MutationFloraClass;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -114,7 +117,13 @@ public class DaturanBlock extends BushBlock implements BonemealableBlock, Liquid
     public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
         return state.getValue(AGE) < 3;
     }
-
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
+        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
+            MutationFloraClass.mutationSucces(state, pos, level);
+        }
+        super.setPlacedBy(level, pos, state, entity, stack);
+    }
     public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }

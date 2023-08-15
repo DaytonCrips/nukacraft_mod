@@ -3,6 +3,7 @@ package com.dayton.nukacraft.common.items;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
 import com.dayton.nukacraft.common.items.custom.*;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,15 +20,13 @@ public class ModItemsClass {
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> VIOPLEX = ITEMS.register("purple_reagent",
-            () -> new VioletReagent(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE)) {
-                @Override
-                public boolean isFoil(ItemStack itemStack) {return true;}});
+            () -> new VioletReagent(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ADHESIVE = ITEMS.register("adhesive",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> ANTISEPT = ITEMS.register("antisept",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer",
-            () -> new FertilizerItem(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+            () -> new BoneMealItem(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> OIL = ITEMS.register("oil",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
 
@@ -224,20 +223,28 @@ public class ModItemsClass {
         () -> new NukaColaItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.NUKACOLA)));
     public static final RegistryObject<Item> NUKAFRUTTI = ITEMS.register("nukafrutti",
             () -> new NukaColaItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.NUKAFRUTTI)));
-      public static final RegistryObject<Item> CRACKBERRY = ITEMS.register("crackberry",
+    public static final RegistryObject<Item> CRACKBERRY = ITEMS.register("crackberry",
               () -> new ModNamedItem(ModBlocksClass.CRACKBERRY_BUSH.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.CRACKBERRY)));
-      public static final RegistryObject<Item> BOMBBERRY = ITEMS.register("bombberry",
+    public static final RegistryObject<Item> BOMBBERRY = ITEMS.register("bombberry",
               () -> new ModNamedItem(ModBlocksClass.BOMBBERRY_BUSH.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.BOMBBERRY)));
-      public static final RegistryObject<Item> MUTTFRUIT = ITEMS.register("muttfruit",
+    public static final RegistryObject<Item> MUTTFRUIT = ITEMS.register("muttfruit",
               () -> new ModNamedItem(ModBlocksClass.MUTTFRUIT_BUSH.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.MUTTFRUIT)));
-      public static final RegistryObject<Item> FUSFRUIT = ITEMS.register("fusionfruit",
+    public static final RegistryObject<Item> FUSFRUIT = ITEMS.register("fusionfruit",
               () -> new ModNamedItem(ModBlocksClass.FUSFRUIT_BUSH.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.FUSFRUIT)));
-      public static final RegistryObject<Item> SITTBEAN = ITEMS.register("sittbean",
+    public static final RegistryObject<Item> SITTBEAN = ITEMS.register("sittbean",
               () -> new ModNamedItem(ModBlocksClass.SITTBEAN_BUSH.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.SITTBEAN)));
-      public static final RegistryObject<Item> NEUTRONROD = ITEMS.register("neutronpod",
+    public static final RegistryObject<Item> NEUTRONROD = ITEMS.register("neutronpod",
               () -> new ModNamedItem(ModBlocksClass.NEUTRON_BUSH.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.NEUTRONROD)));
-      public static final RegistryObject<Item> WILDTATO = ITEMS.register("wildtato",
-              () -> new ModNamedItem(ModBlocksClass.WILDTATO.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.WILDTATO)));
+    public static final RegistryObject<Item> WILDTATO = ITEMS.register("wildtato",
+              () -> new ModNamedItem(ModBlocksClass.TATO.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.WILDTATO)));
+    public static final RegistryObject<Item> IRRADBEETROOT = ITEMS.register("irrad_beetroot",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(Foods.BEETROOT)));
+    public static final RegistryObject<Item> UFCARROT = ITEMS.register("ufcarrot",
+            () -> new ModNamedItem(ModBlocksClass.UFCARROT.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.WILDTATO)));
+    public static final RegistryObject<Item> IRRADSEED = ITEMS.register("irradb_seed",
+            () -> new BlockItem(ModBlocksClass.IRRADROOT.get(), new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> SPOILD_TATO = ITEMS.register("spoiled_tato",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.SPOILED)));
       public static final RegistryObject<Item> STARBERRY = ITEMS.register("starberry",
               () -> new ModNamedItem(ModBlocksClass.STARBERRY.get(),new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.STARBERRY)));
       public static final RegistryObject<Item> CRANBERRY = ITEMS.register("cranberry",
@@ -303,7 +310,7 @@ public class ModItemsClass {
 
 //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy_d",
-        () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).stacksTo(1)));
+        () -> new PipBoyItem(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }
