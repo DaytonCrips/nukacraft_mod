@@ -20,4 +20,5 @@ public class Archive {
     public ArchivePage getPage(int index) {
         return this.pages.get(index);
     }
+    public int getPageCount() {return this.pages.size();}
 }

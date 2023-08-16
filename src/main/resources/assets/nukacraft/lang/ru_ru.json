@@ -293,8 +293,15 @@
 
 
 
+  "archive.nukacraft.vaultboy.name": "▪ Дорогой Резидент Убежища!",
 
-  "catalogue.nukacraft.test": "Основной Каталог",
-  "catalogue.nukacraft.string_d1": "Парни, вы издеваетесь?",
-  "catalogue.nukacraft.string_d2": "Пожалуйста, свяжитесь с специалистом"
+  "archivepage.nukacraft.vaultboy1.string_d1": "Дорогой Резидент, ты получил Пип-Бой!",
+  "archivepage.nukacraft.vaultboy1.string_d2": "Он необходим для хранения информации",
+  "archivepage.nukacraft.vaultboy1.string_d3": "а также для чтения голодисков",
+  "archivepage.nukacraft.vaultboy1.string_d4": "Увидимся в светлом будущем!",
+
+  "archivepage.nukacraft.warn.string_d1": "Попытка чтения памяти...",
+  "archivepage.nukacraft.warn.string_d2": "Ошибок(9)... Повторное чтение",
+  "archivepage.nukacraft.warn.string_d3": "Отчёт: Ошибок(2): Память пустая",
+  "archivepage.nukacraft.warn.string_d5": "'Свяжитесь с РобКо'"
 }

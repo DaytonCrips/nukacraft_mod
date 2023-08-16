@@ -287,7 +287,20 @@
 
 
 
-  "catalogue.nukacraft.test": "Main Catalogue",
-  "catalogue.nukacraft.string_d1": "Pip-OS is crashed...",
-  "catalogue.nukacraft.string_d2": "Contact a RobCo. Industries specialist"
+
+
+  "archive.nukacraft.vaultboy.name": "▪ Dear Shelter Resident!",
+
+  "archivepage.nukacraft.vaultboy1.string_d1": "Dear Resident, there you have it Pip-Boy!",
+  "archivepage.nukacraft.vaultboy1.string_d2": "Necessary for storing information",
+  "archivepage.nukacraft.vaultboy1.string_d3": "and for reading holodiscs",
+  "archivepage.nukacraft.vaultboy1.string_d4": "Meet me in the bright future!",
+
+
+
+
+  "archivepage.nukacraft.warn.string_d1": "Try to read internal memory...",
+  "archivepage.nukacraft.warn.string_d2": "Error(9)... Restart reading",
+  "archivepage.nukacraft.warn.string_d3": "Return Error(2): Memory empty",
+  "archivepage.nukacraft.warn.string_d5": "Please, contact with RobCo"
 }

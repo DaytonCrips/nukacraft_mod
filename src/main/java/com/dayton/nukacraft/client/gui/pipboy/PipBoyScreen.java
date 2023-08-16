@@ -14,10 +14,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.Minecraft;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -40,11 +37,14 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "", //string7
             "", //string8
             "", //string9
-            "", //string10
-            "", //catalogue name
-            "nukacraft:textures/screens/radhearth." //resourceLocation
+            "" //string10
     };
     public static Integer[] cords = new Integer[]{0, 0};
+    private static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+
+    private static int page_count, current_page, current_archive, archive_pages, current_archive_page;
+
+
 
     public PipBoyScreen(PipBoyMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
@@ -78,10 +78,18 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         RenderSystem.setShaderTexture(0, new ResourceLocation("nukacraft:textures/screens/pipboy.png")); //Pip Boy Skin
         this.blit(ms, this.leftPos + -116, this.topPos + -113, 0, 0, 235, 207, 235, 207);
 
-//        RenderSystem.setShaderTexture(0, ); //Pip Boy Skin
-//        this.blit(ms, this.leftPos + cords[0], this.topPos + cords[1], 0, 0, 235, 207, 235, 207);
+        if (!(image == null)) {
+            RenderSystem.setShaderTexture(0, image); //Pip Boy Skin
+            this.blit(ms, this.leftPos + cords[0], this.topPos + cords[1], 0, 0, 106, 65, 106, 65);
+        }
+    }
 
 
+
+    public void warningPipboy() {
+        page_buffer = PipBoy.warning_screen;
+        image = PipBoy.warning_image;
+        cords = PipBoy.warn_cords;
     }
 
     @Override
@@ -100,70 +108,140 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     @Override
     protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[10]), 33, 64, -1);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[0]), -102, -87, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[1]), -102, -74, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[2]), -102, -61, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[3]), -102, -48, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[4]), -102, -35, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[5]), -102, -22, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[6]), -102, -9, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[7]), -102, 4, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[8]), -102, 17, -6684775);
-        this.font.draw(poseStack, new TranslatableComponent(page_buffer[9]), -102, 30, -6684775);
-        //this.font.draw(poseStack, new TranslatableComponent(page_buffer[10]), -102, 43, -6684775);
+        for (int xt = 0; xt < 10; xt++) {
+            this.font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -102, -87 + (xt * 13), -6684775);
+        }
+
+        if (menu) {
+            this.font.draw(poseStack, new TranslatableComponent("   [" + current_archive_page + "/" + archive_pages + "]"), 33, 64, -1);
+        } else
+            this.font.draw(poseStack, new TranslatableComponent("   [" + current_page + "/" + (page_count-1) + "]"), 33, 64, -1);
+
     }
 
     @Override
     public void onClose() {
         super.onClose();
         Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
+        menu = true;
     }
 
 
     public void pageNavigation() {
+
         this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -112, this.topPos + 58, 30, 20,
                 new TextComponent("◀"), e -> {
-
+            if (current_page > 0) {
+                current_page--;
+                page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
+                image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
+                cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
+                cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+            }
         }));
         this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -24, this.topPos + 58, 30, 20,
                 new TextComponent("▶"), e -> {
+            if (current_page < page_count-1){
+                current_page++;
+                page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
+                image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
+                cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
+                cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+            }
         }));
     }
+
+
+
 
     public void archiveNavigation(){
         this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -112, this.topPos + 58, 30, 20,
                 new TextComponent("◀"), e -> {
+            if (current_archive_page > 0) {
+                current_archive_page--;
+                this.clearWidgets();
+                this.archiveNavigation();
+                buttonMenu();
+            }
 
         }));
         this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -24, this.topPos + 58, 30, 20,
                 new TextComponent("▶"), e -> {
+            if (!(current_archive_page == archive_pages)) {
+                current_archive_page++;
+                this.clearWidgets();
+                this.archiveNavigation();
+                buttonMenu();
+            }
         }));
     }
 
     public void buttonMenu() {
-        if (!(PipBoy.content.size() == 0)) {
-            for (int t = 0; t < PipBoy.content.size(); t++) {
-                page_buffer[t] = PipBoy.content.get(t).getName();
-                //int posCord = (t == 0) ? 13 : (t * 13);
-                int finalT = t;
+        int xj = 0;
 
-                this.addRenderableWidget(new TextPipBoyButton(this.leftPos + -102, this.topPos + (-89 + (t * 13)),  205, 11,
-                        new TextComponent(""), e -> {
-                    this.clearWidgets();
-                    this.pageNavigation();
-                }));
+        if (current_archive_page == archive_pages) {
+            if (PipBoy.content.size() % 7 == 0) {
+                xj = 7;
+            } else {
+                xj = PipBoy.content.size() % 7;
             }
+        } else if (PipBoy.content.size() >= 7) {
+            xj = 7;
         }
 
 
+
+        page_buffer = new String[]{
+                "    Copyright 2076 ROBCO INDUSTRIES", //string1
+                "                -Archives 1-        ", //string2
+                "-----------------------------------", //string3
+                "", //string4
+                "", //string5
+                "", //string6
+                "", //string7
+                "", //string8
+                "", //string9
+                "" //string10
+        };
+        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+        for (int t = 0; t < xj; t++) {
+            page_buffer[t+3] = current_archive_page > 0 ? PipBoy.content.get(t+(current_archive_page*7)).getName() : PipBoy.content.get(t+(current_archive_page)).getName();
+            int finalT = current_archive_page > 0 ? t+(current_archive_page*7) : t;
+            this.addRenderableWidget(new TextPipBoyButton(this.leftPos + -102, this.topPos + (-50 + (t * 13)),  205, 11,
+                    new TextComponent(""), e -> {
+                menu = false;
+                this.clearWidgets();
+                this.pageNavigation();
+                page_buffer = PipBoy.content.get(finalT).getPage(0).getLines();
+                image = PipBoy.content.get(finalT).getPage(0).getImage();
+                cords[0] = PipBoy.content.get(finalT).getPage(0).getXcord();
+                cords[1] = PipBoy.content.get(finalT).getPage(0).getYcord();
+                current_archive = finalT;
+                page_count = PipBoy.content.get(finalT).getPageCount();
+                current_page = 0;
+            }));
+        }
+    }
+
+
+
+    public static int round(int i, int j) {
+        if (i % j == 0) {
+            return (i / j);
+        } else {
+            return (i / j) + 1;
+        }
     }
 
     @Override
     public void init() {
         super.init();
-
-        if (menu) {
+        menu = true;
+        if (PipBoy.content.size() == 0) {
+            warningPipboy();
+        } else {
+            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            current_archive_page = 0;
             buttonMenu();
             archiveNavigation();
         }

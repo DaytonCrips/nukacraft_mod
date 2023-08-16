@@ -42,7 +42,7 @@ public class PipBoyItem extends Item {
             NetworkHooks.openGui((ServerPlayer) _ent, new MenuProvider() {
                 @Override
                 public Component getDisplayName() {
-                    return new TextComponent("Sadzsd");
+                    return new TextComponent("Sadzxc");
                 }
 
                 @Override
