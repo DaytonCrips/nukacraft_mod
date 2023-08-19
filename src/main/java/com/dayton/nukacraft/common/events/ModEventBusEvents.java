@@ -5,12 +5,14 @@ import com.dayton.nukacraft.client.particles.GammaParticles;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.dayton.nukacraft.common.entities.Deathclaw;
 import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -24,4 +26,8 @@ public class ModEventBusEvents {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
     }
 
+    @SubscribeEvent
+    public static void setup(final FMLCommonSetupEvent event) {
+        PacketHandler.register();
+    }
 }
