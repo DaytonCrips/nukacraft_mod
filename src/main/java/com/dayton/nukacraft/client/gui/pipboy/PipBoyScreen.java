@@ -59,6 +59,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
 
     private static final ResourceLocation texture = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
+    private static ResourceLocation pipboy = new ResourceLocation("nukacraft:textures/screens/pimpboy.png");
+    private static final ResourceLocation pipboy_screen = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
+
 
     @Override
     public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
@@ -69,19 +72,24 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     @Override
     protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
-        RenderSystem.setShaderColor(1, 1, 1, 1);
+        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, texture);
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
-
-        RenderSystem.setShaderTexture(0, new ResourceLocation("nukacraft:textures/screens/pipboy.png")); //Pip Boy Skin
+        RenderSystem.setShaderTexture(0, pipboy_screen); //Pip Boy Skin
         this.blit(ms, this.leftPos + -116, this.topPos + -113, 0, 0, 235, 207, 235, 207);
 
         if (!(image == null)) {
             RenderSystem.setShaderTexture(0, image); //Pip Boy Skin
             this.blit(ms, this.leftPos + cords[0], this.topPos + cords[1], 0, 0, 106, 65, 106, 65);
         }
+
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+        RenderSystem.setShaderTexture(0, pipboy); //Pip Boy Skin
+        this.blit(ms, this.leftPos + -116, this.topPos + -113, 0, 0, 235, 207, 235, 207);
+
+
     }
 
 
@@ -109,7 +117,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     @Override
     protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
         for (int xt = 0; xt < 10; xt++) {
-            this.font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -102, -87 + (xt * 13), -6684775);
+            this.font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -102, -87 + (xt * 13), PipBoy.fontColor);
         }
 
         if (menu) {
@@ -192,9 +200,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
 
         page_buffer = new String[]{
-                "    Copyright 2076 ROBCO INDUSTRIES", //string1
-                "                -Archives 1-        ", //string2
-                "-----------------------------------", //string3
+                "archive.nukacraft.pip_os.string1", //string1
+                "archive.nukacraft.pip_os.string2_1", //string2
+                "archive.nukacraft.pip_os.string3", //string3
                 "", //string4
                 "", //string5
                 "", //string6
@@ -235,6 +243,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     @Override
     public void init() {
+        pipboy = PipBoy.pipboy_name;
         super.init();
         menu = true;
         if (PipBoy.content.size() == 0) {

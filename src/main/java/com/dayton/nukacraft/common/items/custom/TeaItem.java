@@ -19,35 +19,31 @@ import java.util.Map;
 import java.util.stream.Stream;
 //cursed:(
 public class TeaItem extends Item {
-    public TeaItem(Item.Properties item) {super(item);}
+    private float radfloat;
+    private boolean irradiated;
+    public TeaItem(boolean irradiated, float radfloat, Item.Properties item) {
+        super(item);
+        this.irradiated = irradiated;
+        this.radfloat = radfloat;
+    }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
+            RadiationMath.attributeUpdate(entity, irradiated, radfloat, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+                    (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
+
 
             if (stack.getItem() == ModItemsClass.ASTER_TEA.get()) {
-                RadiationMath.attributeUpdate(entity, true, 0.04f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                        (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
                 entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0, false, false));}
-
-
             if (stack.getItem() == ModItemsClass.SWEET_ASTER_TEA.get()) {
                 entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0, false, false));}
-
-
             if (stack.getItem() == ModItemsClass.ASH_TEA.get()) {
-                RadiationMath.attributeUpdate(entity, true, 0.04f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                        (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
                 entity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0, false, false));}
-
-
             if (stack.getItem() == ModItemsClass.SWEET_ASH_TEA.get()) {
                 entity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0, false, false));}
 
 
-            if (stack.getItem() == ModItemsClass.THISTLE_TEA.get()) {
-                RadiationMath.attributeUpdate(entity, true, 0.04f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                        (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));}
             if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
 
         }
@@ -56,26 +52,31 @@ public class TeaItem extends Item {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
+        if (!this.irradiated) {
+            if (!(this.radfloat == 0.0f)) {
+                list.add(new TranslatableComponent("tooltip.nukacraft.irradiation").append(("§a-" + this.radfloat)));
+            }
+        } else {
+            list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append(("§c+" + this.radfloat)));
+        }
+
+
         if (item.getItem() == ModItemsClass.ASTER_TEA.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.tea_rad"));
-            list.add(new TranslatableComponent("tooltip.nukacraft.tea_regen"));
+            list.add(new TranslatableComponent("tooltip.nukacraft.regen").append("§9(0:10)"));
         }
         if (item.getItem() == ModItemsClass.SWEET_ASTER_TEA.get()) {
-            list.add(new TranslatableComponent("tooltip.nukacraft.tea_regen"));
+            list.add(new TranslatableComponent("tooltip.nukacraft.regen").append("§9(0:10)"));
         }
         if (item.getItem() == ModItemsClass.ASH_TEA.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.tea_rad"));
-            list.add(new TranslatableComponent("tooltip.nukacraft.tea_haste"));
+            list.add(new TranslatableComponent("tooltip.nukacraft.haste").append("§9(0:10)"));
         }
         if (item.getItem() == ModItemsClass.SWEET_ASH_TEA.get()) {
-            list.add(new TranslatableComponent("tooltip.nukacraft.tea_haste"));
+            list.add(new TranslatableComponent("tooltip.nukacraft.haste").append("§9(0:10)"));
         }
         if (item.getItem() == ModItemsClass.THISTLE_TEA.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.tea_rad"));
             list.add(new TranslatableComponent("tooltip.nukacraft.tea_thistle"));
         }
     }
-
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {

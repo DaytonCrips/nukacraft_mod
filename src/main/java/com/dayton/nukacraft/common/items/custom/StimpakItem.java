@@ -38,10 +38,10 @@ public class StimpakItem extends Item {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
         if (item.getItem() == ModItemsClass.STIMPAK.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.stimpak"));
+            list.add(new TranslatableComponent("effect.nukacraft.health").append("§9+5"));
         }
         if (item.getItem() == ModItemsClass.SUPER_STIMPAK.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.super_stimpak"));
+            list.add(new TranslatableComponent("effect.nukacraft.health").append("§9+8"));
         }
     }
 

@@ -22,13 +22,22 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class MedicineItem extends Item {
-    public MedicineItem(Properties item) {
+    private float radfloat;
+    private boolean irradiated;
+    public MedicineItem(boolean irradiated, float radfloat, Properties item) {
         super(item);
+        this.irradiated = irradiated;
+        this.radfloat = radfloat;
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
+            RadiationMath.attributeUpdate(entity, irradiated, radfloat, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+                    (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
+
+
+
             if (stack.getItem() == ModItemsClass.RADAWAY.get()) {
                 RadiationMath.attributeUpdate(entity, false, 4.0f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
                         (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
@@ -54,15 +63,22 @@ public class MedicineItem extends Item {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        if (item.getItem() == ModItemsClass.RADAWAY.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.radaway"));
+
+        if (!this.irradiated) {
+            if (!(this.radfloat == 0.0f)) {
+                list.add(new TranslatableComponent("tooltip.nukacraft.irradiation").append(("§a-" + this.radfloat)));
+            }
+        } else {
+            list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append(("§c+" + this.radfloat)));
         }
+
+
         if (item.getItem() == ModItemsClass.GLOWBLOOD.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.glowblood"));
             list.add(new TranslatableComponent("effect.nukacraft.glowing"));
         }
+
         if (item.getItem() == ModItemsClass.RADX.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.rad_shield"));
+            list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9(0:30)"));
         }
 
     }

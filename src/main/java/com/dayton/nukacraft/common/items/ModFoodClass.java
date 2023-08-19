@@ -7,7 +7,7 @@ import net.minecraft.world.food.FoodProperties;
 public class ModFoodClass {
     public static final FoodProperties COTTONCANDY = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(2.4f).build();
     public static final FoodProperties NUKAMELON = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.4f).build();
-    public static final FoodProperties XANDER = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.2f).build();
+    public static final FoodProperties NASTY = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.2f).build();
     public static final FoodProperties NUKACOLA = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.1f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 1), 0.3f).build();
     public static final FoodProperties NUKAFRUTTI = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.1f).effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 1), 0.3f).build();
     public static final FoodProperties CRACKBERRY = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.1f).build();

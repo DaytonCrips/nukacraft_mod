@@ -23,8 +23,12 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class NukaColaItem extends Item {
-    public NukaColaItem(Properties properties) {
+    private float radfloat;
+    private boolean irradiated;
+    public NukaColaItem(boolean irradiated, float radfloat, Properties properties) {
         super(properties);
+        this.irradiated = irradiated;
+        this.radfloat = radfloat;
     }
 
     @Override
@@ -34,16 +38,9 @@ public class NukaColaItem extends Item {
             items.setCount(1);
             ItemHandlerHelper.giveItemToPlayer((Player) entity, items);
 
+            RadiationMath.attributeUpdate(entity, irradiated, radfloat, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
+                    (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
 
-
-            if (stack.getItem() == ModItemsClass.NUKACOLA.get()) {
-                RadiationMath.attributeUpdate(entity, true, 0.08f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                        (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
-            }
-            else if (stack.getItem() == ModItemsClass.NUKAFRUTTI.get()) {
-                RadiationMath.attributeUpdate(entity, false, 0.09f, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                        (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
-            }
             if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
         entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false));
@@ -53,14 +50,16 @@ public class NukaColaItem extends Item {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        if (item.getItem() == ModItemsClass.NUKACOLA.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.speed"));
-            list.add(new TranslatableComponent("tooltip.nukacraft.cola_rad+"));
+
+        if (!this.irradiated) {
+            if (!(this.radfloat == 0.0f)) {
+                list.add(new TranslatableComponent("tooltip.nukacraft.irradiation").append(("§a-" + this.radfloat)));
+            }
+        } else {
+            list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append(("§c+" + this.radfloat)));
         }
-        if (item.getItem() == ModItemsClass.NUKAFRUTTI.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.speed"));
-            list.add(new TranslatableComponent("tooltip.nukacraft.cola_rad-"));
-        }
+        list.add(new TranslatableComponent("effect.nukacraft.speed").append("§9(0:10)"));
+
     }
 
     @Override
