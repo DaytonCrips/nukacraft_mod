@@ -13,12 +13,18 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public enum SpecialModels {
-    PISTOL10mm("gun/pistol10mm"),
-    PISTOL10mm_SLIDE("gun/pistol10mm_slide"),
-    CLASSIC10mm("gun/classic10mm"),
-    CLASSIC10mm_SLIDE("gun/classic10mm_slide"),
-    PIPE_PISTOL("gun/pipepistol"),
-    PIPE_PISTOL_SLIDE("gun/pipepistol_slide");
+    PISTOL10mm("gun/pistol10mm/pistol10mm"),
+    PISTOL10mm_t1("gun/pistol10mm/pistol10mmt1"),
+    PISTOL10mm_t2("gun/pistol10mm/pistol10mmt2"),
+    PISTOL10mm_t3("gun/pistol10mm/pistol10mmt3"),
+    PISTOL10mm_SLIDE("gun/pistol10mm/pistol10mm_slide"),
+
+
+
+    CLASSIC10mm("gun/classic10mm/classic10mm"),
+    CLASSIC10mm_SLIDE("gun/classic10mm/classic10mm_slide"),
+    PIPE_PISTOL("gun/pipepistol/pipepistol"),
+    PIPE_PISTOL_SLIDE("gun/pipepistol/pipepistol_slide");
 
     /**
      * The location of an item model in the [MOD_ID]/models/special/[NAME] folder

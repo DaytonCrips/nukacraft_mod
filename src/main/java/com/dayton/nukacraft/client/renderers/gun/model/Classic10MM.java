@@ -5,6 +5,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.guns.client.render.gun.IOverrideModel;
 import com.mrcrayfish.guns.client.util.RenderUtil;
 import com.mrcrayfish.guns.common.Gun;
+import com.mrcrayfish.guns.init.ModItems;
+import com.mrcrayfish.guns.item.attachment.IAttachment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -16,6 +18,10 @@ public class Classic10MM implements IOverrideModel {
     @Override
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.CLASSIC10mm.getModel(), stack, matrixStack, buffer, light, overlay);
+
+
+
+
         if(entity.equals(Minecraft.getInstance().player)) {
             matrixStack.pushPose();
             ItemCooldowns tracker = Minecraft.getInstance().player.getCooldowns();

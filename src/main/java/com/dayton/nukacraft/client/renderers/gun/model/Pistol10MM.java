@@ -18,6 +18,15 @@ public class Pistol10MM implements IOverrideModel {
     @Override
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.PISTOL10mm.getModel(), stack, matrixStack, buffer, light, overlay);
+
+
+        if(Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.LIGHT_STOCK.get())
+            RenderUtil.renderModel(SpecialModels.PISTOL10mm_t1.getModel(), stack, matrixStack, buffer, light, overlay);
+        if(Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.TACTICAL_STOCK.get())
+            RenderUtil.renderModel(SpecialModels.PISTOL10mm_t2.getModel(), stack, matrixStack, buffer, light, overlay);
+        if(Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.WEIGHTED_STOCK.get())
+            RenderUtil.renderModel(SpecialModels.PISTOL10mm_t3.getModel(), stack, matrixStack, buffer, light, overlay);
+
         if(entity.equals(Minecraft.getInstance().player)) {
             matrixStack.pushPose();
             ItemCooldowns tracker = Minecraft.getInstance().player.getCooldowns();
