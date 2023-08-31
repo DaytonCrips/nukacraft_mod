@@ -1,0 +1,52 @@
+{
+  "general": {
+    "rate": 4,
+    "gripType": "cgm:one_handed",
+    "maxAmmo": 5,
+    "reloadAmount": 1,
+    "recoilAngle": 5.5,
+	"recoilKick": 0.6,
+    "recoilAdsReduction": 0.12,
+    "alwaysSpread": true,
+    "spread": 1.0
+  },
+  "projectile": {
+    "item": "nukacraft:round38",
+    "damage": 6.0,
+    "size": 0.2,
+    "speed": 29.0,
+    "life": 16
+  },
+  "sounds": {
+    "fire": "nukacraft:item.pistol10mm.fire",
+    "reload": "cgm:item.pistol.reload",
+    "cock": "nukacraft:item.pistol10mm.cock",
+    "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
+    "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
+  },
+  "display": {
+    "flash": {
+      "yOffset": 3.85,
+      "zOffset": 10.7
+    }
+  },
+  "modules": {
+    "zoom": {
+      "yOffset": 4.6,
+      "zOffset": 1.5,
+      "fovModifier": 0.7
+    },
+    "attachments": {
+      "scope": {
+        "yOffset": 4.2,
+        "zOffset": 4.7,
+        "scale": 0.79
+      },
+      "barrel": {
+        "yOffset": 3.3,
+        "zOffset": 5.75,
+        "scale": 0.5
+      }
+    }
+  }
+}

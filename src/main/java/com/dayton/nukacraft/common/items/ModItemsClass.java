@@ -308,17 +308,28 @@ public class ModItemsClass {
       public static final RegistryObject<Item> RADX = ITEMS.register("radx",
               () -> new MedicineItem(false, 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodClass.MED)));
 
+    public static final RegistryObject<Item> ROUND10MM = ITEMS.register("round10mm",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
+    public static final RegistryObject<Item> ROUND38 = ITEMS.register("round38",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
+
+
+
+
+
+
+
 //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy_d",
-        () -> new PipBoyItem("pipboy_d", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).stacksTo(1)));
+        () -> new PipBoyItem("pipboy_d", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).stacksTo(1)));
     public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",
-            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).stacksTo(1)));
+            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).stacksTo(1)));
 
 
     public static final RegistryObject<Item> HOLO_1CC = ITEMS.register("holotape_white",
-            () -> new ColoredHolotapeItem("white", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem("white", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_1D2 = ITEMS.register("holotape_green",
-            () -> new ColoredHolotapeItem("green", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem("green", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).rarity(Rarity.COMMON)));
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }

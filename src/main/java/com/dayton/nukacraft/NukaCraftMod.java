@@ -1,10 +1,16 @@
 package com.dayton.nukacraft;
 
 
+import com.dayton.nukacraft.client.ClientHandler;
 import com.dayton.nukacraft.client.gui.pipboy.PipBoy;
+import com.dayton.nukacraft.client.renderers.gun.model.Classic10MM;
+import com.dayton.nukacraft.client.renderers.gun.model.PipePistol;
+import com.dayton.nukacraft.client.renderers.gun.model.Pistol10MM;
 import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.items.ModGunsClass;
+import com.dayton.nukacraft.common.sounds.ModSounds;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.world.ModBiomes;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
@@ -12,33 +18,19 @@ import com.dayton.nukacraft.client.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.common.items.ModItemsClass;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
+import com.mrcrayfish.guns.client.render.gun.ModelOverrides;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import static net.minecraft.client.renderer.ItemBlockRenderTypes.*;
+
 //Приходит улитка в бар, а там java классы в нарды играют...
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(NukaCraftMod.MOD_ID)
 public class NukaCraftMod
 {
@@ -59,6 +51,8 @@ public class NukaCraftMod
         ModParticles.register(eventBus);
         RadiationHudOverlay.register();
         EntityTypes.register(eventBus);
+        ModGunsClass.ITEMS.register(eventBus);
+        ModSounds.SOUNDS.register(eventBus);
 
         eventBus.addListener(this::clientSetup);
 
@@ -74,7 +68,10 @@ public class NukaCraftMod
     }
 
     private void clientSetup(final FMLCommonSetupEvent event) {
+
         ModSetup.renderTypeSetup();
+        ClientHandler.setup();
+
     }
 
     private void setup(final FMLCommonSetupEvent event)

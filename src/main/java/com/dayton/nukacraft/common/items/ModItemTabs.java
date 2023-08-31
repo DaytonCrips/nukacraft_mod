@@ -24,4 +24,10 @@ public class ModItemTabs {
             return new ItemStack(ModItemsClass.NUKACOLA.get());
         }
     };
+    public static final CreativeModeTab NUKA_EQUIP = new CreativeModeTab("nuka_equip") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItemsClass.ROUND10MM.get());
+        }
+    };
 }

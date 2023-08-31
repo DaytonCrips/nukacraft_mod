@@ -1,0 +1,8 @@
+{
+  "conditions":[
+    {
+      "type": "forge:false"
+    }
+  ],
+  "type": "cgm:dye_item"
+}
