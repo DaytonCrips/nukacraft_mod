@@ -19,6 +19,11 @@ public class EntityTypes {
                     .of(Deathclaw::new, MobCategory.MONSTER)
                     .sized(1.5f, 3f));
 
+    public static final RegistryObject<EntityType<PowerArmorFrame>> POWER_ARMOR_FRAME =
+            registerEntity("power_armor_frame", EntityType.Builder
+                    .of(PowerArmorFrame::new, MobCategory.MISC)
+                    .sized(1.0f, 2.3f));
+
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(entityName, () -> builder.build(new ResourceLocation(NukaCraftMod.MOD_ID, entityName).toString()));
     }

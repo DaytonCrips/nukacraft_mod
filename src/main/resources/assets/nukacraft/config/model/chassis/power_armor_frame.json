@@ -1,0 +1,36 @@
+{
+  "attachments":[
+    {
+      "part": "head",
+      "bones" : ["head"]
+    },
+    {
+      "part": "body",
+      "bones" : ["body_top_frame", "body_bottom_frame"]
+    },
+    {
+      "part": "left_arm",
+      "bones" : ["left_upper_arm_frame", "left_forearm_frame"]
+    },
+    {
+      "part": "right_arm",
+      "bones" : ["right_upper_arm_frame", "right_forearm_frame"]
+    },
+    {
+      "part": "left_leg",
+      "bones" : ["left_upper_leg_frame", "left_lower_leg_frame"]
+    },
+    {
+      "part": "right_leg",
+      "bones" : ["right_upper_leg_frame", "right_lower_leg_frame"]
+    },
+    {
+      "part": "engine",
+      "bones" : ["fusion_core_slot"]
+    },
+    {
+      "part": "back",
+      "bones" : ["back_slot"]
+    }
+  ]
+}

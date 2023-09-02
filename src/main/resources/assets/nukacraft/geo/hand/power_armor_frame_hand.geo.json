@@ -1,0 +1,43 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 300,
+				"texture_height": 300,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "right_arm",
+					"pivot": [1.96731, 7.57692, 2.61538]
+				},
+				{
+					"name": "right_lower_arm",
+					"parent": "right_arm",
+					"pivot": [0.05, 0, 3.5]
+				},
+				{
+					"name": "right_forearm_frame",
+					"parent": "right_lower_arm",
+					"pivot": [17.05, -0.23, 6.3],
+					"cubes": [
+						{"origin": [-2.1, -2, -3.6], "size": [4, 4, 9], "inflate": 0.2, "uv": [94, 6], "mirror": true},
+						{"origin": [-2, -2, -2.5], "size": [4, 4, 8], "uv": [114, 12], "mirror": true}
+					]
+				},
+				{
+					"name": "right_hand",
+					"parent": "right_lower_arm",
+					"pivot": [0, 0, -3.85],
+					"cubes": [
+						{"origin": [-2, -2, -6.5], "size": [4, 4, 4], "uv": [139, 34], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}
