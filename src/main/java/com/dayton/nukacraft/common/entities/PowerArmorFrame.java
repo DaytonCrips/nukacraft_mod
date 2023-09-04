@@ -1,9 +1,13 @@
 package com.dayton.nukacraft.common.entities;
 
+import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.container.menu.PowerArmorStationMenu;
 import com.dayton.nukacraft.common.container.menu.PowerChassisMenu;
+import com.jetug.chassis_core.common.foundation.entity.ArmorChassisBase;
+import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,14 +21,55 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 
+import java.util.HashMap;
+
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
+import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
+import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
+import static com.jetug.chassis_core.common.data.enums.ChassisPart.BODY_FRAME;
 import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.*;
 
+@SuppressWarnings("unchecked")
 public class PowerArmorFrame extends WearableChassis {
+    public static final int INVENTORY_SIZE = ArmorChassisBase.INVENTORY_SIZE + 6;
+    public static final ResourceLocation ICON
+            = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/items/power_armor_frame.png");
+    public static final PowerArmorHand HAND = new PowerArmorHand();
+
+    public static HashMap<String, Integer> POWER_ARMOR_PART_IDS = new HashMap<>();
+
+    public static int getId(String chassisPart){
+        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    }
+
+    static{
+        POWER_ARMOR_PART_IDS = (HashMap<String, Integer>) PART_IDS.clone();
+        POWER_ARMOR_PART_IDS.put(FUSION_CORE, PART_IDS.size());
+    }
+
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
         super(type, worldIn);
+        inventorySize = POWER_ARMOR_PART_IDS.size();
     }
+
+    @Override
+    public ResourceLocation getIcon() {
+        return ICON;
+    }
+
+    @Override
+    public HandEntity getHandEntity() {
+        return HAND;
+    }
+
+//    @Override
+//    protected void createPartIdMap() {
+//        //super.createPartIdMap();
+//        int i = inventorySize;
+//        this.partIdMap.put(FUSION_CORE, i++);
+//        this.inventorySize = i;
+//    }
 
     @Override
     public MenuProvider getMenuProvider(){
