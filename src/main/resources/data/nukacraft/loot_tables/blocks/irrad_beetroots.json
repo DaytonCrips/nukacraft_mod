@@ -23,7 +23,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "nukacraft:irradroot_seed"
+              "name": "nukacraft:irradb_seed"
             }
           ]
         }
@@ -46,7 +46,7 @@
               }
             }
           ],
-          "name": "nukacraft:irradroot_seed"
+          "name": "nukacraft:irradb_seed"
         }
       ],
       "conditions": [

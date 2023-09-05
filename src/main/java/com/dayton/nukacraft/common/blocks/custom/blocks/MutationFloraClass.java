@@ -20,7 +20,7 @@ public class MutationFloraClass {
 
 
     public static void mutationFailed(BlockState state, BlockPos pos, Level level) {
-        mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+        diedMutation(level, pos, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
     }
 
 
@@ -76,6 +76,9 @@ public class MutationFloraClass {
         if (state.getBlock().defaultBlockState() == ModBlocksClass.AGAVE.get().defaultBlockState()) {
             mutationStart(level, pos, state, ModBlocksClass.NEOAGAVE.get().defaultBlockState());
         }
+        if (state.getBlock().defaultBlockState() == ModBlocksClass.CORALLEAF.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocksClass.PRISMLEAF.get().defaultBlockState());
+        }
         if (state.getBlock().defaultBlockState() == ModBlocksClass.BROC.get().defaultBlockState()) {
             mutationStart(level, pos, state, ModBlocksClass.INVERT.get().defaultBlockState());
         }
@@ -125,6 +128,18 @@ public class MutationFloraClass {
             MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
         }
     }
+
+
+    public static void diedMutation(Level level, BlockPos pos, BlockState state) {
+        for (int i = 0; i < 360; i++) {
+            if(i % 20 == 0) {
+                level.addParticle(ModParticles.GAMMA_PARTICLE.get(),
+                        pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d, Math.cos(i) * 0.15d, 0.15d, Math.sin(i) * 0.1d);
+            }
+        }
+        level.setBlock(pos, state, 3);
+    }
+
     public static void mutationStart(Level level, BlockPos pos, BlockState state, BlockState newstate) {
         for (int i = 0; i < 360; i++) {
             if(i % 20 == 0) {

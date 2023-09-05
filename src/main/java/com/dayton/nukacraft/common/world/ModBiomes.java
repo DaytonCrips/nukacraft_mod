@@ -53,50 +53,16 @@ public class ModBiomes {
                 List.of(CountPlacement.of(1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0),
                         PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING), BiomeFilter.biome())));
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:grass_ash", VegetationFeatures.PATCH_GRASS, List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 5),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:crackbush", ModFeatures.PATCH_CRACK_BUSH, List.of(NoiseThresholdCountPlacement.of(-0.4D, 3, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:bloodleaf", ModFeatures.PATCH_BLOODLEAF, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:brainfungus", ModFeatures.PATCH_BRAINFUNGUS, List.of(NoiseThresholdCountPlacement.of(-0.2D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:thistles", ModFeatures.PATCH_THISTLE, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:tatos", ModFeatures.PATCH_WILDTATO, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:asters", ModFeatures.PATCH_ASTER, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:sootflowers", ModFeatures.PATCH_SOOTFLOWER, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:sittbeans", ModFeatures.PATCH_SITTBEANS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:feverblossoms", ModFeatures.PATCH_FEVERBLOSM, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:firemushs", ModFeatures.PATCH_FIREMUSH, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:ashroses", ModFeatures.PATCH_ASHROSE, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 PlacementUtils.register("nukacraft:ashgrasss", ModFeatures.PATCH_ASHGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:glowfungus", ModFeatures.PATCH_GLOWFUNGUS, List.of(NoiseThresholdCountPlacement.of(-0.2D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+
+
+
+        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
+        //ModDefaultFeatures.addPoisonValleyFeatures(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
@@ -124,28 +90,11 @@ public class ModBiomes {
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 PlacementUtils.register("nukacraft:crangrass", ModFeatures.PATCH_CRANGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:cranberrys", ModFeatures.PATCH_CRANBERRY, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:muttfruits", ModFeatures.PATCH_MUTTFRUIT, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:sittbeans", ModFeatures.PATCH_SITTBEANS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:starberry", ModFeatures.PATCH_STARBERRY, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:glowfungus", ModFeatures.PATCH_GLOWFUNGUS, List.of(NoiseThresholdCountPlacement.of(-0.2D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:bloodleafs", ModFeatures.PATCH_BLOODLEAF, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:firemush", ModFeatures.PATCH_FIREMUSH, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+
+        //ModDefaultFeatures.addWastelandExoticsFeatures(biomeGenerationSettings);
+        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
+        //ModDefaultFeatures.addCranberryBogFeatures(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
@@ -165,6 +114,7 @@ public class ModBiomes {
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+        //ModDefaultFeatures.addGlowSeaFeatures(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
@@ -183,22 +133,11 @@ public class ModBiomes {
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:muttfruit", ModFeatures.PATCH_MUTTFRUIT, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:bloodleafs", ModFeatures.PATCH_BLOODLEAF, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:ashroses", ModFeatures.PATCH_ASHROSE, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:glowfungus", ModFeatures.PATCH_GLOWFUNGUS, List.of(NoiseThresholdCountPlacement.of(-0.2D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                PlacementUtils.register("nukacraft:brainfungus", ModFeatures.PATCH_BRAINFUNGUS, List.of(NoiseThresholdCountPlacement.of(-0.2D, 1, 1),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+
+        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
+        //ModDefaultFeatures.addWastelandExoticsFeatures(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
+        //ModDefaultFeatures.addAshHeapFeatures(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)

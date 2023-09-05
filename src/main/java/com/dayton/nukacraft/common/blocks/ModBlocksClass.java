@@ -286,8 +286,8 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> MUTTSHOOTFUNGUS = registerBlock("mutshootfungus",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {return 9;})));
-    public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
-            () -> new ZanderBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+//    public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
+//            () -> new ZanderBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
@@ -311,6 +311,22 @@ public class ModBlocksClass {
             () -> new CoralLeafBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> PRISMLEAF = registerBlockWithoutItem("prism_leaf",
             () -> new PrismLeafBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
+    public static final RegistryObject<Block> DEAD_PUNGA = registerBlock("dead_punga",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> DEAD_DATURAN = registerBlock("dead_daturan",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> DEAD_CORALLEAF = registerBlock("dead_coralleaf",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> ZANDER = registerBlock("zander",
+            () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
+
+
 
 
 

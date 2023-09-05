@@ -1,9 +1,7 @@
 package com.dayton.nukacraft.client;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.renderers.gun.model.Classic10MM;
-import com.dayton.nukacraft.client.renderers.gun.model.PipePistol;
-import com.dayton.nukacraft.client.renderers.gun.model.Pistol10MM;
+import com.dayton.nukacraft.client.renderers.gun.model.*;
 import com.dayton.nukacraft.common.items.ModGunsClass;
 import com.mrcrayfish.guns.client.render.gun.ModelOverrides;
 import net.minecraftforge.api.distmarker.Dist;
@@ -21,5 +19,8 @@ public class ClientHandler {
         ModelOverrides.register(ModGunsClass.PISTOL10MM.get(), new Pistol10MM());
         ModelOverrides.register(ModGunsClass.CLASSIC10MM.get(), new Classic10MM());
         ModelOverrides.register(ModGunsClass.PIPE_PISTOL.get(), new PipePistol());
+        ModelOverrides.register(ModGunsClass.SCOUT10MM.get(), new Scout10MM());
+        ModelOverrides.register(ModGunsClass.CLASSIC10MM_ZAP.get(), new Classic10MMZap());
+        ModelOverrides.register(ModGunsClass.PIPEREVOLVER.get(), new PipeRevolver());
     }
 }

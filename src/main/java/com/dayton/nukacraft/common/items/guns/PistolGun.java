@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.items.guns;
 
+import com.dayton.nukacraft.common.items.ModGunsClass;
 import com.mrcrayfish.guns.common.Gun;
 import com.mrcrayfish.guns.init.ModEnchantments;
 import com.mrcrayfish.guns.init.ModItems;
@@ -33,21 +34,24 @@ public class PistolGun extends GunItem {
     @Override
     public void inventoryTick(ItemStack stack, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
         Map<Enchantment, Integer> _enchantments = EnchantmentHelper.getEnchantments(stack);
-        if (Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.LIGHT_STOCK.get()
-                && (!_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get()))) {
-            _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+        if (Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE1.get()) {
+            if (_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get())) {
+                _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+            }
             EnchantmentHelper.setEnchantments(_enchantments, stack);
             stack.enchant(ModEnchantments.OVER_CAPACITY.get(), 1);
         }
-        if (Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.TACTICAL_STOCK.get()
-                && (!_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get()))) {
-            _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+        if (Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE2.get()) {
+            if (_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get())) {
+                _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+            }
             EnchantmentHelper.setEnchantments(_enchantments, stack);
             stack.enchant(ModEnchantments.OVER_CAPACITY.get(), 2);
         }
-        if (Gun.getAttachment(IAttachment.Type.STOCK, stack).getItem() == ModItems.WEIGHTED_STOCK.get()
-                && (!_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get()))) {
-            _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+        if (Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE3.get()) {
+            if (_enchantments.containsKey(ModEnchantments.OVER_CAPACITY.get())) {
+                _enchantments.remove(ModEnchantments.OVER_CAPACITY.get());
+            }
             EnchantmentHelper.setEnchantments(_enchantments, stack);
             stack.enchant(ModEnchantments.OVER_CAPACITY.get(), 3);
         }
