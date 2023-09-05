@@ -1,0 +1,13 @@
+{
+  "part": "head",
+  "model": "nukacraft:geo/armor/t45_helmet.geo.json",
+  "texture": "nukacraft:textures/power_armor/t45_helmet.png",
+
+  "attachments": [
+    {
+      "mode": "replace",
+      "frame": "head_frame",
+      "armor": "helmet"
+    }
+  ]
+}

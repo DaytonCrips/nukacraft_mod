@@ -3,12 +3,16 @@ package com.dayton.nukacraft.common.items;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
 import com.dayton.nukacraft.common.items.custom.*;
+import com.dayton.nukacraft.common.items.custom.armor.ArmorPart;
+import com.jetug.chassis_core.common.data.enums.ChassisPart;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import static com.dayton.nukacraft.common.materials.PowerArmorMaterials.T45;
 //Здесь армяне в нарды играют
 
 public class ModItemsClass {
@@ -320,7 +324,13 @@ public class ModItemsClass {
 
     //Power armor
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core", () ->
-            new FusionCoreItem(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_MATERIAL)));
+            new FusionCoreItem(new Item.Properties()
+                    .stacksTo(64)
+                    .durability(100)
+                    .tab(ModItemTabs.NUKA_MATERIAL)));
+
+    public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->
+            new ArmorPart(T45, ChassisPart.HELMET));
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }

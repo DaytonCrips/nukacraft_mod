@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.container.menu;
 
+import com.dayton.nukacraft.common.entities.PowerArmorFrame;
 import com.jetug.chassis_core.common.foundation.container.menu.EntityMenu;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.jetug.chassis_core.common.util.Pos2I;
@@ -14,13 +15,14 @@ import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
 
 public class PowerArmorStationMenu extends EntityMenu {
     private static final int INVENTORY_POS_Y = 105;
+    public static final int SIZE = 10;
 
     public PowerArmorStationMenu(int i, Inventory playerInventory) {
-        this(i, new SimpleContainer(INVENTORY_SIZE), playerInventory, null);
+        this(i, new SimpleContainer(SIZE), playerInventory, null);
     }
 
     public PowerArmorStationMenu(int containerId, Container container, Inventory playerInventory, WearableChassis entity) {
-        super(ARMOR_STATION_MENU.get(), containerId, container, playerInventory, entity, entity.getInventorySize(), INVENTORY_POS_Y);
+        super(ARMOR_STATION_MENU.get(), containerId, container, playerInventory, entity, SIZE, INVENTORY_POS_Y);
         createSlot(BODY_FRAME       , FRAME_BODY_SLOT_POS      );
         createSlot(LEFT_ARM_FRAME   , FRAME_LEFT_ARM_SLOT_POS  );
         createSlot(RIGHT_ARM_FRAME  , FRAME_RIGHT_ARM_SLOT_POS );
@@ -33,8 +35,8 @@ public class PowerArmorStationMenu extends EntityMenu {
         createSlot(RIGHT_HAND       , RIGHT_HAND_SLOT_POS);
     }
 
-    private void createSlot(String bodyFrame, Pos2I frameBodySlotPos) {
+    @Override
+    protected int getId(String chassisPart) {
+        return PowerArmorFrame.getId(chassisPart);
     }
-
-
 }

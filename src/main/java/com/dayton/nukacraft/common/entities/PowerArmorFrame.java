@@ -3,9 +3,11 @@ package com.dayton.nukacraft.common.entities;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.container.menu.PowerArmorStationMenu;
 import com.dayton.nukacraft.common.container.menu.PowerChassisMenu;
+import com.dayton.nukacraft.common.items.custom.FusionCoreItem;
 import com.jetug.chassis_core.common.foundation.entity.ArmorChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import com.jetug.chassis_core.common.foundation.item.DamageableItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -27,6 +30,7 @@ import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
 import static com.jetug.chassis_core.common.data.enums.ChassisPart.BODY_FRAME;
+import static com.jetug.chassis_core.common.foundation.item.DamageableItem.*;
 import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.*;
 
@@ -37,7 +41,7 @@ public class PowerArmorFrame extends WearableChassis {
             = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/items/power_armor_frame.png");
     public static final PowerArmorHand HAND = new PowerArmorHand();
 
-    public static HashMap<String, Integer> POWER_ARMOR_PART_IDS = new HashMap<>();
+    public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
 
     public static int getId(String chassisPart){
         return POWER_ARMOR_PART_IDS.get(chassisPart);
@@ -49,8 +53,23 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
-        super(type, worldIn);
-        inventorySize = POWER_ARMOR_PART_IDS.size();
+        super(type, worldIn, POWER_ARMOR_PART_IDS);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if(!hasFusionCore()) return;
+        var core = getFusionCore();
+        var dmg = core.getMaxDamage() - core.getDamageValue();
+        if(dmg <= 0){
+            setItem(FUSION_CORE, ItemStack.EMPTY);
+        }
+
+        if(isWalking()){
+            damageItem(core, 1);
+        }
     }
 
     @Override
@@ -63,6 +82,14 @@ public class PowerArmorFrame extends WearableChassis {
         return HAND;
     }
 
+    public ItemStack getFusionCore(){
+        return getItem(FUSION_CORE);
+    }
+
+    public boolean hasFusionCore(){
+        return hasEquipment(FUSION_CORE);
+    }
+
 //    @Override
 //    protected void createPartIdMap() {
 //        //super.createPartIdMap();
@@ -70,6 +97,21 @@ public class PowerArmorFrame extends WearableChassis {
 //        this.partIdMap.put(FUSION_CORE, i++);
 //        this.inventorySize = i;
 //    }
+
+    public boolean hasEnergy(){
+        return hasFusionCore();
+    }
+
+
+    @Override
+    protected void updateSpeed() {
+        if(hasEnergy())
+            setSpeed(getSpeedAttribute());
+        else {
+            setSpeed(getMinSpeed());
+            return;
+        }
+    }
 
     @Override
     public MenuProvider getMenuProvider(){
