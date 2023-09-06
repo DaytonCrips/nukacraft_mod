@@ -1,0 +1,30 @@
+{
+  "part": "right_arm",
+  "model": "nukacraft:geo/armor/t45_right_arm.geo.json",
+  "texture": "nukacraft:textures/power_armor/t45_right_arm.png",
+
+  "attachments": [
+    {
+      "mode": "add",
+      "frame": "body_top",
+      "armor": "right_shoulder_armor"
+    },
+    {
+      "mode": "replace",
+      "frame": "right_upper_arm_frame",
+      "armor": "right_upper_arm_armor"
+    },
+    {
+      "mode": "replace",
+      "frame": "right_forearm_frame",
+      "armor": "right_forearm_armor"
+    }
+  ],
+  "pov": [
+    {
+      "mode": "replace",
+      "frame": "right_forearm_frame",
+      "armor": "pov_right_forearm_armor"
+    }
+  ]
+}

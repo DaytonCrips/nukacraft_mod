@@ -1,0 +1,18 @@
+{
+  "part": "body",
+  "model": "nukacraft:geo/armor/t45_body.geo.json",
+  "texture": "nukacraft:textures/power_armor/t45_body.png",
+
+  "attachments": [
+    {
+      "mode": "replace",
+      "frame": "body_top_frame",
+      "armor": "body_top_armor"
+    },
+    {
+      "mode": "replace",
+      "frame": "body_bottom_frame",
+      "armor": "body_bottom_armor"
+    }
+  ]
+}

@@ -326,11 +326,26 @@ public class ModItemsClass {
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core", () ->
             new FusionCoreItem(new Item.Properties()
                     .stacksTo(64)
-                    .durability(100)
+                    .durability(1000)
                     .tab(ModItemTabs.NUKA_MATERIAL)));
 
     public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->
             new ArmorPart(T45, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> T45_BODY = ITEMS.register("t45_body", () ->
+            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T45_RIGHT_ARM = ITEMS.register("t45_right_arm", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T45_LEFT_ARM = ITEMS.register("t45_left_arm", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T45_RIGHT_LEG = ITEMS.register("t45_right_leg", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T45_LEFT_LEG = ITEMS.register("t45_left_leg", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
 
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }
