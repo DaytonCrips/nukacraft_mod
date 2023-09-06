@@ -24,7 +24,10 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
@@ -54,6 +57,11 @@ public class PowerArmorFrame extends WearableChassis {
 
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
         super(type, worldIn, POWER_ARMOR_PART_IDS);
+    }
+
+    @Override
+    public Collection<String> getEquipment() {
+        return List.of(armorParts);
     }
 
     @Override
