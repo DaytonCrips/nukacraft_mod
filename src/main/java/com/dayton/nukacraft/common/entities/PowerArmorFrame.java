@@ -59,10 +59,10 @@ public class PowerArmorFrame extends WearableChassis {
         super(type, worldIn, POWER_ARMOR_PART_IDS);
     }
 
-    @Override
-    public Collection<String> getEquipment() {
-        return List.of(armorParts);
-    }
+//    @Override
+//    public Collection<String> getEquipment() {
+//        return List.of(armorParts);
+//    }
 
     @Override
     public void tick() {

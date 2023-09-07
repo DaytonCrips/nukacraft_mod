@@ -2,7 +2,7 @@
   "attachments":[
     {
       "part": "head",
-      "bones" : ["head"]
+      "bones" : ["head_frame"]
     },
     {
       "part": "body",
@@ -10,11 +10,11 @@
     },
     {
       "part": "left_arm",
-      "bones" : ["left_upper_arm_frame", "left_forearm_frame"]
+      "bones" : ["left_upper_arm_frame", "left_forearm_frame", "left_shoulder_frame"]
     },
     {
       "part": "right_arm",
-      "bones" : ["right_upper_arm_frame", "right_forearm_frame"]
+      "bones" : ["right_upper_arm_frame", "right_forearm_frame", "right_shoulder_frame"]
     },
     {
       "part": "left_leg",
@@ -25,11 +25,11 @@
       "bones" : ["right_upper_leg_frame", "right_lower_leg_frame"]
     },
     {
-      "part": "engine",
-      "bones" : ["fusion_core_slot"]
+      "part": "fusion_core",
+      "bones" : ["valve"]
     },
     {
-      "part": "back",
+      "part": "jetpack",
       "bones" : ["back_slot"]
     }
   ]

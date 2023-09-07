@@ -5,8 +5,8 @@
 
   "attachments": [
     {
-      "mode": "add",
-      "frame": "body_top",
+      "mode": "replace",
+      "frame": "right_shoulder_frame",
       "armor": "right_shoulder_armor"
     },
     {
