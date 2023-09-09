@@ -347,5 +347,24 @@ public class ModItemsClass {
     public static final RegistryObject<ArmorPart> T45_LEFT_LEG = ITEMS.register("t45_left_leg", () ->
             new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
 
+
+    public static final RegistryObject<Item> T51_HELMET = ITEMS.register("t51_helmet", () ->
+            new ArmorPart(T45, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> T51_BODY = ITEMS.register("t51_body", () ->
+            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T51_RIGHT_ARM = ITEMS.register("t51_right_arm", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T51_LEFT_ARM = ITEMS.register("t51_left_arm", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T51_RIGHT_LEG = ITEMS.register("t51_right_leg", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T51_LEFT_LEG = ITEMS.register("t51_left_leg", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }

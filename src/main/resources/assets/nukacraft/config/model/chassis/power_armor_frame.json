@@ -10,19 +10,19 @@
     },
     {
       "part": "left_arm",
-      "bones" : ["left_upper_arm_frame", "left_forearm_frame", "left_shoulder_frame"]
+      "bones" : ["left_forearm_frame", "left_upper_arm_frame", "left_shoulder_frame"]
     },
     {
       "part": "right_arm",
-      "bones" : ["right_upper_arm_frame", "right_forearm_frame", "right_shoulder_frame"]
+      "bones" : ["right_forearm_frame", "right_upper_arm_frame", "right_shoulder_frame"]
     },
     {
       "part": "left_leg",
-      "bones" : ["left_upper_leg_frame", "left_lower_leg_frame"]
+      "bones" : ["left_upper_leg_frame", "left_lower_leg_frame", "left_toes_frame" ]
     },
     {
       "part": "right_leg",
-      "bones" : ["right_upper_leg_frame", "right_lower_leg_frame"]
+      "bones" : ["right_toes_frame","right_lower_leg_frame", "right_upper_leg_frame"]
     },
     {
       "part": "fusion_core",

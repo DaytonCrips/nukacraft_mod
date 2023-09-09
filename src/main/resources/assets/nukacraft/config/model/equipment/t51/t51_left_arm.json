@@ -1,7 +1,8 @@
 {
   "part": "left_arm",
-  "model": "nukacraft:geo/armor/t45_left_arm.geo.json",
-  "texture": "nukacraft:textures/power_armor/t45_left_arm.png",
+  "model": "nukacraft:geo/armor/t51.geo.json",
+  "texture": "nukacraft:textures/power_armor/t51.png",
+  "uv": [152, 205, 62, 58],
 
   "attachments": [
     {

@@ -1,7 +1,8 @@
 {
   "part": "head",
-  "model": "nukacraft:geo/armor/t45_helmet.geo.json",
-  "texture": "nukacraft:textures/power_armor/t45_helmet.png",
+  "model": "nukacraft:geo/armor/t45.geo.json",
+  "texture": "nukacraft:textures/power_armor/t45_rust.png",
+  "uv": [201, 88, 99, 51],
 
   "attachments": [
     {

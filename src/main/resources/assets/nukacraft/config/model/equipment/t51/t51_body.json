@@ -1,7 +1,8 @@
 {
   "part": "body",
-  "model": "nukacraft:geo/armor/t45_body.geo.json",
-  "texture": "nukacraft:textures/power_armor/t45_body.png",
+  "model": "nukacraft:geo/armor/t51.geo.json",
+  "texture": "nukacraft:textures/power_armor/t51.png",
+  "uv": [201, 0, 99, 87],
 
   "attachments": [
     {

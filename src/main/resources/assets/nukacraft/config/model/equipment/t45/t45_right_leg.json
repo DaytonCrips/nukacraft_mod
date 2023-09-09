@@ -1,0 +1,24 @@
+{
+  "part": "right_leg",
+  "model": "nukacraft:geo/armor/t45.geo.json",
+  "texture": "nukacraft:textures/power_armor/t45_rust.png",
+  "uv": [215, 140, 62, 58],
+
+  "attachments": [
+    {
+      "mode": "add",
+      "frame": "right_upper_leg",
+      "armor": "right_upper_leg_armor"
+    },
+    {
+      "mode": "add",
+      "frame": "right_lower_leg",
+      "armor": "right_lower_leg_armor"
+    },
+    {
+      "mode": "replace",
+      "frame": "right_toes_frame",
+      "armor": "right_toes_armor"
+    }
+  ]
+}

@@ -21,11 +21,6 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     public void render(GeoModel model, PowerArmorFrame animatable, float partialTick, RenderType type,
                        PoseStack poseStack, MultiBufferSource bufferSource, VertexConsumer buffer,
                        int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//
-//        var fusionCore = getFrameBone(FUSION_CORE);
-//        if(fusionCore != null)
-//            fusionCore.isHidden = !animatable.hasFusionCore();
-
         super.render(model, animatable, partialTick,
                 type, poseStack, bufferSource,
                 buffer, packedLight, packedOverlay,
