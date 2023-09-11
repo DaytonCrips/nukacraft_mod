@@ -3,21 +3,19 @@
   "model": "nukacraft:geo/armor/t45.geo.json",
   "texture": "nukacraft:textures/power_armor/t45_rust.png",
   "uv": [152, 205, 62, 58],
+  "hide": ["left_shoulder_frame", "left_upper_arm_frame", "left_forearm_frame"],
 
   "attachments": [
     {
-      "mode": "replace",
-      "frame": "left_shoulder_frame",
+      "frame": "body_top",
       "armor": "left_shoulder_armor"
     },
     {
-      "mode": "replace",
-      "frame": "left_upper_arm_frame",
+      "frame": "left_upper_arm",
       "armor": "left_upper_arm_armor"
     },
     {
-      "mode": "replace",
-      "frame": "left_forearm_frame",
+      "frame": "left_forearm",
       "armor": "left_forearm_armor"
     }
   ]

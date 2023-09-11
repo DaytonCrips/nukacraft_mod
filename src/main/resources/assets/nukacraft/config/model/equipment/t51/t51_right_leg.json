@@ -16,7 +16,6 @@
       "armor": "right_lower_leg_armor"
     },
     {
-      "mode": "replace",
       "frame": "right_toes_frame",
       "armor": "right_toes_armor"
     }

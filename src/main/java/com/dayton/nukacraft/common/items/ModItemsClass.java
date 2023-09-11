@@ -326,7 +326,7 @@ public class ModItemsClass {
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core", () ->
             new FusionCoreItem(new Item.Properties()
                     .stacksTo(64)
-                    .durability(1000)
+                    .durability(100000)
                     .tab(ModItemTabs.NUKA_MATERIAL)));
 
     public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->

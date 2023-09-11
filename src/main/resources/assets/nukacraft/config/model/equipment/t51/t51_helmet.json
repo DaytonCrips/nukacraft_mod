@@ -6,7 +6,6 @@
 
   "attachments": [
     {
-      "mode": "replace",
       "frame": "head_frame",
       "armor": "helmet"
     }

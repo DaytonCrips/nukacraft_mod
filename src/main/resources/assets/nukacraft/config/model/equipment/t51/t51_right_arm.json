@@ -6,24 +6,20 @@
 
   "attachments": [
     {
-      "mode": "replace",
       "frame": "right_shoulder_frame",
       "armor": "right_shoulder_armor"
     },
     {
-      "mode": "replace",
       "frame": "right_upper_arm_frame",
       "armor": "right_upper_arm_armor"
     },
     {
-      "mode": "replace",
       "frame": "right_forearm_frame",
       "armor": "right_forearm_armor"
     }
   ],
   "pov": [
     {
-      "mode": "replace",
       "frame": "right_forearm_frame",
       "armor": "pov_right_forearm_armor"
     }

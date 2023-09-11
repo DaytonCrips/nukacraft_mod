@@ -2,7 +2,7 @@
   "attachments":[
     {
       "part": "head",
-      "bones" : ["head_frame"]
+      "bones" : ["head", "head_frame"]
     },
     {
       "part": "body",
@@ -10,19 +10,19 @@
     },
     {
       "part": "left_arm",
-      "bones" : ["left_forearm_frame", "left_upper_arm_frame", "left_shoulder_frame"]
+      "bones" : ["left_forearm", "left_upper_arm", "left_forearm_frame", "left_upper_arm_frame", "left_shoulder_frame"]
     },
     {
       "part": "right_arm",
-      "bones" : ["right_forearm_frame", "right_upper_arm_frame", "right_shoulder_frame"]
+      "bones" : ["right_forearm", "right_upper_arm", "right_forearm_frame", "right_upper_arm_frame", "right_shoulder_frame"]
     },
     {
       "part": "left_leg",
-      "bones" : ["left_upper_leg_frame", "left_lower_leg_frame", "left_toes_frame" ]
+      "bones" : ["left_upper_leg", "left_lower_leg", "left_toes", "left_upper_leg_frame", "left_lower_leg_frame", "left_toes_frame" ]
     },
     {
       "part": "right_leg",
-      "bones" : ["right_toes_frame","right_lower_leg_frame", "right_upper_leg_frame"]
+      "bones" : ["right_toes","right_lower_leg", "right_upper_leg" ,"right_toes_frame","right_lower_leg_frame", "right_upper_leg_frame"]
     },
     {
       "part": "fusion_core",

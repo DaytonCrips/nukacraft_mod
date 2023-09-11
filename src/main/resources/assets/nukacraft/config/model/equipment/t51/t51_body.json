@@ -6,12 +6,10 @@
 
   "attachments": [
     {
-      "mode": "replace",
       "frame": "body_top_frame",
       "armor": "body_top_armor"
     },
     {
-      "mode": "replace",
       "frame": "body_bottom_frame",
       "armor": "body_bottom_armor"
     }
