@@ -214,7 +214,6 @@
 					"name": "left_forearm_armor",
 					"parent": "left_arm",
 					"pivot": [7.95, 20.5, 1.5],
-					"rotation": [67.5, 0, 0],
 					"cubes": [
 						{"origin": [5.25, 19.34776, -7.11537], "size": [6, 6, 10], "inflate": -0.3, "uv": [152, 206]},
 						{"origin": [5.75, 19.84776, -6.86537], "size": [5, 5, 9], "inflate": -0.3, "uv": [157, 247]}
