@@ -3,6 +3,7 @@
   "model": "nukacraft:geo/armor/t51.geo.json",
   "texture": "nukacraft:textures/power_armor/t51.png",
   "uv": [215, 205, 62, 58],
+  "hide": ["right_shoulder_frame", "right_upper_arm_frame", "right_forearm_frame"],
 
   "attachments": [
     {

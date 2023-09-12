@@ -6,15 +6,15 @@
     },
     {
       "part": "body",
-      "bones" : ["body_top_frame", "body_bottom_frame"]
+      "bones" : ["body_top", "body_bottom", "body_top_frame", "body_bottom_frame", "body_back_frame", "body_front_frame"]
     },
     {
       "part": "left_arm",
-      "bones" : ["left_forearm", "left_upper_arm", "left_forearm_frame", "left_upper_arm_frame", "left_shoulder_frame"]
+      "bones" : ["left_shoulder", "left_shoulder_frame","left_lower_arm", "left_arm", "left_forearm_frame", "left_upper_arm_frame"]
     },
     {
       "part": "right_arm",
-      "bones" : ["right_forearm", "right_upper_arm", "right_forearm_frame", "right_upper_arm_frame", "right_shoulder_frame"]
+      "bones" : ["right_shoulder", "right_shoulder_frame","right_lower_arm", "right_arm", "right_forearm_frame", "right_upper_arm_frame"]
     },
     {
       "part": "left_leg",

@@ -3,6 +3,7 @@
   "model": "nukacraft:geo/armor/t51.geo.json",
   "texture": "nukacraft:textures/power_armor/t51.png",
   "uv": [215, 140, 62, 58],
+  "hide" : ["right_toes_frame"],
 
   "attachments": [
     {
@@ -12,7 +13,7 @@
     },
     {
       "mode": "add",
-      "frame": "right_lower_leg",
+      "frame": "right_lower_leg_frame",
       "armor": "right_lower_leg_armor"
     },
     {
