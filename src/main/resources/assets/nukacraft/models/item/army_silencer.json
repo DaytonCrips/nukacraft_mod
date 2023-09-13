@@ -2,8 +2,8 @@
 	"credit": "Model by Blockbench",
 	"texture_size": [22, 22],
 	"textures": {
-		"0": "nukacraft:guns/army_silencer",
-		"particle": "nukacraft:guns/army_silencer"
+		"0": "nukacraft:attachments/army_silencer",
+		"particle": "nukacraft:attachments/army_silencer"
 	},
 	"elements": [
 		{

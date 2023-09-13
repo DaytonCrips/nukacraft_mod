@@ -15,46 +15,66 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_BTITAN);
     }
 
-    public static void addGlowSeaFeatures(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BOMBBERRY_RARE);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.GLOW_FLOWER_DEFAULT);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_QUANTLEAF);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_MINDFUNGUS_BUSH);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_NEUTRON_BUSH);
+
+    public static void addWastelandFlowerCommon(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_WASTELAND_FLOWER_COMMON);
     }
-    public static void addCranberryBogFeatures(BiomeGenerationSettings.Builder pBuilder) {
-
-
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_STARBERRY);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_CRANBERRY);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BBLIGHT);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_CORALL);
-    }
-    public static void addAshHeapFeatures(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BRAINFUNG_BUSH);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.ASHHEAP_FLOWER_DEFAULT);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_PUNGA);
-
+    public static void addWastelandFlowerRare(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_WASTELAND_FLOWER_RARE);
     }
 
-    public static void addPoisonValleyFeatures(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_GINS);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_CRACKBERRY_RARE);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.POISON_FLOWER_DEFAULT);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_THISTLE_BUSH);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_HOLLYHOCK);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_DATURANS);
 
+    public static void addWastelandCranberry(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_CRANBERRY);
     }
 
-    public static void addWastelandExoticsFeatures(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_SITTBEAN_BUSH);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_GLOWFUNGUS_BUSH);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_ZANDER);
+    public static void addSittbeans(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_SITTBEAN_BUSH);
     }
-    public static void addWastelandCommonsFeatures(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_AGAVE_RARE);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_MUTTFRUIT);
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BLOODLEAF);
+
+    public static void addGlowSeaFlower(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.GLOW_FLOWER_DEFAULT);
     }
+
+
+    public static void addGlowSeaExotics(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.GLOW_EXOTICS);
+    }
+    public static void addWastelandBerrys(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_WASTELAND_BERRYS);
+    }
+    public static void addWastelandThistle(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_THISTLE_BUSH);
+    }
+
+    public static void addBloodLeaf(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BLOODLEAF);
+    }
+
+    public static void addDaturan(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_DATURANS);
+    }
+    public static void addCorallLeaf(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_CORALL);
+    }
+    public static void addPunga(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_PUNGA);
+    }
+
+    public static void addBBlight(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_BBLIGHT);
+    }
+    public static void addAgave(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_AGAVE_RARE);
+    }
+    public static void addGins(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_GINS);
+    }
+    public static void addXander(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_ZANDER);
+    }
+    public static void addWastelandMushrooms(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_WASTELAND_MUSHROOMS);
+    }
+
 }

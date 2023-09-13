@@ -18,6 +18,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -56,13 +57,18 @@ public class ModBiomes {
                 PlacementUtils.register("nukacraft:ashgrasss", ModFeatures.PATCH_ASHGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
-
-
-        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
-        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
+        ModDefaultFeatures.addSittbeans(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandBerrys(biomeGenerationSettings);
+        ModDefaultFeatures.addGins(biomeGenerationSettings);
+        ModDefaultFeatures.addXander(biomeGenerationSettings);
+        ModDefaultFeatures.addPunga(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandMushrooms(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandThistle(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
-        //ModDefaultFeatures.addPoisonValleyFeatures(biomeGenerationSettings);
+        ModDefaultFeatures.addAgave(biomeGenerationSettings);
+
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
@@ -91,10 +97,17 @@ public class ModBiomes {
                 PlacementUtils.register("nukacraft:crangrass", ModFeatures.PATCH_CRANGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
-        //ModDefaultFeatures.addWastelandExoticsFeatures(biomeGenerationSettings);
-        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
+
+        ModDefaultFeatures.addSittbeans(biomeGenerationSettings);
+        ModDefaultFeatures.addBBlight(biomeGenerationSettings);
+        ModDefaultFeatures.addXander(biomeGenerationSettings);
+        ModDefaultFeatures.addCorallLeaf(biomeGenerationSettings);
+        ModDefaultFeatures.addBloodLeaf(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandMushrooms(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandCranberry(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandFlowerRare(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
-        //ModDefaultFeatures.addCranberryBogFeatures(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
@@ -113,8 +126,10 @@ public class ModBiomes {
                 PlacementUtils.register("nukacraft:glowgrass", ModFeatures.PATCH_GLOWGRASS, List.of(NoiseThresholdCountPlacement.of(-0.8D, 2, 1),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
+
+        ModDefaultFeatures.addGlowSeaExotics(biomeGenerationSettings);
+        ModDefaultFeatures.addGlowSeaFlower(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
-        //ModDefaultFeatures.addGlowSeaFeatures(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
@@ -134,10 +149,13 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
 
-        //ModDefaultFeatures.addWastelandCommonsFeatures(biomeGenerationSettings);
-        //ModDefaultFeatures.addWastelandExoticsFeatures(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandBerrys(biomeGenerationSettings);
+        ModDefaultFeatures.addXander(biomeGenerationSettings);
+        ModDefaultFeatures.addDaturan(biomeGenerationSettings);
+        ModDefaultFeatures.addBloodLeaf(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandMushrooms(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
-        //ModDefaultFeatures.addAshHeapFeatures(biomeGenerationSettings);
+        ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)
