@@ -15,6 +15,10 @@
       "armor": "right_lower_leg_armor"
     },
     {
+      "frame": "right_shoe",
+      "armor": "right_shoe_armor"
+    },
+    {
       "frame": "right_toes",
       "armor": "right_toes_armor"
     }

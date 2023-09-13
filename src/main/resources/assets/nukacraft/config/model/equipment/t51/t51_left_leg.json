@@ -15,6 +15,10 @@
       "armor": "left_lower_leg_armor"
     },
     {
+      "frame": "left_shoe",
+      "armor": "left_shoe_armor"
+    },
+    {
       "frame": "left_toes",
       "armor": "left_toes_armor"
     }
