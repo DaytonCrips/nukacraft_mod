@@ -72,7 +72,7 @@ public class PowerArmorFrame extends WearableChassis {
         var core = getFusionCore();
         var dmg = core.getMaxDamage() - core.getDamageValue();
         if(dmg <= 0){
-            setItem(FUSION_CORE, ItemStack.EMPTY);
+            setEquipment(FUSION_CORE, ItemStack.EMPTY);
         }
 
         if(isWalking()){
@@ -91,7 +91,7 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public ItemStack getFusionCore(){
-        return getItem(FUSION_CORE);
+        return getEquipment(FUSION_CORE);
     }
 
     public boolean hasFusionCore(){

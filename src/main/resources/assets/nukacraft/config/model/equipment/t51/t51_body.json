@@ -3,14 +3,15 @@
   "model": "nukacraft:geo/armor/t51.geo.json",
   "texture": "nukacraft:textures/power_armor/t51.png",
   "uv": [201, 0, 99, 87],
+  "hide": [],
 
   "attachments": [
     {
-      "frame": "body_top_frame",
+      "frame": "body_top",
       "armor": "body_top_armor"
     },
     {
-      "frame": "body_bottom_frame",
+      "frame": "body_bottom",
       "armor": "body_bottom_armor"
     }
   ]

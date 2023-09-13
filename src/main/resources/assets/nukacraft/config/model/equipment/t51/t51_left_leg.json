@@ -7,17 +7,15 @@
 
   "attachments": [
     {
-      "mode": "add",
       "frame": "left_upper_leg",
       "armor": "left_upper_leg_armor"
     },
     {
-      "mode": "add",
-      "frame": "left_lower_leg_frame",
+      "frame": "left_lower_leg",
       "armor": "left_lower_leg_armor"
     },
     {
-      "frame": "left_toes_frame",
+      "frame": "left_toes",
       "armor": "left_toes_armor"
     }
   ]
