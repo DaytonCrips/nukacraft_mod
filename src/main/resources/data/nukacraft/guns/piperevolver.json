@@ -18,11 +18,11 @@
     "life": 16
   },
   "sounds": {
-    "fire": "nukacraft:item.pistol10mm.fire",
-    "reload": "cgm:item.pistol.reload",
-    "cock": "nukacraft:item.pistol10mm.cock",
-    "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
-    "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
+    "fire": "nukacraft:item.pistol45mm.fire",
+    "reload": "nukacraft:item.pistol45mm.reload",
+    "cock": "nukacraft:item.pistol45mm.cock",
+    "silencedFire": "nukacraft:item.pistol45mm.silenced_fire",
+    "enchantedFire": "nukacraft:item.pistol45mm.enchanted_fire"
   },
   "display": {
     "flash": {
