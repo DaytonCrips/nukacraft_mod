@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +44,9 @@ public class Deathclaw extends Monster implements IAnimatable {
 
     public void setIsRunning(boolean isRunning){
         this.isRunning = isRunning;
+        if (isRunning)
+            setSpeed(2f);
+        else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
     }
 
     public Deathclaw(EntityType<? extends Monster> p_33002_, Level p_33003_) {
@@ -53,6 +57,7 @@ public class Deathclaw extends Monster implements IAnimatable {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 200)
                 .add(Attributes.ATTACK_DAMAGE, 2.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.FOLLOW_RANGE, 48);
     }
@@ -60,14 +65,13 @@ public class Deathclaw extends Monster implements IAnimatable {
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.5D, false));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
-
 
     @Override
     public void registerControllers(AnimationData data) {
@@ -85,19 +89,9 @@ public class Deathclaw extends Monster implements IAnimatable {
         super.setTarget(pTarget);
 
         if(isServerSide) {
-            boolean buffIsRunning;
-            if (pTarget != null) {
-                setSpeed((float) getAttributeBaseValue(Attributes.MOVEMENT_SPEED) + 1f);
-                buffIsRunning = true;
-            } else {
-                setSpeed((float) getAttributeBaseValue(Attributes.MOVEMENT_SPEED));
-                buffIsRunning = false;
-            }
-            //if (buffIsRunning != isRunning) {
-                isRunning = buffIsRunning;
-                PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
-            //}
-            NukaCraftMod.LOGGER.error("is running: " + isRunning + " client: " + level.isClientSide);
+            setIsRunning(pTarget != null);
+            PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
+            //NukaCraftMod.LOGGER.error("is running: " + isRunning + " client: " + level.isClientSide);
         }
     }
 
