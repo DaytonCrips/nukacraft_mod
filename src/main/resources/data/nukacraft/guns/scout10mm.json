@@ -19,7 +19,7 @@
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",
-    "reload": "cgm:item.pistol.reload",
+    "reload": "nukacraft:item.pistol10mm.reload",
     "cock": "nukacraft:item.pistol10mm.cock",
     "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
     "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
@@ -40,7 +40,7 @@
       "scope": {
         "yOffset": 4.2,
         "zOffset": 4.7,
-        "scale": 0.79
+        "scale": 0.59
       },
       "barrel": {
         "yOffset": 3.3,

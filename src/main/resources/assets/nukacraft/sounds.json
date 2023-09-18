@@ -2,6 +2,18 @@
    "item.pistol10mm.fire":                  { "subtitle": "subtitle.cgm.fire",           "sounds": [{ "name": "nukacraft:item/pistol10mm/fire" }]},
    "item.pistol10mm.silenced_fire":         { "subtitle": "subtitle.cgm.fire.silenced",  "sounds": [{ "name": "nukacraft:item/pistol10mm/silenced_fire" }]},
    "item.pistol10mm.enchanted_fire":        { "subtitle": "subtitle.cgm.fire.enchanted", "sounds": [{ "name": "nukacraft:item/pistol10mm/enchanted_fire" }]},
-   "item.pistol.reload":                { "subtitle": "subtitle.cgm.reload",         "sounds": [{ "name": "cgm:item/pistol/reload" }]},
-   "item.pistol10mm.cock":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/pistol10mm/cock" }]}
+   "item.pistol10mm.reload":                { "subtitle": "subtitle.cgm.reload",         "sounds": [{ "name": "nukacraft:item/pistol10mm/reload" }]},
+   "item.pistol10mm.cock":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/pistol10mm/cock" }]},
+
+   "item.pistol38mm.fire":                  { "subtitle": "subtitle.cgm.fire",           "sounds": [{ "name": "nukacraft:item/pistol38mm/fire" }]},
+   "item.pistol38mm.silenced_fire":         { "subtitle": "subtitle.cgm.fire.silenced",  "sounds": [{ "name": "nukacraft:item/pistol38mm/silenced_fire" }]},
+   "item.pistol38mm.enchanted_fire":        { "subtitle": "subtitle.cgm.fire.enchanted", "sounds": [{ "name": "nukacraft:item/pistol38mm/fire" }]},
+   "item.pistol38mm.reload":                { "subtitle": "subtitle.cgm.reload",         "sounds": [{ "name": "nukacraft:item/pistol38mm/reload" }]},
+   "item.pistol38mm.cock":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/pistol38mm/cock" }]},
+
+   "item.pistol45mm.fire":                  { "subtitle": "subtitle.cgm.fire",           "sounds": [{ "name": "nukacraft:item/pistol45mm/fire" }]},
+   "item.pistol45mm.silenced_fire":         { "subtitle": "subtitle.cgm.fire.silenced",  "sounds": [{ "name": "nukacraft:item/pistol45mm/silenced_fire" }]},
+   "item.pistol45mm.enchanted_fire":        { "subtitle": "subtitle.cgm.fire.enchanted", "sounds": [{ "name": "nukacraft:item/pistol45mm/fire" }]},
+   "item.pistol45mm.reload":                { "subtitle": "subtitle.cgm.reload",         "sounds": [{ "name": "nukacraft:item/pistol45mm/reload" }]},
+   "item.pistol45mm.cock":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/pistol45mm/cock" }]}
 }

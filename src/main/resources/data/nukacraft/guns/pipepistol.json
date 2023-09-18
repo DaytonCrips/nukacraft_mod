@@ -18,11 +18,11 @@
     "life": 16
   },
   "sounds": {
-    "fire": "nukacraft:item.pistol10mm.fire",
-    "reload": "cgm:item.pistol.reload",
-    "cock": "nukacraft:item.pistol10mm.cock",
-    "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
-    "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
+    "fire": "nukacraft:item.pistol38mm.fire",
+    "reload": "nukacraft:item.pistol38mm.reload",
+    "cock": "nukacraft:item.pistol38mm.cock",
+    "silencedFire": "nukacraft:item.pistol38mm.silenced_fire",
+    "enchantedFire": "nukacraft:item.pistol38mm.fire"
   },
   "display": {
     "flash": {
@@ -40,7 +40,11 @@
       "scope": {
         "yOffset": 4.2,
         "zOffset": 4.7,
-        "scale": 0.79
+        "scale": 0.59
+      },
+      "stock": {
+        "yOffset": 3.4,
+        "zOffset": 8.2
       },
       "barrel": {
         "yOffset": 3.3,
