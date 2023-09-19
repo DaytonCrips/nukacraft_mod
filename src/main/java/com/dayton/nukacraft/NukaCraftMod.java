@@ -29,7 +29,6 @@ import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
 
-
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 @Mod(NukaCraftMod.MOD_ID)
