@@ -5,7 +5,7 @@
 			"loop": "hold_on_last_frame",
 			"override_previous_animation": true,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"vector": [-20.07031, 4.69776, -1.71394]
 					},
@@ -19,7 +19,7 @@
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"vector": [-20.07031, 4.69776, -1.71394]
 					},
@@ -49,7 +49,7 @@
 			"animation_length": 0.29167,
 			"override_previous_animation": true,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [-20.07031, 4.69776, -1.71394]
@@ -86,7 +86,7 @@
 			"animation_length": 0.5,
 			"override_previous_animation": true,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [-20.07031, 4.69776, -1.71394]
@@ -104,7 +104,7 @@
 						}
 					}
 				},
-				"right_hand": {
+				"right_hand_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -121,7 +121,7 @@
 			"animation_length": 0.58333,
 			"override_previous_animation": true,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [-0.00449, -4.4578, 40.57314]
@@ -157,7 +157,7 @@
 						}
 					}
 				},
-				"right_hand": {
+				"right_hand_pov": {
 					"rotation": {
 						"vector": [0, 0, 0]
 					}
@@ -169,7 +169,7 @@
 			"animation_length": 0.41667,
 			"override_previous_animation": true,
 			"bones": {
-				"right_lower_arm": {
+				"right_lower_arm_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [-0.10329, -3.6983, 40.53113]
@@ -191,7 +191,7 @@
 						}
 					}
 				},
-				"right_hand": {
+				"right_hand_pov": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]

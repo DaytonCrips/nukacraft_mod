@@ -26,10 +26,10 @@ public class PowerChassisMenu extends EntityMenu {
         super(POWER_CHASSIS_MENU.get(), containerId, container, playerInventory, entity, SIZE, INVENTORY_POS_Y);
         createSlot(HELMET          , new Pos2I(82 , 11));
         createSlot(BODY_ARMOR      , new Pos2I(82 , 32));
-        createSlot(LEFT_ARM_ARMOR  , new Pos2I(61 , 26));
-        createSlot(RIGHT_ARM_ARMOR , new Pos2I(103, 26));
-        createSlot(LEFT_LEG_ARMOR  , new Pos2I(69 , 54));
-        createSlot(RIGHT_LEG_ARMOR , new Pos2I(95 , 54));
+        createSlot(RIGHT_ARM_ARMOR  , new Pos2I(61 , 26));
+        createSlot(LEFT_ARM_ARMOR , new Pos2I(103, 26));
+        createSlot(RIGHT_LEG_ARMOR  , new Pos2I(69 , 54));
+        createSlot(LEFT_LEG_ARMOR , new Pos2I(95 , 54));
         createSlot(FUSION_CORE     , new Pos2I(136, 26));
     }
 

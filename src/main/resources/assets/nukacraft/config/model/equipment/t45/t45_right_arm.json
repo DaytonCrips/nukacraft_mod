@@ -17,11 +17,9 @@
     {
       "frame": "right_lower_arm",
       "armor": "right_forearm_armor"
-    }
-  ],
-  "pov": [
+    },
     {
-      "frame": "right_forearm_frame",
+      "frame": "right_lower_arm_pov",
       "armor": "pov_right_forearm_armor"
     }
   ]

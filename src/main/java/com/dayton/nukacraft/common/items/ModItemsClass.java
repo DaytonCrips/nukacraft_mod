@@ -366,5 +366,59 @@ public class ModItemsClass {
     public static final RegistryObject<ArmorPart> T51_LEFT_LEG = ITEMS.register("t51_left_leg", () ->
             new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
 
+    public static final RegistryObject<Item> T60_HELMET = ITEMS.register("t60_helmet", () ->
+            new ArmorPart(T45, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> T60_BODY = ITEMS.register("t60_body", () ->
+            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T60_RIGHT_ARM = ITEMS.register("t60_right_arm", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T60_LEFT_ARM = ITEMS.register("t60_left_arm", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T60_RIGHT_LEG = ITEMS.register("t60_right_leg", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> T60_LEFT_LEG = ITEMS.register("t60_left_leg", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+
+    public static final RegistryObject<Item> RAIDER_HELMET = ITEMS.register("raider_helmet", () ->
+            new ArmorPart(T45, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> RAIDER_BODY = ITEMS.register("raider_body", () ->
+            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> RAIDER_RIGHT_ARM = ITEMS.register("raider_right_arm", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> RAIDER_LEFT_ARM = ITEMS.register("raider_left_arm", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> RAIDER_RIGHT_LEG = ITEMS.register("raider_right_leg", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> RAIDER_LEFT_LEG = ITEMS.register("raider_left_leg", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+
+    public static final RegistryObject<Item> EXC_HELMET = ITEMS.register("exc_helmet", () ->
+            new ArmorPart(T45, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> EXC_BODY = ITEMS.register("exc_body", () ->
+            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> EXC_RIGHT_ARM = ITEMS.register("exc_right_arm", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> EXC_LEFT_ARM = ITEMS.register("exc_left_arm", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> EXC_RIGHT_LEG = ITEMS.register("exc_right_leg", () ->
+            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> EXC_LEFT_LEG = ITEMS.register("exc_left_leg", () ->
+            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+
     public static void register(IEventBus eventBus) {ITEMS.register(eventBus);}
 }
