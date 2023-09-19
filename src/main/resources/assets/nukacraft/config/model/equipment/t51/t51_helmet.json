@@ -1,0 +1,14 @@
+{
+  "part": "head",
+  "model": "nukacraft:geo/armor/t51.geo.json",
+  "texture": "nukacraft:textures/power_armor/t51.png",
+  "uv": [201, 88, 99, 51],
+  "hide": ["head_frame"],
+
+  "attachments": [
+    {
+      "frame": "head",
+      "armor": "helmet"
+    }
+  ]
+}

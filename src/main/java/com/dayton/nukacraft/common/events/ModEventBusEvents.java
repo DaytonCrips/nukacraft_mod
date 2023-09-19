@@ -5,6 +5,7 @@ import com.dayton.nukacraft.client.particles.GammaParticles;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.dayton.nukacraft.common.entities.Deathclaw;
 import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.monster.Zombie;
@@ -24,6 +25,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
+        event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
     }
 
     @SubscribeEvent

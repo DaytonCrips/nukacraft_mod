@@ -3,21 +3,24 @@ buildscript {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://maven.parchmentmc.org' }
+//        maven { url = 'https://repo.spongepowered.org/maven' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
+//        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
 plugins {
     id 'eclipse'
     id 'maven-publish'
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+//apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'org.spongepowered.mixin'
 
 version = '0.22'
@@ -60,17 +63,17 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-
+//            property 'mixin.env.disableRefMap', 'true'
             // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'nukacraft'
 
             mods {
-                examplemod {
+                nukacraft {
                     source sourceSets.main
                 }
             }
@@ -80,14 +83,14 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
+//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'nukacraft'
 
             mods {
-                examplemod {
+                nukacraft {
                     source sourceSets.main
                 }
             }
@@ -105,17 +108,13 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-
-            // Recommended logging level for the console
-            // You can set various levels here.
-            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
 
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'nukacraft'
 
             mods {
-                examplemod {
+                nukacraft {
                     source sourceSets.main
                 }
             }
@@ -129,10 +128,10 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'nukacraft', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                nukacraft {
                     source sourceSets.main
                 }
             }
@@ -144,17 +143,15 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
-
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-
     maven {
-        url = "https://www.cursemaven.com"
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    flatDir {
+        dirs 'lib'
     }
 }
 
@@ -164,6 +161,10 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9'
 
+    //implementation fg.deobf("curse.maven:nukacraft-845956:4715444")
+    implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
+
+    implementation fg.deobf('com.jetug:chassis_core:1.0')
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
     implementation fg.deobf('curse.maven:mrcrayfishs-gun-mod-289479:4344223')
@@ -175,12 +176,14 @@ dependencies {
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
 
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+//    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
+//mixin {
+//    add sourceSets.main, "nukacraft.mixin-refmap.json"
+//}
+
 jar {
     manifest {
         attributes([
@@ -190,7 +193,10 @@ jar {
                 "Implementation-Title"    : "NukaCraft",
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "VaultTeam",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+//                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
+//                "TweakOrder"              : 0,
+//                "MixinConfigs"            : "nukacraft.mixin.json"
         ])
     }
 }
@@ -215,5 +221,5 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
 }

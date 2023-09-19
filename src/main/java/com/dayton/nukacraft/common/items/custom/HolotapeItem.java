@@ -17,6 +17,4 @@ public class HolotapeItem extends Item {
     public HolotapeItem(Item.Properties pProperties) {
         super(pProperties);
     }
-
-
 }

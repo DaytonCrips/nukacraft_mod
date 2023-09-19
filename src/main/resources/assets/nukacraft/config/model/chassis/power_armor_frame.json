@@ -1,0 +1,36 @@
+{
+  "attachments":[
+    {
+      "part": "head",
+      "bones" : ["head", "head_frame"]
+    },
+    {
+      "part": "body",
+      "bones" : ["body_top", "body_bottom", "body_top_frame", "body_bottom_frame", "body_back_frame", "body_front_frame"]
+    },
+    {
+      "part": "left_arm",
+      "bones" : ["left_shoulder", "left_shoulder_frame", "left_lower_arm", "left_arm", "left_forearm_frame", "left_upper_arm_frame"]
+    },
+    {
+      "part": "right_arm",
+      "bones" : ["right_shoulder", "right_shoulder_frame", "right_lower_arm", "right_arm", "right_forearm_frame", "right_upper_arm_frame"]
+    },
+    {
+      "part": "left_leg",
+      "bones" : ["left_upper_leg", "left_lower_leg", "left_toes", "left_upper_leg_frame", "left_lower_leg_frame", "left_toes_frame" ]
+    },
+    {
+      "part": "right_leg",
+      "bones" : ["right_toes","right_lower_leg", "right_upper_leg" ,"right_toes_frame","right_lower_leg_frame", "right_upper_leg_frame"]
+    },
+    {
+      "part": "fusion_core",
+      "bones" : ["valve"]
+    },
+    {
+      "part": "jetpack",
+      "bones" : ["back_slot"]
+    }
+  ]
+}

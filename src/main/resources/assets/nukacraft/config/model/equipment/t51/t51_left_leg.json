@@ -1,0 +1,26 @@
+{
+  "part": "left_leg",
+  "model": "nukacraft:geo/armor/t51.geo.json",
+  "texture": "nukacraft:textures/power_armor/t51.png",
+  "uv": [152, 140, 62, 58],
+  "hide" : ["left_toes_frame"],
+
+  "attachments": [
+    {
+      "frame": "left_upper_leg",
+      "armor": "left_upper_leg_armor"
+    },
+    {
+      "frame": "left_lower_leg",
+      "armor": "left_lower_leg_armor"
+    },
+    {
+      "frame": "left_shoe",
+      "armor": "left_shoe_armor"
+    },
+    {
+      "frame": "left_toes",
+      "armor": "left_toes_armor"
+    }
+  ]
+}

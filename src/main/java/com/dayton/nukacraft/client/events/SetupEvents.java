@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static com.dayton.nukacraft.common.entities.EntityTypes.DEATHCLAW;
+import static com.dayton.nukacraft.common.entities.EntityTypes.POWER_ARMOR_FRAME;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupEvents {
@@ -16,5 +17,6 @@ public class SetupEvents {
     @SubscribeEvent()
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
+        event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
     }
 }

@@ -6,6 +6,7 @@ import com.dayton.nukacraft.client.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.client.renderers.gun.model.Classic10MM;
 import com.dayton.nukacraft.client.renderers.gun.model.PipePistol;
 import com.dayton.nukacraft.client.renderers.gun.model.Pistol10MM;
+import com.dayton.nukacraft.common.container.ContainerRegistry;
 import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.entities.EntityTypes;
@@ -53,6 +54,7 @@ public class NukaCraftMod
         EntityTypes.register(eventBus);
         ModGunsClass.ITEMS.register(eventBus);
         ModSounds.SOUNDS.register(eventBus);
+        ContainerRegistry.register(eventBus);
 
         eventBus.addListener(this::clientSetup);
 
