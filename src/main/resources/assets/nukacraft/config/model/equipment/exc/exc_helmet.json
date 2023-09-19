@@ -1,0 +1,14 @@
+{
+  "part": "head",
+  "model": "nukacraft:geo/armor/exc.geo.json",
+  "texture": "nukacraft:textures/power_armor/excavator_rust.png",
+  "uv": [201, 88, 99, 51],
+  "hide": ["head_frame"],
+
+  "attachments": [
+    {
+      "frame": "head",
+      "armor": "helmet"
+    }
+  ]
+}
