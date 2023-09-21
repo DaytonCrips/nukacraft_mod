@@ -50,5 +50,5 @@ public class ModGunsClass {
     public static final RegistryObject<Item> HANDMADE_STOCK  = ITEMS.register("handmade_stock", () -> new StockItem(Stock.create(ExtraGunModifiers.HANDMADE_STOCK), new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
     public static final RegistryObject<Item> HANDMADE_FLASHER  = ITEMS.register("handmade_flashhider", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.HANDMADE_FLASHER), new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
 
-
+    public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

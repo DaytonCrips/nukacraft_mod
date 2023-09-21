@@ -12,6 +12,7 @@ import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.entities.EntityTypes;
 import com.dayton.nukacraft.common.entities.MiniNukeEntity;
 import com.dayton.nukacraft.common.items.ModGunsClass;
+import com.dayton.nukacraft.common.items.PowerArmorItems;
 import com.dayton.nukacraft.common.sounds.ModSounds;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.world.ModBiomes;
@@ -38,7 +39,6 @@ import software.bernie.geckolib3.GeckoLib;
 @Mod(NukaCraftMod.MOD_ID)
 public class NukaCraftMod
 {
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "nukacraft";
 
@@ -47,7 +47,11 @@ public class NukaCraftMod
         GeckoLib.initialize();
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
+
         ModItemsClass.register(eventBus);
+        PowerArmorItems.register(eventBus);
+        ModGunsClass.register(eventBus);
+
         ModEffect.register(eventBus);
         ModAttributesClass.register(eventBus);
         ModBlocksClass.register(eventBus);
@@ -55,7 +59,6 @@ public class NukaCraftMod
         ModParticles.register(eventBus);
         RadiationHudOverlay.register();
         EntityTypes.register(eventBus);
-        ModGunsClass.ITEMS.register(eventBus);
         ModSounds.SOUNDS.register(eventBus);
         ContainerRegistry.register(eventBus);
 
