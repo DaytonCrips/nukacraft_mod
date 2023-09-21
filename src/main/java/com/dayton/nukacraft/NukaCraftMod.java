@@ -10,6 +10,7 @@ import com.dayton.nukacraft.common.container.ContainerRegistry;
 import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.entities.MiniNukeEntity;
 import com.dayton.nukacraft.common.items.ModGunsClass;
 import com.dayton.nukacraft.common.sounds.ModSounds;
 import com.dayton.nukacraft.common.world.ModBiomeGeneration;
@@ -20,6 +21,9 @@ import com.dayton.nukacraft.common.items.ModItemsClass;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.mojang.logging.LogUtils;
 import com.mrcrayfish.guns.client.render.gun.ModelOverrides;
+import com.mrcrayfish.guns.common.ProjectileManager;
+import com.mrcrayfish.guns.entity.MissileEntity;
+import com.mrcrayfish.guns.init.ModEntities;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -56,6 +60,7 @@ public class NukaCraftMod
         ContainerRegistry.register(eventBus);
 
         eventBus.addListener(this::clientSetup);
+        eventBus.addListener(this::onCommonSetup);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -83,7 +88,11 @@ public class NukaCraftMod
         ModSetup.flowerPotSetup();
     }
 
-
+    private void onCommonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ProjectileManager.getInstance().registerFactory(ModItemsClass.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+        });
+    }
 //    private void enqueueIMC(final InterModEnqueueEvent event)
 //    {
 //    }

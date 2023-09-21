@@ -37,9 +37,9 @@ public class Pistol10MM implements IOverrideModel {
             else if(!Gun.hasAmmo(stack)) {
 
                 if(cooldown > 0.5)
-                    matrixStack.translate(0, 0, 0.185f * (-4.5 * Math.pow(cooldown-0.5, 2) + 0.5));
+                    matrixStack.translate(0, 0, 0.185f * (-4.5 / Math.pow(cooldown-0.5, 2) + 0.5));
                 else
-                    matrixStack.translate(0, 0, 0.185f * (-4.5 * Math.pow(0.5-0.5, 2) + 0.5));
+                    matrixStack.translate(0, 0, 0.185f * (-4.5 / Math.pow(0.5-0.5, 2) + 0.5));
             }
             RenderUtil.renderModel(SpecialModels.PISTOL10mm_SLIDE.getModel(), stack, matrixStack, buffer, light, overlay);
             matrixStack.popPose();

@@ -50,7 +50,20 @@ public enum SpecialModels {
     PIPE_PISTOL_t1("pipepistol/pipepistolt1"),
     PIPE_PISTOL_t2("pipepistol/pipepistolt2"),
     PIPE_PISTOL_t3("pipepistol/pipepistolt3"),
-    PIPE_PISTOL_SLIDE("pipepistol/pipepistol_slide");
+    PIPE_PISTOL_SLIDE("pipepistol/pipepistol_slide"),
+
+    FATMAN("fatman/fatman"),
+    FATMAN_CART("fatman/fatman_cart"),
+    FATMAN_NUKE("fatman/fatman_nuke");
+
+
+
+
+
+
+
+
+
 
     /**
      * The location of an item model in the [MOD_ID]/models/special/[NAME] folder

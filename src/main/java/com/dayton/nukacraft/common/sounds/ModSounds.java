@@ -24,6 +24,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_38MM_RELOAD = register("item.pistol38mm.reload");
 
 
+    public static final RegistryObject<SoundEvent> ITEM_FATMAN_FIRE = register("item.fatman.fire");
+    public static final RegistryObject<SoundEvent> ITEM_FATMAN_RELOAD = register("item.fatman.reload");
+
     public static final RegistryObject<SoundEvent> ITEM_45MM_FIRE = register("item.pistol45mm.fire");
     public static final RegistryObject<SoundEvent> ITEM_45MM_ENCHANTED_FIRE = register("item.pistol45mm.enchanted_fire");
     public static final RegistryObject<SoundEvent> ITEM_45MM_SILENCED_FIRE = register("item.pistol45mm.silenced_fire");

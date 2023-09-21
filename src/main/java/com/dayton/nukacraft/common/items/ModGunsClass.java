@@ -3,6 +3,7 @@ package com.dayton.nukacraft.common.items;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.helpers.Scopes;
 import com.dayton.nukacraft.common.ExtraGunModifiers;
+import com.dayton.nukacraft.common.items.guns.FatmanGun;
 import com.dayton.nukacraft.common.items.guns.MagazineItem;
 import com.dayton.nukacraft.common.items.guns.PistolGun;
 import com.mrcrayfish.guns.item.*;
@@ -28,6 +29,7 @@ public class ModGunsClass {
     public static final RegistryObject<GunItem> SCOUT10MM = ITEMS.register("scout10mm", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
     public static final RegistryObject<GunItem> CLASSIC10MM_ZAP = ITEMS.register("classic10mm_zapaway", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
     public static final RegistryObject<GunItem> PIPEREVOLVER = ITEMS.register("piperevolver", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
+    public static final RegistryObject<GunItem> FATMAN = ITEMS.register("fatman", () -> new FatmanGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
 
 
 

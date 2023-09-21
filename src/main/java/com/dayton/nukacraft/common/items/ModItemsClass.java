@@ -334,6 +334,8 @@ public class ModItemsClass {
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
     public static final RegistryObject<Item> ROUND22 = ITEMS.register("round22",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
+    public static final RegistryObject<Item> MININUKE = ITEMS.register("mini_nuke",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
 
 //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy_d",

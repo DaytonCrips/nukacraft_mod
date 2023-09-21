@@ -25,7 +25,6 @@ public class PistolGun extends GunItem {
         return false;
     }
 
-
     @Override
     public boolean isFoil(ItemStack p_41453_) {
         return false;
