@@ -164,7 +164,7 @@ dependencies {
     //implementation fg.deobf("curse.maven:nukacraft-845956:4715444")
     implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
 
-    implementation fg.deobf('com.jetug:chassis_core:1.0')
+    implementation fg.deobf('com.jetug:chassis_core:2.0.1')
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
     implementation fg.deobf('curse.maven:mrcrayfishs-gun-mod-289479:4344223')

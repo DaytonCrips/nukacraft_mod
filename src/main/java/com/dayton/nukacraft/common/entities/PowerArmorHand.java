@@ -7,10 +7,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.getPlayerChassis;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingChassis;
+import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.*;
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.PLAY_ONCE;
 
 public class PowerArmorHand extends HandEntity {
     @Override
@@ -19,6 +17,8 @@ public class PowerArmorHand extends HandEntity {
 
         var controller = event.getController();
         var chassis = getPlayerChassis(player);
+        if(chassis == null) return PlayState.STOP;
+
         controller.animationSpeed = 1;
 
         if(player.swinging){
