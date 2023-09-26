@@ -7,6 +7,6 @@ import net.minecraft.world.item.Item;
 
 public class ArmorPart extends ChassisArmor {
     public ArmorPart(ChassisArmorMaterial material, String part) {
-        super(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL), material, part);
+        super(new Item.Properties().tab(ModItemTabs.NUKA_ARMOR), material, part);
     }
 }
