@@ -4,7 +4,10 @@ import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.blocks.ModBlocksClass;
 import com.dayton.nukacraft.common.items.custom.*;
 import com.dayton.nukacraft.common.items.custom.armor.ArmorPart;
+import com.dayton.nukacraft.common.items.custom.armor.ModArmorMaterials;
+import com.dayton.nukacraft.common.items.custom.armor.WoodenArmorItem;
 import com.jetug.chassis_core.common.data.enums.ChassisPart;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -337,17 +340,20 @@ public class ModItemsClass {
     public static final RegistryObject<Item> MININUKE = ITEMS.register("mini_nuke",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_EQUIP)));
 
+
+
+
 //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy_d",
-        () -> new PipBoyItem("pipboy_d", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).stacksTo(1)));
+        () -> new PipBoyItem("pipboy_d", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
     public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",
-            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).stacksTo(1)));
+            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
 
 
     public static final RegistryObject<Item> HOLO_1CC = ITEMS.register("holotape_white",
-            () -> new ColoredHolotapeItem("white", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem("white", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_1D2 = ITEMS.register("holotape_green",
-            () -> new ColoredHolotapeItem("green", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem("green", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
 
     //Power armor
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",

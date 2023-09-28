@@ -321,7 +321,7 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> DEAD_CORALLEAF = registerBlock("dead_coralleaf",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
-    public static final RegistryObject<Block> ZANDER = registerBlock("zander",
+    public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 

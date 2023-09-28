@@ -11,6 +11,7 @@ import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
 import com.dayton.nukacraft.common.entities.EntityTypes;
 import com.dayton.nukacraft.common.entities.MiniNukeEntity;
+import com.dayton.nukacraft.common.items.ModArmorItems;
 import com.dayton.nukacraft.common.items.ModGunsClass;
 import com.dayton.nukacraft.common.items.PowerArmorItems;
 import com.dayton.nukacraft.common.sounds.ModSounds;
@@ -50,7 +51,9 @@ public class NukaCraftMod
 
         ModItemsClass.register(eventBus);
         PowerArmorItems.register(eventBus);
+        ModArmorItems.register(eventBus);
         ModGunsClass.register(eventBus);
+
 
         ModEffect.register(eventBus);
         ModAttributesClass.register(eventBus);
