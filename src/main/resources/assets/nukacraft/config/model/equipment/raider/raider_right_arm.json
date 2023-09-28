@@ -2,7 +2,7 @@
   "part": "right_arm",
   "model": "nukacraft:geo/armor/raider.geo.json",
   "texture": "nukacraft:textures/power_armor/raider.png",
-  "uv": [215, 205, 62, 58],
+  "uv": [310, 155, 155, 155],
   "hide": ["right_upper_arm_frame", "right_forearm_frame"],
 
   "attachments": [

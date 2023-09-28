@@ -1,8 +1,8 @@
 {
   "part": "left_arm",
-  "model": "nukacraft:geo/armor/exc.geo.json",
-  "texture": "nukacraft:textures/power_armor/excavator_rust.png",
-  "uv": [152, 205, 62, 58],
+  "model": "nukacraft:geo/armor/excavator.geo.json",
+  "texture": "nukacraft:textures/power_armor/exc.png",
+  "uv": [0, 310, 155, 155],
   "hide": ["left_upper_arm_frame", "left_forearm_frame"],
 
   "attachments": [

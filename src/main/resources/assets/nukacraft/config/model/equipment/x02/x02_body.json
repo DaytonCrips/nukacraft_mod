@@ -1,9 +1,9 @@
 {
   "part": "body",
-  "model": "nukacraft:geo/armor/t51.geo.json",
-  "texture": "nukacraft:textures/power_armor/t51.png",
+  "model": "nukacraft:geo/armor/x02.geo.json",
+  "texture": "nukacraft:textures/power_armor/x02.png",
   "uv": [155, 0, 155, 155],
-  "hide": [],
+  "hide": ["body_bottom_frame"],
 
   "attachments": [
     {

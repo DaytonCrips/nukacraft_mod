@@ -1,7 +1,7 @@
 {
   "part": "left_arm",
-  "model": "nukacraft:geo/armor/raider.geo.json",
-  "texture": "nukacraft:textures/power_armor/raider.png",
+  "model": "nukacraft:geo/armor/x02.geo.json",
+  "texture": "nukacraft:textures/power_armor/x02.png",
   "uv": [0, 310, 155, 155],
   "hide": ["left_upper_arm_frame", "left_forearm_frame"],
 

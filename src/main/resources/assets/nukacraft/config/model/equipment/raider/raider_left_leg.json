@@ -2,7 +2,7 @@
   "part": "left_leg",
   "model": "nukacraft:geo/armor/raider.geo.json",
   "texture": "nukacraft:textures/power_armor/raider.png",
-  "uv": [152, 140, 62, 58],
+  "uv": [0, 155, 155, 155],
   "hide" : ["left_toes_frame"],
 
   "attachments": [

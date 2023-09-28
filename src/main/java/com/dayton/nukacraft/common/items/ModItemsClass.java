@@ -350,11 +350,11 @@ public class ModItemsClass {
             () -> new ColoredHolotapeItem("green", new Item.Properties().tab(ModItemTabs.NUKA_EQUIP).rarity(Rarity.COMMON)));
 
     //Power armor
-    public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core", () ->
-            new FusionCoreItem(new Item.Properties()
-                    .stacksTo(64)
+    public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",
+            () -> new FusionCoreItem(new Item.Properties()
                     .durability(100000)
-                    .tab(ModItemTabs.NUKA_MATERIAL)));
+                    .tab(ModItemTabs.NUKA_MATERIAL)
+            ));
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

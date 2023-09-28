@@ -2,7 +2,7 @@
   "part": "body",
   "model": "nukacraft:geo/armor/raider.geo.json",
   "texture": "nukacraft:textures/power_armor/raider.png",
-  "uv": [201, 0, 99, 87],
+  "uv": [155, 0, 155, 155],
   "hide": ["body_bottom_frame"],
 
   "attachments": [

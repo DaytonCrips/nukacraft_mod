@@ -52,10 +52,10 @@ public class PowerArmorItems {
     public static final RegistryObject<ArmorPart> T51_LEFT_LEG = ITEMS.register("t51_left_leg", () ->
             new ArmorPart(T51, ChassisPart.LEFT_LEG_ARMOR));
 
-    public static final RegistryObject<Item> T60_HELMET = ITEMS.register("t60_helmet", () ->
-            new ArmorPart(T51, ChassisPart.HELMET));
-
     //T60
+    public static final RegistryObject<Item> T60_HELMET = ITEMS.register("t60_helmet", () ->
+            new ArmorPart(T60, ChassisPart.HELMET));
+
     public static final RegistryObject<ArmorPart> T60_BODY = ITEMS.register("t60_body", () ->
             new ArmorPart(T60, ChassisPart.BODY_ARMOR));
 
@@ -71,10 +71,31 @@ public class PowerArmorItems {
     public static final RegistryObject<ArmorPart> T60_LEFT_LEG = ITEMS.register("t60_left_leg", () ->
             new ArmorPart(T60, ChassisPart.LEFT_LEG_ARMOR));
 
-    public static final RegistryObject<Item> RAIDER_HELMET = ITEMS.register("raider_helmet", () ->
-            new ArmorPart(T60, ChassisPart.HELMET));
+
+
+    //X01
+    public static final RegistryObject<Item> X01_HELMET = ITEMS.register("x01_helmet", () ->
+            new ArmorPart(X01, ChassisPart.HELMET));
+
+    public static final RegistryObject<ArmorPart> X01_BODY = ITEMS.register("x01_body", () ->
+            new ArmorPart(X01, ChassisPart.BODY_ARMOR));
+
+    public static final RegistryObject<ArmorPart> X01_RIGHT_ARM = ITEMS.register("x01_right_arm", () ->
+            new ArmorPart(X01, ChassisPart.RIGHT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> X01_LEFT_ARM = ITEMS.register("x01_left_arm", () ->
+            new ArmorPart(X01, ChassisPart.LEFT_ARM_ARMOR));
+
+    public static final RegistryObject<ArmorPart> X01_RIGHT_LEG = ITEMS.register("x01_right_leg", () ->
+            new ArmorPart(X01, ChassisPart.RIGHT_LEG_ARMOR));
+
+    public static final RegistryObject<ArmorPart> X01_LEFT_LEG = ITEMS.register("x01_left_leg", () ->
+            new ArmorPart(X01, ChassisPart.LEFT_LEG_ARMOR));
 
     //RAIDER
+    public static final RegistryObject<Item> RAIDER_HELMET = ITEMS.register("raider_helmet", () ->
+            new ArmorPart(RAIDER, ChassisPart.HELMET));
+
     public static final RegistryObject<ArmorPart> RAIDER_BODY = ITEMS.register("raider_body", () ->
             new ArmorPart(RAIDER, ChassisPart.BODY_ARMOR));
 

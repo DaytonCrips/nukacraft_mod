@@ -1,21 +1,37 @@
+
 {
 	"format_version": "1.12.0",
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.unknown",
-				"texture_width": 300,
-				"texture_height": 300,
-				"visible_bounds_width": 3,
-				"visible_bounds_height": 3.5,
-				"visible_bounds_offset": [0, 1.25, 0]
+				"identifier": "geometry.power_armor_frame",
+				"texture_width": 465,
+				"texture_height": 620,
+				"visible_bounds_width": 8,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
 			},
 			"bones": [
 				{
 					"name": "fusion_core",
-					"pivot": [0, 24.9352, 9.06164],
+					"pivot": [0, 24.9352, 7.27002],
+					"rotation": [-20, 0, 0],
 					"cubes": [
-						{"origin": [-1.03488, 22.97007, 4.30105], "size": [3, 3, 5], "inflate": -0.55, "pivot": [0, 24.9352, 9.06164], "rotation": [0, 0, 45], "uv": [163, 0]}
+						{
+							"origin": [-1.1, 23.03043, 4.86815],
+							"size": [2.3, 2.3, 4],
+							"inflate": -0.3,
+							"pivot": [0, 24.23043, 8.31815],
+							"rotation": [0, 0, 45],
+							"uv": {
+								"north": {"uv": [107, 8], "uv_size": [-3, -3]},
+								"east": {"uv": [112, 8], "uv_size": [-5, -3]},
+								"south": {"uv": [112, 5], "uv_size": [3, 3]},
+								"west": {"uv": [104, 8], "uv_size": [-5, -3]},
+								"up": {"uv": [108, 0], "uv_size": [-3, 5]},
+								"down": {"uv": [109, 5], "uv_size": [-3, -5]}
+							}
+						}
 					]
 				}
 			]
