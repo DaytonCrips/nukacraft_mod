@@ -14,7 +14,7 @@ A little tour of the content:
 -This list we'll be adding to...
 
 
-Only develops on 1.18.2 and also requires GeckoLib* and Framework by MrCrayfish*
+Only develops on 1.18.2 and also requires GeckoLib*, ChasisCore by Jetug and Framework by MrCrayfish*
 
 ####ALERT####
 The mod tracks the main attribute of the player's health and changes it quite roughly - I have not found a more flexible solution yet, so the mod is completely INCOMPatible with mods that change health and its display.
