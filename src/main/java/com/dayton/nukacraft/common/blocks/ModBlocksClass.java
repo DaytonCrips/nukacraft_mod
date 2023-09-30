@@ -53,6 +53,13 @@ public class ModBlocksClass {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2.1F, 3.0F).requiresCorrectToolForDrops()));
 
+
+    public static final RegistryObject<Block> QUARTS_ORE = registerBlock("quarts_ore",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.6F, 4.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEPQUARTS_ORE = registerBlock("deepquarts_ore",
+            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.1F, 4.5F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> DEEPSILVER = registerBlock("deepsilver_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.9F, 4.6F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
@@ -82,6 +89,27 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> CYANTILE = registerBlock("cyantile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
+
+    public static final RegistryObject<Block> WHITEBRICKS = registerBlock("whitebricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f, 6.0f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITEBRICKS_SLAB = registerBlock("whitebricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f, 6.0f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> WHITEBRICKS_STAIRS = registerBlock("whitebricks_stairs",
+            () -> new StairBlock(ModBlocksClass.WHITEBRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f, 6.0f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> SMOOTH_BRICKS = registerBlock("smooth_brick",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.8f, 5.0f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> MOSSWHITEBRICKS = registerBlock("moss_whitebricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f, 6.0f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GREENTILE = registerBlock("greentile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));

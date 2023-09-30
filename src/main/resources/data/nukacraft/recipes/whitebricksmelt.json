@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 1.3,
+  "cookingtime": 90,
+  "ingredient": {
+    "item": "nukacraft:silicate"
+  },
+  "result": "nukacraft:whitebrick"
+}

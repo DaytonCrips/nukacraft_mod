@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nukacraft:block/whitebricks_slab_bottom"
+    },
+    "type=double": {
+      "model": "nukacraft:block/whitebricks"
+    },
+    "type=top": {
+      "model": "nukacraft:block/whitebricks_slab_top"
+    }
+  }
+}

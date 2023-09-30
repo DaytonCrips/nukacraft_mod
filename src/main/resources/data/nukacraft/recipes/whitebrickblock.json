@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    "000",
+    "000"
+  ],
+  "key": {
+    "0": {
+      "item": "nukacraft:whitebrick"
+    }
+  },
+  "result": {
+    "item": "nukacraft:whitebricks",
+    "count": 1
+  }
+}

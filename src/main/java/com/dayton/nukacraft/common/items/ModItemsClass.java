@@ -175,8 +175,6 @@ public class ModItemsClass {
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> LAMP = ITEMS.register("lamp",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
-    public static final RegistryObject<Item> NUCHOLDER = ITEMS.register("nuc_holder",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ULTRBAR = ITEMS.register("ultrbar",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> COPPERCOND = ITEMS.register("coppercond",
@@ -221,6 +219,38 @@ public class ModItemsClass {
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> GIGAWHEAT_SEEDS = ITEMS.register("gigawheat_seeds",
             () -> new ItemNameBlockItem(ModBlocksClass.GIGAWHEAT.get(), (new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE))));
+
+
+    public static final RegistryObject<Item> ABRAXOCLEANER = ITEMS.register("abraxo_cleaner",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> PIEZODIVIDE = ITEMS.register("piezonucleic_divider",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> QUARZDIVIDER = ITEMS.register("quartz_divider",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> ULTRDIVIDER = ITEMS.register("ultracite_divider",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> ULTRSHEAT = ITEMS.register("ultracite_sheat",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> WHITEBRICK = ITEMS.register("whitebrick",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> SILICATE = ITEMS.register("silicate",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> QUARZSHEAT = ITEMS.register("quartz_sheat",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> QUARZPIECE = ITEMS.register("quartz_piece",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> QUARZPLATE = ITEMS.register("quartz_plate",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> ARMYCIRCUIT = ITEMS.register("army_circuit",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ELEDIVIDE = ITEMS.register("electrite_divider",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> ELESHEAT = ITEMS.register("electrite_sheat",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> GILLEAD = ITEMS.register("gilded_lead",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
 
 
     //    ///FOODS
