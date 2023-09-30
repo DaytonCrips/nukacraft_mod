@@ -77,13 +77,7 @@ public class PowerArmorScreen extends ChassisScreen<PowerChassisMenu> {
         }
 
         public void onPress() {
-//            PacketSender.doServerAction(new FramePickupAction(), referenceMob.getId());
             PacketHandler.sendToServer(new FramePickupPacket(referenceMob.getId()));
-//            doServerAction(ActionType.DISMOUNT);
-//            var stack = new ItemStack(FRAME_ITEM.get());
-//            var entity = (PowerArmorFrame)referenceMob;
-//            entityToItem(stack, entity);
-//            getLocalPlayer().getInventory().add(stack);
         }
     }
 
@@ -99,7 +93,7 @@ public class PowerArmorScreen extends ChassisScreen<PowerChassisMenu> {
         }
 
         protected void renderIcon(PoseStack pPoseStack) {
-            this.blit(pPoseStack, this.x + 2, this.y + 2, this.iconX, this.iconY, 18, 18);
+            this.blit(pPoseStack, this.x + 2, this.y, this.iconX, this.iconY, 18, 18);
         }
 
         public void renderToolTip(PoseStack pPoseStack, int pMouseX, int pMouseY) {
@@ -134,7 +128,7 @@ public class PowerArmorScreen extends ChassisScreen<PowerChassisMenu> {
                 j += this.width * 3;
             }
 
-            this.blit(pPoseStack, this.x, this.y, j, 219, this.width, this.height);
+            this.blit(pPoseStack, this.x, this.y, j, 166, this.width, this.height);
             this.renderIcon(pPoseStack);
         }
 
