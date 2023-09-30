@@ -4,15 +4,13 @@ license="GPL3"
 
 [[mods]]
 modId="nukacraft"
-version="1.2"
+version="1.2.1"
 displayName="Nuka Craft"
 updateJSONURL=""
 displayURL=""
-logoFile=""
+logoFile="logo.png"
 authors="Dayton, Jetug"
-description='''
-
-'''
+description="NukaCraft - This is a global mod that opens up the possibility for players to be transported to the wastelands and feel like a wanderer. Collect weapons, find Power Armor sets and don't let the wastelands swallow you up"
 
 
 

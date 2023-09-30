@@ -28,6 +28,7 @@ public class ModEventBusEvents {
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
     }
 
+
     @SubscribeEvent
     public static void setup(final FMLCommonSetupEvent event) {
         PacketHandler.register();

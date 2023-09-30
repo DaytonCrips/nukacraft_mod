@@ -36,4 +36,10 @@ public class ModItemTabs {
             return new ItemStack(PowerArmorItems.T45_HELMET.get());
         }
     };
+//    public static final CreativeModeTab NUKA_ARMOR = new CreativeModeTab("nuka_armor") {
+//        @Override
+//        public ItemStack makeIcon() {
+//            return new ItemStack(ModArmorItems.WOOD2_BODY.get());
+//        }
+//    };
 }
