@@ -11,6 +11,7 @@ import com.jetug.chassis_core.common.foundation.item.DamageableItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -81,6 +82,23 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     @Override
+    public boolean hurt(DamageSource damageSource, float damage) {
+        if(damageSource.isFall()){
+            damageArmor(damageSource, damage);
+            return false;
+        }
+        else return super.hurt(damageSource, damage);
+    }
+
+    @Override
+    public boolean causeFallDamage(float height, float pMultiplier, DamageSource damageSource) {
+        var damage = calculateFallDamage(height, pMultiplier);
+        if(damage >= 0)
+            hurt(damageSource, damage);
+        return false;
+    }
+
+    @Override
     public ResourceLocation getIcon() {
         return ICON;
     }
@@ -109,7 +127,6 @@ public class PowerArmorFrame extends WearableChassis {
     public boolean hasEnergy(){
         return hasFusionCore();
     }
-
 
     @Override
     protected void updateSpeed() {

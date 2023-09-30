@@ -1,0 +1,22 @@
+{
+  "part": "left_arm",
+  "model": "nukacraft:geo/armor/x02_cryo.geo.json",
+  "texture": "nukacraft:textures/power_armor/x02_cryo.png",
+  "uv": [0, 310, 155, 155],
+  "hide": ["left_upper_arm_frame", "left_forearm_frame"],
+
+  "attachments": [
+    {
+      "frame": "body_top",
+      "armor": "left_shoulder_armor"
+    },
+    {
+      "frame": "left_arm",
+      "armor": "left_upper_arm_armor"
+    },
+    {
+      "frame": "left_lower_arm",
+      "armor": "left_forearm_armor"
+    }
+  ]
+}

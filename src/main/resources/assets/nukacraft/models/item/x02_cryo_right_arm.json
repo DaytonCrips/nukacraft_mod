@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "nukacraft:items/power_armor/x02c/x02c_right_arm"
+  }
+}

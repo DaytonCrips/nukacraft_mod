@@ -1,9 +1,9 @@
 {
   "part": "body",
-  "model": "nukacraft:geo/armor/x01.geo.json",
-  "texture": "nukacraft:textures/power_armor/x01.png",
+  "model": "nukacraft:geo/armor/x02_cryo.geo.json",
+  "texture": "nukacraft:textures/power_armor/x02_cryo.png",
   "uv": [155, 0, 155, 155],
-  "hide": ["body_front_frame", "body_back_frame"],
+  "hide": ["body_bottom_frame"],
 
   "attachments": [
     {

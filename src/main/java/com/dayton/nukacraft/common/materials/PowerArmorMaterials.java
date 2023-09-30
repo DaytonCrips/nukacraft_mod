@@ -38,4 +38,14 @@ public class PowerArmorMaterials {
             "t45", 15, new int[]{7, 14, 10, 10}, 3,9,
             SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
             () -> Ingredient.of(Items.IRON_INGOT));
+
+    public static ChassisArmorMaterial X02 = new ChassisArmorMaterial(
+            "t45", 15, new int[]{7, 14, 10, 10}, 3,9,
+            SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+            () -> Ingredient.of(Items.IRON_INGOT));
+
+    public static ChassisArmorMaterial X02_CRYO = new ChassisArmorMaterial(
+            "t45", 15, new int[]{7, 14, 10, 10}, 3,9,
+            SoundEvents.ARMOR_EQUIP_IRON, 0.0F,
+            () -> Ingredient.of(Items.IRON_INGOT));
 }
