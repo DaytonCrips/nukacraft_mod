@@ -2,7 +2,7 @@ package com.dayton.nukacraft.common.entities;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.network.PacketHandler;
-import com.dayton.nukacraft.common.network.packets.MobPacket;
+import com.dayton.nukacraft.common.network.packets.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;

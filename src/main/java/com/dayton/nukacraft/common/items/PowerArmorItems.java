@@ -1,18 +1,26 @@
 package com.dayton.nukacraft.common.items;
 
 import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.items.custom.armor.ArmorPart;
 import com.jetug.chassis_core.common.data.enums.ChassisPart;
+import com.jetug.chassis_core.common.foundation.item.ChassisItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static com.dayton.nukacraft.common.items.ModItemTabs.*;
 import static com.dayton.nukacraft.common.materials.PowerArmorMaterials.*;
 
 public class PowerArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
+
+    public static final RegistryObject<Item> FRAME_ITEM = ITEMS.register("frame_item",  () ->
+        new ChassisItem<>(new Item.Properties().tab(NUKA_ARMOR), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
+    );
 
     //T45
     public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->

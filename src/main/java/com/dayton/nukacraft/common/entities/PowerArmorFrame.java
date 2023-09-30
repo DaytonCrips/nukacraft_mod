@@ -4,10 +4,11 @@ import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.container.menu.PowerArmorStationMenu;
 import com.dayton.nukacraft.common.container.menu.PowerChassisMenu;
 import com.dayton.nukacraft.common.items.custom.FusionCoreItem;
-import com.jetug.chassis_core.common.foundation.entity.ArmorChassisBase;
+import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.jetug.chassis_core.common.foundation.item.DamageableItem;
+import net.minecraft.client.gui.screens.inventory.BeaconScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
@@ -40,7 +41,7 @@ import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes
 
 @SuppressWarnings("unchecked")
 public class PowerArmorFrame extends WearableChassis {
-    public static final int INVENTORY_SIZE = ArmorChassisBase.INVENTORY_SIZE + 6;
+    public static final int INVENTORY_SIZE = ChassisBase.INVENTORY_SIZE + 6;
     public static final ResourceLocation ICON
             = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/items/power_armor_frame.png");
     public static final PowerArmorHand HAND = new PowerArmorHand();

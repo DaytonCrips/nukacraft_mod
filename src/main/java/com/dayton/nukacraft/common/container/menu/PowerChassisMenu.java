@@ -8,10 +8,8 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 
-import static com.dayton.nukacraft.common.container.ContainerRegistry.POWER_CHASSIS_MENU;
-import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
-import static com.dayton.nukacraft.common.entities.PowerArmorFrame.getId;
-import static com.jetug.chassis_core.common.data.constants.Gui.*;
+import static com.dayton.nukacraft.common.container.ContainerRegistry.*;
+import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.*;
 import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
 
 public class PowerChassisMenu extends EntityMenu {

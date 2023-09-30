@@ -3,8 +3,7 @@ package com.dayton.nukacraft.common.container;
 import com.dayton.nukacraft.common.container.screen.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 
-import static com.dayton.nukacraft.common.container.ContainerRegistry.ARMOR_STATION_MENU;
-import static com.dayton.nukacraft.common.container.ContainerRegistry.POWER_CHASSIS_MENU;
+import static com.dayton.nukacraft.common.container.ContainerRegistry.*;
 
 public class GuiRegistry {
     public static void register() {
