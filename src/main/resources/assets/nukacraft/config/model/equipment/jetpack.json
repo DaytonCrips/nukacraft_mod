@@ -1,8 +1,9 @@
 {
   "part": "body",
   "model": "nukacraft:geo/equipment/fusion_core.geo.json",
-  "texture": "nukacraft:textures/power_armor/fusion_core.png",
-
+  "texture": {
+    "default": "nukacraft:textures/power_armor/fusion_core.png"
+  },
 
   "attachments": [
     {

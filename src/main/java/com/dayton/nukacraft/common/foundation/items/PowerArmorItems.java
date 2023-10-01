@@ -5,7 +5,7 @@ import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.foundation.items.custom.frame.ArmorPart;
 import com.dayton.nukacraft.common.foundation.items.custom.frame.Jetpack;
-import com.jetug.chassis_core.common.data.enums.ChassisPart;
+import com.jetug.chassis_core.common.data.constants.ChassisPart;
 import com.jetug.chassis_core.common.foundation.item.ChassisItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

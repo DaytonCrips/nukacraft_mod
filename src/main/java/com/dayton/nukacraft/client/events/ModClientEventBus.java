@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.events;
+package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.entities.armors.WoodenArmorRenderer;

@@ -1,7 +1,9 @@
 {
   "part": "left_leg",
   "model": "nukacraft:geo/armor/x02_cryo.geo.json",
-  "texture": "nukacraft:textures/power_armor/x02_cryo.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/x02_cryo.png"
+  },
   "uv": [0, 155, 155, 155],
   "hide" : ["left_toes_frame"],
 

@@ -1,29 +1,36 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
-import com.dayton.nukacraft.*;
-import com.dayton.nukacraft.common.foundation.container.menu.*;
-import com.jetug.chassis_core.common.foundation.entity.*;
-import net.minecraft.network.chat.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.*;
-import net.minecraft.world.damagesource.*;
+import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorMenu;
+import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
+import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
+import com.jetug.chassis_core.common.foundation.entity.HandEntity;
+import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.*;
-import software.bernie.geckolib3.core.*;
-import software.bernie.geckolib3.core.controller.*;
-import software.bernie.geckolib3.core.event.predicate.*;
-import software.bernie.geckolib3.core.manager.*;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
 
 import java.util.HashMap;
 
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
-import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.*;
-import static com.jetug.chassis_core.common.foundation.item.DamageableItem.*;
-import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.*;
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.*;
+import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
+import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
+import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damageItem;
+import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
+import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
+import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.PLAY_ONCE;
 
 @SuppressWarnings("unchecked")
 public class PowerArmorFrame extends WearableChassis {

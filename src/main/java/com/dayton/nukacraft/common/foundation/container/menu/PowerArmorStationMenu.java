@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 import static com.dayton.nukacraft.common.foundation.container.ContainerRegistry.ARMOR_STATION_MENU;
 import static com.jetug.chassis_core.common.data.constants.Gui.*;
-import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
+import static com.jetug.chassis_core.common.data.constants.ChassisPart.*;
 
 public class PowerArmorStationMenu extends EntityMenu {
     private static final int INVENTORY_POS_Y = 105;

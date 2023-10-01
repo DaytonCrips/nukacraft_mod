@@ -1,8 +1,8 @@
 package com.dayton.nukacraft.common.foundation.container;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
 import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorMenu;
+import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

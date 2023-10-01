@@ -1,7 +1,10 @@
 {
   "part": "head",
   "model": "nukacraft:geo/armor/x02.geo.json",
-  "texture": "nukacraft:textures/power_armor/x02.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/x02.png",
+    "rust": "nukacraft:textures/power_armor/x02_rust.png"
+  },
   "uv": [310, 0, 155, 155],
   "hide": ["head_frame"],
 

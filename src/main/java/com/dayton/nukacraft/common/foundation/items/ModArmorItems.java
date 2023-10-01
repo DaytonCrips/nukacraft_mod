@@ -1,8 +1,8 @@
 package com.dayton.nukacraft.common.foundation.items;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.materials.ModArmorMaterials;
 import com.dayton.nukacraft.common.foundation.items.custom.armor.WoodenArmorItem;
+import com.dayton.nukacraft.common.foundation.materials.ModArmorMaterials;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

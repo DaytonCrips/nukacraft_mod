@@ -7,7 +7,6 @@ import com.jetug.chassis_core.client.gui.screen.ChassisScreen;
 import com.jetug.chassis_core.client.gui.ui.IconButton;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -16,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.jetug.chassis_core.Global.referenceMob;
-import static net.minecraft.network.chat.CommonComponents.*;
+import static net.minecraft.network.chat.CommonComponents.GUI_DONE;
 
 @OnlyIn(Dist.CLIENT)
 public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {

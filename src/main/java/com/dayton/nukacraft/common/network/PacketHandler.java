@@ -1,12 +1,14 @@
 package com.dayton.nukacraft.common.network;
 
-import com.dayton.nukacraft.common.network.packets.*;
-import net.minecraft.resources.*;
-import net.minecraft.server.level.*;
-import net.minecraftforge.common.util.*;
-import net.minecraftforge.network.*;
-import net.minecraftforge.network.simple.*;
-import net.minecraftforge.server.*;
+import com.dayton.nukacraft.common.network.packets.FramePickupPacket;
+import com.dayton.nukacraft.common.network.packets.MobPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.network.NetworkDirection;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.List;
 

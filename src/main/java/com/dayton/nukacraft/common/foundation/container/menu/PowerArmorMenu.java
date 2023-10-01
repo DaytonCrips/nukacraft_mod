@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.dayton.nukacraft.common.foundation.container.ContainerRegistry.POWER_CHASSIS_MENU;
-import static com.jetug.chassis_core.common.data.enums.ChassisPart.*;
+import static com.jetug.chassis_core.common.data.constants.ChassisPart.*;
 
 public class PowerArmorMenu extends EntityMenu {
     public static final int SIZE = 7;

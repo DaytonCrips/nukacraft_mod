@@ -1,14 +1,15 @@
 package com.dayton.nukacraft.client.gui;
 
 import com.dayton.nukacraft.client.gui.pipboy.PipBoyMenu;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.IContainerFactory;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 
 public class ModMenuClass {
