@@ -14,67 +14,69 @@ import java.util.Map;
 
 public class RadiationMath {
 
-    //if argument method is true - radiation added value, else - delete value
-    public static void attributeUpdate(LivingEntity entity_, Boolean method, float value, Map<String, Object> depend) {
-        double attribute_val = entity_.getAttributeValue(ModAttributesClass.RADIATION.get());
-        Entity entity = (Entity) depend.get("entity");
-        if (new Object() {
-            boolean check(Entity _entity) {
-                if (_entity instanceof LivingEntity) {
-                    Collection<MobEffectInstance> effects = ((LivingEntity) _entity).getActiveEffects();
-                    for (MobEffectInstance effect : effects) {
-                        if (effect.getEffect() == ModEffect.RAD_RES.get())
-                            return true;
-                    }
-                }
-                return false;
-            }
-        }.check(entity)) {
-            if (entity instanceof Player && !entity.level.isClientSide) {
-                if (method == true) {
+    public static void updateRadiation(LivingEntity entity, float value) {
+        Collection<MobEffectInstance> effects = entity.getActiveEffects();
+
+        if(value > 0 && !entity.level.isClientSide) {
+            for (MobEffectInstance effect : effects) {
+                if (effect.getEffect() == ModEffect.RAD_RES.get())
                     value /= 1.5;
-                }
-
-            }
-        }
-        if (new Object() {
-            boolean check(Entity _entity) {
-                if (_entity instanceof LivingEntity) {
-                    Collection<MobEffectInstance> effects = ((LivingEntity) _entity).getActiveEffects();
-                    for (MobEffectInstance effect : effects) {
-                        if (effect.getEffect() == ModEffect.QUANT_SHIELD.get())
-                            return true;
-                    }
-                }
-                return false;
-            }
-        }.check(entity)) {
-            if (entity instanceof Player && !entity.level.isClientSide) {
-                if (method == true) {
+                else if (effect.getEffect() == ModEffect.QUANT_SHIELD.get())
                     value /= 2.0;
-                }
-
             }
         }
 
-        if (method == true) {
-            if ((attribute_val + value) >= 32) {
-                entity_.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(32);
-            } else {
-                entity_.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(attribute_val + value);
-            }
-        }
+        var radiationValue = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+        var radiationAttribute = entity.getAttribute(ModAttributesClass.RADIATION.get());
 
-        if (method == false) {
-            if ((attribute_val - value) <= 0) {
-                entity_.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
-            } else {
-                entity_.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(attribute_val - value);
-            }
+        if(radiationAttribute == null) return;
+
+        if (value > 0) {
+            if ((radiationValue + value) >= 32)
+                 radiationAttribute.setBaseValue(32);
+            else radiationAttribute.setBaseValue(radiationValue + value);
         }
-        attributeMod(entity_, method);
+        else {
+            if ((radiationValue - value) <= 0)
+                 radiationAttribute.setBaseValue(0);
+            else radiationAttribute.setBaseValue(radiationValue - value);
+        }
+        attributeMod(entity, value > 0);
     }
 
+    //if argument method is true - radiation added value, else - delete value
+    public static void attributeUpdate(LivingEntity entity, float value) {
+        var method = value > 0;
+
+        var effects = entity.getActiveEffects();
+        for (var effect : effects) {
+            if (entity instanceof Player && !entity.level.isClientSide && method) {
+                if (effect.getEffect() == ModEffect.RAD_RES.get()) {
+                    value /= 1.5;
+                }
+                if (effect.getEffect() == ModEffect.QUANT_SHIELD.get()) {
+                    value /= 2.0;
+                }
+            }
+        }
+
+        double radiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+
+        if (method) {
+            if ((radiation + value) >= 32) {
+                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(32);
+            } else {
+                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation + value);
+            }
+        } else {
+            if ((radiation - value) <= 0) {
+                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
+            } else {
+                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation - value);
+            }
+        }
+        attributeMod(entity, method);
+    }
 
     /**
      * Change Max Health and takes radiation damage
@@ -92,7 +94,7 @@ public class RadiationMath {
 
         }
         if (entity.getAttributeBaseValue(ModAttributesClass.RADIATION.get()) >= 4 && entity.getAttributeBaseValue(ModAttributesClass.RADIATION.get()) < 8) {
-            if (method == true && entity.getAttributeBaseValue(Attributes.MAX_HEALTH) == 20) {
+            if (method && entity.getAttributeBaseValue(Attributes.MAX_HEALTH) == 20) {
                 if (entity.getHealth() == 20) {
                     entity.hurt(DamageSource.GENERIC, (float) 2);
                 }

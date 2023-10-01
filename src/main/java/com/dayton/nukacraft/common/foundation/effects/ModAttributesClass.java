@@ -41,10 +41,12 @@ public class ModAttributesClass {
     private static class Utils {
         @SubscribeEvent
         public static void persistAttributes(PlayerEvent.Clone event) {
-            Player oldP = event.getOriginal();
-            Player newP = (Player) event.getEntity();
-            newP.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(oldP.getAttribute(ModAttributesClass.RADIATION.get()).getBaseValue());
-            newP.getAttribute(Attributes.MAX_HEALTH).setBaseValue(oldP.getAttribute(Attributes.MAX_HEALTH).getBaseValue());
+            Player oldPlayer = event.getOriginal();
+            Player newPlayer = (Player) event.getEntity();
+            newPlayer.getAttribute(ModAttributesClass.RADIATION.get())
+                    .setBaseValue(oldPlayer.getAttribute(ModAttributesClass.RADIATION.get()).getBaseValue());
+            newPlayer.getAttribute(Attributes.MAX_HEALTH)
+                    .setBaseValue(oldPlayer.getAttribute(Attributes.MAX_HEALTH).getBaseValue());
         }
     }
 

@@ -51,8 +51,6 @@ minecraft {
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
             workingDirectory project.file('run')
@@ -72,6 +70,8 @@ minecraft {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
 
+            arg "-mixin.config=nukacraft.mixin.json"
+
             mods {
                 nukacraft {
                     source sourceSets.main
@@ -83,11 +83,9 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
-
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
+            arg "-mixin.config=nukacraft.mixin.json"
 
             mods {
                 nukacraft {
@@ -108,10 +106,10 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
+
+            arg "-mixin.config=nukacraft.mixin.json"
 
             mods {
                 nukacraft {
@@ -194,9 +192,9 @@ jar {
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "VaultTeam",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-//                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
-//                "TweakOrder"              : 0,
-//                "MixinConfigs"            : "nukacraft.mixin.json"
+                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
+                "TweakOrder"              : 0,
+                "MixinConfigs"            : "nukacraft.mixin.json"
         ])
     }
 }
