@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.client.models;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.entities.Deathclaw;
+import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

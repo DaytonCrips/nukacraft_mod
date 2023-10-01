@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.client.renderers;
 
-import com.dayton.nukacraft.common.entities.PowerArmorFrame;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

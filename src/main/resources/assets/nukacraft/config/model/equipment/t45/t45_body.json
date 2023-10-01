@@ -1,7 +1,11 @@
 {
   "part": "body",
   "model": "nukacraft:geo/armor/t45.geo.json",
-  "texture": "nukacraft:textures/power_armor/t45_rust.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/t45.png",
+    "rust": "nukacraft:textures/power_armor/t45_rust.png"
+  },
+
   "uv": [155, 0, 155, 155],
   "hide": ["body_bottom_frame"],
 

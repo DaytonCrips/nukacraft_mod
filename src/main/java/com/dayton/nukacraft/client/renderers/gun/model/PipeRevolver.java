@@ -1,20 +1,16 @@
 package com.dayton.nukacraft.client.renderers.gun.model;
 
 import com.dayton.nukacraft.client.SpecialModels;
-import com.dayton.nukacraft.common.items.ModGunsClass;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.mrcrayfish.guns.client.render.gun.IOverrideModel;
 import com.mrcrayfish.guns.client.util.RenderUtil;
-import com.mrcrayfish.guns.common.Gun;
-import com.mrcrayfish.guns.item.attachment.IAttachment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 public class PipeRevolver  implements IOverrideModel {
     @Override
