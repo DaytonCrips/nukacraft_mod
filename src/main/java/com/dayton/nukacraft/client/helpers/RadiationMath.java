@@ -43,7 +43,7 @@ public class RadiationMath {
                 entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation - value);
             }
         }
-        //attributeMod(entity, method);
+        attributeMod(entity, method);
     }
 
     public static double getPlayerRadiation(){
