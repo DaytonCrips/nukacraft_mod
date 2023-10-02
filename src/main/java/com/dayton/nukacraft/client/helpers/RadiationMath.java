@@ -2,50 +2,18 @@ package com.dayton.nukacraft.client.helpers;
 
 import com.dayton.nukacraft.common.foundation.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.foundation.effects.ModEffect;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.Collection;
-import java.util.Map;
 
 public class RadiationMath {
 
     public static void updateRadiation(LivingEntity entity, float value) {
-        Collection<MobEffectInstance> effects = entity.getActiveEffects();
-
-        if(value > 0 && !entity.level.isClientSide) {
-            for (MobEffectInstance effect : effects) {
-                if (effect.getEffect() == ModEffect.RAD_RES.get())
-                    value /= 1.5;
-                else if (effect.getEffect() == ModEffect.QUANT_SHIELD.get())
-                    value /= 2.0;
-            }
-        }
-
-        var radiationValue = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
-        var radiationAttribute = entity.getAttribute(ModAttributesClass.RADIATION.get());
-
-        if(radiationAttribute == null) return;
-
-        if (value > 0) {
-            if ((radiationValue + value) >= 32)
-                 radiationAttribute.setBaseValue(32);
-            else radiationAttribute.setBaseValue(radiationValue + value);
-        }
-        else {
-            if ((radiationValue - value) <= 0)
-                 radiationAttribute.setBaseValue(0);
-            else radiationAttribute.setBaseValue(radiationValue - value);
-        }
-        attributeMod(entity, value > 0);
-    }
-
-    //if argument method is true - radiation added value, else - delete value
-    public static void attributeUpdate(LivingEntity entity, float value) {
         var method = value > 0;
 
         var effects = entity.getActiveEffects();
@@ -54,7 +22,7 @@ public class RadiationMath {
                 if (effect.getEffect() == ModEffect.RAD_RES.get()) {
                     value /= 1.5;
                 }
-                if (effect.getEffect() == ModEffect.QUANT_SHIELD.get()) {
+                else if (effect.getEffect() == ModEffect.QUANT_SHIELD.get()) {
                     value /= 2.0;
                 }
             }
@@ -75,7 +43,11 @@ public class RadiationMath {
                 entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation - value);
             }
         }
-        attributeMod(entity, method);
+        //attributeMod(entity, method);
+    }
+
+    public static double getPlayerRadiation(){
+        return Minecraft.getInstance().player.getAttributeValue(ModAttributesClass.RADIATION.get());
     }
 
     /**

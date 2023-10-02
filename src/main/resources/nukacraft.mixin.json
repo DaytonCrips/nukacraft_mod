@@ -3,6 +3,7 @@
   "package": "com.dayton.nukacraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "GuiMixin"
   ],
   "injectors": {
     "defaultRequire": 1

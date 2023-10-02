@@ -14,7 +14,6 @@ public class PipBoy {
     public static int fontColor = -6684775;
     public static ResourceLocation pipboy_name;
 
-
     public static String[] warning_screen = new String[]{
 
             "archive.nukacraft.pip_os.string1", //string1
@@ -35,24 +34,22 @@ public class PipBoy {
 //
 //    public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
     public PipBoy() {
-        this.content = new ArrayList<Archive>();
+        content = new ArrayList<>();
     }
     public void init() {
         content.add(new Archive("archive.nukacraft.vaultboy.name")
-                .addPage(new ArchivePage(
-                        new String[]
-                                {
-                                        "archivepage.nukacraft.vaultboy1.string_d1", //string1
-                                        "", //string2
-                                        "archivepage.nukacraft.vaultboy1.string_d2", //string3
-                                        "archivepage.nukacraft.vaultboy1.string_d3", //string4
-                                        "", //string5
-                                        "", //string6
-                                        "archivepage.nukacraft.vaultboy1.string_d4", //string7
-                                        "archivepage.nukacraft.vaultboy1.string_d5", //string8
-                                        "archivepage.nukacraft.vaultboy1.string_d6", //string9
-                                        "" //string10
-                                }))
+            .addPage(new ArchivePage( new String[]{
+                    "archivepage.nukacraft.vaultboy1.string_d1", //string1
+                    "", //string2
+                    "archivepage.nukacraft.vaultboy1.string_d2", //string3
+                    "archivepage.nukacraft.vaultboy1.string_d3", //string4
+                    "", //string5
+                    "", //string6
+                    "archivepage.nukacraft.vaultboy1.string_d4", //string7
+                    "archivepage.nukacraft.vaultboy1.string_d5", //string8
+                    "archivepage.nukacraft.vaultboy1.string_d6", //string9
+                    "" //string10
+                }))
         );
 
 //        content.add(new Archive("▪ Ам ням").addPage(new ArchivePage(warning_screen)));
@@ -64,23 +61,21 @@ public class PipBoy {
 //        content.add(new Archive("▪ WARN1").addPage(new ArchivePage(warning_screen)));
     }
 
-
-
     public static void start(ItemStack stack, String skin) {
         pipboy_name = new ResourceLocation("nukacraft:textures/screens/" + skin + ".png");
         switch (stack.getOrCreateTag().getString("screen")) {
-            case "white":
+            case "white" -> {
                 bred = 1;
                 bgreen = 1;
                 bblue = 1;
                 fontColor = -1;
-                break;
-            case "green":
+            }
+            case "green" -> {
                 bred = 0.443f;
                 bgreen = 0.749f;
                 bblue = 0.459f;
                 fontColor = -6684775;
-                break;
+            }
         }
     }
 

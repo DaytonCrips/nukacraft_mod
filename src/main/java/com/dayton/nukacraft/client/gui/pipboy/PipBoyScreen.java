@@ -16,16 +16,13 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
-    private final static HashMap<String, Object> guistate = PipBoyMenu.guistate;
+    private final static HashMap<String, Object> guistate = PipBoyMenu.guiState;
     private static boolean menu = true;
-
-
     private final Level world;
     private final int x, y, z;
     private final Player entity;
 //Шо? ☢
     public static String[] page_buffer = new String[]{
-
             "", //string1
             "", //string2
             "", //string3
@@ -42,8 +39,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private static int page_count, current_page, current_archive, archive_pages, current_archive_page;
 
-
-
     public PipBoyScreen(PipBoyMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.world = container.world;
@@ -55,11 +50,27 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         this.imageHeight = 0;
     }
 
-
     private static final ResourceLocation texture = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
     private static ResourceLocation pipboy = new ResourceLocation("nukacraft:textures/screens/pimpboy.png");
     private static final ResourceLocation pipboy_screen = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
 
+    @Override
+    public void init() {
+        pipboy = PipBoy.pipboy_name;
+        super.init();
+        menu = true;
+        if (PipBoy.content.size() == 0) {
+            warningPipboy();
+        } else {
+            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            current_archive_page = 0;
+            buttonMenu();
+            renderArchiveNavigation();
+        }
+        minecraft.keyboardHandler.setSendRepeatsToGui(true);
+//        addRenderableWidget(new MainPipBoyButton(leftPos + -114, topPos + 58, 30, 20, new TextComponent("X"), e -> {
+//        }));
+    }
 
     @Override
     public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
@@ -74,23 +85,19 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, texture);
-        this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+        blit(ms, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
         RenderSystem.setShaderTexture(0, pipboy_screen); //Pip Boy Skin
-        this.blit(ms, this.leftPos + -116, this.topPos + -113, 0, 0, 235, 207, 235, 207);
+        blit(ms, leftPos + -116, topPos + -113, 0, 0, 235, 207, 235, 207);
 
         if (!(image == null)) {
             RenderSystem.setShaderTexture(0, image); //Pip Boy Skin
-            this.blit(ms, this.leftPos + cords[0], this.topPos + cords[1], 0, 0, 106, 65, 106, 65);
+            blit(ms, leftPos + cords[0], topPos + cords[1], 0, 0, 106, 65, 106, 65);
         }
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.setShaderTexture(0, pipboy); //Pip Boy Skin
-        this.blit(ms, this.leftPos + -116, this.topPos + -113, 0, 0, 235, 207, 235, 207);
-
-
+        blit(ms, leftPos + -116, topPos + -113, 0, 0, 235, 207, 235, 207);
     }
-
-
 
     public void warningPipboy() {
         page_buffer = PipBoy.warning_screen;
@@ -101,7 +108,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     @Override
     public boolean keyPressed(int key, int b, int c) {
         if (key == 256) {
-            this.minecraft.player.closeContainer();
+            minecraft.player.closeContainer();
             return true;
         }
         return super.keyPressed(key, b, c);
@@ -115,13 +122,12 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     @Override
     protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
         for (int xt = 0; xt < 10; xt++) {
-            this.font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -102, -87 + (xt * 13), PipBoy.fontColor);
+            font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -102, -87 + (xt * 13), PipBoy.fontColor);
         }
 
-        if (menu) {
-            this.font.draw(poseStack, new TranslatableComponent("   [" + current_archive_page + "/" + archive_pages + "]"), 33, 64, -1);
-        } else
-            this.font.draw(poseStack, new TranslatableComponent("   [" + current_page + "/" + (page_count-1) + "]"), 33, 64, -1);
+        if (menu)
+            font.draw(poseStack, new TranslatableComponent("   [" + current_archive_page + "/" + archive_pages + "]"), 33, 64, -1);
+        else font.draw(poseStack, new TranslatableComponent("   [" + current_page + "/" + (page_count-1) + "]"), 33, 64, -1);
 
     }
 
@@ -132,97 +138,91 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         menu = true;
     }
 
-
-    public void pageNavigation() {
-
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -80, this.topPos + 58, 20, 20,
-                new TextComponent("☵"), e -> {
-            this.clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            archiveNavigation();
-        }));
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -46, this.topPos + 58, 20, 20,
-                new TextComponent("✴"), e -> {
-            this.clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            mapButton();
-        }));
-
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -112, this.topPos + 58, 30, 20,
-                new TextComponent("◀"), e -> {
+    public void renderNavigationPage() {
+        addRenderableWidget(getHomeButton());
+        addRenderableWidget(getMapButton());
+        addRenderableWidget(getBackButton(() -> {
             if (current_page > 0) {
                 current_page--;
-                page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
-                image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
-                cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
-                cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+                renderPage();
             }
         }));
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -24, this.topPos + 58, 30, 20,
-                new TextComponent("▶"), e -> {
+        addRenderableWidget(getForwardButton(() -> {
             if (current_page < page_count-1){
                 current_page++;
-                page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
-                image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
-                cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
-                cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+                renderPage();
             }
         }));
     }
 
-
-
-
-    public void archiveNavigation(){
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -80, this.topPos + 58, 20, 20,
-                new TextComponent("☵"), e -> {
-            this.clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            archiveNavigation();
-        }));
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -46, this.topPos + 58, 20, 20,
-                new TextComponent("✴"), e -> {
-            this.clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            mapButton();
-        }));
-
-
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -112, this.topPos + 58, 30, 20,
-                new TextComponent("◀"), e -> {
+    public void renderArchiveNavigation(){
+        addRenderableWidget(getHomeButton());
+        addRenderableWidget(getMapButton());
+        addRenderableWidget(getBackButton(() -> {
             if (current_archive_page > 0) {
                 current_archive_page--;
-                this.clearWidgets();
-                this.archiveNavigation();
+                clearWidgets();
+                renderArchiveNavigation();
                 buttonMenu();
             }
-
         }));
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -24, this.topPos + 58, 30, 20,
-                new TextComponent("▶"), e -> {
+        addRenderableWidget(getForwardButton(() -> {
             if (!(current_archive_page == archive_pages)) {
                 current_archive_page++;
-                this.clearWidgets();
-                this.archiveNavigation();
+                clearWidgets();
+                renderArchiveNavigation();
                 buttonMenu();
             }
         }));
     }
 
-    public void mapButton() {
-        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -112, this.topPos + 58, 30, 20,
-                new TextComponent("◀"), e -> {
-            this.clearWidgets();
+    private MainPipBoyButton getHomeButton(){
+        return new MainPipBoyButton(leftPos + -80, topPos + 58, 20, 20,
+                new TextComponent("☵"), e -> {
+            clearWidgets();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
             current_archive_page = 0;
             buttonMenu();
-            archiveNavigation();
+            renderArchiveNavigation();
+        });
+    }
+
+    private MainPipBoyButton getMapButton(){
+        return new MainPipBoyButton(leftPos + -46, topPos + 58, 20, 20,
+                new TextComponent("✴"), e -> {
+            clearWidgets();
+            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            current_archive_page = 0;
+            drawMap();
+        });
+    }
+
+    private MainPipBoyButton getBackButton(Runnable runnable){
+        return new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
+                new TextComponent("◀"), e -> runnable.run());
+    }
+
+    private MainPipBoyButton getForwardButton(Runnable runnable){
+        return new MainPipBoyButton(leftPos + -24, topPos + 58, 30, 20,
+                new TextComponent("▶"), e -> runnable.run());
+    }
+
+
+    private void renderPage() {
+        page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
+        image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
+        cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
+        cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+    }
+
+    public void drawMap() {
+        addRenderableWidget(new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
+                new TextComponent("◀"), e -> {
+            clearWidgets();
+            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            current_archive_page = 0;
+            buttonMenu();
+            renderArchiveNavigation();
             }));
         page_buffer = new String[]{
                 "", //string1
@@ -239,8 +239,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         image = new ResourceLocation("nukacraft:textures/screens/empty.png");
     }
 
-
-
     public void buttonMenu() {
         int xj = 0;
 
@@ -253,8 +251,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         } else if (PipBoy.content.size() >= 7) {
             xj = 7;
         }
-
-
 
         page_buffer = new String[]{
                 "archive.nukacraft.pip_os.string1", //string1
@@ -272,11 +268,11 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         for (int t = 0; t < xj; t++) {
             page_buffer[t+3] = current_archive_page > 0 ? PipBoy.content.get(t+(current_archive_page*7)).getName() : PipBoy.content.get(t+(current_archive_page)).getName();
             int finalT = current_archive_page > 0 ? t+(current_archive_page*7) : t;
-            this.addRenderableWidget(new TextPipBoyButton(this.leftPos + -102, this.topPos + (-50 + (t * 13)),  205, 11,
+            addRenderableWidget(new TextPipBoyButton(leftPos + -102, topPos + (-50 + (t * 13)),  205, 11,
                     new TextComponent(""), e -> {
                 menu = false;
-                this.clearWidgets();
-                this.pageNavigation();
+                clearWidgets();
+                renderNavigationPage();
                 page_buffer = PipBoy.content.get(finalT).getPage(0).getLines();
                 image = PipBoy.content.get(finalT).getPage(0).getImage();
                 cords[0] = PipBoy.content.get(finalT).getPage(0).getXcord();
@@ -288,8 +284,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         }
     }
 
-
-
     public static int round(int i, int j) {
         if (i % j == 0) {
             return (i / j);
@@ -297,24 +291,4 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             return (i / j) + 1;
         }
     }
-
-    @Override
-    public void init() {
-        pipboy = PipBoy.pipboy_name;
-        super.init();
-        menu = true;
-        if (PipBoy.content.size() == 0) {
-            warningPipboy();
-        } else {
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            archiveNavigation();
-        }
-        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-
-//        this.addRenderableWidget(new MainPipBoyButton(this.leftPos + -114, this.topPos + 58, 30, 20, new TextComponent("X"), e -> {
-//        }));
-    }
-
 }

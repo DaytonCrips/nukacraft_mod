@@ -31,17 +31,19 @@ public class PipBoyItem extends Item {
         this.skin = skin;
     }
 
-
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-
-        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        ItemStack stack = player.getItemInHand(usedHand);
         if ((stack.getOrCreateTag().getString("screen")).equals("")) {
-            stack.getOrCreateTag().putString("screen", "green");}
-        if (pPlayer instanceof ServerPlayer _ent && pPlayer.getOffhandItem().getItem() instanceof PipBoyItem && pPlayer.isShiftKeyDown()) {
-            BlockPos _bpos = new BlockPos(0, 0, 0);
+            stack.getOrCreateTag().putString("screen", "green");
+        }
+        if (player instanceof ServerPlayer serverPlayer
+                && player.getOffhandItem().getItem() instanceof PipBoyItem
+                && player.isShiftKeyDown()) {
+
+            var blockPos = new BlockPos(0, 0, 0);
             PipBoy.start(stack, skin);
-            NetworkHooks.openGui((ServerPlayer) _ent, new MenuProvider() {
+            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
                 @Override
                 public Component getDisplayName() {
                     return new TextComponent("Sadzxc");
@@ -49,11 +51,11 @@ public class PipBoyItem extends Item {
 
                 @Override
                 public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(_bpos));
+                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
                 }
-            }, _bpos);
+            }, blockPos);
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return super.use(level, player, usedHand);
     }
 
     @Override
