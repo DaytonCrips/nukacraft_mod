@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.dayton.nukacraft.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "GuiMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "nukacraft.mixin-refmap.json",
+  "minVersion": "0.8",
+  "mixins": [
+  ]
+}

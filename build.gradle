@@ -1,16 +1,15 @@
 buildscript {
     repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://maven.parchmentmc.org' }
-//        maven { url = 'https://repo.spongepowered.org/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
-//        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath 'org.spongepowered:mixingradle:0.7.+'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        //classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 
@@ -20,7 +19,6 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
-//apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'org.spongepowered.mixin'
 
 version = '0.22'
@@ -51,8 +49,6 @@ minecraft {
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
             workingDirectory project.file('run')
@@ -63,7 +59,6 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-//            property 'mixin.env.disableRefMap', 'true'
             // Recommended logging level for the console
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
@@ -71,6 +66,8 @@ minecraft {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
+
+            arg "-mixin.config=nukacraft.mixin.json"
 
             mods {
                 nukacraft {
@@ -83,11 +80,9 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
-
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
+            arg "-mixin.config=nukacraft.mixin.json"
 
             mods {
                 nukacraft {
@@ -108,10 +103,10 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
-//            property 'mixin.env.disableRefMap', 'true'
             property 'forge.logging.console.level', 'debug'
-
             property 'forge.enabledGameTestNamespaces', 'nukacraft'
+
+            arg "-mixin.config=nukacraft.mixin.json"
 
             mods {
                 nukacraft {
@@ -176,13 +171,13 @@ dependencies {
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
 
-//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-//    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-//mixin {
-//    add sourceSets.main, "nukacraft.mixin-refmap.json"
-//}
+mixin {
+    add sourceSets.main, "nukacraft.mixin-refmap.json"
+}
 
 jar {
     manifest {
@@ -194,9 +189,9 @@ jar {
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "VaultTeam",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-//                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
-//                "TweakOrder"              : 0,
-//                "MixinConfigs"            : "nukacraft.mixin.json"
+                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
+                "TweakOrder"              : 0,
+                "MixinConfigs"            : "nukacraft.mixin.json"
         ])
     }
 }

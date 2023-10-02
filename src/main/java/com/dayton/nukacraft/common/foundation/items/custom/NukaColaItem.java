@@ -22,44 +22,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class NukaColaItem extends Item {
-    private float radfloat;
-    private boolean irradiated;
-    public NukaColaItem(boolean irradiated, float radfloat, Properties properties) {
-        super(properties);
-        this.irradiated = irradiated;
-        this.radfloat = radfloat;
+import static net.minecraftforge.items.ItemHandlerHelper.*;
+
+public class NukaColaItem extends RadItem {
+    public NukaColaItem(float radiation, Properties properties) {
+        super(radiation, properties);
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
-            ItemStack items = new ItemStack(ModItemsClass.CAP.get());
+            var items = new ItemStack(ModItemsClass.CAP.get());
             items.setCount(1);
-            ItemHandlerHelper.giveItemToPlayer((Player) entity, items);
-
-            RadiationMath.attributeUpdate(entity, irradiated, radfloat, Stream.of(new AbstractMap.SimpleEntry<>("entity", entity)).collect(HashMap::new,
-                    (_m, _e) -> _m.put(_e.getKey(), _e.getValue()), Map::putAll));
+            giveItemToPlayer((Player) entity, items);
 
             if (!((Player) entity).isCreative()) {entity.getMainHandItem().shrink(1);}
         }
         entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false));
-        return stack;
+        return super.finishUsingItem(stack, level, entity);
     }
 
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-
-        if (!this.irradiated) {
-            if (!(this.radfloat == 0.0f)) {
-                list.add(new TranslatableComponent("tooltip.nukacraft.irradiation").append(("§a-" + this.radfloat)));
-            }
-        } else {
-            list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append(("§c+" + this.radfloat)));
-        }
         list.add(new TranslatableComponent("effect.nukacraft.speed").append("§9(0:10)"));
-
     }
 
     @Override
