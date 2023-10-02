@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.client.renderers.gun.model;
 
 import com.dayton.nukacraft.client.SpecialModels;
+import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.guns.client.render.gun.IOverrideModel;
 import com.mrcrayfish.guns.client.util.RenderUtil;
@@ -19,15 +20,13 @@ public class PipePistol implements IOverrideModel {
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.PIPE_PISTOL.getModel(), stack, matrixStack, buffer, light, overlay);
 
-
-
         if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == Items.AIR)
             RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t0.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == com.dayton.nukacraft.common.items.ModGunsClass.MAGAZINE1.get())
+        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE1.get())
             RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t1.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == com.dayton.nukacraft.common.items.ModGunsClass.MAGAZINE2.get())
+        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE2.get())
             RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t2.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == com.dayton.nukacraft.common.items.ModGunsClass.MAGAZINE3.get())
+        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGunsClass.MAGAZINE3.get())
             RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t3.getModel(), stack, matrixStack, buffer, light, overlay);
 
 

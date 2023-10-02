@@ -1,49 +1,36 @@
-package com.dayton.nukacraft.client.helpers;
+package com.dayton.nukacraft.common.data.utils;
 
 import com.dayton.nukacraft.common.foundation.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.foundation.effects.ModEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.Collection;
-
-public class RadiationMath {
-
+public class RadiationHelper {
     public static void updateRadiation(LivingEntity entity, float value) {
-        var method = value > 0;
-
         var effects = entity.getActiveEffects();
-        for (var effect : effects) {
-            if (entity instanceof Player && !entity.level.isClientSide && method) {
-                if (effect.getEffect() == ModEffect.RAD_RES.get()) {
+        if (entity instanceof Player && !entity.level.isClientSide && value > 0) {
+            for (var effect : effects) {
+                if (effect.getEffect() == ModEffect.RAD_RES.get())
                     value /= 1.5;
-                }
-                else if (effect.getEffect() == ModEffect.QUANT_SHIELD.get()) {
+                else if (effect.getEffect() == ModEffect.QUANT_SHIELD.get())
                     value /= 2.0;
-                }
             }
         }
 
-        double radiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+        var radiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+        var attribute = entity.getAttribute(ModAttributesClass.RADIATION.get());
 
-        if (method) {
-            if ((radiation + value) >= 32) {
-                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(32);
-            } else {
-                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation + value);
-            }
-        } else {
-            if ((radiation - value) <= 0) {
-                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
-            } else {
-                entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation - value);
-            }
-        }
-        attributeMod(entity, method);
+        if(attribute == null) return;
+        radiation += value;
+
+        if ((radiation) >= 32) radiation = 32;
+        else if ((radiation) <= 0) radiation = 0;
+
+        attribute.setBaseValue(radiation);
+        //attributeMod(entity, method);
     }
 
     public static double getPlayerRadiation(){

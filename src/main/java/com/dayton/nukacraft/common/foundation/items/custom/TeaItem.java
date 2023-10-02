@@ -1,6 +1,5 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.client.helpers.RadiationMath;
 import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -15,11 +14,8 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
+
 //cursed:(
 public class TeaItem extends RadItem {
     public TeaItem(float radiation, Item.Properties properties) {

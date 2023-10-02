@@ -1,13 +1,16 @@
-package com.dayton.nukacraft.common.items;
+package com.dayton.nukacraft.common.foundation.items;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.helpers.Scopes;
 import com.dayton.nukacraft.common.ExtraGunModifiers;
-import com.dayton.nukacraft.common.items.guns.FatmanGun;
-import com.dayton.nukacraft.common.items.guns.MagazineItem;
+import com.dayton.nukacraft.common.foundation.items.guns.FatmanGun;
+import com.dayton.nukacraft.common.foundation.items.guns.MagazineItem;
+import com.dayton.nukacraft.common.foundation.items.guns.PistolGun;
 import com.dayton.nukacraft.common.items.guns.MinigunGun;
-import com.dayton.nukacraft.common.items.guns.PistolGun;
-import com.mrcrayfish.guns.item.*;
+import com.mrcrayfish.guns.item.BarrelItem;
+import com.mrcrayfish.guns.item.GunItem;
+import com.mrcrayfish.guns.item.ScopeItem;
+import com.mrcrayfish.guns.item.StockItem;
 import com.mrcrayfish.guns.item.attachment.impl.Barrel;
 import com.mrcrayfish.guns.item.attachment.impl.Stock;
 import com.mrcrayfish.guns.item.attachment.impl.UnderBarrel;

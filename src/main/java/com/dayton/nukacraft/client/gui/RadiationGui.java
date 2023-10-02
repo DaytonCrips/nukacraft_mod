@@ -14,6 +14,8 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import static com.dayton.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
+
 @Mod.EventBusSubscriber({Dist.CLIENT})
 
 public class RadiationGui {
@@ -26,7 +28,6 @@ public class RadiationGui {
             if (!player.isCreative() && !player.isSpectator()) {
                 int w = event.getWindow().getGuiScaledWidth() / 2;
                 int h = event.getWindow().getGuiScaledHeight() - gui_scale;
-                gui_scale += 10;
                 double attrMaxHealth = player.getAttribute(Attributes.MAX_HEALTH).getValue();
                 double val = 10-Math.round(attrMaxHealth/2);
                 RenderSystem.disableDepthTest();
@@ -36,7 +37,7 @@ public class RadiationGui {
                 RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
                         GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
                 RenderSystem.setShaderColor(1, 1, 1, 1);
-                RenderSystem.setShaderTexture(0, new ResourceLocation("nukacraft:textures/screens/radhearth.png"));
+                RenderSystem.setShaderTexture(0, new ResourceLocation(RAD_HEART_ICON));
                 for (int i = 0; i < val; ++i) {
                     int x = w - i * 8 - 9;
                     Minecraft.getInstance().gui.blit(event.getMatrixStack(), x-10, h, 0, 0, 9, 9, 9, 9);

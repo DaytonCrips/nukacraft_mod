@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items.guns;
 
+import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
 import com.mrcrayfish.guns.common.Gun;
 import com.mrcrayfish.guns.init.ModEnchantments;
 import com.mrcrayfish.guns.item.GunItem;

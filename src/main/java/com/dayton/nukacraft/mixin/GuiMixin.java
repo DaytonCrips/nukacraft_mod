@@ -1,9 +1,11 @@
 package com.dayton.nukacraft.mixin;
 
 import com.dayton.nukacraft.common.registery.HeartType;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,7 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-import static com.dayton.nukacraft.client.helpers.RadiationMath.getPlayerRadiation;
+import static com.dayton.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
+import static com.dayton.nukacraft.common.data.utils.RadiationHelper.getPlayerRadiation;
 
 @Mixin(Gui.class)
 public abstract class GuiMixin extends GuiComponent {
@@ -38,43 +41,55 @@ public abstract class GuiMixin extends GuiComponent {
 
         var rads = getPlayerRadiation();
         int radHearts = Mth.ceil((double) rads / 2.0D);
-
-
         int maxHearts = Mth.ceil((double) healthMax / 2.0D);
         int absorbHearts = Mth.ceil((double) absorb / 2.0D);
         int maxHalfHearts = maxHearts * 2;
 
-        for (int hearts = maxHearts + absorbHearts - 1; hearts >= 0; --hearts) {
-            int rows = hearts / 10;
-            int heartInRow = hearts % 10;
+        var allHearts = maxHearts + absorbHearts + radHearts;
+
+        for (int heart = allHearts - 1; heart >= 0; --heart) {
+            int rows = heart / 10;
+            int heartInRow = heart % 10;
             int heartPosX = x + heartInRow * 8;
             int heartPosY = y - rows * height;
 
             if (health + absorb <= 4)
                 heartPosY += this.random.nextInt(2);
 
-            if (hearts < maxHearts && hearts == regen)
+            if (heart < maxHearts && heart == regen)
                 heartPosY -= 2;
 
             this.renderHeart(poseStack, HeartType.CONTAINER, heartPosX, heartPosY, yOffset, highlight, false);
-            int halfHearts = hearts * 2;
-            boolean flag = hearts >= maxHearts;
-            if (flag) {
-                int k2 = halfHearts - maxHalfHearts;
-                if (k2 < absorb) {
-                    boolean flag1 = k2 + 1 == absorb;
-                    this.renderHeart(poseStack, heartType == HeartType.WITHERED ? heartType : HeartType.ABSORBING, heartPosX, heartPosY, yOffset, false, flag1);
+            int halfHearts = heart * 2;
+
+            ///
+//            if(hearts - maxHearts > 0){
+//            }
+            ///
+            if (heart >= maxHearts) {
+                if(allHearts - absorbHearts > heart){
+                    RenderSystem.setShaderTexture(0, new ResourceLocation(RAD_HEART_ICON));
+                    blit(poseStack, heartPosX, heartPosY, 0, 0, 9, 9, 9, 9);
+                    RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
+                }
+                else {
+                    int additionalHearts = halfHearts - maxHalfHearts;
+                    if (additionalHearts < absorb) {
+                        boolean isHalf = additionalHearts + 1 == absorb;
+                        this.renderHeart(poseStack, heartType == HeartType.WITHERED ? heartType : HeartType.ABSORBING,
+                                heartPosX, heartPosY, yOffset, false, isHalf);
+                    }
                 }
             }
 
             if (highlight && halfHearts < healthLast) {
-                boolean flag2 = halfHearts + 1 == healthLast;
-                this.renderHeart(poseStack, heartType, heartPosX, heartPosY, yOffset, true, flag2);
+                boolean isHalf = halfHearts + 1 == healthLast;
+                this.renderHeart(poseStack, heartType, heartPosX, heartPosY, yOffset, true, isHalf);
             }
 
             if (halfHearts < health) {
-                boolean flag3 = halfHearts + 1 == health;
-                this.renderHeart(poseStack, heartType, heartPosX, heartPosY, yOffset, false, flag3);
+                boolean isHalf = halfHearts + 1 == health;
+                this.renderHeart(poseStack, heartType, heartPosX, heartPosY, yOffset, false, isHalf);
             }
         }
 

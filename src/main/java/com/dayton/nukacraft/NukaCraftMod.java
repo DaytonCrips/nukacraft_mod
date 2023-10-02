@@ -12,6 +12,7 @@ import com.dayton.nukacraft.common.foundation.effects.ModEffect;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.dayton.nukacraft.common.foundation.items.ModArmorItems;
+import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
 import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
 import com.dayton.nukacraft.common.foundation.items.PowerArmorItems;
 import com.dayton.nukacraft.common.foundation.sounds.ModSounds;
@@ -45,8 +46,7 @@ public class NukaCraftMod
         ModItemsClass.register(eventBus);
         PowerArmorItems.register(eventBus);
         ModArmorItems.register(eventBus);
-        com.dayton.nukacraft.common.items.ModGunsClass.register(eventBus);
-
+        ModGunsClass.register(eventBus);
 
         ModEffect.register(eventBus);
         ModAttributesClass.register(eventBus);
@@ -73,14 +73,11 @@ public class NukaCraftMod
     }
 
     private void clientSetup(final FMLCommonSetupEvent event) {
-
         ModSetup.renderTypeSetup();
         ClientHandler.setup();
-
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         PipBoy pipBoy = new PipBoy();
         pipBoy.init();
         event.enqueueWork(ModBiomeGeneration::generateBiomes);

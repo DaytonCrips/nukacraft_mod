@@ -375,17 +375,11 @@
   "item.nukacraft.pimpboy": "§6Pimp-Boy★★★",
 
 
-
-
   "pipboy.nukacraft.screencolor": "§7Interface Color: ",
   "pipboy.nukacraft.handselect": "§7When in the left hand: ",
   "pipboy.nukacraft.clicks": "§7Shift+RMB: Open Pip-Boy",
   "color.display.green": "§2Green",
   "color.display.white": "§fWhite",
-
-
-
-
 
 
   "archive.nukacraft.pip_os.string1": "    Copyright 2076 ROBCO INDUSTRIES",
@@ -403,9 +397,11 @@
   "archivepage.nukacraft.vaultboy1.string_d6": "whose contents will be written",
 
 
-
   "archivepage.nukacraft.warn.string_d1": "Try to read internal memory...",
   "archivepage.nukacraft.warn.string_d2": "Error(9)... Restart reading",
   "archivepage.nukacraft.warn.string_d3": "Return Error(2): Memory empty",
-  "archivepage.nukacraft.warn.string_d5": "Please, contact with RobCo"
+  "archivepage.nukacraft.warn.string_d5": "Please, contact with RobCo",
+
+  "skin.default" : "§7§oDefault",
+  "skin.rust" : "§7§oRusty"
 }

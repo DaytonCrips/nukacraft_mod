@@ -22,17 +22,17 @@ public enum HeartType {
         this.canBlink = pCanBlink;
     }
 
-    public int getX(boolean p_168735_, boolean highlight) {
-        int i;
+    public int getX(boolean isHalf, boolean highlight) {
+        int x;
         if (this == CONTAINER) {
-            i = highlight ? 1 : 0;
+            x = highlight ? 1 : 0;
         } else {
-            int j = p_168735_ ? 1 : 0;
-            int k = this.canBlink && highlight ? 2 : 0;
-            i = j + k;
+            int halfX = isHalf ? 1 : 0;
+            int highlightX = this.canBlink && highlight ? 2 : 0;
+            x = halfX + highlightX;
         }
 
-        return 16 + (this.index * 2 + i) * 9;
+        return 16 + (this.index * 2 + x) * 9;
     }
 
     public static HeartType forPlayer(Player pPlayer) {
