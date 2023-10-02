@@ -1,13 +1,11 @@
 package com.dayton.nukacraft;
 
-import com.dayton.nukacraft.common.blocks.ModBlocksClass;
-import com.dayton.nukacraft.common.world.ModBiomeGeneration;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 import static net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer;

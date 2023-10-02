@@ -1,7 +1,9 @@
 {
   "part": "left_leg",
   "model": "nukacraft:geo/armor/t60.geo.json",
-  "texture": "nukacraft:textures/power_armor/t60.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/t60.png"
+  },
   "uv": [0, 155, 155, 155],
   "hide" : ["left_toes_frame"],
 

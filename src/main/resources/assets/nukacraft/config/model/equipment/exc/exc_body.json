@@ -1,7 +1,10 @@
 {
   "part": "body",
   "model": "nukacraft:geo/armor/excavator.geo.json",
-  "texture": "nukacraft:textures/power_armor/exc.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/exc.png",
+    "rust": "nukacraft:textures/power_armor/exc_rust.png"
+  },
   "uv": [155, 0, 155, 155],
   "hide": ["body_bottom_frame"],
 

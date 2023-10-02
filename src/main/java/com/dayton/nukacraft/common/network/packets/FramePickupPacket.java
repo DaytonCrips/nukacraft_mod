@@ -1,19 +1,16 @@
 package com.dayton.nukacraft.common.network.packets;
 
-import com.dayton.nukacraft.common.entities.Deathclaw;
-import com.dayton.nukacraft.common.entities.PowerArmorFrame;
-import net.minecraft.client.Minecraft;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static com.dayton.nukacraft.common.items.PowerArmorItems.FRAME_ITEM;
-import static com.jetug.chassis_core.common.foundation.EntityHelper.entityToItem;
-import static net.minecraftforge.items.ItemHandlerHelper.*;
+import static com.dayton.nukacraft.common.foundation.items.PowerArmorItems.FRAME_ITEM;
+import static com.jetug.chassis_core.common.util.helpers.EntityHelper.entityToItem;
+import static net.minecraftforge.items.ItemHandlerHelper.giveItemToPlayer;
 
 @SuppressWarnings("ALL")
 public class FramePickupPacket {

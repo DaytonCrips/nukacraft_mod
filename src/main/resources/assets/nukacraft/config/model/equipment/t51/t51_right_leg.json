@@ -1,7 +1,10 @@
 {
   "part": "right_leg",
   "model": "nukacraft:geo/armor/t51.geo.json",
-  "texture": "nukacraft:textures/power_armor/t51.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/t51.png",
+    "rust": "nukacraft:textures/power_armor/t51.png"
+  },
   "uv": [155, 155, 155, 155],
   "hide" : ["right_toes_frame"],
 

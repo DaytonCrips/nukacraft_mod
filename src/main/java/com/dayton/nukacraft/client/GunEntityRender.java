@@ -2,7 +2,7 @@ package com.dayton.nukacraft.client;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.renderers.MiniNukeRenderer;
-import com.dayton.nukacraft.common.entities.EntityTypes;
+import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

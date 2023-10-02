@@ -3,14 +3,15 @@ package com.dayton.nukacraft.common.events;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.particles.GammaParticles;
 import com.dayton.nukacraft.client.particles.ModParticles;
-import com.dayton.nukacraft.common.entities.Deathclaw;
-import com.dayton.nukacraft.common.entities.EntityTypes;
-import com.dayton.nukacraft.common.entities.PowerArmorFrame;
+import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
+import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.network.PacketHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -27,7 +28,6 @@ public class ModEventBusEvents {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
     }
-
 
     @SubscribeEvent
     public static void setup(final FMLCommonSetupEvent event) {

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.network.actions;
 
-import com.dayton.nukacraft.common.entities.PowerArmorFrame;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.common.network.actions.Action;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
@@ -8,8 +8,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static com.dayton.nukacraft.common.items.PowerArmorItems.FRAME_ITEM;
-import static com.jetug.chassis_core.common.foundation.EntityHelper.entityToItem;
+import static com.dayton.nukacraft.common.foundation.items.PowerArmorItems.FRAME_ITEM;
+import static com.jetug.chassis_core.common.util.helpers.EntityHelper.entityToItem;
 
 @SuppressWarnings("ConstantConditions")
 public class FramePickupAction extends Action<FramePickupAction> {

@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.client.renderers.gun.model;
 
 import com.dayton.nukacraft.client.SpecialModels;
-import com.dayton.nukacraft.common.items.ModGunsClass;
+import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.guns.client.render.gun.IOverrideModel;
 import com.mrcrayfish.guns.client.util.RenderUtil;

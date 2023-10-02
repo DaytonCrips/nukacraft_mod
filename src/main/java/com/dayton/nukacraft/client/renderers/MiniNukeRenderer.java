@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.client.renderers;
 
-import com.dayton.nukacraft.common.entities.MiniNukeEntity;
+import com.dayton.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.mrcrayfish.guns.client.SpecialModels;

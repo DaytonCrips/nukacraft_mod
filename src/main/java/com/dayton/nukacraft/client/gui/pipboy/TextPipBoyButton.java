@@ -10,8 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-import java.awt.*;
-
 public class TextPipBoyButton extends Button {
     public static final ResourceLocation TEXTURES_LOC = new ResourceLocation("nukacraft:textures/screens/pip_boy_text_widgets.png");
 

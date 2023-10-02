@@ -1,7 +1,9 @@
 {
   "part": "body",
   "model": "nukacraft:geo/armor/raider.geo.json",
-  "texture": "nukacraft:textures/power_armor/raider.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/raider.png"
+  },
   "uv": [155, 0, 155, 155],
   "hide": ["body_bottom_frame"],
 

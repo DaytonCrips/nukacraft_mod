@@ -1,7 +1,11 @@
 {
   "part": "left_arm",
   "model": "nukacraft:geo/armor/t45.geo.json",
-  "texture": "nukacraft:textures/power_armor/t45_rust.png",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/t45.png",
+    "rust": "nukacraft:textures/power_armor/t45_rust.png"
+  },
+
   "uv": [0, 310, 155, 155],
   "hide": ["left_upper_arm_frame", "left_forearm_frame"],
 
