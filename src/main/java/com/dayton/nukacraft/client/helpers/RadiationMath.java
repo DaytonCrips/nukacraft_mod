@@ -4,6 +4,7 @@ import com.dayton.nukacraft.common.effects.ModAttributesClass;
 import com.dayton.nukacraft.common.effects.ModEffect;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -18,6 +19,10 @@ public class RadiationMath {
     public static void attributeUpdate(LivingEntity entity_, Boolean method, float value, Map<String, Object> depend) {
         double attribute_val = entity_.getAttributeValue(ModAttributesClass.RADIATION.get());
         Entity entity = (Entity) depend.get("entity");
+
+
+
+
         if (new Object() {
             boolean check(Entity _entity) {
                 if (_entity instanceof LivingEntity) {

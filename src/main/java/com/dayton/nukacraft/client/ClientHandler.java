@@ -23,5 +23,6 @@ public class ClientHandler {
         ModelOverrides.register(ModGunsClass.CLASSIC10MM_ZAP.get(), new Classic10MMZap());
         ModelOverrides.register(ModGunsClass.PIPEREVOLVER.get(), new PipeRevolver());
         ModelOverrides.register(ModGunsClass.FATMAN.get(), new Fatman());
+        ModelOverrides.register(ModGunsClass.MINIGUN.get(), new Minigun());
     }
 }

@@ -18,5 +18,6 @@
    "item.pistol45mm.cock":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/pistol45mm/cock" }]},
 
    "item.fatman.reload":                { "subtitle": "subtitle.cgm.reload",         "sounds": [{ "name": "nukacraft:item/fatman/reload" }]},
-   "item.fatman.fire":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/fatman/fire" }]}
+   "item.fatman.fire":                  { "subtitle": "subtitle.cgm.fire",           "sounds": [{ "name": "nukacraft:item/fatman/fire" }]},
+   "item.minigun.fire":                  { "subtitle": "subtitle.cgm.cock",           "sounds": [{ "name": "nukacraft:item/minigun/fire" }]}
 }

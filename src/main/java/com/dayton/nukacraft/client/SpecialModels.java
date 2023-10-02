@@ -15,6 +15,10 @@ import net.minecraftforge.fml.common.Mod;
 public enum SpecialModels {
 
 
+
+    MINIGUN("minigun/minigun"),
+    MINIGUN_BARREL("minigun/minigun_barrel"),
+
     PIPEREVOLVER("piperevolver/piperevolver"),
     PIPEREVOLVER_CYLINDER("piperevolver/piperevolver_cylinder"),
 
