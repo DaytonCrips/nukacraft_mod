@@ -14,7 +14,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.dayton.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
 
 //@Mod.EventBusSubscriber(Dist.CLIENT)
 //public class RadiationGui {

@@ -13,13 +13,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.dayton.nukacraft.common.data.constants.Textures.POWER_ARMOR_GUI;
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.jetug.chassis_core.Global.referenceMob;
 import static net.minecraft.network.chat.CommonComponents.GUI_DONE;
 
 @OnlyIn(Dist.CLIENT)
 public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
-    public static final ResourceLocation POWER_ARMOR_GUI = nukaResource("textures/gui/power_armor_inventory.png");
     public PowerArmorScreen(PowerArmorMenu container, Inventory inventory, Component name) {
         super(container, inventory, name, POWER_ARMOR_GUI);
     }

@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-import static com.dayton.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
+import static com.dayton.nukacraft.common.data.constants.Textures.*;
 import static com.dayton.nukacraft.common.data.utils.RadiationHelper.getPlayerRadiation;
 
 @Mixin(Gui.class)
@@ -68,7 +68,7 @@ public abstract class GuiMixin extends GuiComponent {
             ///
             if (heart >= maxHearts) {
                 if(allHearts - absorbHearts > heart){
-                    RenderSystem.setShaderTexture(0, new ResourceLocation(RAD_HEART_ICON));
+                    RenderSystem.setShaderTexture(0, RAD_HEART_ICON);
                     blit(poseStack, heartPosX, heartPosY, 0, 0, 9, 9, 9, 9);
                     RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
                 }
