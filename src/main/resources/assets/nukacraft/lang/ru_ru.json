@@ -370,5 +370,8 @@
   "archive.nukacraft.pip_os.string1": "    Copyright 2076 ROBCO INDUSTRIES",
   "archive.nukacraft.pip_os.string2": "                  -Отчёт 1-        ",
   "archive.nukacraft.pip_os.string2_1": "                 -Архивы 1-        ",
-  "archive.nukacraft.pip_os.string3": "-----------------------------------"
+  "archive.nukacraft.pip_os.string3": "-----------------------------------",
+
+  "skin.default" : "§7§oЧистая",
+  "skin.rust" : "§7§oРжавая"
 }

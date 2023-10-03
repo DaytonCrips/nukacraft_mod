@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 public class ModAttributesClass {
     public static final DeferredRegister<Attribute> ATTRIBUTE = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation", () -> new RangedAttribute("nukacraft_radiation", 0, 0, 28));
+    public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation", () -> new RangedAttribute("nukacraft_radiation", 0, 0, 100));
 
     private static <T extends Attribute>RegistryObject<T> registryAttribute(String name, Supplier<T> attribute) {
         RegistryObject<T> toReturn = ATTRIBUTE.register(name, attribute);
