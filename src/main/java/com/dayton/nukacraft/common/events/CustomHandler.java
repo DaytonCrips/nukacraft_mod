@@ -1,24 +1,20 @@
 package com.dayton.nukacraft.common.events;
 
-import com.jetug.chassis_core.ChassisCore;
-import com.jetug.chassis_core.common.events.ContainerChangedEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
+import com.dayton.nukacraft.common.foundation.effects.ModAttributesClass;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static java.lang.System.out;
-
-@Mod.EventBusSubscriber(modid = ChassisCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber
 public class CustomHandler {
     @SubscribeEvent
-    public static void pickup(PlayerEvent.ItemPickupEvent event) {
-        var stack = event.getStack();
-        var tag = stack.getOrCreateTag();
-        tag .putString("variant", "rust");
-
-        stack.setTag(tag);
+    public static void onLivingDeath(LivingDeathEvent event){
+        var entity = event.getEntity();
+        if (entity instanceof Player player) {
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+            player.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
+        }
     }
 }
