@@ -2,6 +2,11 @@ package com.dayton.nukacraft.common.foundation.entities;
 
 import com.dayton.nukacraft.common.network.PacketHandler;
 import com.dayton.nukacraft.common.network.packets.MobPacket;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -13,22 +18,18 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.util.GeckoLibUtil;
 
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.PLAY_ONCE;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
-public class Deathclaw extends Monster implements IAnimatable {
-    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+public class Deathclaw extends Monster implements GeoEntity {
+    //private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     private boolean isRunning = false;
 
     private boolean isClientSide = level.isClientSide;
@@ -65,10 +66,80 @@ public class Deathclaw extends Monster implements IAnimatable {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
+//    @Override
+//    public void registerControllers(AnimationData data) {
+//        data.addAnimationController((new AnimationController<>(this, "arm_controller", 0, this::animateArms)));
+//    }
+//    @Override
+//    public AnimationFactory getFactory() {
+//        return factory;
+//    }
+
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController((new AnimationController<>(this, "arm_controller", 0, this::animateArms)));
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
+
+    @Override
+    public void registerControllers(ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controllerName", 0, animateArms()));
+    }
+
+    @NotNull
+    private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation;
+
+            if(attackAnim > 0){
+                if(!startAttacking){
+                    startAttacking = true;
+                    attackAnimName = attackAnims[random.nextInt(0,attackAnims.length)];
+                }
+
+                controller.setAnimationSpeed(2);
+                animation = begin().thenLoop(attackAnimName);
+
+            }
+            else if(event.isMoving()){
+                animation = isRunning ? begin().thenLoop("run") : begin().thenLoop("walk");
+            }
+            else {
+                animation = begin().thenLoop("idle");
+            }
+
+            return event.setAndContinue(animation);
+        };
+    }
+
+
+//    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
+//        var controller = event.getController();
+//        controller.animationSpeed = 1;
+//        //random.nextInt(0, 2);
+//        if(attackAnim > 0){
+//            if(!startAttacking){
+//                startAttacking = true;
+//                attackAnimName = attackAnims[random.nextInt(0,attackAnims.length)];
+//            }
+//            controller.animationSpeed = 2;
+//            setAnimation(controller, attackAnimName, PLAY_ONCE);
+//            return PlayState.CONTINUE;
+//        }
+//        else if(event.isMoving()){
+//            if(isRunning) setAnimation(controller, "run", LOOP);
+//            else setAnimation(controller, "walk", LOOP);
+//        }
+//        else {
+//            setAnimation(controller, "idle", LOOP);
+//        }
+//
+//        startAttacking = false;
+//        return PlayState.CONTINUE;
+//    }
 
     @Override
     public void tick() {
@@ -96,38 +167,8 @@ public class Deathclaw extends Monster implements IAnimatable {
     };
 
     private String attackAnimName;
-
-    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
-        var controller = event.getController();
-        controller.animationSpeed = 1;
-        //random.nextInt(0, 2);
-        if(attackAnim > 0){
-            if(!startAttacking){
-                startAttacking = true;
-                attackAnimName = attackAnims[random.nextInt(0,attackAnims.length)];
-            }
-            controller.animationSpeed = 2;
-            setAnimation(controller, attackAnimName, PLAY_ONCE);
-            return PlayState.CONTINUE;
-        }
-        else if(event.isMoving()){
-            if(isRunning) setAnimation(controller, "run", LOOP);
-            else setAnimation(controller, "walk", LOOP);
-        }
-        else {
-            setAnimation(controller, "idle", LOOP);
-        }
-
-        startAttacking = false;
-        return PlayState.CONTINUE;
-    }
-
-    public static void setAnimation(AnimationController<?> controller, String name, ILoopType loopType){
-        controller.setAnimation(new AnimationBuilder().addAnimation(name, loopType));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return factory;
-    }
+//
+//    public static void setAnimation(AnimationController<?> controller, String name, ILoopType loopType){
+//        controller.setAnimation(new AnimationBuilder().addAnimation(name, loopType));
+//    }
 }

@@ -20,6 +20,7 @@ import com.dayton.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.foundation.world.ModBiomes;
 import com.mojang.logging.LogUtils;
 import com.mrcrayfish.guns.common.ProjectileManager;
+import mod.azure.azurelib.AzureLib;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +40,9 @@ public class NukaCraftMod
 
     public NukaCraftMod()
     {
-        GeckoLib.initialize();
+        //GeckoLib.initialize();
+        AzureLib.initialize();
+
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
 

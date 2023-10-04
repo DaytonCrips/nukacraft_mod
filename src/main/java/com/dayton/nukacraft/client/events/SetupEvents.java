@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.renderers.DeathclawRenderer;
+import com.dayton.nukacraft.client.renderers.*;
 import com.dayton.nukacraft.client.renderers.PowerArmorRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

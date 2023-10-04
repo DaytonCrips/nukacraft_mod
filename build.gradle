@@ -139,6 +139,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven { url 'https://libs.azuredoom.com:4443/mods' }
     maven {
         url "https://cursemaven.com"
         content {
@@ -158,6 +159,7 @@ dependencies {
 
     //implementation fg.deobf("curse.maven:nukacraft-845956:4715444")
     implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
+    implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.18.2:1.0.23")
 
     implementation fg.deobf('com.jetug:chassis_core:2.0.3')
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
