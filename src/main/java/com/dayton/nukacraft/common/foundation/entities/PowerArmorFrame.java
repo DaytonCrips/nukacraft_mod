@@ -6,6 +6,10 @@ import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorStationMe
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
@@ -17,10 +21,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
 
 import java.util.HashMap;
 
@@ -29,8 +30,8 @@ import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
 import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damageItem;
 import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
-import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.PLAY_ONCE;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
+import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 @SuppressWarnings("unchecked")
 public class PowerArmorFrame extends WearableChassis {
@@ -167,60 +168,115 @@ public class PowerArmorFrame extends WearableChassis {
         };
     }
 
+
     @Override
-    public void registerControllers(AnimationData data) {
-        var armsController = new AnimationController<>(this, "arm_controller", 0, this::animateArms);
-        data.addAnimationController(armsController);
-        data.addAnimationController(new AnimationController<>(this, "leg_controller", 0, this::animateLegs));
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
+        controllerRegistrar.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
     }
 
-    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
-        var controller = event.getController();
-        controller.animationSpeed = 1.0D;
+    private AnimationController.AnimationStateHandler<PowerArmorFrame> animateArms() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation = null;
 
-        var player = getPlayerPassenger();
+            var player = getPlayerPassenger();
 
-        if (player != null) {
-            if (player.attackAnim > 0) {
-                controller.animationSpeed = 2.0D;
-                setAnimation(controller, HIT, PLAY_ONCE);
-                return PlayState.CONTINUE;
-            } else if (hurtTime > 0) {
-                setAnimation(controller, HURT, PLAY_ONCE);
-                return PlayState.CONTINUE;
+            if (player != null) {
+                if (player.attackAnim > 0) {
+                    controller.setAnimationSpeed(2.0D);
+                    animation = begin().then(HIT, PLAY_ONCE);
+                } else if (hurtTime > 0) {
+                    animation = begin().then(HURT, PLAY_ONCE);
+                }
+                else if (isWalking()) {
+                    controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
+                    animation = begin().then(WALK_ARMS, LOOP);
+                }
+                else animation = begin().then(IDLE, LOOP);
             }
-            else if (isWalking()) {
-                setAnimation(controller, WALK_ARMS, LOOP);
-                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
-                return PlayState.CONTINUE;
-            }
-        }
 
-        setAnimation(controller, "idle", LOOP);
-        return PlayState.CONTINUE;
+            return event.setAndContinue(animation != null ? animation : begin().then(IDLE, LOOP));
+        };
     }
 
-    private <E extends IAnimatable> PlayState animateLegs(AnimationEvent<E> event) {
-        var controller = event.getController();
-        controller.animationSpeed = 1.0D;
+    private AnimationController.AnimationStateHandler<PowerArmorFrame> animateLegs() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation = null;
 
-        if (!hasPlayerPassenger()) return PlayState.STOP;
-        var player = getPlayerPassenger();
+            if (!hasPlayerPassenger()) return PlayState.STOP;
 
-        if (this.isWalking()) {
-            if (player.isShiftKeyDown()){
-                setAnimation(controller, SNEAK_WALK, LOOP);
+            var player = getPlayerPassenger();
+
+            if (this.isWalking()) {
+                if (player.isShiftKeyDown()){
+                    animation = begin().then(SNEAK_WALK, LOOP);
+                }
+                else {
+                    animation = begin().then(WALK_LEGS, LOOP);
+                    controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
+                }
+            }
+            else if (player.isShiftKeyDown()) {
+                animation = begin().then(SNEAK_END, LOOP);
             }
             else {
-                setAnimation(controller, WALK_LEGS, LOOP);
-                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
+                return PlayState.STOP;
             }
-            return PlayState.CONTINUE;
-        }
-        else if (player.isShiftKeyDown()) {
-            setAnimation(controller, SNEAK_END, LOOP);
-            return PlayState.CONTINUE;
-        }
-        return PlayState.STOP;
+            return event.setAndContinue(animation);
+        };
     }
+
+//    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
+//        var controller = event.getController();
+//        controller.animationSpeed = 1.0D;
+//
+//        var player = getPlayerPassenger();
+//
+//        if (player != null) {
+//            if (player.attackAnim > 0) {
+//                controller.animationSpeed = 2.0D;
+//                setAnimation(controller, HIT, PLAY_ONCE);
+//                return PlayState.CONTINUE;
+//            } else if (hurtTime > 0) {
+//                setAnimation(controller, HURT, PLAY_ONCE);
+//                return PlayState.CONTINUE;
+//            }
+//            else if (isWalking()) {
+//                setAnimation(controller, WALK_ARMS, LOOP);
+//                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
+//                return PlayState.CONTINUE;
+//            }
+//        }
+//
+//        setAnimation(controller, "idle", LOOP);
+//        return PlayState.CONTINUE;
+//    }
+//
+//    private <E extends IAnimatable> PlayState animateLegs(AnimationEvent<E> event) {
+//        var controller = event.getController();
+//        controller.animationSpeed = 1.0D;
+//
+//        if (!hasPlayerPassenger()) return PlayState.STOP;
+//        var player = getPlayerPassenger();
+//
+//        if (this.isWalking()) {
+//            if (player.isShiftKeyDown()){
+//                setAnimation(controller, SNEAK_WALK, LOOP);
+//            }
+//            else {
+//                setAnimation(controller, WALK_LEGS, LOOP);
+//                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
+//            }
+//            return PlayState.CONTINUE;
+//        }
+//        else if (player.isShiftKeyDown()) {
+//            setAnimation(controller, SNEAK_END, LOOP);
+//            return PlayState.CONTINUE;
+//        }
+//        return PlayState.STOP;
+//    }
 }
