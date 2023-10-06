@@ -1,6 +1,6 @@
 package com.dayton.guns.client.settings;
 
-import com.dayton.guns.common.interfaces.IResourceLocation;
+import com.dayton.guns.common.data.interfaces.IResourceLocation;
 
 /**
  * Author: MrCrayfish

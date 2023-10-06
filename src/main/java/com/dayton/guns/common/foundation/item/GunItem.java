@@ -1,13 +1,18 @@
 package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.GunMod;
-import com.dayton.guns.base.Gun;
-import com.dayton.guns.base.NetworkGunManager;
 import com.dayton.guns.client.GunItemStackRenderer;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.base.NetworkGunManager;
+import com.dayton.guns.common.data.util.GunEnchantmentHelper;
+import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
-import com.dayton.guns.common.util.GunEnchantmentHelper;
-import com.dayton.guns.common.util.GunModifierHelper;
+import com.jetug.chassis_core.client.render.utils.ResourceHelper;
+import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
@@ -24,6 +29,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -33,10 +39,10 @@ import java.util.Objects;
 import java.util.WeakHashMap;
 import java.util.function.Consumer;
 
-public class GunItem extends Item implements IColored, IMeta
-{
+public class GunItem extends Item implements IColored, IMeta, GeoItem {
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
-
     private Gun gun = new Gun();
 
     public GunItem(Item.Properties properties)
@@ -52,6 +58,10 @@ public class GunItem extends Item implements IColored, IMeta
     public Gun getGun()
     {
         return this.gun;
+    }
+
+    public String getName(){
+        return name.get();
     }
 
     @Override
@@ -211,5 +221,15 @@ public class GunItem extends Item implements IColored, IMeta
                 return new GunItemStackRenderer();
             }
         });
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

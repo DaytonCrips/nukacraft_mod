@@ -1,8 +1,8 @@
 package com.dayton.guns.common.foundation.crafting;
 
+import com.dayton.guns.common.data.util.InventoryUtil;
 import com.dayton.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.dayton.guns.common.foundation.init.ModRecipeSerializers;
-import com.dayton.guns.common.util.InventoryUtil;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;

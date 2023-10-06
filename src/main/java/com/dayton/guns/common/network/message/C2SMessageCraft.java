@@ -1,6 +1,6 @@
 package com.dayton.guns.common.network.message;
 
-import com.dayton.guns.base.network.ServerPlayHandler;
+import com.dayton.guns.common.base.network.ServerPlayHandler;
 import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

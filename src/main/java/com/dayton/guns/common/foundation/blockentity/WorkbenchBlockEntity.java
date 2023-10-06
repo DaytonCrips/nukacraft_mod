@@ -1,6 +1,6 @@
 package com.dayton.guns.common.foundation.blockentity;
 
-import com.dayton.guns.base.container.WorkbenchContainer;
+import com.dayton.guns.common.base.container.WorkbenchContainer;
 import com.dayton.guns.common.foundation.blockentity.inventory.IStorageBlock;
 import com.dayton.guns.common.foundation.init.ModTileEntities;
 import net.minecraft.core.BlockPos;

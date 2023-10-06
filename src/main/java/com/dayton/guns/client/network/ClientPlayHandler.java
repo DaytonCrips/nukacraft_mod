@@ -1,12 +1,12 @@
 package com.dayton.guns.client.network;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.NetworkGunManager;
 import com.dayton.guns.client.BulletTrail;
 import com.dayton.guns.client.CustomGunManager;
 import com.dayton.guns.client.audio.GunShotSound;
 import com.dayton.guns.client.handler.BulletTrailRenderingHandler;
 import com.dayton.guns.client.handler.GunRenderingHandler;
+import com.dayton.guns.common.base.NetworkGunManager;
 import com.dayton.guns.common.foundation.init.ModParticleTypes;
 import com.dayton.guns.common.foundation.particles.BulletHoleData;
 import com.dayton.guns.common.network.message.*;

@@ -1,7 +1,7 @@
 package com.dayton.guns.common.network;
 
-import com.dayton.guns.base.NetworkGunManager;
 import com.dayton.guns.client.CustomGunManager;
+import com.dayton.guns.common.base.NetworkGunManager;
 import com.dayton.guns.common.network.message.*;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.mrcrayfish.framework.api.FrameworkAPI;

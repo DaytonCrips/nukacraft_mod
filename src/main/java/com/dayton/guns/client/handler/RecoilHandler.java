@@ -1,10 +1,10 @@
 package com.dayton.guns.client.handler;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.event.GunFireEvent;
 import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.guns.common.util.GunModifierHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemCooldowns;

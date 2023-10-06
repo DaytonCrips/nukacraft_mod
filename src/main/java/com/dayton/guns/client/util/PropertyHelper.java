@@ -1,8 +1,8 @@
 package com.dayton.guns.client.util;
 
-import com.dayton.guns.base.Gun;
-import com.dayton.guns.base.properties.SightAnimation;
 import com.dayton.guns.client.MetaLoader;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.base.properties.SightAnimation;
 import com.dayton.guns.common.cache.ObjectCache;
 import com.dayton.guns.common.foundation.item.IMeta;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;

@@ -1,10 +1,10 @@
 package com.dayton.guns.client.render.gun.model;
 
-import com.dayton.guns.base.Gun;
 import com.dayton.guns.client.GunModel;
 import com.dayton.guns.client.SpecialModels;
 import com.dayton.guns.client.render.gun.IOverrideModel;
 import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;

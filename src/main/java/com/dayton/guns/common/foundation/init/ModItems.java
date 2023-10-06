@@ -1,7 +1,7 @@
 package com.dayton.guns.common.foundation.init;
 
-import com.dayton.guns.base.Attachments;
-import com.dayton.guns.base.GunModifiers;
+import com.dayton.guns.common.base.Attachments;
+import com.dayton.guns.common.base.GunModifiers;
 import com.dayton.guns.common.foundation.item.*;
 import com.dayton.guns.common.foundation.item.attachment.impl.Barrel;
 import com.dayton.guns.common.foundation.item.attachment.impl.Stock;

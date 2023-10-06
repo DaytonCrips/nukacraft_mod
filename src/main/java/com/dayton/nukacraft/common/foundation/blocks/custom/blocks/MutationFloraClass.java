@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.blocks;
 
 
-import com.dayton.nukacraft.client.particles.ModParticles;
+import com.dayton.nukacraft.client.render.particles.ModParticles;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

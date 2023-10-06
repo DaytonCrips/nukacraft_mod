@@ -1,11 +1,11 @@
 package com.dayton.guns.client.screen;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.container.AttachmentContainer;
-import com.dayton.guns.base.container.slot.AttachmentSlot;
 import com.dayton.guns.client.handler.GunRenderingHandler;
 import com.dayton.guns.client.screen.widget.MiniButton;
 import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.base.container.AttachmentContainer;
+import com.dayton.guns.common.base.container.slot.AttachmentSlot;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.nukacraft.NukaCraftMod;

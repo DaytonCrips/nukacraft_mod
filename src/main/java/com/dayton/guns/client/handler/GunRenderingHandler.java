@@ -1,15 +1,17 @@
 package com.dayton.guns.client.handler;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.GripType;
-import com.dayton.guns.base.Gun;
-import com.dayton.guns.base.properties.SightAnimation;
 import com.dayton.guns.client.GunModel;
 import com.dayton.guns.client.GunRenderType;
 import com.dayton.guns.client.render.gun.IOverrideModel;
 import com.dayton.guns.client.render.gun.ModelOverrides;
 import com.dayton.guns.client.util.PropertyHelper;
 import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.base.GripType;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.base.properties.SightAnimation;
+import com.dayton.guns.common.data.util.GunEnchantmentHelper;
+import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.event.GunFireEvent;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GrenadeItem;
@@ -17,9 +19,8 @@ import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.foundation.item.attachment.IBarrel;
 import com.dayton.guns.common.foundation.item.attachment.impl.Scope;
-import com.dayton.guns.common.util.GunEnchantmentHelper;
-import com.dayton.guns.common.util.GunModifierHelper;
 import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.client.ClientConfig;
 import com.jetug.chassis_core.client.render.renderers.CustomHandRenderer;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -64,6 +65,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.getPlayerChassis;
 
@@ -677,15 +679,17 @@ public class GunRenderingHandler
             IOverrideModel model = ModelOverrides.getModel(stack);
             if(model != null)
             {
-                //model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
-
-                doSafe(() -> CustomHandRenderer.getHandRenderer().render(
-                        poseStack,
-                        getPlayerChassis().getHandEntity(),
-                        renderTypeBuffer,
-                        null,
-                        null,
-                        light));
+                try {
+                    gunRenderer.render(
+                            poseStack,
+                            (GunItem)stack.getItem(),
+                            renderTypeBuffer,
+                            null,
+                            null,
+                            light);
+                } catch (Exception e) {
+                    model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
+                }
             }
         }
         else

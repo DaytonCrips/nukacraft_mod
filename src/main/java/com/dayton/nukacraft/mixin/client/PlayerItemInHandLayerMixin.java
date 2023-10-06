@@ -2,7 +2,7 @@ package com.dayton.nukacraft.mixin.client;
 
 import com.dayton.guns.client.handler.AimingHandler;
 import com.dayton.guns.client.handler.GunRenderingHandler;
-import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

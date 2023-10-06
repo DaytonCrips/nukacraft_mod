@@ -1,6 +1,6 @@
 package com.dayton.guns.client.handler;
 
-import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;

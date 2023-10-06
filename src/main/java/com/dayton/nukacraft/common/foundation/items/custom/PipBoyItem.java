@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.client.gui.pipboy.PipBoy;
-import com.dayton.nukacraft.client.gui.pipboy.PipBoyMenu;
+import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.dayton.nukacraft.client.render.gui.pipboy.PipBoyMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

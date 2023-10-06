@@ -1,14 +1,14 @@
 package com.dayton.guns.client.handler;
 
-import com.dayton.guns.base.Gun;
 import com.dayton.guns.client.KeyBinds;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.event.GunReloadEvent;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageReload;
 import com.dayton.guns.common.network.message.C2SMessageUnload;
-import com.dayton.guns.common.util.GunEnchantmentHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;

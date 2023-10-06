@@ -1,11 +1,11 @@
 package com.dayton.guns;
 
-import com.dayton.guns.base.BoundingBoxManager;
-import com.dayton.guns.base.ProjectileManager;
 import com.dayton.guns.client.ClientHandler;
 import com.dayton.guns.client.MetaLoader;
 import com.dayton.guns.client.handler.CrosshairHandler;
-import com.dayton.guns.common.datagen.*;
+import com.dayton.guns.common.base.BoundingBoxManager;
+import com.dayton.guns.common.base.ProjectileManager;
+import com.dayton.guns.common.data.datagen.*;
 import com.dayton.guns.common.foundation.crafting.ModRecipeType;
 import com.dayton.guns.common.foundation.crafting.WorkbenchIngredient;
 import com.dayton.guns.common.foundation.entity.GrenadeEntity;

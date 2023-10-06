@@ -1,7 +1,7 @@
 package com.dayton.guns.common.debug;
 
-import com.dayton.guns.base.Gun;
 import com.dayton.guns.client.ClientHandler;
+import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.debug.screen.widget.DebugButton;
 import com.dayton.guns.common.debug.screen.widget.DebugToggle;
 import com.dayton.guns.common.foundation.item.GunItem;

@@ -1,6 +1,6 @@
 package com.dayton.guns.common.foundation.item.attachment.impl;
 
-import com.dayton.guns.common.interfaces.IGunModifier;
+import com.dayton.guns.common.data.interfaces.IGunModifier;
 
 /**
  * An attachment class related to stocks. Use {@link #create(IGunModifier...)} to create an get.

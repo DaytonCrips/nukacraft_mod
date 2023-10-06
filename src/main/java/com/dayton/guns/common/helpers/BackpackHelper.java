@@ -1,7 +1,7 @@
 package com.dayton.guns.common.helpers;
 
-import com.dayton.guns.base.AmmoContext;
-import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.base.AmmoContext;
+import com.dayton.guns.common.base.Gun;
 import com.mrcrayfish.backpacked.Backpacked;
 import com.mrcrayfish.backpacked.core.ModEnchantments;
 import com.mrcrayfish.backpacked.inventory.BackpackInventory;

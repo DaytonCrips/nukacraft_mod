@@ -1,10 +1,10 @@
 package com.dayton.guns.common.network.message;
 
-import com.dayton.guns.base.CustomGun;
-import com.dayton.guns.base.CustomGunLoader;
-import com.dayton.guns.base.Gun;
-import com.dayton.guns.base.NetworkGunManager;
 import com.dayton.guns.client.network.ClientPlayHandler;
+import com.dayton.guns.common.base.CustomGun;
+import com.dayton.guns.common.base.CustomGunLoader;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.base.NetworkGunManager;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;

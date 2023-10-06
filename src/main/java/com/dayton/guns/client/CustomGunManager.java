@@ -1,7 +1,7 @@
 package com.dayton.guns.client;
 
-import com.dayton.guns.base.CustomGun;
-import com.dayton.guns.base.CustomGunLoader;
+import com.dayton.guns.common.base.CustomGun;
+import com.dayton.guns.common.base.CustomGunLoader;
 import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.network.message.S2CMessageUpdateGuns;
 import com.dayton.nukacraft.NukaCraftMod;

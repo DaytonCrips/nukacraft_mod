@@ -1,9 +1,9 @@
 package com.dayton.guns.common.foundation.item.attachment.impl;
 
+import com.dayton.guns.common.data.interfaces.IGunModifier;
 import com.dayton.guns.common.debug.IDebugWidget;
 import com.dayton.guns.common.debug.IEditorMenu;
 import com.dayton.guns.common.debug.screen.widget.DebugSlider;
-import com.dayton.guns.common.interfaces.IGunModifier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;

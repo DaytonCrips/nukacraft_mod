@@ -1,9 +1,9 @@
 package com.dayton.guns.client.render.pose;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.GripType;
 import com.dayton.guns.client.handler.ReloadHandler;
 import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;

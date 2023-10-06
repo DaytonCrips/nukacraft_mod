@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items.guns;
 
 import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
-import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.init.ModEnchantments;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;

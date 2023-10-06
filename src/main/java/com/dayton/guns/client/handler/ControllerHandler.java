@@ -1,16 +1,16 @@
 package com.dayton.guns.client.handler;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.base.Gun;
 import com.dayton.guns.client.GunButtonBindings;
 import com.dayton.guns.client.screen.WorkbenchScreen;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.attachment.impl.Scope;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageAttachments;
 import com.dayton.guns.common.network.message.C2SMessageUnload;
-import com.dayton.guns.common.util.GunEnchantmentHelper;
 import com.mrcrayfish.controllable.Controllable;
 import com.mrcrayfish.controllable.client.Action;
 import com.mrcrayfish.controllable.client.Controller;

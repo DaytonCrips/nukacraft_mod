@@ -1,8 +1,8 @@
 package com.dayton.guns.common.debug.screen;
 
+import com.dayton.guns.common.data.util.ScreenUtil;
 import com.dayton.guns.common.debug.IDebugWidget;
 import com.dayton.guns.common.debug.IEditorMenu;
-import com.dayton.guns.common.util.ScreenUtil;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;

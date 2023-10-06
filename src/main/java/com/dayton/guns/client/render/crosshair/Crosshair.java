@@ -1,7 +1,7 @@
 package com.dayton.guns.client.render.crosshair;
 
 import com.dayton.guns.client.handler.CrosshairHandler;
-import com.dayton.guns.common.interfaces.IResourceLocation;
+import com.dayton.guns.common.data.interfaces.IResourceLocation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;

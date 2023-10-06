@@ -1,7 +1,7 @@
 package com.dayton.guns.common.foundation.init;
 
-import com.dayton.guns.base.container.AttachmentContainer;
-import com.dayton.guns.base.container.WorkbenchContainer;
+import com.dayton.guns.common.base.container.AttachmentContainer;
+import com.dayton.guns.common.base.container.WorkbenchContainer;
 import com.dayton.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.world.inventory.AbstractContainerMenu;

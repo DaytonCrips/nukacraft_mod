@@ -1,8 +1,9 @@
 package com.dayton.guns.client.screen;
 
-import com.dayton.guns.base.NetworkGunManager;
-import com.dayton.guns.base.container.WorkbenchContainer;
 import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.base.NetworkGunManager;
+import com.dayton.guns.common.base.container.WorkbenchContainer;
+import com.dayton.guns.common.data.util.InventoryUtil;
 import com.dayton.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.dayton.guns.common.foundation.crafting.WorkbenchIngredient;
 import com.dayton.guns.common.foundation.crafting.WorkbenchRecipe;
@@ -14,7 +15,6 @@ import com.dayton.guns.common.foundation.item.IColored;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageCraft;
-import com.dayton.guns.common.util.InventoryUtil;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;

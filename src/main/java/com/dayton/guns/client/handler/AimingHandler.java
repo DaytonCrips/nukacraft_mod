@@ -1,17 +1,17 @@
 package com.dayton.guns.client.handler;
 
 import com.dayton.guns.GunMod;
-import com.dayton.guns.base.GripType;
-import com.dayton.guns.base.Gun;
 import com.dayton.guns.client.util.PropertyHelper;
+import com.dayton.guns.common.base.GripType;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.data.util.GunEnchantmentHelper;
+import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.helpers.PlayerReviveHelper;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageAim;
-import com.dayton.guns.common.util.GunEnchantmentHelper;
-import com.dayton.guns.common.util.GunModifierHelper;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;

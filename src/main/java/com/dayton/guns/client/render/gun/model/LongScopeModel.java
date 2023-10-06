@@ -5,7 +5,7 @@ import com.dayton.guns.client.GunRenderType;
 import com.dayton.guns.client.handler.AimingHandler;
 import com.dayton.guns.client.handler.RecoilHandler;
 import com.dayton.guns.client.render.gun.IOverrideModel;
-import com.dayton.guns.common.util.OptifineHelper;
+import com.dayton.guns.common.data.util.OptifineHelper;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;

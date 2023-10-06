@@ -13,9 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public enum SpecialModels {
-
-
-
     MINIGUN("minigun/minigun"),
     MINIGUN_BARREL("minigun/minigun_barrel"),
 

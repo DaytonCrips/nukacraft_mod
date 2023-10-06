@@ -1,7 +1,7 @@
 package com.dayton.guns.common.foundation.item.attachment.impl;
 
+import com.dayton.guns.common.data.interfaces.IGunModifier;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
-import com.dayton.guns.common.interfaces.IGunModifier;
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

@@ -1,10 +1,10 @@
 package com.dayton.nukacraft;
 
 
-import com.dayton.nukacraft.client.ClientHandler;
-import com.dayton.nukacraft.client.gui.RadiationHudOverlay;
-import com.dayton.nukacraft.client.gui.pipboy.PipBoy;
-import com.dayton.nukacraft.client.particles.ModParticles;
+import com.dayton.nukacraft.client.ClientConfig;
+import com.dayton.nukacraft.client.render.gui.RadiationHudOverlay;
+import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.dayton.nukacraft.client.render.particles.ModParticles;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.common.foundation.container.ContainerRegistry;
 import com.dayton.nukacraft.common.foundation.effects.ModAttributesClass;
@@ -20,7 +20,7 @@ import com.dayton.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.foundation.world.ModBiomes;
 import com.dayton.guns.GunMod;
 import com.mojang.logging.LogUtils;
-import com.dayton.guns.base.ProjectileManager;
+import com.dayton.guns.common.base.ProjectileManager;
 import mod.azure.azurelib.AzureLib;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -80,7 +80,7 @@ public class NukaCraftMod
 
     private void clientSetup(final FMLCommonSetupEvent event) {
         ModSetup.renderTypeSetup();
-        ClientHandler.setup();
+        ClientConfig.setup();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
