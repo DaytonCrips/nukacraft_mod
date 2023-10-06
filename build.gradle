@@ -158,9 +158,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9'
 
     //implementation fg.deobf("curse.maven:nukacraft-845956:4715444")
-    implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
+//    implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
     implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.18.2:1.0.23")
-
     implementation fg.deobf('com.jetug:chassis_core:2.0.3')
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
