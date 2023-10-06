@@ -1,11 +1,12 @@
 package com.dayton.nukacraft.common.foundation.blocks;
 
-import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.DogWoodClass;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.ModFlowerBlock;
 import com.dayton.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
 import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.guns.common.foundation.block.WorkbenchBlock;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,6 +24,8 @@ import java.util.function.Supplier;
 public class ModBlocksClass {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NukaCraftMod.MOD_ID);
 
+    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench", () -> new WorkbenchBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
+
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
@@ -37,11 +40,6 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> DEEPLEAD = registerBlock("deeplead_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
-
-
-
-
-
 
     public static final RegistryObject<Block> ASHWOOD = registerBlock("dwoodlog",
             () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD)));

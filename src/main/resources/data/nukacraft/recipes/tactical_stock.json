@@ -1,0 +1,16 @@
+{
+  "type": "nukacraft:workbench",
+  "materials": [
+    {
+      "tag": "forge:nuggets/iron",
+      "count": 8
+    },
+    {
+      "item": "minecraft:gray_wool",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "nukacraft:tactical_stock"
+  }
+}

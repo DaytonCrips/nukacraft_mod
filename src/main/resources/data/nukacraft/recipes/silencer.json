@@ -1,0 +1,16 @@
+{
+  "type": "nukacraft:workbench",
+  "materials": [
+    {
+      "tag": "forge:nuggets/iron",
+      "count": 4
+    },
+    {
+      "item": "minecraft:sponge",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "nukacraft:silencer"
+  }
+}

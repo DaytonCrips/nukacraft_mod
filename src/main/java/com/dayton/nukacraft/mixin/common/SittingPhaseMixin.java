@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.mixin.common;
 
-import com.dayton.nukacraft.guns.entity.ProjectileEntity;
+import com.dayton.guns.common.foundation.entity.ProjectileEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.boss.enderdragon.phases.AbstractDragonSittingPhase;
 import org.spongepowered.asm.mixin.Mixin;

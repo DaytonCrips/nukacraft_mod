@@ -1,5 +1,5 @@
 package com.dayton.nukacraft.common;
-import com.dayton.nukacraft.guns.interfaces.IGunModifier;
+import com.dayton.guns.common.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
 public class ExtraGunModifiers {
     public static final IGunModifier MAGAZINES = new IGunModifier() {};

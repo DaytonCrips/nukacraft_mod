@@ -3,11 +3,11 @@ package com.dayton.nukacraft.client.renderers.gun.model;
 
 import com.dayton.nukacraft.client.SpecialModels;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.dayton.nukacraft.guns.client.GunModel;
-import com.dayton.nukacraft.guns.client.render.gun.IOverrideModel;
-import com.dayton.nukacraft.guns.client.util.RenderUtil;
-import com.dayton.nukacraft.guns.common.Gun;
-import com.dayton.nukacraft.guns.init.ModSyncedDataKeys;
+import com.dayton.guns.client.GunModel;
+import com.dayton.guns.client.render.gun.IOverrideModel;
+import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;

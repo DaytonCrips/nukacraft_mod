@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.nukacraft.guns.item.GunItem;
+import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;

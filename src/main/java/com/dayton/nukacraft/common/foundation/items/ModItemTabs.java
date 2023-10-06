@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items;
 
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
@@ -24,12 +25,14 @@ public class ModItemTabs {
             return new ItemStack(ModItemsClass.NUKACOLA.get());
         }
     };
+
     public static final CreativeModeTab NUKA_EQUIP = new CreativeModeTab("nuka_equip") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ModItemsClass.ROUND10MM.get());
         }
-    };
+    }.setEnchantmentCategories(EnchantmentTypes.GUN, EnchantmentTypes.SEMI_AUTO_GUN);
+
     public static final CreativeModeTab NUKA_ARMOR = new CreativeModeTab("nuka_armor") {
         @Override
         public ItemStack makeIcon() {

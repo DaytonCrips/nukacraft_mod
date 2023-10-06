@@ -22,5 +22,5 @@
   "refmap": "nukacraft.mixin-refmap.json",
   "minVersion": "0.8",
 
-  "plugin": "com.dayton.nukacraft.guns.mixin.MixinPlugin"
+  "plugin": "com.dayton.guns.mixin.MixinPlugin"
 }

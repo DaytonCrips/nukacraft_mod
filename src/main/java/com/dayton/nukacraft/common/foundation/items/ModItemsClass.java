@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items;
 
-import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.common.foundation.items.custom.*;
 import com.dayton.nukacraft.common.foundation.items.custom.frame.FusionCoreItem;

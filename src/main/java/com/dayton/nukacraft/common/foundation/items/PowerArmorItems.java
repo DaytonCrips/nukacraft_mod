@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items;
 
-import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.foundation.items.custom.frame.ArmorPart;

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.events;
 
-import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.client.particles.GammaParticles;
 import com.dayton.nukacraft.client.particles.ModParticles;
 import com.dayton.nukacraft.common.foundation.entities.Deathclaw;

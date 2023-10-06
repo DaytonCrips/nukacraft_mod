@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.client.events;
 
-import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.common.foundation.entities.armors.WoodenArmorRenderer;
 import com.dayton.nukacraft.common.foundation.items.custom.armor.WoodenArmorItem;
 import net.minecraftforge.api.distmarker.Dist;

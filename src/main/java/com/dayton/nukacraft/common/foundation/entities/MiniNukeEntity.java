@@ -1,9 +1,9 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 
-import com.dayton.nukacraft.guns.common.Gun;
-import com.dayton.nukacraft.guns.entity.ProjectileEntity;
-import com.dayton.nukacraft.guns.item.GunItem;
+import com.dayton.guns.base.Gun;
+import com.dayton.guns.common.foundation.entity.ProjectileEntity;
+import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

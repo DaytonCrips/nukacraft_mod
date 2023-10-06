@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 5,
-    "gripType": "cgm:one_handed",
+    "gripType": "nukacraft:one_handed",
     "maxAmmo": 10,
     "reloadAmount": 2,
     "recoilAngle": 5.0,
