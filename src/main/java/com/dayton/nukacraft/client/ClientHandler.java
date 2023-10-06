@@ -3,7 +3,7 @@ package com.dayton.nukacraft.client;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.renderers.gun.model.*;
 import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
-import com.mrcrayfish.guns.client.render.gun.ModelOverrides;
+import com.dayton.nukacraft.guns.client.render.gun.ModelOverrides;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 

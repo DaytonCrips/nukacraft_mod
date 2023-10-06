@@ -18,8 +18,9 @@ import com.dayton.nukacraft.common.foundation.items.PowerArmorItems;
 import com.dayton.nukacraft.common.foundation.sounds.ModSounds;
 import com.dayton.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.foundation.world.ModBiomes;
+import com.dayton.nukacraft.guns.GunMod;
 import com.mojang.logging.LogUtils;
-import com.mrcrayfish.guns.common.ProjectileManager;
+import com.dayton.nukacraft.guns.common.ProjectileManager;
 import mod.azure.azurelib.AzureLib;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -42,8 +43,11 @@ public class NukaCraftMod
         //GeckoLib.initialize();
         AzureLib.initialize();
 
+
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);
+
+        new GunMod().initGunMod(eventBus);
 
         ModItemsClass.register(eventBus);
         PowerArmorItems.register(eventBus);

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.items.guns;
 
-import com.mrcrayfish.guns.item.GunItem;
+import com.dayton.nukacraft.guns.item.GunItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 

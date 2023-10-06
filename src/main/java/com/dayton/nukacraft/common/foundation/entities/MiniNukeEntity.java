@@ -1,9 +1,9 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 
-import com.mrcrayfish.guns.common.Gun;
-import com.mrcrayfish.guns.entity.ProjectileEntity;
-import com.mrcrayfish.guns.item.GunItem;
+import com.dayton.nukacraft.guns.common.Gun;
+import com.dayton.nukacraft.guns.entity.ProjectileEntity;
+import com.dayton.nukacraft.guns.item.GunItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;

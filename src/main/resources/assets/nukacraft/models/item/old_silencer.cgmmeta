@@ -1,8 +1,8 @@
 {
-    "cgm:model": {
+    "nukacraft:model": {
         "origin": [8.0, 8.0, 8.0]
     },
-    "cgm:barrel": {
+    "nukacraft:barrel": {
         "muzzleFlash": {
             "translation": [8.0, 8.0, -0.1]
         }

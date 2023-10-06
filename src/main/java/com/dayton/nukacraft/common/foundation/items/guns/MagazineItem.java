@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items.guns;
 
-import com.mrcrayfish.guns.item.UnderBarrelItem;
-import com.mrcrayfish.guns.item.attachment.impl.UnderBarrel;
+import com.dayton.nukacraft.guns.item.UnderBarrelItem;
+import com.dayton.nukacraft.guns.item.attachment.impl.UnderBarrel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;

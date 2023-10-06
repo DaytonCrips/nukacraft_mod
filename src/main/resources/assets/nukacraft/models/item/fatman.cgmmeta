@@ -1,5 +1,5 @@
 {
-    "cgm:weapon": {
+    "nukacraft:weapon": {
         "ironSight": {
             "camera": [1.0, 10.5, 18.0],
             "viewportFov": 30.0

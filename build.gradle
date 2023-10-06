@@ -141,6 +141,10 @@ repositories {
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url 'https://libs.azuredoom.com:4443/mods' }
     maven {
+        name "Progwml6 maven"
+        url "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
         url "https://cursemaven.com"
         content {
             includeGroup "curse.maven"
@@ -163,7 +167,14 @@ dependencies {
     implementation fg.deobf('com.jetug:chassis_core:2.0.3')
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
-    implementation fg.deobf('curse.maven:mrcrayfishs-gun-mod-289479:4344223')
+//    implementation fg.deobf('curse.maven:mrcrayfishs-gun-mod-289479:4344223')
+
+    implementation fg.deobf('curse.maven:configured-457570:4010624')
+    implementation fg.deobf('curse.maven:catalogue-459701:3803098')
+    implementation fg.deobf('curse.maven:backpacked-352835:3923041')
+    compileOnly    fg.deobf('curse.maven:controllable-317269:4120618')
+    compileOnly    fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255:api")
+
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

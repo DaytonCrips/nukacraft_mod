@@ -1,10 +1,10 @@
 package com.dayton.nukacraft.common.foundation.items.guns;
 
 import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
-import com.mrcrayfish.guns.common.Gun;
-import com.mrcrayfish.guns.init.ModEnchantments;
-import com.mrcrayfish.guns.item.GunItem;
-import com.mrcrayfish.guns.item.attachment.IAttachment;
+import com.dayton.nukacraft.guns.common.Gun;
+import com.dayton.nukacraft.guns.init.ModEnchantments;
+import com.dayton.nukacraft.guns.item.GunItem;
+import com.dayton.nukacraft.guns.item.attachment.IAttachment;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

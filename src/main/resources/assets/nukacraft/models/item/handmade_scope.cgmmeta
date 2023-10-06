@@ -1,8 +1,8 @@
 {
-    "cgm:model": {
+    "nukacraft:model": {
         "origin": [8.0, 8.0, 8.0]
     },
-    "cgm:scope": {
+    "nukacraft:scope": {
         "camera": [8.0, 9.4, 30.0],
         "viewportFov": 10.0,
         "sightAnimation": {

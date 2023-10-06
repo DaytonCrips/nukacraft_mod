@@ -2,14 +2,25 @@
   "required": true,
   "package": "com.dayton.nukacraft.mixin",
   "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "common.EndPortalBlockMixin",
+    "common.LivingEntityMixin",
+    "common.SittingPhaseMixin"
+  ],
   "client": [
-    "GuiMixin"
+    "GuiMixin",
+    "client.GameRendererMixin",
+    "client.LevelRendererMixin",
+    "client.MinecraftMixin",
+    "client.MouseHandlerMixin",
+    "client.PlayerItemInHandLayerMixin",
+    "client.PlayerModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "refmap": "nukacraft.mixin-refmap.json",
   "minVersion": "0.8",
-  "mixins": [
-  ]
+
+  "plugin": "com.dayton.nukacraft.guns.mixin.MixinPlugin"
 }

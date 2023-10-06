@@ -1,5 +1,5 @@
 {
-    "cgm:weapon": {
+    "nukacraft:weapon": {
         "attachments": {
             "barrel": {
                 "translation": [8.0, 3.3, 10.64],
