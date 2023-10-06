@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
 
 public class RadItem extends Item {
     protected final float radiation;

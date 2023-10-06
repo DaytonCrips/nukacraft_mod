@@ -16,9 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.ibm.icu.util.ULocale.getVariant;
-import static java.lang.Math.abs;
-
 public class ArmorPart extends ChassisArmor {
     public ArmorPart(ChassisArmorMaterial material, String part) {
         super(new Item.Properties().tab(ModItemTabs.NUKA_ARMOR), material, part);

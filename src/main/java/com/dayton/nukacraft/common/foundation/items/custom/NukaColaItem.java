@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static net.minecraftforge.items.ItemHandlerHelper.*;
+import static net.minecraftforge.items.ItemHandlerHelper.giveItemToPlayer;
 
 public class NukaColaItem extends RadItem {
     public NukaColaItem(float radiation, Properties properties) {

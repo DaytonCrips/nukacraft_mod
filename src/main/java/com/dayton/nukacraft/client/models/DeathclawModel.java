@@ -1,18 +1,12 @@
 package com.dayton.nukacraft.client.models;
 
-import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.model.GeoModel;
-import mod.azure.azurelib.model.data.EntityModelData;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-
-import java.util.function.BiConsumer;
 
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
+import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 
 public class DeathclawModel<Type extends Deathclaw> extends GeoModel<Type> {
 
@@ -45,17 +39,17 @@ public class DeathclawModel<Type extends Deathclaw> extends GeoModel<Type> {
         super.setCustomAnimations(animatable, instanceId, animationState);
 //        var extraData = (EntityModelData)animationState.getExtraData().get(EntityModelData.class);
 //        if (extraData == null) return;
-
-        var head = this.getAnimationProcessor().getBone("head");
-        var partialTick = Minecraft.getInstance().getFrameTime();
-
-        float lerpBodyRot = Mth.rotLerp(partialTick, animatable.yBodyRotO, animatable.yBodyRot);
-        float lerpHeadRot = Mth.rotLerp(partialTick, animatable.yHeadRotO, animatable.yHeadRot);
-        float headPitch = Mth.lerp(partialTick, animatable.xRotO, animatable.getXRot());
-        float netHeadYaw = lerpHeadRot - lerpBodyRot;
-
-        head.setRotX(-headPitch * ((float) Math.PI / 180F));
-        head.setRotY(-netHeadYaw * ((float) Math.PI / 180F));
+        setHeadAnimation(animatable, this.getAnimationProcessor(), animationState);
+//        var head = this.getAnimationProcessor().getBone("head");
+//        var partialTick = Minecraft.getInstance().getFrameTime();
+//
+//        float lerpBodyRot = Mth.rotLerp(partialTick, animatable.yBodyRotO, animatable.yBodyRot);
+//        float lerpHeadRot = Mth.rotLerp(partialTick, animatable.yHeadRotO, animatable.yHeadRot);
+//        float headPitch = Mth.lerp(partialTick, animatable.xRotO, animatable.getXRot());
+//        float netHeadYaw = lerpHeadRot - lerpBodyRot;
+//
+//        head.setRotX(-headPitch * ((float) Math.PI / 180F));
+//        head.setRotY(-netHeadYaw * ((float) Math.PI / 180F));
     }
 
 //    @Override

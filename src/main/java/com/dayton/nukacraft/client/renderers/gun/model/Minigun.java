@@ -1,9 +1,9 @@
 package com.dayton.nukacraft.client.renderers.gun.model;
 
 
+import com.dayton.nukacraft.client.SpecialModels;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.guns.client.GunModel;
-import com.dayton.nukacraft.client.SpecialModels;
 import com.mrcrayfish.guns.client.render.gun.IOverrideModel;
 import com.mrcrayfish.guns.client.util.RenderUtil;
 import com.mrcrayfish.guns.common.Gun;
@@ -17,8 +17,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.WeakHashMap;
 import javax.annotation.Nullable;
+import java.util.WeakHashMap;
 public class Minigun implements IOverrideModel {
     private WeakHashMap<LivingEntity, Rotations> rotationMap = new WeakHashMap<>();
     @Override

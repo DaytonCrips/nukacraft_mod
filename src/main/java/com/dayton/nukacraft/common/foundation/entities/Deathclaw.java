@@ -20,13 +20,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-import static mod.azure.azurelib.core.animation.AnimatableManager.*;
-import static mod.azure.azurelib.core.animation.RawAnimation.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
+import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Deathclaw extends Monster implements GeoEntity {
     //private final AnimationFactory factory = GeckoLibUtil.createFactory(this);

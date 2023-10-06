@@ -2,7 +2,6 @@ package com.dayton.nukacraft.client.gui.pipboy;
 
 
 import com.dayton.nukacraft.client.gui.ModMenuClass;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

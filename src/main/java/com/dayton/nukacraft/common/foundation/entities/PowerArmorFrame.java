@@ -20,8 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
 import java.util.HashMap;
 
@@ -29,8 +27,8 @@ import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.dayton.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
 import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damageItem;
-import static com.jetug.chassis_core.common.util.helpers.AnimationHelper.setAnimation;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 @SuppressWarnings("unchecked")

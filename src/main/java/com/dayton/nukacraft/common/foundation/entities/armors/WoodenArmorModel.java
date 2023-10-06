@@ -1,6 +1,5 @@
 package com.dayton.nukacraft.common.foundation.entities.armors;
 
-import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.items.custom.armor.WoodenArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
