@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.client.render.particles;
 
-import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.eventbus.api.IEventBus;

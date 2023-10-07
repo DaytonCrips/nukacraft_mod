@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.plants;
 
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.MutationFloraClass;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -52,7 +52,7 @@ public class DaturanBlock extends BushBlock implements BonemealableBlock, Liquid
     }
 
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItemsClass.DATURAN_ROOT.get());
+        return new ItemStack(ModItems.DATURAN_ROOT.get());
     }
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
@@ -102,7 +102,7 @@ public class DaturanBlock extends BushBlock implements BonemealableBlock, Liquid
             return InteractionResult.PASS;
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItemsClass.DATURAN_ROOT.get(), j + (flag ? 1 : 0)));
+            popResource(level, pos, new ItemStack(ModItems.DATURAN_ROOT.get(), j + (flag ? 1 : 0)));
             level.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(1)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);

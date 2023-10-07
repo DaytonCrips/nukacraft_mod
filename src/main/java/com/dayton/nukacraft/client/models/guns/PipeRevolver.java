@@ -1,10 +1,10 @@
 package com.dayton.nukacraft.client.models.guns;
 
+import com.dayton.guns.client.render.gun.IOverrideModel;
+import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.nukacraft.client.SpecialModels;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.dayton.guns.client.render.gun.IOverrideModel;
-import com.dayton.guns.client.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -17,10 +17,8 @@ public class PipeRevolver  implements IOverrideModel {
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.PIPEREVOLVER.getModel(), stack, matrixStack, buffer, light, overlay);
 
-
-
-
         float cooldown = 0F;
+
         if(entity != null && entity.equals(Minecraft.getInstance().player))
         {
             ItemCooldowns tracker = Minecraft.getInstance().player.getCooldowns();

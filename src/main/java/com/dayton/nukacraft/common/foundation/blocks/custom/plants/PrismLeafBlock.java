@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.plants;
 
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -49,7 +49,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
     }
 
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItemsClass.PRISM_LEAF.get());
+        return new ItemStack(ModItems.PRISM_LEAF.get());
     }
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
@@ -98,7 +98,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
             return InteractionResult.PASS;
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItemsClass.PRISM_LEAF.get(), j + (flag ? 1 : 0)));
+            popResource(level, pos, new ItemStack(ModItems.PRISM_LEAF.get(), j + (flag ? 1 : 0)));
             level.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(1)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);

@@ -1,12 +1,12 @@
 package com.dayton.nukacraft.common.foundation.blocks;
 
-import com.dayton.nukacraft.*;
+import com.dayton.guns.common.foundation.block.WorkbenchBlock;
+import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.DogWoodClass;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.ModFlowerBlock;
 import com.dayton.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
-import com.dayton.guns.common.foundation.block.WorkbenchBlock;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -356,7 +356,7 @@ public class ModBlocksClass {
 
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-        ModItemsClass.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
     }
 
     private static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {

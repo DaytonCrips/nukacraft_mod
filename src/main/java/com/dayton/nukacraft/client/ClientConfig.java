@@ -1,10 +1,10 @@
 package com.dayton.nukacraft.client;
 
-import com.dayton.nukacraft.*;
+import com.dayton.guns.client.render.gun.ModelOverrides;
+import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.models.guns.*;
 import com.dayton.nukacraft.client.render.renderers.GunRenderer;
-import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
-import com.dayton.guns.client.render.gun.ModelOverrides;
+import com.dayton.nukacraft.common.foundation.items.ModGuns;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 
@@ -17,13 +17,13 @@ public class ClientConfig {
     }
 
     private static void registerModelOverrides() {
-        ModelOverrides.register(ModGunsClass.PISTOL10MM.get(), new Pistol10MM());
-        ModelOverrides.register(ModGunsClass.CLASSIC10MM.get(), new Classic10MM());
-        ModelOverrides.register(ModGunsClass.PIPE_PISTOL.get(), new PipePistol());
-        ModelOverrides.register(ModGunsClass.SCOUT10MM.get(), new Scout10MM());
-        ModelOverrides.register(ModGunsClass.CLASSIC10MM_ZAP.get(), new Classic10MMZap());
-        ModelOverrides.register(ModGunsClass.PIPEREVOLVER.get(), new PipeRevolver());
-        ModelOverrides.register(ModGunsClass.FATMAN.get(), new Fatman());
-        ModelOverrides.register(ModGunsClass.MINIGUN.get(), new Minigun());
+        ModelOverrides.register(ModGuns.PISTOL10MM.get(), new Pistol10MM());
+        ModelOverrides.register(ModGuns.CLASSIC10MM.get(), new Classic10MM());
+        ModelOverrides.register(ModGuns.PIPE_PISTOL.get(), new PipePistol());
+        ModelOverrides.register(ModGuns.SCOUT10MM.get(), new Scout10MM());
+        ModelOverrides.register(ModGuns.CLASSIC10MM_ZAP.get(), new Classic10MMZap());
+        ModelOverrides.register(ModGuns.PIPEREVOLVER.get(), new PipeRevolver());
+        ModelOverrides.register(ModGuns.FATMAN.get(), new Fatman());
+        ModelOverrides.register(ModGuns.MINIGUN.get(), new Minigun());
     }
 }

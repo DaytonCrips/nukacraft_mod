@@ -138,7 +138,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+//    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url 'https://libs.azuredoom.com:4443/mods' }
     maven {
         name "Progwml6 maven"
@@ -165,7 +165,7 @@ dependencies {
 //    implementation files{'libs/geckolib-forge-1.18-3.0.57.jar'}
     implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.18.2:1.0.23")
     implementation fg.deobf('com.jetug:chassis_core:2.0.3')
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
+//    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
 //    implementation fg.deobf('curse.maven:mrcrayfishs-gun-mod-289479:4344223')
 

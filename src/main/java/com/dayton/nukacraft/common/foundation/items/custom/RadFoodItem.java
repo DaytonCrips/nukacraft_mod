@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -24,7 +24,7 @@ public class RadFoodItem extends RadItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
-            if (stack.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
+            if (stack.getItem() == ModItems.BUBBLEAPPLE.get()) {
                 entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
             }
         }
@@ -36,7 +36,7 @@ public class RadFoodItem extends RadItem {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
 
-        if (item.getItem() == ModItemsClass.BUBBLEAPPLE.get()) {
+        if (item.getItem() == ModItems.BUBBLEAPPLE.get()) {
             list.add(new TranslatableComponent("tooltip.nukacraft.jumpboost").append("§9(0:05)"));
         }
     }

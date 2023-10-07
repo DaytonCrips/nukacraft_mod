@@ -1,10 +1,10 @@
 package com.dayton.nukacraft.client.render.renderers;
 
+import com.dayton.guns.client.SpecialModels;
+import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.dayton.guns.client.SpecialModels;
-import com.dayton.guns.client.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.world;
 
-import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

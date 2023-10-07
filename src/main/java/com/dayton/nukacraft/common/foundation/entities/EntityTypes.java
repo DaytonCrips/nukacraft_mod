@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
-import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

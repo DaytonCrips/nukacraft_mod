@@ -643,7 +643,9 @@ public class GunRenderingHandler
         }
     }
 
-    public boolean renderWeapon(@Nullable LivingEntity entity, ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks)
+    public boolean renderWeapon(@Nullable LivingEntity entity, ItemStack stack,
+                                ItemTransforms.TransformType transformType, PoseStack poseStack,
+                                MultiBufferSource renderTypeBuffer, int light, float partialTicks)
     {
         if(stack.getItem() instanceof GunItem)
         {
@@ -672,15 +674,16 @@ public class GunRenderingHandler
         return false;
     }
 
-    private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks)
+    private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack,
+                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks)
     {
-        if(ModelOverrides.hasModel(stack))
-        {
+        if(ModelOverrides.hasModel(stack)) {
             IOverrideModel model = ModelOverrides.getModel(stack);
-            if(model != null)
-            {
+            if(model != null) {
                 try {
                     gunRenderer.render(
+                            stack,
+                            transformType,
                             poseStack,
                             (GunItem)stack.getItem(),
                             renderTypeBuffer,
@@ -688,21 +691,21 @@ public class GunRenderingHandler
                             null,
                             light);
                 } catch (Exception e) {
-                    model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
+                    //model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
                 }
             }
         }
-        else
-        {
+        else {
             BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
-            Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY, bakedModel);
+            Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false,
+                    poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY, bakedModel);
         }
     }
 
-    private void renderAttachments(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks)
-    {
-        if(stack.getItem() instanceof GunItem)
-        {
+    private void renderAttachments(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType,
+                                   ItemStack stack, PoseStack poseStack, MultiBufferSource renderTypeBuffer,
+                                   int light, float partialTicks) {
+        if(stack.getItem() instanceof GunItem) {
             Gun modifiedGun = ((GunItem) stack.getItem()).getModifiedGun(stack);
             CompoundTag gunTag = stack.getOrCreateTag();
             CompoundTag attachments = gunTag.getCompound("Attachments");

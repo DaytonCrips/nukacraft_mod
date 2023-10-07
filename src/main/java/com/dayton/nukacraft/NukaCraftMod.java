@@ -1,6 +1,8 @@
 package com.dayton.nukacraft;
 
 
+import com.dayton.guns.GunMod;
+import com.dayton.guns.common.base.ProjectileManager;
 import com.dayton.nukacraft.client.ClientConfig;
 import com.dayton.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
@@ -12,15 +14,13 @@ import com.dayton.nukacraft.common.foundation.effects.ModEffect;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.dayton.nukacraft.common.foundation.items.ModArmorItems;
-import com.dayton.nukacraft.common.foundation.items.ModGunsClass;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModGuns;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import com.dayton.nukacraft.common.foundation.items.PowerArmorItems;
 import com.dayton.nukacraft.common.foundation.sounds.ModSounds;
 import com.dayton.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.foundation.world.ModBiomes;
-import com.dayton.guns.GunMod;
 import com.mojang.logging.LogUtils;
-import com.dayton.guns.common.base.ProjectileManager;
 import mod.azure.azurelib.AzureLib;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -49,10 +49,10 @@ public class NukaCraftMod
 
         new GunMod().initGunMod(eventBus);
 
-        ModItemsClass.register(eventBus);
+        ModItems.register(eventBus);
         PowerArmorItems.register(eventBus);
         ModArmorItems.register(eventBus);
-        ModGunsClass.register(eventBus);
+        ModGuns.register(eventBus);
 
         ModEffect.register(eventBus);
         ModAttributesClass.register(eventBus);
@@ -92,7 +92,7 @@ public class NukaCraftMod
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ProjectileManager.getInstance().registerFactory(ModItemsClass.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+            ProjectileManager.getInstance().registerFactory(ModItems.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
         });
     }
 //    private void enqueueIMC(final InterModEnqueueEvent event)

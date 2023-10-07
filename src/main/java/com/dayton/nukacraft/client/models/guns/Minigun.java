@@ -1,13 +1,13 @@
 package com.dayton.nukacraft.client.models.guns;
 
 
-import com.dayton.nukacraft.client.SpecialModels;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.dayton.guns.client.GunModel;
 import com.dayton.guns.client.render.gun.IOverrideModel;
 import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
+import com.dayton.nukacraft.client.SpecialModels;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -20,7 +20,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import javax.annotation.Nullable;
 import java.util.WeakHashMap;
 public class Minigun implements IOverrideModel {
-    private WeakHashMap<LivingEntity, Rotations> rotationMap = new WeakHashMap<>();
+    private final WeakHashMap<LivingEntity, Rotations> rotationMap = new WeakHashMap<>();
+
     @Override
     public void tick(Player player)
     {
@@ -30,34 +31,25 @@ public class Minigun implements IOverrideModel {
 
         boolean shooting = ModSyncedDataKeys.SHOOTING.getValue(player);
         ItemStack heldItem = player.getMainHandItem();
-        if(!Gun.hasAmmo(heldItem) && !player.isCreative())
-        {
+        if(!Gun.hasAmmo(heldItem) && !player.isCreative()) {
             shooting = false;
         }
 
         if(shooting)
-        {
             rotations.rotation += 20;
-        }
         else
-        {
             rotations.rotation += 1;
-        }
     }
-    private static class Rotations
-    {
+
+    private static class Rotations {
         private static final Rotations ZERO = new Rotations();
 
         private int rotation;
         private int prevRotation;
     }
 
-
-
-
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay)
-    {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay) {
         Rotations rotations = entity != null ? this.rotationMap.computeIfAbsent(entity, uuid -> new Rotations()) : Rotations.ZERO;
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, overlay, GunModel.wrap(SpecialModels.MINIGUN.getModel()));
         poseStack.pushPose();
@@ -66,12 +58,8 @@ public class Minigun implements IOverrideModel {
         poseStack.popPose();
     }
 
-
-
-
     @SubscribeEvent
-    public void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event)
-    {
+    public void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event) {
         this.rotationMap.clear();
     }
 }

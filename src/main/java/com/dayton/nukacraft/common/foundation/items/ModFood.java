@@ -4,7 +4,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
-public class ModFoodClass {
+public class ModFood {
     public static final FoodProperties COTTONCANDY = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(2.4f).build();
     public static final FoodProperties NUKAMELON = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.4f).build();
     public static final FoodProperties NASTY = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.2f).build();

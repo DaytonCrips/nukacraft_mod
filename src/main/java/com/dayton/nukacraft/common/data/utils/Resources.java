@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.data.utils;
 
-import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.resources.ResourceLocation;
 
 public class Resources {

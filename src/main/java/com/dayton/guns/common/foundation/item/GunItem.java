@@ -8,10 +8,18 @@ import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.Animation;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.AnimationController.AnimationStateHandler;
+import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.object.DataTicket;
+import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -33,15 +41,21 @@ import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.WeakHashMap;
+import java.util.*;
 import java.util.function.Consumer;
+
+import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
+import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.IDLE;
+import static java.util.Objects.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
+import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class GunItem extends Item implements IColored, IMeta, GeoItem {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
+
     private WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
     private Gun gun = new Gun();
 
@@ -62,6 +76,19 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
 
     public String getName(){
         return name.get();
+    }
+
+    @Override
+    public void initializeClient(Consumer<IItemRenderProperties> consumer)
+    {
+        consumer.accept(new IItemRenderProperties()
+        {
+            @Override
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer()
+            {
+                return new GunItemStackRenderer();
+            }
+        });
     }
 
     @Override
@@ -117,12 +144,6 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
     }
 
     @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
-    {
-        return true;
-    }
-
-    @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks)
     {
         if(this.allowdedIn(group))
@@ -131,12 +152,6 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
             stack.getOrCreateTag().putInt("AmmoCount", this.gun.getGeneral().getMaxAmmo());
             stacks.add(stack);
         }
-    }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
-    {
-        return slotChanged;
     }
 
     @Override
@@ -155,11 +170,6 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
         return (int) (13.0 * (tagCompound.getInt("AmmoCount") / (double) GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)));
     }
 
-    @Override
-    public int getBarColor(ItemStack stack)
-    {
-        return Objects.requireNonNull(ChatFormatting.YELLOW.getColor());
-    }
 
     public Gun getModifiedGun(ItemStack stack)
     {
@@ -198,34 +208,38 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
         return super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
-    @Override
-    public boolean isEnchantable(ItemStack stack)
-    {
-        return this.getItemStackLimit(stack) == 1;
+    @Override public boolean onEntitySwing(ItemStack stack, LivingEntity entity) { return true; }
+    @Override public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) { return slotChanged; }
+    @Override public int getBarColor(ItemStack stack) { return requireNonNull(ChatFormatting.YELLOW.getColor()); }
+    @Override public boolean isEnchantable(ItemStack stack) { return this.getItemStackLimit(stack) == 1; }
+    @Override public int getEnchantmentValue() { return 5; }
+
+    private static Map<ItemStack, String> stackAnimations = new HashMap<>();
+
+    public static void doAnim(ItemStack stack, String animation){
+        stackAnimations.put(stack, animation);
     }
 
     @Override
-    public int getEnchantmentValue()
-    {
-        return 5;
+    public void registerControllers(ControllerRegistrar controllerRegistrar) {
+//        var c = new AnimationController<>(this, "controllerName", event -> PlayState.CONTINUE)
+//                .triggerableAnim("animation",
+//                        RawAnimation.begin().then("animation", Animation.LoopType.PLAY_ONCE));
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
     }
 
-    @Override
-    public void initializeClient(Consumer<IItemRenderProperties> consumer)
-    {
-        consumer.accept(new IItemRenderProperties()
-        {
-            @Override
-            public BlockEntityWithoutLevelRenderer getItemStackRenderer()
-            {
-                return new GunItemStackRenderer();
-            }
-        });
-    }
+    private AnimationStateHandler<GunItem> animate() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            var stack = event.getData(DataTickets.ITEMSTACK);
+            var anim = stackAnimations.get(stack);
+            if(anim == null) return PlayState.STOP;
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+            var animation = begin().then(anim, PLAY_ONCE);
 
+            return event.setAndContinue(animation);
+        };
     }
 
     @Override

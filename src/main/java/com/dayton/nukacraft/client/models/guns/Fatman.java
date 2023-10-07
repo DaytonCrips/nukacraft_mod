@@ -1,10 +1,10 @@
 package com.dayton.nukacraft.client.models.guns;
 
-import com.dayton.nukacraft.client.SpecialModels;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.dayton.guns.client.render.gun.IOverrideModel;
 import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.Gun;
+import com.dayton.nukacraft.client.SpecialModels;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;

@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.foundation.world;
-import com.dayton.nukacraft.*;
+
+import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;

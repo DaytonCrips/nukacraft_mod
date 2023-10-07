@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.items.guns;
+package com.dayton.nukacraft.common.foundation.items.guns;
 
 import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.world.item.ItemStack;
