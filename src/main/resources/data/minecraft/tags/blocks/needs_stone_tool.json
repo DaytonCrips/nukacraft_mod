@@ -2,6 +2,11 @@
   "replace": false,
   "values": [
     "nukacraft:lead_ore",
-    "nukacraft:deeplead_block"
+    "nukacraft:deeplead_block",
+    "nukacraft:whitebricks",
+    "nukacraft:whitebricks_slab",
+    "nukacraft:whitebricks_stairs",
+    "nukacraft:smooth_brick",
+    "nukacraft:moss_whitebricks"
   ]
 }

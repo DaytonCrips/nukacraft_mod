@@ -6,6 +6,7 @@ import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.ModFlowerBloc
 import com.dayton.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
 import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.guns.block.WorkbenchBlock;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,6 +24,7 @@ import java.util.function.Supplier;
 public class ModBlocksClass {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NukaCraftMod.MOD_ID);
 
+
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
@@ -38,7 +40,9 @@ public class ModBlocksClass {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
-
+    public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.GLASS)
+                    .strength(1.4F).sound(SoundType.GLASS)));
 
 
 
@@ -139,6 +143,10 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> VTTILE = registerBlock("vttile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> VTARMOR = registerBlock("vtarmor",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(5.4f, 9.7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACKSTEEL = registerBlock("blacksteel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
@@ -352,6 +360,23 @@ public class ModBlocksClass {
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
+
+    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
+            () -> new WorkbenchBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(1.8f, 3.0f)));
+
+    public static final RegistryObject<Block> STEELBARS = registerBlock("steel_bars",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
+
+    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+
+    public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 
 
 

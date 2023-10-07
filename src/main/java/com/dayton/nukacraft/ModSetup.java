@@ -83,8 +83,11 @@ public class ModSetup {
         setRenderLayer(ModBlocksClass.UFCARROT.get(), RenderType.cutout());
         setRenderLayer(ModBlocksClass.DEAD_PUNGA.get(), RenderType.cutout());
         setRenderLayer(ModBlocksClass.DEAD_DATURAN.get(), RenderType.cutout());
+        setRenderLayer(ModBlocksClass.ARMEDGLASS.get(), RenderType.cutout());
         setRenderLayer(ModBlocksClass.DEAD_CORALLEAF.get(), RenderType.cutout());
-
+        setRenderLayer(ModBlocksClass.RREDDOOR.get(), RenderType.cutout());
+        setRenderLayer(ModBlocksClass.DECAYDOOR.get(), RenderType.cutout());
+        setRenderLayer(ModBlocksClass.STEELBARS.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()

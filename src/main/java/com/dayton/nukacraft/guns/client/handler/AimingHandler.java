@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.client.handler;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.GunMod;
 import com.dayton.nukacraft.guns.client.util.PropertyHelper;
 import com.dayton.nukacraft.guns.common.GripType;
@@ -239,7 +240,7 @@ public class AimingHandler
                 BlockState state = mc.level.getBlockState(result.getBlockPos());
                 Block block = state.getBlock();
                 // Forge should add a tag for intractable blocks so modders can know which blocks can be interacted with :)
-                return block instanceof EntityBlock || block == Blocks.CRAFTING_TABLE || block == ModBlocks.WORKBENCH.get() || state.is(BlockTags.DOORS) || state.is(BlockTags.TRAPDOORS) || state.is(Tags.Blocks.CHESTS) || state.is(Tags.Blocks.FENCE_GATES);
+                return block instanceof EntityBlock || block == Blocks.CRAFTING_TABLE || block == ModBlocksClass.WORKBENCH.get() || state.is(BlockTags.DOORS) || state.is(BlockTags.TRAPDOORS) || state.is(Tags.Blocks.CHESTS) || state.is(Tags.Blocks.FENCE_GATES);
             }
             else if(mc.hitResult instanceof EntityHitResult result)
             {

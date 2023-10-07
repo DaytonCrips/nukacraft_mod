@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.datagen;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.Reference;
 import com.dayton.nukacraft.guns.crafting.WorkbenchIngredient;
 import com.dayton.nukacraft.guns.crafting.WorkbenchRecipeBuilder;
@@ -62,7 +63,7 @@ public class RecipeGen extends RecipeProvider
             }
         });
 
-        ShapedRecipeBuilder.shaped(ModBlocks.WORKBENCH.get())
+        ShapedRecipeBuilder.shaped(ModBlocksClass.WORKBENCH.get())
                 .pattern("CCC")
                 .pattern("III")
                 .pattern("I I")

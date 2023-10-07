@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.datagen;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.Reference;
 import com.dayton.nukacraft.guns.init.ModBlocks;
 import com.google.common.collect.ImmutableList;
@@ -45,7 +46,7 @@ public class LootTableGen extends LootTableProvider
         @Override
         protected void addTables()
         {
-            this.dropSelf(ModBlocks.WORKBENCH.get());
+            this.dropSelf(ModBlocksClass.WORKBENCH.get());
         }
 
         @Override

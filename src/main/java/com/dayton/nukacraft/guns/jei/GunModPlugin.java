@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.jei;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.Reference;
 import com.dayton.nukacraft.guns.crafting.WorkbenchRecipe;
 import com.dayton.nukacraft.guns.crafting.WorkbenchRecipes;
@@ -49,6 +50,6 @@ public class GunModPlugin implements IModPlugin
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration)
     {
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.WORKBENCH.get()), WORKBENCH);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocksClass.WORKBENCH.get()), WORKBENCH);
     }
 }

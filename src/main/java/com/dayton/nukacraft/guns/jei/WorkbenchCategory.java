@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.jei;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.Reference;
 import com.dayton.nukacraft.guns.client.util.RenderUtil;
 import com.dayton.nukacraft.guns.crafting.WorkbenchRecipe;
@@ -64,7 +65,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
         this.window = helper.createDrawable(BACKGROUND, 7, 15, 162, 72);
         this.inventory = helper.createDrawable(BACKGROUND, 7, 101, 162, 36);
         this.dyeSlot = helper.createDrawable(BACKGROUND, 7, 101, 18, 18);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.WORKBENCH.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocksClass.WORKBENCH.get()));
         this.title = new TranslatableComponent(TITLE_KEY);
         this.dyes = ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof DyeItem).toArray(Item[]::new);
     }

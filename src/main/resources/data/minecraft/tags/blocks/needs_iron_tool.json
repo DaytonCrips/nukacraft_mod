@@ -26,7 +26,10 @@
     "nukacraft:greensteel",
     "nukacraft:greensteelslab",
     "nukacraft:whitesteel",
-    "nukacraft:whitesteelslab"
+    "nukacraft:whitesteelslab",
+    "nukacraft:steel_bars",
+    "nukacraft:rustdoor",
+    "nukacraft:rreddoor"
 
   ]
 }

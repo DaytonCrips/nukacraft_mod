@@ -32,6 +32,14 @@
     "nukacraft:greensteel",
     "nukacraft:greensteelslab",
     "nukacraft:whitesteel",
-    "nukacraft:whitesteelslab"
+    "nukacraft:whitesteelslab",
+    "nukacraft:whitebricks",
+    "nukacraft:whitebricks_slab",
+    "nukacraft:whitebricks_stairs",
+    "nukacraft:smooth_brick",
+    "nukacraft:moss_whitebricks",
+    "nukacraft:steel_bars",
+    "nukacraft:rustdoor",
+    "nukacraft:rreddoor"
   ]
 }

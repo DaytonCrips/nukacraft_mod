@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.guns.client;
 
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
 import com.dayton.nukacraft.guns.GunMod;
 import com.dayton.nukacraft.guns.Reference;
 import com.dayton.nukacraft.guns.client.handler.*;
@@ -81,7 +82,7 @@ public class ClientHandler
 
     private static void setupRenderLayers()
     {
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.WORKBENCH.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.WORKBENCH.get(), RenderType.cutout());
     }
 
     private static void registerColors()

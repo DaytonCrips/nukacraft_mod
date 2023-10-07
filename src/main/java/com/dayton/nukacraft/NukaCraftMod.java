@@ -40,7 +40,7 @@ public class NukaCraftMod
 
     public NukaCraftMod()
     {
-        //GeckoLib.initialize();
+
         AzureLib.initialize();
 
 
