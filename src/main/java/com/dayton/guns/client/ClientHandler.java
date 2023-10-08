@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.guns.client;
+package com.dayton.guns.client;
 
 import com.dayton.guns.GunMod;
 import com.dayton.guns.client.handler.*;
@@ -14,7 +14,7 @@ import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageAttachments;
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.gui.components.OptionsList;
@@ -42,7 +42,7 @@ import java.lang.reflect.Field;
 /**
  * Author: MrCrayfish
  */
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientHandler
 {
     private static Field mouseOptionsField;
@@ -76,7 +76,7 @@ public class ClientHandler
 
     private static void setupRenderLayers()
     {
-        ItemBlockRenderTypes.setRenderLayer(ModBlocksClass.WORKBENCH.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.WORKBENCH.get(), RenderType.cutout());
     }
 
     private static void registerColors()
@@ -117,15 +117,15 @@ public class ClientHandler
     private static void registerModelOverrides()
     {
         /* Weapons */
-        ModelOverrides.register(ModItems.ASSAULT_RIFLE.get(), new SimpleModel(SpecialModels.ASSAULT_RIFLE::getModel));
-        ModelOverrides.register(ModItems.BAZOOKA.get(), new SimpleModel(SpecialModels.BAZOOKA::getModel));
-        ModelOverrides.register(ModItems.GRENADE_LAUNCHER.get(), new GrenadeLauncherModel());
-        ModelOverrides.register(ModItems.HEAVY_RIFLE.get(), new SimpleModel(SpecialModels.HEAVY_RIFLE::getModel));
-        ModelOverrides.register(ModItems.MACHINE_PISTOL.get(), new SimpleModel(SpecialModels.MACHINE_PISTOL::getModel));
-        ModelOverrides.register(ModItems.MINI_GUN.get(), new MiniGunModel());
-        ModelOverrides.register(ModItems.PISTOL.get(), new SimpleModel(SpecialModels.PISTOL::getModel));
-        ModelOverrides.register(ModItems.RIFLE.get(), new SimpleModel(SpecialModels.RIFLE::getModel));
-        ModelOverrides.register(ModItems.SHOTGUN.get(), new SimpleModel(SpecialModels.SHOTGUN::getModel));
+//        ModelOverrides.register(ModItems.ASSAULT_RIFLE.get(), new SimpleModel(SpecialModels.ASSAULT_RIFLE::getModel));
+//        ModelOverrides.register(ModItems.BAZOOKA.get(), new SimpleModel(SpecialModels.BAZOOKA::getModel));
+//        ModelOverrides.register(ModItems.GRENADE_LAUNCHER.get(), new GrenadeLauncherModel());
+//        ModelOverrides.register(ModItems.HEAVY_RIFLE.get(), new SimpleModel(SpecialModels.HEAVY_RIFLE::getModel));
+//        ModelOverrides.register(ModItems.MACHINE_PISTOL.get(), new SimpleModel(SpecialModels.MACHINE_PISTOL::getModel));
+//        ModelOverrides.register(ModItems.MINI_GUN.get(), new MiniGunModel());
+//        ModelOverrides.register(ModItems.PISTOL.get(), new SimpleModel(SpecialModels.PISTOL::getModel));
+//        ModelOverrides.register(ModItems.RIFLE.get(), new SimpleModel(SpecialModels.RIFLE::getModel));
+//        ModelOverrides.register(ModItems.SHOTGUN.get(), new SimpleModel(SpecialModels.SHOTGUN::getModel));
     }
 
     private static void registerScreenFactories()

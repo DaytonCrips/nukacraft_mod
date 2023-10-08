@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.world;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -47,7 +47,7 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacementUtils.register("nukacraft:tree_ashwood",
                 FeatureUtils.register("nukacraft:tree_ash", Feature.TREE,
-                        new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocksClass.ASHWOOD.get().defaultBlockState()),
+                        new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.ASHWOOD.get().defaultBlockState()),
                                 new StraightTrunkPlacer(4, 2, 0), BlockStateProvider.simple(Blocks.AIR.defaultBlockState()),
                                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines()
                                 .build()),

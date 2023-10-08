@@ -1,7 +1,8 @@
 package com.dayton.guns.common.foundation.init;
 
-import com.dayton.nukacraft.guns.Reference;
-import com.dayton.nukacraft.guns.blockentity.WorkbenchBlockEntity;
+import com.dayton.guns.common.foundation.blockentity.WorkbenchBlockEntity;
+import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

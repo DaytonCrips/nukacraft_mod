@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.world;
 
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -23,10 +23,10 @@ public class ModOreFeatures {
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
 
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ALUMI_PLACE = FeatureUtils.register("ore_alumi_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocksClass.ALUMI_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocksClass.DEEPALUMI.get().defaultBlockState())), 4));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_LEAD_PLACE = FeatureUtils.register("ore_lead_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocksClass.LEAD_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocksClass.DEEPLEAD.get().defaultBlockState())), 7));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_SILVER_PLACE = FeatureUtils.register("ore_silver_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocksClass.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocksClass.DEEPSILVER.get().defaultBlockState())), 5));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_BTITAN_PLACE = FeatureUtils.register("ore_btitan_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocksClass.BTITAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocksClass.DEEPBTITAN.get().defaultBlockState())), 5));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ALUMI_PLACE = FeatureUtils.register("ore_alumi_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ALUMI_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPALUMI.get().defaultBlockState())), 4));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_LEAD_PLACE = FeatureUtils.register("ore_lead_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.LEAD_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPLEAD.get().defaultBlockState())), 7));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_SILVER_PLACE = FeatureUtils.register("ore_silver_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSILVER.get().defaultBlockState())), 5));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_BTITAN_PLACE = FeatureUtils.register("ore_btitan_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 5));
 
 
 

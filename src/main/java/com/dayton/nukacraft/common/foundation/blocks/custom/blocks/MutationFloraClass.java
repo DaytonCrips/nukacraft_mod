@@ -2,7 +2,7 @@ package com.dayton.nukacraft.common.foundation.blocks.custom.blocks;
 
 
 import com.dayton.nukacraft.client.render.particles.ModParticles;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -17,112 +17,112 @@ public class MutationFloraClass {
 
 
     public static void mutationFailed(BlockState state, BlockPos pos, Level level) {
-        diedMutation(level, pos, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+        diedMutation(level, pos, ModBlocks.DEATH_PLANT.get().defaultBlockState());
     }
 
 
     public static void mutationSucces(BlockState state, BlockPos pos, Level level) {
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.ASTER.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.RADASTER.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.ASTER.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.RADASTER.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.DEATH_PLANT.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.DEATH_FLOWER.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.DEATH_PLANT.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.DEATH_FLOWER.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.FIREMUSHROOM.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.BLASTCAP.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.FIREMUSHROOM.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.BLASTCAP.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.ASHROSE.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.RADROSE.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.ASHROSE.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.RADROSE.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.FEVERBLOSSOM.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.BOOMBLOSSOM.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.FEVERBLOSSOM.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.BOOMBLOSSOM.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.SOOTFLOWER.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.GEIGERBLOSSOM.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.SOOTFLOWER.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.GEIGERBLOSSOM.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.BLOODLEAF_BUSH.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.QUANTUMLEAF_BUSH.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.BLOODLEAF_BUSH.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.QUANTUMLEAF_BUSH.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.BBLOODLEAF_BUSH.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.GAMMALEAF_BUSH.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.BBLOODLEAF_BUSH.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.GAMMALEAF_BUSH.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.CRACKBERRY_BUSH.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.BOMBBERRY_BUSH.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.CRACKBERRY_BUSH.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.BOMBBERRY_BUSH.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.MUTTFRUIT_BUSH.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.FUSFRUIT_BUSH.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.MUTTFRUIT_BUSH.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.FUSFRUIT_BUSH.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.SITTBEAN_BUSH.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.NEUTRON_BUSH.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.SITTBEAN_BUSH.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.NEUTRON_BUSH.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.CRANBERRY.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.GOLD_CRANBERRY.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.CRANBERRY.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.GOLD_CRANBERRY.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.BRAINFUNGUS.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.MINDFUNGUS.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.BRAINFUNGUS.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.MINDFUNGUS.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.GLOWFUNGUS.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.MUTTSHOOTFUNGUS.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.GLOWFUNGUS.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.MUTTSHOOTFUNGUS.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.MELON.defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.NUKAMELON.get().defaultBlockState());
+            mutationStart(level, pos, state, ModBlocks.NUKAMELON.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.WHEAT.defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.GIGAWHEAT.get().defaultBlockState());
+            mutationStart(level, pos, state, ModBlocks.GIGAWHEAT.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.AGAVE.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.NEOAGAVE.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.AGAVE.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.NEOAGAVE.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.CORALLEAF.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.PRISMLEAF.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.CORALLEAF.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.PRISMLEAF.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.BROC.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.INVERT.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.BROC.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.INVERT.get().defaultBlockState());
         }
-        if (state.getBlock().defaultBlockState() == ModBlocksClass.GINSENG.get().defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.NUKAROOT.get().defaultBlockState());
+        if (state.getBlock().defaultBlockState() == ModBlocks.GINSENG.get().defaultBlockState()) {
+            mutationStart(level, pos, state, ModBlocks.NUKAROOT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.POTATOES.defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.TATO.get().defaultBlockState());
+            mutationStart(level, pos, state, ModBlocks.TATO.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.BEETROOTS.defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.IRRADROOT.get().defaultBlockState());
+            mutationStart(level, pos, state, ModBlocks.IRRADROOT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.CARROTS.defaultBlockState()) {
-            mutationStart(level, pos, state, ModBlocksClass.UFCARROT.get().defaultBlockState());
+            mutationStart(level, pos, state, ModBlocks.UFCARROT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.DANDELION.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.POPPY.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.BLUE_ORCHID.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.ORANGE_TULIP.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.PINK_TULIP.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.RED_TULIP.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.ALLIUM.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.WHITE_TULIP.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.OXEYE_DAISY.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.CORNFLOWER.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
         if (state.getBlock().defaultBlockState() == Blocks.LILY_OF_THE_VALLEY.defaultBlockState()) {
-            MutationFloraClass.mutationStart(level, pos, state, ModBlocksClass.DEATH_PLANT.get().defaultBlockState());
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
     }
 

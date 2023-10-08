@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.guns.client.handler;
+package com.dayton.guns.client.handler;
 
 import com.dayton.guns.GunMod;
 import com.dayton.guns.client.util.PropertyHelper;
@@ -12,7 +12,7 @@ import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.helpers.PlayerReviveHelper;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageAim;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tags.BlockTags;

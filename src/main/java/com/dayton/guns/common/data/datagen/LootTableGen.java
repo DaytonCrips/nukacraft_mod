@@ -1,7 +1,8 @@
 package com.dayton.guns.common.data.datagen;
 
-import com.dayton.nukacraft.guns.Reference;
-import com.dayton.nukacraft.guns.init.ModBlocks;
+import com.dayton.nukacraft.NukaCraftMod;
+
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;

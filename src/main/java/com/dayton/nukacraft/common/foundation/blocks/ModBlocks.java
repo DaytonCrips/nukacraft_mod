@@ -21,10 +21,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-public class ModBlocksClass {
+public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench", () -> new WorkbenchBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
+    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
+            () -> new WorkbenchBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
 
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
@@ -101,7 +102,7 @@ public class ModBlocksClass {
                     .strength(2f, 6.0f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> WHITEBRICKS_STAIRS = registerBlock("whitebricks_stairs",
-            () -> new StairBlock(ModBlocksClass.WHITEBRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE)
+            () -> new StairBlock(ModBlocks.WHITEBRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2f, 6.0f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> SMOOTH_BRICKS = registerBlock("smooth_brick",
@@ -190,7 +191,7 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> DEATH_FLOWER = registerBlock("death_flower",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_DEATH_FLOWER = registerBlockWithoutItem("potted_death_flower",
-            () -> new FlowerPotBlock(null, ModBlocksClass.DEATH_FLOWER,
+            () -> new FlowerPotBlock(null, ModBlocks.DEATH_FLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> TATO = registerBlockWithoutItem("tato_plant",
             () -> new TatoCropBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
@@ -208,67 +209,67 @@ public class ModBlocksClass {
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_BROC = registerBlockWithoutItem("potted_broc",
-            () -> new FlowerPotBlock(null, ModBlocksClass.BROC,
+            () -> new FlowerPotBlock(null, ModBlocks.BROC,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> POTTED_INVERT = registerBlockWithoutItem("potted_invert",
-            () -> new FlowerPotBlock(null, ModBlocksClass.INVERT,
+            () -> new FlowerPotBlock(null, ModBlocks.INVERT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> POTTED_ASTER = registerBlockWithoutItem("potted_aster",
-            () -> new FlowerPotBlock(null, ModBlocksClass.ASTER,
+            () -> new FlowerPotBlock(null, ModBlocks.ASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> RADASTER = registerBlock("radaster",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_RADASTER = registerBlockWithoutItem("potted_radaster",
-            () -> new FlowerPotBlock(null, ModBlocksClass.RADASTER,
+            () -> new FlowerPotBlock(null, ModBlocks.RADASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> FIREMUSHROOM = registerBlock("firemushroom",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_FIREMUSHROOM = registerBlockWithoutItem("potted_firemushroom",
-            () -> new FlowerPotBlock(null, ModBlocksClass.FIREMUSHROOM,
+            () -> new FlowerPotBlock(null, ModBlocks.FIREMUSHROOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> BLASTCAP = registerBlock("blastcap",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_BLASTCAP = registerBlockWithoutItem("potted_blastcap",
-            () -> new FlowerPotBlock(null, ModBlocksClass.BLASTCAP,
+            () -> new FlowerPotBlock(null, ModBlocks.BLASTCAP,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> ASHROSE = registerBlock("ashrose",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_ASHROSE = registerBlockWithoutItem("potted_ashrose",
-            () -> new FlowerPotBlock(null, ModBlocksClass.ASHROSE,
+            () -> new FlowerPotBlock(null, ModBlocks.ASHROSE,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> RADROSE = registerBlock("rad_rose",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_RADROSE = registerBlockWithoutItem("potted_rad_rose",
-            () -> new FlowerPotBlock(null, ModBlocksClass.RADROSE,
+            () -> new FlowerPotBlock(null, ModBlocks.RADROSE,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> FEVERBLOSSOM = registerBlock("feverblossom",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_FEVERBLOSSOM = registerBlockWithoutItem("potted_feverblossom",
-            () -> new FlowerPotBlock(null, ModBlocksClass.FEVERBLOSSOM,
+            () -> new FlowerPotBlock(null, ModBlocks.FEVERBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> BOOMBLOSSOM = registerBlock("boomblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_BOOMBLOSSOM = registerBlockWithoutItem("potted_boomblossom",
-            () -> new FlowerPotBlock(null, ModBlocksClass.BOOMBLOSSOM,
+            () -> new FlowerPotBlock(null, ModBlocks.BOOMBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> SOOTFLOWER = registerBlock("sootflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_SOOTFLOWER = registerBlockWithoutItem("potted_sootflower",
-            () -> new FlowerPotBlock(null, ModBlocksClass.SOOTFLOWER,
+            () -> new FlowerPotBlock(null, ModBlocks.SOOTFLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> GEIGERBLOSSOM = registerBlock("geigerblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_GEIGERBLOSSOM = registerBlockWithoutItem("potted_geigerblossom",
-            () -> new FlowerPotBlock(null, ModBlocksClass.GEIGERBLOSSOM,
+            () -> new FlowerPotBlock(null, ModBlocks.GEIGERBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> BLOODLEAF_BUSH = registerBlockWithoutItem("bloodleaf",
             () -> new BloodLeafBlockClass(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -301,12 +302,12 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> GUTSHROOM = registerBlock("gutshroom",
             () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_GUTSHROOM = registerBlockWithoutItem("potted_gutshroom",
-            () -> new FlowerPotBlock(null, ModBlocksClass.GUTSHROOM,
+            () -> new FlowerPotBlock(null, ModBlocks.GUTSHROOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> BBLIGHT = registerBlock("bblight",
             () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_BBLIGHT = registerBlockWithoutItem("potted_bblight",
-            () -> new FlowerPotBlock(null, ModBlocksClass.BBLIGHT,
+            () -> new FlowerPotBlock(null, ModBlocks.BBLIGHT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> GIGAWHEAT = registerBlockWithoutItem("gigawheat",
             () -> new CropBlock(BlockBehaviour.Properties.of(Material.PLANT).randomTicks().sound(SoundType.CROP).noCollission().instabreak()));
@@ -327,7 +328,7 @@ public class ModBlocksClass {
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
             () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_MARYGOLD = registerBlockWithoutItem("potted_marygold",
-            () -> new FlowerPotBlock(null, ModBlocksClass.MARYGOLD,
+            () -> new FlowerPotBlock(null, ModBlocks.MARYGOLD,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
     public static final RegistryObject<Block> DATURAN = registerBlockWithoutItem("root_daturan",
             () -> new DaturanBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -360,9 +361,9 @@ public class ModBlocksClass {
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 
-    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
-            () -> new WorkbenchBlock(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(1.8f, 3.0f)));
+    public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.GLASS)
+                    .strength(1.4F).sound(SoundType.GLASS)));
 
     public static final RegistryObject<Block> STEELBARS = registerBlock("steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.METAL)
@@ -378,9 +379,6 @@ public class ModBlocksClass {
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
 
 
-
-
-
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
     }
@@ -389,7 +387,6 @@ public class ModBlocksClass {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         return toReturn;
     }
-
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

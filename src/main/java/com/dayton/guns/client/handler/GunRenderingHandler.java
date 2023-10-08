@@ -21,10 +21,6 @@ import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.foundation.item.attachment.IBarrel;
 import com.dayton.guns.common.foundation.item.attachment.impl.Scope;
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.ClientConfig;
-import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
-import com.dayton.nukacraft.common.foundation.items.guns.FatmanGun;
-import com.jetug.chassis_core.client.render.renderers.CustomHandRenderer;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -63,17 +59,13 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.dayton.guns.common.debug.Debug.getGun;
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
-import static com.dayton.nukacraft.client.ClientConfig.*;
-import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.getPlayerChassis;
+import static com.dayton.nukacraft.client.ClientConfig.staticGunRenderer;
 
 public class GunRenderingHandler
 {

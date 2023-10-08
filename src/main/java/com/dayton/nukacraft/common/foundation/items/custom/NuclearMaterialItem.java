@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.MutationFloraClass;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ public class NuclearMaterialItem extends Item {
         Level level = context.getLevel();
         BlockPos posOld = context.getClickedPos();
         BlockState state = level.getBlockState(posOld);
-        if (!(state.getBlock().defaultBlockState() == Blocks.MELON.defaultBlockState()) && !(state.getBlock().defaultBlockState() == ModBlocksClass.DEATH_PLANT.get().defaultBlockState())) {
+        if (!(state.getBlock().defaultBlockState() == Blocks.MELON.defaultBlockState()) && !(state.getBlock().defaultBlockState() == ModBlocks.DEATH_PLANT.get().defaultBlockState())) {
             if (state.getBlock().defaultBlockState().is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")))) {
                 if (level.getRandom().nextInt(100) < 20) {
                     MutationFloraClass.mutationSucces(state, posOld, level);

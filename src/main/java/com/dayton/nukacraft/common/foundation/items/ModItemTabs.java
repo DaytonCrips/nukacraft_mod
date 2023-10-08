@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items;
 
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,7 +15,7 @@ public class ModItemTabs {
     public static final CreativeModeTab NUKA_BLOCKS = new CreativeModeTab("nuka_blocks") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModBlocksClass.BTITAN_ORE.get());
+            return new ItemStack(ModBlocks.BTITAN_ORE.get());
         }
     };
 

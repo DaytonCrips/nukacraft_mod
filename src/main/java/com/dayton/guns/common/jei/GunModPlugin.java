@@ -1,9 +1,11 @@
 package com.dayton.nukacraft.guns.jei;
 
-import com.dayton.nukacraft.guns.Reference;
-import com.dayton.nukacraft.guns.crafting.WorkbenchRecipe;
-import com.dayton.nukacraft.guns.crafting.WorkbenchRecipes;
-import com.dayton.nukacraft.guns.init.ModBlocks;
+import com.dayton.guns.common.foundation.crafting.WorkbenchRecipe;
+import com.dayton.guns.common.foundation.crafting.WorkbenchRecipes;
+import com.dayton.guns.common.jei.WorkbenchCategory;
+import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
+
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -29,7 +31,7 @@ public class GunModPlugin implements IModPlugin
     @Override
     public ResourceLocation getPluginUid()
     {
-        return new ResourceLocation(Reference.MOD_ID, "crafting");
+        return new ResourceLocation(NukaCraftMod.MOD_ID, "crafting");
     }
 
     @Override

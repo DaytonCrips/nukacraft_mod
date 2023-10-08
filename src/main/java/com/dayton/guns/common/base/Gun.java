@@ -1,7 +1,6 @@
 package com.dayton.guns.common.base;
 
 import com.dayton.guns.GunMod;
-import com.dayton.guns.client.ClientHandler;
 import com.dayton.guns.common.data.annotation.Ignored;
 import com.dayton.guns.common.data.annotation.Optional;
 import com.dayton.guns.common.data.util.GunJsonUtil;
@@ -40,6 +39,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+
+import static com.dayton.guns.client.ClientHandler.createEditorScreen;
+
 
 public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu
 {
@@ -89,12 +91,12 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu
             if(scope.getItem() instanceof ScopeItem scopeItem)
             {
                 widgets.add(Pair.of(scope.getItem().getName(scope), () -> new DebugButton(new TextComponent("Edit"), btn -> {
-                    Minecraft.getInstance().setScreen(ClientHandler.createEditorScreen(Debug.getScope(scopeItem)));
+                    Minecraft.getInstance().setScreen(createEditorScreen(Debug.getScope(scopeItem)));
                 })));
             }
 
             widgets.add(Pair.of(this.modules.getEditorLabel(), () -> new DebugButton(new TextComponent(">"), btn -> {
-                Minecraft.getInstance().setScreen(ClientHandler.createEditorScreen(this.modules));
+                Minecraft.getInstance().setScreen(createEditorScreen(this.modules));
             })));
         });
     }
@@ -862,7 +864,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu
 
                 widgets.add(Pair.of(new TextComponent("Adjust Iron Sights"), () -> new DebugButton(new TextComponent(">"), btn -> {
                     if(btn.active && this.zoom != null) {
-                        Minecraft.getInstance().setScreen(ClientHandler.createEditorScreen(this.zoom));
+                        Minecraft.getInstance().setScreen(createEditorScreen(this.zoom));
                     }
                 }, () -> this.zoom != null)));
             });

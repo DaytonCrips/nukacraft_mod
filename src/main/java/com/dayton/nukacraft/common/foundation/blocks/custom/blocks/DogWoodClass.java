@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.blocks;
 
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,10 +31,10 @@ public class DogWoodClass extends RotatedPillarBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (state.getBlock() == ModBlocksClass.ASHWOOD.get()) {
+        if (state.getBlock() == ModBlocks.ASHWOOD.get()) {
             if (player.getMainHandItem().getItem() instanceof AxeItem || player.getOffhandItem().getItem() instanceof AxeItem) {
                 level.playSound(null, pos, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.axe.strip")), SoundSource.NEUTRAL, 1, 1);
-                BlockState strip = ModBlocksClass.STRIPPED_ASHWOOD.get().defaultBlockState();
+                BlockState strip = ModBlocks.STRIPPED_ASHWOOD.get().defaultBlockState();
                 BlockState blockOld = level.getBlockState(pos);
                 for (Map.Entry<Property<?>, Comparable<?>> entry : blockOld.getValues().entrySet()) {
                     Property _property = strip.getBlock().getStateDefinition().getProperty(entry.getKey().getName());

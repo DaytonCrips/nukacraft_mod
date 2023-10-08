@@ -2,7 +2,7 @@ package com.dayton.guns.common.data.datagen;
 
 import com.dayton.guns.common.foundation.init.ModRecipeSerializers;
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.google.gson.JsonObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -58,7 +58,7 @@ public class RecipeGen extends RecipeProvider
             }
         });
 
-        ShapedRecipeBuilder.shaped(ModBlocksClass.WORKBENCH.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.WORKBENCH.get())
                 .pattern("CCC")
                 .pattern("III")
                 .pattern("I I")

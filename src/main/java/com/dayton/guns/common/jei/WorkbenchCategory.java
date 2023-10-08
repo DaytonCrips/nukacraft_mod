@@ -1,10 +1,10 @@
 package com.dayton.guns.common.jei;
 
-import com.dayton.nukacraft.guns.Reference;
-import com.dayton.nukacraft.guns.client.util.RenderUtil;
-import com.dayton.nukacraft.guns.crafting.WorkbenchRecipe;
-import com.dayton.nukacraft.guns.init.ModBlocks;
-import com.dayton.nukacraft.guns.item.IColored;
+import com.dayton.guns.client.util.RenderUtil;
+import com.dayton.guns.common.foundation.crafting.WorkbenchRecipe;
+import com.dayton.guns.common.foundation.item.IColored;
+import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -72,7 +72,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     @Override
     public RecipeType<WorkbenchRecipe> getRecipeType()
     {
-        return GunModPlugin.WORKBENCH;
+        return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH;
     }
 
     @Override
@@ -154,7 +154,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     @SuppressWarnings("removal")
     public ResourceLocation getUid()
     {
-        return GunModPlugin.WORKBENCH.getUid();
+        return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getUid();
     }
 
     // TODO remove in 1.19?
@@ -162,6 +162,6 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     @SuppressWarnings("removal")
     public Class<? extends WorkbenchRecipe> getRecipeClass()
     {
-        return GunModPlugin.WORKBENCH.getRecipeClass();
+        return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getRecipeClass();
     }
 }
