@@ -127,7 +127,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
 
         if(!ammo.isEmpty())
         {
-            this.tabs.add(new Tab(new ItemStack(ModItems.SHELL.get()), "ammo", ammo));
+            this.tabs.add(new Tab(new ItemStack(ModGuns.ROUND10MM.get()), "ammo", ammo));
         }
 
         if(!misc.isEmpty())
@@ -179,19 +179,15 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
                 this.loadItem(index - 1);
             }
         }));
-        this.addRenderableWidget(new Button(this.leftPos + 153, this.topPos + 18, 15, 20, new TextComponent(">"), button ->
-        {
+        this.addRenderableWidget(new Button(this.leftPos + 153, this.topPos + 18, 15, 20, new TextComponent(">"), button -> {
             int index = this.currentTab.getCurrentIndex();
             if(index + 1 >= this.currentTab.getRecipes().size())
-            {
                 this.loadItem(0);
-            }
             else
-            {
                 this.loadItem(index + 1);
-            }
         }));
-        this.btnCraft = this.addRenderableWidget(new Button(this.leftPos + 195, this.topPos + 16, 74, 20, new TranslatableComponent("gui.nukacraft.workbench.assemble"), button ->
+        this.btnCraft = this.addRenderableWidget(new Button(this.leftPos + 195, this.topPos + 16, 74, 20,
+                new TranslatableComponent("gui.nukacraft.workbench.assemble"), button ->
         {
             int index = this.currentTab.getCurrentIndex();
             WorkbenchRecipe recipe = this.currentTab.getRecipes().get(index);
@@ -199,26 +195,23 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageCraft(registryName, this.workbench.getBlockPos()));
         }));
         this.btnCraft.active = false;
-        this.checkBoxMaterials = this.addRenderableWidget(new CheckBox(this.leftPos + 172, this.topPos + 51, new TranslatableComponent("gui.nukacraft.workbench.show_remaining")));
+        this.checkBoxMaterials = this.addRenderableWidget(new CheckBox(this.leftPos + 172, this.topPos + 51,
+                new TranslatableComponent("gui.nukacraft.workbench.show_remaining")));
         this.checkBoxMaterials.setToggled(WorkbenchScreen.showRemaining);
         this.loadItem(this.currentTab.getCurrentIndex());
     }
 
     @Override
-    public void containerTick()
-    {
+    public void containerTick() {
         super.containerTick();
 
-        for(MaterialItem material : this.materials)
-        {
+        for(MaterialItem material : this.materials) {
             material.tick();
         }
 
         boolean canCraft = true;
-        for(MaterialItem material : this.materials)
-        {
-            if(!material.isEnabled())
-            {
+        for(MaterialItem material : this.materials) {
+            if(!material.isEnabled()) {
                 canCraft = false;
                 break;
             }
@@ -248,15 +241,9 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
                         int blue = (int) (components[2] * 255F);
                         colored.setColor(item, ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | ((blue & 0xFF)));
                     }
-                    else
-                    {
-                        colored.removeColor(item);
-                    }
+                    else colored.removeColor(item);
                 }
-                else
-                {
-                    colored.removeColor(item);
-                }
+                else colored.removeColor(item);
             }
         }
     }
@@ -281,8 +268,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         return result;
     }
 
-    private void loadItem(int index)
-    {
+    private void loadItem(int index) {
         WorkbenchRecipe recipe = this.currentTab.getRecipes().get(index);
         this.displayStack = recipe.getItem().copy();
         this.updateColor();
@@ -290,10 +276,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         this.materials.clear();
 
         List<WorkbenchIngredient> ingredients = recipe.getMaterials();
-        if(ingredients != null)
-        {
-            for(WorkbenchIngredient ingredient : ingredients)
-            {
+        if(ingredients != null) {
+            for(WorkbenchIngredient ingredient : ingredients) {
                 MaterialItem item = new MaterialItem(ingredient);
                 item.updateEnabledState();
                 this.materials.add(item);
