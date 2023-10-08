@@ -334,13 +334,11 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
 
     @Override
     protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
-        /* Fixes partial ticks to use percentage from 0 to 1 */
         partialTicks = Minecraft.getInstance().getFrameTime();
 
         float finalPartialTicks = partialTicks;
         doSafe( () ->
         {
-
             int startX = this.leftPos;
             int startY = this.topPos;
 

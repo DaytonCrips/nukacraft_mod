@@ -33,6 +33,8 @@ import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
+import static com.dayton.nukacraft.common.foundation.items.ModGuns.STUN_GRENADE;
+
 @Mod.EventBusSubscriber
 public class ThrowableStunGrenadeEntity extends ThrowableGrenadeEntity
 {
@@ -44,13 +46,13 @@ public class ThrowableStunGrenadeEntity extends ThrowableGrenadeEntity
     public ThrowableStunGrenadeEntity(EntityType<? extends ThrowableGrenadeEntity> entityType, Level world, LivingEntity player)
     {
         super(entityType, world, player);
-        this.setItem(new ItemStack(ModItems.STUN_GRENADE.get()));
+        this.setItem(new ItemStack(STUN_GRENADE.get()));
     }
 
     public ThrowableStunGrenadeEntity(Level world, LivingEntity player, int maxCookTime)
     {
         super(ModEntities.THROWABLE_STUN_GRENADE.get(), world, player);
-        this.setItem(new ItemStack(ModItems.STUN_GRENADE.get()));
+        this.setItem(new ItemStack(STUN_GRENADE.get()));
         this.setMaxLife(maxCookTime);
     }
 

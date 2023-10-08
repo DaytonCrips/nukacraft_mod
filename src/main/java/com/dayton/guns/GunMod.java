@@ -31,6 +31,9 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.dayton.nukacraft.common.foundation.items.ModGuns.GRENADE;
+import static com.dayton.nukacraft.common.foundation.items.ModGuns.MISSILE;
+
 //@Mod(NukaCraftMod.MOD_ID)
 public class GunMod {
     public static boolean debugging = false;
@@ -74,8 +77,8 @@ public class GunMod {
             ModRecipeType.init();
             ModSyncedDataKeys.register();
             CraftingHelper.register(new ResourceLocation(NukaCraftMod.MOD_ID, "workbench_ingredient"), WorkbenchIngredient.Serializer.INSTANCE);
-            ProjectileManager.getInstance().registerFactory(ModItems.GRENADE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new GrenadeEntity(ModEntities.GRENADE.get(), worldIn, entity, weapon, item, modifiedGun));
-            ProjectileManager.getInstance().registerFactory(ModItems.MISSILE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MissileEntity(ModEntities.MISSILE.get(), worldIn, entity, weapon, item, modifiedGun));
+            ProjectileManager.getInstance().registerFactory(GRENADE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new GrenadeEntity(ModEntities.GRENADE.get(), worldIn, entity, weapon, item, modifiedGun));
+            ProjectileManager.getInstance().registerFactory(MISSILE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MissileEntity(ModEntities.MISSILE.get(), worldIn, entity, weapon, item, modifiedGun));
             PacketHandler.init();
             if(Config.COMMON.gameplay.improvedHitboxes.get())
             {

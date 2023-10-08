@@ -9,6 +9,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import static com.dayton.nukacraft.common.foundation.items.ModGuns.GRENADE;
+
 /**
  * Author: MrCrayfish
  */
@@ -27,7 +29,7 @@ public class ThrowableGrenadeEntity extends ThrowableItemEntity
         super(entityType, world, entity);
         this.setShouldBounce(true);
         this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(ModItems.GRENADE.get()));
+        this.setItem(new ItemStack(GRENADE.get()));
         this.setMaxLife(20 * 3);
     }
 
@@ -36,7 +38,7 @@ public class ThrowableGrenadeEntity extends ThrowableItemEntity
         super(ModEntities.THROWABLE_GRENADE.get(), world, entity);
         this.setShouldBounce(true);
         this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(ModItems.GRENADE.get()));
+        this.setItem(new ItemStack(GRENADE.get()));
         this.setMaxLife(timeLeft);
     }
 
