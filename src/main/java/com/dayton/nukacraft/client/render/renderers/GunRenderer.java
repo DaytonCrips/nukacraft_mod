@@ -7,10 +7,12 @@ import com.dayton.nukacraft.client.SpecialModels;
 import com.dayton.nukacraft.client.models.GunModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix4f;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationState;
+import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,7 +21,7 @@ import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.dayton.guns.common.foundation.item.GunItem.doAnim;
+import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
@@ -39,12 +41,17 @@ public class GunRenderer extends GeoObjectRenderer<GunItem> {
         this.currentItemStack = stack;
         this.renderPerspective = transformType;
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+        this.animate(stack);
+    }
 
-
+    protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();
         float cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
         if(Gun.hasAmmo(stack) && cooldown > 0) {
             doAnim(stack, SHOT);
+        }
+        else{
+            resetAnim(stack);
         }
     }
 
@@ -63,13 +70,16 @@ public class GunRenderer extends GeoObjectRenderer<GunItem> {
             animationState.setData(DataTickets.ITEMSTACK, this.currentItemStack);
             animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.renderPerspective);
             this.model.addAdditionalStateData(animatable, instanceId, animationState::setData);
-            this.model.handleAnimations(animatable, instanceId, animationState);
+
+            if(!bannedTransforms.contains(renderPerspective))
+                this.model.handleAnimations(animatable, instanceId, animationState);
         }
+
+        this.modelRenderTranslations = new Matrix4f(poseStack.last().pose());
 
         originalActuallyRender(poseStack, animatable, model, renderType, bufferSource, buffer,
                 isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
-
 
      private void originalActuallyRender(PoseStack poseStack, GunItem animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.updateAnimatedTextureFrame(animatable);

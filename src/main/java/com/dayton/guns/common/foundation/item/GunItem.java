@@ -2,12 +2,14 @@ package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.GunMod;
 import com.dayton.guns.client.GunItemStackRenderer;
+import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.base.NetworkGunManager;
 import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
+import com.dayton.nukacraft.client.render.renderers.GunRenderer;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import mod.azure.azurelib.animatable.GeoItem;
@@ -23,6 +25,7 @@ import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -44,13 +47,17 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
+import static com.dayton.nukacraft.client.ClientConfig.gunRenderer;
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.IDLE;
+import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.*;
 import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class GunItem extends Item implements IColored, IMeta, GeoItem {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -220,6 +227,14 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
         stackAnimations.put(stack, animation);
     }
 
+    public static void resetAnim(ItemStack stack){
+        stackAnimations.put(stack, null);
+    }
+
+    public GunRenderer getRenderer(){
+        return gunRenderer;
+    }
+
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
 //        var c = new AnimationController<>(this, "controllerName", event -> PlayState.CONTINUE)
@@ -228,15 +243,32 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
     }
 
+    public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
+            NONE,
+            HEAD,
+            GUI,
+            GROUND,
+            FIXED);
+
     private AnimationStateHandler<GunItem> animate() {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
             var stack = event.getData(DataTickets.ITEMSTACK);
+            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+
+            if(bannedTransforms.contains(transformType)) {
+                resetAnim(stack);
+                return PlayState.STOP;
+            }
+
             var anim = stackAnimations.get(stack);
             if(anim == null) return PlayState.STOP;
 
             var animation = begin().then(anim, PLAY_ONCE);
+
+            if(controller.hasAnimationFinished())
+                controller.forceAnimationReset();
 
             return event.setAndContinue(animation);
         };

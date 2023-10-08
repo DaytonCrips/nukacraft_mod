@@ -65,6 +65,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.dayton.guns.common.debug.Debug.getGun;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.getPlayerChassis;
@@ -680,8 +681,12 @@ public class GunRenderingHandler
         if(ModelOverrides.hasModel(stack)) {
             IOverrideModel model = ModelOverrides.getModel(stack);
             if(model != null) {
-                try {
-                    gunRenderer.render(
+                try
+                {
+                    var gun = (GunItem)stack.getItem();
+
+                    if (transformType != ItemTransforms.TransformType.GUI)
+                        gun.getRenderer().render(
                             stack,
                             transformType,
                             poseStack,
@@ -690,6 +695,14 @@ public class GunRenderingHandler
                             null,
                             null,
                             light);
+                    else
+                        gun.getRenderer().render(
+                                poseStack,
+                                (GunItem)stack.getItem(),
+                                renderTypeBuffer,
+                                null,
+                                null,
+                                light);
                 } catch (Exception e) {
                     //model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
                 }

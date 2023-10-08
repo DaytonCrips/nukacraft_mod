@@ -31,6 +31,7 @@ public class GunItemStackRenderer extends BlockEntityWithoutLevelRenderer
             {
                 GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
             }
+            //if (transform != ItemTransforms.TransformType.GUI)
             GunRenderingHandler.get().renderWeapon(mc.player, stack, transform, poseStack, source, light, Minecraft.getInstance().getDeltaFrameTime());
         }
         poseStack.popPose();
