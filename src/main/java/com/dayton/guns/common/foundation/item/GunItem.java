@@ -10,8 +10,10 @@ import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
 import com.dayton.nukacraft.client.render.renderers.GunRenderer;
+import com.dayton.nukacraft.common.data.interfaces.INameable;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
+import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static com.dayton.nukacraft.client.ClientConfig.gunRenderer;
+import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.dayton.nukacraft.common.data.constants.ArmorChassisAnimation.IDLE;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
@@ -59,11 +61,11 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends Item implements IColored, IMeta, GeoItem {
+public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameable {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
+    private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
 
-    private WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
     private Gun gun = new Gun();
 
     public GunItem(Item.Properties properties)
@@ -83,6 +85,11 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
 
     public String getName(){
         return name.get();
+    }
+
+    @Override
+    public String getNamespace() {
+        return getRegistryName().getNamespace();
     }
 
     @Override
@@ -254,8 +261,8 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
-            var stack = event.getData(DataTickets.ITEMSTACK);
-            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+            var stack = currentStack;// event.getData(DataTickets.ITEMSTACK);
+            var transformType = currentTransform;// event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
             if(bannedTransforms.contains(transformType)) {
                 resetAnim(stack);
@@ -265,10 +272,11 @@ public class GunItem extends Item implements IColored, IMeta, GeoItem {
             var anim = stackAnimations.get(stack);
             if(anim == null) return PlayState.STOP;
 
-            var animation = begin().then(anim, PLAY_ONCE);
+            var animation = begin().then(anim, LOOP);
 
             if(controller.hasAnimationFinished())
                 controller.forceAnimationReset();
+
 
             return event.setAndContinue(animation);
         };

@@ -1,23 +1,20 @@
 package com.dayton.nukacraft.client.render.renderers;
 
-import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.Gun;
-import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.nukacraft.client.SpecialModels;
 import com.dayton.nukacraft.client.models.GunModel;
+import com.dayton.nukacraft.common.data.interfaces.INameable;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.constant.DataTickets;
+import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.AnimationState;
-import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,24 +22,38 @@ import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
-public class GunRenderer extends GeoObjectRenderer<GunItem> {
+public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectRenderer<T> {
     private ItemStack currentItemStack;
-    private TransformType renderPerspective;
+    private TransformType currentTransform;
 
     public GunRenderer() {
         super(new GunModel());
     }
 
+//    @Override
+//    public long getInstanceId(GunItem animatable) {
+//        var result = animatable.hashCode();
+//        result = 31 * result + currentTransform.hashCode();
+//        return result;
+//    }
+
     public void render(ItemStack stack, TransformType transformType,
-                       PoseStack poseStack, GunItem animatable,
+                       PoseStack poseStack, T animatable,
                        @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType, @Nullable
                            VertexConsumer buffer, int packedLight) {
         this.currentItemStack = stack;
-        this.renderPerspective = transformType;
+        this.currentTransform = transformType;
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
-        this.animate(stack);
+        if(!bannedTransforms.contains(currentTransform))
+            this.animate(stack);
     }
+
+//    @Override
+//    public void renderByItem(ItemStack stack, TransformType transformType, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+//        super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);
+//        this.animate(stack);
+//    }
 
     protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();
@@ -56,7 +67,7 @@ public class GunRenderer extends GeoObjectRenderer<GunItem> {
     }
 
     @Override
-    public void actuallyRender(PoseStack poseStack, GunItem animatable, BakedGeoModel model,
+    public void actuallyRender(PoseStack poseStack, T animatable, BakedGeoModel model,
                                RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer,
                                boolean isReRender, float partialTick, int packedLight, int packedOverlay,
                                float red, float green, float blue, float alpha) {
@@ -66,12 +77,12 @@ public class GunRenderer extends GeoObjectRenderer<GunItem> {
             long instanceId = getInstanceId(animatable);
 
             animationState.setData(DataTickets.TICK, animatable.getTick(this.currentItemStack));
-            animationState.setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.renderPerspective);
+            animationState.setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
             animationState.setData(DataTickets.ITEMSTACK, this.currentItemStack);
-            animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.renderPerspective);
+            animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
             this.model.addAdditionalStateData(animatable, instanceId, animationState::setData);
 
-            if(!bannedTransforms.contains(renderPerspective))
+            if(!bannedTransforms.contains(currentTransform))
                 this.model.handleAnimations(animatable, instanceId, animationState);
         }
 
@@ -81,7 +92,7 @@ public class GunRenderer extends GeoObjectRenderer<GunItem> {
                 isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-     private void originalActuallyRender(PoseStack poseStack, GunItem animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+     private void originalActuallyRender(PoseStack poseStack, T animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.updateAnimatedTextureFrame(animatable);
 
          for (GeoBone group : model.topLevelBones()) {
