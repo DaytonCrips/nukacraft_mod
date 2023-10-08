@@ -43,8 +43,7 @@ import java.util.stream.Stream;
 /**
  * Author: MrCrayfish
  */
-public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
-{
+public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
     public static final ResourceLocation ID = new ResourceLocation(NukaCraftMod.MOD_ID, "workbench");
     public static final ResourceLocation BACKGROUND = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/gui/workbench.png");
     public static final String TITLE_KEY = NukaCraftMod.MOD_ID + ".category.workbench.title";
@@ -58,8 +57,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     private final Component title;
     private final Item[] dyes;
 
-    public WorkbenchCategory(IGuiHelper helper)
-    {
+    public WorkbenchCategory(IGuiHelper helper) {
         this.background = helper.createBlankDrawable(162, 124);
         this.window = helper.createDrawable(BACKGROUND, 7, 15, 162, 72);
         this.inventory = helper.createDrawable(BACKGROUND, 7, 101, 162, 36);
@@ -70,47 +68,39 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     }
 
     @Override
-    public RecipeType<WorkbenchRecipe> getRecipeType()
-    {
+    public RecipeType<WorkbenchRecipe> getRecipeType() {
         return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH;
     }
 
     @Override
-    public Component getTitle()
-    {
+    public Component getTitle() {
         return this.title;
     }
 
     @Override
-    public IDrawable getBackground()
-    {
+    public IDrawable getBackground() {
         return this.background;
     }
 
     @Override
-    public IDrawable getIcon()
-    {
+    public IDrawable getIcon() {
         return this.icon;
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, WorkbenchRecipe recipe, IFocusGroup focuses)
-    {
+    public void setRecipe(IRecipeLayoutBuilder builder, WorkbenchRecipe recipe, IFocusGroup focuses) {
         ItemStack output = recipe.getItem();
-        if(IColored.isDyeable(output))
-        {
+        if (IColored.isDyeable(output)) {
             builder.addSlot(RecipeIngredientRole.INPUT, 141, 52).addItemStacks(Stream.of(this.dyes).map(ItemStack::new).collect(Collectors.toList()));
         }
-        for(int i = 0; i < recipe.getMaterials().size(); i++)
-        {
+        for (int i = 0; i < recipe.getMaterials().size(); i++) {
             builder.addSlot(RecipeIngredientRole.INPUT, (i % 8) * 18 + 1, 88 + (i / 8) * 18).addIngredients(recipe.getMaterials().get(i));
         }
         builder.addInvisibleIngredients(RecipeIngredientRole.OUTPUT).addItemStack(output);
     }
 
     @Override
-    public void draw(WorkbenchRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY)
-    {
+    public void draw(WorkbenchRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         this.window.draw(poseStack, 0, 0);
         this.inventory.draw(poseStack, 0, this.window.getHeight() + 2 + 11 + 2);
         this.dyeSlot.draw(poseStack, 140, 51);
@@ -119,8 +109,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
 
         ItemStack output = recipe.getItem();
         MutableComponent displayName = output.getHoverName().copy();
-        if(output.getCount() > 1)
-        {
+        if (output.getCount() > 1) {
             displayName.append(new TextComponent(" x " + output.getCount()).withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
         }
         int titleX = this.window.getWidth() / 2;
@@ -152,16 +141,14 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe>
     // TODO remove in 1.19?
     @Override
     @SuppressWarnings("removal")
-    public ResourceLocation getUid()
-    {
+    public ResourceLocation getUid() {
         return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getUid();
     }
 
     // TODO remove in 1.19?
     @Override
     @SuppressWarnings("removal")
-    public Class<? extends WorkbenchRecipe> getRecipeClass()
-    {
+    public Class<? extends WorkbenchRecipe> getRecipeClass() {
         return com.dayton.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getRecipeClass();
     }
 }

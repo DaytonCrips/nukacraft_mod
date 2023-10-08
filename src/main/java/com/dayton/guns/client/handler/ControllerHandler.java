@@ -30,62 +30,42 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * Author: MrCrayfish
  */
-public class ControllerHandler
-{
+public class ControllerHandler {
     private int reloadCounter = -1;
 
     @SubscribeEvent
-    public void onButtonInput(ControllerEvent.ButtonInput event)
-    {
+    public void onButtonInput(ControllerEvent.ButtonInput event) {
         Player player = Minecraft.getInstance().player;
         Level world = Minecraft.getInstance().level;
-        if(player != null && world != null && Minecraft.getInstance().screen == null)
-        {
+        if (player != null && world != null && Minecraft.getInstance().screen == null) {
             ItemStack heldItem = player.getMainHandItem();
             int button = event.getButton();
-            if(button == GunButtonBindings.SHOOT.getButton())
-            {
-                if(heldItem.getItem() instanceof GunItem)
-                {
+            if (button == GunButtonBindings.SHOOT.getButton()) {
+                if (heldItem.getItem() instanceof GunItem) {
                     event.setCanceled(true);
-                    if(event.getState())
-                    {
+                    if (event.getState()) {
                         ShootingHandler.get().fire(player, heldItem);
                     }
                 }
-            }
-            else if(button == GunButtonBindings.AIM.getButton())
-            {
-                if(heldItem.getItem() instanceof GunItem)
-                {
+            } else if (button == GunButtonBindings.AIM.getButton()) {
+                if (heldItem.getItem() instanceof GunItem) {
                     event.setCanceled(true);
                 }
-            }
-            else if(button == GunButtonBindings.STEADY_AIM.getButton())
-            {
-                if(heldItem.getItem() instanceof GunItem)
-                {
+            } else if (button == GunButtonBindings.STEADY_AIM.getButton()) {
+                if (heldItem.getItem() instanceof GunItem) {
                     event.setCanceled(true);
                 }
-            }
-            else if(button == GunButtonBindings.RELOAD.getButton())
-            {
-                if(heldItem.getItem() instanceof GunItem)
-                {
+            } else if (button == GunButtonBindings.RELOAD.getButton()) {
+                if (heldItem.getItem() instanceof GunItem) {
                     event.setCanceled(true);
-                    if(event.getState())
-                    {
+                    if (event.getState()) {
                         this.reloadCounter = 0;
                     }
                 }
-            }
-            else if(button == GunButtonBindings.OPEN_ATTACHMENTS.getButton())
-            {
-                if(heldItem.getItem() instanceof GunItem && Minecraft.getInstance().screen == null)
-                {
+            } else if (button == GunButtonBindings.OPEN_ATTACHMENTS.getButton()) {
+                if (heldItem.getItem() instanceof GunItem && Minecraft.getInstance().screen == null) {
                     event.setCanceled(true);
-                    if(event.getState())
-                    {
+                    if (event.getState()) {
                         PacketHandler.getPlayChannel().sendToServer(new C2SMessageAttachments());
                     }
                 }
@@ -94,21 +74,17 @@ public class ControllerHandler
     }
 
     @SubscribeEvent
-    public void onControllerTurn(ControllerEvent.Turn event)
-    {
+    public void onControllerTurn(ControllerEvent.Turn event) {
         Player player = Minecraft.getInstance().player;
-        if(player != null)
-        {
+        if (player != null) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem && AimingHandler.get().isAiming())
-            {
+            if (heldItem.getItem() instanceof GunItem && AimingHandler.get().isAiming()) {
                 double adsSensitivity = Config.CLIENT.controls.aimDownSightSensitivity.get();
                 event.setYawSpeed(10.0F * (float) adsSensitivity);
                 event.setPitchSpeed(7.5F * (float) adsSensitivity);
 
                 Scope scope = Gun.getScope(heldItem);
-                if(scope != null && scope.isStable() && Controllable.isButtonPressed(GunButtonBindings.STEADY_AIM.getButton()))
-                {
+                if (scope != null && scope.isStable() && Controllable.isButtonPressed(GunButtonBindings.STEADY_AIM.getButton())) {
                     event.setYawSpeed(event.getYawSpeed() / 2.0F);
                     event.setPitchSpeed(event.getPitchSpeed() / 2.0F);
                 }
@@ -117,31 +93,26 @@ public class ControllerHandler
     }
 
     @SubscribeEvent
-    public void updateAvailableActions(GatherActionsEvent event)
-    {
+    public void updateAvailableActions(GatherActionsEvent event) {
         Minecraft mc = Minecraft.getInstance();
-        if(mc.screen != null) return;
+        if (mc.screen != null) return;
 
         Player player = Minecraft.getInstance().player;
-        if(player != null)
-        {
+        if (player != null) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem)
-            {
+            if (heldItem.getItem() instanceof GunItem) {
                 event.getActions().put(GunButtonBindings.AIM, new Action(new TranslatableComponent("nukacraft.action.aim"), Action.Side.RIGHT));
                 event.getActions().put(GunButtonBindings.SHOOT, new Action(new TranslatableComponent("nukacraft.action.shoot"), Action.Side.RIGHT));
 
                 GunItem gunItem = (GunItem) heldItem.getItem();
                 Gun modifiedGun = gunItem.getModifiedGun(heldItem);
                 CompoundTag tag = heldItem.getTag();
-                if(tag != null && tag.getInt("AmmoCount") < GunEnchantmentHelper.getAmmoCapacity(heldItem, modifiedGun))
-                {
+                if (tag != null && tag.getInt("AmmoCount") < GunEnchantmentHelper.getAmmoCapacity(heldItem, modifiedGun)) {
                     event.getActions().put(GunButtonBindings.RELOAD, new Action(new TranslatableComponent("nukacraft.action.reload"), Action.Side.LEFT));
                 }
 
                 Scope scope = Gun.getScope(heldItem);
-                if(scope != null && scope.isStable() && AimingHandler.get().isAiming())
-                {
+                if (scope != null && scope.isStable() && AimingHandler.get().isAiming()) {
                     event.getActions().put(GunButtonBindings.STEADY_AIM, new Action(new TranslatableComponent("nukacraft.action.steady_aim"), Action.Side.RIGHT));
                 }
             }
@@ -149,85 +120,70 @@ public class ControllerHandler
     }
 
     @SubscribeEvent
-    public void onRender(TickEvent.RenderTickEvent event)
-    {
+    public void onRender(TickEvent.RenderTickEvent event) {
         Controller controller = Controllable.getController();
-        if(controller == null)
+        if (controller == null)
             return;
 
-        if(event.phase == TickEvent.Phase.END)
+        if (event.phase == TickEvent.Phase.END)
             return;
 
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
-        if(player == null)
+        if (player == null)
             return;
 
-        if(Controllable.isButtonPressed(GunButtonBindings.SHOOT.getButton()) && Minecraft.getInstance().screen == null)
-        {
+        if (Controllable.isButtonPressed(GunButtonBindings.SHOOT.getButton()) && Minecraft.getInstance().screen == null) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem)
-            {
+            if (heldItem.getItem() instanceof GunItem) {
                 Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
-                if(gun.getGeneral().isAuto())
-                {
+                if (gun.getGeneral().isAuto()) {
                     ShootingHandler.get().fire(player, heldItem);
                 }
             }
         }
 
-        if(mc.screen == null && this.reloadCounter != -1)
-        {
-            if(Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton()))
-            {
+        if (mc.screen == null && this.reloadCounter != -1) {
+            if (Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton())) {
                 this.reloadCounter++;
             }
         }
 
-        if(this.reloadCounter > 40)
-        {
+        if (this.reloadCounter > 40) {
             ReloadHandler.get().setReloading(false);
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
             this.reloadCounter = -1;
-        }
-        else if(this.reloadCounter > 0 && !Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton()))
-        {
+        } else if (this.reloadCounter > 0 && !Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton())) {
             ReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
             this.reloadCounter = -1;
         }
     }
 
-    public static boolean isAiming()
-    {
+    public static boolean isAiming() {
         Controller controller = Controllable.getController();
         return controller != null && Controllable.isButtonPressed(GunButtonBindings.AIM.getButton());
     }
 
-    public static boolean isShooting()
-    {
+    public static boolean isShooting() {
         Controller controller = Controllable.getController();
         return controller != null && Controllable.isButtonPressed(GunButtonBindings.SHOOT.getButton());
     }
 
     @SubscribeEvent
-    public void onGatherNavigationPoints(GatherNavigationPointsEvent event)
-    {
+    public void onGatherNavigationPoints(GatherNavigationPointsEvent event) {
         Minecraft mc = Minecraft.getInstance();
-        if(mc.screen instanceof WorkbenchScreen)
-        {
+        if (mc.screen instanceof WorkbenchScreen) {
             WorkbenchScreen workbench = (WorkbenchScreen) mc.screen;
             int startX = workbench.getGuiLeft();
             int startY = workbench.getGuiTop();
 
-            for(int i = 0; i < workbench.getTabs().size(); i++)
-            {
+            for (int i = 0; i < workbench.getTabs().size(); i++) {
                 int tabX = startX + 28 * i + (28 / 2);
                 int tabY = startY - (28 / 2);
                 event.addPoint(new BasicNavigationPoint(tabX, tabY));
             }
 
-            for(int i = 0; i < 6; i++)
-            {
+            for (int i = 0; i < 6; i++) {
                 int itemX = startX + 172 + (80 / 2);
                 int itemY = startY + i * 19 + 63 + (19 / 2);
                 event.addPoint(new BasicNavigationPoint(itemX, itemY));

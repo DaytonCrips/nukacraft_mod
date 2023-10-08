@@ -40,8 +40,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class AttachmentScreen extends AbstractContainerScreen<AttachmentContainer>
-{
+public class AttachmentScreen extends AbstractContainerScreen<AttachmentContainer> {
     private static final ResourceLocation GUI_TEXTURES = new ResourceLocation("nukacraft:textures/gui/attachments.png");
     private static final Component CONFIG_TOOLTIP = new TranslatableComponent("nukacraft.button.config.tooltip");
 
@@ -56,8 +55,7 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     private int mouseGrabbedButton;
     private int mouseClickedX, mouseClickedY;
 
-    public AttachmentScreen(AttachmentContainer screenContainer, Inventory playerInventory, Component titleIn)
-    {
+    public AttachmentScreen(AttachmentContainer screenContainer, Inventory playerInventory, Component titleIn) {
         super(screenContainer, playerInventory, titleIn);
         this.playerInventory = playerInventory;
         this.weaponInventory = screenContainer.getWeaponInventory();
@@ -65,16 +63,13 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     }
 
     @Override
-    protected void init()
-    {
+    protected void init() {
         super.init();
 
         List<MiniButton> buttons = this.gatherButtons();
-        for(int i = 0; i < buttons.size(); i++)
-        {
+        for (int i = 0; i < buttons.size(); i++) {
             MiniButton button = buttons.get(i);
-            switch(Config.CLIENT.buttonAlignment.get())
-            {
+            switch (Config.CLIENT.buttonAlignment.get()) {
                 case LEFT -> {
                     int titleWidth = this.minecraft.font.width(this.title);
                     button.x = this.leftPos + titleWidth + 8 + 3 + i * 13;
@@ -86,11 +81,9 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
         }
     }
 
-    private List<MiniButton> gatherButtons()
-    {
+    private List<MiniButton> gatherButtons() {
         List<MiniButton> buttons = new ArrayList<>();
-        if(!Config.CLIENT.hideConfigButton.get())
-        {
+        if (!Config.CLIENT.hideConfigButton.get()) {
             buttons.add(new MiniButton(0, 0, 192, 0, GUI_TEXTURES, onPress -> {
                 this.openConfigScreen();
             }, (button, matrixStack, mouseX, mouseY) -> {
@@ -101,21 +94,17 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     }
 
     @Override
-    public void containerTick()
-    {
+    public void containerTick() {
         super.containerTick();
-        if(this.minecraft != null && this.minecraft.player != null)
-        {
-            if(!(this.minecraft.player.getMainHandItem().getItem() instanceof GunItem))
-            {
+        if (this.minecraft != null && this.minecraft.player != null) {
+            if (!(this.minecraft.player.getMainHandItem().getItem() instanceof GunItem)) {
                 Minecraft.getInstance().setScreen(null);
             }
         }
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
-    {
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, partialTicks);
         this.renderTooltip(poseStack, mouseX, mouseY); //Render tool tips
@@ -123,21 +112,14 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
         int startX = (this.width - this.imageWidth) / 2;
         int startY = (this.height - this.imageHeight) / 2;
 
-        for(int i = 0; i < IAttachment.Type.values().length; i++)
-        {
-            if(RenderUtil.isMouseWithin(mouseX, mouseY, startX + 7, startY + 16 + i * 18, 18, 18))
-            {
+        for (int i = 0; i < IAttachment.Type.values().length; i++) {
+            if (RenderUtil.isMouseWithin(mouseX, mouseY, startX + 7, startY + 16 + i * 18, 18, 18)) {
                 IAttachment.Type type = IAttachment.Type.values()[i];
-                if(!this.menu.getSlot(i).isActive())
-                {
+                if (!this.menu.getSlot(i).isActive()) {
                     this.renderComponentTooltip(poseStack, Arrays.asList(new TranslatableComponent("slot.nukacraft.attachment." + type.getTranslationKey()), new TranslatableComponent("slot.nukacraft.attachment.not_applicable")), mouseX, mouseY);
-                }
-                else if(this.menu.getSlot(i) instanceof AttachmentSlot slot && slot.getItem().isEmpty() && !this.isCompatible(this.menu.getCarried(), slot))
-                {
+                } else if (this.menu.getSlot(i) instanceof AttachmentSlot slot && slot.getItem().isEmpty() && !this.isCompatible(this.menu.getCarried(), slot)) {
                     this.renderComponentTooltip(poseStack, Arrays.asList(new TranslatableComponent("slot.nukacraft.attachment.incompatible").withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
-                }
-                else if(this.weaponInventory.getItem(i).isEmpty())
-                {
+                } else if (this.weaponInventory.getItem(i).isEmpty()) {
                     this.renderComponentTooltip(poseStack, Collections.singletonList(new TranslatableComponent("slot.nukacraft.attachment." + type.getTranslationKey())), mouseX, mouseY);
                 }
             }
@@ -145,19 +127,17 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
 
         this.children().forEach(widget ->
         {
-            if(widget instanceof Button button && button.isHoveredOrFocused())
-            {
+            if (widget instanceof Button button && button.isHoveredOrFocused()) {
                 button.renderToolTip(poseStack, mouseX, mouseY);
             }
         });
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY)
-    {
+    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
         Minecraft minecraft = Minecraft.getInstance();
-        this.font.draw(poseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-        this.font.draw(poseStack, this.playerInventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY + 19, 4210752);
+        this.font.draw(poseStack, this.title, (float) this.titleLabelX, (float) this.titleLabelY, 4210752);
+        this.font.draw(poseStack, this.playerInventory.getDisplayName(), (float) this.inventoryLabelX, (float) this.inventoryLabelY + 19, 4210752);
 
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         int left = (this.width - this.imageWidth) / 2;
@@ -190,8 +170,7 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
 
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
 
-        if(this.showHelp)
-        {
+        if (this.showHelp) {
             poseStack.pushPose();
             poseStack.scale(0.5F, 0.5F, 0.5F);
             minecraft.font.draw(poseStack, I18n.get("container.nukacraft.attachments.window_help"), 56, 38, 0xFFFFFF);
@@ -200,8 +179,7 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     }
 
     @Override
-    protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY)
-    {
+    protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, GUI_TEXTURES);
         int left = (this.width - this.imageWidth) / 2;
@@ -210,73 +188,62 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
 
         /* Draws the icons for each attachment slot. If not applicable
          * for the weapon, it will draw a cross instead. */
-        for(int i = 0; i < IAttachment.Type.values().length; i++)
-        {
-            if(!this.canPlaceAttachmentInSlot(this.menu.getCarried(), this.menu.getSlot(i)))
-            {
+        for (int i = 0; i < IAttachment.Type.values().length; i++) {
+            if (!this.canPlaceAttachmentInSlot(this.menu.getCarried(), this.menu.getSlot(i))) {
                 this.blit(poseStack, left + 8, top + 17 + i * 18, 176, 0, 16, 16);
-            }
-            else if(this.weaponInventory.getItem(i).isEmpty())
-            {
+            } else if (this.weaponInventory.getItem(i).isEmpty()) {
                 this.blit(poseStack, left + 8, top + 17 + i * 18, 176, 16 + i * 16, 16, 16);
             }
         }
     }
 
-    private boolean canPlaceAttachmentInSlot(ItemStack stack, Slot slot)
-    {
-        if(!slot.isActive())
+    private boolean canPlaceAttachmentInSlot(ItemStack stack, Slot slot) {
+        if (!slot.isActive())
             return false;
 
-        if(!slot.equals(this.getSlotUnderMouse()))
+        if (!slot.equals(this.getSlotUnderMouse()))
             return true;
 
-        if(!slot.getItem().isEmpty())
+        if (!slot.getItem().isEmpty())
             return true;
 
-        if(!(slot instanceof AttachmentSlot s))
+        if (!(slot instanceof AttachmentSlot s))
             return true;
 
-        if(!(stack.getItem() instanceof IAttachment<?> a))
+        if (!(stack.getItem() instanceof IAttachment<?> a))
             return true;
 
-        if(!s.getType().equals(a.getType()))
+        if (!s.getType().equals(a.getType()))
             return true;
 
         return s.mayPlace(stack);
     }
 
-    private boolean isCompatible(ItemStack stack, AttachmentSlot slot)
-    {
-        if(stack.isEmpty())
+    private boolean isCompatible(ItemStack stack, AttachmentSlot slot) {
+        if (stack.isEmpty())
             return true;
 
-        if(!(stack.getItem() instanceof IAttachment<?> attachment))
+        if (!(stack.getItem() instanceof IAttachment<?> attachment))
             return false;
 
-        if(!attachment.getType().equals(slot.getType()))
+        if (!attachment.getType().equals(slot.getType()))
             return true;
 
-        if(!attachment.canAttachTo(stack))
+        if (!attachment.canAttachTo(stack))
             return false;
 
         return slot.mayPlace(stack);
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double scroll)
-    {
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
         int startX = (this.width - this.imageWidth) / 2;
         int startY = (this.height - this.imageHeight) / 2;
-        if(RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, startX + 26, startY + 17, 142, 70))
-        {
-            if(scroll < 0 && this.windowZoom > 0)
-            {
+        if (RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, startX + 26, startY + 17, 142, 70)) {
+            if (scroll < 0 && this.windowZoom > 0) {
                 this.showHelp = false;
                 this.windowZoom--;
-            }
-            else if(scroll > 0)
-            {
+            } else if (scroll > 0) {
                 this.showHelp = false;
                 this.windowZoom++;
             }
@@ -285,15 +252,12 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button)
-    {
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
         int startX = (this.width - this.imageWidth) / 2;
         int startY = (this.height - this.imageHeight) / 2;
 
-        if(RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, startX + 26, startY + 17, 142, 70))
-        {
-            if(!this.mouseGrabbed && (button == GLFW.GLFW_MOUSE_BUTTON_LEFT || button == GLFW.GLFW_MOUSE_BUTTON_RIGHT))
-            {
+        if (RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, startX + 26, startY + 17, 142, 70)) {
+            if (!this.mouseGrabbed && (button == GLFW.GLFW_MOUSE_BUTTON_LEFT || button == GLFW.GLFW_MOUSE_BUTTON_RIGHT)) {
                 this.mouseGrabbed = true;
                 this.mouseGrabbedButton = button == GLFW.GLFW_MOUSE_BUTTON_RIGHT ? 1 : 0;
                 this.mouseClickedX = (int) mouseX;
@@ -306,18 +270,13 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button)
-    {
-        if(this.mouseGrabbed)
-        {
-            if(this.mouseGrabbedButton == 0 && button == GLFW.GLFW_MOUSE_BUTTON_LEFT)
-            {
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        if (this.mouseGrabbed) {
+            if (this.mouseGrabbedButton == 0 && button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
                 this.mouseGrabbed = false;
                 this.windowX += (mouseX - this.mouseClickedX - 1);
                 this.windowY += (mouseY - this.mouseClickedY);
-            }
-            else if(mouseGrabbedButton == 1 && button == GLFW.GLFW_MOUSE_BUTTON_RIGHT)
-            {
+            } else if (mouseGrabbedButton == 1 && button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) {
                 this.mouseGrabbed = false;
                 this.windowRotationX += (mouseX - this.mouseClickedX);
                 this.windowRotationY -= (mouseY - this.mouseClickedY);
@@ -326,17 +285,13 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
-    private void openConfigScreen()
-    {
+    private void openConfigScreen() {
         ModList.get().getModContainerById(NukaCraftMod.MOD_ID).ifPresent(container ->
         {
             Screen screen = container.getCustomExtension(ConfigGuiHandler.ConfigGuiFactory.class).map(function -> function.screenFunction().apply(this.minecraft, null)).orElse(null);
-            if(screen != null)
-            {
+            if (screen != null) {
                 this.minecraft.setScreen(screen);
-            }
-            else if(this.minecraft != null && this.minecraft.player != null)
-            {
+            } else if (this.minecraft != null && this.minecraft.player != null) {
                 MutableComponent modName = new TextComponent("Configured");
                 modName.setStyle(modName.getStyle()
                         .withColor(ChatFormatting.YELLOW)

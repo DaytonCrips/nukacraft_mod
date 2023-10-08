@@ -13,23 +13,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
-public class SyncedBlockEntity extends BlockEntity
-{
-    public SyncedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
-    {
+public class SyncedBlockEntity extends BlockEntity {
+    public SyncedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
-    protected void syncToClient()
-    {
+    protected void syncToClient() {
         this.setChanged();
-        if(this.level != null && !this.level.isClientSide)
-        {
-            if(this.level instanceof ServerLevel)
-            {
+        if (this.level != null && !this.level.isClientSide) {
+            if (this.level instanceof ServerLevel) {
                 ClientboundBlockEntityDataPacket packet = this.getUpdatePacket();
-                if(packet != null)
-                {
+                if (packet != null) {
                     ServerLevel server = (ServerLevel) this.level;
                     List<ServerPlayer> players = server.getChunkSource().chunkMap.getPlayers(new ChunkPos(this.worldPosition), false);
                     players.forEach(player -> player.connection.send(packet));
@@ -39,20 +33,17 @@ public class SyncedBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag getUpdateTag()
-    {
+    public CompoundTag getUpdateTag() {
         return this.saveWithFullMetadata();
     }
 
     @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket()
-    {
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public void onDataPacket(final Connection net, final ClientboundBlockEntityDataPacket pkt)
-    {
+    public void onDataPacket(final Connection net, final ClientboundBlockEntityDataPacket pkt) {
         this.deserializeNBT(pkt.getTag());
     }
 }

@@ -10,18 +10,17 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class S2CMessageProjectileHitEntity extends PlayMessage<S2CMessageProjectileHitEntity>
-{
+public class S2CMessageProjectileHitEntity extends PlayMessage<S2CMessageProjectileHitEntity> {
     private double x;
     private double y;
     private double z;
     private int type;
     private boolean player;
 
-    public S2CMessageProjectileHitEntity() {}
+    public S2CMessageProjectileHitEntity() {
+    }
 
-    public S2CMessageProjectileHitEntity(double x, double y, double z, int type, boolean player)
-    {
+    public S2CMessageProjectileHitEntity(double x, double y, double z, int type, boolean player) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -30,8 +29,7 @@ public class S2CMessageProjectileHitEntity extends PlayMessage<S2CMessageProject
     }
 
     @Override
-    public void encode(S2CMessageProjectileHitEntity message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageProjectileHitEntity message, FriendlyByteBuf buffer) {
         buffer.writeDouble(message.x);
         buffer.writeDouble(message.y);
         buffer.writeDouble(message.z);
@@ -40,8 +38,7 @@ public class S2CMessageProjectileHitEntity extends PlayMessage<S2CMessageProject
     }
 
     @Override
-    public S2CMessageProjectileHitEntity decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageProjectileHitEntity decode(FriendlyByteBuf buffer) {
         double x = buffer.readDouble();
         double y = buffer.readDouble();
         double z = buffer.readDouble();
@@ -51,44 +48,36 @@ public class S2CMessageProjectileHitEntity extends PlayMessage<S2CMessageProject
     }
 
     @Override
-    public void handle(S2CMessageProjectileHitEntity message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageProjectileHitEntity message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleProjectileHitEntity(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public double getX()
-    {
+    public double getX() {
         return this.x;
     }
 
-    public double getY()
-    {
+    public double getY() {
         return this.y;
     }
 
-    public double getZ()
-    {
+    public double getZ() {
         return this.z;
     }
 
-    public boolean isHeadshot()
-    {
+    public boolean isHeadshot() {
         return this.type == HitType.HEADSHOT;
     }
 
-    public boolean isCritical()
-    {
+    public boolean isCritical() {
         return this.type == HitType.CRITICAL;
     }
 
-    public boolean isPlayer()
-    {
+    public boolean isPlayer() {
         return this.player;
     }
 
-    public static class HitType
-    {
+    public static class HitType {
         public static final int NORMAL = 0;
         public static final int HEADSHOT = 1;
         public static final int CRITICAL = 2;

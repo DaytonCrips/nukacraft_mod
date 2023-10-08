@@ -19,8 +19,7 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class GripType
-{
+public class GripType {
     /**
      * A grip type designed for weapons that are held with only one hand, like a pistol
      */
@@ -45,32 +44,26 @@ public class GripType
     /**
      * A common method to set up a transformation of the weapon onto the players' back.
      *
-     * @param player      the player the weapon is being rendered on
+     * @param player    the player the weapon is being rendered on
      * @param poseStack the matrixstack get
      * @return if the weapon can render
      */
-    public static boolean applyBackTransforms(Player player, PoseStack poseStack)
-    {
-        if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() == Items.ELYTRA)
-        {
+    public static boolean applyBackTransforms(Player player, PoseStack poseStack) {
+        if (player.getItemBySlot(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
             return false;
         }
 
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(180F));
 
-        if(player.isCrouching())
-        {
+        if (player.isCrouching()) {
             poseStack.translate(0 * 0.0625, -7 * 0.0625, -4 * 0.0625);
             poseStack.mulPose(Vector3f.XP.rotationDegrees(30F));
-        }
-        else
-        {
+        } else {
             poseStack.translate(0 * 0.0625, -5 * 0.0625, -2 * 0.0625);
         }
 
-        if(!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty())
-        {
+        if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
             poseStack.translate(0, 0, -1 * 0.0625);
         }
 
@@ -85,8 +78,7 @@ public class GripType
      */
     private static Map<ResourceLocation, GripType> gripTypeMap = new HashMap<>();
 
-    static
-    {
+    static {
         /* Registers the standard grip types when the class is loaded */
         registerType(ONE_HANDED);
         registerType(TWO_HANDED);
@@ -99,8 +91,7 @@ public class GripType
      *
      * @param type the get of the grip type
      */
-    public static void registerType(GripType type)
-    {
+    public static void registerType(GripType type) {
         gripTypeMap.putIfAbsent(type.getId(), type);
     }
 
@@ -111,8 +102,7 @@ public class GripType
      * @param id the id of the grip type
      * @return returns an get of the grip type or ONE_HANDED if it doesn't exist
      */
-    public static GripType getType(ResourceLocation id)
-    {
+    public static GripType getType(ResourceLocation id) {
         return gripTypeMap.getOrDefault(id, ONE_HANDED);
     }
 
@@ -122,11 +112,10 @@ public class GripType
     /**
      * Creates a new grip type.
      *
-     * @param id the id of the grip type
+     * @param id            the id of the grip type
      * @param heldAnimation the animation functions to apply to the held weapon
      */
-    public GripType(ResourceLocation id, IHeldAnimation heldAnimation)
-    {
+    public GripType(ResourceLocation id, IHeldAnimation heldAnimation) {
         this.id = id;
         this.heldAnimation = heldAnimation;
     }
@@ -134,16 +123,14 @@ public class GripType
     /**
      * Gets the id of the grip type
      */
-    public ResourceLocation getId()
-    {
+    public ResourceLocation getId() {
         return this.id;
     }
 
     /**
      * Gets the held animation get. Used for rendering
      */
-    public IHeldAnimation getHeldAnimation()
-    {
+    public IHeldAnimation getHeldAnimation() {
         return this.heldAnimation;
     }
 }

@@ -29,14 +29,11 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class CrosshairHandler
-{
+public class CrosshairHandler {
     private static CrosshairHandler instance;
 
-    public static CrosshairHandler get()
-    {
-        if(instance == null)
-        {
+    public static CrosshairHandler get() {
+        if (instance == null) {
             instance = new CrosshairHandler();
         }
         return instance;
@@ -46,8 +43,7 @@ public class CrosshairHandler
     private final List<Crosshair> registeredCrosshairs = new ArrayList<>();
     private Crosshair currentCrosshair = null;
 
-    private CrosshairHandler()
-    {
+    private CrosshairHandler() {
         this.register(new TexturedCrosshair(new ResourceLocation(NukaCraftMod.MOD_ID, "better_default")));
         this.register(new TexturedCrosshair(new ResourceLocation(NukaCraftMod.MOD_ID, "circle")));
         this.register(new TexturedCrosshair(new ResourceLocation(NukaCraftMod.MOD_ID, "filled_circle"), false));
@@ -66,10 +62,8 @@ public class CrosshairHandler
     /**
      * Registers a new crosshair. If the crosshair has already been registered, it will be ignored.
      */
-    public void register(Crosshair crosshair)
-    {
-        if(!this.idToCrosshair.containsKey(crosshair.getLocation()))
-        {
+    public void register(Crosshair crosshair) {
+        if (!this.idToCrosshair.containsKey(crosshair.getLocation())) {
             this.idToCrosshair.put(crosshair.getLocation(), crosshair);
             this.registeredCrosshairs.add(crosshair);
         }
@@ -81,8 +75,7 @@ public class CrosshairHandler
      *
      * @param id the id of the crosshair
      */
-    public void setCrosshair(ResourceLocation id)
-    {
+    public void setCrosshair(ResourceLocation id) {
         this.currentCrosshair = this.idToCrosshair.getOrDefault(id, Crosshair.DEFAULT);
     }
 
@@ -90,10 +83,8 @@ public class CrosshairHandler
      * Gets the current crosshair
      */
     @Nullable
-    public Crosshair getCurrentCrosshair()
-    {
-        if(this.currentCrosshair == null && this.registeredCrosshairs.size() > 0)
-        {
+    public Crosshair getCurrentCrosshair() {
+        if (this.currentCrosshair == null && this.registeredCrosshairs.size() > 0) {
             ResourceLocation id = ResourceLocation.tryParse(Config.CLIENT.display.crosshair.get());
             this.currentCrosshair = id != null ? this.idToCrosshair.getOrDefault(id, Crosshair.DEFAULT) : Crosshair.DEFAULT;
         }
@@ -103,43 +94,39 @@ public class CrosshairHandler
     /**
      * Gets a list of registered crosshairs. Please note that this list is immutable.
      */
-    public List<Crosshair> getRegisteredCrosshairs()
-    {
+    public List<Crosshair> getRegisteredCrosshairs() {
         return ImmutableList.copyOf(this.registeredCrosshairs);
     }
 
     @SubscribeEvent
-    public void onRenderOverlay(RenderGameOverlayEvent.PreLayer event)
-    {
-        if(event.getOverlay() != ForgeIngameGui.CROSSHAIR_ELEMENT)
+    public void onRenderOverlay(RenderGameOverlayEvent.PreLayer event) {
+        if (event.getOverlay() != ForgeIngameGui.CROSSHAIR_ELEMENT)
             return;
 
         Crosshair crosshair = this.getCurrentCrosshair();
-        if(AimingHandler.get().getNormalisedAdsProgress() > 0.5)
-        {
+        if (AimingHandler.get().getNormalisedAdsProgress() > 0.5) {
             event.setCanceled(true);
             return;
         }
 
-        if(crosshair == null || crosshair.isDefault())
-        {
+        if (crosshair == null || crosshair.isDefault()) {
             return;
         }
 
         Minecraft mc = Minecraft.getInstance();
-        if(mc.player == null)
+        if (mc.player == null)
             return;
 
         ItemStack heldItem = mc.player.getMainHandItem();
-        if(!(heldItem.getItem() instanceof GunItem))
+        if (!(heldItem.getItem() instanceof GunItem))
             return;
 
         event.setCanceled(true);
 
-        if(!mc.options.getCameraType().isFirstPerson())
+        if (!mc.options.getCameraType().isFirstPerson())
             return;
 
-        if(mc.player.getUseItem().getItem() == Items.SHIELD)
+        if (mc.player.getUseItem().getItem() == Items.SHIELD)
             return;
 
         PoseStack stack = event.getMatrixStack();
@@ -151,37 +138,32 @@ public class CrosshairHandler
     }
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
-    {
-        if(event.phase != TickEvent.Phase.END)
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END)
             return;
 
         Crosshair crosshair = this.getCurrentCrosshair();
-        if(crosshair == null || crosshair.isDefault())
+        if (crosshair == null || crosshair.isDefault())
             return;
 
         crosshair.tick();
     }
 
     @SubscribeEvent
-    public void onGunFired(GunFireEvent.Post event)
-    {
+    public void onGunFired(GunFireEvent.Post event) {
         Crosshair crosshair = this.getCurrentCrosshair();
-        if(crosshair == null || crosshair.isDefault())
+        if (crosshair == null || crosshair.isDefault())
             return;
 
         crosshair.onGunFired();
     }
 
     /* Updates the crosshair if the config is reloaded. */
-    public static void onConfigReload(ModConfigEvent.Reloading event)
-    {
+    public static void onConfigReload(ModConfigEvent.Reloading event) {
         ModConfig config = event.getConfig();
-        if(config.getType() == ModConfig.Type.CLIENT && config.getModId().equals(NukaCraftMod.MOD_ID))
-        {
+        if (config.getType() == ModConfig.Type.CLIENT && config.getModId().equals(NukaCraftMod.MOD_ID)) {
             ResourceLocation id = ResourceLocation.tryParse(Config.CLIENT.display.crosshair.get());
-            if(id != null)
-            {
+            if (id != null) {
                 CrosshairHandler.get().setCrosshair(id);
             }
         }

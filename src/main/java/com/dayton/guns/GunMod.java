@@ -42,8 +42,7 @@ public class GunMod {
     public static boolean playerReviveLoaded = false;
     public static final Logger LOGGER = LogManager.getLogger(NukaCraftMod.MOD_ID);
 
-    public void initGunMod(IEventBus bus)
-    {
+    public void initGunMod(IEventBus bus) {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.clientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.commonSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
@@ -70,8 +69,7 @@ public class GunMod {
         playerReviveLoaded = ModList.get().isLoaded("playerrevive");
     }
 
-    private void onCommonSetup(FMLCommonSetupEvent event)
-    {
+    private void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() ->
         {
             ModRecipeType.init();
@@ -80,20 +78,17 @@ public class GunMod {
             ProjectileManager.getInstance().registerFactory(GRENADE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new GrenadeEntity(ModEntities.GRENADE.get(), worldIn, entity, weapon, item, modifiedGun));
             ProjectileManager.getInstance().registerFactory(MISSILE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MissileEntity(ModEntities.MISSILE.get(), worldIn, entity, weapon, item, modifiedGun));
             PacketHandler.init();
-            if(Config.COMMON.gameplay.improvedHitboxes.get())
-            {
+            if (Config.COMMON.gameplay.improvedHitboxes.get()) {
                 MinecraftForge.EVENT_BUS.register(new BoundingBoxManager());
             }
         });
     }
 
-    private void onClientSetup(FMLClientSetupEvent event)
-    {
+    private void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(ClientHandler::setup);
     }
 
-    private void onGatherData(GatherDataEvent event)
-    {
+    private void onGatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         BlockTagGen blockTagGen = new BlockTagGen(generator, existingFileHelper);
@@ -105,8 +100,7 @@ public class GunMod {
         generator.addProvider(new GunGen(generator));
     }
 
-    public static boolean isDebugging()
-    {
+    public static boolean isDebugging() {
         return false; //!FMLEnvironment.production;
     }
 }

@@ -10,17 +10,15 @@ import com.dayton.guns.common.foundation.item.attachment.impl.Barrel;
  * <p>
  * Author: MrCrayfish
  */
-public interface IGunModifier
-{
+public interface IGunModifier {
     /**
      * Modify the volume of the fire sound. This does not change the distance the sound can be heard
      * from, just the volume.
-     * 
+     *
      * @param volume the current fire volume
      * @return the new volume
      */
-    default float modifyFireSoundVolume(float volume)
-    {
+    default float modifyFireSoundVolume(float volume) {
         return volume;
     }
 
@@ -30,8 +28,7 @@ public interface IGunModifier
      *
      * @return if this fire sound should be silenced version
      */
-    default boolean silencedFire()
-    {
+    default boolean silencedFire() {
         return false;
     }
 
@@ -43,8 +40,7 @@ public interface IGunModifier
      * @param radius the current sound radius
      * @return the new sound radius
      */
-    default double modifyFireSoundRadius(double radius)
-    {
+    default double modifyFireSoundRadius(double radius) {
         return radius;
     }
 
@@ -54,8 +50,7 @@ public interface IGunModifier
      *
      * @return additional damage to add on top of the weapon damage
      */
-    default float additionalDamage()
-    {
+    default float additionalDamage() {
         return 0.0F;
     }
 
@@ -65,8 +60,7 @@ public interface IGunModifier
      * @param damage the current projectile damage
      * @return a new damage for the projectile
      */
-    default float modifyProjectileDamage(float damage)
-    {
+    default float modifyProjectileDamage(float damage) {
         return damage;
     }
 
@@ -76,8 +70,7 @@ public interface IGunModifier
      * @param speed the current projectile speed
      * @return a new speed for the projectile
      */
-    default double modifyProjectileSpeed(double speed)
-    {
+    default double modifyProjectileSpeed(double speed) {
         return speed;
     }
 
@@ -88,8 +81,7 @@ public interface IGunModifier
      * @param spread the current weapon spread
      * @return a new spread for the weapon
      */
-    default float modifyProjectileSpread(float spread)
-    {
+    default float modifyProjectileSpread(float spread) {
         return spread;
     }
 
@@ -98,8 +90,7 @@ public interface IGunModifier
      *
      * @return additional gravity to add to the projectile
      */
-    default double additionalProjectileGravity()
-    {
+    default double additionalProjectileGravity() {
         return 0;
     }
 
@@ -110,8 +101,7 @@ public interface IGunModifier
      * @param gravity the current gravity
      * @return a new gravity for the projectile
      */
-    default double modifyProjectileGravity(double gravity)
-    {
+    default double modifyProjectileGravity(double gravity) {
         return gravity;
     }
 
@@ -123,8 +113,7 @@ public interface IGunModifier
      * @param life the current projectile life
      * @return a new life for the projectile
      */
-    default int modifyProjectileLife(int life)
-    {
+    default int modifyProjectileLife(int life) {
         return life;
     }
 
@@ -136,8 +125,7 @@ public interface IGunModifier
      *
      * @return a value to multiply the weapon's kick
      */
-    default float recoilModifier()
-    {
+    default float recoilModifier() {
         return 1.0F;
     }
 
@@ -149,8 +137,7 @@ public interface IGunModifier
      *
      * @return a value to multiply the weapon's kick
      */
-    default float kickModifier()
-    {
+    default float kickModifier() {
         return 1.0F;
     }
 
@@ -161,8 +148,7 @@ public interface IGunModifier
      * @return the new size for the muzzle flash
      */
     @Deprecated(since = "1.3.0", forRemoval = true)
-    default double modifyMuzzleFlashSize(double size)
-    {
+    default double modifyMuzzleFlashSize(double size) {
         return size;
     }
 
@@ -172,8 +158,7 @@ public interface IGunModifier
      * @param scale the current scale
      * @return the new scale for the muzzle flash
      */
-    default double modifyMuzzleFlashScale(double scale)
-    {
+    default double modifyMuzzleFlashScale(double scale) {
         return scale;
     }
 
@@ -184,8 +169,7 @@ public interface IGunModifier
      * @param speed the current speed
      * @return the new speed
      */
-    default double modifyAimDownSightSpeed(double speed)
-    {
+    default double modifyAimDownSightSpeed(double speed) {
         return speed;
     }
 
@@ -195,8 +179,7 @@ public interface IGunModifier
      * @param rate the current fire rate
      * @return the new fire rate
      */
-    default int modifyFireRate(int rate)
-    {
+    default int modifyFireRate(int rate) {
         return rate;
     }
 
@@ -206,8 +189,7 @@ public interface IGunModifier
      *
      * @return additional chance to include when determining critical hit
      */
-    default float criticalChance()
-    {
+    default float criticalChance() {
         return 0F;
     }
 }

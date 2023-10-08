@@ -17,77 +17,65 @@ import java.util.Random;
 
 /**
  * A wrapper for baked model to prevent custom rendering handling.
- *
+ * <p>
  * Author: MrCrayfish
  */
-public class GunModel implements BakedModel
-{
+public class GunModel implements BakedModel {
     private static final GunModel INSTANCE = new GunModel();
 
     private BakedModel model;
 
-    public void setModel(BakedModel model)
-    {
+    public void setModel(BakedModel model) {
         this.model = model;
     }
 
     @Override
-    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction direction, Random random)
-    {
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction direction, Random random) {
         return this.model.getQuads(state, direction, random);
     }
 
     @Override
-    public boolean useAmbientOcclusion()
-    {
+    public boolean useAmbientOcclusion() {
         return this.model.useAmbientOcclusion();
     }
 
     @Override
-    public boolean isGui3d()
-    {
+    public boolean isGui3d() {
         return this.model.isGui3d();
     }
 
     @Override
-    public boolean usesBlockLight()
-    {
+    public boolean usesBlockLight() {
         return this.model.usesBlockLight();
     }
 
     @Override
-    public boolean isCustomRenderer()
-    {
+    public boolean isCustomRenderer() {
         return false;
     }
 
     @Override
-    public TextureAtlasSprite getParticleIcon()
-    {
+    public TextureAtlasSprite getParticleIcon() {
         return this.model.getParticleIcon();
     }
 
     @Override
-    public ItemOverrides getOverrides()
-    {
+    public ItemOverrides getOverrides() {
         return this.model.getOverrides();
     }
 
-    public static BakedModel wrap(BakedModel model)
-    {
+    public static BakedModel wrap(BakedModel model) {
         INSTANCE.setModel(model);
         return INSTANCE;
     }
 
     @Override
-    public boolean isLayered()
-    {
+    public boolean isLayered() {
         return true;
     }
 
     @Override
-    public List<Pair<BakedModel, RenderType>> getLayerModels(ItemStack itemStack, boolean fabulous)
-    {
+    public List<Pair<BakedModel, RenderType>> getLayerModels(ItemStack itemStack, boolean fabulous) {
         return List.of(Pair.of(this.model, RenderType.entityTranslucent(InventoryMenu.BLOCK_ATLAS)));
     }
 }

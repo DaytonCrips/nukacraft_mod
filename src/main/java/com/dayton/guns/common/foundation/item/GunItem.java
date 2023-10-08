@@ -57,22 +57,19 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
 
     private Gun gun = new Gun();
 
-    public GunItem(Item.Properties properties)
-    {
+    public GunItem(Item.Properties properties) {
         super(properties);
     }
 
-    public void setGun(NetworkGunManager.Supplier supplier)
-    {
+    public void setGun(NetworkGunManager.Supplier supplier) {
         this.gun = supplier.getGun();
     }
 
-    public Gun getGun()
-    {
+    public Gun getGun() {
         return this.gun;
     }
 
-    public String getName(){
+    public String getName() {
         return name.get();
     }
 
@@ -82,44 +79,34 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
     }
 
     @Override
-    public void initializeClient(Consumer<IItemRenderProperties> consumer)
-    {
-        consumer.accept(new IItemRenderProperties()
-        {
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(new IItemRenderProperties() {
             @Override
-            public BlockEntityWithoutLevelRenderer getItemStackRenderer()
-            {
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
                 return new GunItemStackRenderer();
             }
         });
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flag)
-    {
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flag) {
         Gun modifiedGun = this.getModifiedGun(stack);
 
         Item ammo = ForgeRegistries.ITEMS.getValue(modifiedGun.getProjectile().getItem());
-        if(ammo != null)
-        {
+        if (ammo != null) {
             tooltip.add(new TranslatableComponent("info.nukacraft.ammo_type", new TranslatableComponent(ammo.getDescriptionId()).withStyle(ChatFormatting.WHITE)).withStyle(ChatFormatting.GRAY));
         }
 
         String additionalDamageText = "";
         CompoundTag tagCompound = stack.getTag();
-        if(tagCompound != null)
-        {
-            if(tagCompound.contains("AdditionalDamage", Tag.TAG_ANY_NUMERIC))
-            {
+        if (tagCompound != null) {
+            if (tagCompound.contains("AdditionalDamage", Tag.TAG_ANY_NUMERIC)) {
                 float additionalDamage = tagCompound.getFloat("AdditionalDamage");
                 additionalDamage += GunModifierHelper.getAdditionalDamage(stack);
 
-                if(additionalDamage > 0)
-                {
+                if (additionalDamage > 0) {
                     additionalDamageText = ChatFormatting.GREEN + " +" + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(additionalDamage);
-                }
-                else if(additionalDamage < 0)
-                {
+                } else if (additionalDamage < 0) {
                     additionalDamageText = ChatFormatting.RED + " " + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(additionalDamage);
                 }
             }
@@ -130,14 +117,10 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
         damage = GunEnchantmentHelper.getAcceleratorDamage(stack, damage);
         tooltip.add(new TranslatableComponent("info.nukacraft.damage", ChatFormatting.WHITE + ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(damage) + additionalDamageText).withStyle(ChatFormatting.GRAY));
 
-        if(tagCompound != null)
-        {
-            if(tagCompound.getBoolean("IgnoreAmmo"))
-            {
+        if (tagCompound != null) {
+            if (tagCompound.getBoolean("IgnoreAmmo")) {
                 tooltip.add(new TranslatableComponent("info.nukacraft.ignore_ammo").withStyle(ChatFormatting.AQUA));
-            }
-            else
-            {
+            } else {
                 int ammoCount = tagCompound.getInt("AmmoCount");
                 tooltip.add(new TranslatableComponent("info.nukacraft.ammo", ChatFormatting.WHITE.toString() + ammoCount + "/" + GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)).withStyle(ChatFormatting.GRAY));
             }
@@ -147,10 +130,8 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
     }
 
     @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks)
-    {
-        if(this.allowdedIn(group))
-        {
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks) {
+        if (this.allowdedIn(group)) {
             ItemStack stack = new ItemStack(this);
             stack.getOrCreateTag().putInt("AmmoCount", this.gun.getGeneral().getMaxAmmo());
             stacks.add(stack);
@@ -158,76 +139,85 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
     }
 
     @Override
-    public boolean isBarVisible(ItemStack stack)
-    {
+    public boolean isBarVisible(ItemStack stack) {
         CompoundTag tagCompound = stack.getOrCreateTag();
         Gun modifiedGun = this.getModifiedGun(stack);
         return !tagCompound.getBoolean("IgnoreAmmo") && tagCompound.getInt("AmmoCount") != GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun);
     }
 
     @Override
-    public int getBarWidth(ItemStack stack)
-    {
+    public int getBarWidth(ItemStack stack) {
         CompoundTag tagCompound = stack.getOrCreateTag();
         Gun modifiedGun = this.getModifiedGun(stack);
         return (int) (13.0 * (tagCompound.getInt("AmmoCount") / (double) GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)));
     }
 
 
-    public Gun getModifiedGun(ItemStack stack)
-    {
+    public Gun getModifiedGun(ItemStack stack) {
         CompoundTag tagCompound = stack.getTag();
-        if(tagCompound != null && tagCompound.contains("Gun", Tag.TAG_COMPOUND))
-        {
+        if (tagCompound != null && tagCompound.contains("Gun", Tag.TAG_COMPOUND)) {
             return this.modifiedGunCache.computeIfAbsent(tagCompound, item ->
             {
-                if(tagCompound.getBoolean("Custom"))
-                {
+                if (tagCompound.getBoolean("Custom")) {
                     return Gun.create(tagCompound.getCompound("Gun"));
-                }
-                else
-                {
+                } else {
                     Gun gunCopy = this.gun.copy();
                     gunCopy.deserializeNBT(tagCompound.getCompound("Gun"));
                     return gunCopy;
                 }
             });
         }
-        if(GunMod.isDebugging())
-        {
+        if (GunMod.isDebugging()) {
             return Debug.getGun(this);
         }
         return this.gun;
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
-    {
-        if(enchantment.category == EnchantmentTypes.SEMI_AUTO_GUN)
-        {
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment.category == EnchantmentTypes.SEMI_AUTO_GUN) {
             Gun modifiedGun = this.getModifiedGun(stack);
             return !modifiedGun.getGeneral().isAuto();
         }
         return super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
-    @Override public boolean onEntitySwing(ItemStack stack, LivingEntity entity) { return true; }
-    @Override public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) { return slotChanged; }
-    @Override public int getBarColor(ItemStack stack) { return requireNonNull(ChatFormatting.YELLOW.getColor()); }
-    @Override public boolean isEnchantable(ItemStack stack) { return this.getItemStackLimit(stack) == 1; }
-    @Override public int getEnchantmentValue() { return 5; }
+    @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+        return true;
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return slotChanged;
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return requireNonNull(ChatFormatting.YELLOW.getColor());
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return this.getItemStackLimit(stack) == 1;
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return 5;
+    }
 
     private static final Map<ItemStack, String> stackAnimations = new HashMap<>();
 
-    public static void doAnim(ItemStack stack, String animation){
+    public static void doAnim(ItemStack stack, String animation) {
         stackAnimations.put(stack, animation);
     }
 
-    public static void resetAnim(ItemStack stack){
+    public static void resetAnim(ItemStack stack) {
         stackAnimations.put(stack, null);
     }
 
-    public GunRenderer getRenderer(){
+    public GunRenderer getRenderer() {
         return gunRenderer;
     }
 
@@ -253,17 +243,17 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
             var stack = event.getData(DataTickets.ITEMSTACK);
             var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
-            if(bannedTransforms.contains(transformType)) {
+            if (bannedTransforms.contains(transformType)) {
                 resetAnim(stack);
                 return PlayState.STOP;
             }
 
             var anim = stackAnimations.get(stack);
-            if(anim == null) return PlayState.STOP;
+            if (anim == null) return PlayState.STOP;
 
             var animation = begin().then(anim, LOOP);
 
-            if(controller.hasAnimationFinished())
+            if (controller.hasAnimationFinished())
                 controller.forceAnimationReset();
 
 

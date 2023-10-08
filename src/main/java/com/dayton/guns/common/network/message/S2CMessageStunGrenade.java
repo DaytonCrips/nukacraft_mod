@@ -7,30 +7,27 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class S2CMessageStunGrenade extends PlayMessage<S2CMessageStunGrenade>
-{
+public class S2CMessageStunGrenade extends PlayMessage<S2CMessageStunGrenade> {
     private double x, y, z;
 
-    public S2CMessageStunGrenade() {}
+    public S2CMessageStunGrenade() {
+    }
 
-    public S2CMessageStunGrenade(double x, double y, double z)
-    {
+    public S2CMessageStunGrenade(double x, double y, double z) {
         this.z = z;
         this.y = y;
         this.x = x;
     }
 
     @Override
-    public void encode(S2CMessageStunGrenade message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageStunGrenade message, FriendlyByteBuf buffer) {
         buffer.writeDouble(message.x);
         buffer.writeDouble(message.y);
         buffer.writeDouble(message.z);
     }
 
     @Override
-    public S2CMessageStunGrenade decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageStunGrenade decode(FriendlyByteBuf buffer) {
         double x = buffer.readDouble();
         double y = buffer.readDouble();
         double z = buffer.readDouble();
@@ -38,24 +35,20 @@ public class S2CMessageStunGrenade extends PlayMessage<S2CMessageStunGrenade>
     }
 
     @Override
-    public void handle(S2CMessageStunGrenade message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageStunGrenade message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleExplosionStunGrenade(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public double getX()
-    {
+    public double getX() {
         return x;
     }
 
-    public double getY()
-    {
+    public double getY() {
         return y;
     }
 
-    public double getZ()
-    {
+    public double getZ() {
         return z;
     }
 }

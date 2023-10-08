@@ -19,78 +19,65 @@ import java.util.stream.Stream;
 /**
  * Author: MrCrayfish
  */
-public class WorkbenchIngredient extends Ingredient
-{
+public class WorkbenchIngredient extends Ingredient {
     private final Value itemList;
     private final int count;
 
-    protected WorkbenchIngredient(Stream<? extends Value> itemList, int count)
-    {
+    protected WorkbenchIngredient(Stream<? extends Value> itemList, int count) {
         super(itemList);
         this.itemList = null;
         this.count = count;
     }
 
-    private WorkbenchIngredient(Value itemList, int count)
-    {
+    private WorkbenchIngredient(Value itemList, int count) {
         super(Stream.of(itemList));
         this.itemList = itemList;
         this.count = count;
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return this.count;
     }
 
     @Override
-    public IIngredientSerializer<? extends Ingredient> getSerializer()
-    {
+    public IIngredientSerializer<? extends Ingredient> getSerializer() {
         return Serializer.INSTANCE;
     }
 
-    public static WorkbenchIngredient fromJson(JsonObject object)
-    {
+    public static WorkbenchIngredient fromJson(JsonObject object) {
         Ingredient.Value value = valueFromJson(object);
         int count = GsonHelper.getAsInt(object, "count", 1);
         return new WorkbenchIngredient(Stream.of(value), count);
     }
 
     @Override
-    public JsonElement toJson()
-    {
+    public JsonElement toJson() {
         JsonObject object = this.itemList.serialize();
         object.addProperty("count", this.count);
         return object;
     }
 
-    public static WorkbenchIngredient of(ItemLike provider, int count)
-    {
+    public static WorkbenchIngredient of(ItemLike provider, int count) {
         return new WorkbenchIngredient(new Ingredient.ItemValue(new ItemStack(provider)), count);
     }
 
-    public static WorkbenchIngredient of(ItemStack stack, int count)
-    {
+    public static WorkbenchIngredient of(ItemStack stack, int count) {
         return new WorkbenchIngredient(new Ingredient.ItemValue(stack), count);
     }
 
-    public static WorkbenchIngredient of(TagKey<Item> tag, int count)
-    {
+    public static WorkbenchIngredient of(TagKey<Item> tag, int count) {
         return new WorkbenchIngredient(new Ingredient.TagValue(tag), count);
     }
 
-    public static WorkbenchIngredient of(ResourceLocation id, int count)
-    {
+    public static WorkbenchIngredient of(ResourceLocation id, int count) {
         return new WorkbenchIngredient(new UnknownValue(id), count);
     }
 
-    public static class Serializer implements IIngredientSerializer<WorkbenchIngredient>
-    {
+    public static class Serializer implements IIngredientSerializer<WorkbenchIngredient> {
         public static final WorkbenchIngredient.Serializer INSTANCE = new WorkbenchIngredient.Serializer();
 
         @Override
-        public WorkbenchIngredient parse(FriendlyByteBuf buffer)
-        {
+        public WorkbenchIngredient parse(FriendlyByteBuf buffer) {
             int itemCount = buffer.readVarInt();
             int count = buffer.readVarInt();
             Stream<Ingredient.ItemValue> values = Stream.generate(() -> new ItemValue(buffer.readItem())).limit(itemCount);
@@ -98,18 +85,15 @@ public class WorkbenchIngredient extends Ingredient
         }
 
         @Override
-        public WorkbenchIngredient parse(JsonObject object)
-        {
+        public WorkbenchIngredient parse(JsonObject object) {
             return WorkbenchIngredient.fromJson(object);
         }
 
         @Override
-        public void write(FriendlyByteBuf buffer, WorkbenchIngredient ingredient)
-        {
+        public void write(FriendlyByteBuf buffer, WorkbenchIngredient ingredient) {
             buffer.writeVarInt(ingredient.getItems().length);
             buffer.writeVarInt(ingredient.count);
-            for(ItemStack stack : ingredient.getItems())
-            {
+            for (ItemStack stack : ingredient.getItems()) {
                 buffer.writeItem(stack);
             }
         }
@@ -121,24 +105,20 @@ public class WorkbenchIngredient extends Ingredient
      * {@link ItemValue}. Only use this for generating data.
      */
     @SuppressWarnings("ClassCanBeRecord")
-    public static class UnknownValue implements Ingredient.Value
-    {
+    public static class UnknownValue implements Ingredient.Value {
         private final ResourceLocation id;
 
-        public UnknownValue(ResourceLocation id)
-        {
+        public UnknownValue(ResourceLocation id) {
             this.id = id;
         }
 
         @Override
-        public Collection<ItemStack> getItems()
-        {
+        public Collection<ItemStack> getItems() {
             return Collections.emptyList();
         }
 
         @Override
-        public JsonObject serialize()
-        {
+        public JsonObject serialize() {
             JsonObject object = new JsonObject();
             object.addProperty("item", this.id.toString());
             return object;

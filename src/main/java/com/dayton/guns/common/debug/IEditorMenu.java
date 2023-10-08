@@ -9,8 +9,7 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public interface IEditorMenu
-{
+public interface IEditorMenu {
     Component getEditorLabel();
 
     void getEditorWidgets(List<Pair<Component, Supplier<IDebugWidget>>> widgets);

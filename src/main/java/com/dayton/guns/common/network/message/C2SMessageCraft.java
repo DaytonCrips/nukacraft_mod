@@ -13,40 +13,35 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class C2SMessageCraft extends PlayMessage<C2SMessageCraft>
-{
+public class C2SMessageCraft extends PlayMessage<C2SMessageCraft> {
     private ResourceLocation id;
     private BlockPos pos;
 
-    public C2SMessageCraft() {}
+    public C2SMessageCraft() {
+    }
 
-    public C2SMessageCraft(ResourceLocation id, BlockPos pos)
-    {
+    public C2SMessageCraft(ResourceLocation id, BlockPos pos) {
         this.id = id;
         this.pos = pos;
     }
 
     @Override
-    public void encode(C2SMessageCraft message, FriendlyByteBuf buffer)
-    {
+    public void encode(C2SMessageCraft message, FriendlyByteBuf buffer) {
         buffer.writeResourceLocation(message.id);
         buffer.writeBlockPos(message.pos);
     }
 
     @Override
-    public C2SMessageCraft decode(FriendlyByteBuf buffer)
-    {
+    public C2SMessageCraft decode(FriendlyByteBuf buffer) {
         return new C2SMessageCraft(buffer.readResourceLocation(), buffer.readBlockPos());
     }
 
     @Override
-    public void handle(C2SMessageCraft message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(C2SMessageCraft message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() ->
         {
             ServerPlayer player = supplier.get().getSender();
-            if(player != null)
-            {
+            if (player != null) {
                 ServerPlayHandler.handleCraft(player, message.id, message.pos);
             }
         });

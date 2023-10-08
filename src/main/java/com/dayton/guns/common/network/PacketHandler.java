@@ -10,20 +10,17 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-public class PacketHandler
-{
+public class PacketHandler {
     private static SimpleChannel PLAY_CHANNEL;
 
     /**
      * Gets the play network channel for MrCrayfish's Gun Mod
      */
-    public static SimpleChannel getPlayChannel()
-    {
+    public static SimpleChannel getPlayChannel() {
         return PLAY_CHANNEL;
     }
 
-    public static void init()
-    {
+    public static void init() {
         PLAY_CHANNEL = FrameworkChannelBuilder
                 .create(NukaCraftMod.MOD_ID, "play", 1)
                 .registerPlayMessage(C2SMessageAim.class, NetworkDirection.PLAY_TO_SERVER)

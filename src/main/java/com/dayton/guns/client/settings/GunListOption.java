@@ -5,8 +5,7 @@ import com.dayton.guns.common.data.interfaces.IResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public class GunListOption<E extends IResourceLocation>
-{
+public class GunListOption<E extends IResourceLocation> {
     /*private final Supplier<List<E>> supplier;
     private final Supplier<ResourceLocation> getter;
     private final Consumer<ResourceLocation> setter;

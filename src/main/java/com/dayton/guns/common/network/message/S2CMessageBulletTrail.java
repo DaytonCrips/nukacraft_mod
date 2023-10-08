@@ -19,8 +19,7 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
-{
+public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail> {
     private int[] entityIds;
     private Vec3[] positions;
     private Vec3[] motions;
@@ -33,15 +32,14 @@ public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
     private boolean enchanted;
     private ParticleOptions particleData;
 
-    public S2CMessageBulletTrail() {}
+    public S2CMessageBulletTrail() {
+    }
 
-    public S2CMessageBulletTrail(ProjectileEntity[] spawnedProjectiles, Gun.Projectile projectileProps, int shooterId, ParticleOptions particleData)
-    {
+    public S2CMessageBulletTrail(ProjectileEntity[] spawnedProjectiles, Gun.Projectile projectileProps, int shooterId, ParticleOptions particleData) {
         this.positions = new Vec3[spawnedProjectiles.length];
         this.motions = new Vec3[spawnedProjectiles.length];
         this.entityIds = new int[spawnedProjectiles.length];
-        for(int i = 0; i < spawnedProjectiles.length; i++)
-        {
+        for (int i = 0; i < spawnedProjectiles.length; i++) {
             ProjectileEntity projectile = spawnedProjectiles[i];
             this.positions[i] = projectile.position();
             this.motions[i] = projectile.getDeltaMovement();
@@ -57,8 +55,7 @@ public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
         this.particleData = particleData;
     }
 
-    public S2CMessageBulletTrail(int[] entityIds, Vec3[] positions, Vec3[] motions, ItemStack item, int trailColor, double trailLengthMultiplier, int life, double gravity, int shooterId, boolean enchanted, ParticleOptions particleData)
-    {
+    public S2CMessageBulletTrail(int[] entityIds, Vec3[] positions, Vec3[] motions, ItemStack item, int trailColor, double trailLengthMultiplier, int life, double gravity, int shooterId, boolean enchanted, ParticleOptions particleData) {
         this.entityIds = entityIds;
         this.positions = positions;
         this.motions = motions;
@@ -73,11 +70,9 @@ public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
     }
 
     @Override
-    public void encode(S2CMessageBulletTrail message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageBulletTrail message, FriendlyByteBuf buffer) {
         buffer.writeInt(message.entityIds.length);
-        for(int i = 0; i < message.entityIds.length; i++)
-        {
+        for (int i = 0; i < message.entityIds.length; i++) {
             buffer.writeInt(message.entityIds[i]);
             BufferUtil.writeVec3(buffer, message.positions[i]);
             BufferUtil.writeVec3(buffer, message.motions[i]);
@@ -94,14 +89,12 @@ public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
     }
 
     @Override
-    public S2CMessageBulletTrail decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageBulletTrail decode(FriendlyByteBuf buffer) {
         int size = buffer.readInt();
         int[] entityIds = new int[size];
         Vec3[] positions = new Vec3[size];
         Vec3[] motions = new Vec3[size];
-        for(int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             entityIds[i] = buffer.readInt();
             positions[i] = BufferUtil.readVec3(buffer);
             motions[i] = BufferUtil.readVec3(buffer);
@@ -116,78 +109,64 @@ public class S2CMessageBulletTrail extends PlayMessage<S2CMessageBulletTrail>
         ParticleType<?> type = Registry.PARTICLE_TYPE.byId(buffer.readInt());
         if (type == null) type = ParticleTypes.CRIT;
         ParticleOptions particleData = this.readParticle(buffer, type);
-        return new S2CMessageBulletTrail(entityIds, positions, motions, item, trailColor, trailLengthMultiplier, life, gravity,shooterId, enchanted, particleData);
+        return new S2CMessageBulletTrail(entityIds, positions, motions, item, trailColor, trailLengthMultiplier, life, gravity, shooterId, enchanted, particleData);
     }
 
-    private <T extends ParticleOptions> T readParticle(FriendlyByteBuf buffer, ParticleType<T> type)
-    {
+    private <T extends ParticleOptions> T readParticle(FriendlyByteBuf buffer, ParticleType<T> type) {
         return type.getDeserializer().fromNetwork(type, buffer);
     }
 
     @Override
-    public void handle(S2CMessageBulletTrail message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageBulletTrail message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleMessageBulletTrail(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public int getCount()
-    {
+    public int getCount() {
         return this.entityIds.length;
     }
 
-    public int[] getEntityIds()
-    {
+    public int[] getEntityIds() {
         return this.entityIds;
     }
 
-    public Vec3[] getPositions()
-    {
+    public Vec3[] getPositions() {
         return this.positions;
     }
 
-    public Vec3[] getMotions()
-    {
+    public Vec3[] getMotions() {
         return this.motions;
     }
 
-    public int getTrailColor()
-    {
+    public int getTrailColor() {
         return this.trailColor;
     }
 
-    public double getTrailLengthMultiplier()
-    {
+    public double getTrailLengthMultiplier() {
         return this.trailLengthMultiplier;
     }
 
-    public int getLife()
-    {
+    public int getLife() {
         return this.life;
     }
 
-    public ItemStack getItem()
-    {
+    public ItemStack getItem() {
         return this.item;
     }
 
-    public double getGravity()
-    {
+    public double getGravity() {
         return this.gravity;
     }
 
-    public int getShooterId()
-    {
+    public int getShooterId() {
         return this.shooterId;
     }
 
-    public boolean isEnchanted()
-    {
+    public boolean isEnchanted() {
         return this.enchanted;
     }
 
-    public ParticleOptions getParticleData()
-    {
+    public ParticleOptions getParticleData() {
         return this.particleData;
     }
 }

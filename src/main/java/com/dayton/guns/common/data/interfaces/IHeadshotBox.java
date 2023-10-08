@@ -14,8 +14,7 @@ import javax.annotation.Nullable;
  * <p>
  * Author: MrCrayfish
  */
-public interface IHeadshotBox<T extends Entity>
-{
+public interface IHeadshotBox<T extends Entity> {
     /**
      * Gets a bounding box of the given entity's head in the world. This method can either return an
      * axis aligned box or null for no hit box.

@@ -17,29 +17,22 @@ import net.minecraft.world.phys.Vec3;
 /**
  * Author: MrCrayfish
  */
-public class MissileEntity extends ProjectileEntity
-{
-    public MissileEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn)
-    {
+public class MissileEntity extends ProjectileEntity {
+    public MissileEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn) {
         super(entityType, worldIn);
     }
 
-    public MissileEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn, LivingEntity shooter, ItemStack weapon, GunItem item, Gun modifiedGun)
-    {
+    public MissileEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn, LivingEntity shooter, ItemStack weapon, GunItem item, Gun modifiedGun) {
         super(entityType, worldIn, shooter, weapon, item, modifiedGun);
     }
 
     @Override
-    protected void onProjectileTick()
-    {
-        if (this.level.isClientSide)
-        {
-            for (int i = 5; i > 0; i--)
-            {
+    protected void onProjectileTick() {
+        if (this.level.isClientSide) {
+            for (int i = 5; i > 0; i--) {
                 this.level.addParticle(ParticleTypes.CLOUD, true, this.getX() - (this.getDeltaMovement().x() / i), this.getY() - (this.getDeltaMovement().y() / i), this.getZ() - (this.getDeltaMovement().z() / i), 0, 0, 0);
             }
-            if (this.level.random.nextInt(2) == 0)
-            {
+            if (this.level.random.nextInt(2) == 0) {
                 this.level.addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
                 this.level.addParticle(ParticleTypes.FLAME, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             }
@@ -47,20 +40,17 @@ public class MissileEntity extends ProjectileEntity
     }
 
     @Override
-    protected void onHitEntity(Entity entity, Vec3 hitVec, Vec3 startVec, Vec3 endVec, boolean headshot)
-    {
+    protected void onHitEntity(Entity entity, Vec3 hitVec, Vec3 startVec, Vec3 endVec, boolean headshot) {
         createExplosion(this, Config.COMMON.missiles.explosionRadius.get().floatValue(), false);
     }
 
     @Override
-    protected void onHitBlock(BlockState state, BlockPos pos, Direction face, double x, double y, double z)
-    {
+    protected void onHitBlock(BlockState state, BlockPos pos, Direction face, double x, double y, double z) {
         createExplosion(this, Config.COMMON.missiles.explosionRadius.get().floatValue(), false);
     }
 
     @Override
-    public void onExpired()
-    {
+    public void onExpired() {
         createExplosion(this, Config.COMMON.missiles.explosionRadius.get().floatValue(), false);
     }
 }

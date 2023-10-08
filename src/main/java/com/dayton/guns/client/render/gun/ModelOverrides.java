@@ -20,8 +20,7 @@ import java.util.Map;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
-public class ModelOverrides
-{
+public class ModelOverrides {
     private static final Map<Item, IOverrideModel> MODEL_MAP = new HashMap<>();
 
     /**
@@ -30,10 +29,8 @@ public class ModelOverrides
      * @param item  the item to override it's model
      * @param model a custom IOverrideModel implementation
      */
-    public static void register(Item item, IOverrideModel model)
-    {
-        if(MODEL_MAP.putIfAbsent(item, model) == null)
-        {
+    public static void register(Item item, IOverrideModel model) {
+        if (MODEL_MAP.putIfAbsent(item, model) == null) {
             /* Register model overrides as an event for ease. Doesn't create an extra overhead because
              * Forge will just ignore it if it contains no events */
             MinecraftForge.EVENT_BUS.register(model);
@@ -46,8 +43,7 @@ public class ModelOverrides
      * @param stack the stack to check
      * @return True if overridden model exists
      */
-    public static boolean hasModel(ItemStack stack)
-    {
+    public static boolean hasModel(ItemStack stack) {
         return MODEL_MAP.containsKey(stack.getItem());
     }
 
@@ -58,28 +54,22 @@ public class ModelOverrides
      * @return The overridden model for the stack or null if no overridden model exists.
      */
     @Nullable
-    public static IOverrideModel getModel(ItemStack stack)
-    {
+    public static IOverrideModel getModel(ItemStack stack) {
         return MODEL_MAP.get(stack.getItem());
     }
 
     @SubscribeEvent
-    public static void onClientPlayerTick(TickEvent.PlayerTickEvent event)
-    {
-        if(event.phase == TickEvent.Phase.START && event.side == LogicalSide.CLIENT)
-        {
+    public static void onClientPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.START && event.side == LogicalSide.CLIENT) {
             tick(event.player);
         }
     }
 
-    private static void tick(Player player)
-    {
+    private static void tick(Player player) {
         ItemStack heldItem = player.getMainHandItem();
-        if(!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem)
-        {
+        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
             IOverrideModel model = ModelOverrides.getModel(heldItem);
-            if(model != null)
-            {
+            if (model != null) {
                 model.tick(player);
             }
         }

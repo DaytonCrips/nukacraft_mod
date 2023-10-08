@@ -17,16 +17,15 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class S2CMessageUpdateGuns extends PlayMessage<S2CMessageUpdateGuns>
-{
+public class S2CMessageUpdateGuns extends PlayMessage<S2CMessageUpdateGuns> {
     private ImmutableMap<ResourceLocation, Gun> registeredGuns;
     private ImmutableMap<ResourceLocation, CustomGun> customGuns;
 
-    public S2CMessageUpdateGuns() {}
+    public S2CMessageUpdateGuns() {
+    }
 
     @Override
-    public void encode(S2CMessageUpdateGuns message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageUpdateGuns message, FriendlyByteBuf buffer) {
         Validate.notNull(NetworkGunManager.get());
         Validate.notNull(CustomGunLoader.get());
         NetworkGunManager.get().writeRegisteredGuns(buffer);
@@ -34,8 +33,7 @@ public class S2CMessageUpdateGuns extends PlayMessage<S2CMessageUpdateGuns>
     }
 
     @Override
-    public S2CMessageUpdateGuns decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageUpdateGuns decode(FriendlyByteBuf buffer) {
         S2CMessageUpdateGuns message = new S2CMessageUpdateGuns();
         message.registeredGuns = NetworkGunManager.readRegisteredGuns(buffer);
         message.customGuns = CustomGunLoader.readCustomGuns(buffer);
@@ -43,19 +41,16 @@ public class S2CMessageUpdateGuns extends PlayMessage<S2CMessageUpdateGuns>
     }
 
     @Override
-    public void handle(S2CMessageUpdateGuns message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageUpdateGuns message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleUpdateGuns(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public ImmutableMap<ResourceLocation, Gun> getRegisteredGuns()
-    {
+    public ImmutableMap<ResourceLocation, Gun> getRegisteredGuns() {
         return this.registeredGuns;
     }
 
-    public ImmutableMap<ResourceLocation, CustomGun> getCustomGuns()
-    {
+    public ImmutableMap<ResourceLocation, CustomGun> getCustomGuns() {
         return this.customGuns;
     }
 }

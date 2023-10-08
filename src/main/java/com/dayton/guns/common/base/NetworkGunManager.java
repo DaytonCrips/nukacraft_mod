@@ -38,8 +38,7 @@ import java.util.*;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID)
-public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunItem, Gun>>
-{
+public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunItem, Gun>> {
     private static final int FILE_TYPE_LENGTH_VALUE = ".json".length();
     private static final Gson GSON_INSTANCE = Util.make(() -> {
         GsonBuilder builder = new GsonBuilder();
@@ -56,17 +55,15 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
     private Map<ResourceLocation, Gun> registeredGuns = new HashMap<>();
 
     @Override
-    protected Map<GunItem, Gun> prepare(ResourceManager manager, ProfilerFiller profiler)
-    {
+    protected Map<GunItem, Gun> prepare(ResourceManager manager, ProfilerFiller profiler) {
         Map<GunItem, Gun> map = new HashMap<>();
         ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof GunItem).forEach(item ->
         {
             ResourceLocation id = item.getRegistryName();
-            if(id != null)
-            {
+            if (id != null) {
                 List<ResourceLocation> resources = new ArrayList<>(manager.listResources("guns", (fileName) -> fileName.endsWith(id.getPath() + ".json")));
                 resources.sort((r1, r2) -> {
-                    if(r1.getNamespace().equals(r2.getNamespace())) return 0;
+                    if (r1.getNamespace().equals(r2.getNamespace())) return 0;
                     return r2.getNamespace().equals(NukaCraftMod.MOD_ID) ? 1 : -1;
                 });
                 resources.forEach(resource ->
@@ -75,37 +72,27 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
                     String[] splitPath = path.split("/");
 
                     // Makes sure the file name matches exactly with the id of the gun
-                    if(!id.getPath().equals(splitPath[splitPath.length - 1]))
+                    if (!id.getPath().equals(splitPath[splitPath.length - 1]))
                         return;
 
                     // Also check if the mod id matches with the gun's registered namespace
                     if (!id.getNamespace().equals(resource.getNamespace()))
                         return;
 
-                    try(InputStream inputstream = manager.getResource(resource).getInputStream(); Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8)))
-                    {
+                    try (InputStream inputstream = manager.getResource(resource).getInputStream(); Reader reader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8))) {
                         Gun gun = GsonHelper.fromJson(GSON_INSTANCE, reader, Gun.class);
-                        if(gun != null && Validator.isValidObject(gun))
-                        {
+                        if (gun != null && Validator.isValidObject(gun)) {
                             map.put((GunItem) item, gun);
-                        }
-                        else
-                        {
+                        } else {
                             NukaCraftMod.LOGGER.error("Couldn't load data file {} as it is missing or malformed. Using default gun data", resource);
                             map.putIfAbsent((GunItem) item, new Gun());
                         }
-                    }
-                    catch(InvalidObjectException e)
-                    {
+                    } catch (InvalidObjectException e) {
                         NukaCraftMod.LOGGER.error("Missing required properties for {}", resource);
                         e.printStackTrace();
-                    }
-                    catch(IOException e)
-                    {
+                    } catch (IOException e) {
                         NukaCraftMod.LOGGER.error("Couldn't parse data file {}", resource);
-                    }
-                    catch(IllegalAccessException e)
-                    {
+                    } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
                 });
@@ -115,8 +102,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
     }
 
     @Override
-    protected void apply(Map<GunItem, Gun> objects, ResourceManager resourceManager, ProfilerFiller profiler)
-    {
+    protected void apply(Map<GunItem, Gun> objects, ResourceManager resourceManager, ProfilerFiller profiler) {
         ImmutableMap.Builder<ResourceLocation, Gun> builder = ImmutableMap.builder();
         objects.forEach((item, gun) -> {
             Validate.notNull(item.getRegistryName());
@@ -131,14 +117,13 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      *
      * @param buffer a packet buffer get
      */
-    public void writeRegisteredGuns(FriendlyByteBuf buffer)
-    {
+    public void writeRegisteredGuns(FriendlyByteBuf buffer) {
         buffer.writeVarInt(this.registeredGuns.size());
         this.registeredGuns.forEach((id, gun) -> {
             buffer.writeResourceLocation(id);
             buffer.writeNbt(gun.serializeNBT());
         });
-}
+    }
 
     /**
      * Reads all registered guns from the provided packet buffer
@@ -146,14 +131,11 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      * @param buffer a packet buffer get
      * @return a map of registered guns from the server
      */
-    public static ImmutableMap<ResourceLocation, Gun> readRegisteredGuns(FriendlyByteBuf buffer)
-    {
+    public static ImmutableMap<ResourceLocation, Gun> readRegisteredGuns(FriendlyByteBuf buffer) {
         int size = buffer.readVarInt();
-        if(size > 0)
-        {
+        if (size > 0) {
             ImmutableMap.Builder<ResourceLocation, Gun> builder = ImmutableMap.builder();
-            for(int i = 0; i < size; i++)
-            {
+            for (int i = 0; i < size; i++) {
                 ResourceLocation id = buffer.readResourceLocation();
                 Gun gun = Gun.create(buffer.readNbt());
                 builder.put(id, gun);
@@ -163,8 +145,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
         return ImmutableMap.of();
     }
 
-    public static boolean updateRegisteredGuns(S2CMessageUpdateGuns message)
-    {
+    public static boolean updateRegisteredGuns(S2CMessageUpdateGuns message) {
         return updateRegisteredGuns(message.getRegisteredGuns());
     }
 
@@ -173,16 +154,12 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      *
      * @return true if all registered guns were able to update their corresponding gun item
      */
-    private static boolean updateRegisteredGuns(Map<ResourceLocation, Gun> registeredGuns)
-    {
+    private static boolean updateRegisteredGuns(Map<ResourceLocation, Gun> registeredGuns) {
         clientRegisteredGuns.clear();
-        if(registeredGuns != null)
-        {
-            for(Map.Entry<ResourceLocation, Gun> entry : registeredGuns.entrySet())
-            {
+        if (registeredGuns != null) {
+            for (Map.Entry<ResourceLocation, Gun> entry : registeredGuns.entrySet()) {
                 Item item = ForgeRegistries.ITEMS.getValue(entry.getKey());
-                if(!(item instanceof GunItem))
-                {
+                if (!(item instanceof GunItem)) {
                     return false;
                 }
                 ((GunItem) item).setGun(new Supplier(entry.getValue()));
@@ -198,8 +175,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      *
      * @return a map of registered gun objects
      */
-    public Map<ResourceLocation, Gun> getRegisteredGuns()
-    {
+    public Map<ResourceLocation, Gun> getRegisteredGuns() {
         return this.registeredGuns;
     }
 
@@ -208,30 +184,25 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      *
      * @return a map of guns registered on the client
      */
-    public static List<GunItem> getClientRegisteredGuns()
-    {
+    public static List<GunItem> getClientRegisteredGuns() {
         return ImmutableList.copyOf(clientRegisteredGuns);
     }
 
     @SubscribeEvent
-    public static void onServerStopped(ServerStoppedEvent event)
-    {
+    public static void onServerStopped(ServerStoppedEvent event) {
         NetworkGunManager.instance = null;
     }
 
     @SubscribeEvent
-    public static void addReloadListenerEvent(AddReloadListenerEvent event)
-    {
+    public static void addReloadListenerEvent(AddReloadListenerEvent event) {
         NetworkGunManager networkGunManager = new NetworkGunManager();
         event.addListener(networkGunManager);
         NetworkGunManager.instance = networkGunManager;
     }
 
     @SubscribeEvent
-    public static void onDatapackSync(OnDatapackSyncEvent event)
-    {
-        if(event.getPlayer() == null)
-        {
+    public static void onDatapackSync(OnDatapackSyncEvent event) {
+        if (event.getPlayer() == null) {
             PacketHandler.getPlayChannel().send(PacketDistributor.ALL.noArg(), new S2CMessageUpdateGuns());
         }
     }
@@ -243,8 +214,7 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      * @return the network gun manager
      */
     @Nullable
-    public static NetworkGunManager get()
-    {
+    public static NetworkGunManager get() {
         return instance;
     }
 
@@ -253,33 +223,27 @@ public class NetworkGunManager extends SimplePreparableReloadListener<Map<GunIte
      * Gun instances shouldn't be changed on GunItems as they are controlled by NetworkGunManager.
      * Changes to gun properties should be made through the JSON file.
      */
-    public static class Supplier
-    {
+    public static class Supplier {
         private Gun gun;
 
-        private Supplier(Gun gun)
-        {
+        private Supplier(Gun gun) {
             this.gun = gun;
         }
 
-        public Gun getGun()
-        {
+        public Gun getGun() {
             return this.gun;
         }
     }
 
-    public static class LoginData implements ILoginData
-    {
+    public static class LoginData implements ILoginData {
         @Override
-        public void writeData(FriendlyByteBuf buffer)
-        {
+        public void writeData(FriendlyByteBuf buffer) {
             Validate.notNull(NetworkGunManager.get());
             NetworkGunManager.get().writeRegisteredGuns(buffer);
         }
 
         @Override
-        public Optional<String> readData(FriendlyByteBuf buffer)
-        {
+        public Optional<String> readData(FriendlyByteBuf buffer) {
             Map<ResourceLocation, Gun> registeredGuns = NetworkGunManager.readRegisteredGuns(buffer);
             NetworkGunManager.updateRegisteredGuns(registeredGuns);
             return Optional.empty();

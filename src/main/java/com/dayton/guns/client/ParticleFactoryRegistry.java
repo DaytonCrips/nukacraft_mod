@@ -16,11 +16,9 @@ import net.minecraftforge.fml.common.Mod;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ParticleFactoryRegistry
-{
+public class ParticleFactoryRegistry {
     @SubscribeEvent
-    public static void onRegisterParticleFactory(ParticleFactoryRegisterEvent event)
-    {
+    public static void onRegisterParticleFactory(ParticleFactoryRegisterEvent event) {
         ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
         particleManager.register(ModParticleTypes.BULLET_HOLE.get(),
                 (typeIn, worldIn, x, y, z, xSpeed, ySpeed, zSpeed) ->

@@ -19,8 +19,7 @@ import java.util.WeakHashMap;
  * <p>
  * Author: MrCrayfish
  */
-public class ShootTracker
-{
+public class ShootTracker {
     /**
      * A custom implementation of the cooldown tracker in order to provide the best experience for
      * players. On servers, Minecraft's cooldown tracker is sent to the client but the latency creates
@@ -39,8 +38,7 @@ public class ShootTracker
      * @param player the player instance
      * @return a cooldown tracker get
      */
-    public static ShootTracker getShootTracker(Player player)
-    {
+    public static ShootTracker getShootTracker(Player player) {
         return SHOOT_TRACKER_MAP.computeIfAbsent(player, player1 -> new ShootTracker());
     }
 
@@ -51,8 +49,7 @@ public class ShootTracker
      * @param item        a gun item
      * @param modifiedGun the modified gun get of the specified gun
      */
-    public void putCooldown(ItemStack weapon, GunItem item, Gun modifiedGun)
-    {
+    public void putCooldown(ItemStack weapon, GunItem item, Gun modifiedGun) {
         int rate = GunEnchantmentHelper.getRate(weapon, modifiedGun);
         rate = GunModifierHelper.getModifiedRate(weapon, rate);
         this.cooldownMap.put(item, Pair.of(Util.getMillis(), rate * 50));
@@ -67,11 +64,9 @@ public class ShootTracker
      * @param item a gun item
      * @return if the specified gun item has an active cooldown
      */
-    public boolean hasCooldown(GunItem item)
-    {
+    public boolean hasCooldown(GunItem item) {
         Pair<Long, Integer> pair = this.cooldownMap.get(item);
-        if(pair != null)
-        {
+        if (pair != null) {
             /* Give a 50 millisecond leeway as most of the time the cooldown has finished, just not exactly to the millisecond */
             return Util.getMillis() - pair.getLeft() < pair.getRight() - 50;
         }
@@ -85,11 +80,9 @@ public class ShootTracker
      * @param item a gun item
      * @return the remaining time in milliseconds
      */
-    public long getRemaining(GunItem item)
-    {
+    public long getRemaining(GunItem item) {
         Pair<Long, Integer> pair = this.cooldownMap.get(item);
-        if(pair != null)
-        {
+        if (pair != null) {
             return pair.getRight() - (Util.getMillis() - pair.getLeft());
         }
         return 0;

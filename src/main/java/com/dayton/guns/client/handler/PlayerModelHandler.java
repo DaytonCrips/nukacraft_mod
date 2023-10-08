@@ -13,8 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * Author: MrCrayfish
  */
-public class PlayerModelHandler
-{
+public class PlayerModelHandler {
     /*@SubscribeEvent
     public void onRenderPlayer(PlayerModelEvent.Render.Post event)
     {
@@ -35,20 +34,17 @@ public class PlayerModelHandler
     }*/
 
     @SubscribeEvent
-    public void onRenderPlayer(RenderPlayerEvent.Pre event)
-    {
+    public void onRenderPlayer(RenderPlayerEvent.Pre event) {
         Player player = event.getPlayer();
         ItemStack heldItem = player.getMainHandItem();
-        if(!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem)
-        {
+        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
             Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
             gun.getGeneral().getGripType().getHeldAnimation().applyPlayerPreRender(player, InteractionHand.MAIN_HAND, AimingHandler.get().getAimProgress((Player) event.getEntity(), event.getPartialTick()), event.getPoseStack(), event.getMultiBufferSource());
         }
     }
 
     @SubscribeEvent
-    public void onRenderPlayer(RenderPlayerEvent.Post event)
-    {
+    public void onRenderPlayer(RenderPlayerEvent.Post event) {
         /* Makes sure the model part positions reset back to original definitions */
         PlayerModel<AbstractClientPlayer> model = event.getRenderer().getModel();
         boolean slim = ((AbstractClientPlayer) event.getPlayer()).getModelName().equals("slim");

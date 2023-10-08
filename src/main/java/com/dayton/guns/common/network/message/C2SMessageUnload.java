@@ -11,25 +11,22 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class C2SMessageUnload extends PlayMessage<C2SMessageUnload>
-{
+public class C2SMessageUnload extends PlayMessage<C2SMessageUnload> {
     @Override
-    public void encode(C2SMessageUnload message, FriendlyByteBuf buffer) {}
+    public void encode(C2SMessageUnload message, FriendlyByteBuf buffer) {
+    }
 
     @Override
-    public C2SMessageUnload decode(FriendlyByteBuf buffer)
-    {
+    public C2SMessageUnload decode(FriendlyByteBuf buffer) {
         return new C2SMessageUnload();
     }
 
     @Override
-    public void handle(C2SMessageUnload message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(C2SMessageUnload message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() ->
         {
             ServerPlayer player = supplier.get().getSender();
-            if(player != null && !player.isSpectator())
-            {
+            if (player != null && !player.isSpectator()) {
                 ServerPlayHandler.handleUnload(player);
             }
         });

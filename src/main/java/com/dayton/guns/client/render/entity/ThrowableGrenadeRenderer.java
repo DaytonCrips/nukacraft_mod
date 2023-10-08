@@ -18,23 +18,19 @@ import javax.annotation.Nullable;
 /**
  * Author: MrCrayfish
  */
-public class ThrowableGrenadeRenderer extends EntityRenderer<ThrowableGrenadeEntity>
-{
-    public ThrowableGrenadeRenderer(EntityRendererProvider.Context context)
-    {
+public class ThrowableGrenadeRenderer extends EntityRenderer<ThrowableGrenadeEntity> {
+    public ThrowableGrenadeRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Nullable
     @Override
-    public ResourceLocation getTextureLocation(ThrowableGrenadeEntity entity)
-    {
+    public ResourceLocation getTextureLocation(ThrowableGrenadeEntity entity) {
         return null;
     }
 
     @Override
-    public void render(ThrowableGrenadeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light)
-    {
+    public void render(ThrowableGrenadeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         poseStack.pushPose();
 
         /* Makes the grenade face in the direction of travel */
@@ -47,8 +43,7 @@ public class ThrowableGrenadeRenderer extends EntityRenderer<ThrowableGrenadeEnt
         poseStack.mulPose(Vector3f.XP.rotationDegrees(-rotation));
         poseStack.translate(0, -0.15, 0);
 
-        if(entity instanceof ThrowableStunGrenadeEntity)
-        {
+        if (entity instanceof ThrowableStunGrenadeEntity) {
             poseStack.translate(0, entity.getDimensions(Pose.STANDING).height / 2, 0);
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(-90F));
             poseStack.translate(0, -entity.getDimensions(Pose.STANDING).height / 2, 0);

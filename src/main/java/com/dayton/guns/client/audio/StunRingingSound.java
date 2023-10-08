@@ -9,10 +9,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 
-public class StunRingingSound extends AbstractTickableSoundInstance
-{
-    public StunRingingSound()
-    {
+public class StunRingingSound extends AbstractTickableSoundInstance {
+    public StunRingingSound() {
         super(ModSounds.ENTITY_STUN_GRENADE_RING.get(), SoundSource.MASTER);
         this.looping = true;
         this.attenuation = Attenuation.NONE;
@@ -20,14 +18,11 @@ public class StunRingingSound extends AbstractTickableSoundInstance
     }
 
     @Override
-    public void tick()
-    {
+    public void tick() {
         Player player = Minecraft.getInstance().player;
-        if(player != null && player.isAlive())
-        {
+        if (player != null && player.isAlive()) {
             MobEffectInstance effect = player.getEffect(ModEffects.DEAFENED.get());
-            if(effect != null)
-            {
+            if (effect != null) {
                 this.x = (float) player.getX();
                 this.y = (float) player.getY();
                 this.z = (float) player.getZ();

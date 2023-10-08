@@ -22,12 +22,10 @@ import static org.lwjgl.opengl.GL11.*;
  */
 @Deprecated(since = "1.3.0", forRemoval = true)
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
-public class ScreenTextureState extends RenderStateShard.TexturingStateShard
-{
+public class ScreenTextureState extends RenderStateShard.TexturingStateShard {
     private static ScreenTextureState instance = null;
 
-    public static ScreenTextureState instance()
-    {
+    public static ScreenTextureState instance() {
         return instance == null ? instance = new ScreenTextureState() : instance;
     }
 
@@ -35,8 +33,7 @@ public class ScreenTextureState extends RenderStateShard.TexturingStateShard
     private int lastWindowWidth;
     private int lastWindowHeight;
 
-    private ScreenTextureState()
-    {
+    private ScreenTextureState() {
         super("screen_texture", () ->
         {
             RenderSystem.enableDepthTest();
@@ -53,10 +50,8 @@ public class ScreenTextureState extends RenderStateShard.TexturingStateShard
         MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::onRenderWorldLast);
     }
 
-    private int getTextureId()
-    {
-        if(this.textureId == 0)
-        {
+    private int getTextureId() {
+        if (this.textureId == 0) {
             this.textureId = TextureUtil.generateTextureId();
             // Texture params only need to be set once, not once per frame
             RenderSystem.bindTexture(this.textureId);
@@ -66,25 +61,21 @@ public class ScreenTextureState extends RenderStateShard.TexturingStateShard
         return this.textureId;
     }
 
-    private void onRenderWorldLast(RenderLevelLastEvent event)
-    {
+    private void onRenderWorldLast(RenderLevelLastEvent event) {
         Window mainWindow = Minecraft.getInstance().getWindow();
 
         // OpenGL will spit out an error (GL_INVALID_VALUE) if the window is minimised (or draw calls stop)
         // It seems just testing the width or height if it's zero is enough to prevent it
-        if(mainWindow.getScreenWidth() <= 0 || mainWindow.getScreenHeight() <= 0)
+        if (mainWindow.getScreenWidth() <= 0 || mainWindow.getScreenHeight() <= 0)
             return;
 
         RenderSystem.bindTexture(this.getTextureId());
-        if(mainWindow.getScreenWidth() != this.lastWindowWidth || mainWindow.getScreenHeight() != this.lastWindowHeight)
-        {
+        if (mainWindow.getScreenWidth() != this.lastWindowWidth || mainWindow.getScreenHeight() != this.lastWindowHeight) {
             // When window resizes the texture needs to be re-initialized and copied, so both are done in the same call
             this.lastWindowWidth = mainWindow.getScreenWidth();
             this.lastWindowHeight = mainWindow.getScreenHeight();
             glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 0, 0, mainWindow.getWidth(), mainWindow.getHeight(), 0);
-        }
-        else
-        {
+        } else {
             // Copy sub-image is faster than copy because the texture does not need to be initialized
             glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, mainWindow.getWidth(), mainWindow.getHeight());
         }

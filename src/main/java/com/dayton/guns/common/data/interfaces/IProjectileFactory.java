@@ -12,11 +12,10 @@ import net.minecraft.world.level.Level;
  * This class allows weapons to fire custom projectiles instead of the default implementation. The
  * grenade launcher uses this to spawn a grenade entity with custom physics. Use {@link ProjectileManager}
  * to register a factory.
- *
+ * <p>
  * Author: MrCrayfish
  */
-public interface IProjectileFactory
-{
+public interface IProjectileFactory {
     /**
      * Creates a new projectile entity.
      *

@@ -29,16 +29,13 @@ import javax.annotation.Nullable;
  * To upgrade, create a .cgmmeta file for your scope and customise the properties.
  */
 @Deprecated(since = "1.3.0", forRemoval = true)
-public class LongScopeModel implements IOverrideModel
-{
+public class LongScopeModel implements IOverrideModel {
     private static final ResourceLocation RETICLE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/long_scope_reticle.png");
     private static final ResourceLocation VIGNETTE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/scope_vignette.png");
 
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay)
-    {
-        if(OptifineHelper.isShadersEnabled())
-        {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay) {
+        if (OptifineHelper.isShadersEnabled()) {
             double transition = 1.0 - Math.pow(1.0 - AimingHandler.get().getNormalisedAdsProgress(), 2);
             double zScale = 0.05 + 0.95 * (1.0 - transition);
             poseStack.scale(1.0F, 1.0F, (float) zScale);
@@ -47,10 +44,8 @@ public class LongScopeModel implements IOverrideModel
         BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, overlay, GunModel.wrap(bakedModel));
 
-        if(this.isFirstPerson(transformType) && entity != null && entity.equals(Minecraft.getInstance().player))
-        {
-            if(entity.getMainArm() == HumanoidArm.LEFT)
-            {
+        if (this.isFirstPerson(transformType) && entity != null && entity.equals(Minecraft.getInstance().player)) {
+            if (entity.getMainArm() == HumanoidArm.LEFT) {
                 poseStack.scale(-1, 1, 1);
             }
 
@@ -73,8 +68,7 @@ public class LongScopeModel implements IOverrideModel
 
                 VertexConsumer builder;
 
-                if(!OptifineHelper.isShadersEnabled())
-                {
+                if (!OptifineHelper.isShadersEnabled()) {
                     builder = renderTypeBuffer.getBuffer(GunRenderType.getScreen());
                     builder.vertex(matrix, 0, size, 0).color(color, color, color, 1.0F).uv(texU, 1.0F - crop + offset).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
                     builder.vertex(matrix, 0, 0, 0).color(color, color, color, 1.0F).uv(texU, crop + offset).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
@@ -94,8 +88,7 @@ public class LongScopeModel implements IOverrideModel
 
                 poseStack.translate(0, 0, 0.001);
 
-                if(!OptifineHelper.isShadersEnabled())
-                {
+                if (!OptifineHelper.isShadersEnabled()) {
                     builder = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(VIGNETTE));
                     builder.vertex(matrix, 0, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(0.984375F, 0.984375F).overlayCoords(overlay).uv2(light).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
                     builder.vertex(matrix, size, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(0, 0.984375F).overlayCoords(overlay).uv2(light).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
@@ -107,8 +100,7 @@ public class LongScopeModel implements IOverrideModel
         }
     }
 
-    private boolean isFirstPerson(ItemTransforms.TransformType transformType)
-    {
+    private boolean isFirstPerson(ItemTransforms.TransformType transformType) {
         return transformType == ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND || transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
     }
 }

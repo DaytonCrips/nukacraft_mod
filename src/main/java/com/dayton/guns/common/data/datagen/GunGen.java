@@ -5,15 +5,13 @@ import net.minecraft.data.DataGenerator;
 /**
  * Author: MrCrayfish
  */
-public class GunGen extends GunProvider
-{
-    public GunGen(DataGenerator generator)
-    {
+public class GunGen extends GunProvider {
+    public GunGen(DataGenerator generator) {
         super(generator);
     }
 
     @Override
-    protected void registerGuns(){
+    protected void registerGuns() {
 
     }
 //    {

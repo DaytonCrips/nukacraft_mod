@@ -16,44 +16,37 @@ import net.minecraftforge.common.Tags;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-public class RecipeGen extends RecipeProvider
-{
-    public RecipeGen(DataGenerator generator)
-    {
+public class RecipeGen extends RecipeProvider {
+    public RecipeGen(DataGenerator generator) {
         super(generator);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
-    {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         // Dye Item
-        consumer.accept(new FinishedRecipe()
-        {
+        consumer.accept(new FinishedRecipe() {
             @Override
-            public void serializeRecipeData(JsonObject json) {}
+            public void serializeRecipeData(JsonObject json) {
+            }
 
             @Override
-            public RecipeSerializer<?> getType()
-            {
+            public RecipeSerializer<?> getType() {
                 return ModRecipeSerializers.DYE_ITEM.get();
             }
 
             @Override
-            public ResourceLocation getId()
-            {
+            public ResourceLocation getId() {
                 return new ResourceLocation(NukaCraftMod.MOD_ID, "dye_item");
             }
 
             @Override
             @Nullable
-            public JsonObject serializeAdvancement()
-            {
+            public JsonObject serializeAdvancement() {
                 return null;
             }
 
             @Override
-            public ResourceLocation getAdvancementId()
-            {
+            public ResourceLocation getAdvancementId() {
                 return null;
             }
         });

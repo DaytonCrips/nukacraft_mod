@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 /**
  * Author: MrCrayfish
  */
-public record AmmoContext(ItemStack stack, @Nullable Container container)
-{
+public record AmmoContext(ItemStack stack, @Nullable Container container) {
     public static final AmmoContext NONE = new AmmoContext(ItemStack.EMPTY, null);
 }

@@ -11,8 +11,7 @@ import net.minecraft.world.entity.player.Player;
 /**
  * Author: MrCrayfish
  */
-public class ModSyncedDataKeys
-{
+public class ModSyncedDataKeys {
     public static final SyncedDataKey<Player, Boolean> AIMING = SyncedDataKey.builder(SyncedClassKey.PLAYER, Serializers.BOOLEAN)
             .id(new ResourceLocation(NukaCraftMod.MOD_ID, "aiming"))
             .defaultValueSupplier(() -> false)
@@ -31,8 +30,7 @@ public class ModSyncedDataKeys
             .resetOnDeath()
             .build();
 
-    public static void register()
-    {
+    public static void register() {
         FrameworkAPI.registerSyncedDataKey(AIMING);
         FrameworkAPI.registerSyncedDataKey(SHOOTING);
         FrameworkAPI.registerSyncedDataKey(RELOADING);

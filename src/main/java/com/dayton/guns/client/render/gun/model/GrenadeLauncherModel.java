@@ -19,17 +19,14 @@ import javax.annotation.Nullable;
 /**
  * Author: MrCrayfish
  */
-public class GrenadeLauncherModel implements IOverrideModel
-{
+public class GrenadeLauncherModel implements IOverrideModel {
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         BakedModel bakedModel = SpecialModels.GRENADE_LAUNCHER_BASE.getModel();
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, buffer, light, overlay, GunModel.wrap(bakedModel));
 
         float cooldown = 0F;
-        if(entity != null && entity.equals(Minecraft.getInstance().player))
-        {
+        if (entity != null && entity.equals(Minecraft.getInstance().player)) {
             ItemCooldowns tracker = Minecraft.getInstance().player.getCooldowns();
             cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
             cooldown = (float) easeInOutBack(cooldown);
@@ -46,8 +43,7 @@ public class GrenadeLauncherModel implements IOverrideModel
     /**
      * Easing function based on code from https://easings.net/#easeInOutBack
      */
-    private double easeInOutBack(double x)
-    {
+    private double easeInOutBack(double x) {
         double c1 = 1.70158;
         double c2 = c1 * 1.525;
         return (x < 0.5 ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2 : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2);

@@ -12,8 +12,7 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound>
-{
+public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound> {
     private ResourceLocation id;
     private SoundSource category;
     private float x;
@@ -25,10 +24,10 @@ public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound>
     private boolean muzzle;
     private boolean reload;
 
-    public S2CMessageGunSound() {}
+    public S2CMessageGunSound() {
+    }
 
-    public S2CMessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z, float volume, float pitch, int shooterId, boolean muzzle, boolean reload)
-    {
+    public S2CMessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z, float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
         this.id = id;
         this.category = category;
         this.x = x;
@@ -42,8 +41,7 @@ public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound>
     }
 
     @Override
-    public void encode(S2CMessageGunSound message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageGunSound message, FriendlyByteBuf buffer) {
         buffer.writeResourceLocation(message.id);
         buffer.writeEnum(message.category);
         buffer.writeFloat(message.x);
@@ -57,8 +55,7 @@ public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound>
     }
 
     @Override
-    public S2CMessageGunSound decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageGunSound decode(FriendlyByteBuf buffer) {
         ResourceLocation id = buffer.readResourceLocation();
         SoundSource category = buffer.readEnum(SoundSource.class);
         float x = buffer.readFloat();
@@ -73,59 +70,48 @@ public class S2CMessageGunSound extends PlayMessage<S2CMessageGunSound>
     }
 
     @Override
-    public void handle(S2CMessageGunSound message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageGunSound message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleMessageGunSound(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public ResourceLocation getId()
-    {
+    public ResourceLocation getId() {
         return this.id;
     }
 
-    public SoundSource getCategory()
-    {
+    public SoundSource getCategory() {
         return this.category;
     }
 
-    public float getX()
-    {
+    public float getX() {
         return this.x;
     }
 
-    public float getY()
-    {
+    public float getY() {
         return this.y;
     }
 
-    public float getZ()
-    {
+    public float getZ() {
         return this.z;
     }
 
-    public float getVolume()
-    {
+    public float getVolume() {
         return this.volume;
     }
 
-    public float getPitch()
-    {
+    public float getPitch() {
         return this.pitch;
     }
 
-    public int getShooterId()
-    {
+    public int getShooterId() {
         return this.shooterId;
     }
 
-    public boolean showMuzzleFlash()
-    {
+    public boolean showMuzzleFlash() {
         return this.muzzle;
     }
 
-    public boolean isReload()
-    {
+    public boolean isReload() {
         return this.reload;
     }
 }

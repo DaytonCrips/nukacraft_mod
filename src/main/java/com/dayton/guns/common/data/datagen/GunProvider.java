@@ -23,59 +23,49 @@ import java.util.Objects;
 /**
  * Author: MrCrayfish
  */
-public abstract class GunProvider implements DataProvider
-{
+public abstract class GunProvider implements DataProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
     private final DataGenerator generator;
     private final Map<ResourceLocation, Gun> gunMap = new HashMap<>();
 
-    protected GunProvider(DataGenerator generator)
-    {
+    protected GunProvider(DataGenerator generator) {
         this.generator = generator;
     }
 
     protected abstract void registerGuns();
 
-    protected final void addGun(ResourceLocation id, Gun gun)
-    {
+    protected final void addGun(ResourceLocation id, Gun gun) {
         this.gunMap.put(id, gun);
     }
 
     @Override
-    public void run(HashCache cache)
-    {
+    public void run(HashCache cache) {
         this.gunMap.clear();
         this.registerGuns();
         this.gunMap.forEach((id, gun) ->
         {
             Path path = this.generator.getOutputFolder().resolve("data/" + id.getNamespace() + "/guns/" + id.getPath() + ".json");
-            try
-            {
+            try {
                 JsonObject object = gun.toJsonObject();
                 String rawJson = GSON.toJson(object);
                 String hash = SHA1.hashUnencodedChars(rawJson).toString();
-                if(!Objects.equals(cache.getHash(path), hash) || !Files.exists(path))
-                {
+                if (!Objects.equals(cache.getHash(path), hash) || !Files.exists(path)) {
                     Files.createDirectories(path.getParent());
-                    try(BufferedWriter writer = Files.newBufferedWriter(path))
-                    {
+                    try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                         writer.write(rawJson);
                     }
                 }
                 cache.putNew(path, hash);
-            }
-            catch(IOException e)
-            {
+            } catch (IOException e) {
                 LOGGER.error("Couldn't save trades to {}", path, e);
             }
         });
     }
 
     @Override
-    public String getName()
-    {
+    public String getName() {
         return "Guns: " + NukaCraftMod.MOD_ID;
     }
 }

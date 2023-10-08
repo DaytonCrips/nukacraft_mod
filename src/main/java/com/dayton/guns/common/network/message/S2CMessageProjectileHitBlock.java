@@ -12,18 +12,17 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class S2CMessageProjectileHitBlock extends PlayMessage<S2CMessageProjectileHitBlock>
-{
+public class S2CMessageProjectileHitBlock extends PlayMessage<S2CMessageProjectileHitBlock> {
     private double x;
     private double y;
     private double z;
     private BlockPos pos;
     private Direction face;
 
-    public S2CMessageProjectileHitBlock() {}
+    public S2CMessageProjectileHitBlock() {
+    }
 
-    public S2CMessageProjectileHitBlock(double x, double y, double z, BlockPos pos, Direction face)
-    {
+    public S2CMessageProjectileHitBlock(double x, double y, double z, BlockPos pos, Direction face) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -32,8 +31,7 @@ public class S2CMessageProjectileHitBlock extends PlayMessage<S2CMessageProjecti
     }
 
     @Override
-    public void encode(S2CMessageProjectileHitBlock message, FriendlyByteBuf buffer)
-    {
+    public void encode(S2CMessageProjectileHitBlock message, FriendlyByteBuf buffer) {
         buffer.writeDouble(message.x);
         buffer.writeDouble(message.y);
         buffer.writeDouble(message.z);
@@ -42,8 +40,7 @@ public class S2CMessageProjectileHitBlock extends PlayMessage<S2CMessageProjecti
     }
 
     @Override
-    public S2CMessageProjectileHitBlock decode(FriendlyByteBuf buffer)
-    {
+    public S2CMessageProjectileHitBlock decode(FriendlyByteBuf buffer) {
         double x = buffer.readDouble();
         double y = buffer.readDouble();
         double z = buffer.readDouble();
@@ -53,34 +50,28 @@ public class S2CMessageProjectileHitBlock extends PlayMessage<S2CMessageProjecti
     }
 
     @Override
-    public void handle(S2CMessageProjectileHitBlock message, Supplier<NetworkEvent.Context> supplier)
-    {
+    public void handle(S2CMessageProjectileHitBlock message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleProjectileHitBlock(message));
         supplier.get().setPacketHandled(true);
     }
 
-    public double getX()
-    {
+    public double getX() {
         return this.x;
     }
 
-    public double getY()
-    {
+    public double getY() {
         return this.y;
     }
 
-    public double getZ()
-    {
+    public double getZ() {
         return this.z;
     }
 
-    public BlockPos getPos()
-    {
+    public BlockPos getPos() {
         return this.pos;
     }
 
-    public Direction getFace()
-    {
+    public Direction getFace() {
         return this.face;
     }
 }

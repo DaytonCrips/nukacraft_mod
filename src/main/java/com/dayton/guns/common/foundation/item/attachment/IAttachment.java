@@ -10,8 +10,7 @@ import javax.annotation.Nullable;
  * <p>
  * Author: MrCrayfish
  */
-public interface IAttachment<T extends Attachment>
-{
+public interface IAttachment<T extends Attachment> {
     /**
      * @return The type of this attachment
      */
@@ -26,13 +25,11 @@ public interface IAttachment<T extends Attachment>
      * @param stack Weapon stack
      * @return If attachment can be attached to gun
      */
-    default boolean canAttachTo(ItemStack stack)
-    {
+    default boolean canAttachTo(ItemStack stack) {
         return true;
     }
 
-    enum Type
-    {
+    enum Type {
         SCOPE("scope", "Scope", "scope"),
         BARREL("barrel", "Barrel", "barrel"),
         STOCK("stock", "Stock", "stock"),
@@ -42,35 +39,28 @@ public interface IAttachment<T extends Attachment>
         private final String tagKey;
         private final String serializeKey;
 
-        Type(String translationKey, String tagKey, String serializeKey)
-        {
+        Type(String translationKey, String tagKey, String serializeKey) {
             this.translationKey = translationKey;
             this.tagKey = tagKey;
             this.serializeKey = serializeKey;
         }
 
-        public String getTranslationKey()
-        {
+        public String getTranslationKey() {
             return this.translationKey;
         }
 
-        public String getTagKey()
-        {
+        public String getTagKey() {
             return this.tagKey;
         }
 
-        public String getSerializeKey()
-        {
+        public String getSerializeKey() {
             return this.serializeKey;
         }
 
         @Nullable
-        public static Type byTagKey(String s)
-        {
-            for(Type type : values())
-            {
-                if(type.tagKey.equalsIgnoreCase(s))
-                {
+        public static Type byTagKey(String s) {
+            for (Type type : values()) {
+                if (type.tagKey.equalsIgnoreCase(s)) {
                     return type;
                 }
             }

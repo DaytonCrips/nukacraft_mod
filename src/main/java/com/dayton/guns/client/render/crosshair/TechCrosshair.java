@@ -15,8 +15,7 @@ import net.minecraft.util.Mth;
 /**
  * Author: MrCrayfish
  */
-public class TechCrosshair extends Crosshair
-{
+public class TechCrosshair extends Crosshair {
     private static final ResourceLocation TECH_CROSSHAIR = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/crosshair/tech.png");
     private static final ResourceLocation DOT_CROSSHAIR = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/crosshair/dot.png");
 
@@ -25,14 +24,12 @@ public class TechCrosshair extends Crosshair
     private float rotation;
     private float prevRotation;
 
-    public TechCrosshair()
-    {
+    public TechCrosshair() {
         super(new ResourceLocation(NukaCraftMod.MOD_ID, "tech"));
     }
 
     @Override
-    public void tick()
-    {
+    public void tick() {
         this.prevRotation = this.rotation;
         this.prevScale = this.scale;
         this.rotation += 4;
@@ -40,14 +37,12 @@ public class TechCrosshair extends Crosshair
     }
 
     @Override
-    public void onGunFired()
-    {
+    public void onGunFired() {
         this.scale = 1.5F;
     }
 
     @Override
-    public void render(Minecraft mc, PoseStack stack, int windowWidth, int windowHeight, float partialTicks)
-    {
+    public void render(Minecraft mc, PoseStack stack, int windowWidth, int windowHeight, float partialTicks) {
         float alpha = 1.0F - (float) AimingHandler.get().getNormalisedAdsProgress();
         float size = 8.0F;
 

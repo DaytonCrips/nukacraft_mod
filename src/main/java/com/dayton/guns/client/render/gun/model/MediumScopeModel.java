@@ -31,17 +31,14 @@ import javax.annotation.Nullable;
  * To upgrade, create a .cgmmeta file for your scope and customise the properties.
  */
 @Deprecated(since = "1.3.0", forRemoval = true)
-public class MediumScopeModel implements IOverrideModel
-{
+public class MediumScopeModel implements IOverrideModel {
     private static final ResourceLocation HOLO_RETICLE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/holo_reticle.png");
     private static final ResourceLocation HOLO_RETICLE_GLOW = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/holo_reticle_glow.png");
     private static final ResourceLocation VIGNETTE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/scope_vignette.png");
 
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay)
-    {
-        if(OptifineHelper.isShadersEnabled())
-        {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay) {
+        if (OptifineHelper.isShadersEnabled()) {
             double transition = 1.0 - Math.pow(1.0 - AimingHandler.get().getNormalisedAdsProgress(), 2);
             double zScale = 0.05 + 0.95 * (1.0 - transition);
             poseStack.scale(1.0F, 1.0F, (float) zScale);
@@ -50,10 +47,8 @@ public class MediumScopeModel implements IOverrideModel
         BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, overlay, GunModel.wrap(bakedModel));
 
-        if(transformType.firstPerson() && entity != null && entity.equals(Minecraft.getInstance().player))
-        {
-            if(entity.getMainArm() == HumanoidArm.LEFT)
-            {
+        if (transformType.firstPerson() && entity != null && entity.equals(Minecraft.getInstance().player)) {
+            if (entity.getMainArm() == HumanoidArm.LEFT) {
                 poseStack.scale(-1, 1, 1);
             }
 
@@ -75,8 +70,7 @@ public class MediumScopeModel implements IOverrideModel
 
                 VertexConsumer builder;
 
-                if(!OptifineHelper.isShadersEnabled())
-                {
+                if (!OptifineHelper.isShadersEnabled()) {
                     builder = renderTypeBuffer.getBuffer(GunRenderType.getScreen());
                     builder.vertex(matrix, 0, size, 0).color(color, color, color, 1.0F).uv(texU, 1.0F - crop).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
                     builder.vertex(matrix, 0, 0, 0).color(color, color, color, 1.0F).uv(texU, crop).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
@@ -86,8 +80,7 @@ public class MediumScopeModel implements IOverrideModel
 
                 poseStack.translate(0, 0, 0.0001);
 
-                if(!OptifineHelper.isShadersEnabled())
-                {
+                if (!OptifineHelper.isShadersEnabled()) {
                     builder = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(VIGNETTE));
                     builder.vertex(matrix, 0, size, 0).color(color, color, color, 1.0F).uv(0, 1).overlayCoords(overlay).uv2(light).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
                     builder.vertex(matrix, 0, 0, 0).color(color, color, color, 1.0F).uv(0, 0).overlayCoords(overlay).uv2(light).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
@@ -105,8 +98,7 @@ public class MediumScopeModel implements IOverrideModel
 
                 int reticleGlowColor = RenderUtil.getItemStackColor(stack, parent, 0);
                 CompoundTag tag = stack.getTag();
-                if(tag != null && tag.contains("ReticleColor", Tag.TAG_INT))
-                {
+                if (tag != null && tag.contains("ReticleColor", Tag.TAG_INT)) {
                     reticleGlowColor = tag.getInt("ReticleColor");
                 }
 
@@ -115,8 +107,7 @@ public class MediumScopeModel implements IOverrideModel
                 float blue = ((reticleGlowColor >> 0) & 0xFF) / 255F;
                 float alpha = (float) (1.0F * AimingHandler.get().getNormalisedAdsProgress());
 
-                if(!OptifineHelper.isShadersEnabled())
-                {
+                if (!OptifineHelper.isShadersEnabled()) {
                     builder = renderTypeBuffer.getBuffer(RenderType.entityTranslucent(HOLO_RETICLE_GLOW));
                     builder.vertex(matrix, 0, (float) (size / scale), 0).color(red, green, blue, alpha).uv(0.0F, 0.9375F).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
                     builder.vertex(matrix, 0, 0, 0).color(red, green, blue, alpha).uv(0.0F, 0.0F).overlayCoords(overlay).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();

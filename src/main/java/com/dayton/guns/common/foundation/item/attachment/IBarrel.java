@@ -10,14 +10,12 @@ import com.dayton.guns.common.foundation.item.attachment.impl.Barrel;
  * <p>
  * Author: Ocelot, MrCrayfish
  */
-public interface IBarrel extends IAttachment<Barrel>
-{
+public interface IBarrel extends IAttachment<Barrel> {
     /**
      * @return The type of this attachment
      */
     @Override
-    default Type getType()
-    {
+    default Type getType() {
         return Type.BARREL;
     }
 }

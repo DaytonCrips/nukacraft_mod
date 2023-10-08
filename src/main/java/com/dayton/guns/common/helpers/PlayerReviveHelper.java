@@ -9,43 +9,33 @@ import java.lang.reflect.Method;
 /**
  * Author: MrCrayfish
  */
-public class PlayerReviveHelper
-{
+public class PlayerReviveHelper {
     private static boolean disable = false;
     private static Method getBleeding;
     private static Method isBleeding;
 
-    public static boolean isBleeding(Player player)
-    {
-        if(!GunMod.playerReviveLoaded || disable)
+    public static boolean isBleeding(Player player) {
+        if (!GunMod.playerReviveLoaded || disable)
             return false;
 
-        try
-        {
+        try {
             init();
             Object object = getBleeding.invoke(null, player);
             return (boolean) isBleeding.invoke(object);
-        }
-        catch(InvocationTargetException | IllegalAccessException e)
-        {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             disable = true;
         }
         return false;
     }
 
-    private static void init()
-    {
-        if(getBleeding == null)
-        {
-            try
-            {
+    private static void init() {
+        if (getBleeding == null) {
+            try {
                 Class<?> playerReviveServer = Class.forName("team.creative.playerrevive.server.PlayerReviveServer");
                 getBleeding = playerReviveServer.getDeclaredMethod("getBleeding", Player.class);
                 Class<?> bleeding = Class.forName("team.creative.playerrevive.cap.Bleeding");
                 isBleeding = bleeding.getDeclaredMethod("isBleeding");
-            }
-            catch(ClassNotFoundException | NoSuchMethodException ignored)
-            {
+            } catch (ClassNotFoundException | NoSuchMethodException ignored) {
                 disable = true;
             }
         }

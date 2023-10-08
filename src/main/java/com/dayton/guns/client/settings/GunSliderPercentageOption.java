@@ -11,10 +11,8 @@ import java.util.function.Function;
 /**
  * Author: MrCrayfish
  */
-public class GunSliderPercentageOption extends ProgressOption
-{
-    public GunSliderPercentageOption(String title, double minValue, double maxValue, float stepSize, Function<Options, Double> getter, BiConsumer<Options, Double> setter, BiFunction<Options, ProgressOption, Component> displayNameGetter)
-    {
+public class GunSliderPercentageOption extends ProgressOption {
+    public GunSliderPercentageOption(String title, double minValue, double maxValue, float stepSize, Function<Options, Double> getter, BiConsumer<Options, Double> setter, BiFunction<Options, ProgressOption, Component> displayNameGetter) {
         super(title, minValue, maxValue, stepSize, getter, setter, displayNameGetter);
     }
 }

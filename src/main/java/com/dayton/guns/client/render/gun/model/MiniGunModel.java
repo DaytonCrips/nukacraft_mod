@@ -22,37 +22,30 @@ import java.util.WeakHashMap;
 /**
  * Author: MrCrayfish
  */
-public class MiniGunModel implements IOverrideModel
-{
+public class MiniGunModel implements IOverrideModel {
     private WeakHashMap<LivingEntity, Rotations> rotationMap = new WeakHashMap<>();
 
     @Override
-    public void tick(Player player)
-    {
+    public void tick(Player player) {
         this.rotationMap.putIfAbsent(player, new Rotations());
         Rotations rotations = this.rotationMap.get(player);
         rotations.prevRotation = rotations.rotation;
 
         boolean shooting = ModSyncedDataKeys.SHOOTING.getValue(player);
         ItemStack heldItem = player.getMainHandItem();
-        if(!Gun.hasAmmo(heldItem) && !player.isCreative())
-        {
+        if (!Gun.hasAmmo(heldItem) && !player.isCreative()) {
             shooting = false;
         }
 
-        if(shooting)
-        {
+        if (shooting) {
             rotations.rotation += 20;
-        }
-        else
-        {
+        } else {
             rotations.rotation += 1;
         }
     }
 
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay)
-    {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, int overlay) {
         Rotations rotations = entity != null ? this.rotationMap.computeIfAbsent(entity, uuid -> new Rotations()) : Rotations.ZERO;
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, overlay, GunModel.wrap(SpecialModels.MINI_GUN_BASE.getModel()));
         poseStack.pushPose();
@@ -61,8 +54,7 @@ public class MiniGunModel implements IOverrideModel
         poseStack.popPose();
     }
 
-    private static class Rotations
-    {
+    private static class Rotations {
         private static final Rotations ZERO = new Rotations();
 
         private int rotation;
@@ -70,8 +62,7 @@ public class MiniGunModel implements IOverrideModel
     }
 
     @SubscribeEvent
-    public void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event)
-    {
+    public void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event) {
         this.rotationMap.clear();
     }
 }

@@ -80,7 +80,7 @@ public class NukaCraftMod
 
     private void clientSetup(final FMLCommonSetupEvent event) {
         ModSetup.renderTypeSetup();
-        ClientConfig.setup();
+        //ClientConfig.setup();
     }
 
     private void setup(final FMLCommonSetupEvent event) {

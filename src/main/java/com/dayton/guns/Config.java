@@ -9,13 +9,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.Collections;
 import java.util.List;
 
-public class Config
-{
+public class Config {
     /**
      * Client related config options
      */
-    public static class Client
-    {
+    public static class Client {
         public final Sounds sounds;
         public final Display display;
         public final Particle particle;
@@ -24,8 +22,7 @@ public class Config
         public final ForgeConfigSpec.BooleanValue hideConfigButton;
         public final ForgeConfigSpec.EnumValue<ButtonAlignment> buttonAlignment;
 
-        public Client(ForgeConfigSpec.Builder builder)
-        {
+        public Client(ForgeConfigSpec.Builder builder) {
             builder.push("client");
             {
                 this.sounds = new Sounds(builder);
@@ -43,16 +40,14 @@ public class Config
     /**
      * Sound related config options
      */
-    public static class Sounds
-    {
+    public static class Sounds {
         public final ForgeConfigSpec.BooleanValue playSoundWhenHeadshot;
         public final ForgeConfigSpec.ConfigValue<String> headshotSound;
         public final ForgeConfigSpec.BooleanValue playSoundWhenCritical;
         public final ForgeConfigSpec.ConfigValue<String> criticalSound;
         public final ForgeConfigSpec.DoubleValue impactSoundDistance;
 
-        public Sounds(ForgeConfigSpec.Builder builder)
-        {
+        public Sounds(ForgeConfigSpec.Builder builder) {
             builder.comment("Control sounds triggered by guns").push("sounds");
             {
                 this.playSoundWhenHeadshot = builder.comment("If true, a sound will play when you successfully hit a headshot on a entity with a gun").define("playSoundWhenHeadshot", true);
@@ -68,8 +63,7 @@ public class Config
     /**
      * Display related config options
      */
-    public static class Display
-    {
+    public static class Display {
         public final ForgeConfigSpec.BooleanValue oldAnimations;
         public final ForgeConfigSpec.ConfigValue<String> crosshair;
         public final ForgeConfigSpec.BooleanValue cooldownIndicator;
@@ -82,8 +76,7 @@ public class Config
         public final ForgeConfigSpec.BooleanValue sprintAnimation;
         public final ForgeConfigSpec.DoubleValue bobbingIntensity;
 
-        public Display(ForgeConfigSpec.Builder builder)
-        {
+        public Display(ForgeConfigSpec.Builder builder) {
             builder.comment("Configuration for display related options").push("display");
             {
                 this.oldAnimations = builder.comment("If true, uses the old animation poses for weapons. This is only for nostalgic reasons and not recommended to switch back.").define("oldAnimations", false);
@@ -105,16 +98,14 @@ public class Config
     /**
      * Particle related config options
      */
-    public static class Particle
-    {
+    public static class Particle {
         public final ForgeConfigSpec.IntValue bulletHoleLifeMin;
         public final ForgeConfigSpec.IntValue bulletHoleLifeMax;
         public final ForgeConfigSpec.DoubleValue bulletHoleFadeThreshold;
         public final ForgeConfigSpec.BooleanValue enableBlood;
         public final ForgeConfigSpec.DoubleValue impactParticleDistance;
 
-        public Particle(ForgeConfigSpec.Builder builder)
-        {
+        public Particle(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to particles").push("particle");
             {
                 this.bulletHoleLifeMin = builder.comment("The minimum duration in ticks before bullet holes will disappear").defineInRange("bulletHoleLifeMin", 150, 0, Integer.MAX_VALUE);
@@ -127,12 +118,10 @@ public class Config
         }
     }
 
-    public static class Controls
-    {
+    public static class Controls {
         public final ForgeConfigSpec.DoubleValue aimDownSightSensitivity;
 
-        public Controls(ForgeConfigSpec.Builder builder)
-        {
+        public Controls(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to controls").push("controls");
             {
                 this.aimDownSightSensitivity = builder.comment("A value to multiple the mouse sensitivity by when aiming down weapon sights. Go to (Options > Controls > Mouse Settings > ADS Sensitivity) in game to change this!").defineInRange("aimDownSightSensitivity", 0.75, 0.0, 1.0);
@@ -141,10 +130,8 @@ public class Config
         }
     }
 
-    public static class Experimental
-    {
-        public Experimental(ForgeConfigSpec.Builder builder)
-        {
+    public static class Experimental {
+        public Experimental(ForgeConfigSpec.Builder builder) {
             builder.comment("Experimental options").push("experimental");
             {
             }
@@ -155,8 +142,7 @@ public class Config
     /**
      * Common config options
      */
-    public static class Common
-    {
+    public static class Common {
         public final Gameplay gameplay;
         public final Network network;
         public final AggroMobs aggroMobs;
@@ -165,8 +151,7 @@ public class Config
         public final StunGrenades stunGrenades;
         public final ProjectileSpread projectileSpread;
 
-        public Common(ForgeConfigSpec.Builder builder)
-        {
+        public Common(ForgeConfigSpec.Builder builder) {
             builder.push("common");
             {
                 this.gameplay = new Gameplay(builder);
@@ -184,8 +169,7 @@ public class Config
     /**
      * Gameplay related config options
      */
-    public static class Gameplay
-    {
+    public static class Gameplay {
         public final Griefing griefing;
         public final ForgeConfigSpec.DoubleValue growBoundingBoxAmount;
         public final ForgeConfigSpec.BooleanValue enableHeadShots;
@@ -196,8 +180,7 @@ public class Config
         public final ForgeConfigSpec.DoubleValue knockbackStrength;
         public final ForgeConfigSpec.BooleanValue improvedHitboxes;
 
-        public Gameplay(ForgeConfigSpec.Builder builder)
-        {
+        public Gameplay(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to gameplay").push("gameplay");
             {
                 this.griefing = new Griefing(builder);
@@ -217,16 +200,14 @@ public class Config
     /**
      * Gun griefing related config options
      */
-    public static class Griefing
-    {
+    public static class Griefing {
         public final ForgeConfigSpec.BooleanValue enableBlockRemovalOnExplosions;
         public final ForgeConfigSpec.BooleanValue enableGlassBreaking;
         public final ForgeConfigSpec.BooleanValue fragileBlockDrops;
         public final ForgeConfigSpec.DoubleValue fragileBaseBreakChance;
         public final ForgeConfigSpec.BooleanValue setFireToBlocks;
 
-        public Griefing(ForgeConfigSpec.Builder builder)
-        {
+        public Griefing(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties related to gun griefing").push("griefing");
             {
                 this.enableBlockRemovalOnExplosions = builder.comment("If enabled, allows block removal on explosions").define("enableBlockRemovalOnExplosions", true);
@@ -242,12 +223,10 @@ public class Config
     /**
      * Network related config options
      */
-    public static class Network
-    {
+    public static class Network {
         public final ForgeConfigSpec.DoubleValue projectileTrackingRange;
 
-        public Network(ForgeConfigSpec.Builder builder)
-        {
+        public Network(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to network").push("network");
             {
                 this.projectileTrackingRange = builder.comment("The distance players need to be within to be able to track new projectiles trails. Higher values means you can see projectiles from that start from further away.").defineInRange("projectileTrackingRange", 200.0, 1, Double.MAX_VALUE);
@@ -259,15 +238,13 @@ public class Config
     /**
      * Mob aggression related config options
      */
-    public static class AggroMobs
-    {
+    public static class AggroMobs {
         public final ForgeConfigSpec.BooleanValue enabled;
         public final ForgeConfigSpec.BooleanValue angerHostileMobs;
         public final ForgeConfigSpec.DoubleValue unsilencedRange;
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> exemptEntities;
 
-        public AggroMobs(ForgeConfigSpec.Builder builder)
-        {
+        public AggroMobs(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to mob aggression").push("aggro_mobs");
             {
                 this.enabled = builder.comment("If true, nearby mobs are angered and/or scared by the firing of guns.").define("enabled", true);
@@ -282,12 +259,10 @@ public class Config
     /**
      * Missile related config options
      */
-    public static class Missiles
-    {
+    public static class Missiles {
         public final ForgeConfigSpec.DoubleValue explosionRadius;
 
-        public Missiles(ForgeConfigSpec.Builder builder)
-        {
+        public Missiles(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to missiles").push("missiles");
             {
                 this.explosionRadius = builder.comment("The max distance which the explosion is effective to").defineInRange("explosionRadius", 5.0, 0.0, Double.MAX_VALUE);
@@ -299,12 +274,10 @@ public class Config
     /**
      * Grenade related config options
      */
-    public static class Grenades
-    {
+    public static class Grenades {
         public final ForgeConfigSpec.DoubleValue explosionRadius;
 
-        public Grenades(ForgeConfigSpec.Builder builder)
-        {
+        public Grenades(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to grenades").push("grenades");
             {
                 this.explosionRadius = builder.comment("The max distance which the explosion is effective to").defineInRange("explosionRadius", 5.0, 0.0, Double.MAX_VALUE);
@@ -316,13 +289,11 @@ public class Config
     /**
      * Stun Grenade related config options
      */
-    public static class StunGrenades
-    {
+    public static class StunGrenades {
         public final Blind blind;
         public final Deafen deafen;
 
-        public StunGrenades(ForgeConfigSpec.Builder builder)
-        {
+        public StunGrenades(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to stun grenades").push("stun_grenades");
             {
                 this.blind = new Blind(builder);
@@ -335,13 +306,11 @@ public class Config
     /**
      * Stun grenade blinding related config options
      */
-    public static class Blind
-    {
+    public static class Blind {
         public final EffectCriteria criteria;
         public final ForgeConfigSpec.BooleanValue blindMobs;
 
-        public Blind(ForgeConfigSpec.Builder builder)
-        {
+        public Blind(ForgeConfigSpec.Builder builder) {
             builder.comment("Blinding properties of stun grenades").push("blind");
             {
                 this.criteria = new EffectCriteria(builder, 15, 220, 10, 170, 0.75, true);
@@ -354,13 +323,11 @@ public class Config
     /**
      * Stun grenade deafening related config options
      */
-    public static class Deafen
-    {
+    public static class Deafen {
         public final EffectCriteria criteria;
         public final ForgeConfigSpec.BooleanValue panicMobs;
 
-        public Deafen(ForgeConfigSpec.Builder builder)
-        {
+        public Deafen(ForgeConfigSpec.Builder builder) {
             builder.comment("Deafening properties of stun grenades").push("deafen");
             {
                 this.criteria = new EffectCriteria(builder, 15, 280, 100, 360, 0.75, false);
@@ -373,8 +340,7 @@ public class Config
     /**
      * Config options for effect criteria
      */
-    public static class EffectCriteria
-    {
+    public static class EffectCriteria {
         public final ForgeConfigSpec.DoubleValue radius;
         public final ForgeConfigSpec.IntValue durationMax;
         public final ForgeConfigSpec.IntValue durationMin;
@@ -382,8 +348,7 @@ public class Config
         public final ForgeConfigSpec.DoubleValue angleAttenuationMax;
         public final ForgeConfigSpec.BooleanValue raytraceOpaqueBlocks;
 
-        public EffectCriteria(ForgeConfigSpec.Builder builder, double radius, int durationMax, int durationMin, double angleEffect, double angleAttenuationMax, boolean raytraceOpaqueBlocks)
-        {
+        public EffectCriteria(ForgeConfigSpec.Builder builder, double radius, int durationMax, int durationMin, double angleEffect, double angleAttenuationMax, boolean raytraceOpaqueBlocks) {
             builder.push("effect_criteria");
             {
                 this.radius = builder.comment("Grenade must be no more than this many meters away to have an effect.").defineInRange("radius", radius, 0.0, Double.MAX_VALUE);
@@ -400,13 +365,11 @@ public class Config
     /**
      * Projectile spread config options
      */
-    public static class ProjectileSpread
-    {
+    public static class ProjectileSpread {
         public final ForgeConfigSpec.IntValue spreadThreshold;
         public final ForgeConfigSpec.IntValue maxCount;
 
-        public ProjectileSpread(ForgeConfigSpec.Builder builder)
-        {
+        public ProjectileSpread(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to projectile spread").push("projectile_spread");
             {
                 this.spreadThreshold = builder.comment("The amount of time in milliseconds before logic to apply spread is skipped. The value indicates a reasonable amount of time before a weapon is considered stable again.").defineInRange("spreadThreshold", 300, 0, 1000);
@@ -419,8 +382,7 @@ public class Config
     /**
      * Server related config options
      */
-    public static class Server
-    {
+    public static class Server {
         public final ForgeConfigSpec.IntValue alphaOverlay;
         public final ForgeConfigSpec.IntValue alphaFadeThreshold;
         public final ForgeConfigSpec.DoubleValue soundPercentage;
@@ -432,8 +394,7 @@ public class Config
         public final ForgeConfigSpec.IntValue cooldownThreshold;
         public final Experimental experimental;
 
-        public Server(ForgeConfigSpec.Builder builder)
-        {
+        public Server(ForgeConfigSpec.Builder builder) {
             builder.push("server");
             {
                 builder.comment("Stun Grenade related properties").push("grenade");
@@ -461,12 +422,10 @@ public class Config
             builder.pop();
         }
 
-        public static class Experimental
-        {
+        public static class Experimental {
             public final ForgeConfigSpec.BooleanValue forceDyeableAttachments;
 
-            public Experimental(ForgeConfigSpec.Builder builder)
-            {
+            public Experimental(ForgeConfigSpec.Builder builder) {
                 builder.push("experimental");
                 this.forceDyeableAttachments = builder.comment("Forces all attachments to be dyeable regardless if they have an affect on the model. This is useful if your server uses custom models for attachments and the models have dyeable elements").define("forceDyeableAttachments", false);
                 builder.pop();
@@ -483,8 +442,7 @@ public class Config
     static final ForgeConfigSpec serverSpec;
     public static final Config.Server SERVER;
 
-    static
-    {
+    static {
         final Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Config.Client::new);
         clientSpec = clientSpecPair.getRight();
         CLIENT = clientSpecPair.getLeft();
@@ -498,8 +456,7 @@ public class Config
         SERVER = serverSpecPair.getLeft();
     }
 
-    public static void saveClientConfig()
-    {
+    public static void saveClientConfig() {
         clientSpec.save();
     }
 }

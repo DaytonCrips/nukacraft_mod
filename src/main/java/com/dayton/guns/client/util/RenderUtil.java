@@ -38,137 +38,104 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class RenderUtil
-{
-    public static void scissor(int x, int y, int width, int height)
-    {
+public class RenderUtil {
+    public static void scissor(int x, int y, int width, int height) {
         Minecraft mc = Minecraft.getInstance();
         int scale = (int) mc.getWindow().getGuiScale();
         GL11.glScissor(x * scale, mc.getWindow().getScreenHeight() - y * scale - height * scale, Math.max(0, width * scale), Math.max(0, height * scale));
     }
 
-    public static BakedModel getModel(Item item)
-    {
+    public static BakedModel getModel(Item item) {
         return Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(new ItemStack(item));
     }
 
-    public static BakedModel getModel(ItemStack item)
-    {
+    public static BakedModel getModel(ItemStack item) {
         return Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(item);
     }
 
-    public static void rotateZ(PoseStack poseStack, float xOffset, float yOffset, float rotation)
-    {
+    public static void rotateZ(PoseStack poseStack, float xOffset, float yOffset, float rotation) {
         poseStack.translate(xOffset, yOffset, 0);
         poseStack.mulPose(Vector3f.ZN.rotationDegrees(rotation));
         poseStack.translate(-xOffset, -yOffset, 0);
     }
 
-    public static void renderGun(ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable LivingEntity entity)
-    {
+    public static void renderGun(ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable LivingEntity entity) {
         renderModel(stack, ItemTransforms.TransformType.NONE, poseStack, buffer, light, overlay, entity);
     }
 
-    public static void renderModel(ItemStack child, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public static void renderModel(ItemStack child, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(child);
         renderModel(model, ItemTransforms.TransformType.NONE, null, child, parent, poseStack, buffer, light, overlay);
     }
 
-    public static void renderModel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable LivingEntity entity)
-    {
+    public static void renderModel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable LivingEntity entity) {
         BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
-        if(entity != null)
-        {
+        if (entity != null) {
             model = Minecraft.getInstance().getItemRenderer().getModel(stack, entity.level, entity, 0);
         }
         renderModel(model, transformType, stack, poseStack, buffer, light, overlay);
     }
 
-    public static void renderModel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable Level world, @Nullable LivingEntity entity)
-    {
+    public static void renderModel(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable Level world, @Nullable LivingEntity entity) {
         BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(stack, world, entity, 0);
         renderModel(model, transformType, stack, poseStack, buffer, light, overlay);
     }
 
-    public static void renderModel(BakedModel model, ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public static void renderModel(BakedModel model, ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         renderModel(model, ItemTransforms.TransformType.NONE, stack, poseStack, buffer, light, overlay);
     }
 
-    public static void renderModel(BakedModel model, ItemTransforms.TransformType transformType, ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public static void renderModel(BakedModel model, ItemTransforms.TransformType transformType, ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         renderModel(model, transformType, null, stack, ItemStack.EMPTY, poseStack, buffer, light, overlay);
     }
 
-    public static void renderModel(BakedModel model, ItemTransforms.TransformType transformType, @Nullable Transform transform, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
-        if(!stack.isEmpty())
-        {
+    public static void renderModel(BakedModel model, ItemTransforms.TransformType transformType, @Nullable Transform transform, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
+        if (!stack.isEmpty()) {
             poseStack.pushPose();
             boolean flag = transformType == ItemTransforms.TransformType.GUI || transformType == ItemTransforms.TransformType.GROUND || transformType == ItemTransforms.TransformType.FIXED;
-            if(stack.getItem() == Items.TRIDENT && flag)
-            {
+            if (stack.getItem() == Items.TRIDENT && flag) {
                 model = Minecraft.getInstance().getModelManager().getModel(new ModelResourceLocation("minecraft:trident#inventory"));
             }
 
             model = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(poseStack, model, transformType, false);
             poseStack.translate(-0.5D, -0.5D, -0.5D);
-            if(!model.isCustomRenderer() && (stack.getItem() != Items.TRIDENT || flag))
-            {
+            if (!model.isCustomRenderer() && (stack.getItem() != Items.TRIDENT || flag)) {
                 boolean entity = true;
-                if(transformType != ItemTransforms.TransformType.GUI && !transformType.firstPerson() && stack.getItem() instanceof BlockItem)
-                {
+                if (transformType != ItemTransforms.TransformType.GUI && !transformType.firstPerson() && stack.getItem() instanceof BlockItem) {
                     Block block = ((BlockItem) stack.getItem()).getBlock();
                     entity = !(block instanceof HalfTransparentBlock) && !(block instanceof StainedGlassPaneBlock);
                 }
 
-                if(model.isLayered())
-                {
+                if (model.isLayered()) {
                     net.minecraftforge.client.ForgeHooksClient.drawItemLayered(Minecraft.getInstance().getItemRenderer(), model, stack, poseStack, buffer, light, overlay, entity);
-                }
-                else
-                {
+                } else {
                     RenderType renderType = getRenderType(stack, entity);
                     VertexConsumer builder;
-                    if(stack.getItem() == Items.COMPASS && stack.hasFoil())
-                    {
+                    if (stack.getItem() == Items.COMPASS && stack.hasFoil()) {
                         poseStack.pushPose();
                         PoseStack.Pose entry = poseStack.last();
-                        if(transformType == ItemTransforms.TransformType.GUI)
-                        {
+                        if (transformType == ItemTransforms.TransformType.GUI) {
                             entry.pose().multiply(0.5F);
-                        }
-                        else if(transformType.firstPerson())
-                        {
+                        } else if (transformType.firstPerson()) {
                             entry.pose().multiply(0.75F);
                         }
 
-                        if(entity)
-                        {
+                        if (entity) {
                             builder = ItemRenderer.getCompassFoilBufferDirect(buffer, renderType, entry);
-                        }
-                        else
-                        {
+                        } else {
                             builder = ItemRenderer.getCompassFoilBuffer(buffer, renderType, entry);
                         }
 
                         poseStack.popPose();
-                    }
-                    else if(entity)
-                    {
+                    } else if (entity) {
                         builder = ItemRenderer.getFoilBufferDirect(buffer, renderType, true, stack.hasFoil() || parent.hasFoil());
-                    }
-                    else
-                    {
+                    } else {
                         builder = ItemRenderer.getFoilBuffer(buffer, renderType, true, stack.hasFoil() || parent.hasFoil());
                     }
 
                     renderModel(model, stack, parent, transform, poseStack, builder, light, overlay);
                 }
-            }
-            else
-            {
+            } else {
                 RenderProperties.get(stack).getItemStackRenderer().renderByItem(stack, transformType, poseStack, buffer, light, overlay);
             }
 
@@ -176,8 +143,7 @@ public class RenderUtil
         }
     }
 
-    public static void renderModelWithTransforms(ItemStack child, ItemStack parent, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public static void renderModelWithTransforms(ItemStack child, ItemStack parent, ItemTransforms.TransformType transformType, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         poseStack.pushPose();
         BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(child);
         model = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(poseStack, model, transformType, false);
@@ -186,29 +152,24 @@ public class RenderUtil
         poseStack.popPose();
     }
 
-    public static void renderItemWithoutTransforms(BakedModel model, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public static void renderItemWithoutTransforms(BakedModel model, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         RenderType renderType = getRenderType(stack, false);
         VertexConsumer builder = ItemRenderer.getFoilBuffer(buffer, renderType, true, stack.hasFoil() || parent.hasFoil());
         renderModel(model, stack, parent, null, poseStack, builder, light, overlay);
     }
 
-    public static void renderItemWithoutTransforms(BakedModel model, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable Transform transform)
-    {
+    public static void renderItemWithoutTransforms(BakedModel model, ItemStack stack, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay, @Nullable Transform transform) {
         RenderType renderType = getRenderType(stack, false);
         VertexConsumer builder = ItemRenderer.getFoilBuffer(buffer, renderType, true, stack.hasFoil() || parent.hasFoil());
         renderModel(model, stack, parent, transform, poseStack, builder, light, overlay);
     }
 
-    public static void renderModel(BakedModel model, ItemStack stack, ItemStack parent, @Nullable Transform transform, PoseStack poseStack, VertexConsumer buffer, int light, int overlay)
-    {
-        if(transform != null)
-        {
+    public static void renderModel(BakedModel model, ItemStack stack, ItemStack parent, @Nullable Transform transform, PoseStack poseStack, VertexConsumer buffer, int light, int overlay) {
+        if (transform != null) {
             transform.apply();
         }
         Random random = new Random();
-        for(Direction direction : Direction.values())
-        {
+        for (Direction direction : Direction.values()) {
             random.setSeed(42L);
             renderQuads(poseStack, buffer, model.getQuads(null, direction, random), stack, parent, light, overlay);
         }
@@ -216,14 +177,11 @@ public class RenderUtil
         renderQuads(poseStack, buffer, model.getQuads(null, null, random), stack, parent, light, overlay);
     }
 
-    private static void renderQuads(PoseStack poseStack, VertexConsumer buffer, List<BakedQuad> quads, ItemStack stack, ItemStack parent, int light, int overlay)
-    {
+    private static void renderQuads(PoseStack poseStack, VertexConsumer buffer, List<BakedQuad> quads, ItemStack stack, ItemStack parent, int light, int overlay) {
         PoseStack.Pose entry = poseStack.last();
-        for(BakedQuad quad : quads)
-        {
+        for (BakedQuad quad : quads) {
             int color = -1;
-            if(quad.isTinted())
-            {
+            if (quad.isTinted()) {
                 color = getItemStackColor(stack, parent, quad.getTintIndex());
             }
             float red = (float) (color >> 16 & 255) / 255.0F;
@@ -233,28 +191,23 @@ public class RenderUtil
         }
     }
 
-    public static int getItemStackColor(ItemStack stack, ItemStack parent, int tintIndex)
-    {
+    public static int getItemStackColor(ItemStack stack, ItemStack parent, int tintIndex) {
         int color = Minecraft.getInstance().getItemColors().getColor(stack, tintIndex);
-        if(color == -1)
-        {
-            if(!parent.isEmpty())
-            {
+        if (color == -1) {
+            if (!parent.isEmpty()) {
                 return getItemStackColor(parent, ItemStack.EMPTY, tintIndex);
             }
         }
         return color;
     }
 
-    public static void applyTransformType(ItemStack stack, PoseStack poseStack, ItemTransforms.TransformType transformType, @Nullable LivingEntity entity)
-    {
+    public static void applyTransformType(ItemStack stack, PoseStack poseStack, ItemTransforms.TransformType transformType, @Nullable LivingEntity entity) {
         BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(stack, entity != null ? entity.level : null, entity, 0);
         boolean leftHanded = transformType == ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND || transformType == ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND;
         ForgeHooksClient.handleCameraTransforms(poseStack, model, transformType, leftHanded);
 
         /* Flips the model and normals if left handed. */
-        if(leftHanded)
-        {
+        if (leftHanded) {
             Matrix4f scale = Matrix4f.createScaleMatrix(-1, 1, 1);
             Matrix3f normal = new Matrix3f(scale);
             poseStack.last().pose().multiply(scale);
@@ -262,37 +215,29 @@ public class RenderUtil
         }
     }
 
-    public interface Transform
-    {
+    public interface Transform {
         void apply();
     }
 
-    public static boolean isMouseWithin(int mouseX, int mouseY, int x, int y, int width, int height)
-    {
+    public static boolean isMouseWithin(int mouseX, int mouseY, int x, int y, int width, int height) {
         return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
     }
 
-    public static void renderFirstPersonArm(LocalPlayer player, HumanoidArm hand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight)
-    {
+    public static void renderFirstPersonArm(LocalPlayer player, HumanoidArm hand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight) {
         Minecraft mc = Minecraft.getInstance();
         EntityRenderDispatcher renderManager = mc.getEntityRenderDispatcher();
         PlayerRenderer renderer = (PlayerRenderer) renderManager.getRenderer(player);
         RenderSystem.setShaderTexture(0, player.getSkinTextureLocation());
-        if(hand == HumanoidArm.RIGHT)
-        {
+        if (hand == HumanoidArm.RIGHT) {
             renderer.renderRightHand(poseStack, buffer, combinedLight, player);
-        }
-        else
-        {
+        } else {
             renderer.renderLeftHand(poseStack, buffer, combinedLight, player);
         }
     }
 
-    public static RenderType getRenderType(ItemStack stack, boolean entity)
-    {
+    public static RenderType getRenderType(ItemStack stack, boolean entity) {
         Item item = stack.getItem();
-        if(item instanceof BlockItem)
-        {
+        if (item instanceof BlockItem) {
             Block block = ((BlockItem) item).getBlock();
             return ItemBlockRenderTypes.getRenderType(block.defaultBlockState(), !entity);
         }

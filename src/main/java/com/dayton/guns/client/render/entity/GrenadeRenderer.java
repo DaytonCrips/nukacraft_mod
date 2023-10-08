@@ -14,24 +14,19 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public class GrenadeRenderer extends EntityRenderer<GrenadeEntity>
-{
-    public GrenadeRenderer(EntityRendererProvider.Context context)
-    {
+public class GrenadeRenderer extends EntityRenderer<GrenadeEntity> {
+    public GrenadeRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(GrenadeEntity entity)
-    {
+    public ResourceLocation getTextureLocation(GrenadeEntity entity) {
         return null;
     }
 
     @Override
-    public void render(GrenadeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light)
-    {
-        if(!entity.getProjectile().isVisible() || entity.tickCount <= 1)
-        {
+    public void render(GrenadeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
+        if (!entity.getProjectile().isVisible() || entity.tickCount <= 1) {
             return;
         }
 

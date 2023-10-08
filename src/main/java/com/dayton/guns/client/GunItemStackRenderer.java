@@ -11,24 +11,20 @@ import net.minecraft.world.item.ItemStack;
 /**
  * Author: MrCrayfish
  */
-public class GunItemStackRenderer extends BlockEntityWithoutLevelRenderer
-{
-    public GunItemStackRenderer()
-    {
+public class GunItemStackRenderer extends BlockEntityWithoutLevelRenderer {
+    public GunItemStackRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
     }
 
     @Override
-    public void renderByItem(ItemStack stack, ItemTransforms.TransformType transform, PoseStack poseStack, MultiBufferSource source, int light, int overlay)
-    {
+    public void renderByItem(ItemStack stack, ItemTransforms.TransformType transform, PoseStack poseStack, MultiBufferSource source, int light, int overlay) {
         // Hack to remove transforms created by ItemRenderer#render
         poseStack.popPose();
 
         poseStack.pushPose();
         {
             Minecraft mc = Minecraft.getInstance();
-            if(transform == ItemTransforms.TransformType.GROUND)
-            {
+            if (transform == ItemTransforms.TransformType.GROUND) {
                 GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
             }
             //if (transform != ItemTransforms.TransformType.GUI)

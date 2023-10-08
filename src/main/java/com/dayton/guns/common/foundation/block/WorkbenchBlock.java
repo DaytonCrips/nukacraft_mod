@@ -29,19 +29,15 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock
-{
+public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 
-    public WorkbenchBlock(Block.Properties properties)
-    {
+    public WorkbenchBlock(Block.Properties properties) {
         super(properties);
     }
 
-    private VoxelShape getShape(BlockState state)
-    {
-        if(SHAPES.containsKey(state))
-        {
+    private VoxelShape getShape(BlockState state) {
+        if (SHAPES.containsKey(state)) {
             return SHAPES.get(state);
         }
         Direction direction = state.getValue(FACING);
@@ -55,25 +51,20 @@ public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos) {
         return this.getShape(state);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
-    {
-        if(!world.isClientSide())
-        {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result) {
+        if (!world.isClientSide()) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
-            if(tileEntity instanceof MenuProvider)
-            {
+            if (tileEntity instanceof MenuProvider) {
                 NetworkHooks.openGui((ServerPlayer) playerEntity, (MenuProvider) tileEntity, pos);
             }
         }
@@ -82,8 +73,7 @@ public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
-    {
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new WorkbenchBlockEntity(pos, state);
     }
 }

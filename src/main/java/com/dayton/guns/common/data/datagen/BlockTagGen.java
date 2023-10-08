@@ -9,16 +9,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class BlockTagGen extends BlockTagsProvider
-{
-    public BlockTagGen(DataGenerator generatorIn, ExistingFileHelper existingFileHelper)
-    {
+public class BlockTagGen extends BlockTagsProvider {
+    public BlockTagGen(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
         super(generatorIn, NukaCraftMod.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags()
-    {
+    protected void addTags() {
         this.tag(ModTags.Blocks.FRAGILE)
                 .addTag(Tags.Blocks.GLASS_PANES)
                 .addTag(Tags.Blocks.GLASS)

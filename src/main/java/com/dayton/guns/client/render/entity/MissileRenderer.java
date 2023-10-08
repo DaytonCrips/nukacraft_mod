@@ -16,24 +16,19 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public class MissileRenderer extends EntityRenderer<MissileEntity>
-{
-    public MissileRenderer(EntityRendererProvider.Context context)
-    {
+public class MissileRenderer extends EntityRenderer<MissileEntity> {
+    public MissileRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MissileEntity entity)
-    {
+    public ResourceLocation getTextureLocation(MissileEntity entity) {
         return null;
     }
 
     @Override
-    public void render(MissileEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light)
-    {
-        if(!entity.getProjectile().isVisible() || entity.tickCount <= 1)
-        {
+    public void render(MissileEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
+        if (!entity.getProjectile().isVisible() || entity.tickCount <= 1) {
             return;
         }
 

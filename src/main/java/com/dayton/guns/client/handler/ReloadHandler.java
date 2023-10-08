@@ -23,14 +23,11 @@ import org.lwjgl.glfw.GLFW;
 /**
  * Author: MrCrayfish
  */
-public class ReloadHandler
-{
+public class ReloadHandler {
     private static ReloadHandler instance;
 
-    public static ReloadHandler get()
-    {
-        if(instance == null)
-        {
+    public static ReloadHandler get() {
+        if (instance == null) {
             instance = new ReloadHandler();
         }
         return instance;
@@ -41,25 +38,20 @@ public class ReloadHandler
     private int prevReloadTimer;
     private int reloadingSlot;
 
-    private ReloadHandler()
-    {
+    private ReloadHandler() {
     }
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
-    {
-        if(event.phase != TickEvent.Phase.END)
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END)
             return;
 
         this.prevReloadTimer = this.reloadTimer;
 
         Player player = Minecraft.getInstance().player;
-        if(player != null)
-        {
-            if(ModSyncedDataKeys.RELOADING.getValue(player))
-            {
-                if(this.reloadingSlot != player.getInventory().selected)
-                {
+        if (player != null) {
+            if (ModSyncedDataKeys.RELOADING.getValue(player)) {
+                if (this.reloadingSlot != player.getInventory().selected) {
                     this.setReloading(false);
                 }
             }
@@ -69,47 +61,36 @@ public class ReloadHandler
     }
 
     @SubscribeEvent
-    public void onKeyPressed(InputEvent.KeyInputEvent event)
-    {
+    public void onKeyPressed(InputEvent.KeyInputEvent event) {
         Player player = Minecraft.getInstance().player;
-        if(player == null)
+        if (player == null)
             return;
 
-        if(KeyBinds.KEY_RELOAD.isDown() && event.getAction() == GLFW.GLFW_PRESS)
-        {
-            if(!ModSyncedDataKeys.RELOADING.getValue(player))
-            {
+        if (KeyBinds.KEY_RELOAD.isDown() && event.getAction() == GLFW.GLFW_PRESS) {
+            if (!ModSyncedDataKeys.RELOADING.getValue(player)) {
                 this.setReloading(true);
-            }
-            else
-            {
+            } else {
                 this.setReloading(false);
             }
         }
-        if(KeyBinds.KEY_UNLOAD.consumeClick() && event.getAction() == GLFW.GLFW_PRESS)
-        {
+        if (KeyBinds.KEY_UNLOAD.consumeClick() && event.getAction() == GLFW.GLFW_PRESS) {
             this.setReloading(false);
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
         }
     }
 
-    public void setReloading(boolean reloading)
-    {
+    public void setReloading(boolean reloading) {
         Player player = Minecraft.getInstance().player;
-        if(player != null)
-        {
-            if(reloading)
-            {
+        if (player != null) {
+            if (reloading) {
                 ItemStack stack = player.getMainHandItem();
-                if(stack.getItem() instanceof GunItem)
-                {
+                if (stack.getItem() instanceof GunItem) {
                     CompoundTag tag = stack.getTag();
-                    if(tag != null && !tag.contains("IgnoreAmmo", Tag.TAG_BYTE))
-                    {
+                    if (tag != null && !tag.contains("IgnoreAmmo", Tag.TAG_BYTE)) {
                         Gun gun = ((GunItem) stack.getItem()).getModifiedGun(stack);
-                        if(tag.getInt("AmmoCount") >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
+                        if (tag.getInt("AmmoCount") >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
                             return;
-                        if(MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack)))
+                        if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack)))
                             return;
                         ModSyncedDataKeys.RELOADING.setValue(player, true);
                         PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(true));
@@ -117,9 +98,7 @@ public class ReloadHandler
                         MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Post(player, stack));
                     }
                 }
-            }
-            else
-            {
+            } else {
                 ModSyncedDataKeys.RELOADING.setValue(player, false);
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(false));
                 this.reloadingSlot = -1;
@@ -127,44 +106,33 @@ public class ReloadHandler
         }
     }
 
-    private void updateReloadTimer(Player player)
-    {
-        if(ModSyncedDataKeys.RELOADING.getValue(player))
-        {
-            if(this.startReloadTick == -1)
-            {
+    private void updateReloadTimer(Player player) {
+        if (ModSyncedDataKeys.RELOADING.getValue(player)) {
+            if (this.startReloadTick == -1) {
                 this.startReloadTick = player.tickCount + 5;
             }
-            if(this.reloadTimer < 5)
-            {
+            if (this.reloadTimer < 5) {
                 this.reloadTimer++;
             }
-        }
-        else
-        {
-            if(this.startReloadTick != -1)
-            {
+        } else {
+            if (this.startReloadTick != -1) {
                 this.startReloadTick = -1;
             }
-            if(this.reloadTimer > 0)
-            {
+            if (this.reloadTimer > 0) {
                 this.reloadTimer--;
             }
         }
     }
 
-    public int getStartReloadTick()
-    {
+    public int getStartReloadTick() {
         return this.startReloadTick;
     }
 
-    public int getReloadTimer()
-    {
+    public int getReloadTimer() {
         return this.reloadTimer;
     }
 
-    public float getReloadProgress(float partialTicks)
-    {
+    public float getReloadProgress(float partialTicks) {
         return (this.prevReloadTimer + (this.reloadTimer - this.prevReloadTimer) * partialTicks) / 5F;
     }
 }

@@ -23,24 +23,20 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 @Deprecated(since = "1.3.0", forRemoval = true)
-public class BazookaModel extends SimpleModel
-{
+public class BazookaModel extends SimpleModel {
     private static final ResourceLocation RED_DOT_RETICLE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/red_dot_reticle.png");
     private static final ResourceLocation RED_DOT_RETICLE_GLOW = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/red_dot_reticle_glow.png");
     private static final ResourceLocation VIGNETTE = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/effect/scope_vignette.png");
 
-    public BazookaModel(Supplier<BakedModel> modelSupplier)
-    {
+    public BazookaModel(Supplier<BakedModel> modelSupplier) {
         super(modelSupplier);
     }
 
     @Override
-    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay)
-    {
+    public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, @Nullable LivingEntity entity, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
         Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false, poseStack, buffer, light, overlay, GunModel.wrap(this.modelSupplier.get()));
 
-        if(transformType.firstPerson() && entity != null && entity.equals(Minecraft.getInstance().player))
-        {
+        if (transformType.firstPerson() && entity != null && entity.equals(Minecraft.getInstance().player)) {
             poseStack.pushPose();
             {
                 Matrix4f matrix = poseStack.last().pose();
@@ -65,8 +61,7 @@ public class BazookaModel extends SimpleModel
 
                 int reticleGlowColor = RenderUtil.getItemStackColor(stack, parent, 0);
                 CompoundTag tag = stack.getTag();
-                if(tag != null && tag.contains("ReticleColor", Tag.TAG_INT))
-                {
+                if (tag != null && tag.contains("ReticleColor", Tag.TAG_INT)) {
                     reticleGlowColor = tag.getInt("ReticleColor");
                 }
 

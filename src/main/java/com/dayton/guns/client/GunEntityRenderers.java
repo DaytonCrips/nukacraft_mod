@@ -15,11 +15,9 @@ import net.minecraftforge.fml.common.Mod;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class GunEntityRenderers
-{
+public class GunEntityRenderers {
     @SubscribeEvent
-    public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event)
-    {
+    public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.PROJECTILE.get(), ProjectileRenderer::new);
         event.registerEntityRenderer(ModEntities.GRENADE.get(), GrenadeRenderer::new);
         event.registerEntityRenderer(ModEntities.MISSILE.get(), MissileRenderer::new);

@@ -15,8 +15,7 @@ import net.minecraftforge.fml.common.Mod;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public enum SpecialModels
-{
+public enum SpecialModels {
     ASSAULT_RIFLE("gun/assault_rifle"),
     BAZOOKA("gun/bazooka"),
     HEAVY_RIFLE("gun/heavy_rifle"),
@@ -45,8 +44,7 @@ public enum SpecialModels
      *
      * @param modelName name of the model file
      */
-    SpecialModels(String modelName)
-    {
+    SpecialModels(String modelName) {
         this.modelLocation = new ResourceLocation(NukaCraftMod.MOD_ID, "special/" + modelName);
     }
 
@@ -55,10 +53,8 @@ public enum SpecialModels
      *
      * @return isolated model
      */
-    public BakedModel getModel()
-    {
-        if(this.cachedModel == null)
-        {
+    public BakedModel getModel() {
+        if (this.cachedModel == null) {
             this.cachedModel = Minecraft.getInstance().getModelManager().getModel(this.modelLocation);
         }
         return this.cachedModel;
@@ -69,10 +65,8 @@ public enum SpecialModels
      * load of the game.
      */
     @SubscribeEvent
-    public static void register(ModelRegistryEvent event)
-    {
-        for(SpecialModels model : values())
-        {
+    public static void register(ModelRegistryEvent event) {
+        for (SpecialModels model : values()) {
             ForgeModelBakery.addSpecialModel(model.modelLocation);
         }
     }
@@ -82,10 +76,8 @@ public enum SpecialModels
      * have changed when a resource pack was applied, or if resources are reloaded.
      */
     @SubscribeEvent
-    public static void onBake(ModelBakeEvent event)
-    {
-        for(SpecialModels model : values())
-        {
+    public static void onBake(ModelBakeEvent event) {
+        for (SpecialModels model : values()) {
             model.cachedModel = null;
         }
     }

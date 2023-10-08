@@ -13,18 +13,13 @@ import java.lang.reflect.Method;
 /**
  * Author: MrCrayfish
  */
-public class ReflectionUtil
-{
+public class ReflectionUtil {
     private static final Method updateRedstoneOutputMethod = ObfuscationReflectionHelper.findMethod(TargetBlock.class, "m_57391_", LevelAccessor.class, BlockState.class, BlockHitResult.class, Entity.class);
 
-    public static int updateTargetBlock(TargetBlock block, LevelAccessor accessor, BlockState state, BlockHitResult result, Entity entity)
-    {
-        try
-        {
+    public static int updateTargetBlock(TargetBlock block, LevelAccessor accessor, BlockState state, BlockHitResult result, Entity entity) {
+        try {
             return (int) updateRedstoneOutputMethod.invoke(block, accessor, state, result, entity);
-        }
-        catch(IllegalAccessException | InvocationTargetException ignored)
-        {
+        } catch (IllegalAccessException | InvocationTargetException ignored) {
             return 0;
         }
     }

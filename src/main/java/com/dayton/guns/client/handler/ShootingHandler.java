@@ -26,14 +26,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * Author: MrCrayfish
  */
-public class ShootingHandler
-{
+public class ShootingHandler {
     private static ShootingHandler instance;
 
-    public static ShootingHandler get()
-    {
-        if(instance == null)
-        {
+    public static ShootingHandler get() {
+        if (instance == null) {
             instance = new ShootingHandler();
         }
         return instance;
@@ -41,62 +38,52 @@ public class ShootingHandler
 
     private boolean shooting;
 
-    private ShootingHandler() {}
+    private ShootingHandler() {
+    }
 
-    private boolean isInGame()
-    {
+    private boolean isInGame() {
         Minecraft mc = Minecraft.getInstance();
-        if(mc.getOverlay() != null)
+        if (mc.getOverlay() != null)
             return false;
-        if(mc.screen != null)
+        if (mc.screen != null)
             return false;
-        if(!mc.mouseHandler.isMouseGrabbed())
+        if (!mc.mouseHandler.isMouseGrabbed())
             return false;
         return mc.isWindowActive();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onMouseClick(InputEvent.ClickInputEvent event)
-    {
-        if(event.isCanceled())
+    public void onMouseClick(InputEvent.ClickInputEvent event) {
+        if (event.isCanceled())
             return;
 
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
-        if(player == null)
+        if (player == null)
             return;
 
-        if(PlayerReviveHelper.isBleeding(player))
+        if (PlayerReviveHelper.isBleeding(player))
             return;
 
-        if(event.isAttack())
-        {
+        if (event.isAttack()) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem gunItem)
-            {
+            if (heldItem.getItem() instanceof GunItem gunItem) {
                 event.setSwingHand(false);
                 event.setCanceled(true);
                 this.fire(player, heldItem);
                 Gun gun = gunItem.getModifiedGun(heldItem);
-                if(!gun.getGeneral().isAuto())
-                {
+                if (!gun.getGeneral().isAuto()) {
                     mc.options.keyAttack.setDown(false);
                 }
             }
-        }
-        else if(event.isUseItem())
-        {
+        } else if (event.isUseItem()) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem gunItem)
-            {
-                if(event.getHand() == InteractionHand.OFF_HAND)
-                {
+            if (heldItem.getItem() instanceof GunItem gunItem) {
+                if (event.getHand() == InteractionHand.OFF_HAND) {
                     // Allow shields to be used if weapon is one-handed
-                    if(player.getOffhandItem().getItem() == Items.SHIELD)
-                    {
+                    if (player.getOffhandItem().getItem() == Items.SHIELD) {
                         Gun modifiedGun = gunItem.getModifiedGun(heldItem);
-                        if(modifiedGun.getGeneral().getGripType() == GripType.ONE_HANDED)
-                        {
+                        if (modifiedGun.getGeneral().getGripType() == GripType.ONE_HANDED) {
                             return;
                         }
                     }
@@ -104,8 +91,7 @@ public class ShootingHandler
                     event.setSwingHand(false);
                     return;
                 }
-                if(AimingHandler.get().isZooming() && AimingHandler.get().isLookingAtInteractableBlock())
-                {
+                if (AimingHandler.get().isZooming() && AimingHandler.get().isLookingAtInteractableBlock()) {
                     event.setCanceled(true);
                     event.setSwingHand(false);
                 }
@@ -114,76 +100,59 @@ public class ShootingHandler
     }
 
     @SubscribeEvent
-    public void onHandleShooting(TickEvent.ClientTickEvent event)
-    {
-        if(event.phase != TickEvent.Phase.START)
+    public void onHandleShooting(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.START)
             return;
 
-        if(!this.isInGame())
+        if (!this.isInGame())
             return;
 
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
-        if(player != null)
-        {
+        if (player != null) {
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem && (Gun.hasAmmo(heldItem) || player.isCreative()) && !PlayerReviveHelper.isBleeding(player))
-            {
+            if (heldItem.getItem() instanceof GunItem && (Gun.hasAmmo(heldItem) || player.isCreative()) && !PlayerReviveHelper.isBleeding(player)) {
                 boolean shooting = mc.options.keyAttack.isDown();
-                if(GunMod.controllableLoaded)
-                {
+                if (GunMod.controllableLoaded) {
                     shooting |= ControllerHandler.isShooting();
                 }
-                if(shooting)
-                {
-                    if(!this.shooting)
-                    {
+                if (shooting) {
+                    if (!this.shooting) {
                         this.shooting = true;
                         PacketHandler.getPlayChannel().sendToServer(new C2SMessageShooting(true));
                     }
-                }
-                else if(this.shooting)
-                {
+                } else if (this.shooting) {
                     this.shooting = false;
                     PacketHandler.getPlayChannel().sendToServer(new C2SMessageShooting(false));
                 }
-            }
-            else if(this.shooting)
-            {
+            } else if (this.shooting) {
                 this.shooting = false;
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageShooting(false));
             }
-        }
-        else
-        {
+        } else {
             this.shooting = false;
         }
     }
 
     @SubscribeEvent
-    public void onPostClientTick(TickEvent.ClientTickEvent event)
-    {
-        if(event.phase != TickEvent.Phase.END)
+    public void onPostClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END)
             return;
 
-        if(!isInGame())
+        if (!isInGame())
             return;
 
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
-        if(player != null)
-        {
-            if(PlayerReviveHelper.isBleeding(player))
+        if (player != null) {
+            if (PlayerReviveHelper.isBleeding(player))
                 return;
 
             ItemStack heldItem = player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem)
-            {
-                if(mc.options.keyAttack.isDown())
-                {
+            if (heldItem.getItem() instanceof GunItem) {
+                if (mc.options.keyAttack.isDown()) {
                     Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
-                    if(gun.getGeneral().isAuto())
-                    {
+                    if (gun.getGeneral().isAuto()) {
                         this.fire(player, heldItem);
                     }
                 }
@@ -191,27 +160,25 @@ public class ShootingHandler
         }
     }
 
-    public void fire(Player player, ItemStack heldItem)
-    {
-        if(!(heldItem.getItem() instanceof GunItem))
+    public void fire(Player player, ItemStack heldItem) {
+        if (!(heldItem.getItem() instanceof GunItem))
             return;
 
-        if(!Gun.hasAmmo(heldItem) && !player.isCreative())
-            return;
-        
-        if(player.isSpectator())
+        if (!Gun.hasAmmo(heldItem) && !player.isCreative())
             return;
 
-        if(player.getUseItem().getItem() == Items.SHIELD)
+        if (player.isSpectator())
+            return;
+
+        if (player.getUseItem().getItem() == Items.SHIELD)
             return;
 
         ItemCooldowns tracker = player.getCooldowns();
-        if(!tracker.isOnCooldown(heldItem.getItem()))
-        {
+        if (!tracker.isOnCooldown(heldItem.getItem())) {
             GunItem gunItem = (GunItem) heldItem.getItem();
             Gun modifiedGun = gunItem.getModifiedGun(heldItem);
 
-            if(MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
+            if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                 return;
 
             int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);

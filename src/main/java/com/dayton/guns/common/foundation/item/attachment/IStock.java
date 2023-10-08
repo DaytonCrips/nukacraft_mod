@@ -10,14 +10,12 @@ import com.dayton.guns.common.foundation.item.attachment.impl.Stock;
  * <p>
  * Author: MrCrayfish
  */
-public interface IStock extends IAttachment<Stock>
-{
+public interface IStock extends IAttachment<Stock> {
     /**
      * @return The type of this attachment
      */
     @Override
-    default Type getType()
-    {
+    default Type getType() {
         return Type.STOCK;
     }
 }

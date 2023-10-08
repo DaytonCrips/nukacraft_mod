@@ -3,8 +3,7 @@ package com.dayton.guns.client.render.pose;
 /**
  * Author: MrCrayfish
  */
-public class LimbPose
-{
+public class LimbPose {
     private Float rotationAngleX;
     private Float rotationAngleY;
     private Float rotationAngleZ;
@@ -12,68 +11,56 @@ public class LimbPose
     private Float rotationPointY;
     private Float rotationPointZ;
 
-    public Float getRotationAngleX()
-    {
+    public Float getRotationAngleX() {
         return this.rotationAngleX;
     }
 
-    public LimbPose setRotationAngleX(float rotationAngleX)
-    {
+    public LimbPose setRotationAngleX(float rotationAngleX) {
         this.rotationAngleX = rotationAngleX;
         return this;
     }
 
-    public Float getRotationAngleY()
-    {
+    public Float getRotationAngleY() {
         return this.rotationAngleY;
     }
 
-    public LimbPose setRotationAngleY(float rotationAngleY)
-    {
+    public LimbPose setRotationAngleY(float rotationAngleY) {
         this.rotationAngleY = rotationAngleY;
         return this;
     }
 
-    public Float getRotationAngleZ()
-    {
+    public Float getRotationAngleZ() {
         return this.rotationAngleZ;
     }
 
-    public LimbPose setRotationAngleZ(float rotationAngleZ)
-    {
+    public LimbPose setRotationAngleZ(float rotationAngleZ) {
         this.rotationAngleZ = rotationAngleZ;
         return this;
     }
 
-    public Float getRotationPointX()
-    {
+    public Float getRotationPointX() {
         return this.rotationPointX;
     }
 
-    public LimbPose setRotationPointX(float rotationPointX)
-    {
+    public LimbPose setRotationPointX(float rotationPointX) {
         this.rotationPointX = rotationPointX;
         return this;
     }
 
-    public Float getRotationPointY()
-    {
+    public Float getRotationPointY() {
         return this.rotationPointY;
     }
 
-    public LimbPose setRotationPointY(float rotationPointY)
-    {
+    public LimbPose setRotationPointY(float rotationPointY) {
         this.rotationPointY = rotationPointY;
         return this;
     }
 
-    public Float getRotationPointZ()
-    {
+    public Float getRotationPointZ() {
         return this.rotationPointZ;
     }
 
-    public LimbPose setRotationPointZ(float rotationPointZ)
-    {
+    public LimbPose setRotationPointZ(float rotationPointZ) {
         this.rotationPointZ = rotationPointZ;
         return this;
     }

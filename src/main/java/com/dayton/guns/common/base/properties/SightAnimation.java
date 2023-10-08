@@ -25,8 +25,7 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMenu
-{
+public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMenu {
     public static final SightAnimation DEFAULT = new SightAnimation();
 
     @Optional
@@ -41,23 +40,19 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
     @Optional
     protected Easings aimTransformCurve = Easings.EASE_IN_QUAD;
 
-    public Easings getViewportCurve()
-    {
+    public Easings getViewportCurve() {
         return this.viewportCurve;
     }
 
-    public Easings getSightCurve()
-    {
+    public Easings getSightCurve() {
         return this.sightCurve;
     }
 
-    public Easings getFovCurve()
-    {
+    public Easings getFovCurve() {
         return this.fovCurve;
     }
 
-    public Easings getAimTransformCurve()
-    {
+    public Easings getAimTransformCurve() {
         return this.aimTransformCurve;
     }
 
@@ -65,8 +60,7 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
      * Internal only
      */
     @Override
-    public Component getEditorLabel()
-    {
+    public Component getEditorLabel() {
         return new TextComponent("Sight Animation");
     }
 
@@ -74,8 +68,7 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
      * Internal only
      */
     @Override
-    public void getEditorWidgets(List<Pair<Component, Supplier<IDebugWidget>>> widgets)
-    {
+    public void getEditorWidgets(List<Pair<Component, Supplier<IDebugWidget>>> widgets) {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             widgets.add(Pair.of(new TextComponent("Debug: ").withStyle(ChatFormatting.BOLD, ChatFormatting.GOLD).append(new TextComponent("Force Aim").withStyle(ChatFormatting.WHITE)), () -> new DebugToggle(Debug.isForceAim(), Debug::setForceAim)));
             widgets.add(Pair.of(new TextComponent("Viewport Curve"), () -> new DebugEnum<>(Easings.class, this.viewportCurve, value -> {
@@ -94,8 +87,7 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
     }
 
     @Override
-    public CompoundTag serializeNBT()
-    {
+    public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
         tag.putString("ViewportCurve", this.viewportCurve.name().toLowerCase(Locale.ROOT));
         tag.putString("SightCurve", this.sightCurve.name().toLowerCase(Locale.ROOT));
@@ -105,50 +97,39 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
     }
 
     @Override
-    public void deserializeNBT(CompoundTag tag)
-    {
-        if(tag.contains("ViewportCurve", Tag.TAG_STRING))
-        {
+    public void deserializeNBT(CompoundTag tag) {
+        if (tag.contains("ViewportCurve", Tag.TAG_STRING)) {
             this.viewportCurve = Easings.byName(tag.getString("ViewportCurve"));
         }
-        if(tag.contains("SightCurve", Tag.TAG_STRING))
-        {
+        if (tag.contains("SightCurve", Tag.TAG_STRING)) {
             this.sightCurve = Easings.byName(tag.getString("SightCurve"));
         }
-        if(tag.contains("FovCurve", Tag.TAG_STRING))
-        {
+        if (tag.contains("FovCurve", Tag.TAG_STRING)) {
             this.fovCurve = Easings.byName(tag.getString("FovCurve"));
         }
-        if(tag.contains("AimTransformCurve", Tag.TAG_STRING))
-        {
+        if (tag.contains("AimTransformCurve", Tag.TAG_STRING)) {
             this.aimTransformCurve = Easings.byName(tag.getString("AimTransformCurve"));
         }
     }
 
-    public JsonObject toJsonObject()
-    {
+    public JsonObject toJsonObject() {
         JsonObject object = new JsonObject();
-        if(this.viewportCurve != Easings.LINEAR)
-        {
+        if (this.viewportCurve != Easings.LINEAR) {
             object.addProperty("viewportCurve", this.viewportCurve.getName());
         }
-        if(this.sightCurve != Easings.EASE_OUT_QUAD)
-        {
+        if (this.sightCurve != Easings.EASE_OUT_QUAD) {
             object.addProperty("sightCurve", this.sightCurve.getName());
         }
-        if(this.fovCurve != Easings.LINEAR)
-        {
+        if (this.fovCurve != Easings.LINEAR) {
             object.addProperty("fovCurve", this.fovCurve.getName());
         }
-        if(this.aimTransformCurve != Easings.EASE_IN_QUAD)
-        {
+        if (this.aimTransformCurve != Easings.EASE_IN_QUAD) {
             object.addProperty("aimTransformCurve", this.aimTransformCurve.getName());
         }
         return object;
     }
 
-    public SightAnimation copy()
-    {
+    public SightAnimation copy() {
         SightAnimation sightAnimation = new SightAnimation();
         sightAnimation.viewportCurve = this.viewportCurve;
         sightAnimation.sightCurve = this.sightCurve;
@@ -157,46 +138,38 @@ public class SightAnimation implements INBTSerializable<CompoundTag>, IEditorMen
         return sightAnimation;
     }
 
-    public static Builder builder()
-    {
+    public static Builder builder() {
         return new Builder();
     }
 
-    public static class Builder
-    {
+    public static class Builder {
         private final SightAnimation sightAnimation;
 
-        protected Builder()
-        {
+        protected Builder() {
             this.sightAnimation = new SightAnimation();
         }
 
-        public Builder setViewportCurve(Easings viewportCurve)
-        {
+        public Builder setViewportCurve(Easings viewportCurve) {
             this.sightAnimation.viewportCurve = viewportCurve;
             return this;
         }
 
-        public Builder setSightCurve(Easings sightCurve)
-        {
+        public Builder setSightCurve(Easings sightCurve) {
             this.sightAnimation.sightCurve = sightCurve;
             return this;
         }
 
-        public Builder setFovCurve(Easings fovCurve)
-        {
+        public Builder setFovCurve(Easings fovCurve) {
             this.sightAnimation.fovCurve = fovCurve;
             return this;
         }
 
-        public Builder setAimTransformCurve(Easings aimTransformCurve)
-        {
+        public Builder setAimTransformCurve(Easings aimTransformCurve) {
             this.sightAnimation.aimTransformCurve = aimTransformCurve;
             return this;
         }
 
-        public SightAnimation build()
-        {
+        public SightAnimation build() {
             return this.sightAnimation.copy();
         }
     }

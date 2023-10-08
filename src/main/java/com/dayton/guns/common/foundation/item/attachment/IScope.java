@@ -10,14 +10,12 @@ import com.dayton.guns.common.foundation.item.attachment.impl.Scope;
  * <p>
  * Author: Ocelot
  */
-public interface IScope extends IAttachment<Scope>
-{
+public interface IScope extends IAttachment<Scope> {
     /**
      * @return The type of this attachment
      */
     @Override
-    default Type getType()
-    {
+    default Type getType() {
         return Type.SCOPE;
     }
 }

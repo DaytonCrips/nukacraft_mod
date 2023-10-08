@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Author: MrCrayfish
  */
-public class GunOptions
-{
+public class GunOptions {
     private static final DecimalFormat FORMAT = new DecimalFormat("0.0#");
 
     public static final ProgressOption ADS_SENSITIVITY = new GunSliderPercentageOption("nukacraft.options.adsSensitivity", 0.0, 1.0, 0.01F, gameSettings -> {

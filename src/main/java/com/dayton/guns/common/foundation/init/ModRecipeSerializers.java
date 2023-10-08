@@ -12,8 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 /**
  * Author: MrCrayfish
  */
-public class ModRecipeSerializers
-{
+public class ModRecipeSerializers {
     public static final DeferredRegister<RecipeSerializer<?>> REGISTER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<SimpleRecipeSerializer<DyeItemRecipe>> DYE_ITEM = REGISTER.register("dye_item", () -> new SimpleRecipeSerializer<>(DyeItemRecipe::new));

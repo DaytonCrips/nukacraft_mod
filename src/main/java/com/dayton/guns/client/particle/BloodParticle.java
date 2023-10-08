@@ -17,29 +17,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Author: MrCrayfish
  */
 @OnlyIn(Dist.CLIENT)
-public class BloodParticle extends TextureSheetParticle
-{
-    public BloodParticle(ClientLevel world, double x, double y, double z)
-    {
+public class BloodParticle extends TextureSheetParticle {
+    public BloodParticle(ClientLevel world, double x, double y, double z) {
         super(world, x, y, z, 0.1, 0.1, 0.1);
         this.setColor(0.541F, 0.027F, 0.027F);
         this.gravity = 1.5F;
         this.quadSize = 0.0625F;
-        this.lifetime = (int)(12.0F / (this.random.nextFloat() * 0.9F + 0.1F));
+        this.lifetime = (int) (12.0F / (this.random.nextFloat() * 0.9F + 0.1F));
     }
 
     @Override
-    public ParticleRenderType getRenderType()
-    {
+    public ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     @Override
-    public void tick()
-    {
+    public void tick() {
         super.tick();
-        if(this.onGround)
-        {
+        if (this.onGround) {
             this.xd = 0;
             this.zd = 0;
             this.quadSize *= 0.95F;
@@ -47,43 +42,36 @@ public class BloodParticle extends TextureSheetParticle
     }
 
     @Override
-    public void render(VertexConsumer buffer, Camera renderInfo, float partialTicks)
-    {
+    public void render(VertexConsumer buffer, Camera renderInfo, float partialTicks) {
         Vec3 projectedView = renderInfo.getPosition();
         float x = (float) (Mth.lerp((double) partialTicks, this.xo, this.x) - projectedView.x());
         float y = (float) (Mth.lerp((double) partialTicks, this.yo, this.y) - projectedView.y());
         float z = (float) (Mth.lerp((double) partialTicks, this.zo, this.z) - projectedView.z());
 
-        if(this.onGround)
-        {
+        if (this.onGround) {
             y += 0.01;
         }
 
         Quaternion rotation = Direction.NORTH.getRotation();
-        if(this.roll == 0.0F)
-        {
-            if(!this.onGround)
-            {
+        if (this.roll == 0.0F) {
+            if (!this.onGround) {
                 rotation = renderInfo.rotation();
             }
-        }
-        else
-        {
+        } else {
             rotation = new Quaternion(renderInfo.rotation());
             float angle = Mth.lerp(partialTicks, this.oRoll, this.roll);
             rotation.mul(Vector3f.ZP.rotation(angle));
         }
 
-        Vector3f[] vertices = new Vector3f[] {
-            new Vector3f(-1.0F, -1.0F, 0.0F),
-            new Vector3f(-1.0F, 1.0F, 0.0F),
-            new Vector3f(1.0F, 1.0F, 0.0F),
-            new Vector3f(1.0F, -1.0F, 0.0F)
+        Vector3f[] vertices = new Vector3f[]{
+                new Vector3f(-1.0F, -1.0F, 0.0F),
+                new Vector3f(-1.0F, 1.0F, 0.0F),
+                new Vector3f(1.0F, 1.0F, 0.0F),
+                new Vector3f(1.0F, -1.0F, 0.0F)
         };
 
         float scale = this.getQuadSize(partialTicks);
-        for(int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             Vector3f vertex = vertices[i];
             vertex.transform(rotation);
             vertex.mul(scale);
@@ -102,17 +90,14 @@ public class BloodParticle extends TextureSheetParticle
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements ParticleProvider<SimpleParticleType>
-    {
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
-        public Factory(SpriteSet spriteSet)
-        {
+        public Factory(SpriteSet spriteSet) {
             this.spriteSet = spriteSet;
         }
 
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed)
-        {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             BloodParticle particle = new BloodParticle(worldIn, x, y, z);
             particle.pickSprite(this.spriteSet);
             return particle;

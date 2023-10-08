@@ -10,14 +10,12 @@ import com.dayton.guns.common.foundation.item.attachment.impl.UnderBarrel;
  * <p>
  * Author: MrCrayfish
  */
-public interface IUnderBarrel extends IAttachment<UnderBarrel>
-{
+public interface IUnderBarrel extends IAttachment<UnderBarrel> {
     /**
      * @return The type of this attachment
      */
     @Override
-    default Type getType()
-    {
+    default Type getType() {
         return Type.UNDER_BARREL;
     }
 }

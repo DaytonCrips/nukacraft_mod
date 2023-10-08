@@ -18,50 +18,41 @@ import java.util.List;
 
 /**
  * The base attachment object
- *
+ * <p>
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
-public abstract class Attachment
-{
+public abstract class Attachment {
     protected IGunModifier[] modifiers;
     private List<Component> perks = null;
 
-    Attachment(IGunModifier... modifiers)
-    {
+    Attachment(IGunModifier... modifiers) {
         this.modifiers = modifiers;
     }
 
-    public IGunModifier[] getModifiers()
-    {
+    public IGunModifier[] getModifiers() {
         return this.modifiers;
     }
 
-    void setPerks(List<Component> perks)
-    {
-        if(this.perks == null)
-        {
+    void setPerks(List<Component> perks) {
+        if (this.perks == null) {
             this.perks = perks;
         }
     }
 
-    List<Component> getPerks()
-    {
+    List<Component> getPerks() {
         return this.perks;
     }
 
     /* Determines the perks of attachments and caches them */
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void addInformationEvent(ItemTooltipEvent event)
-    {
+    public static void addInformationEvent(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
-        if(stack.getItem() instanceof IAttachment<?>)
-        {
+        if (stack.getItem() instanceof IAttachment<?>) {
             IAttachment<?> attachment = (IAttachment<?>) stack.getItem();
             List<Component> perks = attachment.getProperties().getPerks();
-            if(perks != null && perks.size() > 0)
-            {
+            if (perks != null && perks.size() > 0) {
                 event.getToolTip().add(new TranslatableComponent("perk.nukacraft.title").withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD));
                 event.getToolTip().addAll(perks);
                 return;
@@ -74,24 +65,18 @@ public abstract class Attachment
             /* Test for fire sound volume */
             float inputSound = 1.0F;
             float outputSound = inputSound;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputSound = modifier.modifyFireSoundVolume(outputSound);
             }
-            if(outputSound > inputSound)
-            {
+            if (outputSound > inputSound) {
                 addPerk(negativePerks, false, "perk.nukacraft.fire_volume.negative");
-            }
-            else if(outputSound < inputSound)
-            {
+            } else if (outputSound < inputSound) {
                 addPerk(positivePerks, true, "perk.nukacraft.fire_volume.positive");
             }
 
             /* Test for silenced */
-            for(IGunModifier modifier : modifiers)
-            {
-                if(modifier.silencedFire())
-                {
+            for (IGunModifier modifier : modifiers) {
+                if (modifier.silencedFire()) {
                     addPerk(positivePerks, true, "perk.nukacraft.silenced.positive");
                     break;
                 }
@@ -100,158 +85,120 @@ public abstract class Attachment
             /* Test for sound radius */
             double inputRadius = 10.0;
             double outputRadius = inputRadius;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputRadius = modifier.modifyFireSoundRadius(outputRadius);
             }
-            if(outputRadius > inputRadius)
-            {
+            if (outputRadius > inputRadius) {
                 addPerk(negativePerks, false, "perk.nukacraft.sound_radius.negative");
-            }
-            else if(outputRadius < inputRadius)
-            {
+            } else if (outputRadius < inputRadius) {
                 addPerk(positivePerks, true, "perk.nukacraft.sound_radius.positive");
             }
 
             /* Test for additional damage */
             float additionalDamage = 0.0F;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 additionalDamage += modifier.additionalDamage();
             }
-            if(additionalDamage > 0.0F)
-            {
+            if (additionalDamage > 0.0F) {
                 addPerk(positivePerks, true, "perk.nukacraft.additional_damage.positive", ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(additionalDamage / 2.0));
-            }
-            else if(additionalDamage < 0.0F)
-            {
+            } else if (additionalDamage < 0.0F) {
                 addPerk(negativePerks, false, "perk.nukacraft.additional_damage.negative", ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(additionalDamage / 2.0));
             }
 
             /* Test for modified damage */
             float inputDamage = 10.0F;
             float outputDamage = inputDamage;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputDamage = modifier.modifyProjectileDamage(outputDamage);
             }
-            if(outputDamage > inputDamage)
-            {
+            if (outputDamage > inputDamage) {
                 addPerk(positivePerks, true, "perk.nukacraft.modified_damage.positive");
-            }
-            else if(outputDamage < inputDamage)
-            {
+            } else if (outputDamage < inputDamage) {
                 addPerk(negativePerks, false, "perk.nukacraft.modified_damage.negative");
             }
 
             /* Test for modified damage */
             double inputSpeed = 10.0;
             double outputSpeed = inputSpeed;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputSpeed = modifier.modifyProjectileSpeed(outputSpeed);
             }
-            if(outputSpeed > inputSpeed)
-            {
+            if (outputSpeed > inputSpeed) {
                 addPerk(positivePerks, true, "perk.nukacraft.projectile_speed.positive");
-            }
-            else if(outputSpeed < inputSpeed)
-            {
+            } else if (outputSpeed < inputSpeed) {
                 addPerk(negativePerks, false, "perk.nukacraft.projectile_speed.negative");
             }
 
             /* Test for modified projectile spread */
             float inputSpread = 10.0F;
             float outputSpread = inputSpread;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputSpread = modifier.modifyProjectileSpread(outputSpread);
             }
-            if(outputSpread > inputSpread)
-            {
+            if (outputSpread > inputSpread) {
                 addPerk(negativePerks, false, "perk.nukacraft.projectile_spread.negative");
-            }
-            else if(outputSpread < inputSpread)
-            {
+            } else if (outputSpread < inputSpread) {
                 addPerk(positivePerks, true, "perk.nukacraft.projectile_spread.positive");
             }
 
             /* Test for modified projectile life */
             int inputLife = 100;
             int outputLife = inputLife;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputLife = modifier.modifyProjectileLife(outputLife);
             }
-            if(outputLife > inputLife)
-            {
+            if (outputLife > inputLife) {
                 addPerk(positivePerks, true, "perk.nukacraft.projectile_life.positive");
-            }
-            else if(outputLife < inputLife)
-            {
+            } else if (outputLife < inputLife) {
                 addPerk(negativePerks, false, "perk.nukacraft.projectile_life.negative");
             }
 
             /* Test for modified recoil */
             float inputRecoil = 10.0F;
             float outputRecoil = inputRecoil;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputRecoil *= modifier.recoilModifier();
             }
-            if(outputRecoil > inputRecoil)
-            {
+            if (outputRecoil > inputRecoil) {
                 addPerk(negativePerks, false, "perk.nukacraft.recoil.negative");
-            }
-            else if(outputRecoil < inputRecoil)
-            {
+            } else if (outputRecoil < inputRecoil) {
                 addPerk(positivePerks, true, "perk.nukacraft.recoil.positive");
             }
 
             /* Test for aim down sight speed */
             double inputAdsSpeed = 10.0;
             double outputAdsSpeed = inputAdsSpeed;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputAdsSpeed = modifier.modifyAimDownSightSpeed(outputAdsSpeed);
             }
-            if(outputAdsSpeed > inputAdsSpeed)
-            {
+            if (outputAdsSpeed > inputAdsSpeed) {
                 addPerk(positivePerks, true, "perk.nukacraft.ads_speed.positive");
-            }
-            else if(outputAdsSpeed < inputAdsSpeed)
-            {
+            } else if (outputAdsSpeed < inputAdsSpeed) {
                 addPerk(negativePerks, false, "perk.nukacraft.ads_speed.negative");
             }
 
             /* Test for fire rate */
             int inputRate = 10;
             int outputRate = inputRate;
-            for(IGunModifier modifier : modifiers)
-            {
+            for (IGunModifier modifier : modifiers) {
                 outputRate = modifier.modifyFireRate(outputRate);
             }
-            if(outputRate > inputRate)
-            {
+            if (outputRate > inputRate) {
                 addPerk(negativePerks, false, "perk.nukacraft.rate.negative");
-            }
-            else if(outputRate < inputRate)
-            {
+            } else if (outputRate < inputRate) {
                 addPerk(positivePerks, true, "perk.nukacraft.rate.positive");
             }
 
             positivePerks.addAll(negativePerks);
             attachment.getProperties().setPerks(positivePerks);
-            if(positivePerks.size() > 0)
-            {
+            if (positivePerks.size() > 0) {
                 event.getToolTip().add(new TranslatableComponent("perk.nukacraft.title").withStyle(ChatFormatting.GRAY, ChatFormatting.BOLD));
                 event.getToolTip().addAll(positivePerks);
             }
         }
     }
 
-    private static void addPerk(List<Component> components, boolean positive, String id, Object... params)
-    {
+    private static void addPerk(List<Component> components, boolean positive, String id, Object... params) {
         components.add(new TranslatableComponent(positive ? "perk.nukacraft.entry.positive" : "perk.nukacraft.entry.negative", new TranslatableComponent(id, params).withStyle(ChatFormatting.WHITE)).withStyle(positive ? ChatFormatting.DARK_AQUA : ChatFormatting.GOLD));
     }
 }

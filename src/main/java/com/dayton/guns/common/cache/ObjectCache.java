@@ -9,25 +9,22 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public final class ObjectCache
-{
+public final class ObjectCache {
     private static final Map<String, ObjectCache> INSTANCES = new HashMap<>();
 
-    public static ObjectCache getInstance(String key)
-    {
+    public static ObjectCache getInstance(String key) {
         return INSTANCES.computeIfAbsent(key, s -> new ObjectCache());
     }
 
     private final Map<Object, Object> cache = new HashMap<>();
 
-    private ObjectCache() {}
+    private ObjectCache() {
+    }
 
     @SuppressWarnings("unchecked")
-    public <T> T store(Object key, Supplier<T> supplier)
-    {
+    public <T> T store(Object key, Supplier<T> supplier) {
         T cacheValue = (T) this.cache.get(key);
-        if(cacheValue != null)
-        {
+        if (cacheValue != null) {
             return cacheValue;
         }
         T value = supplier.get();
@@ -37,13 +34,11 @@ public final class ObjectCache
     }
 
     @SuppressWarnings("unchecked")
-    public <T> Optional<T> get(Object key)
-    {
+    public <T> Optional<T> get(Object key) {
         return Optional.ofNullable((T) this.cache.get(key));
     }
 
-    public void reset()
-    {
+    public void reset() {
         this.cache.clear();
     }
 }

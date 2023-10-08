@@ -12,26 +12,22 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public class TexturedCrosshair extends Crosshair
-{
+public class TexturedCrosshair extends Crosshair {
     private ResourceLocation texture;
     private boolean blend;
 
-    public TexturedCrosshair(ResourceLocation id)
-    {
+    public TexturedCrosshair(ResourceLocation id) {
         this(id, true);
     }
 
-    public TexturedCrosshair(ResourceLocation id, boolean blend)
-    {
+    public TexturedCrosshair(ResourceLocation id, boolean blend) {
         super(id);
         this.texture = new ResourceLocation(id.getNamespace(), "textures/crosshair/" + id.getPath() + ".png");
         this.blend = blend;
     }
 
     @Override
-    public void render(Minecraft mc, PoseStack stack, int windowWidth, int windowHeight, float partialTicks)
-    {
+    public void render(Minecraft mc, PoseStack stack, int windowWidth, int windowHeight, float partialTicks) {
         stack.pushPose();
 
         float alpha = 1.0F - (float) AimingHandler.get().getNormalisedAdsProgress();
@@ -43,8 +39,7 @@ public class TexturedCrosshair extends Crosshair
         RenderSystem.setShaderTexture(0, this.texture);
         RenderSystem.enableBlend();
 
-        if(this.blend)
-        {
+        if (this.blend) {
             RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         }
 
@@ -58,8 +53,7 @@ public class TexturedCrosshair extends Crosshair
         buffer.end();
         BufferUploader.end(buffer);
 
-        if(this.blend)
-        {
+        if (this.blend) {
             RenderSystem.defaultBlendFunc();
         }
 

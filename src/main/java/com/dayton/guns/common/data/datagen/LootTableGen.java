@@ -23,35 +23,30 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public class LootTableGen extends LootTableProvider
-{
+public class LootTableGen extends LootTableProvider {
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(Pair.of(BlockProvider::new, LootContextParamSets.BLOCK));
 
-    public LootTableGen(DataGenerator generator)
-    {
+    public LootTableGen(DataGenerator generator) {
         super(generator);
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext context) {}
+    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext context) {
+    }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables()
-    {
+    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         return tables;
     }
 
-    private static class BlockProvider extends BlockLoot
-    {
+    private static class BlockProvider extends BlockLoot {
         @Override
-        protected void addTables()
-        {
+        protected void addTables() {
             this.dropSelf(ModBlocks.WORKBENCH.get());
         }
 
         @Override
-        protected Iterable<Block> getKnownBlocks()
-        {
+        protected Iterable<Block> getKnownBlocks() {
             return ForgeRegistries.BLOCKS.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && NukaCraftMod.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
         }
     }

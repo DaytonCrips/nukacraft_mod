@@ -11,17 +11,14 @@ import java.util.Map;
 
 /**
  * A class to manage custom projectile factories
- *
+ * <p>
  * Author: MrCrayfish
  */
-public class ProjectileManager
-{
+public class ProjectileManager {
     private static ProjectileManager instance = null;
 
-    public static ProjectileManager getInstance()
-    {
-        if(instance == null)
-        {
+    public static ProjectileManager getInstance() {
+        if (instance == null) {
             instance = new ProjectileManager();
         }
         return instance;
@@ -37,8 +34,7 @@ public class ProjectileManager
      * @param ammo    the ammo item
      * @param factory a custom projectile implementation
      */
-    public void registerFactory(Item ammo, IProjectileFactory factory)
-    {
+    public void registerFactory(Item ammo, IProjectileFactory factory) {
         this.projectileFactoryMap.put(ammo.getRegistryName(), factory);
     }
 
@@ -48,8 +44,7 @@ public class ProjectileManager
      * @param id the resource id of the projectile factory (the id of the item)
      * @return the custom projectile factory or the default factory if nothing exists for the id
      */
-    public IProjectileFactory getFactory(ResourceLocation id)
-    {
+    public IProjectileFactory getFactory(ResourceLocation id) {
         return this.projectileFactoryMap.getOrDefault(id, DEFAULT_FACTORY);
     }
 }

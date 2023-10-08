@@ -24,25 +24,20 @@ import java.util.WeakHashMap;
 /**
  * Author: MrCrayfish
  */
-public class BoundingBoxManager
-{
+public class BoundingBoxManager {
     private static Map<EntityType<?>, IHeadshotBox<?>> headshotBoxes = new HashMap<>();
     private static WeakHashMap<Player, LinkedList<AABB>> playerBoxes = new WeakHashMap<>();
 
-    static
-    {
+    static {
         /* Player */
         registerHeadshotBox(EntityType.PLAYER, (entity) -> {
             AABB headBox = new AABB(-4 * 0.0625, 0, -4 * 0.0625, 4 * 0.0625, 8 * 0.0625, 4 * 0.0625);
             double scale = 30.0 / 32.0;
-            if(entity.isSwimming())
-            {
+            if (entity.isSwimming()) {
                 headBox = headBox.move(0, 3 * 0.0625, 0);
                 Vec3 pos = Vec3.directionFromRotation(entity.getXRot(), entity.yBodyRot).normalize().scale(0.8);
                 headBox = headBox.move(pos);
-            }
-            else
-            {
+            } else {
                 headBox = headBox.move(0, entity.isShiftKeyDown() ? 20 * 0.0625 : 24 * 0.0625, 0);
             }
             return new AABB(headBox.minX * scale, headBox.minY * scale, headBox.minZ * scale, headBox.maxX * scale, headBox.maxY * scale, headBox.maxZ * scale);
@@ -92,50 +87,41 @@ public class BoundingBoxManager
      * @param headshotBox a {@link IHeadshotBox} get
      * @param <T>         a type that extends {@link LivingEntity}
      */
-    public static <T extends LivingEntity> void registerHeadshotBox(EntityType<T> type, IHeadshotBox<T> headshotBox)
-    {
+    public static <T extends LivingEntity> void registerHeadshotBox(EntityType<T> type, IHeadshotBox<T> headshotBox) {
         headshotBoxes.putIfAbsent(type, headshotBox);
     }
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T extends Entity> IHeadshotBox<T> getHeadshotBoxes(EntityType<T> type)
-    {
+    public static <T extends Entity> IHeadshotBox<T> getHeadshotBoxes(EntityType<T> type) {
         return (IHeadshotBox<T>) headshotBoxes.get(type);
     }
 
     @SubscribeEvent(receiveCanceled = true)
-    public void onPlayerTick(TickEvent.PlayerTickEvent event)
-    {
-        if(!Config.COMMON.gameplay.improvedHitboxes.get())
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (!Config.COMMON.gameplay.improvedHitboxes.get())
             return;
 
-        if(event.side == LogicalSide.SERVER && event.phase == TickEvent.Phase.END)
-        {
-            if(event.player.isSpectator())
-            {
+        if (event.side == LogicalSide.SERVER && event.phase == TickEvent.Phase.END) {
+            if (event.player.isSpectator()) {
                 playerBoxes.remove(event.player);
                 return;
             }
             LinkedList<AABB> boxes = playerBoxes.computeIfAbsent(event.player, player -> new LinkedList<>());
             boxes.addFirst(event.player.getBoundingBox());
-            if(boxes.size() > 20)
-            {
+            if (boxes.size() > 20) {
                 boxes.removeLast();
             }
         }
     }
 
     @SubscribeEvent(receiveCanceled = true)
-    public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event)
-    {
+    public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
         playerBoxes.remove(event.getPlayer());
     }
 
-    public static AABB getBoundingBox(Player entity, int ping)
-    {
-        if(playerBoxes.containsKey(entity))
-        {
+    public static AABB getBoundingBox(Player entity, int ping) {
+        if (playerBoxes.containsKey(entity)) {
             LinkedList<AABB> boxes = playerBoxes.get(entity);
             int index = Mth.clamp(ping, 0, boxes.size() - 1);
             return boxes.get(index);

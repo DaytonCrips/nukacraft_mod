@@ -25,25 +25,20 @@ import java.util.Optional;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
-public class CustomGunManager
-{
+public class CustomGunManager {
     private static Map<ResourceLocation, CustomGun> customGunMap;
 
-    public static boolean updateCustomGuns(S2CMessageUpdateGuns message)
-    {
+    public static boolean updateCustomGuns(S2CMessageUpdateGuns message) {
         return updateCustomGuns(message.getCustomGuns());
     }
 
-    private static boolean updateCustomGuns(Map<ResourceLocation, CustomGun> customGunMap)
-    {
+    private static boolean updateCustomGuns(Map<ResourceLocation, CustomGun> customGunMap) {
         CustomGunManager.customGunMap = customGunMap;
         return true;
     }
 
-    public static void fill(NonNullList<ItemStack> items)
-    {
-        if(customGunMap != null)
-        {
+    public static void fill(NonNullList<ItemStack> items) {
+        if (customGunMap != null) {
             customGunMap.forEach((id, gun) ->
             {
                 ItemStack stack = new ItemStack(ModGuns.PISTOL10MM.get());
@@ -59,23 +54,19 @@ public class CustomGunManager
     }
 
     @SubscribeEvent
-    public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event)
-    {
+    public static void onClientDisconnect(ClientPlayerNetworkEvent.LoggedOutEvent event) {
         customGunMap = null;
     }
 
-    public static class LoginData implements ILoginData
-    {
+    public static class LoginData implements ILoginData {
         @Override
-        public void writeData(FriendlyByteBuf buffer)
-        {
+        public void writeData(FriendlyByteBuf buffer) {
             Validate.notNull(CustomGunLoader.get());
             CustomGunLoader.get().writeCustomGuns(buffer);
         }
 
         @Override
-        public Optional<String> readData(FriendlyByteBuf buffer)
-        {
+        public Optional<String> readData(FriendlyByteBuf buffer) {
             Map<ResourceLocation, CustomGun> customGuns = CustomGunLoader.readCustomGuns(buffer);
             CustomGunManager.updateCustomGuns(customGuns);
             return Optional.empty();

@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Author: MrCrayfish
  */
-public enum Easings implements StringRepresentable
-{
+public enum Easings implements StringRepresentable {
     LINEAR("linear", t -> t),
     EASE_IN_QUAD("ease_in_quad", Mth::square),
     EASE_IN_CUBIC("ease_in_cubic", t -> (float) Math.pow(t, 3)),
@@ -31,35 +30,29 @@ public enum Easings implements StringRepresentable
     private final String name;
     private final Function<Float, Float> function;
 
-    Easings(String name, Function<Float, Float> function)
-    {
+    Easings(String name, Function<Float, Float> function) {
         this.name = name;
         this.function = function;
     }
 
-    public float apply(float time)
-    {
+    public float apply(float time) {
         return this.function.apply(time);
     }
 
-    public double apply(double time)
-    {
+    public double apply(double time) {
         return this.function.apply(((Double) time).floatValue());
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public static Easings byName(String name)
-    {
+    public static Easings byName(String name) {
         return BY_NAME.getOrDefault(name, Easings.LINEAR);
     }
 
     @Override
-    public String getSerializedName()
-    {
+    public String getSerializedName() {
         return this.name;
     }
 }

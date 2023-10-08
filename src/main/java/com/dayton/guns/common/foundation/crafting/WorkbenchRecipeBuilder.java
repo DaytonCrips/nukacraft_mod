@@ -24,64 +24,54 @@ import java.util.function.Consumer;
 /**
  * @author Ocelot
  */
-public class WorkbenchRecipeBuilder
-{
+public class WorkbenchRecipeBuilder {
     private final Item result;
     private final int count;
     private final List<WorkbenchIngredient> ingredients;
     private final Advancement.Builder advancementBuilder;
     private final List<ICondition> conditions = new ArrayList<>();
 
-    private WorkbenchRecipeBuilder(ItemLike item, int count)
-    {
+    private WorkbenchRecipeBuilder(ItemLike item, int count) {
         this.result = item.asItem();
         this.count = count;
         this.ingredients = new ArrayList<>();
         this.advancementBuilder = Advancement.Builder.advancement();
     }
 
-    public static WorkbenchRecipeBuilder crafting(ItemLike item)
-    {
+    public static WorkbenchRecipeBuilder crafting(ItemLike item) {
         return new WorkbenchRecipeBuilder(item, 1);
     }
 
-    public static WorkbenchRecipeBuilder crafting(ItemLike item, int count)
-    {
+    public static WorkbenchRecipeBuilder crafting(ItemLike item, int count) {
         return new WorkbenchRecipeBuilder(item, count);
     }
 
-    public WorkbenchRecipeBuilder addIngredient(ItemLike item, int count)
-    {
+    public WorkbenchRecipeBuilder addIngredient(ItemLike item, int count) {
         this.ingredients.add(WorkbenchIngredient.of(item, count));
         return this;
     }
 
-    public WorkbenchRecipeBuilder addIngredient(WorkbenchIngredient ingredient)
-    {
+    public WorkbenchRecipeBuilder addIngredient(WorkbenchIngredient ingredient) {
         this.ingredients.add(ingredient);
         return this;
     }
 
-    public WorkbenchRecipeBuilder addCriterion(String name, CriterionTriggerInstance criterionIn)
-    {
+    public WorkbenchRecipeBuilder addCriterion(String name, CriterionTriggerInstance criterionIn) {
         this.advancementBuilder.addCriterion(name, criterionIn);
         return this;
     }
 
-    public WorkbenchRecipeBuilder addCondition(ICondition condition)
-    {
+    public WorkbenchRecipeBuilder addCondition(ICondition condition) {
         this.conditions.add(condition);
         return this;
     }
 
-    public void build(Consumer<FinishedRecipe> consumer)
-    {
+    public void build(Consumer<FinishedRecipe> consumer) {
         ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
         this.build(consumer, resourcelocation);
     }
 
-    public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id)
-    {
+    public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         this.validate(id);
         this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
         consumer.accept(new WorkbenchRecipeBuilder.Result(id, this.result, this.count, this.ingredients, this.conditions, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
@@ -90,16 +80,13 @@ public class WorkbenchRecipeBuilder
     /**
      * Makes sure that this recipe is valid and obtainable.
      */
-    private void validate(ResourceLocation id)
-    {
-        if(this.advancementBuilder.getCriteria().isEmpty())
-        {
+    private void validate(ResourceLocation id) {
+        if (this.advancementBuilder.getCriteria().isEmpty()) {
             throw new IllegalStateException("No way of obtaining recipe " + id);
         }
     }
 
-    public static class Result implements FinishedRecipe
-    {
+    public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final Item item;
         private final int count;
@@ -108,8 +95,7 @@ public class WorkbenchRecipeBuilder
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation id, ItemLike item, int count, List<WorkbenchIngredient> ingredients, List<ICondition> conditions, Advancement.Builder advancement, ResourceLocation advancementId)
-        {
+        public Result(ResourceLocation id, ItemLike item, int count, List<WorkbenchIngredient> ingredients, List<ICondition> conditions, Advancement.Builder advancement, ResourceLocation advancementId) {
             this.id = id;
             this.item = item.asItem();
             this.count = count;
@@ -120,12 +106,10 @@ public class WorkbenchRecipeBuilder
         }
 
         @Override
-        public void serializeRecipeData(JsonObject json)
-        {
+        public void serializeRecipeData(JsonObject json) {
             JsonArray conditions = new JsonArray();
             this.conditions.forEach(condition -> conditions.add(CraftingHelper.serialize(condition)));
-            if(conditions.size() > 0)
-            {
+            if (conditions.size() > 0) {
                 json.add("conditions", conditions);
             }
 
@@ -135,34 +119,29 @@ public class WorkbenchRecipeBuilder
 
             JsonObject resultObject = new JsonObject();
             resultObject.addProperty("item", Registry.ITEM.getKey(this.item).toString());
-            if(this.count > 1)
-            {
+            if (this.count > 1) {
                 resultObject.addProperty("count", this.count);
             }
             json.add("result", resultObject);
         }
 
         @Override
-        public ResourceLocation getId()
-        {
+        public ResourceLocation getId() {
             return this.id;
         }
 
         @Override
-        public RecipeSerializer<?> getType()
-        {
+        public RecipeSerializer<?> getType() {
             return ModRecipeSerializers.WORKBENCH.get();
         }
 
         @Override
-        public JsonObject serializeAdvancement()
-        {
+        public JsonObject serializeAdvancement() {
             return this.advancement.serializeToJson();
         }
 
         @Override
-        public ResourceLocation getAdvancementId()
-        {
+        public ResourceLocation getAdvancementId() {
             return this.advancementId;
         }
     }

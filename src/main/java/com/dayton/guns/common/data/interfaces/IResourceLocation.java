@@ -5,7 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public interface IResourceLocation
-{
+public interface IResourceLocation {
     ResourceLocation getLocation();
 }

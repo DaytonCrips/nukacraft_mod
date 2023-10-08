@@ -6,17 +6,16 @@ import net.minecraft.client.Minecraft;
 /**
  * Author: MrCrayfish
  */
-public class ScreenUtil
-{
+public class ScreenUtil {
     /**
      * Creates a scissor test using minecraft screen coordinates instead of pixel coordinates.
+     *
      * @param screenX
      * @param screenY
      * @param boxWidth
      * @param boxHeight
      */
-    public static void startScissor(int screenX, int screenY, int boxWidth, int boxHeight)
-    {
+    public static void startScissor(int screenX, int screenY, int boxWidth, int boxHeight) {
         Minecraft mc = Minecraft.getInstance();
         int scale = (int) mc.getWindow().getGuiScale();
         int x = screenX * scale;
@@ -26,13 +25,11 @@ public class ScreenUtil
         RenderSystem.enableScissor(x, y, width, height);
     }
 
-    public static void endScissor()
-    {
+    public static void endScissor() {
         RenderSystem.disableScissor();
     }
 
-    public static boolean isMouseWithin(int x, int y, int width, int height, int mouseX, int mouseY)
-    {
+    public static boolean isMouseWithin(int x, int y, int width, int height, int mouseX, int mouseY) {
         return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
     }
 }

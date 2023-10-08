@@ -10,15 +10,12 @@ import java.util.stream.Collectors;
 /**
  * Author: MrCrayfish
  */
-public class WorkbenchRecipes
-{
-    public static boolean isEmpty(Level world)
-    {
+public class WorkbenchRecipes {
+    public static boolean isEmpty(Level world) {
         return world.getRecipeManager().getRecipes().stream().noneMatch(recipe -> recipe.getType() == ModRecipeType.WORKBENCH);
     }
 
-    public static NonNullList<WorkbenchRecipe> getAll(Level world)
-    {
+    public static NonNullList<WorkbenchRecipe> getAll(Level world) {
         return world.getRecipeManager().getRecipes().stream()
                 .filter(recipe -> recipe.getType() == ModRecipeType.WORKBENCH)
                 .map(recipe -> (WorkbenchRecipe) recipe)
@@ -26,8 +23,7 @@ public class WorkbenchRecipes
     }
 
     @Nullable
-    public static WorkbenchRecipe getRecipeById(Level world, ResourceLocation id)
-    {
+    public static WorkbenchRecipe getRecipeById(Level world, ResourceLocation id) {
         return world.getRecipeManager().getRecipes().stream()
                 .filter(recipe -> recipe.getType() == ModRecipeType.WORKBENCH)
                 .map(recipe -> (WorkbenchRecipe) recipe)

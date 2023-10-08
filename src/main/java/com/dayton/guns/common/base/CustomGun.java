@@ -8,25 +8,21 @@ import net.minecraftforge.common.util.INBTSerializable;
 /**
  * Author: MrCrayfish
  */
-public class CustomGun implements INBTSerializable<CompoundTag>
-{
+public class CustomGun implements INBTSerializable<CompoundTag> {
     @Ignored
     public ItemStack model;
     public Gun gun;
 
-    public ItemStack getModel()
-    {
+    public ItemStack getModel() {
         return this.model;
     }
 
-    public Gun getGun()
-    {
+    public Gun getGun() {
         return this.gun;
     }
 
     @Override
-    public CompoundTag serializeNBT()
-    {
+    public CompoundTag serializeNBT() {
         CompoundTag compound = new CompoundTag();
         compound.put("Model", this.model.save(new CompoundTag()));
         compound.put("Gun", this.gun.serializeNBT());
@@ -34,8 +30,7 @@ public class CustomGun implements INBTSerializable<CompoundTag>
     }
 
     @Override
-    public void deserializeNBT(CompoundTag compound)
-    {
+    public void deserializeNBT(CompoundTag compound) {
         this.model = ItemStack.of(compound.getCompound("Model"));
         this.gun = Gun.create(compound.getCompound("Gun"));
     }

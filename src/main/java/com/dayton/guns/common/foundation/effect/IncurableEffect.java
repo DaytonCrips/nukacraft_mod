@@ -10,16 +10,13 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class IncurableEffect extends MobEffect
-{
-    public IncurableEffect(MobEffectCategory typeIn, int liquidColorIn)
-    {
+public class IncurableEffect extends MobEffect {
+    public IncurableEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
-    public List<ItemStack> getCurativeItems()
-    {
+    public List<ItemStack> getCurativeItems() {
         return Collections.emptyList();
     }
 

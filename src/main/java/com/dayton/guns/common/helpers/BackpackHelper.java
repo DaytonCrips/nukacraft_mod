@@ -14,26 +14,22 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 /**
  * Author: MrCrayfish
  */
-public class BackpackHelper
-{
-    public static AmmoContext findAmmo(Player player, ResourceLocation id)
-    {
+public class BackpackHelper {
+    public static AmmoContext findAmmo(Player player, ResourceLocation id) {
         ItemStack backpack = Backpacked.getBackpackStack(player);
-        if(backpack.isEmpty())
+        if (backpack.isEmpty())
             return AmmoContext.NONE;
 
-        if(EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MARKSMAN.get(), backpack) <= 0)
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.MARKSMAN.get(), backpack) <= 0)
             return AmmoContext.NONE;
 
         BackpackInventory inventory = ((BackpackedInventoryAccess) player).getBackpackedInventory();
-        if(inventory == null)
+        if (inventory == null)
             return AmmoContext.NONE;
 
-        for(int i = 0; i < inventory.getContainerSize(); i++)
-        {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
             ItemStack stack = inventory.getItem(i);
-            if(Gun.isAmmo(stack, id))
-            {
+            if (Gun.isAmmo(stack, id)) {
                 return new AmmoContext(stack, inventory);
             }
         }

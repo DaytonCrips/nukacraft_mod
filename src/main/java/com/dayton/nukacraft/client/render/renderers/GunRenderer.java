@@ -27,7 +27,7 @@ public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectR
     private TransformType currentTransform;
 
     public GunRenderer() {
-        super(new GunModel<T>());
+        super(new GunModel<>());
     }
 
     public void render(ItemStack stack, TransformType transformType,

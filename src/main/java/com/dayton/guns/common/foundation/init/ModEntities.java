@@ -15,8 +15,7 @@ import java.util.function.BiFunction;
 /**
  * Author: MrCrayfish
  */
-public class ModEntities
-{
+public class ModEntities {
     public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.ENTITIES, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<EntityType<ProjectileEntity>> PROJECTILE = registerProjectile("projectile", ProjectileEntity::new);
@@ -25,8 +24,7 @@ public class ModEntities
     public static final RegistryObject<EntityType<ThrowableGrenadeEntity>> THROWABLE_GRENADE = registerBasic("throwable_grenade", ThrowableGrenadeEntity::new);
     public static final RegistryObject<EntityType<ThrowableStunGrenadeEntity>> THROWABLE_STUN_GRENADE = registerBasic("throwable_stun_grenade", ThrowableStunGrenadeEntity::new);
 
-    private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function)
-    {
+    private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
         return REGISTER.register(id, () -> EntityType.Builder.of(function::apply, MobCategory.MISC)
                 .sized(0.25F, 0.25F)
                 .setTrackingRange(100)
@@ -48,8 +46,7 @@ public class ModEntities
      * @param <T>      an entity that is a projectile entity
      * @return A registry object containing the new entity type
      */
-    private static <T extends ProjectileEntity> RegistryObject<EntityType<T>> registerProjectile(String id, BiFunction<EntityType<T>, Level, T> function)
-    {
+    private static <T extends ProjectileEntity> RegistryObject<EntityType<T>> registerProjectile(String id, BiFunction<EntityType<T>, Level, T> function) {
         return REGISTER.register(id, () -> EntityType.Builder.of(function::apply, MobCategory.MISC)
                 .sized(0.25F, 0.25F)
                 .setTrackingRange(0)

@@ -54,8 +54,7 @@ import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.
 /**
  * Author: MrCrayfish
  */
-public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
-{
+public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer> {
     private static final ResourceLocation GUI_BASE = new ResourceLocation("nukacraft:textures/gui/workbench.png");
     private static boolean showRemaining = false;
 
@@ -69,8 +68,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
     private CheckBox checkBoxMaterials;
     private ItemStack displayStack;
 
-    public WorkbenchScreen(WorkbenchContainer container, Inventory playerInventory, Component title)
-    {
+    public WorkbenchScreen(WorkbenchContainer container, Inventory playerInventory, Component title) {
         super(container, playerInventory, title);
         this.playerInventory = playerInventory;
         this.workbench = container.getWorkbench();
@@ -78,80 +76,61 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         this.imageHeight = 184;
         this.materials = new ArrayList<>();
         this.createTabs(WorkbenchRecipes.getAll(playerInventory.player.level));
-        if(!this.tabs.isEmpty())
-        {
+        if (!this.tabs.isEmpty()) {
             this.imageHeight += 28;
         }
     }
 
-    private void createTabs(NonNullList<WorkbenchRecipe> recipes)
-    {
+    private void createTabs(NonNullList<WorkbenchRecipe> recipes) {
         List<WorkbenchRecipe> weapons = new ArrayList<>();
         List<WorkbenchRecipe> attachments = new ArrayList<>();
         List<WorkbenchRecipe> ammo = new ArrayList<>();
         List<WorkbenchRecipe> misc = new ArrayList<>();
 
-        for(WorkbenchRecipe recipe : recipes)
-        {
+        for (WorkbenchRecipe recipe : recipes) {
             ItemStack output = recipe.getItem();
-            if(output.getItem() instanceof GunItem)
-            {
+            if (output.getItem() instanceof GunItem) {
                 weapons.add(recipe);
-            }
-            else if(output.getItem() instanceof IAttachment)
-            {
+            } else if (output.getItem() instanceof IAttachment) {
                 attachments.add(recipe);
-            }
-            else if(this.isAmmo(output))
-            {
+            } else if (this.isAmmo(output)) {
                 ammo.add(recipe);
-            }
-            else
-            {
+            } else {
                 misc.add(recipe);
             }
         }
 
-        if(!weapons.isEmpty())
-        {
+        if (!weapons.isEmpty()) {
             ItemStack icon = new ItemStack(ModGuns.PISTOL10MM.get());
             icon.getOrCreateTag().putInt("AmmoCount", ModGuns.PISTOL10MM.get().getGun().getGeneral().getMaxAmmo());
             this.tabs.add(new Tab(icon, "weapons", weapons));
         }
 
-        if(!attachments.isEmpty())
-        {
+        if (!attachments.isEmpty()) {
             this.tabs.add(new Tab(new ItemStack(ModGuns.HUNTING_SCOPE.get()), "attachments", attachments));
         }
 
-        if(!ammo.isEmpty())
-        {
+        if (!ammo.isEmpty()) {
             this.tabs.add(new Tab(new ItemStack(ModGuns.ROUND10MM.get()), "ammo", ammo));
         }
 
-        if(!misc.isEmpty())
-        {
+        if (!misc.isEmpty()) {
             this.tabs.add(new Tab(new ItemStack(Items.BARRIER), "misc", misc));
         }
 
-        if(!this.tabs.isEmpty())
-        {
+        if (!this.tabs.isEmpty()) {
             this.currentTab = this.tabs.get(0);
         }
     }
 
-    private boolean isAmmo(ItemStack stack)
-    {
-        if(stack.getItem() instanceof IAmmo)
-        {
+    private boolean isAmmo(ItemStack stack) {
+        if (stack.getItem() instanceof IAmmo) {
             return true;
         }
         ResourceLocation id = stack.getItem().getRegistryName();
         Objects.requireNonNull(id);
-        for(GunItem gunItem : NetworkGunManager.getClientRegisteredGuns())
-        {
-            if(id.equals(gunItem.getModifiedGun(stack).getProjectile().getItem()))
-            {
+        for (GunItem gunItem : NetworkGunManager.getClientRegisteredGuns()) {
+            if (id.equals(gunItem.getModifiedGun(stack).getProjectile().getItem())) {
                 return true;
             }
         }
@@ -159,28 +138,23 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
     }
 
     @Override
-    public void init()
-    {
+    public void init() {
         super.init();
-        if(!this.tabs.isEmpty())
-        {
+        if (!this.tabs.isEmpty()) {
             this.topPos += 28;
         }
         this.addRenderableWidget(new Button(this.leftPos + 9, this.topPos + 18, 15, 20, new TextComponent("<"), button ->
         {
             int index = this.currentTab.getCurrentIndex();
-            if(index - 1 < 0)
-            {
+            if (index - 1 < 0) {
                 this.loadItem(this.currentTab.getRecipes().size() - 1);
-            }
-            else
-            {
+            } else {
                 this.loadItem(index - 1);
             }
         }));
         this.addRenderableWidget(new Button(this.leftPos + 153, this.topPos + 18, 15, 20, new TextComponent(">"), button -> {
             int index = this.currentTab.getCurrentIndex();
-            if(index + 1 >= this.currentTab.getRecipes().size())
+            if (index + 1 >= this.currentTab.getRecipes().size())
                 this.loadItem(0);
             else
                 this.loadItem(index + 1);
@@ -204,13 +178,13 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
     public void containerTick() {
         super.containerTick();
 
-        for(MaterialItem material : this.materials) {
+        for (MaterialItem material : this.materials) {
             material.tick();
         }
 
         boolean canCraft = true;
-        for(MaterialItem material : this.materials) {
-            if(!material.isEnabled()) {
+        for (MaterialItem material : this.materials) {
+            if (!material.isEnabled()) {
                 canCraft = false;
                 break;
             }
@@ -220,43 +194,33 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         this.updateColor();
     }
 
-    private void updateColor()
-    {
-        if(this.currentTab != null)
-        {
+    private void updateColor() {
+        if (this.currentTab != null) {
             ItemStack item = this.displayStack;
-            if(IColored.isDyeable(item))
-            {
+            if (IColored.isDyeable(item)) {
                 IColored colored = (IColored) item.getItem();
-                if(!this.workbench.getItem(0).isEmpty())
-                {
+                if (!this.workbench.getItem(0).isEmpty()) {
                     ItemStack dyeStack = this.workbench.getItem(0);
-                    if(dyeStack.getItem() instanceof DyeItem)
-                    {
+                    if (dyeStack.getItem() instanceof DyeItem) {
                         DyeColor color = ((DyeItem) dyeStack.getItem()).getDyeColor();
                         float[] components = color.getTextureDiffuseColors();
                         int red = (int) (components[0] * 255F);
                         int green = (int) (components[1] * 255F);
                         int blue = (int) (components[2] * 255F);
                         colored.setColor(item, ((red & 0xFF) << 16) | ((green & 0xFF) << 8) | ((blue & 0xFF)));
-                    }
-                    else colored.removeColor(item);
-                }
-                else colored.removeColor(item);
+                    } else colored.removeColor(item);
+                } else colored.removeColor(item);
             }
         }
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton)
-    {
+    public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
         boolean result = super.mouseClicked(mouseX, mouseY, mouseButton);
         WorkbenchScreen.showRemaining = this.checkBoxMaterials.isToggled();
 
-        for(int i = 0; i < this.tabs.size(); i++)
-        {
-            if(RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, this.leftPos + 28 * i, this.topPos - 28, 28, 28))
-            {
+        for (int i = 0; i < this.tabs.size(); i++) {
+            if (RenderUtil.isMouseWithin((int) mouseX, (int) mouseY, this.leftPos + 28 * i, this.topPos - 28, 28, 28)) {
                 this.currentTab = this.tabs.get(i);
                 this.loadItem(this.currentTab.getCurrentIndex());
                 this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
@@ -275,8 +239,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         this.materials.clear();
 
         List<WorkbenchIngredient> ingredients = recipe.getMaterials();
-        if(ingredients != null) {
-            for(WorkbenchIngredient ingredient : ingredients) {
+        if (ingredients != null) {
+            for (WorkbenchIngredient ingredient : ingredients) {
                 MaterialItem item = new MaterialItem(ingredient);
                 item.updateEnabledState();
                 this.materials.add(item);
@@ -287,9 +251,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
-    {
-        doSafe( () ->
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        doSafe(() ->
         {
             this.renderBackground(poseStack);
             super.render(poseStack, mouseX, mouseY, partialTicks);
@@ -324,11 +287,10 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY)
-    {
+    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
         int offset = this.tabs.isEmpty() ? 0 : 28;
-        this.font.draw(poseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY - 28 + offset, 4210752);
-        this.font.draw(poseStack, this.playerInventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY - 9 + offset, 4210752);
+        this.font.draw(poseStack, this.title, (float) this.titleLabelX, (float) this.titleLabelY - 28 + offset, 4210752);
+        this.font.draw(poseStack, this.playerInventory.getDisplayName(), (float) this.inventoryLabelX, (float) this.inventoryLabelY - 9 + offset, 4210752);
     }
 
     @Override
@@ -336,7 +298,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         partialTicks = Minecraft.getInstance().getFrameTime();
 
         float finalPartialTicks = partialTicks;
-        doSafe( () ->
+        doSafe(() ->
         {
             int startX = this.leftPos;
             int startY = this.topPos;
@@ -452,24 +414,20 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         });
     }
 
-    private List<MaterialItem> getMaterials()
-    {
+    private List<MaterialItem> getMaterials() {
         List<MaterialItem> materials = NonNullList.withSize(6, MaterialItem.EMPTY);
         List<MaterialItem> filteredMaterials = this.materials.stream().filter(materialItem -> this.checkBoxMaterials.isToggled() ? !materialItem.isEnabled() : materialItem != MaterialItem.EMPTY).collect(Collectors.toList());
-        for(int i = 0; i < filteredMaterials.size() && i < materials.size(); i++)
-        {
+        for (int i = 0; i < filteredMaterials.size() && i < materials.size(); i++) {
             materials.set(i, filteredMaterials.get(i));
         }
         return materials;
     }
 
-    public List<Tab> getTabs()
-    {
+    public List<Tab> getTabs() {
         return ImmutableList.copyOf(this.tabs);
     }
 
-    public static class MaterialItem
-    {
+    public static class MaterialItem {
         public static final MaterialItem EMPTY = new MaterialItem();
 
         private long lastTime = System.currentTimeMillis();
@@ -478,10 +436,10 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         private WorkbenchIngredient ingredient;
         private final List<ItemStack> displayStacks = new ArrayList<>();
 
-        private MaterialItem() {}
+        private MaterialItem() {
+        }
 
-        private MaterialItem(WorkbenchIngredient ingredient)
-        {
+        private MaterialItem(WorkbenchIngredient ingredient) {
             this.ingredient = ingredient;
             Stream.of(ingredient.getItems()).forEach(stack -> {
                 ItemStack displayStack = stack.copy();
@@ -490,77 +448,64 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
             });
         }
 
-        public WorkbenchIngredient getIngredient()
-        {
+        public WorkbenchIngredient getIngredient() {
             return this.ingredient;
         }
 
-        public void tick()
-        {
-            if(this.ingredient == null)
+        public void tick() {
+            if (this.ingredient == null)
                 return;
 
             this.updateEnabledState();
             long currentTime = System.currentTimeMillis();
-            if(currentTime - this.lastTime >= 1000)
-            {
+            if (currentTime - this.lastTime >= 1000) {
                 this.displayIndex = (this.displayIndex + 1) % this.displayStacks.size();
                 this.lastTime = currentTime;
             }
         }
 
-        public ItemStack getDisplayStack()
-        {
+        public ItemStack getDisplayStack() {
             return this.ingredient != null ? this.displayStacks.get(this.displayIndex) : ItemStack.EMPTY;
         }
 
-        public void updateEnabledState()
-        {
+        public void updateEnabledState() {
             this.enabled = InventoryUtil.hasWorkstationIngredient(Minecraft.getInstance().player, this.ingredient);
         }
 
-        public boolean isEnabled()
-        {
+        public boolean isEnabled() {
             return this.ingredient == null || this.enabled;
         }
     }
 
-    private static class Tab
-    {
+    private static class Tab {
         private final ItemStack icon;
         private final String id;
         private final List<WorkbenchRecipe> items;
         private int currentIndex;
 
-        public Tab(ItemStack icon, String id, List<WorkbenchRecipe> items)
-        {
+        public Tab(ItemStack icon, String id, List<WorkbenchRecipe> items) {
             this.icon = icon;
             this.id = id;
             this.items = items;
         }
 
-        public ItemStack getIcon()
-        {
+        public ItemStack getIcon() {
             return this.icon;
         }
 
-        public String getTabKey()
-        {
+        public String getTabKey() {
             return "gui.nukacraft.workbench.tab." + this.id;
         }
 
-        public void setCurrentIndex(int currentIndex)
-        {
+        public void setCurrentIndex(int currentIndex) {
             this.currentIndex = currentIndex;
         }
 
-        public int getCurrentIndex()
-        {
+        public int getCurrentIndex() {
             return this.currentIndex;
         }
 
-        public List<WorkbenchRecipe> getRecipes()
-        {
+        public List<WorkbenchRecipe> getRecipes() {
             return this.items;
         }
     }

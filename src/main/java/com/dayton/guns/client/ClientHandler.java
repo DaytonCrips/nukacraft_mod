@@ -43,12 +43,10 @@ import java.lang.reflect.Field;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
-public class ClientHandler
-{
+public class ClientHandler {
     private static Field mouseOptionsField;
 
-    public static void setup()
-    {
+    public static void setup() {
         MinecraftForge.EVENT_BUS.register(AimingHandler.get());
         MinecraftForge.EVENT_BUS.register(BulletTrailRenderingHandler.get());
         MinecraftForge.EVENT_BUS.register(CrosshairHandler.get());
@@ -60,8 +58,7 @@ public class ClientHandler
         MinecraftForge.EVENT_BUS.register(new PlayerModelHandler());
 
         /* Only register controller events if Controllable is loaded otherwise it will crash */
-        if(GunMod.controllableLoaded)
-        {
+        if (GunMod.controllableLoaded) {
             MinecraftForge.EVENT_BUS.register(new ControllerHandler());
             GunButtonBindings.register();
         }
@@ -74,32 +71,26 @@ public class ClientHandler
         registerScreenFactories();
     }
 
-    private static void setupRenderLayers()
-    {
+    private static void setupRenderLayers() {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.WORKBENCH.get(), RenderType.cutout());
     }
 
-    private static void registerColors()
-    {
+    private static void registerColors() {
         ItemColor color = (stack, index) ->
         {
-            if(!IColored.isDyeable(stack))
-            {
+            if (!IColored.isDyeable(stack)) {
                 return -1;
             }
-            if(index == 0 && stack.hasTag() && stack.getTag().contains("Color", Tag.TAG_INT))
-            {
+            if (index == 0 && stack.hasTag() && stack.getTag().contains("Color", Tag.TAG_INT)) {
                 return stack.getTag().getInt("Color");
             }
-            if(index == 0 && stack.getItem() instanceof IAttachment)
-            {
+            if (index == 0 && stack.getItem() instanceof IAttachment) {
                 ItemStack renderingWeapon = GunRenderingHandler.get().getRenderingWeapon();
-                if(renderingWeapon != null)
-                {
+                if (renderingWeapon != null) {
                     return Minecraft.getInstance().getItemColors().getColor(renderingWeapon, index);
                 }
             }
-            if(index == 2) // Reticle colour
+            if (index == 2) // Reticle colour
             {
                 return PropertyHelper.getReticleColor(stack);
             }
@@ -107,15 +98,13 @@ public class ClientHandler
         };
         ForgeRegistries.ITEMS.forEach(item ->
         {
-            if(item instanceof IColored)
-            {
+            if (item instanceof IColored) {
                 Minecraft.getInstance().getItemColors().register(color, item);
             }
         });
     }
 
-    private static void registerModelOverrides()
-    {
+    private static void registerModelOverrides() {
         /* Weapons */
 //        ModelOverrides.register(ModItems.ASSAULT_RIFLE.get(), new SimpleModel(SpecialModels.ASSAULT_RIFLE::getModel));
 //        ModelOverrides.register(ModItems.BAZOOKA.get(), new SimpleModel(SpecialModels.BAZOOKA::getModel));
@@ -128,43 +117,33 @@ public class ClientHandler
 //        ModelOverrides.register(ModItems.SHOTGUN.get(), new SimpleModel(SpecialModels.SHOTGUN::getModel));
     }
 
-    private static void registerScreenFactories()
-    {
+    private static void registerScreenFactories() {
         MenuScreens.register(ModContainers.WORKBENCH.get(), WorkbenchScreen::new);
         MenuScreens.register(ModContainers.ATTACHMENTS.get(), AttachmentScreen::new);
     }
 
     @SubscribeEvent
-    public static void onScreenInit(ScreenEvent.InitScreenEvent.Post event)
-    {
-        if(event.getScreen() instanceof MouseSettingsScreen)
-        {
+    public static void onScreenInit(ScreenEvent.InitScreenEvent.Post event) {
+        if (event.getScreen() instanceof MouseSettingsScreen) {
             MouseSettingsScreen screen = (MouseSettingsScreen) event.getScreen();
-            if(mouseOptionsField == null)
-            {
+            if (mouseOptionsField == null) {
                 mouseOptionsField = ObfuscationReflectionHelper.findField(MouseSettingsScreen.class, "f_96218_");
                 mouseOptionsField.setAccessible(true);
             }
-            try
-            {
+            try {
                 OptionsList list = (OptionsList) mouseOptionsField.get(screen);
                 list.addSmall(GunOptions.ADS_SENSITIVITY, GunOptions.CROSSHAIR);
-            }
-            catch(IllegalAccessException e)
-            {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
     }
 
     @SubscribeEvent
-    public static void onKeyPressed(InputEvent.KeyInputEvent event)
-    {
+    public static void onKeyPressed(InputEvent.KeyInputEvent event) {
         Minecraft mc = Minecraft.getInstance();
-        if(mc.player != null && mc.screen == null && event.getAction() == GLFW.GLFW_PRESS)
-        {
-            if(KeyBinds.KEY_ATTACHMENTS.isDown())
-            {
+        if (mc.player != null && mc.screen == null && event.getAction() == GLFW.GLFW_PRESS) {
+            if (KeyBinds.KEY_ATTACHMENTS.isDown()) {
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageAttachments());
             }
             /*else if(event.getKey() == GLFW.GLFW_KEY_KP_9)
@@ -174,15 +153,13 @@ public class ClientHandler
         }
     }
 
-    public static void onRegisterReloadListener(RegisterClientReloadListenersEvent event)
-    {
+    public static void onRegisterReloadListener(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener((ResourceManagerReloadListener) manager -> {
             PropertyHelper.resetCache();
         });
     }
 
-    public static Screen createEditorScreen(IEditorMenu menu)
-    {
+    public static Screen createEditorScreen(IEditorMenu menu) {
         return new EditorScreen(Minecraft.getInstance().screen, menu);
     }
 

@@ -28,14 +28,11 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class BulletTrailRenderingHandler
-{
+public class BulletTrailRenderingHandler {
     private static BulletTrailRenderingHandler instance;
 
-    public static BulletTrailRenderingHandler get()
-    {
-        if(instance == null)
-        {
+    public static BulletTrailRenderingHandler get() {
+        if (instance == null) {
             instance = new BulletTrailRenderingHandler();
         }
         return instance;
@@ -43,19 +40,18 @@ public class BulletTrailRenderingHandler
 
     private Map<Integer, BulletTrail> bullets = new HashMap<>();
 
-    private BulletTrailRenderingHandler() {}
+    private BulletTrailRenderingHandler() {
+    }
 
     /**
      * Adds a bullet trail to render into the world
      *
      * @param trail the bullet trail get
      */
-    public void add(BulletTrail trail)
-    {
+    public void add(BulletTrail trail) {
         // Prevents trails being added when not in a world
         Level world = Minecraft.getInstance().level;
-        if(world != null)
-        {
+        if (world != null) {
             this.bullets.put(trail.getEntityId(), trail);
         }
     }
@@ -65,54 +61,43 @@ public class BulletTrailRenderingHandler
      *
      * @param entityId the entity id of the bullet
      */
-    public void remove(int entityId)
-    {
+    public void remove(int entityId) {
         this.bullets.remove(entityId);
     }
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
-    {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         Level world = Minecraft.getInstance().level;
-        if(world != null)
-        {
-            if(event.phase == TickEvent.Phase.END)
-            {
+        if (world != null) {
+            if (event.phase == TickEvent.Phase.END) {
                 this.bullets.values().forEach(BulletTrail::tick);
                 this.bullets.values().removeIf(BulletTrail::isDead);
             }
-        }
-        else if(!this.bullets.isEmpty())
-        {
+        } else if (!this.bullets.isEmpty()) {
             this.bullets.clear();
         }
     }
 
-    public void render(PoseStack stack, float partialSticks)
-    {
-        for(BulletTrail bulletTrail : this.bullets.values())
-        {
+    public void render(PoseStack stack, float partialSticks) {
+        for (BulletTrail bulletTrail : this.bullets.values()) {
             this.renderBulletTrail(bulletTrail, stack, partialSticks);
         }
     }
 
     @SubscribeEvent
-    public void onRespawn(ClientPlayerNetworkEvent.RespawnEvent event)
-    {
+    public void onRespawn(ClientPlayerNetworkEvent.RespawnEvent event) {
         this.bullets.clear();
     }
 
     @SubscribeEvent
-    public void onLoggedOut(ClientPlayerNetworkEvent.LoggedOutEvent event)
-    {
+    public void onLoggedOut(ClientPlayerNetworkEvent.LoggedOutEvent event) {
         this.bullets.clear();
     }
 
-    private void renderBulletTrail(BulletTrail trail, PoseStack poseStack, float deltaTicks)
-    {
+    private void renderBulletTrail(BulletTrail trail, PoseStack poseStack, float deltaTicks) {
         Minecraft mc = Minecraft.getInstance();
         Entity entity = mc.getCameraEntity();
-        if(entity == null || trail.isDead())
+        if (entity == null || trail.isDead())
             return;
 
         poseStack.pushPose();
@@ -137,16 +122,14 @@ public class BulletTrailRenderingHandler
 
         // Prevents the trail length from being longer than the distance to shooter
         Entity shooter = trail.getShooter();
-        if(shooter != null)
-        {
-            trailLength = (float) Math.min(trailLength, shooter.getEyePosition(deltaTicks).distanceTo(new Vec3(bulletX,bulletY, bulletZ)));
+        if (shooter != null) {
+            trailLength = (float) Math.min(trailLength, shooter.getEyePosition(deltaTicks).distanceTo(new Vec3(bulletX, bulletY, bulletZ)));
         }
 
         Matrix4f matrix4f = poseStack.last().pose();
         MultiBufferSource.BufferSource renderTypeBuffer = mc.renderBuffers().bufferSource();
 
-        if(trail.isTrailVisible())
-        {
+        if (trail.isTrailVisible()) {
             RenderType bulletType = GunRenderType.getBulletTrail();
             VertexConsumer builder = renderTypeBuffer.getBuffer(bulletType);
             builder.vertex(matrix4f, 0, 0, -0.035F).color(red, green, blue, alpha).uv2(15728880).endVertex();
@@ -160,8 +143,7 @@ public class BulletTrailRenderingHandler
             Minecraft.getInstance().renderBuffers().bufferSource().endBatch(bulletType);
         }
 
-        if(!trail.getItem().isEmpty())
-        {
+        if (!trail.getItem().isEmpty()) {
             poseStack.mulPose(Vector3f.YP.rotationDegrees((trail.getAge() + deltaTicks) * (float) 50));
             poseStack.scale(0.275F, 0.275F, 0.275F);
 

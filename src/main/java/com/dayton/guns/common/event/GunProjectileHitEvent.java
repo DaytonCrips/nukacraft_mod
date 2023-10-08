@@ -11,13 +11,11 @@ import net.minecraftforge.eventbus.api.Event;
  * @author Ocelot
  */
 @Cancelable
-public class GunProjectileHitEvent extends Event
-{
+public class GunProjectileHitEvent extends Event {
     private final HitResult result;
     private final ProjectileEntity projectile;
 
-    public GunProjectileHitEvent(HitResult result, ProjectileEntity projectile)
-    {
+    public GunProjectileHitEvent(HitResult result, ProjectileEntity projectile) {
         this.result = result;
         this.projectile = projectile;
     }
@@ -25,16 +23,14 @@ public class GunProjectileHitEvent extends Event
     /**
      * @return The result of the entity's ray trace
      */
-    public HitResult getRayTrace()
-    {
+    public HitResult getRayTrace() {
         return result;
     }
 
     /**
      * @return The projectile that hit
      */
-    public ProjectileEntity getProjectile()
-    {
+    public ProjectileEntity getProjectile() {
         return projectile;
     }
 }

@@ -21,14 +21,12 @@ import javax.annotation.Nullable;
  * <p>
  * Author: MrCrayfish
  */
-public abstract class WeaponPose implements IHeldAnimation
-{
+public abstract class WeaponPose implements IHeldAnimation {
     private AimPose upPose;
     private AimPose forwardPose;
     private AimPose downPose;
 
-    public WeaponPose()
-    {
+    public WeaponPose() {
         this.upPose = this.getUpPose();
         this.forwardPose = this.getForwardPose();
         this.downPose = this.getDownPose();
@@ -52,15 +50,13 @@ public abstract class WeaponPose implements IHeldAnimation
     /**
      * If this weapon pose has an aim pose
      */
-    protected boolean hasAimPose()
-    {
+    protected boolean hasAimPose() {
         return true;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress)
-    {
+    public void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
         Minecraft mc = Minecraft.getInstance();
         boolean right = mc.options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
         ModelPart mainArm = right ? rightArm : leftArm;
@@ -80,23 +76,19 @@ public abstract class WeaponPose implements IHeldAnimation
      * @param player the player the pose is being applied to
      * @return the current pitch of the player
      */
-    protected float getPlayerPitch(Player player)
-    {
-        if(Minecraft.getInstance().getCameraEntity() == player && Minecraft.getInstance().screen != null)
-        {
+    protected float getPlayerPitch(Player player) {
+        if (Minecraft.getInstance().getCameraEntity() == player && Minecraft.getInstance().screen != null) {
             return 0F;
         }
         return Mth.lerp(Minecraft.getInstance().getFrameTime(), player.xRotO, player.getXRot()) / 90F;
     }
 
-    private void applyAimPose(AimPose targetPose, ModelPart rightArm, ModelPart leftArm, float partial, float zoom, float offhand, boolean sneaking)
-    {
+    private void applyAimPose(AimPose targetPose, ModelPart rightArm, ModelPart leftArm, float partial, float zoom, float offhand, boolean sneaking) {
         this.applyLimbPoseToModelRenderer(targetPose.getIdle().getRightArm(), targetPose.getAiming().getRightArm(), this.forwardPose.getIdle().getRightArm(), this.forwardPose.getAiming().getRightArm(), rightArm, partial, zoom, offhand, sneaking);
         this.applyLimbPoseToModelRenderer(targetPose.getIdle().getLeftArm(), targetPose.getAiming().getLeftArm(), this.forwardPose.getIdle().getLeftArm(), this.forwardPose.getAiming().getLeftArm(), leftArm, partial, zoom, offhand, sneaking);
     }
 
-    private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose, LimbPose idlePose, LimbPose aimingPose, ModelPart renderer, float partial, float zoom, float leftHanded, boolean sneaking)
-    {
+    private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose, LimbPose idlePose, LimbPose aimingPose, ModelPart renderer, float partial, float zoom, float leftHanded, boolean sneaking) {
         renderer.xRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), renderer.xRot, partial, zoom, 1F));
         renderer.yRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), renderer.yRot, partial, zoom, leftHanded));
         renderer.zRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), renderer.zRot, partial, zoom, leftHanded));
@@ -105,8 +97,7 @@ public abstract class WeaponPose implements IHeldAnimation
         renderer.z = this.getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), renderer.z, partial, zoom, 1F);
     }
 
-    private float getValue(@Nullable Float t1, @Nullable Float t2, Float s1, Float s2, Float def, float partial, float zoom, float leftHanded)
-    {
+    private float getValue(@Nullable Float t1, @Nullable Float t2, Float s1, Float s2, Float def, float partial, float zoom, float leftHanded) {
         float start = t1 != null && s1 != null ? (s1 + (t1 - s1) * partial) * leftHanded : (s1 != null ? s1 * leftHanded : def);
         float end = t2 != null && s2 != null ? (s2 + (t2 - s2) * partial) * leftHanded : (s2 != null ? s2 * leftHanded : def);
         return Mth.lerp(zoom, start, end);
@@ -114,8 +105,7 @@ public abstract class WeaponPose implements IHeldAnimation
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyPlayerPreRender(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer)
-    {
+    public void applyPlayerPreRender(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
         float angle = this.getPlayerPitch(player);
         float angleAbs = Math.abs(angle);
@@ -128,10 +118,8 @@ public abstract class WeaponPose implements IHeldAnimation
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyHeldItemTransforms(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer)
-    {
-        if(hand == InteractionHand.MAIN_HAND)
-        {
+    public void applyHeldItemTransforms(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+        if (hand == InteractionHand.MAIN_HAND) {
             boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
             float leftHanded = right ? 1 : -1;
             poseStack.translate(0, 0, 0.05);

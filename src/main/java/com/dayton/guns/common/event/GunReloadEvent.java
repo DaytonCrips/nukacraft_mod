@@ -10,12 +10,10 @@ import net.minecraftforge.eventbus.api.Cancelable;
  *
  * @author Ocelot
  */
-public class GunReloadEvent extends PlayerEvent
-{
+public class GunReloadEvent extends PlayerEvent {
     private final ItemStack stack;
 
-    public GunReloadEvent(Player player, ItemStack stack)
-    {
+    public GunReloadEvent(Player player, ItemStack stack) {
         super(player);
         this.stack = stack;
     }
@@ -23,16 +21,14 @@ public class GunReloadEvent extends PlayerEvent
     /**
      * @return The stack the player was holding when reloading the gun
      */
-    public ItemStack getStack()
-    {
+    public ItemStack getStack() {
         return stack;
     }
 
     /**
      * @return Whether or not this event was fired on the client side
      */
-    public boolean isClient()
-    {
+    public boolean isClient() {
         return this.getPlayer().getCommandSenderWorld().isClientSide();
     }
 
@@ -42,10 +38,8 @@ public class GunReloadEvent extends PlayerEvent
      * @author Ocelot
      */
     @Cancelable
-    public static class Pre extends GunReloadEvent
-    {
-        public Pre(Player player, ItemStack stack)
-        {
+    public static class Pre extends GunReloadEvent {
+        public Pre(Player player, ItemStack stack) {
             super(player, stack);
         }
     }
@@ -55,10 +49,8 @@ public class GunReloadEvent extends PlayerEvent
      *
      * @author Ocelot
      */
-    public static class Post extends GunReloadEvent
-    {
-        public Post(Player player, ItemStack stack)
-        {
+    public static class Post extends GunReloadEvent {
+        public Post(Player player, ItemStack stack) {
             super(player, stack);
         }
     }
