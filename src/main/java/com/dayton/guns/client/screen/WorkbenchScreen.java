@@ -15,6 +15,7 @@ import com.dayton.guns.common.foundation.item.IColored;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.C2SMessageCraft;
+import com.dayton.nukacraft.common.foundation.items.ModGuns;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -49,6 +50,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.dayton.nukacraft.common.foundation.items.ModGuns.MINIGUN;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 
 /**
@@ -114,14 +116,14 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
 
         if(!weapons.isEmpty())
         {
-            ItemStack icon = new ItemStack(ModItems.ASSAULT_RIFLE.get());
-            icon.getOrCreateTag().putInt("AmmoCount", ModItems.ASSAULT_RIFLE.get().getGun().getGeneral().getMaxAmmo());
+            ItemStack icon = new ItemStack(MINIGUN.get());
+            icon.getOrCreateTag().putInt("AmmoCount", MINIGUN.get().getGun().getGeneral().getMaxAmmo());
             this.tabs.add(new Tab(icon, "weapons", weapons));
         }
 
         if(!attachments.isEmpty())
         {
-            this.tabs.add(new Tab(new ItemStack(ModItems.LONG_SCOPE.get()), "attachments", attachments));
+            this.tabs.add(new Tab(new ItemStack(ModGuns.HUNTING_SCOPE.get()), "attachments", attachments));
         }
 
         if(!ammo.isEmpty())

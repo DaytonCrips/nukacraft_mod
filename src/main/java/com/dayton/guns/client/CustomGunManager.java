@@ -5,6 +5,7 @@ import com.dayton.guns.common.base.CustomGunLoader;
 import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.network.message.S2CMessageUpdateGuns;
 import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.items.ModGuns;
 import com.mrcrayfish.framework.api.data.login.ILoginData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -46,7 +47,7 @@ public class CustomGunManager
         {
             customGunMap.forEach((id, gun) ->
             {
-                ItemStack stack = new ItemStack(ModItems.PISTOL.get());
+                ItemStack stack = new ItemStack(ModGuns.PISTOL10MM.get());
                 stack.setHoverName(new TranslatableComponent("item." + id.getNamespace() + "." + id.getPath() + ".name"));
                 CompoundTag tag = stack.getOrCreateTag();
                 tag.put("Model", gun.getModel().save(new CompoundTag()));
