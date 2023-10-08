@@ -50,7 +50,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.dayton.nukacraft.common.foundation.items.ModGuns.MINIGUN;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 
 /**
@@ -116,8 +115,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
 
         if(!weapons.isEmpty())
         {
-            ItemStack icon = new ItemStack(MINIGUN.get());
-            icon.getOrCreateTag().putInt("AmmoCount", MINIGUN.get().getGun().getGeneral().getMaxAmmo());
+            ItemStack icon = new ItemStack(ModGuns.PISTOL10MM.get());
+            icon.getOrCreateTag().putInt("AmmoCount", ModGuns.PISTOL10MM.get().getGun().getGeneral().getMaxAmmo());
             this.tabs.add(new Tab(icon, "weapons", weapons));
         }
 

@@ -29,7 +29,7 @@ public class ModItemTabs {
     public static final CreativeModeTab NUKA_EQUIP = new CreativeModeTab("nuka_equip") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.ROUND10MM.get());
+            return new ItemStack(ModGuns.ROUND10MM.get());
         }
     }.setEnchantmentCategories(EnchantmentTypes.GUN, EnchantmentTypes.SEMI_AUTO_GUN);
 
