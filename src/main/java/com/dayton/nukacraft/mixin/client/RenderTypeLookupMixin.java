@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.nukacraft.guns.client.handler.GunRenderingHandler;
+import com.dayton.guns.client.handler.GunRenderingHandler;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;

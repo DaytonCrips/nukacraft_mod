@@ -1,8 +1,8 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.nukacraft.guns.Config;
-import com.dayton.nukacraft.guns.client.handler.GunRenderingHandler;
-import com.dayton.nukacraft.guns.init.ModEffects;
+import com.dayton.guns.Config;
+import com.dayton.guns.client.handler.GunRenderingHandler;
+import com.dayton.guns.common.foundation.init.ModEffects;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;

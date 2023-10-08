@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.blocks;
 
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +40,7 @@ public class DogWoodClass extends RotatedPillarBlock {
                     Property _property = strip.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
                     strip = strip.setValue(_property, (Comparable) entry.getValue());
                 }
-                ItemEntity itemSpawn = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItemsClass.DOGWOOD.get()));
+                ItemEntity itemSpawn = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.DOGWOOD.get()));
                 itemSpawn.setPickUpDelay(10);
                 level.addFreshEntity(itemSpawn);
                 level.setBlock(pos, strip, 3);

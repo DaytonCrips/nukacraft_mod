@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.mixin.common;
 
-import com.dayton.nukacraft.guns.item.GunItem;
+import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;

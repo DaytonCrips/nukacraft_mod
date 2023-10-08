@@ -1,0 +1,12 @@
+{
+  "type": "nukacraft:workbench",
+  "materials": [
+    {
+      "tag": "forge:ingots/iron",
+      "count": 38
+    }
+  ],
+  "result": {
+    "item": "nukacraft:mini_gun"
+  }
+}

@@ -31,7 +31,7 @@ versionRange="[0.4.2,)"
 ordering="NONE"
 side="BOTH"
 #[[dependencies.nukacraft]]
-#modId="cgm"
+#modId="nukacraft"
 #mandatory=true
 #versionRange="[1.3.3,)"
 #ordering="AFTER"

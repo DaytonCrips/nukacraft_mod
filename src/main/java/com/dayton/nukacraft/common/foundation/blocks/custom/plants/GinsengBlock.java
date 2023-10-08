@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.plants;
 
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.MutationFloraClass;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -33,7 +33,7 @@ public class GinsengBlock extends BushBlock implements BonemealableBlock {
     }
 
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItemsClass.GINSENG_ROOT.get());
+        return new ItemStack(ModItems.GINSENG_ROOT.get());
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {

@@ -1,0 +1,12 @@
+{
+  "type": "nukacraft:workbench",
+  "materials": [
+    {
+      "tag": "forge:ingots/iron",
+      "count": 36
+    }
+  ],
+  "result": {
+    "item": "nukacraft:heavy_rifle"
+  }
+}

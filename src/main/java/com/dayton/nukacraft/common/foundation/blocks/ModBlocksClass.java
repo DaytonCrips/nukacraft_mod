@@ -1,12 +1,12 @@
 package com.dayton.nukacraft.common.foundation.blocks;
 
+import com.dayton.guns.common.foundation.block.WorkbenchBlock;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.DogWoodClass;
 import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.ModFlowerBlock;
 import com.dayton.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
-import com.dayton.nukacraft.guns.block.WorkbenchBlock;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -24,6 +24,7 @@ import java.util.function.Supplier;
 public class ModBlocksClass {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NukaCraftMod.MOD_ID);
 
+    public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench", () -> new WorkbenchBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
 
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
@@ -40,9 +41,7 @@ public class ModBlocksClass {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
-            () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.GLASS)
-                    .strength(1.4F).sound(SoundType.GLASS)));
+
 
 
 
@@ -383,7 +382,7 @@ public class ModBlocksClass {
 
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-        ModItemsClass.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
     }
 
     private static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {

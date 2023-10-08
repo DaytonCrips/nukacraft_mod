@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.mixin.common;
 
-import com.dayton.nukacraft.guns.Config;
-import com.dayton.nukacraft.guns.entity.DamageSourceProjectile;
+import com.dayton.guns.Config;
+import com.dayton.guns.common.foundation.entity.DamageSourceProjectile;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;

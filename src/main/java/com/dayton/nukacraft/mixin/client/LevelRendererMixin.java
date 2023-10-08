@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.nukacraft.guns.client.handler.BulletTrailRenderingHandler;
+import com.dayton.guns.client.handler.BulletTrailRenderingHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.Camera;

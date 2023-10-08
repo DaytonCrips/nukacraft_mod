@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,18 +29,18 @@ public class MedicineItem extends RadItem {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
 
-        if (item.getItem() == ModItemsClass.GLOWBLOOD.get()) {
+        if (item.getItem() == ModItems.GLOWBLOOD.get()) {
             list.add(new TranslatableComponent("effect.nukacraft.glowing"));
         }
 
-        if (item.getItem() == ModItemsClass.RADX.get()) {
+        if (item.getItem() == ModItems.RADX.get()) {
             list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9(0:30)"));
         }
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        if (stack.getItem() == ModItemsClass.RADX.get()) {
+        if (stack.getItem() == ModItems.RADX.get()) {
             return 9;
         } else {
             return 25;

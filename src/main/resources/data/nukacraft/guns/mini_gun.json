@@ -1,0 +1,30 @@
+{
+  "general": {
+    "auto": true,
+    "rate": 2,
+    "gripType": "nukacraft:mini_gun",
+    "maxAmmo": 100,
+    "reloadAmount": 10,
+    "recoilAngle": 1.0,
+    "alwaysSpread": true,
+    "spread": 7.0
+  },
+  "projectile": {
+    "item": "nukacraft:basic_bullet",
+    "damage": 5.0,
+    "size": 0.2,
+    "speed": 8.0,
+    "life": 30
+  },
+  "sounds": {
+    "fire": "nukacraft:item.mini_gun.fire",
+    "reload": "nukacraft:item.pistol.reload",
+    "enchantedFire": "nukacraft:item.mini_gun.enchanted_fire"
+  },
+  "display": {
+    "flash": {
+      "yOffset": 2.7,
+      "zOffset": -11.51
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "nukacraft:workbench",
+  "materials": [
+    {
+      "tag": "forge:nuggets/iron",
+      "count": 1
+    },
+    {
+      "tag": "forge:gunpowder",
+      "count": 2
+    },
+    {
+      "tag": "forge:dusts/glowstone",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "nukacraft:stun_grenade",
+    "count": 2
+  }
+}

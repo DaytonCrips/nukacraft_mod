@@ -1,8 +1,8 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.nukacraft.guns.client.handler.AimingHandler;
-import com.dayton.nukacraft.guns.common.Gun;
-import com.dayton.nukacraft.guns.item.GunItem;
+import com.dayton.guns.client.handler.AimingHandler;
+import com.dayton.guns.common.base.Gun;
+import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.blocks.custom.plants;
 
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
@@ -34,7 +34,7 @@ public class IrradRootBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModItemsClass.IRRADSEED.get();
+        return ModItems.IRRADSEED.get();
     }
 
 

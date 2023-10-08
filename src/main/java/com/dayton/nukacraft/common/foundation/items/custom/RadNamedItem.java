@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
 import com.dayton.nukacraft.common.data.utils.RadiationHelper;
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -33,9 +33,9 @@ public class RadNamedItem extends ItemNameBlockItem {
         if (entity instanceof Player) {
             RadiationHelper.updateRadiation(entity, this.radiation);
 
-            if (stack.getItem() == ModItemsClass.CRACKBERRY.get())
+            if (stack.getItem() == ModItems.CRACKBERRY.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-            if (stack.getItem() == ModItemsClass.XANDER_ROOT.get())
+            if (stack.getItem() == ModItems.XANDER_ROOT.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
         }
         return super.finishUsingItem(stack, level, entity);
@@ -46,7 +46,7 @@ public class RadNamedItem extends ItemNameBlockItem {
         super.appendHoverText(item, level, list, flag);
         showRadiation(list, radiation);
 
-        if (item.getItem() == ModItemsClass.CRACKBERRY.get()) {
+        if (item.getItem() == ModItems.CRACKBERRY.get()) {
             list.add(new TranslatableComponent("tooltip.nukacraft.fire_res").append("§9(0:10)"));
         }
     }

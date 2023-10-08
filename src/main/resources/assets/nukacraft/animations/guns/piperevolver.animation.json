@@ -1,0 +1,22 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"shot": {
+			"animation_length": 0.2,
+			"bones": {
+				"cylinder": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.2": {
+							"vector": [0, 0, 111.5],
+							"easing": "easeInBack"
+						}
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

@@ -1,6 +1,6 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
-import com.dayton.nukacraft.common.foundation.items.ModItemsClass;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -25,7 +25,7 @@ public class NukaColaItem extends RadItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
-            var items = new ItemStack(ModItemsClass.CAP.get());
+            var items = new ItemStack(ModItems.CAP.get());
             items.setCount(1);
             giveItemToPlayer((Player) entity, items);
 
