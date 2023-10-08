@@ -27,15 +27,8 @@ public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectR
     private TransformType currentTransform;
 
     public GunRenderer() {
-        super(new GunModel());
+        super(new GunModel<T>());
     }
-
-//    @Override
-//    public long getInstanceId(GunItem animatable) {
-//        var result = animatable.hashCode();
-//        result = 31 * result + currentTransform.hashCode();
-//        return result;
-//    }
 
     public void render(ItemStack stack, TransformType transformType,
                        PoseStack poseStack, T animatable,
@@ -48,12 +41,6 @@ public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectR
         if(!bannedTransforms.contains(currentTransform))
             this.animate(stack);
     }
-
-//    @Override
-//    public void renderByItem(ItemStack stack, TransformType transformType, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-//        super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);
-//        this.animate(stack);
-//    }
 
     protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();

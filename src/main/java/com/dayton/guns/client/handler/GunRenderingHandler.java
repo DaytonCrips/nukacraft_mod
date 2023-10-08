@@ -683,66 +683,33 @@ public class GunRenderingHandler
     private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack,
                            PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks)
     {
-//        if(ModelOverrides.hasModel(stack)) {
-            IOverrideModel model = ModelOverrides.getModel(stack);
-            if(model != null) {
-//                try
-//                {
-                    var gun = (GunItem)stack.getItem();
+        IOverrideModel model = ModelOverrides.getModel(stack);
+        if(model != null) {
+            try
+            {
+                var gun = (GunItem)stack.getItem();
+                if(!bannedTransforms.contains(transformType))
+                    gun.getRenderer().render(
+                        stack,
+                        transformType,
+                        poseStack, gun,
+                        renderTypeBuffer,
+                        null,
+                        null,
+                        light);
+                else{
+                    var staticGun = new StaticGunItem(gun.getName());
 
-                    currentStack = stack;
-                    currentTransform = transformType;
+                    staticGunRenderer.render(
+                        poseStack, staticGun,
+                        renderTypeBuffer,
+                        null,
+                        null,
+                        light);
 
-//                    if(bannedTransforms.contains(transformType))
-//                        currentStack = null;
-
-
-                    if(!bannedTransforms.contains(transformType))
-                        gun.getRenderer().render(
-                            stack,
-                            transformType,
-                            poseStack, gun,
-                            renderTypeBuffer,
-                            null,
-                            null,
-                            light);
-                    else{
-                        var staticGun = new StaticGunItem(gun.getName());
-
-                        staticGunRenderer.render(
-                            poseStack, staticGun,
-                            renderTypeBuffer,
-                            null,
-                            null,
-                            light);
-
-//                        gun.getRenderer().render(
-//                                stack,
-//                                transformType,
-//                                poseStack, staticGun,
-//                                renderTypeBuffer,
-//                                null,
-//                                null,
-//                                light);
-
-                    }
-//                        staticGunRenderer.render(
-//                            poseStack, gun,
-//                            renderTypeBuffer,
-//                            null,
-//                            null,
-//                            light);
-
-//                } catch (NullPointerException e) {
-//                    //model.render(partialTicks, transformType, stack, ItemStack.EMPTY, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
-//                }
-            }
-//        }
-//        else {
-//            BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
-//            Minecraft.getInstance().getItemRenderer().render(stack, ItemTransforms.TransformType.NONE, false,
-//                    poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY, bakedModel);
-//        }
+                }
+            } catch (Exception e) {}
+        }
     }
 
     private void renderAttachments(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType,

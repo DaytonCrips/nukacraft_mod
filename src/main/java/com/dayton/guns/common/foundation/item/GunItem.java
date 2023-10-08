@@ -228,7 +228,7 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
     @Override public boolean isEnchantable(ItemStack stack) { return this.getItemStackLimit(stack) == 1; }
     @Override public int getEnchantmentValue() { return 5; }
 
-    private static Map<ItemStack, String> stackAnimations = new HashMap<>();
+    private static final Map<ItemStack, String> stackAnimations = new HashMap<>();
 
     public static void doAnim(ItemStack stack, String animation){
         stackAnimations.put(stack, animation);
@@ -261,8 +261,8 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameab
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
-            var stack = currentStack;// event.getData(DataTickets.ITEMSTACK);
-            var transformType = currentTransform;// event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+            var stack = event.getData(DataTickets.ITEMSTACK);
+            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
             if(bannedTransforms.contains(transformType)) {
                 resetAnim(stack);
