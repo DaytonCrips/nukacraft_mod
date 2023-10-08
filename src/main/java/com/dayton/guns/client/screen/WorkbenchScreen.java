@@ -8,7 +8,6 @@ import com.dayton.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.dayton.guns.common.foundation.crafting.WorkbenchIngredient;
 import com.dayton.guns.common.foundation.crafting.WorkbenchRecipe;
 import com.dayton.guns.common.foundation.crafting.WorkbenchRecipes;
-import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.IAmmo;
 import com.dayton.guns.common.foundation.item.IColored;

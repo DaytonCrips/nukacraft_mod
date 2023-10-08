@@ -3,7 +3,6 @@ package com.dayton.guns.common.foundation.entity;
 import com.dayton.guns.Config;
 import com.dayton.guns.common.foundation.init.ModEffects;
 import com.dayton.guns.common.foundation.init.ModEntities;
-import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.foundation.init.ModSounds;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.S2CMessageStunGrenade;

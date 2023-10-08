@@ -2,7 +2,6 @@ package com.dayton.guns.common.foundation.entity;
 
 import com.dayton.guns.Config;
 import com.dayton.guns.common.foundation.init.ModEntities;
-import com.dayton.guns.common.foundation.init.ModItems;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

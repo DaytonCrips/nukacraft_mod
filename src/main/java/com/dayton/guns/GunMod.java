@@ -52,7 +52,7 @@ public class GunMod {
         ModEffects.REGISTER.register(bus);
         ModEnchantments.REGISTER.register(bus);
         ModEntities.REGISTER.register(bus);
-        ModItems.REGISTER.register(bus);
+//        ModItems.REGISTER.register(bus);
         ModParticleTypes.REGISTER.register(bus);
         ModRecipeSerializers.REGISTER.register(bus);
         ModSounds.REGISTER.register(bus);

@@ -1,8 +1,5 @@
 package com.dayton.guns.common.data.datagen;
 
-import com.dayton.guns.common.foundation.crafting.WorkbenchIngredient;
-import com.dayton.guns.common.foundation.crafting.WorkbenchRecipeBuilder;
-import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.foundation.init.ModRecipeSerializers;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocksClass;
@@ -12,7 +9,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;

@@ -2,10 +2,6 @@ package com.dayton.guns.client;
 
 import com.dayton.guns.GunMod;
 import com.dayton.guns.client.handler.*;
-import com.dayton.guns.client.render.gun.ModelOverrides;
-import com.dayton.guns.client.render.gun.model.GrenadeLauncherModel;
-import com.dayton.guns.client.render.gun.model.MiniGunModel;
-import com.dayton.guns.client.render.gun.model.SimpleModel;
 import com.dayton.guns.client.screen.AttachmentScreen;
 import com.dayton.guns.client.screen.WorkbenchScreen;
 import com.dayton.guns.client.settings.GunOptions;
@@ -13,7 +9,6 @@ import com.dayton.guns.client.util.PropertyHelper;
 import com.dayton.guns.common.debug.IEditorMenu;
 import com.dayton.guns.common.debug.screen.EditorScreen;
 import com.dayton.guns.common.foundation.init.ModContainers;
-import com.dayton.guns.common.foundation.init.ModItems;
 import com.dayton.guns.common.foundation.item.IColored;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.network.PacketHandler;

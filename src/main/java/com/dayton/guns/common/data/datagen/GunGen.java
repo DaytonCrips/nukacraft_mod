@@ -1,12 +1,6 @@
 package com.dayton.guns.common.data.datagen;
 
-import com.dayton.guns.common.base.GripType;
-import com.dayton.guns.common.base.Gun;
-import com.dayton.guns.common.foundation.init.ModItems;
-import com.dayton.guns.common.foundation.init.ModSounds;
-import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 
 /**
  * Author: MrCrayfish

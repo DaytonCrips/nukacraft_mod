@@ -1,7 +1,5 @@
 package com.dayton.nukacraft.client.models;
 
-
-import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.nukacraft.common.data.interfaces.INameable;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.model.GeoModel;
