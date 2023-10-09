@@ -627,17 +627,13 @@ public class GunRenderingHandler {
                         null,
                         null,
                         light);
-            else {
-                var staticGun = new StaticGunItem(gun.getName());
-
-                staticGunRenderer.render(
-                        poseStack, staticGun,
+            else staticGunRenderer.render(
+                        poseStack, new StaticGunItem(gun.getName()),
                         renderTypeBuffer,
                         null,
                         null,
                         light);
 
-            }
         } catch (Exception e) {
         }
 //        }
