@@ -66,12 +66,11 @@ public abstract class GuiMixin extends GuiComponent {
 //            }
             ///
             if (heart >= maxHearts) {
-                if(allHearts - absorbHearts > heart){
+                if (allHearts - absorbHearts > heart) {
                     RenderSystem.setShaderTexture(0, RAD_HEART_ICON);
                     blit(poseStack, heartPosX, heartPosY, 0, 0, 9, 9, 9, 9);
                     RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
-                }
-                else {
+                } else {
                     int additionalHearts = halfHearts - maxHalfHearts;
                     if (additionalHearts < absorb) {
                         boolean isHalf = additionalHearts + 1 == absorb;

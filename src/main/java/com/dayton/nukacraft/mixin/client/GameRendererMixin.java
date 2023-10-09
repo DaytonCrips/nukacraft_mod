@@ -19,21 +19,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(GameRenderer.class)
-public class GameRendererMixin
-{
+public class GameRendererMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V", ordinal = 0, shift = At.Shift.AFTER))
-    public void updateCameraAndRender(float partialTicks, long nanoTime, boolean renderWorldIn, CallbackInfo ci)
-    {
+    public void updateCameraAndRender(float partialTicks, long nanoTime, boolean renderWorldIn, CallbackInfo ci) {
         Minecraft minecraft = Minecraft.getInstance();
         Player player = minecraft.player;
-        if (player == null)
-        {
+        if (player == null) {
             return;
         }
 
         MobEffectInstance effect = player.getEffect(ModEffects.BLINDED.get());
-        if (effect != null)
-        {
+        if (effect != null) {
             // Render white screen-filling overlay at full alpha effect when duration is above threshold
             // When below threshold, fade to full transparency as duration approaches 0
             float percent = Math.min((effect.getDuration() / (float) Config.SERVER.alphaFadeThreshold.get()), 1);
@@ -43,8 +39,7 @@ public class GameRendererMixin
     }
 
     @Inject(method = "getFov", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void headGetFov(Camera camera, float partialTick, boolean worldFov, CallbackInfoReturnable<Double> cir)
-    {
+    public void headGetFov(Camera camera, float partialTick, boolean worldFov, CallbackInfoReturnable<Double> cir) {
         GunRenderingHandler.get().setUsedConfiguredFov(worldFov);
     }
 }

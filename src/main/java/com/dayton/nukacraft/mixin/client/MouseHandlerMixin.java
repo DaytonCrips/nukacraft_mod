@@ -19,23 +19,17 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
  * Author: MrCrayfish
  */
 @Mixin(MouseHandler.class)
-public class MouseHandlerMixin
-{
+public class MouseHandlerMixin {
     @ModifyVariable(method = "turnPlayer()V", at = @At(value = "STORE", opcode = Opcodes.DSTORE), ordinal = 2)
-    private double sensitivity(double original)
-    {
+    private double sensitivity(double original) {
         float additionalAdsSensitivity = 1.0F;
         Minecraft mc = Minecraft.getInstance();
-        if(mc.player != null && !mc.player.getMainHandItem().isEmpty() && mc.options.getCameraType() == CameraType.FIRST_PERSON)
-        {
+        if (mc.player != null && !mc.player.getMainHandItem().isEmpty() && mc.options.getCameraType() == CameraType.FIRST_PERSON) {
             ItemStack heldItem = mc.player.getMainHandItem();
-            if(heldItem.getItem() instanceof GunItem gunItem)
-            {
-                if(AimingHandler.get().isAiming() && !ModSyncedDataKeys.RELOADING.getValue(mc.player))
-                {
+            if (heldItem.getItem() instanceof GunItem gunItem) {
+                if (AimingHandler.get().isAiming() && !ModSyncedDataKeys.RELOADING.getValue(mc.player)) {
                     Gun modifiedGun = gunItem.getModifiedGun(heldItem);
-                    if(modifiedGun.getModules().getZoom() != null)
-                    {
+                    if (modifiedGun.getModules().getZoom() != null) {
                         float modifier = Gun.getFovModifier(heldItem, modifiedGun);
                         additionalAdsSensitivity = Mth.clamp(1.0F - (1.0F / modifier) / 10F, 0.0F, 1.0F);
                     }

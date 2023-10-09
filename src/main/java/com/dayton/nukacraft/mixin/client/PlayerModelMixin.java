@@ -17,25 +17,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * I eventually want to get rid of this.
- *
+ * <p>
  * Author: MrCrayfish
  */
 @Mixin(PlayerModel.class)
-public class PlayerModelMixin<T extends LivingEntity>
-{
+public class PlayerModelMixin<T extends LivingEntity> {
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     @Inject(method = "setupAnim", at = @At(value = "TAIL"))
-    private void setupAnimTail(T entity, float animationPos, float animationSpeed, float animationBob, float deltaHeadYaw, float headPitch, CallbackInfo ci)
-    {
-        if(!(entity instanceof Player player))
+    private void setupAnimTail(T entity, float animationPos, float animationSpeed, float animationBob, float deltaHeadYaw, float headPitch, CallbackInfo ci) {
+        if (!(entity instanceof Player player))
             return;
 
         PlayerModel<T> model = (PlayerModel<T>) (Object) this;
         ItemStack heldItem = player.getMainHandItem();
-        if(heldItem.getItem() instanceof GunItem gunItem)
-        {
-            if(player.isLocalPlayer() && animationPos == 0.0F)
-            {
+        if (heldItem.getItem() instanceof GunItem gunItem) {
+            if (player.isLocalPlayer() && animationPos == 0.0F) {
                 model.rightArm.xRot = 0;
                 model.rightArm.yRot = 0;
                 model.rightArm.zRot = 0;
@@ -55,8 +51,7 @@ public class PlayerModelMixin<T extends LivingEntity>
         }
     }
 
-    private static void copyModelAngles(ModelPart source, ModelPart target)
-    {
+    private static void copyModelAngles(ModelPart source, ModelPart target) {
         target.xRot = source.xRot;
         target.yRot = source.yRot;
         target.zRot = source.zRot;

@@ -15,13 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Author: MrCrayfish
  */
 @Mixin(ItemBlockRenderTypes.class)
-public class RenderTypeLookupMixin
-{
+public class RenderTypeLookupMixin {
     @Inject(method = "getRenderType(Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/client/renderer/RenderType;", at = @At(value = "HEAD"), cancellable = true)
-    private static void getRenderTypeHead(ItemStack stack, boolean entity, CallbackInfoReturnable<RenderType> cir)
-    {
-        if(GunRenderingHandler.get().getRenderingWeapon() != null)
-        {
+    private static void getRenderTypeHead(ItemStack stack, boolean entity, CallbackInfoReturnable<RenderType> cir) {
+        if (GunRenderingHandler.get().getRenderingWeapon() != null) {
             cir.setReturnValue(entity ? Sheets.translucentItemSheet() : RenderType.entityTranslucent(InventoryMenu.BLOCK_ATLAS));
         }
     }
