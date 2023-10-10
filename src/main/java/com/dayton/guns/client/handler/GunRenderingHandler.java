@@ -235,7 +235,8 @@ public class GunRenderingHandler {
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
 
-        boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
+        boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+                event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
         HumanoidArm hand = right ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
 
         ItemStack heldItem = event.getItemStack();
@@ -248,7 +249,7 @@ public class GunRenderingHandler {
             float offhand = 1.0F - Mth.lerp(event.getPartialTicks(), this.prevOffhandTranslate, this.offhandTranslate);
             poseStack.translate(0, offhand * -0.6F, 0);
 
-            Player player = Minecraft.getInstance().player;
+            var player = Minecraft.getInstance().player;
             if (player != null && player.getMainHandItem().getItem() instanceof GunItem) {
                 Gun modifiedGun = ((GunItem) player.getMainHandItem().getItem()).getModifiedGun(player.getMainHandItem());
                 if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
@@ -267,21 +268,21 @@ public class GunRenderingHandler {
         /* Cancel it because we are doing our own custom render */
         event.setCanceled(true);
 
-        ItemStack overrideModel = ItemStack.EMPTY;
+        var overrideModel = ItemStack.EMPTY;
         if (heldItem.getTag() != null) {
             if (heldItem.getTag().contains("Model", Tag.TAG_COMPOUND)) {
                 overrideModel = ItemStack.of(heldItem.getTag().getCompound("Model"));
             }
         }
 
-        LocalPlayer player = Objects.requireNonNull(Minecraft.getInstance().player);
-        BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
-        float scaleX = model.getTransforms().firstPersonRightHand.scale.x();
-        float scaleY = model.getTransforms().firstPersonRightHand.scale.y();
-        float scaleZ = model.getTransforms().firstPersonRightHand.scale.z();
-        float translateX = model.getTransforms().firstPersonRightHand.translation.x();
-        float translateY = model.getTransforms().firstPersonRightHand.translation.y();
-        float translateZ = model.getTransforms().firstPersonRightHand.translation.z();
+        var player = Objects.requireNonNull(Minecraft.getInstance().player);
+        var model = Minecraft.getInstance().getItemRenderer().getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
+        var scaleX = model.getTransforms().firstPersonRightHand.scale.x();
+        var scaleY = model.getTransforms().firstPersonRightHand.scale.y();
+        var scaleZ = model.getTransforms().firstPersonRightHand.scale.z();
+        var translateX = model.getTransforms().firstPersonRightHand.translation.x();
+        var translateY = model.getTransforms().firstPersonRightHand.translation.y();
+        var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
 
         poseStack.pushPose();
 
@@ -293,33 +294,33 @@ public class GunRenderingHandler {
                 double zOffset = translateZ;
 
                 /* Offset since rendering translates to the center of the model */
-                xOffset -= 0.5 * scaleX;
-                yOffset -= 0.5 * scaleY;
-                zOffset -= 0.5 * scaleZ;
+//                xOffset -= 0.5 * scaleX;
+//                yOffset -= 0.5 * scaleY;
+//                zOffset -= 0.5 * scaleZ;
 
                 /* Translate to the origin of the weapon */
                 Vec3 gunOrigin = PropertyHelper.getModelOrigin(heldItem, PropertyHelper.GUN_DEFAULT_ORIGIN);
-                xOffset += gunOrigin.x * 0.0625 * scaleX;
-                yOffset += gunOrigin.y * 0.0625 * scaleY;
-                zOffset += gunOrigin.z * 0.0625 * scaleZ;
+//                xOffset += gunOrigin.x * 0.0625 * scaleX;
+//                yOffset += gunOrigin.y * 0.0625 * scaleY;
+//                zOffset += gunOrigin.z * 0.0625 * scaleZ;
 
                 /* Creates the required offsets to position the scope into the middle of the screen. */
                 Scope scope = Gun.getScope(heldItem);
                 if (modifiedGun.canAttachType(IAttachment.Type.SCOPE) && scope != null) {
                     /* Translate to the mounting position of scopes */
                     Vec3 scopePosition = PropertyHelper.getAttachmentPosition(heldItem, modifiedGun, IAttachment.Type.SCOPE).subtract(gunOrigin);
-                    xOffset += scopePosition.x * 0.0625 * scaleX;
-                    yOffset += scopePosition.y * 0.0625 * scaleY;
-                    zOffset += scopePosition.z * 0.0625 * scaleZ;
+//                    xOffset += scopePosition.x * 0.0625 * scaleX;
+//                    yOffset += scopePosition.y * 0.0625 * scaleY;
+//                    zOffset += scopePosition.z * 0.0625 * scaleZ;
 
                     /* Translate to the reticle of the scope */
                     ItemStack scopeStack = Gun.getScopeStack(heldItem);
                     Vec3 scopeOrigin = PropertyHelper.getModelOrigin(scopeStack, PropertyHelper.ATTACHMENT_DEFAULT_ORIGIN);
                     Vec3 scopeCamera = PropertyHelper.getScopeCamera(scopeStack).subtract(scopeOrigin);
                     Vec3 scopeScale = PropertyHelper.getAttachmentScale(heldItem, modifiedGun, IAttachment.Type.SCOPE);
-                    xOffset += scopeCamera.x * 0.0625 * scaleX * scopeScale.x;
-                    yOffset += scopeCamera.y * 0.0625 * scaleY * scopeScale.y;
-                    zOffset += scopeCamera.z * 0.0625 * scaleZ * scopeScale.z;
+//                    xOffset += scopeCamera.x * 0.0625 * scaleX * scopeScale.x;
+//                    yOffset += scopeCamera.y * 0.0625 * scaleY * scopeScale.y;
+//                    zOffset += scopeCamera.z * 0.0625 * scaleZ * scopeScale.z;
                 } else {
                     /* Translate to iron sight */
                     Vec3 ironSightCamera = PropertyHelper.getIronSightCamera(heldItem, modifiedGun, gunOrigin).subtract(gunOrigin);
@@ -334,9 +335,9 @@ public class GunRenderingHandler {
                 }
 
                 /* Controls the direction of the following translations, changes depending on the main hand. */
-                float side = right ? 1.0F : -1.0F;
-                double time = AimingHandler.get().getNormalisedAdsProgress();
-                double transition = PropertyHelper.getSightAnimations(heldItem, modifiedGun).getSightCurve().apply(time);
+                var side = right ? 1.0F : -1.0F;
+                var time = AimingHandler.get().getNormalisedAdsProgress();
+                var transition = PropertyHelper.getSightAnimations(heldItem, modifiedGun).getSightCurve().apply(time);
 
                 /* Reverses the original first person translations */
                 poseStack.translate(-0.56 * side * transition, 0.52 * transition, 0.72 * transition);
@@ -360,7 +361,8 @@ public class GunRenderingHandler {
 
         // Values are based on vanilla translations for first person
         int offset = right ? 1 : -1;
-        poseStack.translate(0.56 * offset, -0.52, -0.72);
+//        poseStack.translate(0.56 * offset, -0.52, -0.72);
+        poseStack.translate(0.3 * offset, -1.5, -1.72);
 
         /* Applies recoil and reload rotations */
         this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);

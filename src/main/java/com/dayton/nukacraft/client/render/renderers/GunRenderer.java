@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.client.render.renderers;
 
+import com.dayton.guns.client.handler.ReloadHandler;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.nukacraft.client.models.GunModel;
 import com.dayton.nukacraft.common.data.interfaces.INameable;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import static com.dayton.guns.common.foundation.item.GunItem.*;
+import static com.dayton.nukacraft.common.data.constants.Animations.RELOAD;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
@@ -45,7 +47,12 @@ public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectR
     protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();
         float cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
-        if(Gun.hasAmmo(stack) && cooldown > 0) {
+        float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
+
+        if(reloadProgress > 0){
+            doAnim(stack, RELOAD);
+        }
+        else if(Gun.hasAmmo(stack) && cooldown > 0) {
             doAnim(stack, SHOT);
         }
         else{

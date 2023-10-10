@@ -42,8 +42,8 @@ public final class MetaLoader implements IDataLoader<MetaLoader.ItemResource> {
         List<ItemResource> resources = new ArrayList<>();
         ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IMeta).forEach(item ->
         {
-            ResourceLocation key = item.builtInRegistryHolder().key().location();
-            ResourceLocation location = new ResourceLocation(key.getNamespace(), "models/item/" + key.getPath() + ".cgmmeta");
+            var key = item.builtInRegistryHolder().key().location();
+            var location = new ResourceLocation(key.getNamespace(), "models/item/" + key.getPath() + ".cgmmeta");
             resources.add(new ItemResource(item, location));
         });
         return resources;
