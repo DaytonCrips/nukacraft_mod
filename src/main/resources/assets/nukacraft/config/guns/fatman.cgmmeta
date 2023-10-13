@@ -1,8 +1,8 @@
 {
     "nukacraft:weapon": {
         "ironSight": {
-            "camera": [0.0, 0.5, 0.0],
-            "viewportFov": 130.0
+            "camera": [8.0, 4.8, 25.0],
+            "viewportFov": 60.0
         },
         "muzzleFlash": {
             "translation": [4.5, 4.3, -0.01],
