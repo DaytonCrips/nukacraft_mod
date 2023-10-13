@@ -60,7 +60,7 @@ public class PlayerItemInHandLayerMixin {
         layer.getParentModel().translateToHand(arm, poseStack);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
-        poseStack.translate(((float) (arm == HumanoidArm.LEFT ? -1 : 1) / 16F), 0, 0 /*0.125, -0.625*/);
+        poseStack.translate(((arm == HumanoidArm.LEFT ? 3 : -3) / 16F), 0, -0.625);/*0.125, -0.625*/
         GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
         Gun gun = item.getModifiedGun(stack);
         gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(player, hand,

@@ -276,7 +276,8 @@ public class GunRenderingHandler {
         }
 
         var player = Objects.requireNonNull(Minecraft.getInstance().player);
-        var model = Minecraft.getInstance().getItemRenderer().getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
+        var model = Minecraft.getInstance().getItemRenderer()
+                .getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
         var scaleX = model.getTransforms().firstPersonRightHand.scale.x();
         var scaleY = model.getTransforms().firstPersonRightHand.scale.y();
         var scaleZ = model.getTransforms().firstPersonRightHand.scale.z();
@@ -362,7 +363,7 @@ public class GunRenderingHandler {
         // Values are based on vanilla translations for first person
         int offset = right ? 1 : -1;
 //        poseStack.translate(0.56 * offset, -0.52, -0.72);
-        poseStack.translate(0.3 * offset, -1.5, -1.72);
+        poseStack.translate(0.3 * offset, -1.1, -1.45);
 
         /* Applies recoil and reload rotations */
         this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
@@ -380,7 +381,10 @@ public class GunRenderingHandler {
 
         /* Renders the first persons arms from the grip type of the weapon */
         poseStack.pushPose();
-        modifiedGun.getGeneral().getGripType().getHeldAnimation().renderFirstPersonArms(Minecraft.getInstance().player, hand, heldItem, poseStack, event.getMultiBufferSource(), packedLight, event.getPartialTicks());
+        modifiedGun.getGeneral().getGripType().getHeldAnimation().renderFirstPersonArms(
+                Minecraft.getInstance().player, hand,
+                heldItem, poseStack, event.getMultiBufferSource(),
+                packedLight, event.getPartialTicks());
         poseStack.popPose();
 
         /* Renders the weapon */
@@ -751,7 +755,8 @@ public class GunRenderingHandler {
         poseStack.popPose();
     }
 
-    private void renderReloadArm(PoseStack poseStack, MultiBufferSource buffer, int light, Gun modifiedGun, ItemStack stack, HumanoidArm hand, float translateX) {
+    private void renderReloadArm(PoseStack poseStack, MultiBufferSource buffer, int light,
+                                 Gun modifiedGun, ItemStack stack, HumanoidArm hand, float translateX) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || mc.player.tickCount < ReloadHandler.get().getStartReloadTick() || ReloadHandler.get().getReloadTimer() != 5)
             return;
