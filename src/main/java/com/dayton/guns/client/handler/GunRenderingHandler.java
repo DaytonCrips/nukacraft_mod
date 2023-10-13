@@ -363,7 +363,7 @@ public class GunRenderingHandler {
         // Values are based on vanilla translations for first person
         int offset = right ? 1 : -1;
 //        poseStack.translate(0.56 * offset, -0.52, -0.72);
-        poseStack.translate(0.3 * offset, -1.1, -1.45);
+        poseStack.translate(0.3 * offset, -1.3, -1.55);
 
         /* Applies recoil and reload rotations */
         this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
