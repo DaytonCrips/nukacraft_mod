@@ -2,7 +2,7 @@ package com.dayton.nukacraft.common.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.render.particles.GammaParticles;
-import com.dayton.nukacraft.client.render.particles.ModParticles;
+import com.dayton.nukacraft.common.registery.ModParticles;
 import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
@@ -14,11 +14,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
+import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
+
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
         Minecraft.getInstance().particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
+        Minecraft.getInstance().particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
     }
 
     @SubscribeEvent

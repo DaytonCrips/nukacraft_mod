@@ -6,7 +6,7 @@ import com.dayton.guns.common.base.ProjectileManager;
 import com.dayton.nukacraft.client.ClientConfig;
 import com.dayton.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
-import com.dayton.nukacraft.client.render.particles.ModParticles;
+import com.dayton.nukacraft.common.registery.ModParticles;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.dayton.nukacraft.common.foundation.container.ContainerRegistry;
 import com.dayton.nukacraft.common.foundation.effects.ModAttributesClass;

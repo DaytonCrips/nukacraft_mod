@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.client.render.particles;
+package com.dayton.nukacraft.common.registery;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.particles.ParticleType;
@@ -13,6 +13,13 @@ public class ModParticles {
 
     public static final RegistryObject<SimpleParticleType> GAMMA_PARTICLE =
             PARTICLE_TYPES.register("gamma_particles", () -> new SimpleParticleType(true));
+
+    public static final RegistryObject<SimpleParticleType> MUSHROOM_CLOUD
+            = PARTICLE_TYPES.register("mushroom_cloud", () -> new SimpleParticleType(false));
+
+    public void setupParticles(Particle registry) {
+        registry.registerSpecial(ACParticleRegistry.MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
+    }
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
