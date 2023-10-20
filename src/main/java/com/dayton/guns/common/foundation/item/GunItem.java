@@ -9,7 +9,7 @@ import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
 import com.dayton.nukacraft.client.render.renderers.GunRenderer;
-import com.dayton.nukacraft.common.data.interfaces.INameable;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.constant.DataTickets;
@@ -50,7 +50,7 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends Item implements IColored, IMeta, GeoEntity, INameable {
+public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResourceProvider {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();

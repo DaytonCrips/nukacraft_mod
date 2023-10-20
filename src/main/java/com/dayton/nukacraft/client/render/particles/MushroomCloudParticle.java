@@ -1,7 +1,11 @@
 package com.dayton.nukacraft.client.render.particles;
 
-import com.dayton.nukacraft.client.models.endity.MushroomCloudModel;
+import com.dayton.nukacraft.client.models.endity.*;
+import com.dayton.nukacraft.client.models.endity.core.ACRenderTypes;
+import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
 import com.dayton.nukacraft.common.data.utils.ACMath;
+import com.dayton.nukacraft.common.foundation.sounds.NuclearExplosionSound;
+import com.dayton.nukacraft.common.registery.ACSoundRegistry;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
@@ -20,6 +24,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
+import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD_EXPLOSION;
+import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD_SMOKE;
 
 public class MushroomCloudParticle extends Particle {
 
@@ -49,8 +55,8 @@ public class MushroomCloudParticle extends Particle {
     }
 
     public void tick() {
-        ((ClientProxy) AlexsCaves.PROXY).renderNukeSkyDarkFor = 70;
-        ((ClientProxy) AlexsCaves.PROXY).muteNonNukeSoundsFor = 50;
+        ClientProxy.renderNukeSkyDarkFor = 70;
+        ClientProxy.muteNonNukeSoundsFor = 50;
         boolean large = this.scale > 2.0F;
         if(age > BALL_FOR / 2 + 5){
             if(!playedExplosion){
@@ -59,22 +65,22 @@ public class MushroomCloudParticle extends Particle {
             }
         }
         if (age < BALL_FOR) {
-            if(!playedRinging && AlexsCaves.CLIENT_CONFIG.nuclearBombFlash.get()){
+            if(!playedRinging /*&& AlexsCaves.CLIENT_CONFIG.nuclearBombFlash.get()*/){
                 playedRinging = true;
                 playSound(ACSoundRegistry.NUCLEAR_EXPLOSION_RINGING.get(), 100, 50, 0.05F, true);
             }
-            ((ClientProxy) AlexsCaves.PROXY).renderNukeFlashFor = 16;
+            ClientProxy.renderNukeFlashFor = 16;
         } else if (age < lifetime - FADE_SPEED) {
             float life = (float) (Math.log(1 + (age - BALL_FOR) / (float) (lifetime - BALL_FOR))) * 2F;
             float explosionSpread = (12 * life + 4F) * scale;
             for (int i = 0; i < (1 + random.nextInt(2)) * scale; i++) {
                 Vec3 from = new Vec3(level.random.nextFloat() - 0.5F, level.random.nextFloat() - 0.5F, level.random.nextFloat() - 0.5F).scale(scale * 1.4F).add(this.x, this.y, this.z);
                 Vec3 away = new Vec3(level.random.nextFloat() - 0.5F, level.random.nextFloat() - 0.5F, level.random.nextFloat() - 0.5F).scale(2.34F);
-                this.level.addParticle(ACParticleRegistry.MUSHROOM_CLOUD_SMOKE.get(), from.x, from.y, from.z, away.x, away.y, away.z);
+                this.level.addParticle(MUSHROOM_CLOUD_SMOKE.get(), from.x, from.y, from.z, away.x, away.y, away.z);
             }
             for (int j = 0; j < scale * scale; j++) {
                 Vec3 explosionBase = new Vec3((level.random.nextFloat() - 0.5F) * explosionSpread, (-0.6F + level.random.nextFloat() * 0.5F) * explosionSpread * 0.1F, (level.random.nextFloat() - 0.5F) * explosionSpread).add(this.x, this.y, this.z);
-                this.level.addParticle(ACParticleRegistry.MUSHROOM_CLOUD_EXPLOSION.get(), explosionBase.x, explosionBase.y, explosionBase.z, 0, 0, 0);
+                this.level.addParticle(MUSHROOM_CLOUD_EXPLOSION.get(), explosionBase.x, explosionBase.y, explosionBase.z, 0, 0, 0);
             }
             if(age > BALL_FOR){
                 if(!playedRumble){
@@ -91,13 +97,13 @@ public class MushroomCloudParticle extends Particle {
     }
 
     public void render(VertexConsumer vertexConsumer, Camera camera, float partialTick) {
-        Vec3 vec3 = camera.getPosition();
-        float f = (float) (Mth.lerp((double) partialTick, this.xo, this.x) - vec3.x());
-        float f1 = (float) (Mth.lerp((double) partialTick, this.yo, this.y) - vec3.y());
-        float f2 = (float) (Mth.lerp((double) partialTick, this.zo, this.z) - vec3.z());
+        var vec3 = camera.getPosition();
+        var x = (float)(Mth.lerp(partialTick, this.xo, this.x) - vec3.x());
+        var y = (float)(Mth.lerp(partialTick, this.yo, this.y) - vec3.y());
+        var z = (float)(Mth.lerp(partialTick, this.zo, this.z) - vec3.z());
         PoseStack posestack = new PoseStack();
         posestack.pushPose();
-        posestack.translate(f, f1 - 0.5F, f2);
+        posestack.translate(x, y - 0.5F, z);
         posestack.scale(-scale, -scale, scale);
         MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers().bufferSource();
         MODEL.hideFireball(age >= BALL_FOR);

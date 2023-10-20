@@ -25,18 +25,10 @@ import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegi
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Deathclaw extends Monster implements GeoEntity {
-    //private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final boolean isClientSide = level.isClientSide;
+    private final boolean isServerSide = !level.isClientSide;
     private boolean isRunning = false;
-
-    private boolean isClientSide = level.isClientSide;
-    private boolean isServerSide = !level.isClientSide;
-
-    public void setIsRunning(boolean isRunning){
-        this.isRunning = isRunning;
-        if (isRunning)
-            setSpeed(2f);
-        else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
-    }
 
     public Deathclaw(EntityType<? extends Monster> p_33002_, Level p_33003_) {
         super(p_33002_, p_33003_);
@@ -51,6 +43,7 @@ public class Deathclaw extends Monster implements GeoEntity {
                 .add(Attributes.FOLLOW_RANGE, 48);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -62,16 +55,15 @@ public class Deathclaw extends Monster implements GeoEntity {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
-//    @Override
-//    public void registerControllers(AnimationData data) {
-//        data.addAnimationController((new AnimationController<>(this, "arm_controller", 0, this::animateArms)));
-//    }
-//    @Override
-//    public AnimationFactory getFactory() {
-//        return factory;
-//    }
+    @Override
+    public void setTarget(@Nullable LivingEntity pTarget) {
+        super.setTarget(pTarget);
 
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+        if(isServerSide) {
+            setIsRunning(pTarget != null);
+            PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
+        }
+    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -83,8 +75,14 @@ public class Deathclaw extends Monster implements GeoEntity {
         controllers.add(new AnimationController<>(this, "controllerName", 0, animateArms()));
     }
 
-    @NotNull
-    private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
+    public void setIsRunning(boolean isRunning){
+        this.isRunning = isRunning;
+        if (isRunning)
+            setSpeed(2f);
+        else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
+    }
+
+    @NotNull private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
@@ -137,22 +135,7 @@ public class Deathclaw extends Monster implements GeoEntity {
 //        return PlayState.CONTINUE;
 //    }
 
-    @Override
-    public void tick() {
-        super.tick();
-        //NukaCraftMod.LOGGER.error("is running: " + isRunning + " client: " + level.isClientSide);
-    }
 
-    @Override
-    public void setTarget(@Nullable LivingEntity pTarget) {
-        super.setTarget(pTarget);
-
-        if(isServerSide) {
-            setIsRunning(pTarget != null);
-            PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
-            //NukaCraftMod.LOGGER.error("is running: " + isRunning + " client: " + level.isClientSide);
-        }
-    }
 
     private boolean startAttacking = false;
 

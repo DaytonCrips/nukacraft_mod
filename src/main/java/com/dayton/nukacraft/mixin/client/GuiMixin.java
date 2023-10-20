@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.mixin;
+package com.dayton.nukacraft.mixin.client;
 
 import com.dayton.nukacraft.common.registery.HeartType;
 import com.mojang.blaze3d.systems.RenderSystem;

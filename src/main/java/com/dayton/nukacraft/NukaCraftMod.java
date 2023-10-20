@@ -6,6 +6,7 @@ import com.dayton.guns.common.base.ProjectileManager;
 import com.dayton.nukacraft.client.ClientConfig;
 import com.dayton.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.dayton.nukacraft.common.registery.ACSoundRegistry;
 import com.dayton.nukacraft.common.registery.ModParticles;
 import com.dayton.nukacraft.common.foundation.blocks.ModBlocks;
 import com.dayton.nukacraft.common.foundation.container.ContainerRegistry;
@@ -33,39 +34,37 @@ import org.slf4j.Logger;
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 @Mod(NukaCraftMod.MOD_ID)
-public class NukaCraftMod
-{
+public class NukaCraftMod {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "nukacraft";
+    public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
-    public NukaCraftMod()
-    {
-
+    public NukaCraftMod() {
         AzureLib.initialize();
 
+        //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        MOD_EVENT_BUS.addListener(this::setup);
 
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        eventBus.addListener(this::setup);
+        new GunMod().initGunMod(MOD_EVENT_BUS);
 
-        new GunMod().initGunMod(eventBus);
+        ModItems.register(MOD_EVENT_BUS);
+        PowerArmorItems.register(MOD_EVENT_BUS);
+        ModArmorItems.register(MOD_EVENT_BUS);
+        ModGuns.register(MOD_EVENT_BUS);
 
-        ModItems.register(eventBus);
-        PowerArmorItems.register(eventBus);
-        ModArmorItems.register(eventBus);
-        ModGuns.register(eventBus);
-
-        ModEffect.register(eventBus);
-        ModAttributesClass.register(eventBus);
-        ModBlocks.register(eventBus);
-        ModBiomes.register(eventBus);
-        ModParticles.register(eventBus);
+        ModEffect.register(MOD_EVENT_BUS);
+        ModAttributesClass.register(MOD_EVENT_BUS);
+        ModBlocks.register(MOD_EVENT_BUS);
+        ModBiomes.register(MOD_EVENT_BUS);
+        ModParticles.register(MOD_EVENT_BUS);
         RadiationHudOverlay.register();
-        EntityTypes.register(eventBus);
-        ModSounds.SOUNDS.register(eventBus);
-        ContainerRegistry.register(eventBus);
+        EntityTypes.register(MOD_EVENT_BUS);
+        ModSounds.SOUNDS.register(MOD_EVENT_BUS);
+        ContainerRegistry.register(MOD_EVENT_BUS);
+        ACSoundRegistry.REGISTER.register(MOD_EVENT_BUS);
 
-        eventBus.addListener(this::clientSetup);
-        eventBus.addListener(this::onCommonSetup);
+        MOD_EVENT_BUS.addListener(this::clientSetup);
+        MOD_EVENT_BUS.addListener(this::onCommonSetup);
 
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

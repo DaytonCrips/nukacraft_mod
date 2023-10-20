@@ -16,6 +16,6 @@ public class SetupEvents {
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
-        event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), NuclearExplosionRenderer::new);
     }
 }

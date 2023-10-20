@@ -1,21 +1,21 @@
-package com.dayton.nukacraft.client.models.endity;
+package com.dayton.nukacraft.client.models.endity.core;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import com.mojang.math.Vector4f;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;
 import it.unimi.dsi.fastutil.objects.ObjectListIterator;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.mojang.math.Vector3f.*;
+
 @OnlyIn(Dist.CLIENT)
-public class AdvancedModelBox extends ModelPart {
+public class AdvancedModelBox extends BasicModelPart {
     public float defaultRotationX;
     public float defaultRotationY;
     public float defaultRotationZ;
@@ -191,18 +191,14 @@ public class AdvancedModelBox extends ModelPart {
     }
 
     public void translateAndRotate(PoseStack matrixStackIn) {
-        matrixStackIn.translate((double)(this.rotationPointX / 16.0F), (double)(this.rotationPointY / 16.0F), (double)(this.rotationPointZ / 16.0F));
-        if (this.rotateAngleZ != 0.0F) {
-            matrixStackIn.mulPose(Axis.ZP.rotation(this.rotateAngleZ));
-        }
+        matrixStackIn.translate(
+                this.rotationPointX / 16.0F,
+                this.rotationPointY / 16.0F,
+                this.rotationPointZ / 16.0F);
 
-        if (this.rotateAngleY != 0.0F) {
-            matrixStackIn.mulPose(Axis.YP.rotation(this.rotateAngleY));
-        }
-
-        if (this.rotateAngleX != 0.0F) {
-            matrixStackIn.mulPose(Axis.XP.rotation(this.rotateAngleX));
-        }
+        if (this.rotateAngleZ != 0.0F) matrixStackIn.mulPose(ZP.rotation(this.rotateAngleZ));
+        if (this.rotateAngleY != 0.0F) matrixStackIn.mulPose(YP.rotation(this.rotateAngleY));
+        if (this.rotateAngleX != 0.0F) matrixStackIn.mulPose(XP.rotation(this.rotateAngleX));
 
         matrixStackIn.scale(this.scaleX, this.scaleY, this.scaleZ);
     }
@@ -227,36 +223,37 @@ public class AdvancedModelBox extends ModelPart {
 
     }
 
-    private void doRender(PoseStack.Pose p_228306_1_, VertexConsumer p_228306_2_, int p_228306_3_, int p_228306_4_, float p_228306_5_, float p_228306_6_, float p_228306_7_, float p_228306_8_) {
-        Matrix4f lvt_9_1_ = p_228306_1_.pose();
-        Matrix3f lvt_10_1_ = p_228306_1_.normal();
-        ObjectListIterator var11 = this.cubeList.iterator();
+    private void doRender(PoseStack.Pose pose, VertexConsumer vertexConsumer,
+                          int p_228306_3_, int p_228306_4_, float p_228306_5_,
+                          float p_228306_6_, float p_228306_7_, float p_228306_8_) {
+        var matrix4f = pose.pose();
+        var matrix3f = pose.normal();
 
-        while(var11.hasNext()) {
-            TabulaModelRenderUtils.ModelBox lvt_12_1_ = (TabulaModelRenderUtils.ModelBox)var11.next();
-            TabulaModelRenderUtils.TexturedQuad[] var13 = lvt_12_1_.quads;
-            int var14 = var13.length;
+        for (TabulaModelRenderUtils.ModelBox lvt_12_1_ : this.cubeList) {
+            var texturedQuads = lvt_12_1_.quads;
 
-            for(int var15 = 0; var15 < var14; ++var15) {
-                TabulaModelRenderUtils.TexturedQuad lvt_16_1_ = var13[var15];
-                Vector3f lvt_17_1_ = new Vector3f(lvt_16_1_.normal);
-                lvt_17_1_.mul(lvt_10_1_);
-                float lvt_18_1_ = lvt_17_1_.x();
-                float lvt_19_1_ = lvt_17_1_.y();
-                float lvt_20_1_ = lvt_17_1_.z();
+            for (var item : texturedQuads) {
+                var vec = new Vector3f(new Vec3(item.normal));
+//                vec.mul(matrix3f);
+                vec.mul(20);
 
-                for(int lvt_21_1_ = 0; lvt_21_1_ < 4; ++lvt_21_1_) {
-                    TabulaModelRenderUtils.PositionTextureVertex lvt_22_1_ = lvt_16_1_.vertexPositions[lvt_21_1_];
-                    float lvt_23_1_ = lvt_22_1_.position.x() / 16.0F;
-                    float lvt_24_1_ = lvt_22_1_.position.y() / 16.0F;
-                    float lvt_25_1_ = lvt_22_1_.position.z() / 16.0F;
-                    Vector4f lvt_26_1_ = new Vector4f(lvt_23_1_, lvt_24_1_, lvt_25_1_, 1.0F);
-                    lvt_26_1_.mul(lvt_9_1_);
-                    p_228306_2_.vertex(lvt_26_1_.x(), lvt_26_1_.y(), lvt_26_1_.z(), p_228306_5_, p_228306_6_, p_228306_7_, p_228306_8_, lvt_22_1_.textureU, lvt_22_1_.textureV, p_228306_4_, p_228306_3_, lvt_18_1_, lvt_19_1_, lvt_20_1_);
+                for (int i = 0; i < 4; ++i) {
+                    var vertexPosition = item.vertexPositions[i];
+                    var x = vertexPosition.position.x() / 16.0F;
+                    var y = vertexPosition.position.y() / 16.0F;
+                    var z = vertexPosition.position.z() / 16.0F;
+                    var vec4 = new Vector4f(x, y, z, 1.0F);
+
+//                    vec4.mul(matrix4f);
+                    vec4.mul(20);
+                    vertexConsumer.vertex(
+                            vec4.x(), vec4.y(), vec4.z(),
+                            p_228306_5_, p_228306_6_, p_228306_7_, p_228306_8_,
+                            vertexPosition.textureU, vertexPosition.textureV,
+                            p_228306_4_, p_228306_3_, vec.x(), vec.y(), vec.z());
                 }
             }
         }
-
     }
 
     public AdvancedEntityModel getModel() {

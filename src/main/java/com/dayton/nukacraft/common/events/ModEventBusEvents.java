@@ -2,26 +2,31 @@ package com.dayton.nukacraft.common.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.render.particles.GammaParticles;
+import com.dayton.nukacraft.client.render.particles.MushroomCloudParticle;
+import com.dayton.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.dayton.nukacraft.common.registery.ModParticles;
 import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.dayton.nukacraft.common.network.PacketHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
+import static com.dayton.nukacraft.common.registery.ModParticles.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
-        Minecraft.getInstance().particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
-        Minecraft.getInstance().particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
+        var engine = Minecraft.getInstance().particleEngine;
+        engine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
+//        engine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
+        engine.register(MUSHROOM_CLOUD_SMOKE.get(), SmallExplosionParticle.NukeFactory::new);
+        engine.register(MUSHROOM_CLOUD_EXPLOSION.get(), SmallExplosionParticle.NukeFactory::new);
     }
 
     @SubscribeEvent

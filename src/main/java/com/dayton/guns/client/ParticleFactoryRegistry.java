@@ -8,7 +8,7 @@ import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 

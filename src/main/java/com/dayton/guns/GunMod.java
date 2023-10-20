@@ -13,6 +13,7 @@ import com.dayton.guns.common.foundation.entity.MissileEntity;
 import com.dayton.guns.common.foundation.init.*;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
 import com.mrcrayfish.framework.api.client.FrameworkClientAPI;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -87,9 +88,9 @@ public class GunMod {
         });
     }
 
-    private void onClientSetup(FMLClientSetupEvent event)
-    {
+    private void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(ClientHandler::setup);
+        event.enqueueWork(ClientProxy::clientInit);
     }
 
     private void onGatherData(GatherDataEvent event)

@@ -2,7 +2,7 @@ package com.dayton.nukacraft.client.render.renderers;
 
 import com.dayton.guns.common.base.Gun;
 import com.dayton.nukacraft.client.models.GunModel;
-import com.dayton.nukacraft.common.data.interfaces.INameable;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
@@ -22,7 +22,7 @@ import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
-public class GunRenderer<T extends INameable & GeoAnimatable> extends GeoObjectRenderer<T> {
+public class GunRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
     private ItemStack currentItemStack;
     private TransformType currentTransform;
 

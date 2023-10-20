@@ -1,6 +1,11 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 import com.dayton.nukacraft.common.data.utils.ACMath;
+import mod.azure.azurelib.animatable.GeoEntity;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -9,24 +14,24 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
 import java.util.Stack;
 
 import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
-import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
+import static com.dayton.nukacraft.common.registery.ModParticles.*;
+import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
-public class NuclearExplosionEntity extends Entity {
+public class NuclearExplosionEntity extends Entity implements GeoEntity {
+    public static final int LIFE_TIME = 140;
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private boolean spawnedParticle = false;
     private Stack<BlockPos> destroyingChunks = new Stack<>();
@@ -46,26 +51,14 @@ public class NuclearExplosionEntity extends Entity {
         return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static BlockPos containing(double p_275310_, double p_275414_, double p_275737_) {
-        return new BlockPos(Mth.floor(p_275310_), Mth.floor(p_275414_), Mth.floor(p_275737_));
-    }
-
+    @Override
     public void tick() {
         super.tick();
         int chunksAffected = (int) Math.ceil(this.getSize());
         int radius = chunksAffected * 15;
-        if (!spawnedParticle) {
-            spawnedParticle = true;
-            int particleY = (int) Math.ceil(this.getY());
-            while (particleY > getLevel().getMinBuildHeight()
-                    && particleY > this.getY() - radius / 2F && isDestroyable(getLevel().
-                    getBlockState(containing(this.getX(), particleY, this.getZ())))) {
-                particleY--;
-            }
-            getLevel().addAlwaysVisibleParticle(MUSHROOM_CLOUD.get(),
-                    true, this.getX(), particleY + 2, this.getZ(), this.getSize(), 0, 0);
-        }
-        if (tickCount > 40 && destroyingChunks.isEmpty()) {
+        showParticles(radius);
+
+        if (tickCount > LIFE_TIME && destroyingChunks.isEmpty()) {
             this.remove(RemovalReason.DISCARDED);
         } else {
             if (!getLevel().isClientSide) {
@@ -87,13 +80,13 @@ public class NuclearExplosionEntity extends Entity {
                     }
                 }
             }
-            AABB killBox = this.getBoundingBox().inflate(radius + radius * 0.5F, radius * 0.6, radius + radius * 0.5F);
-            float flingStrength = getSize() * 0.33F;
-            float maximumDistance = radius + radius * 0.5F + 1;
+            var killBox = this.getBoundingBox().inflate(radius + radius * 0.5F, radius * 0.6, radius + radius * 0.5F);
+            var flingStrength = getSize() * 0.33F;
+            var maximumDistance = radius + radius * 0.5F + 1;
             for (LivingEntity entity : this.getLevel().getEntitiesOfClass(LivingEntity.class, killBox)) {
-                float dist = entity.distanceTo(this);
-                float damage = calculateDamage(dist, maximumDistance);
-                Vec3 vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
+                var dist = entity.distanceTo(this);
+                var damage = calculateDamage(dist, maximumDistance);
+                var vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
                 entity.setDeltaMovement(vec3.scale(damage * 0.1F * flingStrength));
 //                if (damage > 0) {
 //                    if (entity.getType().is(RESISTS_RADIATION)) {
@@ -106,10 +99,63 @@ public class NuclearExplosionEntity extends Entity {
         }
     }
 
+
+
+    @Override
+    protected void defineSynchedData() {
+        this.entityData.define(SIZE, 1.0F);
+    }
+
+    @Override protected void readAdditionalSaveData(CompoundTag compoundTag) {}
+    @Override protected void addAdditionalSaveData(CompoundTag compoundTag) {}
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        var controller = new AnimationController<>(this, "explosionController", 0,
+                event -> event.setAndContinue(begin().thenPlayAndHold("explosion")));
+        controller.setAnimationSpeed(1);
+        controllers.add(controller);
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    public float getSize() {
+        return this.entityData.get(SIZE);
+    }
+
+    public void setSize(float f) {
+        this.entityData.set(SIZE, f);
+    }
+
+    private boolean isDestroyable(BlockState state) {
+        return /*!state.is(UNMOVEABLE) &&*/ state.getBlock().getExplosionResistance() < 1000;
+    }
+
+    private static BlockPos containing(double p_275310_, double p_275414_, double p_275737_) {
+        return new BlockPos(Mth.floor(p_275310_), Mth.floor(p_275414_), Mth.floor(p_275737_));
+    }
+
     private float calculateDamage(float dist, float max) {
         float revert = (max - dist) / max;
         float baseDmg = this.getSize() <= 1.5F ? 100 : 100 + (this.getSize() - 1.5F) * 400;
         return revert * baseDmg;
+    }
+
+    private void showParticles(int radius) {
+        if (!spawnedParticle) {
+            spawnedParticle = true;
+            int particleY = (int) Math.ceil(this.getY());
+            while (particleY > getLevel().getMinBuildHeight()
+                    && particleY > this.getY() - radius / 2F && isDestroyable(getLevel().
+                    getBlockState(containing(this.getX(), particleY, this.getZ())))) {
+                particleY--;
+            }
+//            getLevel().addAlwaysVisibleParticle(MUSHROOM_CLOUD.get(),
+//                    true, this.getX(), particleY + 2, this.getZ(), this.getSize(), 0, 0);
+        }
     }
 
     private void removeChunk(int radius) {
@@ -144,32 +190,5 @@ public class NuclearExplosionEntity extends Entity {
                 }
             }
         }
-    }
-
-    private boolean isDestroyable(BlockState state) {
-        return /*!state.is(UNMOVEABLE) &&*/ state.getBlock().getExplosionResistance() < 1000;
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        this.entityData.define(SIZE, 1.0F);
-    }
-
-    public float getSize() {
-        return this.entityData.get(SIZE);
-    }
-
-    public void setSize(float f) {
-        this.entityData.set(SIZE, f);
-    }
-
-    @Override
-    protected void readAdditionalSaveData(CompoundTag compoundTag) {
-
-    }
-
-    @Override
-    protected void addAdditionalSaveData(CompoundTag compoundTag) {
-
     }
 }
