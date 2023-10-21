@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.common.foundation.sounds;
+package com.dayton.nukacraft.common.registery;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.resources.ResourceLocation;
@@ -16,11 +16,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_10MM_COCK = register("item.pistol10mm.cock");
     public static final RegistryObject<SoundEvent> ITEM_10MM_RELOAD = register("item.pistol10mm.reload");
 
-
-
     public static final RegistryObject<SoundEvent> ITEM_MINIGUN_FIRE = register("item.minigun.fire");
-
-
 
     public static final RegistryObject<SoundEvent> ITEM_38MM_FIRE = register("item.pistol38mm.fire");
     public static final RegistryObject<SoundEvent> ITEM_38MM_ENCHANTED_FIRE = register("item.pistol38mm.enchanted_fire");
@@ -38,7 +34,10 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_45MM_COCK = register("item.pistol45mm.cock");
     public static final RegistryObject<SoundEvent> ITEM_45MM_RELOAD = register("item.pistol45mm.reload");
 
-
+    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION = register("misc.nuclear_explosion.nuclear_explosion");
+    public static final RegistryObject<SoundEvent> LARGE_NUCLEAR_EXPLOSION = register("misc.nuclear_explosion.large_nuclear_explosion");
+    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE = register("misc.nuclear_explosion.nuclear_explosion_rumble");
+    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RINGING = register("misc.nuclear_explosion.nuclear_explosion_ringing");
 
     public static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> new SoundEvent(new ResourceLocation(NukaCraftMod.MOD_ID, key)));

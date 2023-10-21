@@ -15,6 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
+import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.*;
+
 public class MiniNukeEntity extends ProjectileEntity {
     public MiniNukeEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn) {
         super(entityType, worldIn);
@@ -43,21 +45,35 @@ public class MiniNukeEntity extends ProjectileEntity {
         }
     }
 
+    private void explode() {
+        var explosion = NUCLEAR_EXPLOSION.get().create(getLevel());
+        explosion.copyPosition(this);
+        explosion.setSize(1F);
+        getLevel().addFreshEntity(explosion);
+
+        var explosionEffect = NUCLEAR_EXPLOSION_EFFECT.get().create(getLevel());
+        explosionEffect.copyPosition(this);
+        getLevel().addFreshEntity(explosionEffect);
+    }
+
     @Override
     protected void onHitEntity(Entity entity, Vec3 hitVec, Vec3 startVec, Vec3 endVec, boolean headshot)
     {
-        createExplosion(this, 20f, false);
+        //createExplosion(this, 20f, false);
+        explode();
     }
 
     @Override
     protected void onHitBlock(BlockState state, BlockPos pos, Direction face, double x, double y, double z)
     {
-        createExplosion(this, 20f, false);
+        //createExplosion(this, 20f, false);
+        explode();
     }
 
     @Override
     public void onExpired()
     {
-        createExplosion(this, 20f, false);
+        //createExplosion(this, 20f, false);
+        explode();
     }
 }

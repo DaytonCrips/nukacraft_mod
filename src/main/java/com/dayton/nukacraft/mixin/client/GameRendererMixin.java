@@ -1,45 +1,46 @@
 package com.dayton.nukacraft.mixin.client;
 
-import com.dayton.guns.Config;
-import com.dayton.guns.client.handler.GunRenderingHandler;
-import com.dayton.guns.common.foundation.init.ModEffects;
-import com.mojang.blaze3d.platform.Window;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import net.minecraft.client.renderer.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
+
+import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.*;
 
 @Mixin(GameRenderer.class)
-public class GameRendererMixin {
-    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V", ordinal = 0, shift = At.Shift.AFTER))
-    public void updateCameraAndRender(float partialTicks, long nanoTime, boolean renderWorldIn, CallbackInfo ci) {
-        Minecraft minecraft = Minecraft.getInstance();
-        Player player = minecraft.player;
-        if (player == null) {
-            return;
-        }
+public abstract class GameRendererMixin {
+    @Shadow
+    private float darkenWorldAmount;
 
-        MobEffectInstance effect = player.getEffect(ModEffects.BLINDED.get());
-        if (effect != null) {
-            // Render white screen-filling overlay at full alpha effect when duration is above threshold
-            // When below threshold, fade to full transparency as duration approaches 0
-            float percent = Math.min((effect.getDuration() / (float) Config.SERVER.alphaFadeThreshold.get()), 1);
-            Window window = Minecraft.getInstance().getWindow();
-            GuiComponent.fill(new PoseStack(), 0, 0, window.getScreenWidth(), window.getScreenHeight(), ((int) (percent * Config.SERVER.alphaOverlay.get() + 0.5) << 24) | 16777215);
+    @Shadow @Final
+    private RenderBuffers renderBuffers;
+
+    @Shadow public abstract void render(float pPartialTicks, long pNanoTime, boolean pRenderLevel);
+
+    @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;tick()V"}, at = @At(value = "TAIL"))
+    public void ac_tick(CallbackInfo ci) {
+        var nukes = getNukesAround();
+        if (nukes.isEmpty()) return;
+        if (nukes.get(0).renderNukeSkyDarkFor > 0 && darkenWorldAmount < 1.0F) {
+            darkenWorldAmount = Math.min(darkenWorldAmount + 0.3F, 1.0F);
         }
     }
 
-    @Inject(method = "getFov", at = @At(value = "HEAD"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void headGetFov(Camera camera, float partialTick, boolean worldFov, CallbackInfoReturnable<Double> cir) {
-        GunRenderingHandler.get().setUsedConfiguredFov(worldFov);
+    @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;render(FJZ)V"},
+            at = @At( value = "INVOKE", target = "Lcom/mojang/blaze3d/platform/Lighting;setupFor3DItems()V",
+                    shift = At.Shift.AFTER))
+    public void ac_render(float partialTick, long nanos, boolean idk, CallbackInfo ci) {
+        preScreenRender(partialTick);
     }
+
+//    @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;renderLevel(FJLcom/mojang/blaze3d/vertex/PoseStack;)V"},
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;renderItemInHand(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/Camera;F)V", shift = At.Shift.AFTER)
+//    )
+//    public void ac_renderLevelAfterHand(float partialTicks, long time, PoseStack poseStack, CallbackInfo ci) {
+//        if (Minecraft.getInstance().getCameraEntity() instanceof LivingEntity living && living.hasEffect(ACEffectRegistry.BUBBLED.get()) && Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
+//            MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers().bufferSource();
+//            ACPotionEffectLayer.renderBubbledFirstPerson(poseStack);
+//            multibuffersource$buffersource.endBatch();
+//        }
+//    }
 }

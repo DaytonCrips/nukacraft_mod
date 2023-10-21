@@ -1,11 +1,11 @@
 package com.dayton.nukacraft.client.models;
 
-import com.dayton.nukacraft.common.data.interfaces.INameable;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
-public class GunModel<T extends INameable & GeoAnimatable> extends GeoModel<T> {
+public class GunModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T gunItem) {
         return getGunResource(gunItem, "geo/guns/", ".geo.json");
@@ -21,7 +21,7 @@ public class GunModel<T extends INameable & GeoAnimatable> extends GeoModel<T> {
         return getGunResource(gunItem, "animations/guns/", ".animation.json");
     }
 
-    public static ResourceLocation getGunResource(INameable gunItem, String path, String extension){
+    public static ResourceLocation getGunResource(IResourceProvider gunItem, String path, String extension){
         var name = gunItem.getName();
         var modId = gunItem.getNamespace();
 

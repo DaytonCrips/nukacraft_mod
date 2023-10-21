@@ -8,7 +8,7 @@
     "common.SittingPhaseMixin"
   ],
   "client": [
-    "GuiMixin",
+    "client.GuiMixin",
     "client.GameRendererMixin",
     "client.LevelRendererMixin",
     "client.MinecraftMixin",

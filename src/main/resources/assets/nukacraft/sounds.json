@@ -21,8 +21,6 @@
    "item.fatman.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/fatman/fire" }]},
    "item.minigun.fire":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/minigun/fire" }]},
 
-
-
    "item.shotgun.fire":                 { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/shotgun/fire" }]},
    "item.shotgun.silenced_fire":        { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/shotgun/silenced_fire" }]},
    "item.shotgun.enchanted_fire":       { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/shotgun/enchanted_fire" }]},

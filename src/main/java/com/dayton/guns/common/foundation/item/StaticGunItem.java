@@ -1,7 +1,7 @@
 package com.dayton.guns.common.foundation.item;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.data.interfaces.INameable;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -11,7 +11,7 @@ import mod.azure.azurelib.core.object.PlayState;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
 
-public class StaticGunItem implements INameable, GeoEntity {
+public class StaticGunItem implements IResourceProvider, GeoEntity {
     private final AnimatableInstanceCache cache = createInstanceCache(this);
     private final String name;
 

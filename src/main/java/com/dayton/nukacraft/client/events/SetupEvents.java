@@ -1,16 +1,13 @@
 package com.dayton.nukacraft.client.events;
 
-import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.render.renderers.DeathclawRenderer;
-import com.dayton.nukacraft.client.render.renderers.PowerArmorRenderer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.client.render.renderers.*;
+import net.minecraftforge.api.distmarker.*;
+import net.minecraftforge.client.event.*;
+import net.minecraftforge.eventbus.api.*;
+import net.minecraftforge.fml.common.*;
 
-import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.DEATHCLAW;
-import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.POWER_ARMOR_FRAME;
+import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupEvents {
@@ -19,5 +16,7 @@ public class SetupEvents {
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
+        event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
+        event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
     }
 }
