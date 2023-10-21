@@ -14,6 +14,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,11 +27,11 @@ import net.minecraftforge.network.PlayMessages;
 import java.util.Stack;
 
 import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
-import static com.dayton.nukacraft.common.registery.ModParticles.*;
+import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class NuclearExplosionEntity extends Entity implements GeoEntity {
-    public static final int LIFE_TIME = 140;
+    public static final int LIFE_TIME = 20;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private boolean spawnedParticle = false;
@@ -88,12 +89,12 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
                 var damage = calculateDamage(dist, maximumDistance);
                 var vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
                 entity.setDeltaMovement(vec3.scale(damage * 0.1F * flingStrength));
-//                if (damage > 0) {
+                if (damage > 0) {
 //                    if (entity.getType().is(RESISTS_RADIATION)) {
 //                        damage *= 0.25F;
 //                    }
-//                    entity.hurt(causeNukeDamage(getLevel().registryAccess()), damage);
-//                }
+                    entity.hurt(DamageSource.IN_FIRE, damage);
+                }
                 //entity.addEffect(new MobEffectInstance(IRRADIATED.get(), 48000, getSize() <= 1.5F ? 1 : 2, false, false, true));
             }
         }
@@ -153,8 +154,8 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
                     getBlockState(containing(this.getX(), particleY, this.getZ())))) {
                 particleY--;
             }
-//            getLevel().addAlwaysVisibleParticle(MUSHROOM_CLOUD.get(),
-//                    true, this.getX(), particleY + 2, this.getZ(), this.getSize(), 0, 0);
+            getLevel().addAlwaysVisibleParticle(MUSHROOM_CLOUD.get(),
+                    true, this.getX(), particleY + 2, this.getZ(), this.getSize(), 0, 0);
         }
     }
 

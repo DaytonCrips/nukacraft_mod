@@ -341,10 +341,10 @@ public class ACSoundRegistry {
     public static final RegistryObject<SoundEvent> TOTEM_OF_POSSESSION_USE = createSoundEvent("totem_of_possession_use");
     public static final RegistryObject<SoundEvent> DREADBOW_RELEASE = createSoundEvent("dreadbow_release");
     public static final RegistryObject<SoundEvent> DREADBOW_RAIN = createSoundEvent("dreadbow_rain");
-    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION = createSoundEvent("nuclear_explosion");
-    public static final RegistryObject<SoundEvent> LARGE_NUCLEAR_EXPLOSION = createSoundEvent("large_nuclear_explosion");
-    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE = createSoundEvent("nuclear_explosion_rumble");
-    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RINGING = createSoundEvent("nuclear_explosion_ringing");
+//    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION = createSoundEvent("nuclear_explosion");
+//    public static final RegistryObject<SoundEvent> LARGE_NUCLEAR_EXPLOSION = createSoundEvent("large_nuclear_explosion");
+//    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE = createSoundEvent("nuclear_explosion_rumble");
+//    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RINGING = createSoundEvent("nuclear_explosion_ringing");
     public static final RegistryObject<SoundEvent> DARK_CLOUD_APPEAR = createSoundEvent("dark_cloud_appear");
     public static final RegistryObject<SoundEvent> DARK_CLOUD_DISAPPEAR = createSoundEvent("dark_cloud_disappear");
     public static final RegistryObject<SoundEvent> DARK_CLOUD_IDLE = createSoundEvent("dark_cloud_idle");

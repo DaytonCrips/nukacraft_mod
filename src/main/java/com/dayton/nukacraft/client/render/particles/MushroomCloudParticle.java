@@ -4,7 +4,7 @@ import com.dayton.nukacraft.client.models.endity.*;
 import com.dayton.nukacraft.client.models.endity.core.ACRenderTypes;
 import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
 import com.dayton.nukacraft.common.data.utils.ACMath;
-import com.dayton.nukacraft.common.foundation.sounds.NuclearExplosionSound;
+import com.dayton.nukacraft.common.foundation.sounds.*;
 import com.dayton.nukacraft.common.registery.ACSoundRegistry;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -23,17 +23,14 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
-import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD_EXPLOSION;
-import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD_SMOKE;
+import static com.dayton.nukacraft.common.registery.ModParticles.*;
+import static com.dayton.nukacraft.common.registery.ModSounds.*;
 
 public class MushroomCloudParticle extends Particle {
-
-    private static final ResourceLocation TEXTURE = nukaResource("textures/particle/mushroom_cloud.png");
-    private static final ResourceLocation TEXTURE_GLOW = nukaResource("textures/particle/mushroom_cloud_glow.png");
-    private static final MushroomCloudModel MODEL = new MushroomCloudModel();
+//    private static final ResourceLocation TEXTURE = nukaResource("textures/particle/mushroom_cloud.png");
+//    private static final ResourceLocation TEXTURE_GLOW = nukaResource("textures/particle/mushroom_cloud_glow.png");
+//    private static final MushroomCloudModel MODEL = new MushroomCloudModel();
     private static final int BALL_FOR = 10;
-    private static final int GLOW_FOR = 20;
     private static final int FADE_SPEED = 10;
     private final float scale;
 
@@ -61,13 +58,13 @@ public class MushroomCloudParticle extends Particle {
         if(age > BALL_FOR / 2 + 5){
             if(!playedExplosion){
                 playedExplosion = true;
-                playSound(large ? ACSoundRegistry.LARGE_NUCLEAR_EXPLOSION.get() : ACSoundRegistry.NUCLEAR_EXPLOSION.get(), lifetime - 20, lifetime, 0.2F, false);
+                playSound(large ? LARGE_NUCLEAR_EXPLOSION.get() : NUCLEAR_EXPLOSION.get(), lifetime - 20, lifetime, 0.2F, false);
             }
         }
         if (age < BALL_FOR) {
             if(!playedRinging /*&& AlexsCaves.CLIENT_CONFIG.nuclearBombFlash.get()*/){
                 playedRinging = true;
-                playSound(ACSoundRegistry.NUCLEAR_EXPLOSION_RINGING.get(), 100, 50, 0.05F, true);
+                playSound(NUCLEAR_EXPLOSION_RINGING.get(), 100, 50, 0.05F, true);
             }
             ClientProxy.renderNukeFlashFor = 16;
         } else if (age < lifetime - FADE_SPEED) {
@@ -85,7 +82,7 @@ public class MushroomCloudParticle extends Particle {
             if(age > BALL_FOR){
                 if(!playedRumble){
                     playedRumble = true;
-                    playSound(ACSoundRegistry.NUCLEAR_EXPLOSION_RUMBLE.get(), lifetime + 100, lifetime, 0.1F, true);
+                    playSound(NUCLEAR_EXPLOSION_RUMBLE.get(), lifetime + 100, lifetime, 0.1F, true);
                 }
             }
         }
@@ -105,20 +102,6 @@ public class MushroomCloudParticle extends Particle {
         posestack.pushPose();
         posestack.translate(x, y - 0.5F, z);
         posestack.scale(-scale, -scale, scale);
-        MultiBufferSource.BufferSource multibuffersource$buffersource = Minecraft.getInstance().renderBuffers().bufferSource();
-        MODEL.hideFireball(age >= BALL_FOR);
-        float life = (float) (Math.log(1 + (age - BALL_FOR + partialTick) / (lifetime - BALL_FOR))) * 2F;
-        float glowLife = life < 1F ? 1F - life : 0;
-        int left = lifetime - age;
-        float alpha = left <= FADE_SPEED ? left / (float) FADE_SPEED : 1.0F;
-        MODEL.animateParticle(age, ACMath.smin(life, 1.0F, 0.5F), partialTick);
-        VertexConsumer baseConsumer = multibuffersource$buffersource.getBuffer(RenderType.entityTranslucent(TEXTURE));
-        MODEL.renderToBuffer(posestack, baseConsumer, getLightColor(partialTick), OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
-        VertexConsumer glowConsumer1 = multibuffersource$buffersource.getBuffer(ACRenderTypes.getEyesAlphaEnabled(TEXTURE));
-        MODEL.renderToBuffer(posestack, glowConsumer1, 240, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, alpha);
-        VertexConsumer glowConsumer2 = multibuffersource$buffersource.getBuffer(ACRenderTypes.getEyesAlphaEnabled(TEXTURE_GLOW));
-        MODEL.renderToBuffer(posestack, glowConsumer2, 240, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, glowLife * alpha);
-        multibuffersource$buffersource.endBatch();
         posestack.popPose();
     }
 

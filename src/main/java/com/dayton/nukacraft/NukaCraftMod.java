@@ -18,7 +18,7 @@ import com.dayton.nukacraft.common.foundation.items.ModArmorItems;
 import com.dayton.nukacraft.common.foundation.items.ModGuns;
 import com.dayton.nukacraft.common.foundation.items.ModItems;
 import com.dayton.nukacraft.common.foundation.items.PowerArmorItems;
-import com.dayton.nukacraft.common.foundation.sounds.ModSounds;
+import com.dayton.nukacraft.common.registery.ModSounds;
 import com.dayton.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.dayton.nukacraft.common.foundation.world.ModBiomes;
 import com.mojang.logging.LogUtils;

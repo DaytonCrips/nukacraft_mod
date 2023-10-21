@@ -2,12 +2,10 @@ package com.dayton.nukacraft.common.foundation.sounds;
 
 import com.dayton.nukacraft.common.data.interfaces.UnlimitedPitch;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
 public class NuclearExplosionSound extends AbstractTickableSoundInstance implements UnlimitedPitch {
-
     private int tickCount = 0;
     private final int duration;
     private final int fadesAt;

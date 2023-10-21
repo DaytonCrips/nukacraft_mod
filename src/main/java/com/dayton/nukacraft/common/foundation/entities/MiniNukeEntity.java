@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
+import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.*;
 
 public class MiniNukeEntity extends ProjectileEntity {
     public MiniNukeEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn) {
@@ -50,6 +50,10 @@ public class MiniNukeEntity extends ProjectileEntity {
         explosion.copyPosition(this);
         explosion.setSize(1F);
         getLevel().addFreshEntity(explosion);
+
+        var explosionEffect = NUCLEAR_EXPLOSION_EFFECT.get().create(getLevel());
+        explosionEffect.copyPosition(this);
+        getLevel().addFreshEntity(explosionEffect);
     }
 
     @Override

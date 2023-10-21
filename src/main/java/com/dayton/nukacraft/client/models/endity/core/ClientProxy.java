@@ -47,7 +47,6 @@ import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.dayton.nukacraft.common.registery.ModParticles.*;
 
 public class ClientProxy {
-
     private static final List<String> FULLBRIGHTS = ImmutableList.of("alexscaves:ambersol#", "alexscaves:radrock_uranium_ore#", "alexscaves:acidic_radrock#", "alexscaves:uranium_rod#axis=x", "alexscaves:uranium_rod#axis=y", "alexscaves:uranium_rod#axis=z", "alexscaves:block_of_uranium#", "alexscaves:abyssal_altar#active=true", "alexscaves:abyssmarine_", "alexscaves:peering_coprolith#", "alexscaves:forsaken_idol#", "alexscaves:magnetic_light#");
     public static final ResourceLocation BOMB_FLASH = nukaResource( "textures/misc/bomb_flash.png");
     public static final ResourceLocation WATCHER_EFFECT = nukaResource( "textures/misc/watcher_effect.png");
