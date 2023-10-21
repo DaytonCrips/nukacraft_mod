@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.client.models.endity.core;
 
+import com.dayton.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -58,14 +59,6 @@ public class ClientProxy {
     public static Map<ClientLevel, List<BlockPos>> blockedParticleLocations = new HashMap<>();
     public static Map<LivingEntity, Vec3[]> darknessTrailPosMap = new HashMap<>();
     public static Map<LivingEntity, Integer> darknessTrailPointerMap = new HashMap<>();
-    public static int muteNonNukeSoundsFor = 0;
-    public static int renderNukeFlashFor = 0;
-    public static float prevNukeFlashAmount = 0;
-    public static float nukeFlashAmount = 0;
-    public static float prevPossessionStrengthAmount = 0;
-    public static float possessionStrengthAmount = 0;
-    public static int renderNukeSkyDarkFor = 0;
-    public static float masterVolumeNukeModifier = 0.0F;
     public static final Int2ObjectMap<AbstractTickableSoundInstance> ENTITY_SOUND_INSTANCE_MAP = new Int2ObjectOpenHashMap<>();
     public static final Map<BlockEntity, AbstractTickableSoundInstance> BLOCK_ENTITY_SOUND_INSTANCE_MAP = new HashMap<>();
     public static boolean spelunkeryTutorialComplete;
@@ -114,12 +107,26 @@ public class ClientProxy {
     public void setVisualFlag(int flag) {
     }
 
-    public static float getNukeFlashAmount(float partialTicks) {
-        return prevNukeFlashAmount + (nukeFlashAmount - prevNukeFlashAmount) * partialTicks;
+    public static ArrayList<NuclearExplosionEffectEntity> getNukesAround(){
+        var minecraft = Minecraft.getInstance();
+        var result = new ArrayList<NuclearExplosionEffectEntity>();
+        if(minecraft.player == null) return result;
+
+        var explosions = minecraft.level.getEntities(minecraft.player,
+                minecraft.player.getBoundingBox().inflate(45,45,45),
+                (entity -> entity instanceof NuclearExplosionEffectEntity));
+
+        explosions.forEach((entity) -> result.add((NuclearExplosionEffectEntity)entity));
+
+        return result;
     }
 
-    public static float getPossessionStrengthAmount(float partialTicks) {
-        return prevPossessionStrengthAmount + (possessionStrengthAmount - prevPossessionStrengthAmount) * partialTicks;
+    public static float getNukeFlashAmount(NuclearExplosionEffectEntity entity, float partialTicks) {
+        return entity.prevNukeFlashAmount + (entity.nukeFlashAmount - entity.prevNukeFlashAmount) * partialTicks;
+    }
+
+    public static float getPossessionStrengthAmount(NuclearExplosionEffectEntity entity,float partialTicks) {
+        return entity.prevPossessionStrengthAmount + (entity.possessionStrengthAmount - entity.prevPossessionStrengthAmount) * partialTicks;
     }
 
     public boolean checkIfParticleAt(SimpleParticleType simpleParticleType, BlockPos at) {
@@ -204,8 +211,15 @@ public class ClientProxy {
 
     public static void preScreenRender(float partialTick) {
         float screenEffectIntensity = Minecraft.getInstance().options.screenEffectScale;
-        float watcherPossessionStrength = getPossessionStrengthAmount(partialTick);
-        float nukeFlashAmount = getNukeFlashAmount(partialTick);
+
+        getNukesAround().forEach((nuke) -> {
+            float watcherPossessionStrength = getPossessionStrengthAmount(nuke, partialTick);
+            float nukeFlashAmount = getNukeFlashAmount(nuke, partialTick);
+            createFlash(screenEffectIntensity, watcherPossessionStrength, nukeFlashAmount);
+        });
+    }
+
+    private static void createFlash(float screenEffectIntensity, float watcherPossessionStrength, float nukeFlashAmount) {
         if (nukeFlashAmount > 0) {
             int screenWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
             int screenHeight = Minecraft.getInstance().getWindow().getGuiScaledHeight();
@@ -251,6 +265,7 @@ public class ClientProxy {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         }
     }
+
 
     public boolean isFirstPersonPlayer(Entity entity) {
         return entity.equals(Minecraft.getInstance().cameraEntity) && Minecraft.getInstance().options.getCameraType().isFirstPerson();

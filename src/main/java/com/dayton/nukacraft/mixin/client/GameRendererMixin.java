@@ -12,13 +12,16 @@ public abstract class GameRendererMixin {
     @Shadow
     private float darkenWorldAmount;
 
-    @Shadow
-    @Final
+    @Shadow @Final
     private RenderBuffers renderBuffers;
+
+    @Shadow public abstract void render(float pPartialTicks, long pNanoTime, boolean pRenderLevel);
 
     @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;tick()V"}, at = @At(value = "TAIL"))
     public void ac_tick(CallbackInfo ci) {
-        if (renderNukeSkyDarkFor > 0 && darkenWorldAmount < 1.0F) {
+        var nukes = getNukesAround();
+        if (nukes.isEmpty()) return;
+        if (nukes.get(0).renderNukeSkyDarkFor > 0 && darkenWorldAmount < 1.0F) {
             darkenWorldAmount = Math.min(darkenWorldAmount + 0.3F, 1.0F);
         }
     }

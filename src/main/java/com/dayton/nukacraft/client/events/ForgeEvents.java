@@ -2,16 +2,23 @@ package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
+import com.dayton.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.advancements.AdvancementsScreen;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import javax.swing.text.html.parser.Entity;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.getNukesAround;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
@@ -19,27 +26,12 @@ public class ForgeEvents {
     public static void computeCameraAngles(EntityViewRenderEvent.CameraSetup event) {
         var player = Minecraft.getInstance().getCameraEntity();
         var partialTick = Minecraft.getInstance().getFrameTime();
-        var tremorAmount = ClientProxy.renderNukeSkyDarkFor > 0 ? 1.5F : 0F;
+        var nukes = getNukesAround();
 
-//        if (player instanceof PossessesCamera watcherEntity) {
-//            Minecraft.getInstance().options.setCameraType(CameraType.FIRST_PERSON);
-//            tremorAmount = watcherEntity.isPossessionBreakable() ? AlexsCaves.PROXY.getPossessionStrengthAmount(partialTick) : 0F;
-//        }
+        if(player == null || nukes.isEmpty()) return;
 
-        if(player == null) return;
+        var tremorAmount = nukes.get(0).renderNukeSkyDarkFor > 0 ? 1.5F : 0F;
 
-        float shakeDistanceScale = 20F;
-        double distance = Double.MAX_VALUE;
-
-//        if (tremorAmount == 0) {
-//            var aabb = player.getBoundingBox().inflate(shakeDistanceScale);
-//            for (Mob screenShaker : Minecraft.getInstance().level.getEntitiesOfClass(Mob.class, aabb, (mob -> mob instanceof ShakesScreen))) {
-//                if (((ShakesScreen) screenShaker).canFeelShake(player) && screenShaker.distanceTo(player) < distance) {
-//                    distance = screenShaker.distanceTo(player);
-//                    tremorAmount = (1F - (float) (distance / shakeDistanceScale)) * Math.max(((ShakesScreen) screenShaker).getScreenShakeAmount(partialTick), 0F);
-//                }
-//            }
-//        }
         if (tremorAmount > 0) {
             if (ClientProxy.lastTremorTick != player.tickCount) {
                 var rng = player.level.random;
@@ -75,31 +67,39 @@ public class ForgeEvents {
 //        }
     }
 
+
+
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            ClientProxy.prevNukeFlashAmount = ClientProxy.nukeFlashAmount;
-            if (ClientProxy.renderNukeSkyDarkFor > 0) {
-                ClientProxy.renderNukeSkyDarkFor--;
+        var minecraft = Minecraft.getInstance();
+        if(minecraft.player == null) return;
+
+        if (event.phase != TickEvent.Phase.END) return;
+        var explosions = getNukesAround();
+
+        for (var explosion : explosions) {
+            explosion.prevNukeFlashAmount = explosion.nukeFlashAmount;
+            if (explosion.renderNukeSkyDarkFor > 0) {
+                explosion.renderNukeSkyDarkFor--;
             }
-            if (ClientProxy.muteNonNukeSoundsFor > 0) {
-                ClientProxy.muteNonNukeSoundsFor--;
-                if (ClientProxy.masterVolumeNukeModifier < 1.0F) {
-                    ClientProxy.masterVolumeNukeModifier += 0.1F;
+            if (explosion.muteNonNukeSoundsFor > 0) {
+                explosion.muteNonNukeSoundsFor--;
+                if (explosion.masterVolumeNukeModifier < 1.0F) {
+                    explosion.masterVolumeNukeModifier += 0.1F;
                 }
-            } else if (ClientProxy.masterVolumeNukeModifier > 0.0F) {
-                ClientProxy.masterVolumeNukeModifier -= 0.1F;
+            } else if (explosion.masterVolumeNukeModifier > 0.0F) {
+                explosion.masterVolumeNukeModifier -= 0.1F;
             }
-            if (ClientProxy.renderNukeFlashFor > 0) {
-                if (ClientProxy.nukeFlashAmount < 1F) {
-                    ClientProxy.nukeFlashAmount = Math.min(ClientProxy.nukeFlashAmount + 0.4F, 1F);
+            if (explosion.renderNukeFlashFor > 0) {
+                if (explosion.nukeFlashAmount < 1F) {
+                    explosion.nukeFlashAmount = Math.min(explosion.nukeFlashAmount + 0.4F, 1F);
                 }
-                ClientProxy.renderNukeFlashFor--;
-            } else if (ClientProxy.nukeFlashAmount > 0F) {
-                ClientProxy.nukeFlashAmount = Math.max(ClientProxy.nukeFlashAmount - 0.05F, 0F);
+                explosion.renderNukeFlashFor--;
+            } else if (explosion.nukeFlashAmount > 0F) {
+                explosion.nukeFlashAmount = Math.max(explosion.nukeFlashAmount - 0.05F, 0F);
             }
-            else if (ClientProxy.possessionStrengthAmount > 0F) {
-                ClientProxy.possessionStrengthAmount = Math.max(ClientProxy.possessionStrengthAmount - 0.05F, 0F);
+            else if (explosion.possessionStrengthAmount > 0F) {
+                explosion.possessionStrengthAmount = Math.max(explosion.possessionStrengthAmount - 0.05F, 0F);
             }
         }
     }
