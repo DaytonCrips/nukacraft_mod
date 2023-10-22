@@ -1,69 +1,34 @@
 package com.dayton.nukacraft.client.models.endity.core;
 
 import com.dayton.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity;
-import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.FallingBlockRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.levelgen.RandomSource;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.*;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 import static com.dayton.nukacraft.NukaCraftMod.MOD_EVENT_BUS;
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.dayton.nukacraft.common.registery.ModParticles.*;
+import static com.dayton.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity.SHAKE_DISTANCE;
 
 public class ClientProxy {
-    private static final List<String> FULLBRIGHTS = ImmutableList.of("alexscaves:ambersol#", "alexscaves:radrock_uranium_ore#", "alexscaves:acidic_radrock#", "alexscaves:uranium_rod#axis=x", "alexscaves:uranium_rod#axis=y", "alexscaves:uranium_rod#axis=z", "alexscaves:block_of_uranium#", "alexscaves:abyssal_altar#active=true", "alexscaves:abyssmarine_", "alexscaves:peering_coprolith#", "alexscaves:forsaken_idol#", "alexscaves:magnetic_light#");
     public static final ResourceLocation BOMB_FLASH = nukaResource( "textures/misc/bomb_flash.png");
     public static final ResourceLocation WATCHER_EFFECT = nukaResource( "textures/misc/watcher_effect.png");
     public static final ResourceLocation IRRADIATED_SHADER = nukaResource( "shaders/post/irradiated.json");
     public static final ResourceLocation HOLOGRAM_SHADER = nukaResource( "shaders/post/hologram.json");
     public static int lastTremorTick = -1;
     public static float[] randomTremorOffsets = new float[3];
-    public static List<UUID> blockedEntityRenders = new ArrayList<>();
-    public static Map<ClientLevel, List<BlockPos>> blockedParticleLocations = new HashMap<>();
-    public static Map<LivingEntity, Vec3[]> darknessTrailPosMap = new HashMap<>();
-    public static Map<LivingEntity, Integer> darknessTrailPointerMap = new HashMap<>();
-    public static final Int2ObjectMap<AbstractTickableSoundInstance> ENTITY_SOUND_INSTANCE_MAP = new Int2ObjectOpenHashMap<>();
-    public static final Map<BlockEntity, AbstractTickableSoundInstance> BLOCK_ENTITY_SOUND_INSTANCE_MAP = new HashMap<>();
-    public static boolean spelunkeryTutorialComplete;
-    public static CameraType lastPOV = CameraType.FIRST_PERSON;
-
 
     public static void clientInit() {
 //        MOD_EVENT_BUS.addListener(ClientLayerRegistry::addLayers);
@@ -92,33 +57,39 @@ public class ClientProxy {
         }
     }
 
-    public Player getClientSidePlayer() {
-        return Minecraft.getInstance().player;
-    }
-
-    public void blockRenderingEntity(UUID id) {
-        blockedEntityRenders.add(id);
-    }
-
-    public void releaseRenderingEntity(UUID id) {
-        blockedEntityRenders.remove(id);
-    }
-
-    public void setVisualFlag(int flag) {
-    }
-
     public static ArrayList<NuclearExplosionEffectEntity> getNukesAround(){
         var minecraft = Minecraft.getInstance();
         var result = new ArrayList<NuclearExplosionEffectEntity>();
         if(minecraft.player == null) return result;
 
         var explosions = minecraft.level.getEntities(minecraft.player,
-                minecraft.player.getBoundingBox().inflate(45,45,45),
+                minecraft.player.getBoundingBox().inflate(SHAKE_DISTANCE, SHAKE_DISTANCE, SHAKE_DISTANCE),
                 (entity -> entity instanceof NuclearExplosionEffectEntity));
 
         explosions.forEach((entity) -> result.add((NuclearExplosionEffectEntity)entity));
 
         return result;
+    }
+
+    @Nullable
+    public static Double getDistanceToNuke(){
+        var nukes = getNukesAround();
+        var player = Minecraft.getInstance().player;
+
+        if(nukes.isEmpty()) return null;
+
+        return min(nukes,(nuke) -> player.getPosition(getPartialTicks()).distanceTo(nuke.getPosition(getPartialTicks())));
+    }
+
+    public static <T> Double min(List<T> list, Function<T, Double> comparator){
+        var min = comparator.apply(list.get(0));
+
+        for (T t : list) {
+            var num = comparator.apply(t);
+            if (num < min) min = num;
+        }
+
+        return min;
     }
 
     public static float getNukeFlashAmount(NuclearExplosionEffectEntity entity, float partialTicks) {
@@ -129,84 +100,8 @@ public class ClientProxy {
         return entity.prevPossessionStrengthAmount + (entity.possessionStrengthAmount - entity.prevPossessionStrengthAmount) * partialTicks;
     }
 
-    public boolean checkIfParticleAt(SimpleParticleType simpleParticleType, BlockPos at) {
-        if (!blockedParticleLocations.containsKey(Minecraft.getInstance().level)) {
-            blockedParticleLocations.clear();
-            blockedParticleLocations.put(Minecraft.getInstance().level, new ArrayList<>());
-        }
-        return true;
-    }
-
-    public void removeParticleAt(BlockPos at) {
-        if (!blockedParticleLocations.containsKey(Minecraft.getInstance().level)) {
-            blockedParticleLocations.clear();
-            blockedParticleLocations.put(Minecraft.getInstance().level, new ArrayList<>());
-        }
-        blockedParticleLocations.get(Minecraft.getInstance().level).remove(at);
-    }
-
-    public float getPartialTicks() {
+    public static float getPartialTicks() {
         return Minecraft.getInstance().getFrameTime();
-    }
-
-    public void setSpelunkeryTutorialComplete(boolean completedTutorial) {
-        this.spelunkeryTutorialComplete = completedTutorial;
-    }
-
-    public boolean isSpelunkeryTutorialComplete() {
-        return this.spelunkeryTutorialComplete;
-    }
-
-    public void setRenderViewEntity(Player player, Entity entity) {
-        boolean flag = entity != Minecraft.getInstance().getCameraEntity();
-        if (player == Minecraft.getInstance().player && Minecraft.getInstance().getCameraEntity() == Minecraft.getInstance().player) {
-            lastPOV = Minecraft.getInstance().options.getCameraType();
-            Minecraft.getInstance().setCameraEntity(entity);
-            Minecraft.getInstance().options.setCameraType(CameraType.FIRST_PERSON);
-        }
-        if (flag) {
-            Minecraft.getInstance().levelRenderer.allChanged();
-        }
-    }
-
-    public void resetRenderViewEntity(Player player) {
-        boolean flag = Minecraft.getInstance().player != Minecraft.getInstance().getCameraEntity();
-        if (player == Minecraft.getInstance().player) {
-            Minecraft.getInstance().level = (ClientLevel) Minecraft.getInstance().player.level;
-            Minecraft.getInstance().setCameraEntity(Minecraft.getInstance().player);
-            Minecraft.getInstance().options.setCameraType(lastPOV);
-        }
-        if (flag) {
-            Minecraft.getInstance().levelRenderer.allChanged();
-        }
-    }
-
-    public void clearSoundCacheFor(Entity entity) {
-        ENTITY_SOUND_INSTANCE_MAP.remove(entity.getId());
-    }
-
-    public void clearSoundCacheFor(BlockEntity entity) {
-        BLOCK_ENTITY_SOUND_INSTANCE_MAP.remove(entity);
-    }
-
-    public Vec3 getDarknessTrailPosFor(LivingEntity living, int pointer, float partialTick) {
-        if (living.isRemoved()) {
-            partialTick = 1.0F;
-        }
-        Vec3[] trailPositions = darknessTrailPosMap.get(living);
-        if (trailPositions == null || !darknessTrailPointerMap.containsKey(living))
-            return living.position();
-        var trailPointer = darknessTrailPointerMap.get(living);
-        var i = trailPointer - pointer & 63;
-        var j = trailPointer - pointer - 1 & 63;
-        var d0 = trailPositions[j];
-        var d1 = trailPositions[i].subtract(d0);
-
-        return d0.add(d1.scale(partialTick));
-    }
-
-    public int getPlayerTime() {
-        return Minecraft.getInstance().player == null ? 0 : Minecraft.getInstance().player.tickCount;
     }
 
     public static void preScreenRender(float partialTick) {
@@ -265,7 +160,6 @@ public class ClientProxy {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         }
     }
-
 
     public boolean isFirstPersonPlayer(Entity entity) {
         return entity.equals(Minecraft.getInstance().cameraEntity) && Minecraft.getInstance().options.getCameraType().isFirstPerson();

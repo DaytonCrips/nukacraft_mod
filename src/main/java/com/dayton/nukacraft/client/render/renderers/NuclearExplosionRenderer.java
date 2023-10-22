@@ -2,11 +2,15 @@ package com.dayton.nukacraft.client.render.renderers;
 
 import com.dayton.nukacraft.client.models.*;
 import com.dayton.nukacraft.common.foundation.entities.*;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.vertex.*;
 import mod.azure.azurelib.cache.object.*;
+import mod.azure.azurelib.core.object.Color;
 import mod.azure.azurelib.renderer.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
 
 public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearExplosionEffectEntity> {
@@ -22,9 +26,15 @@ public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearEx
     }
 
     @Override
+    public Color getRenderColor(NuclearExplosionEffectEntity getOpacity, float partialTick, int packedLight) {
+        return Color.ofRGBA(1,1,1, getOpacity.getOpacity());
+    }
+
+    @Override
     public void renderRecursively(PoseStack poseStack, NuclearExplosionEffectEntity animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
                                   int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick,
                 packedLight, packedOverlay, red, green, blue, alpha);
     }
