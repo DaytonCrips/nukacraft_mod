@@ -26,7 +26,7 @@ public class ForgeEvents {
         if(player == null || nukes.isEmpty()) return;
         var nuke = nukes.get(0);
         var explosionType = nuke.getExplosionType();
-        var tremorAmount = nuke.renderNukeSkyDarkFor > 0 ? explosionType.getTremorIntensity() : 0F;
+        var tremorAmount = nuke.tremorFor > 0 ? explosionType.getTremorIntensity() : 0F;
 
         if (tremorAmount > 0) {
             if (lastTremorTick != player.tickCount)

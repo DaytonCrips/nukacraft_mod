@@ -21,7 +21,7 @@ public abstract class GameRendererMixin {
     public void ac_tick(CallbackInfo ci) {
         var nukes = getNukesAround();
         if (nukes.isEmpty()) return;
-        if (nukes.get(0).renderNukeSkyDarkFor > 0 && darkenWorldAmount < 1.0F) {
+        if (nukes.get(0).darkSkyFor > 0 && darkenWorldAmount < 1.0F) {
             darkenWorldAmount = Math.min(darkenWorldAmount + 0.3F, 1.0F);
         }
     }

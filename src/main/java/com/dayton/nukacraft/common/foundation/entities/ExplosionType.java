@@ -11,7 +11,7 @@ public class ExplosionType{
     public static ExplosionType MINI_NUKE = new ExplosionType()
             .duration(140)
             .tremorDistance(45)
-            .tremorDuration(140)
+            .tremorDuration(120)
             .tremorIntensity(1.5f)
             .flashDistance(50)
             .flashDuration(16);

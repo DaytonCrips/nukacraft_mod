@@ -10,12 +10,12 @@ import static mod.azure.azurelib.core.animation.RawAnimation.*;
 public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
     public static final int SHAKE_DISTANCE = 45;
 
-    private static final int fadeTime = 40;
-    private static final int tremorTime = 30;
-    private static final int lifeTime = 140;
+    private static final int explosionFade = 40;
+    private static final int tremorFade = 30;
+    private final int lifeTime;
     private static final ExplosionType explosionType = ExplosionType.MINI_NUKE;
 
-    public int renderNukeSkyDarkFor;
+    public int darkSkyFor;
     public int tremorFor;
     public int muteNonNukeSoundsFor;
     public int renderNukeFlashFor;
@@ -28,8 +28,9 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
     public NuclearExplosionEffectEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         noCulling = true;
-        renderNukeSkyDarkFor = 70;
+        darkSkyFor = 70;
         muteNonNukeSoundsFor = 50;
+        lifeTime = explosionType.getDuration();
         tremorFor = explosionType.getTremorDuration();
         renderNukeFlashFor = explosionType.getFlashDuration();
     }
@@ -40,12 +41,14 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
 
     public float getOpacity() {
         var fadeLeft = lifeTime - tickCount;
-        return fadeLeft > fadeTime ? 1 : (float)getFraction(fadeLeft, fadeTime);
+        return fadeLeft > explosionFade ? 1 : (float)getFraction(fadeLeft, explosionFade);
     }
 
     public float getTremorIntensity(){
-        var tremorLeft = lifeTime - tickCount;
-        return tremorLeft > tremorTime ? 1 : (float)getFraction(tremorLeft, tremorTime);
+        if(tickCount > explosionType.getTremorDuration()) return 0;
+
+        var tremorLeft = explosionType.getTremorDuration() - tickCount;
+        return tremorLeft > tremorFade ? 1 : (float)getFraction(tremorLeft, tremorFade);
     }
 
     private void sub(float s){
@@ -59,7 +62,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
 
         prevNukeFlashAmount = nukeFlashAmount;
 
-        sub(renderNukeSkyDarkFor);
+        sub(darkSkyFor);
         sub(tremorFor);
 
         if (muteNonNukeSoundsFor > 0) {
