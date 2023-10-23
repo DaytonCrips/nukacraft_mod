@@ -5,17 +5,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
-import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.getPartialTicks;
+
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
 public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
-    public static final int SHAKE_DISTANCE = 45;
-
     private static final int explosionFade = 40;
     private static final int tremorFade = 30;
     private final int lifeTime;
-    private static final ExplosionType explosionType = ExplosionType.MINI_NUKE;
+    private ExplosionType explosionType = ExplosionType.MINI_NUKE;
 
     public int darkSkyFor;
     public int tremorFor;
@@ -23,10 +21,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
     public int renderNukeFlashFor;
     public float prevNukeFlashAmount = 0;
     public float nukeFlashAmount = 0;
-    public float prevPossessionStrengthAmount = 0;
-    public float possessionStrengthAmount = 0;
     public float masterVolumeNukeModifier = 0.0F;
-
     public NuclearExplosionEffectEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         noCulling = true;
@@ -35,6 +30,10 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
         lifeTime = explosionType.getDuration();
         tremorFor = explosionType.getTremorDuration();
         renderNukeFlashFor = explosionType.getFlashDuration();
+    }
+
+    public void setType(ExplosionType explosionType) {
+        this.explosionType = explosionType;
     }
 
     public ExplosionType getExplosionType() {
@@ -53,12 +52,16 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
         return tremorLeft > tremorFade ? 1 : (float)getFraction(tremorLeft, tremorFade);
     }
 
-    private void sub(float s){
-        if(s > 0) s--;
+    private int sub(int s){
+        if(s > 0) return --s;
+        return s;
     }
 
     public double getDistanceToPlayer(){
-        return Minecraft.getInstance().player.getPosition(getPartialTicks()).distanceTo(getPosition(getPartialTicks()));
+        var minecraft = Minecraft.getInstance();
+        assert minecraft.player != null;
+        return minecraft.player.getPosition(minecraft.getFrameTime())
+                .distanceTo(getPosition(minecraft.getFrameTime()));
     }
 
     @Override
@@ -67,9 +70,8 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
         if (tickCount > lifeTime) this.remove(RemovalReason.DISCARDED);
 
         prevNukeFlashAmount = nukeFlashAmount;
-
-        sub(darkSkyFor);
-        sub(tremorFor);
+        darkSkyFor = sub(darkSkyFor);
+        tremorFor = sub(tremorFor);
 
         if (muteNonNukeSoundsFor > 0) {
             muteNonNukeSoundsFor--;
@@ -86,9 +88,6 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
             renderNukeFlashFor--;
         } else if (nukeFlashAmount > 0F) {
             nukeFlashAmount = Math.max(nukeFlashAmount - 0.05F, 0F);
-        }
-        else if (possessionStrengthAmount > 0F) {
-            possessionStrengthAmount = Math.max(possessionStrengthAmount - 0.05F, 0F);
         }
     }
 

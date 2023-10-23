@@ -1,7 +1,6 @@
 package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
 import com.dayton.nukacraft.client.render.renderers.MiniNukeRenderer;
 import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import net.minecraft.client.Camera;

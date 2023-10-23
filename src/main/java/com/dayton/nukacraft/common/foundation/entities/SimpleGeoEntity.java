@@ -17,21 +17,13 @@ import net.minecraftforge.network.PlayMessages;
 import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
-public class SimpleGeoEntity extends Entity implements GeoEntity {
+public class SimpleGeoEntity extends SimpleEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public SimpleGeoEntity(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override protected void defineSynchedData() {}
-    @Override protected void readAdditionalSaveData(CompoundTag compoundTag) {}
-    @Override protected void addAdditionalSaveData(CompoundTag compoundTag) {}
     @Override public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
     @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return cache; }
 }

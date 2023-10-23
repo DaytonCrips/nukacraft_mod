@@ -9,7 +9,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.*;
+import static com.dayton.nukacraft.client.helpers.ExplosionUtils.*;
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)

@@ -11,10 +11,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
+import static com.dayton.nukacraft.client.helpers.ExplosionUtils.createNuclearExplosion;
 import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.*;
 
 public class MiniNukeEntity extends ProjectileEntity {
@@ -22,38 +24,26 @@ public class MiniNukeEntity extends ProjectileEntity {
         super(entityType, worldIn);
     }
 
-    public MiniNukeEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn, LivingEntity shooter, ItemStack weapon, GunItem item, Gun modifiedGun)
-    {
+    public MiniNukeEntity(EntityType<? extends ProjectileEntity> entityType, Level worldIn, LivingEntity shooter, ItemStack weapon, GunItem item, Gun modifiedGun) {
         super(entityType, worldIn, shooter, weapon, item, modifiedGun);
     }
-
 
     @Override
     protected void onProjectileTick()
     {
-        if (this.level.isClientSide)
-        {
-            for (int i = 5; i > 0; i--)
-            {
+        if (this.level.isClientSide) {
+            for (int i = 5; i > 0; i--) {
                 this.level.addParticle(ParticleTypes.CLOUD, true, this.getX() - (this.getDeltaMovement().x() / i), this.getY() - (this.getDeltaMovement().y() / i), this.getZ() - (this.getDeltaMovement().z() / i), 0, 0, 0);
             }
-            if (this.level.random.nextInt(2) == 0)
-            {
+            if (this.level.random.nextInt(2) == 0) {
                 this.level.addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
-                this.level.addParticle(ParticleTypes.FLAME, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
+                //this.level.addParticle(ParticleTypes.FLAME, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             }
         }
     }
 
     private void explode() {
-        var explosion = NUCLEAR_EXPLOSION.get().create(getLevel());
-        explosion.copyPosition(this);
-        explosion.setSize(1F);
-        getLevel().addFreshEntity(explosion);
-
-        var explosionEffect = NUCLEAR_EXPLOSION_EFFECT.get().create(getLevel());
-        explosionEffect.copyPosition(this);
-        getLevel().addFreshEntity(explosionEffect);
+        createNuclearExplosion(this, ExplosionType.MINI_NUKE);
     }
 
     @Override

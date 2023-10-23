@@ -14,6 +14,8 @@ import net.minecraft.world.entity.Entity;
 
 
 public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearExplosionEffectEntity> {
+    public static final int SCALE = 5;
+
     public NuclearExplosionRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new NuclearExplosionModel());
     }
@@ -21,7 +23,8 @@ public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearEx
     @Override
     public void render(NuclearExplosionEffectEntity entity, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        poseStack.scale(5,5,5);
+        var size = entity.getExplosionType().size();
+        poseStack.scale(SCALE * size, SCALE * size, SCALE * size);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 

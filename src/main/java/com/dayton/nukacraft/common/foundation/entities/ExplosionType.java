@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 public class ExplosionType{
+    private float size;
     private int duration;
     private int flashDuration;
     private int tremorDuration;
@@ -9,6 +10,7 @@ public class ExplosionType{
     private float tremorIntensity;
 
     public static ExplosionType MINI_NUKE = new ExplosionType()
+            .size(1)
             .duration(140)
             .tremorDistance(45)
             .tremorDuration(120)
@@ -16,6 +18,11 @@ public class ExplosionType{
             .flashDistance(50)
             .flashDuration(16);
 
+
+    public ExplosionType size(float size) {
+        this.size = size;
+        return this;
+    }
 
     public ExplosionType duration(int duration) {
         this.duration = duration;
@@ -45,6 +52,10 @@ public class ExplosionType{
     public ExplosionType tremorDuration(int tremorDuration) {
         this.tremorDuration = tremorDuration;
         return this;
+    }
+
+    public float size() {
+        return size;
     }
 
     public int getDuration() {
