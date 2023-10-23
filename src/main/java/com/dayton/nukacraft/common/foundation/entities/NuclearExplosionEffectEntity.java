@@ -1,9 +1,11 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 import mod.azure.azurelib.core.animation.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
+import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.getPartialTicks;
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
@@ -53,6 +55,10 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
 
     private void sub(float s){
         if(s > 0) s--;
+    }
+
+    public double getDistanceToPlayer(){
+        return Minecraft.getInstance().player.getPosition(getPartialTicks()).distanceTo(getPosition(getPartialTicks()));
     }
 
     @Override

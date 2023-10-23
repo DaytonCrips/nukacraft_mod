@@ -72,13 +72,10 @@ public class ClientProxy {
     }
 
     @Nullable
-    public static Double getDistanceToNuke(){
+    public static Double getDistanceToNearestExplosion(){
         var nukes = getNukesAround();
-        var player = Minecraft.getInstance().player;
-
         if(nukes.isEmpty()) return null;
-
-        return min(nukes,(nuke) -> player.getPosition(getPartialTicks()).distanceTo(nuke.getPosition(getPartialTicks())));
+        return min(nukes,(nuke) -> nuke.getDistanceToPlayer());
     }
 
     public static <T> Double min(List<T> list, Function<T, Double> comparator){
@@ -108,6 +105,7 @@ public class ClientProxy {
         float screenEffectIntensity = Minecraft.getInstance().options.screenEffectScale;
 
         getNukesAround().forEach((nuke) -> {
+
             float watcherPossessionStrength = getPossessionStrengthAmount(nuke, partialTick);
             float nukeFlashAmount = getNukeFlashAmount(nuke, partialTick);
             createFlash(screenEffectIntensity, watcherPossessionStrength, nukeFlashAmount);

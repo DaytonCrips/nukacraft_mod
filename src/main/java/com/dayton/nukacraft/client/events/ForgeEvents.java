@@ -2,18 +2,14 @@ package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.entities.ExplosionType;
-import com.jetug.chassis_core.common.util.helpers.MathHelper;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import java.lang.reflect.Method;
 
 import static com.dayton.nukacraft.client.models.endity.core.ClientProxy.*;
-import static com.dayton.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity.*;
-import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
@@ -48,7 +44,7 @@ public class ForgeEvents {
     }
 
     public static double scaleTremor(double tremor, ExplosionType explosionType){
-        var distance = getDistanceToNuke();
+        var distance = getDistanceToNearestExplosion();
         if(distance == null) return 0;
         return tremor - tremor * getFraction(distance, explosionType.getTremorDistance());
     }
