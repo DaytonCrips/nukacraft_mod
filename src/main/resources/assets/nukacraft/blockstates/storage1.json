@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "nukacraft:block/storage2"
+    },
+    "facing=down,open=true": {
+      "model": "nukacraft:block/storage2_open"
+    },
+    "facing=east,open=false": {
+      "y": 90,
+      "model": "nukacraft:block/storage1"
+    },
+    "facing=east,open=true": {
+      "y": 90,
+      "model": "nukacraft:block/storage1_open"
+    },
+    "facing=north,open=false": {
+      "model": "nukacraft:block/storage1"
+    },
+    "facing=north,open=true": {
+      "model": "nukacraft:block/storage1_open"
+    },
+    "facing=south,open=false": {
+      "y": -180,
+      "model": "nukacraft:block/storage1"
+    },
+    "facing=south,open=true": {
+      "y": -180,
+      "model": "nukacraft:block/storage1_open"
+    },
+    "facing=up,open=false": {
+      "model": "nukacraft:block/storage2"
+    },
+    "facing=up,open=true": {
+      "model": "nukacraft:block/storage2_open"
+    },
+    "facing=west,open=false": {
+      "y": -90,
+      "model": "nukacraft:block/storage1"
+    },
+    "facing=west,open=true": {
+      "y": -90,
+      "model": "nukacraft:block/storage1_open"
+    }
+  }
+}

@@ -124,6 +124,9 @@ public class MutationFloraClass {
         if (state.getBlock().defaultBlockState() == Blocks.LILY_OF_THE_VALLEY.defaultBlockState()) {
             MutationFloraClass.mutationStart(level, pos, state, ModBlocks.DEATH_PLANT.get().defaultBlockState());
         }
+        if (state.getBlock().defaultBlockState() == ModBlocks.HATTER.get().defaultBlockState()) {
+            MutationFloraClass.mutationStart(level, pos, state, ModBlocks.MEGAHATTER.get().defaultBlockState());
+        }
     }
 
 

@@ -1,9 +1,9 @@
 package com.dayton.nukacraft.common.foundation.blocks;
 
 import com.dayton.guns.common.foundation.block.WorkbenchBlock;
+import com.dayton.guns.common.foundation.init.ModTileEntities;
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.DogWoodClass;
-import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.ModFlowerBlock;
+import com.dayton.nukacraft.common.foundation.blocks.custom.blocks.*;
 import com.dayton.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
 import com.dayton.nukacraft.common.foundation.items.ModItems;
@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
@@ -323,6 +324,10 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {return 9;})));
 //    public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
 //            () -> new ZanderBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
+    public static final RegistryObject<Block> REDLIGHT = registerBlock("redlight",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(1.0f).lightLevel((p_50892_) -> {return 4;})));
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
@@ -330,6 +335,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> POTTED_MARYGOLD = registerBlockWithoutItem("potted_marygold",
             () -> new FlowerPotBlock(null, ModBlocks.MARYGOLD,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> DATURAN = registerBlockWithoutItem("root_daturan",
             () -> new DaturanBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> AGAVE = registerBlockWithoutItem("agave",
@@ -347,6 +353,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> PRISMLEAF = registerBlockWithoutItem("prism_leaf",
             () -> new PrismLeafBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
+    public static final RegistryObject<Block> MEGAHATTER = registerBlock("megamorph_hatter",
+            () -> new FlowerBlock(MobEffects.BLINDNESS, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> HATTER = registerBlock("hatter",
+            () -> new FlowerBlock(MobEffects.BLINDNESS, 0,
+                    BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> DEAD_PUNGA = registerBlock("dead_punga",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -359,6 +371,23 @@ public class ModBlocks {
     public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
+
+    public static final RegistryObject<Block> STORAGE1 = registerBlock("storage1",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(1f)));
+
+    public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+
+    public static final RegistryObject<Block> VTCRATE2 = registerBlock("vtcrate2",
+            () -> new LockableStorage(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+
+    public static final RegistryObject<Block> WOODCRATE = registerBlock("woodcrate",
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(1f)));
 
 
     public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
@@ -377,7 +406,15 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
-
+    public static final RegistryObject<Block> SHELTERBARS = registerBlock("shelter_bars",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.1f, 5.7f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SERVERBLOCK = registerBlock("comblock",
+            () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.2f, 4.4f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> RADIOTERMINAL = registerBlock("radioterminal",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));

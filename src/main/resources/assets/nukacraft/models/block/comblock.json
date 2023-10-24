@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "nukacraft:blocks/serverblock_top",
+    "front": "nukacraft:blocks/serverblock_front",
+    "side": "nukacraft:blocks/serverblock_side"
+  }
+}

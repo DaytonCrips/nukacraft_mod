@@ -1,0 +1,22 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"shot": {
+			"animation_length": 0.29167,
+			"bones": {
+				"slider": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [0, 0, 1],
+							"easing": "easeInCirc"
+						}
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

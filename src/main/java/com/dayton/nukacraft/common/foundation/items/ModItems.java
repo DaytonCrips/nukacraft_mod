@@ -333,10 +333,10 @@ public class ModItems {
           () -> new MedicineItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFood.MED)));
 
     //Others
-    public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy_d",
-        () -> new PipBoyItem("pipboy_d", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
-    public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",
-            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
+    public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",
+        () -> new PipBoyItem("default", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
+//    public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",
+//            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
 
     public static final RegistryObject<Item> HOLO_1CC = ITEMS.register("holotape_white",
             () -> new ColoredHolotapeItem("white", new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL).rarity(Rarity.COMMON)));

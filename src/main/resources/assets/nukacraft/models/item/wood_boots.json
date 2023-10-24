@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "nukacraft:items/armor/oak_boots"
+    "layer0": "nukacraft:items/armor/wood_boots"
   }
 }

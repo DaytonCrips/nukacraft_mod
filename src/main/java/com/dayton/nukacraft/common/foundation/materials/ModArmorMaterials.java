@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.common.foundation.materials;
 
 import com.dayton.nukacraft.NukaCraftMod;
+import com.dayton.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
@@ -12,8 +13,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
     WOOD("wood", 5, new int[]{1, 2, 2, 1}, 14, SoundEvents.ARMOR_EQUIP_TURTLE,
-            0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG));
-
+            0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),
+    HARDLEATHER("leather", 5, new int[]{2, 2, 2, 2}, 17, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.0F, 0.0F, () -> Ingredient.of(ModItems.LEATHERHARD.get())),
+    RAIDER("raider", 5, new int[]{2, 3, 3, 2}, 17, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.0F, 0.0F, () -> Ingredient.of(ModItems.CERAMIC.get()));
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
