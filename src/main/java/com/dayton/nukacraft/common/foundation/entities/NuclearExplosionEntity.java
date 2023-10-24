@@ -7,21 +7,16 @@ import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 
 import java.util.Stack;
@@ -30,7 +25,7 @@ import static com.dayton.nukacraft.common.foundation.entities.EntityTypes.NUCLEA
 import static com.dayton.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
-public class NuclearExplosionEntity extends Entity implements GeoEntity {
+public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
     public static final int LIFE_TIME = 20;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
@@ -45,11 +40,6 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
     public NuclearExplosionEntity(PlayMessages.SpawnEntity spawnEntity, Level level) {
         this(NUCLEAR_EXPLOSION.get(), level);
         this.setBoundingBox(this.makeBoundingBox());
-    }
-
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return (Packet<ClientGamePacketListener>) NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -90,9 +80,6 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
                 var vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
                 entity.setDeltaMovement(vec3.scale(damage * 0.1F * flingStrength));
                 if (damage > 0) {
-//                    if (entity.getType().is(RESISTS_RADIATION)) {
-//                        damage *= 0.25F;
-//                    }
                     entity.hurt(DamageSource.IN_FIRE, damage);
                 }
                 //entity.addEffect(new MobEffectInstance(IRRADIATED.get(), 48000, getSize() <= 1.5F ? 1 : 2, false, false, true));
@@ -100,15 +87,10 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
         }
     }
 
-
-
     @Override
     protected void defineSynchedData() {
         this.entityData.define(SIZE, 1.0F);
     }
-
-    @Override protected void readAdditionalSaveData(CompoundTag compoundTag) {}
-    @Override protected void addAdditionalSaveData(CompoundTag compoundTag) {}
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
@@ -132,7 +114,7 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
     }
 
     private boolean isDestroyable(BlockState state) {
-        return /*!state.is(UNMOVEABLE) &&*/ state.getBlock().getExplosionResistance() < 1000;
+        return state.getBlock().getExplosionResistance() < 1000;
     }
 
     private static BlockPos containing(double p_275310_, double p_275414_, double p_275737_) {
@@ -160,20 +142,21 @@ public class NuclearExplosionEntity extends Entity implements GeoEntity {
     }
 
     private void removeChunk(int radius) {
-        BlockPos chunkCorner = destroyingChunks.pop();
-        BlockPos.MutableBlockPos carve = new BlockPos.MutableBlockPos();
-        BlockPos.MutableBlockPos carveBelow = new BlockPos.MutableBlockPos();
+        var chunkCorner = destroyingChunks.pop();
+        var carve = new BlockPos.MutableBlockPos();
+        var carveBelow = new BlockPos.MutableBlockPos();
         carve.set(chunkCorner);
         carveBelow.set(chunkCorner);
-        float itemDropModifier = 0.025F / Math.min(1, this.getSize());
+        var itemDropModifier = 0.025F / Math.min(1, this.getSize());
+
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
                 for (int y = 15; y >= 0; y--) {
                     carve.set(chunkCorner.getX() + x, Mth.clamp(chunkCorner.getY() + y, getLevel().getMinBuildHeight(), getLevel().getMaxBuildHeight()), chunkCorner.getZ() + z);
-                    float widthSimplexNoise1 = (ACMath.sampleNoise3D(carve.getX(), carve.getY(), carve.getZ(), radius) - 0.5F) * 0.45F + 0.55F;
+                    float widthSimplexNoise = (ACMath.sampleNoise3D(carve.getX(), carve.getY(), carve.getZ(), radius) - 0.5F) * 0.45F + 0.55F;
                     double yDist = ACMath.smin(0.6F - Math.abs(this.blockPosition().getY() - carve.getY()) / (float) radius, 0.6F, 0.2F);
                     double distToCenter = carve.distToLowCornerSqr(this.blockPosition().getX(), carve.getY() - 1, this.blockPosition().getZ());
-                    double targetRadius = yDist * (radius + widthSimplexNoise1 * radius) * radius;
+                    double targetRadius = yDist * (radius + widthSimplexNoise * radius) * radius;
                     if (distToCenter <= targetRadius) {
                         BlockState state = getLevel().getBlockState(carve);
                         if ((!state.isAir() || !state.getFluidState().isEmpty()) && isDestroyable(state)) {

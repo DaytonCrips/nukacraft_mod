@@ -1,24 +1,13 @@
 package com.dayton.nukacraft.client.render.particles;
 
-import com.dayton.nukacraft.client.models.endity.*;
-import com.dayton.nukacraft.client.models.endity.core.ACRenderTypes;
-import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
-import com.dayton.nukacraft.common.data.utils.ACMath;
-import com.dayton.nukacraft.common.foundation.sounds.*;
-import com.dayton.nukacraft.common.registery.ACSoundRegistry;
+import com.dayton.nukacraft.common.foundation.sounds.NuclearExplosionSound;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -27,9 +16,6 @@ import static com.dayton.nukacraft.common.registery.ModParticles.*;
 import static com.dayton.nukacraft.common.registery.ModSounds.*;
 
 public class MushroomCloudParticle extends Particle {
-//    private static final ResourceLocation TEXTURE = nukaResource("textures/particle/mushroom_cloud.png");
-//    private static final ResourceLocation TEXTURE_GLOW = nukaResource("textures/particle/mushroom_cloud_glow.png");
-//    private static final MushroomCloudModel MODEL = new MushroomCloudModel();
     private static final int BALL_FOR = 10;
     private static final int FADE_SPEED = 10;
     private final float scale;
@@ -88,7 +74,8 @@ public class MushroomCloudParticle extends Particle {
     }
 
     private void playSound(SoundEvent soundEvent, int duration, int fadesAt, float fadeInBy, boolean looping){
-        Minecraft.getInstance().getSoundManager().queueTickingSound(new NuclearExplosionSound(soundEvent, this.x, this.y, this.z, duration, fadesAt, fadeInBy, looping));
+        Minecraft.getInstance().getSoundManager()
+                .queueTickingSound(new NuclearExplosionSound(soundEvent, this.x, this.y, this.z, duration, fadesAt, fadeInBy, looping));
     }
 
     public void render(VertexConsumer vertexConsumer, Camera camera, float partialTick) {
@@ -109,7 +96,6 @@ public class MushroomCloudParticle extends Particle {
     }
 
     public static class Factory implements ParticleProvider<SimpleParticleType> {
-
         public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             if (xSpeed == 0.0) {
                 xSpeed = 1.0F;

@@ -13,7 +13,6 @@ import com.dayton.guns.common.foundation.entity.MissileEntity;
 import com.dayton.guns.common.foundation.init.*;
 import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.models.endity.core.ClientProxy;
 import com.mrcrayfish.framework.api.client.FrameworkClientAPI;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
