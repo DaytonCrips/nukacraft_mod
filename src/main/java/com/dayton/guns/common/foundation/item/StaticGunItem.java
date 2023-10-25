@@ -5,7 +5,6 @@ import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.AnimationController.AnimationStateHandler;
 import mod.azure.azurelib.core.object.PlayState;
 
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
@@ -36,10 +35,6 @@ public class StaticGunItem implements IResourceProvider, GeoEntity {
 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
-    }
-
-    private AnimationStateHandler<StaticGunItem> animate() {
-        return event -> PlayState.STOP;
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, event -> PlayState.STOP));
     }
 }

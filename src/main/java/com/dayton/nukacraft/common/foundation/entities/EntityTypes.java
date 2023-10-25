@@ -32,9 +32,9 @@ public class EntityTypes {
                     .sized(1.0f, 2.3f));
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
-            = ENTITY_TYPES.register("nuclear_explosion_effect", () -> (EntityType) EntityType.Builder
+            = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder
                     .of(NuclearExplosionEffectEntity::new, MobCategory.MISC)
-                    .sized(0.99F, 0.99F)
+                    .sized(10.5F, 10.5F)
                     .clientTrackingRange(20)
                     .build("nuclear_explosion_effect"));
 
@@ -55,8 +55,7 @@ public class EntityTypes {
         return ENTITY_TYPES.register(entityName, () -> builder.build(new ResourceLocation(NukaCraftMod.MOD_ID, entityName).toString()));
     }
 
-    private static <T extends Entity> RegistryObject<EntityType<T>>
-    registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
+    private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
         return ENTITY_TYPES.register(id, () -> Builder.of(function::apply, MobCategory.MISC)
                 .sized(0.25F, 0.25F)
                 .setTrackingRange(100)

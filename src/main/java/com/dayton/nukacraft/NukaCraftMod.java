@@ -3,7 +3,6 @@ package com.dayton.nukacraft;
 
 import com.dayton.guns.GunMod;
 import com.dayton.guns.common.base.ProjectileManager;
-import com.dayton.nukacraft.client.ClientConfig;
 import com.dayton.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.common.registery.ACSoundRegistry;
@@ -29,7 +28,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
