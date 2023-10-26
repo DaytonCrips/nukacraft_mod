@@ -550,34 +550,6 @@ public class GunRenderingHandler {
                     RenderSystem.disableBlend();
                 }
             }
-            return;
-        }
-
-        if (Config.CLIENT.display.cooldownIndicator.get() && heldItem.getItem() instanceof GunItem) {
-            Gun gun = ((GunItem) heldItem.getItem()).getGun();
-            if (!gun.getGeneral().isAuto()) {
-                float coolDown = player.getCooldowns().getCooldownPercent(heldItem.getItem(), event.renderTickTime);
-                if (coolDown > 0.0F) {
-                    float scale = 3;
-                    Window window = mc.getWindow();
-                    int i = (int) ((window.getGuiScaledHeight() / 2 - 7 - 60) / scale);
-                    int j = (int) Math.ceil((window.getGuiScaledWidth() / 2 - 8 * scale) / scale);
-
-                    RenderSystem.enableBlend();
-                    RenderSystem.defaultBlendFunc();
-                    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                    RenderSystem.setShader(GameRenderer::getPositionTexShader);
-                    RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
-
-                    PoseStack stack = new PoseStack();
-                    stack.scale(scale, scale, scale);
-                    int progress = (int) Math.ceil((coolDown + 0.05) * 17.0F) - 1;
-                    Screen.blit(stack, j, i, 36, 94, 16, 4, 256, 256);
-                    Screen.blit(stack, j, i, 52, 94, progress, 4, 256, 256);
-
-                    RenderSystem.disableBlend();
-                }
-            }
         }
     }
 

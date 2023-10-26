@@ -1,10 +1,8 @@
 {
-  "parent" : "nukacraft:config/model/base/body.json",
   "part": "body",
-  "model": "nukacraft:geo/armor/t45.geo.json",
+  "model": "nukacraft:geo/armor/",
   "texture": {
-    "default": "nukacraft:textures/power_armor/t45.png",
-    "rust": "nukacraft:textures/power_armor/t45_rust.png"
+    "default": "nukacraft:textures/power_armor/"
   },
 
   "uv": [155, 0, 155, 155],
@@ -18,10 +16,6 @@
     {
       "frame": "body_top",
       "armor": "body_top_armor"
-    },
-    {
-      "frame": "body_top",
-      "armor": "jetpack"
     },
     {
       "frame": "body_bottom",

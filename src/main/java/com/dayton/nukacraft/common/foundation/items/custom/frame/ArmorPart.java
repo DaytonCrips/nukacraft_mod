@@ -3,6 +3,7 @@ package com.dayton.nukacraft.common.foundation.items.custom.frame;
 import com.dayton.nukacraft.common.foundation.items.ModItemTabs;
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
 import com.jetug.chassis_core.common.foundation.item.ChassisArmor;
+import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.jetug.chassis_core.common.foundation.item.StackUtils.getVariant;
+
 public class ArmorPart extends ChassisArmor {
     public ArmorPart(ChassisArmorMaterial material, String part) {
         super(new Item.Properties().tab(ModItemTabs.NUKA_ARMOR), material, part);
@@ -24,9 +27,8 @@ public class ArmorPart extends ChassisArmor {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         var stack   = pPlayer.getItemInHand(pUsedHand);
-        var tag = stack.getOrCreateTag();
-        tag.putString("variant", "rust");
-        stack.setTag(tag);
+        StackUtils.setVariant(stack, "rust");
+        StackUtils.setMod(stack, "jetpack");
 
         return super.use(pLevel, pPlayer, pUsedHand);
     }

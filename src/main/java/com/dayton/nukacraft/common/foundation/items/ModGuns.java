@@ -1,23 +1,16 @@
 package com.dayton.nukacraft.common.foundation.items;
 
-import com.dayton.guns.common.base.Attachments;
+import com.dayton.guns.common.base.*;
 import com.dayton.guns.common.foundation.item.*;
-import com.dayton.guns.common.foundation.item.attachment.impl.Barrel;
-import com.dayton.guns.common.foundation.item.attachment.impl.Stock;
-import com.dayton.guns.common.foundation.item.attachment.impl.UnderBarrel;
-import com.dayton.nukacraft.NukaCraftMod;
-import com.dayton.nukacraft.client.helpers.Scopes;
-import com.dayton.nukacraft.common.ExtraGunModifiers;
-import com.dayton.nukacraft.common.foundation.items.guns.FatmanGun;
-import com.dayton.nukacraft.common.foundation.items.guns.MagazineItem;
-import com.dayton.nukacraft.common.foundation.items.guns.MinigunGun;
-import com.dayton.nukacraft.common.foundation.items.guns.PistolGun;
+import com.dayton.guns.common.foundation.item.attachment.impl.*;
+import com.dayton.nukacraft.*;
+import com.dayton.nukacraft.client.helpers.*;
+import com.dayton.nukacraft.common.*;
+import com.dayton.nukacraft.common.foundation.items.guns.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.eventbus.api.*;
+import net.minecraftforge.registries.*;
 
 public class ModGuns {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
