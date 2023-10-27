@@ -47,29 +47,6 @@ public class WoodenArmorItem extends ArmorItem implements GeoItem {
         });
     }
 
-//    @Nullable
-//    @Override
-//    public final String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-//        Class<? extends ArmorItem> clazz = this.getClass();
-//        GeoArmorRenderer renderer = GeoArmorRenderer.getRenderer(clazz, entity);
-//        return renderer.getTextureLocation((ArmorItem) stack.getItem()).toString();
-//    }
-
-//    @Override
-//    public void createRenderer(Consumer<Object> consumer) {
-//        consumer.accept(new RenderProvider() {
-//            private YourItemRender renderer;
-//
-//            @Override
-//            public HumanoidModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<LivingEntity> original) {
-//                if (renderer == null)
-//                    renderer = new YourItemRender();
-//
-//                renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-//                return renderer;
-//            }
-//        });
-//    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

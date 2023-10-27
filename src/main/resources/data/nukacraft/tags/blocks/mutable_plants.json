@@ -40,7 +40,8 @@
     "minecraft:wheat",
     "minecraft:potatoes",
     "minecraft:beetroots",
-    "minecraft:carrots"
-
+    "minecraft:carrots",
+    "nukacraft:hatter",
+    "nukacraft:megamorph_hatter"
   ]
 }

@@ -1,5 +1,6 @@
 package com.dayton.guns.client.render.crosshair;
 
+
 import com.dayton.guns.client.handler.AimingHandler;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;

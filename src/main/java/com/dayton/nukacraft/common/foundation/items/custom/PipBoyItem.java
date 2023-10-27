@@ -2,7 +2,14 @@ package com.dayton.nukacraft.common.foundation.items.custom;
 
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoyMenu;
+import com.dayton.nukacraft.common.foundation.entities.PipBoyRenderer;
 import io.netty.buffer.Unpooled;
+import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.util.AzureLibUtil;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -19,18 +26,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-public class PipBoyItem extends Item {
+public class PipBoyItem extends Item implements GeoItem {
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private String skin;
     public PipBoyItem(String skin, Properties pProperties) {
         super(pProperties);
         this.skin = skin;
     }
 
+    public String getSkin() {
+        return skin;
+    }
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
@@ -70,5 +83,28 @@ public class PipBoyItem extends Item {
         list.add(new TranslatableComponent("pipboy.nukacraft.clicks"));
 
 
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+
+    }
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(new IItemRenderProperties() {
+            private PipBoyRenderer renderer;
+            @Override
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+                if (this.renderer == null) {
+                    renderer = new PipBoyRenderer();
+                }
+                return this.renderer;
+            }
+        });
     }
 }

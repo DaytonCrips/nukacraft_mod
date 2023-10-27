@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "nukacraft:blocks/storage1",
+		"particle": "nukacraft:blocks/storage1"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 7],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"east": {"uv": [4, 0, 6.25, 4], "texture": "#0"},
+				"south": {"uv": [0, 4, 4, 8], "texture": "#0"},
+				"west": {"uv": [4, 4, 6.25, 8], "texture": "#0"},
+				"up": {"uv": [10.25, 2.25, 6.25, 0], "texture": "#0"},
+				"down": {"uv": [10.25, 2.25, 6.25, 4.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 1.5, 0],
+			"scale": [0.14, 0.14, 0.14]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 1, 0],
+			"scale": [0.14, 0.14, 0.14]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 139, 0],
+			"translation": [0, 1.5, 0],
+			"scale": [0.31, 0.31, 0.31]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 141, 0],
+			"translation": [0, 1.5, 0],
+			"scale": [0.31, 0.31, 0.31]
+		},
+		"ground": {
+			"scale": [0.31, 0.31, 0.31]
+		},
+		"gui": {
+			"rotation": [28, 144, 0],
+			"translation": [-1.25, -0.75, 0],
+			"scale": [0.64, 0.64, 0.64]
+		}
+	}
+}

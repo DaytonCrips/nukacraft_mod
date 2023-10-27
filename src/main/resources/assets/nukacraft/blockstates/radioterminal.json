@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/radioterminal",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nukacraft:block/radioterminal"
+    },
+    "facing=south": {
+      "model": "nukacraft:block/radioterminal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nukacraft:block/radioterminal",
+      "y": 270
+    }
+  }
+}

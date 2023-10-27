@@ -22,6 +22,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.POTTED_RADASTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_DEATH_FLOWER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.DEATH_PLANT.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.REDLIGHT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.DEATH_FLOWER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.FIREMUSHROOM.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_FIREMUSHROOM.get(), RenderType.cutout());
@@ -88,6 +89,10 @@ public class ModSetup {
         setRenderLayer(ModBlocks.RREDDOOR.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.DECAYDOOR.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.STEELBARS.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.SHELTERBARS.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.HATTER.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.MEGAHATTER.get(), RenderType.cutout());
+
     }
 
     public static void flowerPotSetup()
