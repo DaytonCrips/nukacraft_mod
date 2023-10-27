@@ -90,17 +90,17 @@ public final class PropertyHelper {
     }
 
     public static boolean isLegacyIronSight(ItemStack stack) {
-        DataObject ironSightObject = getObjectByPath(stack, WEAPON_KEY, "ironSight");
+        var ironSightObject = getObjectByPath(stack, WEAPON_KEY, "ironSight");
         return !ironSightObject.has("camera", DataType.ARRAY);
     }
 
     public static Vec3 getModelOrigin(ItemStack stack, Vec3 defaultOrigin) {
         // Retrieve position from the model's data
-        DataObject customObject = PropertyHelper.getCustomData(stack);
+        var customObject = PropertyHelper.getCustomData(stack);
         if (customObject.has(MODEL_KEY, DataType.OBJECT)) {
-            DataObject modelObject = customObject.getDataObject(MODEL_KEY);
+            var modelObject = customObject.getDataObject(MODEL_KEY);
             if (modelObject.has("origin", DataType.ARRAY)) {
-                DataArray originArray = modelObject.getDataArray("origin");
+                var originArray = modelObject.getDataArray("origin");
                 return arrayToVec3(originArray, defaultOrigin);
             }
         }
@@ -108,7 +108,7 @@ public final class PropertyHelper {
     }
 
     public static Vec3 getAttachmentPosition(ItemStack stack, Gun modifiedGun, IAttachment.Type type) {
-        DataObject scopeObject = getObjectByPath(stack, WEAPON_KEY, "attachments", type.getSerializeKey());
+        var scopeObject = getObjectByPath(stack, WEAPON_KEY, "attachments", type.getSerializeKey());
         if (scopeObject.has("translation", DataType.ARRAY)) {
             DataArray translationArray = scopeObject.getDataArray("translation");
             return arrayToVec3(translationArray, Vec3.ZERO);

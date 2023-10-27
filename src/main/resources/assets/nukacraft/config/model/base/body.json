@@ -18,6 +18,10 @@
       "armor": "body_top_armor"
     },
     {
+      "frame": "body_top",
+      "armor": "jetpack"
+    },
+    {
       "frame": "body_bottom",
       "armor": "body_bottom_armor"
     }
