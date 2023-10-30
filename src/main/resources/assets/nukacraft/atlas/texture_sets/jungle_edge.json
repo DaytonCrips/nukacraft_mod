@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:jungle_edge": 1,
+      "nukacraft:jungle_edge2": 1,
+      "nukacraft:jungle_edge3": 1,
+      "nukacraft:grass2": 1,
+      "nukacraft:grass3": 1,
+      "nukacraft:grass4": 1
+    }
+  }
+}

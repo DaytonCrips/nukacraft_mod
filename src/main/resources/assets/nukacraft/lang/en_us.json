@@ -549,5 +549,83 @@
   "nukacraft.action.steady_aim": "Steady Aim",
   "nukacraft.button.config.tooltip": "Config Options",
   "nukacraft.chat.open_curseforge_page": "Open CurseForge Page",
-  "nukacraft.chat.install_configured": "Install %s to access config options"
+  "nukacraft.chat.install_configured": "Install %s to access config options",
+
+
+
+
+
+
+  "item.nukacraft.antique_atlas": "Antique Atlas #%d",
+  "item.nukacraft.empty_antique_atlas": "Empty Antique Atlas",
+
+  "gui.nukacraft.scalebar": "Scale in blocks",
+  "gui.nukacraft.addMarker": "Add marker",
+  "gui.nukacraft.delMarker": "Delete marker",
+  "gui.nukacraft.followPlayer": "Follow player",
+  "gui.nukacraft.exportImage": "Export image",
+  "gui.nukacraft.hideMarkers": "Hide markers",
+  "gui.nukacraft.showMarkers": "Show markers",
+
+  "gui.nukacraft.marker.label": "Label:",
+  "gui.nukacraft.marker.type": "Type:",
+  "gui.nukacraft.marker.village": "Village",
+  "gui.nukacraft.marker.netherPortal": "Nether Portal",
+  "gui.nukacraft.marker.tomb": "Here lies %s",
+  "gui.nukacraft.marker.treasure": "Buried treasure",
+  "gui.nukacraft.marker.monument": "Ocean Monument",
+  "gui.nukacraft.marker.mansion": "Woodland Mansion",
+
+  "gui.nukacraft.export.opening": "Opening file system dialog...",
+  "gui.nukacraft.export.selectFile": "Select PNG file to save to",
+  "gui.nukacraft.export.tooLarge": "Sorry! The image is too large to render, try increasing Java heap size.",
+
+  "gui.nukacraft.export.setup": "Setting up...",
+  "gui.nukacraft.export.rendering": "Rendering...",
+  "gui.nukacraft.export.writing": "Writing to file...",
+  "gui.nukacraft.export.loadingtextures": "Loading textures...",
+  "gui.nukacraft.export.makingbuffer": "Allocating %dx%d image buffer...",
+
+  "gui.nukacraft.export.renderstripe": "Rendering slice %d/%d...",
+  "gui.nukacraft.export.writestripe": "Writing slice...",
+
+  "gui.nukacraft.export.rendering.background": "Rendering map background",
+  "gui.nukacraft.export.rendering.map": "Rendering map tiles",
+  "gui.nukacraft.export.rendering.markers": "Rendering markers",
+
+  "key.openatlas.desc": "Open Atlas",
+  "key.nukacraft.category": "Antique Atlas",
+
+  "text.autoconfig.nukacraft.title":  "Antique Atlas",
+  "text.autoconfig.nukacraft.category.gameplay":  "Gameplay",
+  "text.autoconfig.nukacraft.category.userInterface":  "User Interface",
+  "text.autoconfig.nukacraft.category.performance":  "Performance",
+  "text.autoconfig.nukacraft.category.appearance":  "Appearance",
+
+  "text.autoconfig.nukacraft.option.doSaveBrowsingPos": "Save atlas position",
+  "text.autoconfig.nukacraft.option.autoDeathMarker": "Death marker",
+  "text.autoconfig.nukacraft.option.autoVillageMarkers": "Village marker",
+  "text.autoconfig.nukacraft.option.autoNetherPortalMarkers": "Nether portal marker",
+  "text.autoconfig.nukacraft.option.itemNeeded": "Atlas required for usage",
+
+  "text.autoconfig.nukacraft.option.doScaleMarkers": "Scale markers",
+  "text.autoconfig.nukacraft.option.defaultScale": "Default zoom level",
+  "text.autoconfig.nukacraft.option.minScale": "Minimum zoom level",
+  "text.autoconfig.nukacraft.option.maxScale": "Maximum zoom level",
+  "text.autoconfig.nukacraft.option.doReverseWheelZoom": "Reversed mouse wheel zoom",
+
+  "text.autoconfig.nukacraft.option.scanRadius": "Scan radius",
+  "text.autoconfig.nukacraft.option.forceChunkLoading": "Force chunk loading",
+  "text.autoconfig.nukacraft.option.newScanInterval": "Scan interval",
+  "text.autoconfig.nukacraft.option.doRescan": "Rescan",
+  "text.autoconfig.nukacraft.option.rescanRate": "Rescan rate",
+  "text.autoconfig.nukacraft.option.markerLimit": "Marker limit",
+  "text.autoconfig.nukacraft.option.doScanPonds": "Scan for ponds",
+  "text.autoconfig.nukacraft.option.doScanRavines": "Scan for ravines",
+  "text.autoconfig.nukacraft.option.debugRender": "Debug rendering",
+
+  "text.autoconfig.nukacraft.option.tileSize": "Size of a tile",
+  "text.autoconfig.nukacraft.option.markerSize": "Size of a marker",
+  "text.autoconfig.nukacraft.option.playerIconWidth": "Player icon width",
+  "text.autoconfig.nukacraft.option.playerIconHeight": "Player icon height"
 }

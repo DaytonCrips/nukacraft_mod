@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:forest_sparse": 1,
+      "nukacraft:forest_sparse2": 1,
+      "nukacraft:forest_sparse3": 1
+    }
+  }
+}

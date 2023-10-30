@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:swamp": 3,
+      "nukacraft:swamp3": 1,
+      "nukacraft:swamp6": 1
+    },
+    "stitch": {
+      "nukacraft:swamp_hills": "both",
+      "nukacraft:swamp": "both",
+      "nukacraft:water": "both"
+    }
+  }
+}

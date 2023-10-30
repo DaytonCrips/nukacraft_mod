@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "data": {
+    "shore": {
+      "water": "nukacraft:water"
+    },
+    "textures": {
+      "nukacraft:shore": 1,
+      "nukacraft:shore2": 1,
+      "nukacraft:shore3": 1
+    }
+  }
+}

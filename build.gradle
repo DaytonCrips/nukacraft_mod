@@ -140,6 +140,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
 //    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url 'https://libs.azuredoom.com:4443/mods' }
+    maven {url "https://maven.shedaniel.me/"} // cloth config
     maven {
         name "Progwml6 maven"
         url "https://dvs1.progwml6.com/files/maven/"
@@ -182,6 +183,7 @@ dependencies {
 
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
+    implementation fg.deobf("me.shedaniel.cloth:cloth-config-forge:6.5.102")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'

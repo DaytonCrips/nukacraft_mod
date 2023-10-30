@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:bryce": 1,
+      "nukacraft:bryce2": 1,
+      "nukacraft:bryce3": 1,
+      "nukacraft:bryce4": 1
+    }
+  }
+}

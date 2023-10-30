@@ -5,16 +5,27 @@
   "mixins": [
     "common.EndPortalBlockMixin",
     "common.LivingEntityMixin",
-    "common.SittingPhaseMixin"
+    "common.SittingPhaseMixin",
+    "map.MixinCartographyTableScreenHandler",
+    "map.MixinCraftingResultSlot",
+    "map.MixinEntity",
+    "map.MixinPlayerEntity",
+    "map.MixinPlayerEntityDeath",
+    "map.MixinPlayerManager",
+    "map.structure.StructureStartMixin"
   ],
   "client": [
-    "client.GuiMixin",
     "client.GameRendererMixin",
+    "client.GuiMixin",
     "client.LevelRendererMixin",
     "client.MinecraftMixin",
     "client.MouseHandlerMixin",
     "client.PlayerItemInHandLayerMixin",
-    "client.PlayerModelMixin"
+    "client.PlayerModelMixin",
+    "map.HeldItemRendererMixin",
+    "map.MixinClientPlayNetworkHandler",
+    "map.MixinInGameHud",
+    "map.MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,5 +1,10 @@
 package com.dayton.nukacraft.common.foundation.items.custom;
 
+import com.dayton.map.impl.atlas.AntiqueAtlasItems;
+import com.dayton.map.impl.atlas.AntiqueAtlasMod;
+import com.dayton.map.impl.atlas.AntiqueAtlasModClient;
+import com.dayton.map.impl.atlas.core.AtlasData;
+import com.dayton.map.impl.atlas.marker.MarkersData;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoyMenu;
 import com.dayton.nukacraft.common.foundation.entities.PipBoyRenderer;
@@ -34,8 +39,12 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class PipBoyItem extends Item implements GeoItem {
+    public static final String ATLAS_ID = "atlasID";
+    public static final String SCREEN = "screen";
+
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private String skin;
+    private final String skin;
+
     public PipBoyItem(String skin, Properties pProperties) {
         super(pProperties);
         this.skin = skin;
@@ -44,40 +53,61 @@ public class PipBoyItem extends Item implements GeoItem {
     public String getSkin() {
         return skin;
     }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
-        if ((stack.getOrCreateTag().getString("screen")).equals("")) {
-            stack.getOrCreateTag().putString("screen", "green");
-        }
-        if (player instanceof ServerPlayer serverPlayer
-                && player.getOffhandItem().getItem() instanceof PipBoyItem
-                && player.isShiftKeyDown()) {
 
-            var blockPos = new BlockPos(0, 0, 0);
-            PipBoy.start(stack, skin);
-            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
-                @Override
-                public Component getDisplayName() {
-                    return new TextComponent("Sadzxc");
-                }
+        var stackTag = stack.getOrCreateTag();
 
-                @Override
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
-                }
-            }, blockPos);
+        if(!level.isClientSide && !stackTag.contains(ATLAS_ID)) {
+            int atlasID = AntiqueAtlasMod.getGlobalAtlasData(level).getNextAtlasId();
+            stackTag.putInt(ATLAS_ID, atlasID);
+
+            var atlasData = AntiqueAtlasMod.tileData.getData(atlasID, level);
+            atlasData.getWorldData(player.getCommandSenderWorld().dimension()).setBrowsingPositionTo(player);
+            atlasData.setDirty();
+
+            var markersData = AntiqueAtlasMod.markersData.getMarkersData(atlasID, level);
+            markersData.setDirty();
         }
+        if ((stackTag.getString(SCREEN)).equals("")) {
+            stackTag.putString(SCREEN, "green");
+        }
+
+//        if (player instanceof ServerPlayer serverPlayer
+//                && player.getOffhandItem().getItem() instanceof PipBoyItem
+//                && player.isShiftKeyDown()) {
+//
+//            var blockPos = new BlockPos(0, 0, 0);
+//            PipBoy.start(stack, skin);
+//            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
+//                @Override
+//                public Component getDisplayName() {
+//                    return new TextComponent("Sadzxc");
+//                }
+//
+//                @Override
+//                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+//                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+//                }
+//            }, blockPos);
+//        }
+
+        if (level.isClientSide) {
+            AntiqueAtlasModClient.openAtlasGUI(stack);
+        }
+
         return super.use(level, player, usedHand);
     }
 
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        if (item.getOrCreateTag().getString("screen").equals("")) {
+        if (item.getOrCreateTag().getString(SCREEN).equals("")) {
             list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display.green")));
         } else {
-            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display." + item.getOrCreateTag().getString("screen"))));
+            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display." + item.getOrCreateTag().getString(SCREEN))));
         }
         list.add(new TranslatableComponent("pipboy.nukacraft.handselect"));
         list.add(new TranslatableComponent("pipboy.nukacraft.clicks"));

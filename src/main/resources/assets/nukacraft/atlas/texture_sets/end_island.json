@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:end_island": 1,
+      "nukacraft:end_island2": 1
+    },
+    "stitch": {
+      "nukacraft:end_island_plants": "both"
+    }
+  }
+}

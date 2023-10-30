@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:plateau_grass": 2,
+      "nukacraft:plateau_grass2": 2,
+      "nukacraft:plateau_grass3": 2,
+      "nukacraft:plateau_savanna": 1,
+      "nukacraft:plateau_savanna2": 1,
+      "nukacraft:plateau_savanna3": 1
+    },
+    "stitch":{
+      "nukacraft:plateau_mesa": "both",
+      "nukacraft:plateau_mesa_trees": "both",
+      "nukacraft:plateau_savanna_m": "both"
+    }
+  }
+}

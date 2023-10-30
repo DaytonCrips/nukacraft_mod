@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.mixin;
 
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -27,7 +28,12 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return this.isFrameworkInstalled; // this makes sure that forge's helpful mods not found screen shows up
+        boolean isDevelopmentEnvironment = !FMLEnvironment.production;
+        if (mixinClassName.contains("mixin.dev") && !isDevelopmentEnvironment)
+            return false;
+        else return !mixinClassName.contains("mixin.prod") || !isDevelopmentEnvironment;
+
+        //return this.isFrameworkInstalled; // this makes sure that forge's helpful mods not found screen shows up
     }
 
     @Override

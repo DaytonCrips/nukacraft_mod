@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.client.render.gui.pipboy;
 
 
+import com.dayton.map.impl.atlas.AntiqueAtlasModClient;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -237,6 +238,8 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
                 "" //string10
         };
         image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+
+        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
     public void buttonMenu() {

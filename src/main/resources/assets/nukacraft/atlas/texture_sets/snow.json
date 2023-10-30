@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:snow": 5,
+      "nukacraft:snow1": 3,
+      "nukacraft:snow2": 3,
+      "nukacraft:snow3": 1,
+      "nukacraft:snow4": 1,
+      "nukacraft:snow5": 1,
+      "nukacraft:snow6": 1
+    },
+    "stitch": {
+      "nukacraft:snow_pines": "both",
+      "nukacraft:snow_hills": "both",
+      "nukacraft:ice_spikes": "both",
+      "nukacraft:snow_pines_hills": "both",
+      "nukacraft:ravine": "both",
+      "nukacraft:lava": "both",
+      "nukacraft:water": "both"
+    }
+  }
+}
