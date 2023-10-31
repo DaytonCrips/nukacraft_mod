@@ -1,6 +1,6 @@
 package com.dayton.map.impl.atlas;
 
-import com.dayton.map.impl.atlas.client.gui.AntiqueAtlasModMenu;
+import com.dayton.map.impl.atlas.client.gui.*;
 import com.dayton.map.impl.atlas.core.GlobalAtlasData;
 import com.dayton.map.impl.atlas.core.GlobalTileDataHandler;
 import com.dayton.map.impl.atlas.core.PlayerEventHandler;
@@ -16,15 +16,12 @@ import com.dayton.map.impl.atlas.mixinhooks.NewPlayerConnectionCallback;
 import com.dayton.map.impl.atlas.mixinhooks.NewServerConnectionCallback;
 import com.dayton.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.dayton.map.impl.atlas.structure.*;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.ConfigGuiHandler;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.network.NetworkRegistry;
@@ -67,8 +64,7 @@ public class AntiqueAtlasMod {
 		TileDetectorBase.scanBiomeTypes();
 		});
 
-		AutoConfig.register(AntiqueAtlasConfig.class, JanksonConfigSerializer::new);
-		CONFIG = AutoConfig.getConfigHolder(AntiqueAtlasConfig.class).getConfig();
+		CONFIG = new AntiqueAtlasConfig();
 
 		AntiqueAtlasItems.register(MOD_EVENT_BUS);
 
@@ -105,6 +101,5 @@ public class AntiqueAtlasMod {
 	{
 		onInitialize();
 		new AntiqueAtlasModClient().onInitializeClient();
-		ModLoadingContext.get().registerExtensionPoint(ConfigGuiHandler.ConfigGuiFactory.class, AntiqueAtlasModMenu.getModConfigScreenFactory());
 	}
 }
