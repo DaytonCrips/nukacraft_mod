@@ -53,7 +53,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class GuiAtlas extends GuiComponent {
+public class GuiAtlasBase extends GuiComponent {
     public static final int WIDTH = 310;
     public static final int HEIGHT = 218;
 
@@ -301,7 +301,7 @@ public class GuiAtlas extends GuiComponent {
     private Thread exportThread;
 
     @SuppressWarnings("rawtypes")
-    public GuiAtlas() {
+    public GuiAtlasBase() {
         setSize(WIDTH, HEIGHT);
         setMapScale(0.5);
         followPlayer = true;
@@ -427,7 +427,7 @@ public class GuiAtlas extends GuiComponent {
     ///////////////
 
 
-    public GuiAtlas prepareToOpen(ItemStack stack) {
+    public GuiAtlasBase prepareToOpen(ItemStack stack) {
         this.stack = stack;
 
         return prepareToOpen();
@@ -459,7 +459,7 @@ public class GuiAtlas extends GuiComponent {
         state.switchTo(NORMAL);
     }
 
-    public GuiAtlas prepareToOpen() {
+    public GuiAtlasBase prepareToOpen() {
         Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BOOK_PAGE_TURN, 1.0F));
 
         this.player = Minecraft.getInstance().player;

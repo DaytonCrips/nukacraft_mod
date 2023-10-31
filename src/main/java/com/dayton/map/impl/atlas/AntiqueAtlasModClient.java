@@ -30,10 +30,10 @@ public class AntiqueAtlasModClient {
 
 	private static void openAtlasGUI(GuiAtlas gui) {
 		Minecraft mc = Minecraft.getInstance();
-		if (mc.screen == null) { // In-game screen
+//		if (mc.screen == null) { // In-game screen
 			guiAtlas.updateL18n();
 			mc.setScreen(gui);
-		}
+//		}
 	}
 	
 	public void onInitializeClient() {

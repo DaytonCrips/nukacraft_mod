@@ -1,6 +1,6 @@
 package com.dayton.map.impl.atlas;
 
-import com.dayton.map.impl.atlas.client.gui.GuiAtlas;
+import com.dayton.map.impl.atlas.client.gui.*;
 
 public class AntiqueAtlasConfig {
     public boolean doSaveBrowsingPos = true;

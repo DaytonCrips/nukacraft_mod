@@ -19,20 +19,18 @@ import java.util.HashMap;
 
 public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractContainerScreen<T>{
 
+    public static int page_count, current_page, current_archive, archive_pages, current_archive_page;
+    public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+    public static boolean menu = true;
+    public static Integer[] cords = new Integer[]{0, 0};
+
+    public static String[] page_buffer = new String[]{ "", "", "", "", "", "", "", "", "", "" };
+
     public PipBoyScreenBase(T container, Inventory inventory, Component text) {
         super(container, inventory, text);
     }
 
-    public boolean keyPressed(int key, int b, int c) {
-        if (key == 256) {
-            minecraft.player.closeContainer();
-            return true;
-        }
-        return super.keyPressed(key, b, c);
-    }
-
     @Override protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {}
-    protected static int page_count, current_page, current_archive, archive_pages, current_archive_page;
 
     public void renderNavigationPage() {
         addRenderableWidget(getHomeButton());
@@ -134,7 +132,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
 //        };
 //        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
 //
-        Minecraft.getInstance().player.closeContainer();
+//        Minecraft.getInstance().player.closeContainer();
         AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
@@ -184,10 +182,8 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     public static int round(int i, int j) {
-        if (i % j == 0) {
-            return (i / j);
-        } else {
-            return (i / j) + 1;
-        }
+        return i % j == 0 ?
+                (i / j) :
+                (i / j) + 1;
     }
 }
