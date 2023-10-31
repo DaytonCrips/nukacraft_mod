@@ -148,16 +148,12 @@ public class TileTextureMap {
      * If unknown biome, auto-registers a texture set. If null, returns default set.
      */
     public TextureSet getTextureSet(ResourceLocation tile) {
-        if (tile == null) {
-            return getDefaultTexture();
-        }
+        if (tile == null) return getDefaultTexture();
 
-        Biome biome = BuiltinRegistries.BIOME.get(tile);
-        if (biome != null) {
+        var biome = BuiltinRegistries.BIOME.get(tile);
+        if (biome != null)
             checkRegistration(tile, biome);
-        } else {
-            checkRegistration(tile);
-        }
+        else checkRegistration(tile);
 
         return textureMap.getOrDefault(tile, getDefaultTexture());
     }

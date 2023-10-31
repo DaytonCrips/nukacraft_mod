@@ -84,34 +84,29 @@ public class WorldScanner {
     }
 
     private TileInfo updateAtlasForChunk(AtlasData data, Level world, int x, int z, boolean rescanRequired) {
-        ITileStorage storedData = data.getWorldData(world.dimension());
-        ResourceLocation oldTile = storedData.getTile(x, z);
+        var storedData = data.getWorldData(world.dimension());
+        var oldTile = storedData.getTile(x, z);
 
         // Check if there's a custom tile at the location:
         // Custom tiles overwrite even the chunks already seen.
-        ResourceLocation tile = AtlasAPI.getTileAPI().getGlobalTile(world, x, z);
+        var tile = AtlasAPI.getTileAPI().getGlobalTile(world, x, z);
 
         // If there's no custom tile, check the actual chunk:
         if (tile == null) {
             // If the chunk has been scanned previously, only re-scan it so often:
-            if (oldTile != null && !rescanRequired) {
+            if (oldTile != null && !rescanRequired)
                 return null;
-            }
             
             if(!world.getChunkSource().hasChunk(x,z))
-            {
                 return null;
-            }
 
             // TODO FABRIC: forceChunkLoading crashes here
-            ChunkAccess chunk = world.getChunk(x, z, ChunkStatus.FULL, AntiqueAtlasMod.CONFIG.forceChunkLoading);
+            var chunk = world.getChunk(x, z, ChunkStatus.FULL, AntiqueAtlasMod.CONFIG.forceChunkLoading);
 
             // Skip chunk if it hasn't loaded yet:
-            if (chunk == null) {
-                return null;
-            }
+            if (chunk == null) return null;
 
-            ITileDetector biomeDetector = getBiomeDetectorForWorld(world.dimension());
+            var biomeDetector = getBiomeDetectorForWorld(world.dimension());
             tile = biomeDetector.getBiomeID(world, chunk);
 
             if (oldTile != null) {

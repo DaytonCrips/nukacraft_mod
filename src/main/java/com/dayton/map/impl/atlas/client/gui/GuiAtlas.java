@@ -970,7 +970,7 @@ public class GuiAtlas extends GuiComponent {
         renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, globalMarkersData);
         renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, localMarkersData);
 
-        Textures.PIPBOY_FRAME_NARROW.draw(matrices, getGuiX(), getGuiY());
+//        Textures.PIPBOY_FRAME_NARROW.draw(matrices, getGuiX(), getGuiY());
 
         renderScaleOverlay(matrices, deltaMillis);
 

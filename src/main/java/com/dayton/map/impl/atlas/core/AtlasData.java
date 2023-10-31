@@ -101,7 +101,7 @@ public class AtlasData extends SavedData {
      * if tileStitcher is present, sets appropriate sectors on adjacent tiles.
      */
     public void setTile(ResourceKey<Level> world, int x, int y, ResourceLocation tile) {
-        WorldData worldData = getWorldData(world);
+        var worldData = getWorldData(world);
         worldData.setTile(x, y, tile);
     }
 

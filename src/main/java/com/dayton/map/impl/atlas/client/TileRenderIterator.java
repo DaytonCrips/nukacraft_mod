@@ -115,18 +115,10 @@ public class TileRenderIterator implements Iterator<SubTileQuartet>, Iterable<Su
 		}
 
 		// Connect horizontally:
-		if (shouldStitchToHorizontally(d, e)) {
-			stitchHorizontally(_d);
-		}
-		if (shouldStitchToHorizontally(e, d)) {
-			stitchHorizontally(_e);
-		}
-		if (shouldStitchToHorizontally(h, i)) {
-			stitchHorizontally(_h);
-		}
-		if (shouldStitchToHorizontally(i, h)) {
-			stitchHorizontally(_i);
-		}
+		if (shouldStitchToHorizontally(d, e)) stitchHorizontally(_d);
+		if (shouldStitchToHorizontally(e, d)) stitchHorizontally(_e);
+		if (shouldStitchToHorizontally(h, i)) stitchHorizontally(_h);
+		if (shouldStitchToHorizontally(i, h)) stitchHorizontally(_i);
 
 		// Connect vertically:
 		if (shouldStitchToVertically(d, h)) {

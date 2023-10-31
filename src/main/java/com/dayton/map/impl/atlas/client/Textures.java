@@ -29,7 +29,7 @@ public class Textures {
     public static final ITexture
             PIPBOY_SCREEN =  screen("pipboy_screen.png", 310, 218),
             PIPBOY_FRAME = dynamicScreen("default_pipboy.png", 310, 218),
-            PIPBOY_FRAME_NARROW = dynamicScreen("default_pipboy.png", 310, 218),
+//            PIPBOY_FRAME_NARROW = dynamicScreen("default_pipboy.png", 310, 218),
             BTN_ARROWS = gui("navigate_arrows.png", 24, 24),
             BTN_POSITION = gui("position.png", 24, 24),
             BOOKMARKS = gui("bookmarks.png", 84, 36),

@@ -102,14 +102,14 @@ public class WorldData implements ITileStorage {
 
     @Override
     public void setTile(int x, int y, ResourceLocation tile) {
-        ChunkPos groupPos = new ChunkPos((int) Math.floor(x / (float) TileGroup.CHUNK_STEP),
+        var groupPos = new ChunkPos((int) Math.floor(x / (float) TileGroup.CHUNK_STEP),
                 (int) Math.floor(y / (float) TileGroup.CHUNK_STEP));
-        TileGroup tg = tileGroups.get(groupPos);
-        if (tg == null) {
-            tg = new TileGroup(groupPos.x * TileGroup.CHUNK_STEP, groupPos.z * TileGroup.CHUNK_STEP);
-            tileGroups.put(groupPos, tg);
+        var tileGroup = tileGroups.get(groupPos);
+        if (tileGroup == null) {
+            tileGroup = new TileGroup(groupPos.x * TileGroup.CHUNK_STEP, groupPos.z * TileGroup.CHUNK_STEP);
+            tileGroups.put(groupPos, tileGroup);
         }
-        tg.setTile(x, y, tile);
+        tileGroup.setTile(x, y, tile);
         scope.extendTo(x, y);
         parent.setDirty();
     }
@@ -178,8 +178,8 @@ public class WorldData implements ITileStorage {
 
     public ListTag writeToNBT() {
         ListTag tileGroupList = new ListTag();
-        for (Entry<ChunkPos, TileGroup> entry : tileGroups.entrySet()) {
-            CompoundTag newbie = new CompoundTag();
+        for (var entry : tileGroups.entrySet()) {
+            var newbie = new CompoundTag();
             entry.getValue().writeToNBT(newbie);
             tileGroupList.add(newbie);
         }

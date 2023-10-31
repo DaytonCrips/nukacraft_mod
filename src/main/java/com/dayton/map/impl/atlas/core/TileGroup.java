@@ -96,7 +96,7 @@ public class TileGroup implements ITileStorage {
 
     @Override
     public ResourceLocation removeTile(int x, int y) {
-        ResourceLocation tmp = getTile(x, y);
+        var tmp = getTile(x, y);
         setTile(x, y, null);
         return tmp;
     }
