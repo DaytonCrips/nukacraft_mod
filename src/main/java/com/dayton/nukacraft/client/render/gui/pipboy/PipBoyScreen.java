@@ -217,28 +217,29 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     public void drawMap() {
-        addRenderableWidget(new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
-                new TextComponent("◀"), e -> {
-            clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            renderArchiveNavigation();
-            }));
-        page_buffer = new String[]{
-                "", //string1
-                "", //string2
-                "", //string3
-                "", //string4
-                "", //string5
-                "", //string6
-                "", //string7
-                "", //string8
-                "", //string9
-                "" //string10
-        };
-        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
-
+//        addRenderableWidget(new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
+//                new TextComponent("◀"), e -> {
+//            clearWidgets();
+//            archive_pages = round(PipBoy.content.size(), 7) - 1;
+//            current_archive_page = 0;
+//            buttonMenu();
+//            renderArchiveNavigation();
+//            }));
+//        page_buffer = new String[]{
+//                "", //string1
+//                "", //string2
+//                "", //string3
+//                "", //string4
+//                "", //string5
+//                "", //string6
+//                "", //string7
+//                "", //string8
+//                "", //string9
+//                "" //string10
+//        };
+//        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+//
+        Minecraft.getInstance().player.closeContainer();
         AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 

@@ -2,8 +2,13 @@ package com.dayton.map.impl.atlas.structure;
 
 import com.dayton.map.impl.atlas.AntiqueAtlasMod;
 import com.dayton.map.impl.atlas.core.TileIdMap;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class Village {
     public static void registerMarkers() {

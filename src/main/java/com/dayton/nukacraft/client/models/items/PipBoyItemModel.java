@@ -1,10 +1,11 @@
 package com.dayton.nukacraft.client.models.items;
 
-import com.dayton.nukacraft.common.foundation.items.custom.PipBoyItem;
+import com.dayton.nukacraft.common.foundation.items.custom.*;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
+import static com.dayton.nukacraft.common.foundation.items.custom.PipBoyItem.getPipboyFrame;
 
 public class PipBoyItemModel extends GeoModel<PipBoyItem> {
     @Override

@@ -1,7 +1,7 @@
 package com.dayton.nukacraft.mixin.map;
 
 import com.dayton.map.impl.atlas.AntiqueAtlasItems;
-import com.dayton.map.impl.atlas.client.OverlayRenderer;
+import com.dayton.map.impl.atlas.client.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;

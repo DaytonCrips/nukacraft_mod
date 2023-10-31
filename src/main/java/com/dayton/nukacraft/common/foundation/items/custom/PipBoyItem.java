@@ -4,6 +4,7 @@ import com.dayton.map.impl.atlas.AntiqueAtlasItems;
 import com.dayton.map.impl.atlas.AntiqueAtlasMod;
 import com.dayton.map.impl.atlas.AntiqueAtlasModClient;
 import com.dayton.map.impl.atlas.core.AtlasData;
+import com.dayton.map.impl.atlas.item.AtlasItem;
 import com.dayton.map.impl.atlas.marker.MarkersData;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoyMenu;
@@ -20,8 +21,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -30,6 +33,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.network.NetworkHooks;
@@ -38,7 +42,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class PipBoyItem extends Item implements GeoItem {
+import static com.dayton.nukacraft.common.data.utils.Resources.nukaResource;
+
+public class PipBoyItem extends AtlasItem implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
     public static final String SCREEN = "screen";
 
@@ -52,6 +58,15 @@ public class PipBoyItem extends Item implements GeoItem {
 
     public String getSkin() {
         return skin;
+    }
+
+    public static ResourceLocation getPipboyFrame(PipBoyItem pipBoyItem){
+        return new ResourceLocation("nukacraft:textures/screens/" + pipBoyItem.skin + "_pipboy.png");
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -75,30 +90,30 @@ public class PipBoyItem extends Item implements GeoItem {
             stackTag.putString(SCREEN, "green");
         }
 
-//        if (player instanceof ServerPlayer serverPlayer
-//                && player.getOffhandItem().getItem() instanceof PipBoyItem
-//                && player.isShiftKeyDown()) {
-//
-//            var blockPos = new BlockPos(0, 0, 0);
-//            PipBoy.start(stack, skin);
-//            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
-//                @Override
-//                public Component getDisplayName() {
-//                    return new TextComponent("Sadzxc");
-//                }
-//
-//                @Override
-//                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-//                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
-//                }
-//            }, blockPos);
-//        }
+        if (player instanceof ServerPlayer serverPlayer
+                && player.getOffhandItem().getItem() instanceof PipBoyItem
+                && player.isShiftKeyDown()) {
 
-        if (level.isClientSide) {
-            AntiqueAtlasModClient.openAtlasGUI(stack);
+            var blockPos = new BlockPos(0, 0, 0);
+            PipBoy.start(stack, skin);
+            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
+                @Override
+                public Component getDisplayName() {
+                    return new TextComponent("Sadzxc");
+                }
+
+                @Override
+                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+                }
+            }, blockPos);
         }
 
-        return super.use(level, player, usedHand);
+//        if (level.isClientSide) {
+//            AntiqueAtlasModClient.openAtlasGUI(stack);
+//        }
+
+        return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
     }
 
     @Override

@@ -1,15 +1,20 @@
 package com.dayton.map.impl.atlas.client;
 
 import com.dayton.map.impl.atlas.AntiqueAtlasMod;
+import com.dayton.map.impl.atlas.client.texture.DynamicTexture;
 import com.dayton.map.impl.atlas.client.texture.ITexture;
 import com.dayton.map.impl.atlas.client.texture.IconTexture;
 import com.dayton.map.impl.atlas.client.texture.Texture;
+import com.dayton.nukacraft.common.foundation.items.custom.PipBoyItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.dayton.nukacraft.common.foundation.items.custom.PipBoyItem.getPipboyFrame;
 
 @OnlyIn(Dist.CLIENT)
 public class Textures {
@@ -19,11 +24,12 @@ public class Textures {
     private static final String GUI = MOD_PREFIX + "textures/gui/";
     private static final String GUI_ICONS = GUI + "icons/";
     private static final String GUI_SCALEBAR = GUI + "scalebar/";
+    private static final String SCREEN = GUI + "screens/";
 
     public static final ITexture
-            BOOK = gui("book.png", 310, 218),
-            BOOK_FRAME = gui("book_frame.png", 310, 218),
-            BOOK_FRAME_NARROW = gui("book_frame_narrow.png", 310, 218),
+            PIPBOY_SCREEN =  screen("pipboy_screen.png", 310, 218),
+            PIPBOY_FRAME = dynamicScreen("default_pipboy.png", 310, 218),
+            PIPBOY_FRAME_NARROW = dynamicScreen("default_pipboy.png", 310, 218),
             BTN_ARROWS = gui("navigate_arrows.png", 24, 24),
             BTN_POSITION = gui("position.png", 24, 24),
             BOOKMARKS = gui("bookmarks.png", 84, 36),
@@ -52,7 +58,26 @@ public class Textures {
 
     public static final ResourceLocation EXPORTED_BG = new ResourceLocation(GUI + "exported_bg.png");
 
+
+
     // Constructor helpers:
+    private static ITexture screen(String fileName, int width, int height) {
+        return new Texture(new ResourceLocation(SCREEN + fileName), width, height);
+    }
+
+    private static ITexture dynamicScreen(String fileName, int width, int height) {
+        return new DynamicTexture(new ResourceLocation(SCREEN + fileName), width, height){
+            @Override
+            public ResourceLocation getTexture() {
+                var player = Minecraft.getInstance().player;
+                if(player != null && player.getOffhandItem().getItem() instanceof PipBoyItem pipBoyItem) {
+                    return getPipboyFrame(pipBoyItem);
+                }
+                return new ResourceLocation(SCREEN + fileName);
+            }
+        };
+    }
+
     private static ITexture gui(String fileName, int width, int height) {
         return new Texture(new ResourceLocation(GUI + fileName), width, height);
     }

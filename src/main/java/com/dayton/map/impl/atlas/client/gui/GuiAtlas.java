@@ -22,6 +22,7 @@ import com.dayton.map.impl.atlas.util.ExportImageUtil;
 import com.dayton.map.impl.atlas.util.Log;
 import com.dayton.map.impl.atlas.util.MathUtil;
 import com.dayton.map.impl.atlas.util.Rect;
+import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -870,6 +871,14 @@ public class GuiAtlas extends GuiComponent {
         }
     }
 
+    public static void setPipboyShader(){
+        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, 1);
+    }
+
+    public static void setPipboyShader(float alpha){
+        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, alpha);
+    }
+
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float par3) {
         long currentMillis = System.currentTimeMillis();
@@ -890,17 +899,19 @@ public class GuiAtlas extends GuiComponent {
 
         super.renderBackground(matrices);
 
-        RenderSystem.setShaderColor(1, 1, 1, 1);
         // TODO fix me for 1.17
 //        RenderSystem.enableAlphaTest();
 //        RenderSystem.alphaFunc(GL11.GL_GREATER, 0); // So light detail on tiles is visible
-        Textures.BOOK.draw(matrices, getGuiX(), getGuiY());
+
+        setPipboyShader();
+        Textures.PIPBOY_SCREEN.draw(matrices, getGuiX(), getGuiY());
 
         if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
             return;
 
         if (state.is(DELETING_MARKER)) {
-            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+            setPipboyShader(0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
         }
         RenderSystem.enableScissor(
                 (int) ((getGuiX() + MAP_BORDER_WIDTH) * screenScale),
@@ -949,7 +960,9 @@ public class GuiAtlas extends GuiComponent {
 
         // Overlay the frame so that edges of the map are smooth:
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        Textures.BOOK_FRAME.draw(matrices, getGuiX(), getGuiY());
+        //setPipboyShader();
+
+        Textures.PIPBOY_FRAME.draw(matrices, getGuiX(), getGuiY());
 
         double iconScale = getIconScale();
 
@@ -957,7 +970,7 @@ public class GuiAtlas extends GuiComponent {
         renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, globalMarkersData);
         renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, localMarkersData);
 
-        Textures.BOOK_FRAME_NARROW.draw(matrices, getGuiX(), getGuiY());
+        Textures.PIPBOY_FRAME_NARROW.draw(matrices, getGuiX(), getGuiY());
 
         renderScaleOverlay(matrices, deltaMillis);
 
@@ -973,12 +986,14 @@ public class GuiAtlas extends GuiComponent {
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         if (state.is(PLACING_MARKER)) {
-            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+            setPipboyShader(0.5f);
             markerFinalizer.selectedType.calculateMip(iconScale, mapScale, screenScale);
             MarkerRenderInfo renderInfo = markerFinalizer.selectedType.getRenderInfo(iconScale, mapScale, screenScale);
             markerFinalizer.selectedType.resetMip();
             renderInfo.tex.draw(matrices, mouseX + renderInfo.x, mouseY + renderInfo.y);
-            RenderSystem.setShaderColor(1, 1, 1, 1);
+            setPipboyShader();
+//            RenderSystem.setShaderColor(1, 1, 1, 1);
         }
         RenderSystem.disableBlend();
 
@@ -1010,6 +1025,7 @@ public class GuiAtlas extends GuiComponent {
             renderBackground(matrices);
             progressBar.draw(matrices, (width - 100) / 2, height / 2 - 34);
         }
+        RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 
     private void renderPlayer(PoseStack matrices, double iconScale) {
@@ -1020,7 +1036,8 @@ public class GuiAtlas extends GuiComponent {
         playerOffsetZ = Mth.clamp(playerOffsetZ, -MAP_HEIGHT / 2, MAP_HEIGHT / 2 - 2);
 
         // Draw the icon:
-        RenderSystem.setShaderColor(1, 1, 1, state.is(PLACING_MARKER) ? 0.5f : 1);
+//        RenderSystem.setShaderColor(1, 1, 1, state.is(PLACING_MARKER) ? 0.5f : 1);
+        setPipboyShader(state.is(PLACING_MARKER) ? 0.5f : 1);
         matrices.pushPose();
 
         matrices.translate(getGuiX() + WIDTH / 2 + playerOffsetX, getGuiY() + HEIGHT / 2 + playerOffsetZ, 0);
@@ -1123,18 +1140,22 @@ public class GuiAtlas extends GuiComponent {
             hoveredMarker = marker;
             MinecraftForge.EVENT_BUS.post(new MarkerHoveredCallback.TheEvent(player, marker));
         } else {
-            RenderSystem.setShaderColor(1, 1, 1, 1);
+            setPipboyShader();
+//            RenderSystem.setShaderColor(1, 1, 1, 1);
             if (hoveredMarker == marker) {
                 hoveredMarker = null;
             }
         }
 
         if (state.is(PLACING_MARKER)) {
-            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+            setPipboyShader(0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
         } else if (state.is(DELETING_MARKER) && marker.isGlobal()) {
-            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+            setPipboyShader(0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
         } else {
-            RenderSystem.setShaderColor(1, 1, 1, 1);
+            setPipboyShader();
+//            RenderSystem.setShaderColor(1, 1, 1, 1);
         }
 
         if (AntiqueAtlasMod.CONFIG.debugRender) {
@@ -1144,7 +1165,8 @@ public class GuiAtlas extends GuiComponent {
         if (markerX <= getGuiX() + MAP_BORDER_WIDTH || markerX >= getGuiX() + MAP_WIDTH + MAP_BORDER_WIDTH
                 || markerY <= getGuiY() + MAP_BORDER_HEIGHT || markerY >= getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT
         ) {
-            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+            setPipboyShader(0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
             info.scale(0.8);
         }
 

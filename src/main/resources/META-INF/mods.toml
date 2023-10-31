@@ -10,6 +10,7 @@ updateJSONURL=""
 displayURL=""
 logoFile="logo.png"
 authors="Dayton, Jetug"
+credits = "MrCrayfish, Hunternif, AzureDoom"
 description="NukaCraft - This is a global mod that opens up the possibility for players to be transported to the wastelands and feel like a wanderer. Collect weapons, find Power Armor sets and don't let the wastelands swallow you up"
 
 [[dependencies.nukacraft]]

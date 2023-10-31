@@ -29,6 +29,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
+import static com.dayton.map.impl.atlas.client.gui.GuiAtlas.setPipboyShader;
+
 @OnlyIn(Dist.CLIENT)
 public class OverlayRenderer extends GuiComponent {
     /**
@@ -63,9 +65,10 @@ public class OverlayRenderer extends GuiComponent {
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
+        setPipboyShader();//
         matrices.pushPose();
         matrices.translate(0, 0, 0.01);
-        Textures.BOOK.drawWithLight(buffer, matrices, 0, 0, (int) (GuiAtlas.WIDTH * 1.5), (int) (GuiAtlas.HEIGHT * 1.5), light);
+        Textures.PIPBOY_SCREEN.drawWithLight(buffer, matrices, 0, 0, (int) (GuiAtlas.WIDTH * 1.5), (int) (GuiAtlas.HEIGHT * 1.5), light);
         matrices.popPose();
 
         matrices.pushPose();
@@ -84,9 +87,10 @@ public class OverlayRenderer extends GuiComponent {
 
         // Overlay the frame so that edges of the map are smooth:
         matrices.translate(0, 0, -0.01);
-        Textures.BOOK_FRAME.drawWithLight(buffer, matrices, 0, 0, (int) (GuiAtlas.WIDTH * 1.5), (int) (GuiAtlas.HEIGHT * 1.5), light);
+        Textures.PIPBOY_FRAME.drawWithLight(buffer, matrices, 0, 0, (int) (GuiAtlas.WIDTH * 1.5), (int) (GuiAtlas.HEIGHT * 1.5), light);
 
         RenderSystem.disableBlend();
+        RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 
     private void drawTiles(MultiBufferSource buffer, PoseStack matrices, int atlasID, int light) {
