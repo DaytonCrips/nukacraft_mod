@@ -96,17 +96,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
 
             var blockPos = new BlockPos(0, 0, 0);
             PipBoy.start(stack, skin);
-            NetworkHooks.openGui(serverPlayer, new MenuProvider() {
-                @Override
-                public Component getDisplayName() {
-                    return new TextComponent("Sadzxc");
-                }
-
-                @Override
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
-                }
-            }, blockPos);
+            openPipboyScreen(serverPlayer, blockPos);
         }
 
 //        if (level.isClientSide) {
@@ -115,6 +105,21 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
 
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
     }
+
+    public static void openPipboyScreen(ServerPlayer serverPlayer, BlockPos blockPos) {
+        NetworkHooks.openGui(serverPlayer, new MenuProvider() {
+            @Override
+            public Component getDisplayName() {
+                return new TextComponent("Sadzxc");
+            }
+
+            @Override
+            public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+                return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+            }
+        }, blockPos);
+    }
+
 
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
@@ -126,8 +131,6 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
         }
         list.add(new TranslatableComponent("pipboy.nukacraft.handselect"));
         list.add(new TranslatableComponent("pipboy.nukacraft.clicks"));
-
-
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.dayton.map.impl.atlas.client.*;
 import com.dayton.map.impl.atlas.client.gui.core.*;
 import com.dayton.map.impl.atlas.client.gui.core.GuiStates.IState;
 import com.dayton.map.impl.atlas.client.gui.core.GuiStates.SimpleState;
-import com.dayton.map.impl.atlas.client.texture.ITexture;
 import com.dayton.map.impl.atlas.client.texture.TileTexture;
 import com.dayton.map.impl.atlas.core.WorldData;
 import com.dayton.map.impl.atlas.event.MarkerClickedCallback;
@@ -23,6 +22,7 @@ import com.dayton.map.impl.atlas.util.Log;
 import com.dayton.map.impl.atlas.util.MathUtil;
 import com.dayton.map.impl.atlas.util.Rect;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -353,6 +353,7 @@ public class GuiAtlasBase extends GuiComponent {
 
         btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
         addChild(btnMarker).offsetGuiCoords(300, 14);
+
         btnMarker.addListener(button -> {
             if (state.is(PLACING_MARKER)) {
                 selectedButton = null;
@@ -385,6 +386,7 @@ public class GuiAtlasBase extends GuiComponent {
                 }
             }
         });
+
         btnDelMarker = new GuiBookmarkButton(2, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
         addChild(btnDelMarker).offsetGuiCoords(300, 33);
         btnDelMarker.addListener(button -> {
@@ -865,132 +867,115 @@ public class GuiAtlasBase extends GuiComponent {
         RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, alpha);
     }
 
+    // Find chunk coordinates of the top left corner of the map.
+    // The 'roundToBase' is required so that when the map scales below the
+    // threshold the tiles don't change when map position changes slightly.
+    // The +-2 at the end provide margin so that tiles at the edges of
+    // the page have their stitched texture correct.
+    protected Rect getMapPos(){
+        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndX   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndZ   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+
+        return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
+    }
+
+    protected Rect getMarkerPos(Rect mapPos){
+        int markersStartX = MathUtil.roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersStartZ = MathUtil.roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersEndX   = MathUtil.roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersEndZ   = MathUtil.roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+
+        return new Rect(markersStartX, markersStartZ, markersEndX, markersEndZ);
+    }
+
+    protected Pos2I getStartScreenPos(Rect mapPos){
+        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
+        var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
+        return new Pos2I(mapStartScreenX, mapStartScreenY);
+    }
+
     @Override
-    public void render(PoseStack matrices, int mouseX, int mouseY, float par3) {
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float par3) {
         long currentMillis = System.currentTimeMillis();
         long deltaMillis = currentMillis - lastUpdateMillis;
         lastUpdateMillis = currentMillis;
+        if (AntiqueAtlasMod.CONFIG.debugRender) printDebugInfo();
 
-        if (AntiqueAtlasMod.CONFIG.debugRender) {
-            renderTimes[renderTimesIndex++] = System.currentTimeMillis();
-            if (renderTimesIndex == renderTimes.length) {
-                renderTimesIndex = 0;
-                double elapsed = 0;
-                for (int i = 0; i < renderTimes.length - 1; i++) {
-                    elapsed += renderTimes[i + 1] - renderTimes[i];
-                }
-                System.out.printf("GuiAtlas avg. render time: %.3f\n", elapsed / renderTimes.length);
-            }
-        }
+        super.renderBackground(poseStack);
 
-        super.renderBackground(matrices);
-
-        // TODO fix me for 1.17
+//        TODO fix me for 1.17
 //        RenderSystem.enableAlphaTest();
 //        RenderSystem.alphaFunc(GL11.GL_GREATER, 0); // So light detail on tiles is visible
-
         setPipboyShader();
-        Textures.PIPBOY_SCREEN.draw(matrices, getGuiX(), getGuiY());
+        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
 
         if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
             return;
 
-        if (state.is(DELETING_MARKER)) {
-            setPipboyShader(0.5f);
+        if (state.is(DELETING_MARKER)) setPipboyShader(0.5f);
 //            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+
+        var mapPos = getMapPos();
+        var markerPos = getMarkerPos(mapPos);
+        var iconScale = getIconScale();
+
+        renderTiles(poseStack, mapPos);
+        // Overlay the frame so that edges of the map are smooth:
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
+
+        renderMarkers(poseStack, markerPos, globalMarkersData);
+        renderMarkers(poseStack, markerPos, localMarkersData);
+
+        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
+        renderScaleOverlay(poseStack, deltaMillis);
+
+        if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
+
+        // Draw buttons:
+        super.render(poseStack, mouseX, mouseY, par3);
+
+        // Draw the semi-transparent marker attached to the cursor when placing a new marker:
+        if (state.is(PLACING_MARKER)) drawPlacingMarker(poseStack, mouseX, mouseY, iconScale);
+
+        renderDebugTooltip();
+
+        // Draw progress overlay:
+        if (state.is(EXPORTING_IMAGE)) {
+            renderBackground(poseStack);
+            progressBar.draw(poseStack, (width - 100) / 2, height / 2 - 34);
         }
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+    }
+
+    private void renderTiles(PoseStack poseStack, Rect mapPos) {
         RenderSystem.enableScissor(
                 (int) ((getGuiX() + MAP_BORDER_WIDTH) * screenScale),
                 (int) ((Minecraft.getInstance().getWindow().getHeight() - (getGuiY() + MAP_BORDER_HEIGHT + MAP_HEIGHT) * screenScale)),
                 (int) (MAP_WIDTH * screenScale), (int) (MAP_HEIGHT * screenScale));
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        // Find chunk coordinates of the top left corner of the map.
-        // The 'roundToBase' is required so that when the map scales below the
-        // threshold the tiles don't change when map position changes slightly.
-        // The +-2 at the end provide margin so that tiles at the edges of
-        // the page have their stitched texture correct.
-        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndX = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndZ = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapStartX << 4) * mapScale) + mapOffsetX;
-        int mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapStartZ << 4) * mapScale) + mapOffsetY;
-        TileRenderIterator tiles = new TileRenderIterator(biomeData);
-        tiles.setScope(new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ));
+
+        var startScreenPos = getStartScreenPos(mapPos);
+        var tiles = new TileRenderIterator(biomeData);
+
+        tiles.setScope(mapPos);
         tiles.setStep(tile2ChunkScale);
-
-        matrices.pushPose();
-        matrices.translate(mapStartScreenX, mapStartScreenY, 0);
-
-       for(SubTileQuartet subtiles : tiles) {
-            for (SubTile subtile : subtiles) {
-                if (subtile == null || subtile.tile == null) continue;
-                ITexture texture = TileTextureMap.instance().getTexture(subtile);
-                if (texture instanceof TileTexture) {
-                    TileTexture tileTexture = (TileTexture) texture;
-                    tileTexture.bind();
-                    tileTexture.drawSubTile(matrices, subtile, tileHalfSize);
-                }
-            }
-        }
-
-        matrices.popPose();
-
-        int markersStartX = MathUtil.roundToBase(mapStartX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersStartZ = MathUtil.roundToBase(mapStartZ, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersEndX = MathUtil.roundToBase(mapEndX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
-        int markersEndZ = MathUtil.roundToBase(mapEndZ, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        renderSubTiles(poseStack, tiles, startScreenPos);
 
         RenderSystem.disableScissor();
+    }
 
-        // Overlay the frame so that edges of the map are smooth:
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        //setPipboyShader();
-
-        Textures.PIPBOY_FRAME.draw(matrices, getGuiX(), getGuiY());
-
-        double iconScale = getIconScale();
-
-        // Draw global markers:
-        renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, globalMarkersData);
-        renderMarkers(matrices, markersStartX, markersStartZ, markersEndX, markersEndZ, localMarkersData);
-
-        Textures.PIPBOY_FRAME_NARROW.draw(matrices, getGuiX(), getGuiY());
-
-        renderScaleOverlay(matrices, deltaMillis);
-
-        // Draw player icon:
-        if (!state.is(HIDING_MARKERS)) {
-            renderPlayer(matrices, iconScale);
-        }
-
-        // Draw buttons:
-        super.render(matrices, mouseX, mouseY, par3);
-
-        // Draw the semi-transparent marker attached to the cursor when placing a new marker:
-        RenderSystem.enableBlend();
-        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        if (state.is(PLACING_MARKER)) {
-//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
-            setPipboyShader(0.5f);
-            markerFinalizer.selectedType.calculateMip(iconScale, mapScale, screenScale);
-            MarkerRenderInfo renderInfo = markerFinalizer.selectedType.getRenderInfo(iconScale, mapScale, screenScale);
-            markerFinalizer.selectedType.resetMip();
-            renderInfo.tex.draw(matrices, mouseX + renderInfo.x, mouseY + renderInfo.y);
-            setPipboyShader();
-//            RenderSystem.setShaderColor(1, 1, 1, 1);
-        }
-        RenderSystem.disableBlend();
-
+    private void renderDebugTooltip() {
         if (AntiqueAtlasMod.CONFIG.debugRender && !isDragging && isMouseOver) {
             int x = screenXToWorldX((int) getMouseX());
             int z = screenYToWorldZ((int) getMouseY());
 
-            String coords = String.format("Coords: %d / %d", x, z);
-
-            ChunkPos pos = new ChunkPos(new BlockPos(x, 0, z));
-            String chunks = String.format("Chunks: %d / %d", pos.x, pos.z);
+            var coords = String.format("Coords: %d / %d", x, z);
+            var pos = new ChunkPos(new BlockPos(x, 0, z));
+            var chunks = String.format("Chunks: %d / %d", pos.x, pos.z);
             ResourceLocation tile = biomeData.getTile(pos.x, pos.z);
 
             if (tile == null) {
@@ -1000,21 +985,57 @@ public class GuiAtlasBase extends GuiComponent {
                 drawTooltip(Arrays.asList(
                         new TextComponent(coords),
                         new TextComponent(chunks),
-                        new TextComponent("Tile: " + tile.toString()),
+                        new TextComponent("Tile: " + tile),
                         new TextComponent("TSet: " + texture_set)),
                         font);
             }
         }
-
-        // Draw progress overlay:
-        if (state.is(EXPORTING_IMAGE)) {
-            renderBackground(matrices);
-            progressBar.draw(matrices, (width - 100) / 2, height / 2 - 34);
-        }
-        RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 
-    private void renderPlayer(PoseStack matrices, double iconScale) {
+    private void printDebugInfo() {
+        renderTimes[renderTimesIndex++] = System.currentTimeMillis();
+        if (renderTimesIndex == renderTimes.length) {
+            renderTimesIndex = 0;
+            double elapsed = 0;
+            for (int i = 0; i < renderTimes.length - 1; i++) {
+                elapsed += renderTimes[i + 1] - renderTimes[i];
+            }
+            System.out.printf("GuiAtlas avg. render time: %.3f\n", elapsed / renderTimes.length);
+        }
+    }
+
+    private void renderSubTiles(PoseStack poseStack, TileRenderIterator tiles, Pos2I startScreenPos) {
+        poseStack.pushPose();
+        poseStack.translate(startScreenPos.x, startScreenPos.y, 0);
+        for(var subtiles : tiles) {
+            for (var subtile : subtiles) {
+                if (subtile == null || subtile.tile == null) continue;
+                var texture = TileTextureMap.instance().getTexture(subtile);
+                if (texture instanceof TileTexture) {
+                    var tileTexture = (TileTexture) texture;
+                    tileTexture.bind();
+                    tileTexture.drawSubTile(poseStack, subtile, tileHalfSize);
+                }
+            }
+        }
+        poseStack.popPose();
+    }
+
+    private void drawPlacingMarker(PoseStack poseStack, int mouseX, int mouseY, double iconScale) {
+        RenderSystem.enableBlend();
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        //            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+        setPipboyShader(0.5f);
+        markerFinalizer.selectedType.calculateMip(iconScale, mapScale, screenScale);
+        MarkerRenderInfo renderInfo = markerFinalizer.selectedType.getRenderInfo(iconScale, mapScale, screenScale);
+        markerFinalizer.selectedType.resetMip();
+        renderInfo.tex.draw(poseStack, mouseX + renderInfo.x, mouseY + renderInfo.y);
+        setPipboyShader();
+//            RenderSystem.setShaderColor(1, 1, 1, 1);
+        RenderSystem.disableBlend();
+    }
+
+    private void renderPlayer(PoseStack poseStack, double iconScale) {
         // How much the player has moved from the top left corner of the map, in pixels:
         int playerOffsetX = (int) (player.getX() * mapScale) + mapOffsetX;
         int playerOffsetZ = (int) (player.getZ() * mapScale) + mapOffsetY;
@@ -1024,24 +1045,24 @@ public class GuiAtlasBase extends GuiComponent {
         // Draw the icon:
 //        RenderSystem.setShaderColor(1, 1, 1, state.is(PLACING_MARKER) ? 0.5f : 1);
         setPipboyShader(state.is(PLACING_MARKER) ? 0.5f : 1);
-        matrices.pushPose();
+        poseStack.pushPose();
 
-        matrices.translate(getGuiX() + WIDTH / 2 + playerOffsetX, getGuiY() + HEIGHT / 2 + playerOffsetZ, 0);
+        poseStack.translate(getGuiX() + WIDTH / 2 + playerOffsetX, getGuiY() + HEIGHT / 2 + playerOffsetZ, 0);
         float playerRotation = (float) Math.round(player.getYRot() / 360f * PLAYER_ROTATION_STEPS) / PLAYER_ROTATION_STEPS * 360f;
-        matrices.mulPose(Vector3f.ZP.rotationDegrees(180 + playerRotation));
-        matrices.translate((float) (-PLAYER_ICON_WIDTH / 2 * iconScale), (float) (-PLAYER_ICON_HEIGHT / 2 * iconScale), 0f);
+        poseStack.mulPose(Vector3f.ZP.rotationDegrees(180 + playerRotation));
+        poseStack.translate((float) (-PLAYER_ICON_WIDTH / 2 * iconScale), (float) (-PLAYER_ICON_HEIGHT / 2 * iconScale), 0f);
 
-        Textures.PLAYER.draw(matrices, 0, 0, (int) Math.round(PLAYER_ICON_WIDTH * iconScale), (int) Math.round(PLAYER_ICON_HEIGHT * iconScale));
+        Textures.PLAYER.draw(poseStack, 0, 0, (int) Math.round(PLAYER_ICON_WIDTH * iconScale), (int) Math.round(PLAYER_ICON_HEIGHT * iconScale));
 
-        matrices.popPose();
+        poseStack.popPose();
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 
-    private void renderScaleOverlay(PoseStack matrices, long deltaMillis) {
+    private void renderScaleOverlay(PoseStack poseStack, long deltaMillis) {
         if (scaleAlpha > 3) {
-            matrices.pushPose();
-            matrices.translate(getGuiX() + WIDTH - 13, getGuiY() + 12, 0);
+            poseStack.pushPose();
+            poseStack.translate(getGuiX() + WIDTH - 13, getGuiY() + 12, 0);
 
             int color = scaleAlpha << 24;
 
@@ -1051,28 +1072,28 @@ public class GuiAtlasBase extends GuiComponent {
             text = "x";
             xWidth = textWidth = this.font.width(text);
             xWidth++;
-            this.font.draw(matrices, text, -textWidth, 0, color);
+            this.font.draw(poseStack, text, -textWidth, 0, color);
 
             text = zoomNames[zoomLevel];
             if (text.contains("/")) {
                 String[] parts = text.split("/");
 
                 int centerXtranslate = Math.max(this.font.width(parts[0]), this.font.width(parts[1])) / 2;
-                matrices.translate(-xWidth - centerXtranslate, (float) -this.font.lineHeight / 2, 0);
+                poseStack.translate(-xWidth - centerXtranslate, (float) -this.font.lineHeight / 2, 0);
 
-                GuiComponent.fill(matrices, -centerXtranslate - 1, this.font.lineHeight - 1, centerXtranslate, this.font.lineHeight, color);
+                GuiComponent.fill(poseStack, -centerXtranslate - 1, this.font.lineHeight - 1, centerXtranslate, this.font.lineHeight, color);
 
                 textWidth = this.font.width(parts[0]);
-                this.font.draw(matrices, parts[0], (float) -textWidth / 2, 0, color);
+                this.font.draw(poseStack, parts[0], (float) -textWidth / 2, 0, color);
 
                 textWidth = this.font.width(parts[1]);
-                this.font.draw(matrices, parts[1], (float) -textWidth / 2, 10, color);
+                this.font.draw(poseStack, parts[1], (float) -textWidth / 2, 10, color);
             } else {
                 textWidth = this.font.width(text);
-                this.font.draw(matrices, text, -textWidth - xWidth + 1, 2, color);
+                this.font.draw(poseStack, text, -textWidth - xWidth + 1, 2, color);
             }
 
-            matrices.popPose();
+            poseStack.popPose();
 
             int deltaScaleAlpha = (int) (deltaMillis * 0.256);
             // because of some crazy high frame rate
@@ -1088,22 +1109,21 @@ public class GuiAtlasBase extends GuiComponent {
         }
     }
 
-    private void renderMarkers(PoseStack matrices, int markersStartX, int markersStartZ,
-                               int markersEndX, int markersEndZ, DimensionMarkersData markersData) {
+    private void renderMarkers(PoseStack poseStack, Rect pos, DimensionMarkersData markersData) {
         if (markersData == null) return;
 
-        for (int x = markersStartX; x <= markersEndX; x++) {
-            for (int z = markersStartZ; z <= markersEndZ; z++) {
+        for (int x = pos.minX; x <= pos.minY; x++) {
+            for (int z = pos.maxX; z <= pos.minY; z++) {
                 List<Marker> markers = markersData.getMarkersAtChunk(x, z);
                 if (markers == null) continue;
                 for (Marker marker : markers) {
-                    renderMarker(matrices, marker, getIconScale());
+                    renderMarker(poseStack, marker, getIconScale());
                 }
             }
         }
     }
 
-    private void renderMarker(PoseStack matrices, Marker marker, double scale) {
+    private void renderMarker(PoseStack poseStack, Marker marker, double scale) {
         MarkerType type = MarkerType.REGISTRY.get(marker.getType());
         if (type.shouldHide(state.is(HIDING_MARKERS), scaleClipIndex)) {
             return;
@@ -1160,7 +1180,7 @@ public class GuiAtlasBase extends GuiComponent {
         markerY = Mth.clamp(markerY, getGuiY() + MAP_BORDER_HEIGHT,  getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT);
 
 
-        info.tex.draw(matrices, markerX + info.x, markerY + info.y, info.width, info.height);
+        info.tex.draw(poseStack, markerX + info.x, markerY + info.y, info.width, info.height);
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
 

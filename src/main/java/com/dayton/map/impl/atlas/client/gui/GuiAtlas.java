@@ -1,12 +1,15 @@
 package com.dayton.map.impl.atlas.client.gui;
 
 import com.dayton.map.impl.atlas.AntiqueAtlasMod;
+import com.dayton.map.impl.atlas.client.Textures;
 import com.dayton.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
 import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.dayton.nukacraft.client.render.gui.pipboy.TextPipBoyButton;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
@@ -44,7 +47,7 @@ public class GuiAtlas extends GuiAtlasBase {
     }
 
     public void renderNavigation() {
-        addRenderableWidget(getHomeButton());
+        getHomeButton();
         addRenderableWidget(getMapButton());
         addRenderableWidget(getBackButton(() -> {
             if (current_page > 0) {
@@ -61,7 +64,7 @@ public class GuiAtlas extends GuiAtlasBase {
     }
 
     public void renderArchiveNavigation(){
-        addRenderableWidget(getHomeButton());
+        getHomeButton();
         addRenderableWidget(getMapButton());
         addRenderableWidget(getBackButton(() -> {
             if (current_archive_page > 0) {
@@ -81,15 +84,22 @@ public class GuiAtlas extends GuiAtlasBase {
         }));
     }
 
-    private MainPipBoyButton getHomeButton(){
-        return new MainPipBoyButton(leftPos + -80, topPos + 58, 20, 20,
-                new TextComponent("☵"), e -> {
+    private void getHomeButton(){
+//        new MainPipBoyButton(leftPos + -80, topPos + 58, 20, 20,
+//                new TextComponent("☵"), e -> {
+//        });
+//
+        var homeButton = new GuiBookmarkButton(0,Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
+        addChild(homeButton).offsetGuiCoords( 80, height - 40);
+
+        homeButton.addListener(button -> {
             clearWidgets();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
             current_archive_page = 0;
-            buttonMenu();
+//            buttonMenu();
             renderArchiveNavigation();
         });
+
     }
 
     private MainPipBoyButton getMapButton(){
