@@ -6,4 +6,10 @@ public class MathUtils {
         else if(value > max) return max;
         return value;
     }
+
+    public static int round(int i, int j) {
+        return i % j == 0 ?
+                (i / j) :
+                (i / j) + 1;
+    }
 }

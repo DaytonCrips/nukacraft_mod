@@ -17,6 +17,8 @@ import net.minecraft.world.level.Level;
 
 import java.util.HashMap;
 
+import static com.dayton.nukacraft.common.data.utils.MathUtils.round;
+
 public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractContainerScreen<T>{
 
     public static int page_count, current_page, current_archive, archive_pages, current_archive_page;
@@ -71,7 +73,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     private MainPipBoyButton getHomeButton(){
-        return new MainPipBoyButton(leftPos + -80, topPos + 58, 20, 20,
+        return new MainPipBoyButton(leftPos - 80, topPos + 58, 20, 20,
                 new TextComponent("☵"), e -> {
             clearWidgets();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
@@ -82,7 +84,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     private MainPipBoyButton getMapButton(){
-        return new MainPipBoyButton(leftPos + -46, topPos + 58, 20, 20,
+        return new MainPipBoyButton(leftPos - 46, topPos + 58, 20, 20,
                 new TextComponent("✴"), e -> {
             clearWidgets();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
@@ -92,12 +94,12 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     private MainPipBoyButton getBackButton(Runnable runnable){
-        return new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
+        return new MainPipBoyButton(leftPos - 112, topPos + 58, 30, 20,
                 new TextComponent("◀"), e -> runnable.run());
     }
 
     private MainPipBoyButton getForwardButton(Runnable runnable){
-        return new MainPipBoyButton(leftPos + -24, topPos + 58, 30, 20,
+        return new MainPipBoyButton(leftPos -24, topPos + 58, 30, 20,
                 new TextComponent("▶"), e -> runnable.run());
     }
 
@@ -140,11 +142,10 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
         int xj = 0;
 
         if (current_archive_page == archive_pages) {
-            if (PipBoy.content.size() % 7 == 0) {
+            if (PipBoy.content.size() % 7 == 0)
                 xj = 7;
-            } else {
+            else
                 xj = PipBoy.content.size() % 7;
-            }
         } else if (PipBoy.content.size() >= 7) {
             xj = 7;
         }
@@ -179,11 +180,5 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
                 current_page = 0;
             }));
         }
-    }
-
-    public static int round(int i, int j) {
-        return i % j == 0 ?
-                (i / j) :
-                (i / j) + 1;
     }
 }

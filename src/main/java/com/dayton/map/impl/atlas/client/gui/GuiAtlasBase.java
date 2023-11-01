@@ -208,36 +208,36 @@ public class GuiAtlasBase extends GuiComponent {
      * navigation using the arrow buttons. Also used to prevent immediate
      * canceling of placing marker.
      */
-    private GuiComponentButton selectedButton = null;
+    protected GuiComponentButton selectedButton = null;
 
     /**
      * Time in world ticks when the button was pressed. Used to create a pause
      * before continuous navigation using the arrow buttons.
      */
-    private long timeButtonPressed = 0;
+    protected long timeButtonPressed = 0;
 
     /**
      * Set to true when dragging the map view.
      */
-    private boolean isDragging = false;
+    protected boolean isDragging = false;
 
     /**
      * Offset to the top left corner of the tile at (0, 0) from the center of
      * the map drawing area, in pixels.
      */
-    private int mapOffsetX, mapOffsetY;
-    private Integer targetOffsetX, targetOffsetY;
+    protected int mapOffsetX, mapOffsetY;
+    protected Integer targetOffsetX, targetOffsetY;
     /**
      * If true, the player's icon will be in the center of the GUI, and the
      * offset of the tiles will be calculated accordingly. Otherwise it's the
      * position of the player that will be calculated with respect to the
      * offset.
      */
-    private boolean followPlayer;
+    protected boolean followPlayer;
 
-    private final GuiScaleBar scaleBar = new GuiScaleBar();
+    protected final GuiScaleBar scaleBar = new GuiScaleBar();
 
-    private final GuiScrollingContainer markers = new GuiScrollingContainer();
+    protected final GuiScrollingContainer markers = new GuiScrollingContainer();
 
     /**
      * Pixel-to-block ratio.
@@ -277,9 +277,9 @@ public class GuiAtlasBase extends GuiComponent {
 
     // Misc stuff ==============================================================
 
-    private Player player;
-    private ItemStack stack;
-    private WorldData biomeData;
+    protected Player player;
+    protected ItemStack stack;
+    protected WorldData biomeData;
 
     /**
      * Coordinate scale factor relative to the actual screen size.
@@ -426,13 +426,6 @@ public class GuiAtlasBase extends GuiComponent {
 
     ///////////////
 
-
-    public GuiAtlasBase prepareToOpen(ItemStack stack) {
-        this.stack = stack;
-
-        return prepareToOpen();
-    }
-
     public void openMarkerFinalizer(Component name) {
         markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
                 getAtlasID(),
@@ -457,18 +450,6 @@ public class GuiAtlasBase extends GuiComponent {
 
         selectedButton = null;
         state.switchTo(NORMAL);
-    }
-
-    public GuiAtlasBase prepareToOpen() {
-        Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BOOK_PAGE_TURN, 1.0F));
-
-        this.player = Minecraft.getInstance().player;
-        updateAtlasData();
-        if (!followPlayer && AntiqueAtlasMod.CONFIG.doSaveBrowsingPos) {
-            loadSavedBrowsingPosition();
-        }
-
-        return this;
     }
 
     public void loadSavedBrowsingPosition() {
@@ -540,10 +521,10 @@ public class GuiAtlasBase extends GuiComponent {
         }
 
         // close atlas with right-click
-        if (mouseState == 1 && state.is(NORMAL)) {
-            onClose();
-            return true;
-        }
+//        if (mouseState == 1 && state.is(NORMAL)) {
+//            onClose();
+//            return true;
+//        }
 
         // If clicked on the map, start dragging
         int mapX = (width - MAP_WIDTH) / 2;
@@ -771,7 +752,7 @@ public class GuiAtlasBase extends GuiComponent {
      * Update {@link #biomeData}, {@link #localMarkersData},
      * {@link #globalMarkersData}
      */
-    private void updateAtlasData() {
+    protected void updateAtlasData() {
         int atlasID = getAtlasID();
 
         biomeData = AntiqueAtlasMod.tileData
