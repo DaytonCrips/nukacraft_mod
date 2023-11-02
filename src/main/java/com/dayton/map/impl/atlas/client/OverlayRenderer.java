@@ -29,7 +29,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-import static com.dayton.map.impl.atlas.client.gui.GuiAtlas.setPipboyShader;
+import static com.dayton.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 @OnlyIn(Dist.CLIENT)
 public class OverlayRenderer extends GuiComponent {

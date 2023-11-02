@@ -34,6 +34,14 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
 
     @Override protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {}
 
+    public static void setPipboyShader(){
+        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, 1);
+    }
+
+    public static void setPipboyShader(float alpha){
+        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, alpha);
+    }
+
     public void renderNavigationPage() {
         addRenderableWidget(getHomeButton());
         addRenderableWidget(getMapButton());

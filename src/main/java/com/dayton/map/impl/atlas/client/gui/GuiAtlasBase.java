@@ -21,7 +21,6 @@ import com.dayton.map.impl.atlas.util.ExportImageUtil;
 import com.dayton.map.impl.atlas.util.Log;
 import com.dayton.map.impl.atlas.util.MathUtil;
 import com.dayton.map.impl.atlas.util.Rect;
-import com.dayton.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -53,6 +52,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import static com.dayton.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+
 public class GuiAtlasBase extends GuiComponent {
     public static final int WIDTH = 310;
     public static final int HEIGHT = 218;
@@ -71,8 +72,7 @@ public class GuiAtlasBase extends GuiComponent {
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
     /**
-     * If the map scale goes below this value, the tiles will not scale down
-     * visually, but will instead span greater area.
+     * If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.
      */
     private static final double MIN_SCALE_THRESHOLD = 0.5;
 
@@ -84,14 +84,10 @@ public class GuiAtlasBase extends GuiComponent {
 
     private final GuiStates state = new GuiStates();
 
-    /**
-     * If on, navigate the map normally.
-     */
+    /** If on, navigate the map normally.*/
     private final IState NORMAL = new SimpleState();
 
-    /**
-     * If on, all markers as well as the player icon are hidden.
-     */
+    /** If on, all markers as well as the player icon are hidden.*/
     private final IState HIDING_MARKERS = new IState() {
         @Override
         public void onEnterState() {
@@ -184,30 +180,19 @@ public class GuiAtlasBase extends GuiComponent {
      */
     private final GuiBookmarkButton btnShowMarkers;
 
-    /**
-     * Button for restoring player's position at the center of the Atlas.
-     */
+    /** Button for restoring player's position at the center of the Atlas.*/
     private final GuiPositionButton btnPosition;
 
 
     // Navigation ==============================================================
 
-    /**
-     * Pause between after the arrow button is pressed and continuous
-     * navigation starts, in ticks.
-     */
+    /** Pause between after the arrow button is pressed and continuousnavigation starts, in ticks.*/
     private static final int BUTTON_PAUSE = 8;
 
-    /**
-     * How much the map view is offset, in blocks, per click (or per tick).
-     */
+    /**How much the map view is offset, in blocks, per click (or per tick).*/
     private static final int navigateStep = 24;
 
-    /**
-     * The button which is currently being pressed. Used for continuous
-     * navigation using the arrow buttons. Also used to prevent immediate
-     * canceling of placing marker.
-     */
+    /**The button which is currently being pressed. Used for continuousnavigation using the arrow buttons. Also used to prevent immediatecanceling of placing marker.*/
     protected GuiComponentButton selectedButton = null;
 
     /**
@@ -308,42 +293,46 @@ public class GuiAtlasBase extends GuiComponent {
         setInterceptKeyboard(true);
 
         btnUp = GuiArrowButton.up();
-        addChild(btnUp).offsetGuiCoords(148, 10);
         btnDown = GuiArrowButton.down();
-        addChild(btnDown).offsetGuiCoords(148, 194);
         btnLeft = GuiArrowButton.left();
-        addChild(btnLeft).offsetGuiCoords(15, 100);
         btnRight = GuiArrowButton.right();
-        addChild(btnRight).offsetGuiCoords(283, 100);
         btnPosition = new GuiPositionButton();
         btnPosition.setEnabled(!followPlayer);
-        addChild(btnPosition).offsetGuiCoords(283, 194);
-        IButtonListener positionListener = button -> {
-            selectedButton = button;
-            if (button.equals(btnPosition)) {
-                followPlayer = true;
-                targetOffsetX = null;
-                targetOffsetY = null;
-                btnPosition.setEnabled(false);
-            } else {
-                // Navigate once, before enabling pause:
-                navigateByButton(selectedButton);
-                timeButtonPressed = player.getCommandSenderWorld().getGameTime();
-            }
-        };
-        btnUp.addListener(positionListener);
-        btnDown.addListener(positionListener);
-        btnLeft.addListener(positionListener);
-        btnRight.addListener(positionListener);
-        btnPosition.addListener(positionListener);
-
+        btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
+        btnDelMarker = new GuiBookmarkButton(2, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
+        btnShowMarkers = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
         btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
             @Override
             public boolean isEnabled() {
                 return !ExportImageUtil.isExporting;
             }
         };
+
+        setupButtons();
+
+        addChild(markers).setRelativeCoords(-10, 14);
+        markers.setViewportSize(21, 180);
+        markers.setWheelScrollsVertically();
+        markerFinalizer.addMarkerListener(blinkingIcon);
+        eraser.setTexture(Textures.ERASER, 12, 14, 2, 11);
+        state.switchTo(NORMAL);
+    }
+
+    private void setupButtons() {
+        btnUp.addListener       (this::onPositionChanged);
+        btnDown.addListener     (this::onPositionChanged);
+        btnLeft.addListener     (this::onPositionChanged);
+        btnRight.addListener    (this::onPositionChanged);
+        btnPosition.addListener (this::onPositionChanged);
+
+        addChild(btnUp).offsetGuiCoords(148, 10);
+        addChild(btnDown).offsetGuiCoords(148, 194);
+        addChild(btnLeft).offsetGuiCoords(15, 100);
+        addChild(btnRight).offsetGuiCoords(283, 100);
+        addChild(btnPosition).offsetGuiCoords(283, 194);
         addChild(btnExportPng).offsetGuiCoords(300, 75);
+        addChild(scaleBar).offsetGuiCoords(20, 198);
+
         btnExportPng.addListener(button -> {
             if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
                 exportThread = new Thread(() -> exportImage(getAtlasID()), "Atlas file export thread");
@@ -351,116 +340,20 @@ public class GuiAtlasBase extends GuiComponent {
             }
         });
 
-        btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
         addChild(btnMarker).offsetGuiCoords(300, 14);
-
-        btnMarker.addListener(button -> {
-            if (state.is(PLACING_MARKER)) {
-                selectedButton = null;
-                state.switchTo(NORMAL);
-            } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
-                selectedButton = button;
-                state.switchTo(PLACING_MARKER);
-
-                // While holding shift, we create a marker on the player's position
-                if (hasShiftDown()) {
-                    markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
-                            getAtlasID(),
-                            (int) player.getX(), (int) player.getZ());
-                    addChild(markerFinalizer);
-
-                    blinkingIcon.setTexture(markerFinalizer.selectedType.getTexture(),
-                            MARKER_SIZE, MARKER_SIZE);
-                    addChildBehind(markerFinalizer, blinkingIcon)
-                            .setRelativeCoords(worldXToScreenX((int) player.getX()) - getGuiX() - MARKER_SIZE / 2,
-                                    worldZToScreenY((int) player.getZ()) - getGuiY() - MARKER_SIZE / 2);
-
-                    // Need to intercept keyboard events to type in the label:
-                    setInterceptKeyboard(true);
-
-                    // Un-press all keys to prevent player from walking infinitely:
-                    KeyMapping.releaseAll();
-
-                    selectedButton = null;
-                    state.switchTo(NORMAL);
-                }
-            }
-        });
-
-        btnDelMarker = new GuiBookmarkButton(2, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
         addChild(btnDelMarker).offsetGuiCoords(300, 33);
-        btnDelMarker.addListener(button -> {
-            if (state.is(DELETING_MARKER)) {
-                selectedButton = null;
-                state.switchTo(NORMAL);
-            } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
-                selectedButton = button;
-                state.switchTo(DELETING_MARKER);
-            }
-        });
-        btnShowMarkers = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
         addChild(btnShowMarkers).offsetGuiCoords(300, 52);
-        btnShowMarkers.addListener(button -> {
-            selectedButton = null;
-            if (state.is(HIDING_MARKERS)) {
-                state.switchTo(NORMAL);
-            } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
-                selectedButton = null;
-                state.switchTo(HIDING_MARKERS);
-            }
-        });
 
-        addChild(scaleBar).offsetGuiCoords(20, 198);
+        btnMarker.addListener(this::addMarker);
+        btnDelMarker.addListener(this::deleteMarker);
+        btnShowMarkers.addListener(this::showMarkers);
+
         scaleBar.setMapScale(1);
-
-        addChild(markers).setRelativeCoords(-10, 14);
-        markers.setViewportSize(21, 180);
-        markers.setWheelScrollsVertically();
-
-        markerFinalizer.addMarkerListener(blinkingIcon);
-
-        eraser.setTexture(Textures.ERASER, 12, 14, 2, 11);
-
-        state.switchTo(NORMAL);
     }
 
     ///////////////
 
     ///////////////
-
-    public void openMarkerFinalizer(Component name) {
-        markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
-                getAtlasID(),
-                (int) player.getX(), (int) player.getZ());
-        addChild(markerFinalizer);
-
-        if (name != null) {
-            markerFinalizer.setMarkerName(name);
-        }
-
-        blinkingIcon.setTexture(markerFinalizer.selectedType.getTexture(),
-                MARKER_SIZE, MARKER_SIZE);
-        addChildBehind(markerFinalizer, blinkingIcon)
-                .setRelativeCoords(worldXToScreenX((int) player.getX()) - getGuiX() - MARKER_SIZE / 2,
-                        worldZToScreenY((int) player.getZ()) - getGuiY() - MARKER_SIZE / 2);
-
-        // Need to intercept keyboard events to type in the label:
-        setInterceptKeyboard(true);
-
-        // Un-press all keys to prevent player from walking infinitely:
-        KeyMapping.releaseAll();
-
-        selectedButton = null;
-        state.switchTo(NORMAL);
-    }
-
-    public void loadSavedBrowsingPosition() {
-        // Apply zoom first, because browsing position depends on it:
-        setMapScale(biomeData.getBrowsingZoom());
-        mapOffsetX = biomeData.getBrowsingX();
-        mapOffsetY = biomeData.getBrowsingY();
-        isDragging = false;
-    }
 
     @Override
     public void init() {
@@ -476,39 +369,20 @@ public class GuiAtlasBase extends GuiComponent {
         updateBookmarkerList();
     }
 
-    public void updateBookmarkerList() {
-        markers.removeAllContent();
-        markers.scrollTo(0,0);
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
 
-        if(localMarkersData == null) return;
+    @Override
+    public void onClose() {
+        super.onClose();
+        markerFinalizer.close();
+        removeChild(blinkingIcon);
+        // Keyboard.enableRepeatEvents(false);
+        biomeData.setBrowsingPosition(mapOffsetX, mapOffsetY, mapScale);
 
-
-        int contentY = 0;
-        for (Marker marker : localMarkersData.getAllMarkers()) {
-            if (!marker.isVisibleAhead() || marker.isGlobal()) {
-                continue;
-            }
-            GuiMarkerBookmark bookmark = new GuiMarkerBookmark(marker);
-
-            bookmark.addListener(button -> {
-                if(state.is(NORMAL)) {
-                    setTargetPosition(marker.getX(), marker.getZ());
-                    followPlayer = false;
-                    btnPosition.setEnabled(true);
-                }
-                else if(state.is(DELETING_MARKER)) {
-                    AtlasClientAPI.getMarkerAPI().deleteMarker(player.getCommandSenderWorld(),
-                            getAtlasID(), marker.getId());
-                    player.getCommandSenderWorld().playSound(player, player.blockPosition(),
-                            SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundSource.AMBIENT,
-                            1F, 0.5F);
-                    state.switchTo(NORMAL);
-                }
-            });
-
-            markers.addContent(bookmark).setRelativeY(contentY);
-            contentY += 18 + 2;
-        }
+        new BrowsingPositionC2SPacket(getAtlasID(), player.getCommandSenderWorld().dimension(), mapOffsetX, mapOffsetY, mapScale).send();
     }
 
     @Override
@@ -576,54 +450,6 @@ public class GuiAtlasBase extends GuiComponent {
         return false;
     }
 
-    /**
-     * Opens a dialog window to select which file to save to, then performs
-     * rendering of the map of current dimension into a PNG image.
-     */
-    private void exportImage(int atlasID) {
-        boolean showMarkers = !state.is(HIDING_MARKERS);
-        state.switchTo(EXPORTING_IMAGE);
-        // Default file name is "Atlas <N>.png"
-        ExportImageUtil.isExporting = true;
-
-        File screenshot_folder = new File(Minecraft.getInstance().gameDirectory, "screenshots");
-        if (!screenshot_folder.isDirectory()) {
-            screenshot_folder.mkdir();
-        }
-
-        String outputname = "atlas-" + DATE_FORMAT.format(new Date());
-
-        File file = new File(screenshot_folder, outputname + ".png");
-        for (int i = 1; file.exists(); i++) {
-            file = new File(screenshot_folder, outputname + "_" + i + ".png");
-        }
-
-        try {
-            Log.info("Exporting image from Atlas #%d to file %s", atlasID, file.getAbsolutePath());
-            ExportImageUtil.exportPngImage(biomeData, globalMarkersData, localMarkersData, file, showMarkers);
-            Log.info("Finished exporting image");
-        } catch (OutOfMemoryError e) {
-            Log.warn(e, "Image is too large, trying to export in strips");
-            try {
-                ExportImageUtil.exportPngImageTooLarge(biomeData, globalMarkersData, localMarkersData, file, showMarkers);
-            } catch (OutOfMemoryError e2) {
-                int minX = (biomeData.getScope().minX - 1) * ExportImageUtil.TILE_SIZE;
-                int minY = (biomeData.getScope().minY - 1) * ExportImageUtil.TILE_SIZE;
-                int outWidth = (biomeData.getScope().maxX + 2) * ExportImageUtil.TILE_SIZE - minX;
-                int outHeight = (biomeData.getScope().maxY + 2) * ExportImageUtil.TILE_SIZE - minY;
-
-                Log.error(e2, "Image is STILL too large, how massive is this map?! Answer: (%dx%d)", outWidth, outHeight);
-
-                ExportUpdateListener.INSTANCE.setStatusString(I18n.get("gui.nukacraft.export.tooLarge"));
-                ExportImageUtil.isExporting = false;
-                return; //Don't switch to normal state yet so that the error message can be read.
-            }
-        }
-
-        ExportImageUtil.isExporting = false;
-        state.switchTo(showMarkers ? NORMAL : HIDING_MARKERS);
-    }
-
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (keyCode == GLFW.GLFW_KEY_UP) {
@@ -641,7 +467,7 @@ public class GuiAtlasBase extends GuiComponent {
         } else if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
             onClose();
         } else {
-            KeyMapping[] hotbarKeys = Minecraft.getInstance().options.keyHotbarSlots;
+            var hotbarKeys = Minecraft.getInstance().options.keyHotbarSlots;
             for (KeyMapping bind : hotbarKeys) {
                 // only handle hotbarkeys when marker gui isn't shown1
                 if (bind.matches(keyCode, scanCode) && this.markerFinalizer.getParent() == null) {
@@ -750,6 +576,157 @@ public class GuiAtlasBase extends GuiComponent {
         updateAtlasData();
     }
 
+    @Override
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float par3) {
+        long currentMillis = System.currentTimeMillis();
+        long deltaMillis = currentMillis - lastUpdateMillis;
+        lastUpdateMillis = currentMillis;
+        if (AntiqueAtlasMod.CONFIG.debugRender) printDebugInfo();
+
+        super.renderBackground(poseStack);
+
+//        TODO fix me for 1.17
+//        RenderSystem.enableAlphaTest();
+//        RenderSystem.alphaFunc(GL11.GL_GREATER, 0); // So light detail on tiles is visible
+        setPipboyShader();
+        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
+
+        if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
+            return;
+
+        if (state.is(DELETING_MARKER)) setPipboyShader(0.5f);
+//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+
+        var mapPos = getMapPos();
+        var markerPos = getMarkerPos(mapPos);
+        var iconScale = getIconScale();
+
+        renderTiles(poseStack, mapPos);
+        // Overlay the frame so that edges of the map are smooth:
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
+
+        renderMarkers(poseStack, markerPos, globalMarkersData);
+        renderMarkers(poseStack, markerPos, localMarkersData);
+
+        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
+        renderScaleOverlay(poseStack, deltaMillis);
+
+        if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
+
+        // Draw buttons:
+        super.render(poseStack, mouseX, mouseY, par3);
+
+        if (state.is(PLACING_MARKER)) drawPlacingMarker(poseStack, mouseX, mouseY, iconScale);
+
+        renderDebugTooltip();
+
+        // Draw progress overlay:
+        if (state.is(EXPORTING_IMAGE)) {
+            renderBackground(poseStack);
+            progressBar.draw(poseStack, (width - 100) / 2, height / 2 - 34);
+        }
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+    }
+
+    public void openMarkerFinalizer(Component name) {
+        markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
+                getAtlasID(),
+                (int) player.getX(), (int) player.getZ());
+        addChild(markerFinalizer);
+
+        if (name != null) {
+            markerFinalizer.setMarkerName(name);
+        }
+
+        blinkingIcon.setTexture(markerFinalizer.selectedType.getTexture(),
+                MARKER_SIZE, MARKER_SIZE);
+        addChildBehind(markerFinalizer, blinkingIcon)
+                .setRelativeCoords(worldXToScreenX((int) player.getX()) - getGuiX() - MARKER_SIZE / 2,
+                        worldZToScreenY((int) player.getZ()) - getGuiY() - MARKER_SIZE / 2);
+
+        // Need to intercept keyboard events to type in the label:
+        setInterceptKeyboard(true);
+
+        // Un-press all keys to prevent player from walking infinitely:
+        KeyMapping.releaseAll();
+
+        selectedButton = null;
+        state.switchTo(NORMAL);
+    }
+
+    public void loadSavedBrowsingPosition() {
+        // Apply zoom first, because browsing position depends on it:
+        setMapScale(biomeData.getBrowsingZoom());
+        mapOffsetX = biomeData.getBrowsingX();
+        mapOffsetY = biomeData.getBrowsingY();
+        isDragging = false;
+    }
+
+    public void updateBookmarkerList() {
+        markers.removeAllContent();
+        markers.scrollTo(0,0);
+
+        if(localMarkersData == null) return;
+
+
+        int contentY = 0;
+        for (Marker marker : localMarkersData.getAllMarkers()) {
+            if (!marker.isVisibleAhead() || marker.isGlobal()) {
+                continue;
+            }
+            GuiMarkerBookmark bookmark = new GuiMarkerBookmark(marker);
+
+            bookmark.addListener(button -> {
+                if(state.is(NORMAL)) {
+                    setTargetPosition(marker.getX(), marker.getZ());
+                    followPlayer = false;
+                    btnPosition.setEnabled(true);
+                }
+                else if(state.is(DELETING_MARKER)) {
+                    AtlasClientAPI.getMarkerAPI().deleteMarker(player.getCommandSenderWorld(),
+                            getAtlasID(), marker.getId());
+                    player.getCommandSenderWorld().playSound(player, player.blockPosition(),
+                            SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundSource.AMBIENT,
+                            1F, 0.5F);
+                    state.switchTo(NORMAL);
+                }
+            });
+
+            markers.addContent(bookmark).setRelativeY(contentY);
+            contentY += 18 + 2;
+        }
+    }
+
+    // Find chunk coordinates of the top left corner of the map.
+    // The 'roundToBase' is required so that when the map scales below the
+    // threshold the tiles don't change when map position changes slightly.
+    // The +-2 at the end provide margin so that tiles at the edges of
+    // the page have their stitched texture correct.
+    protected Rect getMapPos(){
+        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndX   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndZ   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+
+        return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
+    }
+
+    protected Rect getMarkerPos(Rect mapPos){
+        int markersStartX = MathUtil.roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersStartZ = MathUtil.roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersEndX   = MathUtil.roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersEndZ   = MathUtil.roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+
+        return new Rect(markersStartX, markersStartZ, markersEndX, markersEndZ);
+    }
+
+    protected Pos2I getStartScreenPos(Rect mapPos){
+        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
+        var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
+        return new Pos2I(mapStartScreenX, mapStartScreenY);
+    }
+
     /**
      * Update {@link #biomeData}, {@link #localMarkersData},
      * {@link #globalMarkersData}
@@ -770,6 +747,56 @@ public class GuiAtlasBase extends GuiComponent {
         } else {
             localMarkersData = null;
         }
+    }
+
+
+
+    /**
+     * Opens a dialog window to select which file to save to, then performs
+     * rendering of the map of current dimension into a PNG image.
+     */
+    private void exportImage(int atlasID) {
+        boolean showMarkers = !state.is(HIDING_MARKERS);
+        state.switchTo(EXPORTING_IMAGE);
+        // Default file name is "Atlas <N>.png"
+        ExportImageUtil.isExporting = true;
+
+        File screenshot_folder = new File(Minecraft.getInstance().gameDirectory, "screenshots");
+        if (!screenshot_folder.isDirectory()) {
+            screenshot_folder.mkdir();
+        }
+
+        String outputname = "atlas-" + DATE_FORMAT.format(new Date());
+
+        File file = new File(screenshot_folder, outputname + ".png");
+        for (int i = 1; file.exists(); i++) {
+            file = new File(screenshot_folder, outputname + "_" + i + ".png");
+        }
+
+        try {
+            Log.info("Exporting image from Atlas #%d to file %s", atlasID, file.getAbsolutePath());
+            ExportImageUtil.exportPngImage(biomeData, globalMarkersData, localMarkersData, file, showMarkers);
+            Log.info("Finished exporting image");
+        } catch (OutOfMemoryError e) {
+            Log.warn(e, "Image is too large, trying to export in strips");
+            try {
+                ExportImageUtil.exportPngImageTooLarge(biomeData, globalMarkersData, localMarkersData, file, showMarkers);
+            } catch (OutOfMemoryError e2) {
+                int minX = (biomeData.getScope().minX - 1) * ExportImageUtil.TILE_SIZE;
+                int minY = (biomeData.getScope().minY - 1) * ExportImageUtil.TILE_SIZE;
+                int outWidth = (biomeData.getScope().maxX + 2) * ExportImageUtil.TILE_SIZE - minX;
+                int outHeight = (biomeData.getScope().maxY + 2) * ExportImageUtil.TILE_SIZE - minY;
+
+                Log.error(e2, "Image is STILL too large, how massive is this map?! Answer: (%dx%d)", outWidth, outHeight);
+
+                ExportUpdateListener.INSTANCE.setStatusString(I18n.get("gui.nukacraft.export.tooLarge"));
+                ExportImageUtil.isExporting = false;
+                return; //Don't switch to normal state yet so that the error message can be read.
+            }
+        }
+
+        ExportImageUtil.isExporting = false;
+        state.switchTo(showMarkers ? NORMAL : HIDING_MARKERS);
     }
 
     /**
@@ -859,95 +886,71 @@ public class GuiAtlasBase extends GuiComponent {
         }
     }
 
-    public static void setPipboyShader(){
-        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, 1);
-    }
-
-    public static void setPipboyShader(float alpha){
-        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, alpha);
-    }
-
-    // Find chunk coordinates of the top left corner of the map.
-    // The 'roundToBase' is required so that when the map scales below the
-    // threshold the tiles don't change when map position changes slightly.
-    // The +-2 at the end provide margin so that tiles at the edges of
-    // the page have their stitched texture correct.
-    protected Rect getMapPos(){
-        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndX   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndZ   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-
-        return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
-    }
-
-    protected Rect getMarkerPos(Rect mapPos){
-        int markersStartX = MathUtil.roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersStartZ = MathUtil.roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersEndX   = MathUtil.roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
-        int markersEndZ   = MathUtil.roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
-
-        return new Rect(markersStartX, markersStartZ, markersEndX, markersEndZ);
-    }
-
-    protected Pos2I getStartScreenPos(Rect mapPos){
-        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
-        var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
-        return new Pos2I(mapStartScreenX, mapStartScreenY);
-    }
-
-    @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float par3) {
-        long currentMillis = System.currentTimeMillis();
-        long deltaMillis = currentMillis - lastUpdateMillis;
-        lastUpdateMillis = currentMillis;
-        if (AntiqueAtlasMod.CONFIG.debugRender) printDebugInfo();
-
-        super.renderBackground(poseStack);
-
-//        TODO fix me for 1.17
-//        RenderSystem.enableAlphaTest();
-//        RenderSystem.alphaFunc(GL11.GL_GREATER, 0); // So light detail on tiles is visible
-        setPipboyShader();
-        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
-
-        if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
-            return;
-
-        if (state.is(DELETING_MARKER)) setPipboyShader(0.5f);
-//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
-
-        var mapPos = getMapPos();
-        var markerPos = getMarkerPos(mapPos);
-        var iconScale = getIconScale();
-
-        renderTiles(poseStack, mapPos);
-        // Overlay the frame so that edges of the map are smooth:
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
-
-        renderMarkers(poseStack, markerPos, globalMarkersData);
-        renderMarkers(poseStack, markerPos, localMarkersData);
-
-        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
-        renderScaleOverlay(poseStack, deltaMillis);
-
-        if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
-
-        // Draw buttons:
-        super.render(poseStack, mouseX, mouseY, par3);
-
-        // Draw the semi-transparent marker attached to the cursor when placing a new marker:
-        if (state.is(PLACING_MARKER)) drawPlacingMarker(poseStack, mouseX, mouseY, iconScale);
-
-        renderDebugTooltip();
-
-        // Draw progress overlay:
-        if (state.is(EXPORTING_IMAGE)) {
-            renderBackground(poseStack);
-            progressBar.draw(poseStack, (width - 100) / 2, height / 2 - 34);
+    private void onPositionChanged(GuiComponentButton button) {
+        selectedButton = button;
+        if (button.equals(btnPosition)) {
+            followPlayer = true;
+            targetOffsetX = null;
+            targetOffsetY = null;
+            btnPosition.setEnabled(false);
+        } else {
+            // Navigate once, before enabling pause:
+            navigateByButton(selectedButton);
+            timeButtonPressed = player.getCommandSenderWorld().getGameTime();
         }
-        RenderSystem.setShaderColor(1, 1, 1, 1);
+    }
+
+    private void showMarkers(GuiComponentButton button) {
+        selectedButton = null;
+        if (state.is(HIDING_MARKERS)) {
+            state.switchTo(NORMAL);
+        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+            selectedButton = null;
+            state.switchTo(HIDING_MARKERS);
+        }
+    }
+
+    private void deleteMarker(GuiComponentButton button) {
+        if (state.is(DELETING_MARKER)) {
+            selectedButton = null;
+            state.switchTo(NORMAL);
+        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+            selectedButton = button;
+            state.switchTo(DELETING_MARKER);
+        }
+    }
+
+    private void addMarker(GuiComponentButton button) {
+        if (state.is(PLACING_MARKER)) {
+            selectedButton = null;
+            state.switchTo(NORMAL);
+        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+            selectedButton = button;
+            state.switchTo(PLACING_MARKER);
+
+            // While holding shift, we create a marker on the player's position
+            if (hasShiftDown()) {
+                markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
+                        getAtlasID(),
+                        (int) player.getX(), (int) player.getZ());
+                addChild(markerFinalizer);
+
+                blinkingIcon.setTexture(markerFinalizer.selectedType.getTexture(),
+                        MARKER_SIZE, MARKER_SIZE);
+                addChildBehind(markerFinalizer, blinkingIcon)
+                        .setRelativeCoords(worldXToScreenX((int) player.getX()) - getGuiX() - MARKER_SIZE / 2,
+                                worldZToScreenY((int) player.getZ()) - getGuiY() - MARKER_SIZE / 2);
+
+                // Need to intercept keyboard events to type in the label:
+                setInterceptKeyboard(true);
+
+                // Un-press all keys to prevent player from walking infinitely:
+                KeyMapping.releaseAll();
+
+                selectedButton = null;
+                state.switchTo(NORMAL);
+            }
+        }
     }
 
     private void renderTiles(PoseStack poseStack, Rect mapPos) {
@@ -1187,22 +1190,6 @@ public class GuiAtlasBase extends GuiComponent {
         if (isMouseOver && mouseIsOverMarker && marker.getLabel().getString().length() > 0) {
             drawTooltip(Collections.singletonList(marker.getLabel()), font);
         }
-    }
-
-    @Override
-    public boolean isPauseScreen() {
-        return false;
-    }
-
-    @Override
-    public void onClose() {
-        super.onClose();
-        markerFinalizer.close();
-        removeChild(blinkingIcon);
-        // Keyboard.enableRepeatEvents(false);
-        biomeData.setBrowsingPosition(mapOffsetX, mapOffsetY, mapScale);
-
-        new BrowsingPositionC2SPacket(getAtlasID(), player.getCommandSenderWorld().dimension(), mapOffsetX, mapOffsetY, mapScale).send();
     }
 
     /**

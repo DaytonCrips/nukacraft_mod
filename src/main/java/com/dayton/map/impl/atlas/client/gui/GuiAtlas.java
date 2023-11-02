@@ -20,13 +20,16 @@ import static com.dayton.nukacraft.common.data.utils.MathUtils.round;
 public class GuiAtlas extends GuiAtlasBase {
     protected int leftPos;
     protected int topPos;
+
+    public GuiAtlas() {
+        renderNavigation();
+    }
     
     @Override
     public void init() {
         super.init();
         this.leftPos = (this.width - WIDTH) / 2 + WIDTH;
         this.topPos = (this.height - HEIGHT) / 2 + HEIGHT;
-        renderNavigation();
     }
 
     public GuiAtlas prepareToOpen(ItemStack stack) {
