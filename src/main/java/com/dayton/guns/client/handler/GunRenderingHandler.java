@@ -388,8 +388,11 @@ public class GunRenderingHandler {
         poseStack.popPose();
 
         /* Renders the weapon */
-        ItemTransforms.TransformType transformType = right ? ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND : ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
-        this.renderWeapon(Minecraft.getInstance().player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), packedLight, event.getPartialTicks());
+        ItemTransforms.TransformType transformType = right ?
+                ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND :
+                ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
+        this.renderWeapon(Minecraft.getInstance().player, heldItem, transformType, event.getPoseStack(),
+                event.getMultiBufferSource(), packedLight, event.getPartialTicks());
 
         poseStack.popPose();
     }
@@ -597,14 +600,13 @@ public class GunRenderingHandler {
         try {
             var gun = (GunItem) stack.getItem();
             if (!bannedTransforms.contains(transformType))
-                gun.getRenderer().render(
+                gunRenderer.renderByItem(
                         stack,
                         transformType,
-                        poseStack, gun,
+                        poseStack,
                         renderTypeBuffer,
-                        null,
-                        null,
-                        light);
+                        light,
+                        15728880);
             else staticGunRenderer.render(
                         poseStack, new StaticGunItem(gun.getName()),
                         renderTypeBuffer,
@@ -622,9 +624,9 @@ public class GunRenderingHandler {
                                    int light, float partialTicks) {
         if (stack.getItem() instanceof GunItem) {
             Gun modifiedGun = ((GunItem) stack.getItem()).getModifiedGun(stack);
-            CompoundTag gunTag = stack.getOrCreateTag();
-            CompoundTag attachments = gunTag.getCompound("Attachments");
-            for (String tagKey : attachments.getAllKeys()) {
+            var gunTag = stack.getOrCreateTag();
+            var attachments = gunTag.getCompound("Attachments");
+            for (var tagKey : attachments.getAllKeys()) {
                 IAttachment.Type type = IAttachment.Type.byTagKey(tagKey);
                 if (type != null && modifiedGun.canAttachType(type)) {
                     ItemStack attachmentStack = Gun.getAttachment(type, stack);

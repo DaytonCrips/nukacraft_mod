@@ -1,6 +1,8 @@
 package com.dayton.nukacraft.client;
 
 import com.dayton.guns.client.render.gun.ModelOverrides;
+import com.dayton.guns.common.foundation.item.GunItem;
+import com.dayton.guns.common.foundation.item.StaticGunItem;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.client.models.guns.*;
 import com.dayton.nukacraft.client.render.renderers.GunRenderer;
@@ -13,8 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 
 //@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientConfig {
-    public static GunRenderer gunRenderer = new GunRenderer();
-    public static StaticGunRenderer staticGunRenderer = new StaticGunRenderer();
+    public static GunRenderer<GunItem> gunRenderer = new GunRenderer<>();
+    public static StaticGunRenderer<StaticGunItem> staticGunRenderer = new StaticGunRenderer<>();
 
     public static ItemStack currentStack;
     public static ItemTransforms.TransformType currentTransform;

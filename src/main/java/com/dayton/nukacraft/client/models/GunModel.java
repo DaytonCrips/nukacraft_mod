@@ -13,7 +13,7 @@ public class GunModel<T extends IResourceProvider & GeoAnimatable> extends GeoMo
 
     @Override
     public ResourceLocation getTextureResource(T gunItem) {
-        return getGunResource(gunItem, "textures/guns/" + gunItem.getName()+ "/", ".png");
+        return getGunResource(gunItem, "textures/guns/" + gunItem.getName() + "/", ".png");
     }
 
     @Override

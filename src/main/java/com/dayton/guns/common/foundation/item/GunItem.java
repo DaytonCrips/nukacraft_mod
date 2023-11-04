@@ -11,12 +11,15 @@ import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
 import com.dayton.nukacraft.client.render.renderers.GunRenderer;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
+import com.jetug.chassis_core.common.foundation.item.AnimatableItem;
+import com.jetug.chassis_core.common.foundation.item.CustomizableItem;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.AnimationController.AnimationStateHandler;
 import mod.azure.azurelib.core.object.PlayState;
+import mod.azure.azurelib.renderer.GeoItemRenderer;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -50,7 +53,7 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResourceProvider {
+public class GunItem extends CustomizableItem implements IColored, IMeta, GeoEntity, IResourceProvider {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
@@ -69,6 +72,7 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         return this.gun;
     }
 
+    @Override
     public String getName() {
         return name.get();
     }
@@ -217,8 +221,20 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         stackAnimations.put(stack, null);
     }
 
-    public GunRenderer getRenderer() {
+    public GunRenderer<GunItem> getRenderer() {
         return gunRenderer;
+    }
+
+    public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
+            NONE,
+            HEAD,
+            GUI,
+            GROUND,
+            FIXED);
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     @Override
@@ -228,13 +244,6 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
 //                        RawAnimation.begin().then("animation", Animation.LoopType.PLAY_ONCE));
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
     }
-
-    public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
-            NONE,
-            HEAD,
-            GUI,
-            GROUND,
-            FIXED);
 
     private AnimationStateHandler<GunItem> animate() {
         return event -> {
@@ -259,10 +268,5 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
 
             return event.setAndContinue(animation);
         };
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
     }
 }
