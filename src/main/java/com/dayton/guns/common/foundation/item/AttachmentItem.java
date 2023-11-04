@@ -1,15 +1,22 @@
 package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.client.handler.GunRenderingHandler;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
+import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+
+import static com.jetug.chassis_core.client.render.utils.ResourceHelper.*;
 
 /**
  * Author: MrCrayfish
  */
-public class AttachmentItem extends Item implements IMeta {
+public class AttachmentItem extends Item implements IMeta, IResourceProvider {
+    private final Lazy<String> name = Lazy.of(() -> getResourceName(getRegistryName()));
+
     public AttachmentItem(Properties properties) {
         super(properties);
     }
@@ -24,5 +31,15 @@ public class AttachmentItem extends Item implements IMeta {
             }
         }
         return super.isFoil(stack);
+    }
+
+    @Override
+    public String getName() {
+        return name.get();
+    }
+
+    @Override
+    public String getNamespace() {
+        return getRegistryName().getNamespace();
     }
 }

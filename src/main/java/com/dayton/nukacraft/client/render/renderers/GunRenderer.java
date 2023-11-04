@@ -6,6 +6,7 @@ import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.nukacraft.client.models.GunModel;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.renderers.AnimatableItemRenderer;
+import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
@@ -22,6 +23,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import static com.dayton.guns.client.handler.GunRenderingHandler.getAttachmentNames;
 import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.RELOAD;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
@@ -60,11 +62,20 @@ public class GunRenderer<T extends GunItem> extends AnimatableItemRenderer<T> {
     }
 
     @Override
+    protected void renderAttachments(ItemStack stack, T item) {
+        super.renderAttachments(stack, item);
+
+        var names = getAttachmentNames(stack);
+        for (var name : names)
+            getGeoModel().getBone(name).ifPresent((bone) -> bone.setHidden(false));
+    }
+
+    @Override
     public void renderByItem(ItemStack stack, TransformType transformType, PoseStack poseStack,
                              MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);
         if(!bannedTransforms.contains(transformType))
             this.animate(stack);
+        super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);
     }
 
 //    @Override
