@@ -1,6 +1,6 @@
 {
   "general": {
-    "rate": 80,
+    "rate": 10,
     "gripType": "nukacraft:bazooka",
     "maxAmmo": 1,
     "recoilAngle": 10.0,
@@ -14,7 +14,6 @@
     "speed": 2.0,
     "life": 150,
     "gravity": true
-
   },
   "sounds": {
     "fire": "nukacraft:item.fatman.fire",

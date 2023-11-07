@@ -65,6 +65,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.dayton.guns.client.util.PropertyHelper.*;
 import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 
@@ -223,11 +224,11 @@ public class GunRenderingHandler {
 
         // Calculate the time curve
         double time = AimingHandler.get().getNormalisedAdsProgress();
-        SightAnimation sightAnimation = PropertyHelper.getSightAnimations(heldItem, modifiedGun);
+        SightAnimation sightAnimation = getSightAnimations(heldItem, modifiedGun);
         time = sightAnimation.getViewportCurve().apply(time);
 
         // Apply the new FOV
-        double viewportFov = PropertyHelper.getViewportFov(heldItem, modifiedGun);
+        double viewportFov = getViewportFov(heldItem, modifiedGun);
         double newFov = viewportFov > 0 ? viewportFov : event.getFOV(); // Backwards compatibility
         event.setFOV(Mth.lerp(time, event.getFOV(), newFov));
     }
@@ -301,7 +302,7 @@ public class GunRenderingHandler {
 //                zOffset -= 0.5 * scaleZ;
 
                 /* Translate to the origin of the weapon */
-                Vec3 gunOrigin = PropertyHelper.getModelOrigin(heldItem, PropertyHelper.GUN_DEFAULT_ORIGIN);
+                var gunOrigin = getModelOrigin(heldItem, GUN_DEFAULT_ORIGIN);
 //                xOffset += gunOrigin.x * 0.0625 * scaleX;
 //                yOffset += gunOrigin.y * 0.0625 * scaleY;
 //                zOffset += gunOrigin.z * 0.0625 * scaleZ;
@@ -310,28 +311,28 @@ public class GunRenderingHandler {
                 Scope scope = Gun.getScope(heldItem);
                 if (modifiedGun.canAttachType(IAttachment.Type.SCOPE) && scope != null) {
                     /* Translate to the mounting position of scopes */
-                    Vec3 scopePosition = PropertyHelper.getAttachmentPosition(heldItem, modifiedGun, IAttachment.Type.SCOPE).subtract(gunOrigin);
+//                    Vec3 scopePosition = PropertyHelper.getAttachmentPosition(heldItem, modifiedGun, IAttachment.Type.SCOPE).subtract(gunOrigin);
 //                    xOffset += scopePosition.x * 0.0625 * scaleX;
 //                    yOffset += scopePosition.y * 0.0625 * scaleY;
 //                    zOffset += scopePosition.z * 0.0625 * scaleZ;
 
                     /* Translate to the reticle of the scope */
-                    ItemStack scopeStack = Gun.getScopeStack(heldItem);
-                    Vec3 scopeOrigin = PropertyHelper.getModelOrigin(scopeStack, PropertyHelper.ATTACHMENT_DEFAULT_ORIGIN);
-                    Vec3 scopeCamera = PropertyHelper.getScopeCamera(scopeStack).subtract(scopeOrigin);
-                    Vec3 scopeScale = PropertyHelper.getAttachmentScale(heldItem, modifiedGun, IAttachment.Type.SCOPE);
+//                    var scopeStack = Gun.getScopeStack(heldItem);
+//                    var scopeOrigin = getModelOrigin(scopeStack, ATTACHMENT_DEFAULT_ORIGIN);
+//                    var scopeCamera = getScopeCamera(scopeStack).subtract(scopeOrigin);
+//                    var scopeScale = getAttachmentScale(heldItem, modifiedGun, IAttachment.Type.SCOPE);
 //                    xOffset += scopeCamera.x * 0.0625 * scaleX * scopeScale.x;
 //                    yOffset += scopeCamera.y * 0.0625 * scaleY * scopeScale.y;
 //                    zOffset += scopeCamera.z * 0.0625 * scaleZ * scopeScale.z;
                 } else {
                     /* Translate to iron sight */
-                    Vec3 ironSightCamera = PropertyHelper.getIronSightCamera(heldItem, modifiedGun, gunOrigin).subtract(gunOrigin);
+                    var ironSightCamera = getIronSightCamera(heldItem, modifiedGun).subtract(gunOrigin);
                     xOffset += ironSightCamera.x * 0.0625 * scaleX;
                     yOffset += ironSightCamera.y * 0.0625 * scaleY;
                     zOffset += ironSightCamera.z * 0.0625 * scaleZ;
 
                     /* Need to add this to ensure old method still works */
-                    if (PropertyHelper.isLegacyIronSight(heldItem)) {
+                    if (isLegacyIronSight(heldItem)) {
                         zOffset += 0.72;
                     }
                 }
@@ -339,7 +340,7 @@ public class GunRenderingHandler {
                 /* Controls the direction of the following translations, changes depending on the main hand. */
                 var side = right ? 1.0F : -1.0F;
                 var time = AimingHandler.get().getNormalisedAdsProgress();
-                var transition = PropertyHelper.getSightAnimations(heldItem, modifiedGun).getSightCurve().apply(time);
+                var transition = getSightAnimations(heldItem, modifiedGun).getSightCurve().apply(time);
 
                 /* Reverses the original first person translations */
                 poseStack.translate(-0.56 * side * transition, 0.52 * transition, 0.72 * transition);
@@ -427,7 +428,7 @@ public class GunRenderingHandler {
             poseStack.translate(x * offset, y, z);
             poseStack.translate(0, -0.25, 0.25);
             float aiming = (float) Math.sin(Math.toRadians(AimingHandler.get().getNormalisedAdsProgress() * 180F));
-            aiming = PropertyHelper.getSightAnimations(heldItem, modifiedGun).getAimTransformCurve().apply(aiming);
+            aiming = getSightAnimations(heldItem, modifiedGun).getAimTransformCurve().apply(aiming);
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(aiming * 10F * offset));
             poseStack.mulPose(Vector3f.XP.rotationDegrees(aiming * 5F));
             poseStack.mulPose(Vector3f.YP.rotationDegrees(aiming * 5F * offset));
@@ -719,23 +720,22 @@ public class GunRenderingHandler {
 
     private void drawMuzzleFlash(ItemStack weapon, Gun modifiedGun, float random, boolean flip,
                                  PoseStack poseStack, MultiBufferSource buffer, float partialTicks) {
-        if (!PropertyHelper.hasMuzzleFlash(weapon, modifiedGun))
-            return;
+        if (!hasMuzzleFlash(weapon, modifiedGun)) return;
 
         poseStack.pushPose();
 
         // Translate to the position where the muzzle flash should spawn
-        var weaponOrigin = PropertyHelper.getModelOrigin(weapon, PropertyHelper.GUN_DEFAULT_ORIGIN);
-        var flashPosition = PropertyHelper.getMuzzleFlashPosition(weapon, modifiedGun).subtract(weaponOrigin);
-        poseStack.translate(weaponOrigin.x * 0.0625, weaponOrigin.y * 0.0625, weaponOrigin.z * 0.0625);
-        poseStack.translate(flashPosition.x * 0.0625, flashPosition.y * 0.0625, flashPosition.z * 0.0625);
-        poseStack.translate(-0.5, -0.5, -0.5);
+        var weaponOrigin = getModelOrigin(weapon, GUN_DEFAULT_ORIGIN);
+        var flashPosition = getMuzzleFlashPosition(weapon, modifiedGun);//.subtract(weaponOrigin);
+//        poseStack.translate(weaponOrigin.x * 0.0625, weaponOrigin.y * 0.0625, weaponOrigin.z * 0.0625);
+        poseStack.translate(flashPosition.x * 0.2, flashPosition.y * 0.2, flashPosition.z * 0.2);
+//        poseStack.translate(-0.5, -0.5, -0.5);
 
         // Legacy method to move muzzle flash to be at the end of the barrel attachment
         var barrelStack = Gun.getAttachment(IAttachment.Type.BARREL, weapon);
         if (!barrelStack.isEmpty() && barrelStack.getItem() instanceof IBarrel barrel
-                && !PropertyHelper.isUsingBarrelMuzzleFlash(barrelStack)) {
-            var scale = PropertyHelper.getAttachmentScale(weapon, modifiedGun, IAttachment.Type.BARREL);
+                && !isUsingBarrelMuzzleFlash(barrelStack)) {
+            var scale = getAttachmentScale(weapon, modifiedGun, IAttachment.Type.BARREL);
             double length = barrel.getProperties().getLength();
             poseStack.translate(0, 0, -length * 0.0625 * scale.z);
         }
@@ -743,7 +743,7 @@ public class GunRenderingHandler {
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(360F * random));
         poseStack.mulPose(Vector3f.XP.rotationDegrees(flip ? 180F : 0F));
 
-        var flashScale = PropertyHelper.getMuzzleFlashScale(weapon, modifiedGun);
+        var flashScale = getMuzzleFlashScale(weapon, modifiedGun);
         var scaleX = ((float) flashScale.x / 2F) - ((float) flashScale.x / 2F) * (1.0F - partialTicks);
         var scaleY = ((float) flashScale.y / 2F) - ((float) flashScale.y / 2F) * (1.0F - partialTicks);
         poseStack.scale(scaleX, scaleY, 1.0F);
@@ -841,7 +841,6 @@ public class GunRenderingHandler {
 
     /**
      * A temporary hack to get the equip progress until Forge fixes the issue.
-     *
      * @return
      */
     private float getEquipProgress(float partialTicks) {

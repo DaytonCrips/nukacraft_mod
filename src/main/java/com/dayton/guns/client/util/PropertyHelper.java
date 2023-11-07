@@ -72,7 +72,7 @@ public final class PropertyHelper {
         return ATTACHMENT_DEFAULT_ORIGIN;
     }
 
-    public static Vec3 getIronSightCamera(ItemStack stack, Gun modifiedGun, Vec3 gunOrigin) {
+    public static Vec3 getIronSightCamera(ItemStack stack, Gun modifiedGun) {
         // Retrieve position from the model's data
         DataObject ironSightObject = getObjectByPath(stack, WEAPON_KEY, "ironSight");
         if (ironSightObject.has("camera", DataType.ARRAY)) {
