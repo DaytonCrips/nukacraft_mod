@@ -34,8 +34,8 @@ public class AnimatedGunItem extends GunItemBase {
             try{
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
-                var stack = event.getData(DataTickets.ITEMSTACK);
-                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+//                var stack = event.getData(DataTickets.ITEMSTACK);
+//                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
                 if (bannedTransforms.contains(transformType)) {
                     return PlayState.STOP;
