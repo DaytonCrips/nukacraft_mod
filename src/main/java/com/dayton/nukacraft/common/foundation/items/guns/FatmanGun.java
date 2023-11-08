@@ -19,9 +19,9 @@ public class FatmanGun extends GunItem {
     }
 
 //    @Override
-//    public AnimatedGunRenderer getRenderer() {
-//        return renderer;
-//    }
+    public AnimatedGunRenderer getRenderer() {
+        return renderer;
+    }
 
     @Override
     public boolean isFoil(ItemStack p_41453_) {

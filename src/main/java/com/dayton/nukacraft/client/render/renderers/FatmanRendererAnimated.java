@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 
-public class FatmanRendererAnimated extends AnimatedGunRenderer<GunItem> {
+public class FatmanRendererAnimated extends AnimatedGunRenderer {
 
     protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();

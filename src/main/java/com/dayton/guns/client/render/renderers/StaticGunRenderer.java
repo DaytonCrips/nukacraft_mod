@@ -6,8 +6,8 @@ import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 
-public class StaticGunRenderer<T extends StaticGunItem> extends GeoObjectRenderer<T> {
-    public StaticGunRenderer() {
-        super(new GunModel<T>());
-    }
+public class StaticGunRenderer<T extends StaticGunItem> extends GunRendererBase<T> {
+//    public StaticGunRenderer() {
+//        super(new GunModel<T>());
+//    }
 }

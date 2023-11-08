@@ -52,8 +52,8 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends CustomizableItem implements IColored, IMeta, GeoEntity, IResourceProvider {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class GunItem extends CustomizableItem implements IColored, IMeta, IResourceProvider {
+//    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
 
@@ -231,41 +231,41 @@ public class GunItem extends CustomizableItem implements IColored, IMeta, GeoEnt
             GROUND,
             FIXED);
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
+//    @Override
+//    public AnimatableInstanceCache getAnimatableInstanceCache() {
+//        return cache;
+//    }
 
-    @Override
-    public void registerControllers(ControllerRegistrar controllerRegistrar) {
-//        var c = new AnimationController<>(this, "controllerName", event -> PlayState.CONTINUE)
-//                .triggerableAnim("animation",
-//                        RawAnimation.begin().then("animation", Animation.LoopType.PLAY_ONCE));
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
-    }
+//    @Override
+//    public void registerControllers(ControllerRegistrar controllerRegistrar) {
+////        var c = new AnimationController<>(this, "controllerName", event -> PlayState.CONTINUE)
+////                .triggerableAnim("animation",
+////                        RawAnimation.begin().then("animation", Animation.LoopType.PLAY_ONCE));
+//        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
+//    }
 
-    private AnimationStateHandler<GunItem> animate() {
-        return event -> {
-            var controller = event.getController();
-            controller.setAnimationSpeed(1);
-            var stack = event.getData(DataTickets.ITEMSTACK);
-            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
-
-            if (bannedTransforms.contains(transformType)) {
-                resetAnim(stack);
-                return PlayState.STOP;
-            }
-
-            var anim = stackAnimations.get(stack);
-            if (anim == null) return PlayState.STOP;
-
-            var animation = begin().then(anim, LOOP);
-
-            if (controller.hasAnimationFinished())
-                controller.forceAnimationReset();
-
-
-            return event.setAndContinue(animation);
-        };
-    }
+//    private AnimationStateHandler<GunItem> animate() {
+//        return event -> {
+//            var controller = event.getController();
+//            controller.setAnimationSpeed(1);
+//            var stack = event.getData(DataTickets.ITEMSTACK);
+//            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+//
+//            if (bannedTransforms.contains(transformType)) {
+//                resetAnim(stack);
+//                return PlayState.STOP;
+//            }
+//
+//            var anim = stackAnimations.get(stack);
+//            if (anim == null) return PlayState.STOP;
+//
+//            var animation = begin().then(anim, LOOP);
+//
+//            if (controller.hasAnimationFinished())
+//                controller.forceAnimationReset();
+//
+//
+//            return event.setAndContinue(animation);
+//        };
+//    }
 }

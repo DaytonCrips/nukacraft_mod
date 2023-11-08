@@ -1,24 +1,26 @@
 package com.dayton.guns.common.foundation.item;
 
-import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimationController;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.world.item.ItemStack;
 
-import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
-import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
-import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
 public abstract class GunItemBase implements IResourceProvider, GeoEntity {
-    private final AnimatableInstanceCache cache = createInstanceCache(this);
-    private final String name, namespace;
+    protected final AnimatableInstanceCache cache = createInstanceCache(this);
+    protected final String name, namespace;
+    protected final ItemStack stack;
+    protected final TransformType transformType;
 
-    public GunItemBase(IResourceProvider resourceProvider) {
+    public GunItemBase(ItemStack stack, TransformType transformType) {
+        this.transformType = transformType;
+        var resourceProvider = (IResourceProvider)stack.getItem();
         this.name = resourceProvider.getName();
         this.namespace = resourceProvider.getNamespace();
+        this.stack = stack;
     }
 
     @Override
