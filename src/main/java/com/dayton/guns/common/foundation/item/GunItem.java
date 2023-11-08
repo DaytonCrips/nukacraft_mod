@@ -8,10 +8,9 @@ import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
-import com.dayton.nukacraft.client.render.renderers.GunRenderer;
+import com.dayton.guns.client.render.renderers.AnimatedGunRenderer;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
-import com.jetug.chassis_core.common.foundation.item.AnimatableItem;
 import com.jetug.chassis_core.common.foundation.item.CustomizableItem;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.constant.DataTickets;
@@ -19,7 +18,6 @@ import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.AnimationController.AnimationStateHandler;
 import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.renderer.GeoItemRenderer;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -44,7 +42,8 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static com.dayton.nukacraft.client.ClientConfig.gunRenderer;
+import static com.dayton.guns.client.render.renderers.GunRenderer.*;
+import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
@@ -211,7 +210,7 @@ public class GunItem extends CustomizableItem implements IColored, IMeta, GeoEnt
         return 5;
     }
 
-    private static final Map<ItemStack, String> stackAnimations = new HashMap<>();
+    public static final Map<ItemStack, String> stackAnimations = new HashMap<>();
 
     public static void doAnim(ItemStack stack, String animation) {
         stackAnimations.put(stack, animation);
@@ -221,9 +220,9 @@ public class GunItem extends CustomizableItem implements IColored, IMeta, GeoEnt
         stackAnimations.put(stack, null);
     }
 
-    public GunRenderer<GunItem> getRenderer() {
-        return gunRenderer;
-    }
+//    public AnimatedGunRenderer<GunItem> getRenderer() {
+//        return animatedGunRenderer;
+//    }
 
     public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
             NONE,

@@ -1,8 +1,8 @@
 package com.dayton.nukacraft.common.foundation.items.guns;
 
 import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.nukacraft.client.render.renderers.FatmanRenderer;
-import com.dayton.nukacraft.client.render.renderers.GunRenderer;
+import com.dayton.nukacraft.client.render.renderers.FatmanRendererAnimated;
+import com.dayton.guns.client.render.renderers.AnimatedGunRenderer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
@@ -11,17 +11,17 @@ public class FatmanGun extends GunItem {
         super(properties);
     }
 
-    private static final FatmanRenderer renderer = new FatmanRenderer();
+    private static final FatmanRendererAnimated renderer = new FatmanRendererAnimated();
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return false;
     }
 
-    @Override
-    public GunRenderer getRenderer() {
-        return renderer;
-    }
+//    @Override
+//    public AnimatedGunRenderer getRenderer() {
+//        return renderer;
+//    }
 
     @Override
     public boolean isFoil(ItemStack p_41453_) {

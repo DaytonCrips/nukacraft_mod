@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.client.render.renderers;
+package com.dayton.guns.client.render.renderers;
 
 import com.dayton.guns.common.foundation.item.StaticGunItem;
 import com.dayton.nukacraft.client.models.GunModel;

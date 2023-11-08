@@ -1,11 +1,7 @@
 package com.dayton.guns.client.handler;
 
 import com.dayton.guns.Config;
-import com.dayton.guns.client.GunModel;
 import com.dayton.guns.client.GunRenderType;
-import com.dayton.guns.client.render.gun.IOverrideModel;
-import com.dayton.guns.client.render.gun.ModelOverrides;
-import com.dayton.guns.client.util.PropertyHelper;
 import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.GripType;
 import com.dayton.guns.common.base.Gun;
@@ -25,8 +21,6 @@ import com.dayton.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
@@ -53,7 +47,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.TickEvent;
@@ -65,6 +58,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.dayton.guns.client.render.renderers.GunRenderer.*;
 import static com.dayton.guns.client.util.PropertyHelper.*;
 import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.client.ClientConfig.*;
@@ -584,7 +578,10 @@ public class GunRenderingHandler {
             RenderUtil.applyTransformType(stack, poseStack, transformType, entity);
 
             this.renderingWeapon = stack;
-            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
+
+            gunRenderer.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
+
+//            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
 //            this.renderAttachments(entity, transformType, stack, poseStack, renderTypeBuffer, light, partialTicks);
             this.renderMuzzleFlash(entity, poseStack, renderTypeBuffer, stack, transformType, partialTicks);
             this.renderingWeapon = null;
@@ -595,78 +592,27 @@ public class GunRenderingHandler {
         return false;
     }
 
-    private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack,
-                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
-//        IOverrideModel model = ModelOverrides.getModel(stack);
-//        if(model != null) {
-        try {
-            var gun = (GunItem) stack.getItem();
-            if (!bannedTransforms.contains(transformType))
-                gunRenderer.renderByItem(
-                        stack,
-                        transformType,
-                        poseStack,
-                        renderTypeBuffer,
-                        light,
-                        15728880);
-            else staticGunRenderer.render(
-                        poseStack, new StaticGunItem(gun.getName()),
-                        renderTypeBuffer,
-                        null,
-                        null,
-                        light);
-
-        } catch (Exception e) {
-        }
-//        }
-    }
-
-//    private void renderAttachments(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType,
-//                                   ItemStack stack, PoseStack poseStack, MultiBufferSource renderTypeBuffer,
-//                                   int light, float partialTicks) {
-//        if (stack.getItem() instanceof GunItem) {
-//            Gun modifiedGun = ((GunItem) stack.getItem()).getModifiedGun(stack);
-//            var gunTag = stack.getOrCreateTag();
-//            var attachments = gunTag.getCompound("Attachments");
-//            for (var tagKey : attachments.getAllKeys()) {
-//                IAttachment.Type type = IAttachment.Type.byTagKey(tagKey);
-//                if (type != null && modifiedGun.canAttachType(type)) {
-//                    ItemStack attachmentStack = Gun.getAttachment(type, stack);
-//                    if (!attachmentStack.isEmpty()) {
-//                        poseStack.pushPose();
+//    private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack,
+//                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
 //
-//                        /* Translates the attachment to a standard position by removing the origin */
-//                        Vec3 origin = PropertyHelper.getModelOrigin(attachmentStack, PropertyHelper.ATTACHMENT_DEFAULT_ORIGIN);
-//                        poseStack.translate(-origin.x * 0.0625, -origin.y * 0.0625, -origin.z * 0.0625);
+//        try {
+//            var gun = (GunItem) stack.getItem();
+//            if (!bannedTransforms.contains(transformType))
+//                animatedGunRenderer.renderByItem(
+//                        stack,
+//                        transformType,
+//                        poseStack,
+//                        renderTypeBuffer,
+//                        light,
+//                        PACKED_OVERLAY);
+//            else staticGunRenderer.render(
+//                        poseStack, new StaticGunItem(gun.getName()),
+//                        renderTypeBuffer,
+//                        null,
+//                        null,
+//                        light);
 //
-//                        /* Translation to the origin on the weapon */
-//                        Vec3 gunOrigin = PropertyHelper.getModelOrigin(stack, PropertyHelper.GUN_DEFAULT_ORIGIN);
-//                        poseStack.translate(gunOrigin.x * 0.0625, gunOrigin.y * 0.0625, gunOrigin.z * 0.0625);
-//
-//                        /* Translate to the position this attachment mounts on the weapon */
-//                        Vec3 translation = PropertyHelper.getAttachmentPosition(stack, modifiedGun, type).subtract(gunOrigin);
-//                        poseStack.translate(translation.x * 0.0625, translation.y * 0.0625, translation.z * 0.0625);
-//
-//                        /* Scales the attachment. Also translates the delta of the attachment origin to (8, 8, 8) since this is the centered origin for scaling */
-//                        Vec3 scale = PropertyHelper.getAttachmentScale(stack, modifiedGun, type);
-//                        Vec3 center = origin.subtract(8, 8, 8).scale(0.0625);
-//                        poseStack.translate(center.x, center.y, center.z);
-//                        poseStack.scale((float) scale.x, (float) scale.y, (float) scale.z);
-//                        poseStack.translate(-center.x, -center.y, -center.z);
-//
-//                        IOverrideModel model = ModelOverrides.getModel(attachmentStack);
-//                        if (model != null) {
-//                            model.render(partialTicks, transformType, attachmentStack, stack, entity, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY);
-//                        } else {
-//                            BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(attachmentStack);
-//                            Minecraft.getInstance().getItemRenderer().render(attachmentStack, ItemTransforms.TransformType.NONE, false, poseStack, renderTypeBuffer, light, OverlayTexture.NO_OVERLAY, GunModel.wrap(bakedModel));
-//                        }
-//
-//                        poseStack.popPose();
-//                    }
-//                }
-//            }
-//        }
+//        } catch (Exception ignored) {}
 //    }
 
     public static ArrayList<String> getAttachmentNames(ItemStack stack){
@@ -759,10 +705,10 @@ public class GunRenderingHandler {
         var matrix = poseStack.last().pose();
         var builder = buffer.getBuffer(GunRenderType.getMuzzleFlash());
 
-        builder.vertex(matrix, 0, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 1.0F).uv2(15728880).endVertex();
-        builder.vertex(matrix, 1, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 1.0F).uv2(15728880).endVertex();
-        builder.vertex(matrix, 1, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 0).uv2(15728880).endVertex();
-        builder.vertex(matrix, 0, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 0).uv2(15728880).endVertex();
+        builder.vertex(matrix, 0, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 1.0F).uv2(PACKED_OVERLAY).endVertex();
+        builder.vertex(matrix, 1, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 1.0F).uv2(PACKED_OVERLAY).endVertex();
+        builder.vertex(matrix, 1, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 0).uv2(PACKED_OVERLAY).endVertex();
+        builder.vertex(matrix, 0, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 0).uv2(PACKED_OVERLAY).endVertex();
 
         poseStack.popPose();
     }

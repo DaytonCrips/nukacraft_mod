@@ -19,7 +19,6 @@ import java.util.HashMap;
 import static com.dayton.nukacraft.common.data.utils.MathUtils.round;
 
 public class PipBoyScreen extends PipBoyScreenBase<PipBoyMenu>{
-
     public PipBoyScreen(PipBoyMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.imageWidth = 0;
