@@ -19,6 +19,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
+
 import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
@@ -91,6 +93,5 @@ public class AnimatedGunRenderer<T extends IResourceProvider & GeoAnimatable> ex
         for (GeoBone group : model.topLevelBones()) {
             this.renderRecursively(poseStack, animatable, group, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
         }
-
     }
 }

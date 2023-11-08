@@ -9,32 +9,15 @@ import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.object.PlayState;
 
 import static com.dayton.guns.common.foundation.item.GunItem.*;
+import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
 
-public class AnimatedGunItem implements IResourceProvider, GeoEntity {
-    private final AnimatableInstanceCache cache = createInstanceCache(this);
-    private final String name;
-
-    public  AnimatedGunItem(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getNamespace() {
-        return NukaCraftMod.MOD_ID;
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+public class AnimatedGunItem extends GunItemBase {
+    public AnimatedGunItem(IResourceProvider resourceProvider) {
+        super(resourceProvider);
     }
 
     @Override

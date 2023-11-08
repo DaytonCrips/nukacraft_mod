@@ -10,7 +10,7 @@ import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
 
 public class FatmanRendererAnimated extends AnimatedGunRenderer<GunItem> {
-    @Override
+
     protected void animate(ItemStack stack){
         var tracker = Minecraft.getInstance().player.getCooldowns();
         float cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
