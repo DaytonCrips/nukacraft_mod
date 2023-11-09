@@ -23,6 +23,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.util.HashMap;
+
 /**
  * Author: MrCrayfish
  */
@@ -160,23 +162,20 @@ public class ShootingHandler {
         }
     }
 
+    public static HashMap<ItemStack, Integer> gunCooldown = new HashMap<>();
+
     public void fire(Player player, ItemStack heldItem) {
-        if (!(heldItem.getItem() instanceof GunItem))
-            return;
+        if (!(heldItem.getItem() instanceof GunItem) || player.isSpectator()) return;
+        if (!Gun.hasAmmo(heldItem) && !player.isCreative()) return;
+        if (player.getUseItem().getItem() == Items.SHIELD) return;
 
-        if (!Gun.hasAmmo(heldItem) && !player.isCreative())
-            return;
+        var tracker = player.getCooldowns();
 
-        if (player.isSpectator())
-            return;
+//        player.addAdditionalSaveData();
 
-        if (player.getUseItem().getItem() == Items.SHIELD)
-            return;
-
-        ItemCooldowns tracker = player.getCooldowns();
         if (!tracker.isOnCooldown(heldItem.getItem())) {
-            GunItem gunItem = (GunItem) heldItem.getItem();
-            Gun modifiedGun = gunItem.getModifiedGun(heldItem);
+            var gunItem = (GunItem) heldItem.getItem();
+            var modifiedGun = gunItem.getModifiedGun(heldItem);
 
             if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                 return;

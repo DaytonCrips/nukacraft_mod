@@ -40,8 +40,9 @@ public class AnimatedGunItem extends GunItemBase {
                 var playerHasNotStack = !player.getInventory().items.contains(stack);
 
                 var entity = entityForStack.get(stack);
+                if(entity == null) entity = player;
 
-                if (bannedTransforms.contains(transformType) || (entity != null && entity != player)) {
+                if (bannedTransforms.contains(transformType) || entity != player) {
                     return PlayState.STOP;
                 }
 

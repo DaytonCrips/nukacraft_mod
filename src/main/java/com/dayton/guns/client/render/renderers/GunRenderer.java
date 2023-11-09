@@ -17,6 +17,7 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
@@ -24,31 +25,11 @@ import static net.minecraft.client.renderer.block.model.ItemTransforms.Transform
 
 public class GunRenderer {
     public static final int PACKED_OVERLAY = 15728880;
-    public static AnimatedGunRenderer animatedGunRenderer = new AnimatedGunRenderer<>();
-    public static StaticGunRenderer staticGunRenderer = new StaticGunRenderer<>();
+    public static AnimatedGunRenderer animatedGunRenderer = new AnimatedGunRenderer();
     public static HashMap<ItemStack, HashMap<TransformType, GunItemBase>> item = new HashMap<>();
 
-    public static Map<TransformType, AnimatedGunRenderer> renderers = Map.of(
-            NONE, new AnimatedGunRenderer<>(),
-            THIRD_PERSON_LEFT_HAND , new AnimatedGunRenderer<>(),
-            THIRD_PERSON_RIGHT_HAND, new AnimatedGunRenderer<>(),
-            FIRST_PERSON_LEFT_HAND , new AnimatedGunRenderer<>(),
-            FIRST_PERSON_RIGHT_HAND, new AnimatedGunRenderer<>(),
-            HEAD, new AnimatedGunRenderer<>(),
-            GUI, new AnimatedGunRenderer<>(),
-            GROUND, new AnimatedGunRenderer<>(),
-            FIXED, new AnimatedGunRenderer<>()
-    );
-
-
     private static GunItemBase getRenderItem(ItemStack stack, TransformType transformType){
-        var map = item.get(stack);
-
-        if(map == null){
-            map = new HashMap<>();
-            item.put(stack, map);
-        }
-
+        var map = item.computeIfAbsent(stack, k -> new HashMap<>());
         var item = map.get(transformType);
 
         if(item == null){
@@ -59,15 +40,12 @@ public class GunRenderer {
         return item;
     }
 
+//    private static HashMap<ItemStack, AnimatedGunItem> items = new HashMap<>();
+
     public void renderGun(TransformType transformType, ItemStack stack,
                            PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
-
         try {
-            var gun = (GunItem) stack.getItem();
-            var renderer = renderers.get(transformType);
-
-            var tag = stack.getOrCreateTag();
-            var s= tag;
+            //items.computeIfAbsent(stack, k -> new AnimatedGunItem(stack, transformType));
 
             animatedGunRenderer.render(
                     stack,
@@ -78,37 +56,6 @@ public class GunRenderer {
                     null,
                     null,
                     light);
-
-//            renderer.render(
-//                    stack,
-//                    transformType,
-//                    poseStack,
-//                    getRenderItem(stack, transformType),
-//                    renderTypeBuffer,
-//                    null,
-//                    null,
-//                    light);
-
-//            if (!bannedTransforms.contains(transformType)) {
-//                animatedGunRenderer.render(
-//                        stack,
-//                        transformType,
-//                        poseStack,
-//                        getRenderItem(stack, transformType),
-//                        renderTypeBuffer,
-//                        null,
-//                        null,
-//                        light);
-//            }
-//            else staticGunRenderer.render(
-//                    stack,
-//                    transformType,
-//                    poseStack,
-//                    getRenderItem(stack, transformType),
-//                    renderTypeBuffer,
-//                    null,
-//                    null,
-//                    light);
 
         } catch (Exception ignored) {}
     }

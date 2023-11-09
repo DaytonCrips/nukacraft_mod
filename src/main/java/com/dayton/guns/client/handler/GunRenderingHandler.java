@@ -13,7 +13,6 @@ import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.AttachmentItem;
 import com.dayton.guns.common.foundation.item.GrenadeItem;
 import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.guns.common.foundation.item.StaticGunItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.foundation.item.attachment.IBarrel;
 import com.dayton.guns.common.foundation.item.attachment.impl.Scope;

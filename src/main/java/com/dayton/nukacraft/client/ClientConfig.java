@@ -1,10 +1,6 @@
 package com.dayton.nukacraft.client;
 
 import com.dayton.guns.client.render.renderers.GunRenderer;
-import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.guns.common.foundation.item.StaticGunItem;
-import com.dayton.guns.client.render.renderers.AnimatedGunRenderer;
-import com.dayton.guns.client.render.renderers.StaticGunRenderer;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
