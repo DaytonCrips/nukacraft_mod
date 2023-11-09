@@ -579,7 +579,7 @@ public class GunRenderingHandler {
 
             this.renderingWeapon = stack;
 
-            gunRenderer.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
+            gunRenderer.renderGun(transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
 
 //            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
 //            this.renderAttachments(entity, transformType, stack, poseStack, renderTypeBuffer, light, partialTicks);

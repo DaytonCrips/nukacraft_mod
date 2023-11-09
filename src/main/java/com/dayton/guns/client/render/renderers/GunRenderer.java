@@ -59,12 +59,20 @@ public class GunRenderer {
         return item;
     }
 
-    public void renderGun(@Nullable LivingEntity entity, TransformType transformType, ItemStack stack,
-                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
+    public void renderGun(TransformType transformType, ItemStack stack,
+                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
 
         try {
             var gun = (GunItem) stack.getItem();
             var renderer = renderers.get(transformType);
+
+            animatedGunRenderer.render(
+                    poseStack,
+                    getRenderItem(stack, transformType),
+                    renderTypeBuffer,
+                    null,
+                    null,
+                    light);
 
 //            renderer.render(
 //                    stack,
@@ -76,26 +84,26 @@ public class GunRenderer {
 //                    null,
 //                    light);
 
-            if (!bannedTransforms.contains(transformType)) {
-                animatedGunRenderer.render(
-                        stack,
-                        transformType,
-                        poseStack,
-                        getRenderItem(stack, transformType),
-                        renderTypeBuffer,
-                        null,
-                        null,
-                        light);
-            }
-            else staticGunRenderer.render(
-                    stack,
-                    transformType,
-                    poseStack,
-                    getRenderItem(stack, transformType),
-                    renderTypeBuffer,
-                    null,
-                    null,
-                    light);
+//            if (!bannedTransforms.contains(transformType)) {
+//                animatedGunRenderer.render(
+//                        stack,
+//                        transformType,
+//                        poseStack,
+//                        getRenderItem(stack, transformType),
+//                        renderTypeBuffer,
+//                        null,
+//                        null,
+//                        light);
+//            }
+//            else staticGunRenderer.render(
+//                    stack,
+//                    transformType,
+//                    poseStack,
+//                    getRenderItem(stack, transformType),
+//                    renderTypeBuffer,
+//                    null,
+//                    null,
+//                    light);
 
         } catch (Exception ignored) {}
     }

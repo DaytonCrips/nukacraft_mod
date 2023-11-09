@@ -30,7 +30,6 @@ public class AnimatedGunItem extends GunItemBase {
 
     private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
         return event -> {
-
             try{
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
