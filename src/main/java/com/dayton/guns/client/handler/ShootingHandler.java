@@ -23,12 +23,14 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Author: MrCrayfish
  */
 public class ShootingHandler {
+    public static final String COOLDOWN = "Cooldown";
     private static ShootingHandler instance;
 
     public static ShootingHandler get() {
@@ -162,7 +164,13 @@ public class ShootingHandler {
         }
     }
 
-    public static HashMap<ItemStack, Integer> gunCooldown = new HashMap<>();
+//    public static HashMap<ItemStack, Integer> gunCooldown = new HashMap<>();
+    public static ArrayList<ItemStack> gunCooldown = new ArrayList<>();
+
+    public static int getCooldown(ItemStack itemStack) {
+        var tag =  itemStack.getOrCreateTag();
+        return tag.getInt(COOLDOWN);
+    }
 
     public void fire(Player player, ItemStack heldItem) {
         if (!(heldItem.getItem() instanceof GunItem) || player.isSpectator()) return;
@@ -171,9 +179,13 @@ public class ShootingHandler {
 
         var tracker = player.getCooldowns();
 
-//        player.addAdditionalSaveData();
+//        var cooldown = gunCooldown.get(heldItem);
 
-        if (!tracker.isOnCooldown(heldItem.getItem())) {
+        var tag =  heldItem.getOrCreateTag();
+        if(!gunCooldown.contains(heldItem))
+            gunCooldown.add(heldItem);
+
+        if (tag.getInt(COOLDOWN) == 0) {
             var gunItem = (GunItem) heldItem.getItem();
             var modifiedGun = gunItem.getModifiedGun(heldItem);
 
@@ -182,9 +194,11 @@ public class ShootingHandler {
 
             int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
             rate = GunModifierHelper.getModifiedRate(heldItem, rate);
-            tracker.addCooldown(heldItem.getItem(), rate);
-            PacketHandler.getPlayChannel().sendToServer(new C2SMessageShoot(player));
+            //tracker.addCooldown(heldItem.getItem(), rate);
 
+            tag.putInt(COOLDOWN, rate);
+
+            PacketHandler.getPlayChannel().sendToServer(new C2SMessageShoot(player));
             MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
         }
     }

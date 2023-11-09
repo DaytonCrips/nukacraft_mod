@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
+import static com.dayton.guns.client.handler.ShootingHandler.getCooldown;
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.*;
@@ -46,8 +47,8 @@ public class AnimatedGunItem extends GunItemBase {
                     return PlayState.STOP;
                 }
 
-                var tracker = player.getCooldowns();
-                float cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
+//                var tracker = player.getCooldowns();
+                float cooldown = getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
                 float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
 
                 RawAnimation animation;

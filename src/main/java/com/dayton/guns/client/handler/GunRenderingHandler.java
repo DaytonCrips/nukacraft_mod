@@ -59,7 +59,6 @@ import java.util.*;
 
 import static com.dayton.guns.client.render.renderers.GunRenderer.*;
 import static com.dayton.guns.client.util.PropertyHelper.*;
-import static com.dayton.guns.common.foundation.item.GunItem.*;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 
 public class GunRenderingHandler {
@@ -561,9 +560,9 @@ public class GunRenderingHandler {
         }
     }
 
-    public boolean renderWeapon(@Nullable LivingEntity entity, ItemStack stack,
-                                ItemTransforms.TransformType transformType, PoseStack poseStack,
-                                MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
+    public void renderWeapon(@Nullable LivingEntity entity, ItemStack stack,
+                             ItemTransforms.TransformType transformType, PoseStack poseStack,
+                             MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
         if (stack.getItem() instanceof GunItem) {
             poseStack.pushPose();
 
@@ -586,9 +585,7 @@ public class GunRenderingHandler {
             this.renderingWeapon = null;
 
             poseStack.popPose();
-            return true;
         }
-        return false;
     }
 
 //    private void renderGun(@Nullable LivingEntity entity, ItemTransforms.TransformType transformType, ItemStack stack,

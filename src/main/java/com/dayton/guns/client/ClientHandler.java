@@ -31,6 +31,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -38,6 +39,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+
+import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
 
 /**
  * Author: MrCrayfish
@@ -120,6 +124,18 @@ public class ClientHandler {
     private static void registerScreenFactories() {
         MenuScreens.register(ModContainers.WORKBENCH.get(), WorkbenchScreen::new);
         MenuScreens.register(ModContainers.ATTACHMENTS.get(), AttachmentScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void clientTick(TickEvent.ClientTickEvent event) {
+        if(event.phase == TickEvent.Phase.START) {
+            for (var item : gunCooldown) {
+                var tag =  item.getOrCreateTag();
+                var cool = tag.getInt("Cooldown");
+                if(cool > 0)
+                    tag.putInt("Cooldown", --cool);
+            }
+        }
     }
 
     @SubscribeEvent
