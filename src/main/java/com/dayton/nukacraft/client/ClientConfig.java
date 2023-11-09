@@ -6,12 +6,17 @@ import com.dayton.guns.common.foundation.item.StaticGunItem;
 import com.dayton.guns.client.render.renderers.AnimatedGunRenderer;
 import com.dayton.guns.client.render.renderers.StaticGunRenderer;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.HashMap;
 
 //@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientConfig {
     public static GunRenderer gunRenderer = new GunRenderer();
 
+    public static LivingEntity currentEntity;
+    public static HashMap<ItemStack, LivingEntity> entityForStack = new HashMap<>();
     public static ItemStack currentStack;
     public static ItemTransforms.TransformType currentTransform;
 

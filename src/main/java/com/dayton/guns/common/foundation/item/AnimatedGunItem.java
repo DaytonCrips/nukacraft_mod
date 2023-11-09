@@ -10,13 +10,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
+
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
-import static com.dayton.nukacraft.common.data.constants.Animations.RELOAD;
-import static com.dayton.nukacraft.common.data.constants.Animations.SHOT;
-import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
-import static mod.azure.azurelib.core.animation.RawAnimation.begin;
-import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
+import static com.dayton.nukacraft.client.ClientConfig.*;
+import static com.dayton.nukacraft.common.data.constants.Animations.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
+import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
 public class AnimatedGunItem extends GunItemBase {
     public AnimatedGunItem(ItemStack stack, ItemTransforms.TransformType transformType) {
@@ -35,12 +36,16 @@ public class AnimatedGunItem extends GunItemBase {
                 controller.setAnimationSpeed(1);
 //                var stack = event.getData(DataTickets.ITEMSTACK);
 //                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+                var player = Minecraft.getInstance().player;
+                var playerHasNotStack = !player.getInventory().items.contains(stack);
 
-                if (bannedTransforms.contains(transformType)) {
+                var entity = entityForStack.get(stack);
+
+                if (bannedTransforms.contains(transformType) || (entity != null && entity != player)) {
                     return PlayState.STOP;
                 }
 
-                var tracker = Minecraft.getInstance().player.getCooldowns();
+                var tracker = player.getCooldowns();
                 float cooldown = tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
                 float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
 

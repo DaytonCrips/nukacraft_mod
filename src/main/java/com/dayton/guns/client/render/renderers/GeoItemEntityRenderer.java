@@ -21,16 +21,18 @@ import java.util.Objects;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
-public class GeoItemEntity<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
+public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
 
-    public GeoItemEntity() {
+    public GeoItemEntityRenderer() {
         super(new GunModel<>());
     }
 
-    public void render(PoseStack poseStack, T animatable,
+    public void render(ItemStack stack, TransformType transformType,
+                       PoseStack poseStack, T animatable,
                        @Nullable MultiBufferSource bufferSource,
-                       @Nullable RenderType renderType, @Nullable
-                       VertexConsumer buffer, int packedLight) {
+                       @Nullable RenderType renderType,
+                       @Nullable VertexConsumer buffer,
+                       int packedLight) {
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
     }
 

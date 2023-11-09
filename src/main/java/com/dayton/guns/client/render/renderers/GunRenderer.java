@@ -66,7 +66,12 @@ public class GunRenderer {
             var gun = (GunItem) stack.getItem();
             var renderer = renderers.get(transformType);
 
+            var tag = stack.getOrCreateTag();
+            var s= tag;
+
             animatedGunRenderer.render(
+                    stack,
+                    transformType,
                     poseStack,
                     getRenderItem(stack, transformType),
                     renderTypeBuffer,

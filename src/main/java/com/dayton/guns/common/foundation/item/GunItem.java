@@ -1,7 +1,7 @@
 package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.GunMod;
-import com.dayton.guns.client.GunItemStackRenderer;
+import com.dayton.guns.client.*;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.base.NetworkGunManager;
 import com.dayton.guns.common.data.util.GunEnchantmentHelper;
