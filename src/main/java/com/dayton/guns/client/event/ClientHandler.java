@@ -1,6 +1,8 @@
-package com.dayton.guns.client;
+package com.dayton.guns.client.event;
 
 import com.dayton.guns.GunMod;
+import com.dayton.guns.client.GunButtonBindings;
+import com.dayton.guns.client.KeyBinds;
 import com.dayton.guns.client.handler.*;
 import com.dayton.guns.client.screen.AttachmentScreen;
 import com.dayton.guns.client.screen.WorkbenchScreen;
@@ -40,9 +42,8 @@ import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
+import static com.dayton.guns.client.handler.ShootingHandler.*;
 
 /**
  * Author: MrCrayfish
@@ -127,21 +128,21 @@ public class ClientHandler {
         MenuScreens.register(ModContainers.ATTACHMENTS.get(), AttachmentScreen::new);
     }
 
-    @SubscribeEvent
-    public static void clientTick(TickEvent.ClientTickEvent event) {
-        var remove = new ArrayList<ItemStack>();
-
-        if(event.phase == TickEvent.Phase.START) {
-            for (var item : gunCooldown) {
-                var tag =  item.getOrCreateTag();
-                var cool = tag.getInt("Cooldown");
-                if(cool > 0)
-                    tag.putInt("Cooldown", --cool);
-                else remove.add(item);
-            }
-            gunCooldown.removeAll(remove);
-        }
-    }
+//    @SubscribeEvent
+//    public static void clientTick(TickEvent.ClientTickEvent event) {
+//        var remove = new ArrayList<ItemStack>();
+//
+//        if(event.phase == TickEvent.Phase.START) {
+//            for (var item : gunCooldown) {
+//                var tag =  item.getOrCreateTag();
+//                var cool = tag.getInt("Cooldown");
+//                if(cool > 0)
+//                    tag.putInt("Cooldown", --cool);
+//                else remove.add(item);
+//            }
+//            gunCooldown.removeAll(remove);
+//        }
+//    }
 
     @SubscribeEvent
     public static void onScreenInit(ScreenEvent.InitScreenEvent.Post event) {

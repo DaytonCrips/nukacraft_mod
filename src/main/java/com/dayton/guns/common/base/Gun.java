@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.dayton.guns.client.ClientHandler.createEditorScreen;
+import static com.dayton.guns.client.event.ClientHandler.createEditorScreen;
 
 
 public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {

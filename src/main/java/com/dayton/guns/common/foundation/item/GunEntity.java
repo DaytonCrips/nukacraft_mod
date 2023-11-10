@@ -2,15 +2,12 @@ package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.client.handler.ReloadHandler;
 import com.dayton.guns.common.base.Gun;
-import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
-
-import java.util.List;
 
 import static com.dayton.guns.client.handler.ShootingHandler.getCooldown;
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
@@ -20,8 +17,8 @@ import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
-public class AnimatedGunItem extends GunItemBase {
-    public AnimatedGunItem(ItemStack stack, ItemTransforms.TransformType transformType) {
+public class GunEntity extends GunItemBase {
+    public GunEntity(ItemStack stack, ItemTransforms.TransformType transformType) {
         super(stack, transformType);
     }
 
@@ -30,7 +27,7 @@ public class AnimatedGunItem extends GunItemBase {
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
     }
 
-    private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
+    private AnimationController.AnimationStateHandler<GunEntity> animate() {
         return event -> {
             try{
                 var controller = event.getController();

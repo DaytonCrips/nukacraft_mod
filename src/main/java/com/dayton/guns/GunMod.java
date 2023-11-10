@@ -1,6 +1,6 @@
 package com.dayton.guns;
 
-import com.dayton.guns.client.ClientHandler;
+import com.dayton.guns.client.event.ClientHandler;
 import com.dayton.guns.client.MetaLoader;
 import com.dayton.guns.client.handler.CrosshairHandler;
 import com.dayton.guns.common.base.BoundingBoxManager;
