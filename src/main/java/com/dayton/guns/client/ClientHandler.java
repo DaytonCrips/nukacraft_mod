@@ -39,6 +39,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
@@ -128,13 +129,17 @@ public class ClientHandler {
 
     @SubscribeEvent
     public static void clientTick(TickEvent.ClientTickEvent event) {
+        var remove = new ArrayList<ItemStack>();
+
         if(event.phase == TickEvent.Phase.START) {
             for (var item : gunCooldown) {
                 var tag =  item.getOrCreateTag();
                 var cool = tag.getInt("Cooldown");
                 if(cool > 0)
                     tag.putInt("Cooldown", --cool);
+                else remove.add(item);
             }
+            gunCooldown.removeAll(remove);
         }
     }
 

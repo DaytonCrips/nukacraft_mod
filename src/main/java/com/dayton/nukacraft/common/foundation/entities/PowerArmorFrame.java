@@ -166,6 +166,9 @@ public class PowerArmorFrame extends WearableChassis {
         };
     }
 
+    public Boolean isWalking() {
+        return speedometer.getSpeed() > 0;
+    }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
