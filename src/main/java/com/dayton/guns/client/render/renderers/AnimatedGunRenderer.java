@@ -18,5 +18,5 @@ import java.util.Map;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class AnimatedGunRenderer extends GeoItemEntityRenderer<GunItemBase> {
+public class AnimatedGunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
 }

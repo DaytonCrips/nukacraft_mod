@@ -22,6 +22,8 @@ import java.util.Objects;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
+    private ItemStack currentItemStack;
+    private TransformType currentTransform;
 
     public GeoItemEntityRenderer() {
         super(new GunModel<>());
@@ -33,6 +35,8 @@ public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> 
                        @Nullable RenderType renderType,
                        @Nullable VertexConsumer buffer,
                        int packedLight) {
+        this.currentItemStack = stack;
+        this.currentTransform = transformType;
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
     }
 
@@ -59,6 +63,10 @@ public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> 
             var animationState = new AnimationState(animatable, limbSwing, limbSwingAmount, partialTick,
                     avgVelocity >= motionThreshold && limbSwingAmount != 0.0F);
             var instanceId = this.getInstanceId(animatable);
+
+            animationState.setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
+            animationState.setData(DataTickets.ITEMSTACK, this.currentItemStack);
+//            animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
             animationState.setData(DataTickets.TICK, animatable.getTick(animatable));
             animationState.setData(DataTickets.ENTITY, null);//jet
             animationState.setData(DataTickets.ENTITY_MODEL_DATA, new EntityModelData(shouldSit, false, -netHeadYaw, -headPitch));

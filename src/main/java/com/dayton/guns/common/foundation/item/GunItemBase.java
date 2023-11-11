@@ -9,29 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
-public abstract class GunItemBase implements IResourceProvider, GeoEntity {
+public abstract class GunItemBase implements GeoEntity {
     protected final AnimatableInstanceCache cache = createInstanceCache(this);
-    protected final String name, namespace;
-    protected final ItemStack stack;
-    protected final TransformType transformType;
-
-    public GunItemBase(ItemStack stack, TransformType transformType) {
-        this.transformType = transformType;
-        var resourceProvider = (IResourceProvider)stack.getItem();
-        this.name = resourceProvider.getName();
-        this.namespace = resourceProvider.getNamespace();
-        this.stack = stack;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getNamespace() {
-        return namespace;
-    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

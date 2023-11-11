@@ -55,6 +55,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Predicate;
 
+import static com.dayton.guns.client.handler.ShootingHandler.COOLDOWN;
+import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
+
 /**
  * Author: MrCrayfish
  */
@@ -78,7 +81,12 @@ public class ServerPlayHandler {
         ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
         if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem) || player.isCreative())) {
             Gun modifiedGun = item.getModifiedGun(heldItem);
-            if (modifiedGun != null) {
+
+            var tag =  heldItem.getOrCreateTag();
+//            if(!gunCooldown.contains(heldItem))
+//                gunCooldown.add(heldItem);
+
+            if (modifiedGun != null/* && tag.getInt(COOLDOWN) == 0*/) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                     return;
 
@@ -154,7 +162,7 @@ public class ServerPlayHandler {
                 }
 
                 if (!player.isCreative()) {
-                    CompoundTag tag = heldItem.getOrCreateTag();
+                    tag = heldItem.getOrCreateTag();
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);
                         if (level == 0 || player.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
@@ -162,6 +170,10 @@ public class ServerPlayHandler {
                         }
                     }
                 }
+
+//                int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
+//                rate = GunModifierHelper.getModifiedRate(heldItem, rate);
+//                tag.putInt(COOLDOWN, rate);
 
                 player.awardStat(Stats.ITEM_USED.get(item));
             }

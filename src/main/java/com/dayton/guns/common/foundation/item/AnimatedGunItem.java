@@ -2,6 +2,8 @@ package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.client.handler.ReloadHandler;
 import com.dayton.guns.common.base.Gun;
+import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 import static com.dayton.guns.client.handler.ShootingHandler.getCooldown;
+import static com.dayton.guns.client.render.renderers.GunRenderer.renderStack;
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.*;
@@ -20,14 +23,26 @@ import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
-public class AnimatedGunItem extends GunItemBase {
-    public AnimatedGunItem(ItemStack stack, ItemTransforms.TransformType transformType) {
-        super(stack, transformType);
+public class AnimatedGunItem extends GunItemBase implements IResourceProvider {
+    protected final ItemTransforms.TransformType transformType;
+
+    public AnimatedGunItem(ItemTransforms.TransformType transformType) {
+        this.transformType = transformType;
     }
 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
+    }
+
+    @Override
+    public String getName() {
+        return ((IResourceProvider)renderStack.getItem()).getName();
+    }
+
+    @Override
+    public String getNamespace() {
+        return ((IResourceProvider)renderStack.getItem()).getNamespace();
     }
 
     private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
@@ -38,12 +53,17 @@ public class AnimatedGunItem extends GunItemBase {
 //                var stack = event.getData(DataTickets.ITEMSTACK);
 //                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
                 var player = Minecraft.getInstance().player;
-                var playerHasNotStack = !player.getInventory().items.contains(stack);
+//                var playerHasNotStack = !player.getInventory().items.contains(stack);
+
+//                var stack = event.getData(DataTickets.ITEMSTACK);
+//                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
+
+                var stack = renderStack;
 
                 var entity = entityForStack.get(stack);
                 if(entity == null) entity = player;
 
-                if (bannedTransforms.contains(transformType) || entity != player) {
+                if (bannedTransforms.contains(transformType) || (entity != player && !(entity instanceof PowerArmorFrame))) {
                     return PlayState.STOP;
                 }
 

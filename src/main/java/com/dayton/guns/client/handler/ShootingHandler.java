@@ -178,10 +178,9 @@ public class ShootingHandler {
         if (player.getUseItem().getItem() == Items.SHIELD) return;
 
         var tracker = player.getCooldowns();
-
 //        var cooldown = gunCooldown.get(heldItem);
-
         var tag =  heldItem.getOrCreateTag();
+
         if(!gunCooldown.contains(heldItem))
             gunCooldown.add(heldItem);
 
@@ -194,8 +193,6 @@ public class ShootingHandler {
 
             int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
             rate = GunModifierHelper.getModifiedRate(heldItem, rate);
-            //tracker.addCooldown(heldItem.getItem(), rate);
-
             tag.putInt(COOLDOWN, rate);
 
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageShoot(player));
