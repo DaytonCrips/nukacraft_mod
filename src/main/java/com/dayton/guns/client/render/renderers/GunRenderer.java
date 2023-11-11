@@ -9,15 +9,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class GunRenderer {
     public static final int PACKED_OVERLAY = 15728880;
     public static AnimatedGunRenderer animatedGunRenderer = new AnimatedGunRenderer();
     public static HashMap<ItemStack, HashMap<TransformType, AnimatedGunItem>> item = new HashMap<>();
 
-    private static AnimatedGunItem getRenderItem(LivingEntity entity, ItemStack stack, TransformType transformType){
+    public static AnimatedGunItem playerItem = new AnimatedGunItem(FIRST_PERSON_RIGHT_HAND);
+
+    private static AnimatedGunItem getRenderItem_(ItemStack stack, TransformType transformType){
         var map = item.computeIfAbsent(stack, k -> new HashMap<>());
         var item = map.get(transformType);
 
@@ -29,11 +33,24 @@ public class GunRenderer {
         return item;
     }
 
-//    private static GunItemBase getRenderItem(LivingEntity entity, ItemStack stack, TransformType transformType){
+    public static Map<TransformType, AnimatedGunItem> items = Map.of(
+            NONE                    , new AnimatedGunItem( NONE                   ),
+            THIRD_PERSON_LEFT_HAND  , new AnimatedGunItem( THIRD_PERSON_LEFT_HAND ),
+            THIRD_PERSON_RIGHT_HAND , new AnimatedGunItem( THIRD_PERSON_RIGHT_HAND),
+            FIRST_PERSON_LEFT_HAND  , new AnimatedGunItem( FIRST_PERSON_LEFT_HAND ),
+            FIRST_PERSON_RIGHT_HAND , new AnimatedGunItem( FIRST_PERSON_RIGHT_HAND),
+            HEAD                    , new AnimatedGunItem( HEAD                   ),
+            GUI                     , new AnimatedGunItem( GUI                    ),
+            GROUND                  , new AnimatedGunItem( GROUND                 ),
+            FIXED                   , new AnimatedGunItem( FIXED                  )
+    );
+
+    private static AnimatedGunItem getRenderItem(LivingEntity entity, ItemStack stack, TransformType transformType){
 //        if(entity instanceof LocalPlayer){
-//            return
+//            return playerItem;
 //        }
-//    }
+        return items.get(transformType); //getRenderItem_(stack, transformType);
+    }
 
     public static ItemStack renderStack;
 
@@ -41,7 +58,6 @@ public class GunRenderer {
                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         try {
             //items.computeIfAbsent(stack, k -> new AnimatedGunItem(stack, transformType));
-
             renderStack = stack;
 
             animatedGunRenderer.render(
