@@ -4,6 +4,8 @@ import com.dayton.guns.client.handler.ReloadHandler;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.jetug.chassis_core.common.data.json.ItemConfig;
+import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
@@ -11,7 +13,9 @@ import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.util.Lazy;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.dayton.guns.client.handler.ShootingHandler.getCooldown;
@@ -19,12 +23,14 @@ import static com.dayton.guns.client.render.renderers.GunRenderer.renderStack;
 import static com.dayton.guns.common.foundation.item.GunItem.bannedTransforms;
 import static com.dayton.nukacraft.client.ClientConfig.*;
 import static com.dayton.nukacraft.common.data.constants.Animations.*;
+import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
-public class AnimatedGunItem extends GunItemBase implements IResourceProvider {
+public class AnimatedGunItem extends GunItemBase implements IResourceProvider, IConfigProvider {
     protected final ItemTransforms.TransformType transformType;
+    private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
 
     public AnimatedGunItem(ItemTransforms.TransformType transformType) {
         this.transformType = transformType;
@@ -43,6 +49,12 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider {
     @Override
     public String getNamespace() {
         return ((IResourceProvider)renderStack.getItem()).getNamespace();
+    }
+
+    @Override
+    @Nullable
+    public ItemConfig getConfig() {
+        return config.get();
     }
 
     private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
@@ -67,16 +79,17 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider {
                     return PlayState.STOP;
                 }
 
-//                var tracker = player.getCooldowns();
                 float cooldown = getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
                 float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
 
                 RawAnimation animation;
 
-                if(reloadProgress > 0){
-                    animation = begin().then(RELOAD, LOOP);
-                }
-                else if(Gun.hasAmmo(stack) && cooldown > 0) {
+//                if(reloadProgress > 0){
+//                    animation = begin().then(RELOAD, LOOP);
+//                }
+////                Gun.hasAmmo(stack) &&
+//                else
+                if(cooldown > 0) {
                     animation = begin().then(SHOT, LOOP);
                 }
                 else{

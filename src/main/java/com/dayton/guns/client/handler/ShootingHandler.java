@@ -181,8 +181,8 @@ public class ShootingHandler {
 //        var cooldown = gunCooldown.get(heldItem);
         var tag =  heldItem.getOrCreateTag();
 
-        if(!gunCooldown.contains(heldItem))
-            gunCooldown.add(heldItem);
+//        if(!gunCooldown.contains(heldItem))
+//            gunCooldown.add(heldItem);
 
         if (tag.getInt(COOLDOWN) == 0) {
             var gunItem = (GunItem) heldItem.getItem();
@@ -191,9 +191,9 @@ public class ShootingHandler {
             if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                 return;
 
-            int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
-            rate = GunModifierHelper.getModifiedRate(heldItem, rate);
-            tag.putInt(COOLDOWN, rate);
+//            int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
+//            rate = GunModifierHelper.getModifiedRate(heldItem, rate);
+//            tag.putInt(COOLDOWN, rate);
 
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageShoot(player));
             MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));

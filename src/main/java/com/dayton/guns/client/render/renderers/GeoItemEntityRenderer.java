@@ -1,6 +1,6 @@
 package com.dayton.guns.client.render.renderers;
 
-import com.dayton.nukacraft.client.models.GunModel;
+import com.dayton.guns.client.model.GunModel;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

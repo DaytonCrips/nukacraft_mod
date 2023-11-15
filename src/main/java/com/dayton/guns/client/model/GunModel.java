@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.client.models;
+package com.dayton.guns.client.model;
 
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;

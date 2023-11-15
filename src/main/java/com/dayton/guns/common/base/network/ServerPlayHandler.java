@@ -83,10 +83,10 @@ public class ServerPlayHandler {
             Gun modifiedGun = item.getModifiedGun(heldItem);
 
             var tag =  heldItem.getOrCreateTag();
-//            if(!gunCooldown.contains(heldItem))
-//                gunCooldown.add(heldItem);
+            if(!gunCooldown.contains(heldItem))
+                gunCooldown.add(heldItem);
 
-            if (modifiedGun != null/* && tag.getInt(COOLDOWN) == 0*/) {
+            if (modifiedGun != null && tag.getInt(COOLDOWN) == 0) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                     return;
 
@@ -171,9 +171,9 @@ public class ServerPlayHandler {
                     }
                 }
 
-//                int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
-//                rate = GunModifierHelper.getModifiedRate(heldItem, rate);
-//                tag.putInt(COOLDOWN, rate);
+                int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
+                rate = GunModifierHelper.getModifiedRate(heldItem, rate);
+                tag.putInt(COOLDOWN, rate);
 
                 player.awardStat(Stats.ITEM_USED.get(item));
             }
