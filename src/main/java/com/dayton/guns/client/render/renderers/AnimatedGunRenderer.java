@@ -19,10 +19,20 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.dayton.guns.client.handler.GunRenderingHandler.getAttachmentNames;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class AnimatedGunRenderer extends AnimatableItemRenderer<AnimatedGunItem> {
     public AnimatedGunRenderer() {
         super(new GunModel<>());
     }
+//
+//    @Override
+//    protected void renderAttachments(ItemStack stack, AnimatedGunItem item) {
+//        super.renderAttachments(stack, item);
+//
+//        var names = getAttachmentNames(stack);
+//        for (var name : names)
+//            getGeoModel().getBone(name).ifPresent((bone) -> bone.setHidden(false));
+//    }
 }
