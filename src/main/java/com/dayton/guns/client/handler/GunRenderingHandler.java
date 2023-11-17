@@ -679,7 +679,7 @@ public class GunRenderingHandler {
                 && !isUsingBarrelMuzzleFlash(barrelStack)) {
             var scale = getAttachmentScale(weapon, modifiedGun, IAttachment.Type.BARREL);
             double length = barrel.getProperties().getLength();
-            poseStack.translate(0, 0, -length * 0.0625 * scale.z);
+            poseStack.translate(0, 0, 0 /*-length * 0.0625 * scale.z*/);
         }
 
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(360F * random));
@@ -694,7 +694,7 @@ public class GunRenderingHandler {
         poseStack.scale(scaleModifier, scaleModifier, 1.0F);
 
         // Center the texture
-        poseStack.translate(-0.5, -0.5, 0);
+        poseStack.translate(0, 0, 0);
 
         var minU = weapon.isEnchanted() ? 0.5F : 0.0F;
         var maxU = weapon.isEnchanted() ? 1.0F : 0.5F;

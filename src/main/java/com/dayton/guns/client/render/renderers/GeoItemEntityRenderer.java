@@ -22,8 +22,8 @@ import java.util.Objects;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
-    private ItemStack currentItemStack;
-    private TransformType currentTransform;
+    protected ItemStack currentItemStack;
+    protected TransformType currentTransform;
 
     public GeoItemEntityRenderer() {
         super(new GunModel<>());

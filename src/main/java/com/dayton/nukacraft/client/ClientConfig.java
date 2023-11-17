@@ -10,7 +10,6 @@ import java.util.HashMap;
 //@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientConfig {
     public static GunRenderer gunRenderer = new GunRenderer();
-
     public static LivingEntity currentEntity;
     public static HashMap<ItemStack, LivingEntity> entityForStack = new HashMap<>();
     public static ItemStack currentStack;

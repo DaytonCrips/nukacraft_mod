@@ -24,10 +24,6 @@ import static com.dayton.guns.client.handler.GunRenderingHandler.getAttachmentNa
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class AnimatedGunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
-//    public AnimatedGunRenderer() {
-//        super(new GunModel<>());
-//    }
-
     @Override
     public void render(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack,
                        AnimatedGunItem animatable, @Nullable MultiBufferSource bufferSource,
