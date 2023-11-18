@@ -75,6 +75,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue restrictCameraRollToWeapons;
         public final ForgeConfigSpec.BooleanValue sprintAnimation;
         public final ForgeConfigSpec.DoubleValue bobbingIntensity;
+        public final ForgeConfigSpec.DoubleValue bulletTrailOpacity;
 
         public Display(ForgeConfigSpec.Builder builder) {
             builder.comment("Configuration for display related options").push("display");
@@ -90,6 +91,8 @@ public class Config {
                 this.restrictCameraRollToWeapons = builder.comment("When enabled, the Camera Roll Effect is only applied when holding a weapon.").define("restrictCameraRollToWeapons", true);
                 this.sprintAnimation = builder.comment("Enables the sprinting animation on weapons for better immersion. This only applies to weapons that support a sprinting animation.").define("sprintingAnimation", true);
                 this.bobbingIntensity = builder.comment("The intensity of the custom bobbing animation while holding a gun").defineInRange("bobbingIntensity", 1.0, 0.0, 2.0);
+                this.bulletTrailOpacity = builder.comment("Adjusts the opacity, AKA how see through the bullet trails are seen as, higher values can be seen better indoors or at daytime.")
+                        .defineInRange("bulletTrailOpacity", 0.5, 0.1, 1.0);
             }
             builder.pop();
         }

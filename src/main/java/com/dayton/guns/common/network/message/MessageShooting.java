@@ -11,28 +11,27 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class C2SMessageShooting extends PlayMessage<C2SMessageShooting> {
+public class MessageShooting extends PlayMessage<MessageShooting> {
     private boolean shooting;
 
-    public C2SMessageShooting() {
-    }
+    public MessageShooting() {}
 
-    public C2SMessageShooting(boolean shooting) {
+    public MessageShooting(boolean shooting) {
         this.shooting = shooting;
     }
 
     @Override
-    public void encode(C2SMessageShooting message, FriendlyByteBuf buffer) {
+    public void encode(MessageShooting message, FriendlyByteBuf buffer) {
         buffer.writeBoolean(message.shooting);
     }
 
     @Override
-    public C2SMessageShooting decode(FriendlyByteBuf buffer) {
-        return new C2SMessageShooting(buffer.readBoolean());
+    public MessageShooting decode(FriendlyByteBuf buffer) {
+        return new MessageShooting(buffer.readBoolean());
     }
 
     @Override
-    public void handle(C2SMessageShooting message, Supplier<NetworkEvent.Context> supplier) {
+    public void handle(MessageShooting message, Supplier<NetworkEvent.Context> supplier) {
         supplier.get().enqueueWork(() ->
         {
             ServerPlayer player = supplier.get().getSender();

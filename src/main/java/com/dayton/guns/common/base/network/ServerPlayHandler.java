@@ -20,9 +20,9 @@ import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.IColored;
 import com.dayton.guns.common.network.PacketHandler;
-import com.dayton.guns.common.network.message.C2SMessageShoot;
-import com.dayton.guns.common.network.message.S2CMessageBulletTrail;
-import com.dayton.guns.common.network.message.S2CMessageGunSound;
+import com.dayton.guns.common.network.message.MessageBulletTrail;
+import com.dayton.guns.common.network.message.MessageGunSound;
+import com.dayton.guns.common.network.message.MessageShoot;
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -70,7 +70,7 @@ public class ServerPlayHandler {
      *
      * @param player the player for who's weapon to fire
      */
-    public static void handleShoot(C2SMessageShoot message, ServerPlayer player) {
+    public static void handleShoot(MessageShoot message, ServerPlayer player) {
         if (player.isSpectator())
             return;
 
@@ -123,7 +123,7 @@ public class ServerPlayHandler {
                 }
                 if (!projectileProps.isVisible()) {
                     ParticleOptions data = GunEnchantmentHelper.getParticle(heldItem);
-                    S2CMessageBulletTrail messageBulletTrail = new S2CMessageBulletTrail(spawnedProjectiles, projectileProps, player.getId(), data);
+                    var messageBulletTrail = new MessageBulletTrail(spawnedProjectiles, projectileProps, player.getId(), data);
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), Config.COMMON.network.projectileTrackingRange.get(), player.level.dimension())), messageBulletTrail);
                 }
 
@@ -156,7 +156,7 @@ public class ServerPlayHandler {
                     float pitch = 0.9F + world.random.nextFloat() * 0.2F;
                     double radius = GunModifierHelper.getModifiedFireSoundRadius(heldItem, Config.SERVER.gunShotMaxDistance.get());
                     boolean muzzle = modifiedGun.getDisplay().getFlash() != null;
-                    S2CMessageGunSound messageSound = new S2CMessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, player.getId(), muzzle, false);
+                    var messageSound = new MessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, player.getId(), muzzle, false);
                     PacketDistributor.TargetPoint targetPoint = new PacketDistributor.TargetPoint(posX, posY, posZ, radius, player.level.dimension());
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> targetPoint), messageSound);
                 }

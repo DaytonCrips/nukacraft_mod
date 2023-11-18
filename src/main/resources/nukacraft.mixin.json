@@ -22,6 +22,7 @@
     "client.ItemRendererMixin",
     "client.LevelRendererMixin",
     "client.MinecraftMixin",
+    "client.MinecraftStaticMixin",
     "client.MouseHandlerMixin",
     "client.PlayerItemInHandLayerMixin",
     "client.PlayerModelMixin",

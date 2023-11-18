@@ -1,6 +1,7 @@
 package com.dayton.guns.common.foundation.item;
 
 import com.dayton.guns.client.handler.ReloadHandler;
+import com.dayton.guns.client.handler.ShootingHandler;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
@@ -78,7 +79,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
                     return PlayState.STOP;
                 }
 
-                float cooldown = getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
+                float cooldown = ShootingHandler.getShootTickGapLeft(); // getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
                 float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
 
                 RawAnimation animation;
