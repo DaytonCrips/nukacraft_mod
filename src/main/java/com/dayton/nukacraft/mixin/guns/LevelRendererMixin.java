@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.mixin.client;
+package com.dayton.nukacraft.mixin.guns;
 
 import com.dayton.guns.client.handler.BulletTrailRenderingHandler;
 import com.mojang.blaze3d.vertex.PoseStack;

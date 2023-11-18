@@ -40,7 +40,6 @@ import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
 
@@ -60,7 +59,7 @@ public class ClientHandler {
         MinecraftForge.EVENT_BUS.register(ReloadHandler.get());
         MinecraftForge.EVENT_BUS.register(ShootingHandler.get());
         MinecraftForge.EVENT_BUS.register(SoundHandler.get());
-        MinecraftForge.EVENT_BUS.register(new PlayerModelHandler());
+        MinecraftForge.EVENT_BUS.register(new EntityModelHandler());
 
         /* Only register controller events if Controllable is loaded otherwise it will crash */
         if (GunMod.controllableLoaded) {

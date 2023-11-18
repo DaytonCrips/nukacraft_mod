@@ -1,11 +1,12 @@
 package com.dayton.guns.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,30 +17,30 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  */
 public interface IHeldAnimation {
     /**
-     * Allows for modifications of the player model. This is where arms should be aligned to hold
+     * Allows for modifications of the entity model. This is where arms should be aligned to hold
      * the weapon correctly. This also gives you access to the current aiming progress.
      *
-     * @param model       an get of the player model
      * @param head
      * @param hand        the hand which is currently being used
      * @param aimProgress the current animation progress of looking down the weapons sight
      */
     @OnlyIn(Dist.CLIENT)
-    default void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+    default void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head,
+                                            InteractionHand hand, float aimProgress) {
     }
 
     /**
-     * Allows for transformations of the player model. This is where the entire player model can
+     * Allows for transformations of the entity model. This is where the entire entity model can
      * be rotated and translated to suit the current weapon.
      *
-     * @param player      the player holding the weapon
+     * @param entity      the entity holding the weapon
      * @param hand        the hand which is currently being used
      * @param aimProgress the current animation progress of looking down the weapons sight
      * @param poseStack   the current matrix stack
      * @param buffer      a render type buffer get
      */
     @OnlyIn(Dist.CLIENT)
-    default void applyPlayerPreRender(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    default void applyEntityPreRender(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
     }
 
     /**
@@ -52,7 +53,7 @@ public interface IHeldAnimation {
      * @param buffer      a render type buffer get
      */
     @OnlyIn(Dist.CLIENT)
-    default void applyHeldItemTransforms(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    default void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
     }
 
     /**
@@ -68,12 +69,12 @@ public interface IHeldAnimation {
     }
 
     /**
-     * @param player
+     * @param entity
      * @param model
      * @param stack
      * @param partialTicks
      */
-    default boolean applyOffhandTransforms(Player player, PlayerModel model, ItemStack stack, PoseStack poseStack, float partialTicks) {
+    default boolean applyOffhandTransforms(LivingEntity entity, HumanoidModel<LivingEntity> model, ItemStack stack, PoseStack poseStack, float partialTicks) {
         return false;
     }
 

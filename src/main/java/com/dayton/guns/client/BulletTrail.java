@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -65,10 +64,10 @@ public class BulletTrail {
         }
 
         Entity shooter = this.getShooter();
-        if (shooter instanceof Player && ((Player) shooter).isLocalPlayer()) {
+//        if (shooter instanceof Player && ((Player) shooter).isLocalPlayer()) {
             Level world = shooter.level;
             world.addAlwaysVisibleParticle(this.particleData, true, this.position.x(), this.position.y(), this.position.z(), this.motion.x, this.motion.y, this.motion.z);
-        }
+//        }
 
         Entity entity = Minecraft.getInstance().getCameraEntity();
         double distance = entity != null ? Math.sqrt(entity.distanceToSqr(this.position)) : Double.MAX_VALUE;

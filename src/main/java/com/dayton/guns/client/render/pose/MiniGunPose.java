@@ -5,12 +5,12 @@ import com.dayton.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -46,7 +46,7 @@ public class MiniGunPose extends WeaponPose {
     }
 
     @Override
-    public void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+    public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
             ModelPart mainArm = right ? rightArm : leftArm;
@@ -58,37 +58,37 @@ public class MiniGunPose extends WeaponPose {
             secondaryArm.yRot = (float) Math.toRadians(30F) * (right ? 1F : -1F);
             secondaryArm.zRot = (float) Math.toRadians(0F);
         } else {
-            super.applyPlayerModelRotation(player, rightArm, leftArm, head, hand, aimProgress);
+            super.applyHumanoidModelRotation(entity, rightArm, leftArm, head, hand, aimProgress);
         }
     }
 
     @Override
-    public void applyPlayerPreRender(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    public void applyEntityPreRender(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
-            player.yBodyRotO = player.yRotO + 45F * (right ? 1F : -1F);
-            player.yBodyRot = player.getYRot() + 45F * (right ? 1F : -1F);
+            entity.yBodyRotO = entity.yRotO + 45F * (right ? 1F : -1F);
+            entity.yBodyRot = entity.getYRot() + 45F * (right ? 1F : -1F);
         } else {
-            super.applyPlayerPreRender(player, hand, aimProgress, poseStack, buffer);
+            super.applyEntityPreRender(entity, hand, aimProgress, poseStack, buffer);
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyHeldItemTransforms(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             if (hand == InteractionHand.OFF_HAND) {
                 poseStack.translate(0, -10 * 0.0625F, 0);
                 poseStack.translate(0, 0, -2 * 0.0625F);
             }
         } else {
-            super.applyHeldItemTransforms(player, hand, aimProgress, poseStack, buffer);
+            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
         }
     }
 
     @Override
-    public boolean applyOffhandTransforms(Player player, PlayerModel model, ItemStack stack, PoseStack poseStack, float partialTicks) {
-        return GripType.applyBackTransforms(player, poseStack);
+    public boolean applyOffhandTransforms(LivingEntity entity, HumanoidModel<LivingEntity> model, ItemStack stack, PoseStack poseStack, float partialTicks) {
+        return GripType.applyBackTransforms(entity, poseStack);
     }
 
     @Override

@@ -18,6 +18,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -84,14 +85,15 @@ public class AimingHandler {
         return this.aimingMap.get(player);
     }
 
-    public float getAimProgress(Player player, float partialTicks) {
-        if (player.isLocalPlayer()) {
-            return (float) this.localTracker.getNormalProgress(partialTicks);
-        }
+    public float getAimProgress(LivingEntity entity, float partialTicks) {
+        if(entity instanceof Player player) {
+            if (player.isLocalPlayer())
+                return (float) this.localTracker.getNormalProgress(partialTicks);
 
-        AimTracker tracker = this.getAimTracker(player);
-        if (tracker != null) {
-            return (float) tracker.getNormalProgress(partialTicks);
+            var tracker = this.getAimTracker(player);
+
+            if (tracker != null)
+                return (float) tracker.getNormalProgress(partialTicks);
         }
         return 0F;
     }

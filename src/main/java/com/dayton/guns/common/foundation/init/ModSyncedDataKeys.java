@@ -6,6 +6,7 @@ import com.mrcrayfish.framework.api.data.sync.Serializers;
 import com.mrcrayfish.framework.api.data.sync.SyncedClassKey;
 import com.mrcrayfish.framework.api.data.sync.SyncedDataKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 /**
@@ -18,7 +19,7 @@ public class ModSyncedDataKeys {
             .resetOnDeath()
             .build();
 
-    public static final SyncedDataKey<Player, Boolean> SHOOTING = SyncedDataKey.builder(SyncedClassKey.PLAYER, Serializers.BOOLEAN)
+    public static final SyncedDataKey<LivingEntity, Boolean> SHOOTING = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
             .id(new ResourceLocation(NukaCraftMod.MOD_ID, "shooting"))
             .defaultValueSupplier(() -> false)
             .resetOnDeath()

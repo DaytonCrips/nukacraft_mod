@@ -58,20 +58,20 @@ public class ModelOverrides {
         return MODEL_MAP.get(stack.getItem());
     }
 
-    @SubscribeEvent
-    public static void onClientPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START && event.side == LogicalSide.CLIENT) {
-            tick(event.player);
-        }
-    }
+//    @SubscribeEvent
+//    public static void onClientPlayerTick(TickEvent.PlayerTickEvent event) {
+//        if (event.phase == TickEvent.Phase.START && event.side == LogicalSide.CLIENT) {
+//            tick(event.player);
+//        }
+//    }
 
-    private static void tick(Player player) {
-        ItemStack heldItem = player.getMainHandItem();
-        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
-            IOverrideModel model = ModelOverrides.getModel(heldItem);
-            if (model != null) {
-                model.tick(player);
-            }
-        }
-    }
+//    private static void tick(Player player) {
+//        ItemStack heldItem = player.getMainHandItem();
+//        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
+//            IOverrideModel model = ModelOverrides.getModel(heldItem);
+//            if (model != null) {
+//                model.tick(player);
+//            }
+//        }
+//    }
 }

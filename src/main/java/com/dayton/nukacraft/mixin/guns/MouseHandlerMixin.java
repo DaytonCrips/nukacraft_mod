@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.mixin.client;
+package com.dayton.nukacraft.mixin.guns;
 
 import com.dayton.guns.Config;
 import com.dayton.guns.client.handler.AimingHandler;

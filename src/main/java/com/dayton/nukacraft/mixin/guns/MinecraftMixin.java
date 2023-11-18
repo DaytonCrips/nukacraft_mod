@@ -1,4 +1,4 @@
-package com.dayton.nukacraft.mixin.client;
+package com.dayton.nukacraft.mixin.guns;
 
 import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;

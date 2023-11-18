@@ -2,18 +2,17 @@ package com.dayton.guns.client.handler;
 
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.item.GunItem;
-import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
  * Author: MrCrayfish
  */
-public class PlayerModelHandler {
+public class EntityModelHandler {
     /*@SubscribeEvent
     public void onRenderPlayer(PlayerModelEvent.Render.Post event)
     {
@@ -34,26 +33,31 @@ public class PlayerModelHandler {
     }*/
 
     @SubscribeEvent
-    public void onRenderPlayer(RenderPlayerEvent.Pre event) {
-        Player player = event.getPlayer();
-        ItemStack heldItem = player.getMainHandItem();
+    public void onRenderPlayer(RenderLivingEvent.Pre<LivingEntity, HumanoidModel<LivingEntity>> event) {
+        var entity = event.getEntity();
+        var heldItem = entity.getMainHandItem();
         if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
             Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
-            gun.getGeneral().getGripType().getHeldAnimation().applyPlayerPreRender(player, InteractionHand.MAIN_HAND, AimingHandler.get().getAimProgress((Player) event.getEntity(), event.getPartialTick()), event.getPoseStack(), event.getMultiBufferSource());
+            gun.getGeneral().getGripType().getHeldAnimation().applyEntityPreRender(entity, InteractionHand.MAIN_HAND,
+                    AimingHandler.get().getAimProgress(event.getEntity(), event.getPartialTick()),
+                    event.getPoseStack(), event.getMultiBufferSource());
         }
     }
 
     @SubscribeEvent
-    public void onRenderPlayer(RenderPlayerEvent.Post event) {
+    public void onRenderPlayer(RenderLivingEvent.Post<LivingEntity, HumanoidModel<LivingEntity>> event) {
         /* Makes sure the model part positions reset back to original definitions */
-        PlayerModel<AbstractClientPlayer> model = event.getRenderer().getModel();
-        boolean slim = ((AbstractClientPlayer) event.getPlayer()).getModelName().equals("slim");
+        var model = event.getRenderer().getModel();
+        boolean slim = event.getEntity() instanceof AbstractClientPlayer player
+                && player.getModelName().equals("slim");
         model.rightArm.x = -5.0F;
         model.rightArm.y = slim ? 2.5F : 2.0F;
         model.rightArm.z = 0.0F;
         model.leftArm.x = 5.0F;
         model.leftArm.y = slim ? 2.5F : 2.0F;
         model.leftArm.z = 0.0F;
+
+
         /*model.head.x = 5.0F;
         model.leftArm.y = slim ? 2.5F : 2.0F;
         model.leftArm.z = 0.0F;*/

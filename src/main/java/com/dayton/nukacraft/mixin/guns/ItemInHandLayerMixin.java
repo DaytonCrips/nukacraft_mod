@@ -1,5 +1,4 @@
-package com.dayton.nukacraft.mixin.client;
-
+package com.dayton.nukacraft.mixin.guns;
 
 import com.dayton.guns.client.handler.AimingHandler;
 import com.dayton.guns.client.handler.GunRenderingHandler;
@@ -10,7 +9,7 @@ import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
-import net.minecraft.client.renderer.entity.layers.PlayerItemInHandLayer;
+import net.minecraft.client.renderer.entity.layers.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,12 +23,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Author: MrCrayfish
  */
-@Mixin(PlayerItemInHandLayer.class)
-public class PlayerItemInHandLayerMixin {
+@Mixin(ItemInHandLayer.class)
+public class ItemInHandLayerMixin {
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
-    private void renderArmWithItemHead(LivingEntity entity, ItemStack stack, ItemTransforms.TransformType transformType, HumanoidArm arm, PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
-        InteractionHand hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+    private void renderArmWithItemHead(LivingEntity entity, ItemStack stack,
+                                       ItemTransforms.TransformType transformType, HumanoidArm arm,
+                                       PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
+        var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
         if (hand == InteractionHand.OFF_HAND) {
             if (stack.getItem() instanceof GunItem) {
                 ci.cancel();
@@ -47,13 +48,13 @@ public class PlayerItemInHandLayerMixin {
 
         if (stack.getItem() instanceof GunItem gunItem) {
             ci.cancel();
-            PlayerItemInHandLayer<?, ?> layer = (PlayerItemInHandLayer<?, ?>) (Object) this;
-            renderArmWithGun(layer, (Player) entity, stack, gunItem, transformType, hand, arm,
+            ItemInHandLayer<?, ?> layer = (ItemInHandLayer<?, ?>) (Object) this;
+            renderArmWithGun(layer, entity, stack, gunItem, transformType, hand, arm,
                     poseStack, source, light, Minecraft.getInstance().getFrameTime());
         }
     }
 
-    private static void renderArmWithGun(PlayerItemInHandLayer<?, ?> layer, Player player, ItemStack stack,
+    private static void renderArmWithGun(ItemInHandLayer<?, ?> layer, LivingEntity entity, ItemStack stack,
                                          GunItem item, ItemTransforms.TransformType transformType,
                                          InteractionHand hand, HumanoidArm arm, PoseStack poseStack,
                                          MultiBufferSource source, int light, float deltaTicks) {
@@ -64,9 +65,12 @@ public class PlayerItemInHandLayerMixin {
         poseStack.translate(((arm == HumanoidArm.LEFT ? 3 : -3) / 16F), 0, -0.625);/*0.125, -0.625*/
         GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
         Gun gun = item.getModifiedGun(stack);
-        gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(player, hand,
-                AimingHandler.get().getAimProgress(player, deltaTicks), poseStack, source);
-        GunRenderingHandler.get().renderWeapon(player, stack, transformType, poseStack, source, light, deltaTicks);
+
+//        if(entity instanceof Player player) {
+            gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(entity, hand,
+                    /*AimingHandler.get().getAimProgress(entity, deltaTicks)*/ 0, poseStack, source);
+//        }
+        GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
         poseStack.popPose();
     }
 }

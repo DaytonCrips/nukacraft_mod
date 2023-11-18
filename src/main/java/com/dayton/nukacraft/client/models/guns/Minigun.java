@@ -23,15 +23,15 @@ public class Minigun implements IOverrideModel {
     private final WeakHashMap<LivingEntity, Rotations> rotationMap = new WeakHashMap<>();
 
     @Override
-    public void tick(Player player)
+    public void tick(LivingEntity entity)
     {
-        this.rotationMap.putIfAbsent(player, new Rotations());
-        Rotations rotations = this.rotationMap.get(player);
+        this.rotationMap.putIfAbsent(entity, new Rotations());
+        Rotations rotations = this.rotationMap.get(entity);
         rotations.prevRotation = rotations.rotation;
 
-        boolean shooting = ModSyncedDataKeys.SHOOTING.getValue(player);
-        ItemStack heldItem = player.getMainHandItem();
-        if(!Gun.hasAmmo(heldItem) && !player.isCreative()) {
+        boolean shooting = ModSyncedDataKeys.SHOOTING.getValue(entity);
+        ItemStack heldItem = entity.getMainHandItem();
+        if(!Gun.hasAmmo(heldItem) && entity instanceof Player player && !player.isCreative()) {
             shooting = false;
         }
 

@@ -21,9 +21,9 @@ public class EndPortalBlockMixin {
     @Inject(method = "entityInside", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;changeDimension(Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;"))
     private void beforeChangeDimension(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, CallbackInfo ci) {
         if (worldIn.dimension() == Level.END && entityIn instanceof ItemEntity) {
-            ItemStack stack = ((ItemEntity) entityIn).getItem();
+            var stack = ((ItemEntity) entityIn).getItem();
             if (stack.getItem() instanceof GunItem) {
-                ItemStack gun = stack.copy();
+                var gun = stack.copy();
                 gun.getOrCreateTag().putFloat("Scale", 2.0F);
                 ((ItemEntity) entityIn).setItem(gun);
             }

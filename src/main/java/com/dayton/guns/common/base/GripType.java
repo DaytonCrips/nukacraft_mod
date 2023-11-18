@@ -10,7 +10,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Items;
 
 import java.util.HashMap;
@@ -42,28 +42,28 @@ public class GripType {
     public static final GripType BAZOOKA = new GripType(new ResourceLocation(NukaCraftMod.MOD_ID, "bazooka"), new BazookaPose());
 
     /**
-     * A common method to set up a transformation of the weapon onto the players' back.
+     * A common method to set up a transformation of the weapon onto the entities' back.
      *
-     * @param player    the player the weapon is being rendered on
+     * @param entity    the entity the weapon is being rendered on
      * @param poseStack the matrixstack get
      * @return if the weapon can render
      */
-    public static boolean applyBackTransforms(Player player, PoseStack poseStack) {
-        if (player.getItemBySlot(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
+    public static boolean applyBackTransforms(LivingEntity entity, PoseStack poseStack) {
+        if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == Items.ELYTRA) {
             return false;
         }
 
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(180F));
 
-        if (player.isCrouching()) {
+        if (entity.isCrouching()) {
             poseStack.translate(0 * 0.0625, -7 * 0.0625, -4 * 0.0625);
             poseStack.mulPose(Vector3f.XP.rotationDegrees(30F));
         } else {
             poseStack.translate(0 * 0.0625, -5 * 0.0625, -2 * 0.0625);
         }
 
-        if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
+        if (!entity.getItemBySlot(EquipmentSlot.CHEST).isEmpty()) {
             poseStack.translate(0, 0, -1 * 0.0625);
         }
 

@@ -5,14 +5,14 @@ import com.dayton.guns.client.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -25,13 +25,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class OneHandedPose implements IHeldAnimation {
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+    public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
         boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
         ModelPart arm = right ? rightArm : leftArm;
         IHeldAnimation.copyModelAngles(head, arm);
         arm.xRot += (float) Math.toRadians(-70F);
 
-        if (player.getUseItem().getItem() == Items.SHIELD) {
+        if (entity.getUseItem().getItem() == Items.SHIELD) {
             arm.xRot = (float) Math.toRadians(-30F);
         }
     }
@@ -60,13 +60,13 @@ public class OneHandedPose implements IHeldAnimation {
     }
 
     @Override
-    public boolean applyOffhandTransforms(Player player, PlayerModel model, ItemStack stack, PoseStack poseStack, float partialTicks) {
+    public boolean applyOffhandTransforms(LivingEntity entity, HumanoidModel<LivingEntity> model, ItemStack stack, PoseStack poseStack, float partialTicks) {
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(180F));
 
-        if (player.isCrouching()) {
+        if (entity.isCrouching()) {
             poseStack.translate(-4.5 * 0.0625, -15 * 0.0625, -4 * 0.0625);
-        } else if (!player.getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
+        } else if (!entity.getItemBySlot(EquipmentSlot.LEGS).isEmpty()) {
             poseStack.translate(-4.0 * 0.0625, -13 * 0.0625, 1 * 0.0625);
         } else {
             poseStack.translate(-3.5 * 0.0625, -13 * 0.0625, 1 * 0.0625);

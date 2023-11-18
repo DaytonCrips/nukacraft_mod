@@ -7,13 +7,15 @@ import com.dayton.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -49,7 +51,7 @@ public class TwoHandedPose extends WeaponPose {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyPlayerModelRotation(Player player, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+    public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             Minecraft mc = Minecraft.getInstance();
             boolean right = mc.options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
@@ -66,30 +68,31 @@ public class TwoHandedPose extends WeaponPose {
             secondaryArm.xRot = (float) Math.toRadians(-42F + aimProgress * -48F);
             secondaryArm.yRot = (float) Math.toRadians((-15F + aimProgress * 5F) * (right ? 1F : -1F));
         } else {
-            super.applyPlayerModelRotation(player, rightArm, leftArm, head, hand, aimProgress);
-            float angle = this.getPlayerPitch(player);
+            super.applyHumanoidModelRotation(entity, rightArm, leftArm, head, hand, aimProgress);
+            float angle = this.getEntityPitch(entity);
             head.xRot = (float) Math.toRadians(angle > 0.0 ? angle * 70F : angle * 90F);
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyPlayerPreRender(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    public void applyEntityPreRender(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
-            player.yBodyRotO = player.yRotO + (right ? 25F : -25F) + aimProgress * (right ? 20F : -20F);
-            player.yBodyRot = player.getYRot() + (right ? 25F : -25F) + aimProgress * (right ? 20F : -20F);
+            entity.yBodyRotO = entity.yRotO + (right ? 25F : -25F) + aimProgress * (right ? 20F : -20F);
+            entity.yBodyRot = entity.getYRot() + (right ? 25F : -25F) + aimProgress * (right ? 20F : -20F);
         } else {
-            super.applyPlayerPreRender(player, hand, aimProgress, poseStack, buffer);
+            super.applyEntityPreRender(entity, hand, aimProgress, poseStack, buffer);
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyHeldItemTransforms(Player player, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+    public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         if (Config.CLIENT.display.oldAnimations.get()) {
             if (hand == InteractionHand.MAIN_HAND) {
-                boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+                boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+                        hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
                 poseStack.translate(0, 0, 0.05);
                 float invertRealProgress = 1.0F - aimProgress;
                 poseStack.mulPose(Vector3f.ZP.rotationDegrees((25F * invertRealProgress) * (right ? 1F : -1F)));
@@ -97,7 +100,7 @@ public class TwoHandedPose extends WeaponPose {
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(25F * invertRealProgress + aimProgress * 5F));
             }
         } else {
-            super.applyHeldItemTransforms(player, hand, aimProgress, poseStack, buffer);
+            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
         }
     }
 
@@ -148,7 +151,7 @@ public class TwoHandedPose extends WeaponPose {
     }
 
     @Override
-    public boolean applyOffhandTransforms(Player player, PlayerModel model, ItemStack stack, PoseStack poseStack, float partialTicks) {
-        return GripType.applyBackTransforms(player, poseStack);
+    public boolean applyOffhandTransforms(LivingEntity entity, HumanoidModel<LivingEntity> model, ItemStack stack, PoseStack poseStack, float partialTicks) {
+        return GripType.applyBackTransforms(entity, poseStack);
     }
 }
