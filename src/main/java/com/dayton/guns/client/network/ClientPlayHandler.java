@@ -36,7 +36,7 @@ import java.util.Random;
  * Author: MrCrayfish
  */
 public class ClientPlayHandler {
-    public static void handleMessageGunSound(S2CMessageGunSound message) {
+    public static void handleMessageGunSound(MessageGunSound message) {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null)
             return;
@@ -64,7 +64,7 @@ public class ClientPlayHandler {
         }
     }
 
-    public static void handleMessageBulletTrail(S2CMessageBulletTrail message) {
+    public static void handleMessageBulletTrail(MessageBulletTrail message) {
         Level world = Minecraft.getInstance().level;
         if (world != null) {
             int[] entityIds = message.getEntityIds();

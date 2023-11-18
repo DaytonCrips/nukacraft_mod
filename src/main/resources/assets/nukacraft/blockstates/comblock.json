@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/comblock",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nukacraft:block/comblock"
+    },
+    "facing=south": {
+      "model": "nukacraft:block/comblock",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nukacraft:block/comblock",
+      "y": 270
+    }
+  }
+}

@@ -14,8 +14,6 @@ public class ModScreensClass {
     @SubscribeEvent
     public static void clientLoad(FMLClientSetupEvent event) {
         GuiRegistry.register();
-        event.enqueueWork(() -> {
-            MenuScreens.register(ModMenuClass.PIPBOY, PipBoyScreen::new);
-        });
+        event.enqueueWork(() -> MenuScreens.register(ModMenuClass.PIPBOY, PipBoyScreen::new));
     }
 }

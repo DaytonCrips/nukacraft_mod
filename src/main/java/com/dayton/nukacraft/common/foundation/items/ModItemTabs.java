@@ -26,7 +26,7 @@ public class ModItemTabs {
         }
     };
 
-    public static final CreativeModeTab NUKA_EQUIP = new CreativeModeTab("nuka_equip") {
+    public static final CreativeModeTab NUKA_WEAPONS = new CreativeModeTab("nuka_equip") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ModGuns.ROUND10MM.get());

@@ -46,6 +46,7 @@ import static com.dayton.guns.client.ClientHandler.createEditorScreen;
 public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
     protected General general = new General();
     protected Projectile projectile = new Projectile();
+//    private Reloads reloads = new Reloads();
     protected Sounds sounds = new Sounds();
     protected Display display = new Display();
     protected Modules modules = new Modules();
@@ -57,6 +58,11 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
     public Projectile getProjectile() {
         return this.projectile;
     }
+
+//    public Reloads getReloads()
+//    {
+//        return this.reloads;
+//    }
 
     public Sounds getSounds() {
         return this.sounds;

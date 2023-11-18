@@ -40,6 +40,9 @@
     "nukacraft:moss_whitebricks",
     "nukacraft:steel_bars",
     "nukacraft:rustdoor",
-    "nukacraft:rreddoor"
+    "nukacraft:rreddoor",
+    "nukacraft:comblock",
+    "nukacraft:radioterminal",
+    "nukacraft:shelter_bars"
   ]
 }

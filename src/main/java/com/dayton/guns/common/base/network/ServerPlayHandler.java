@@ -20,9 +20,9 @@ import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.IColored;
 import com.dayton.guns.common.network.PacketHandler;
-import com.dayton.guns.common.network.message.C2SMessageShoot;
-import com.dayton.guns.common.network.message.S2CMessageBulletTrail;
-import com.dayton.guns.common.network.message.S2CMessageGunSound;
+import com.dayton.guns.common.network.message.MessageBulletTrail;
+import com.dayton.guns.common.network.message.MessageGunSound;
+import com.dayton.guns.common.network.message.MessageShoot;
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -55,6 +55,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Predicate;
 
+import static com.dayton.guns.client.handler.ShootingHandler.COOLDOWN;
+import static com.dayton.guns.client.handler.ShootingHandler.gunCooldown;
+
 /**
  * Author: MrCrayfish
  */
@@ -67,7 +70,7 @@ public class ServerPlayHandler {
      *
      * @param player the player for who's weapon to fire
      */
-    public static void handleShoot(C2SMessageShoot message, ServerPlayer player) {
+    public static void handleShoot(MessageShoot message, ServerPlayer player) {
         if (player.isSpectator())
             return;
 
@@ -78,7 +81,12 @@ public class ServerPlayHandler {
         ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
         if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem) || player.isCreative())) {
             Gun modifiedGun = item.getModifiedGun(heldItem);
-            if (modifiedGun != null) {
+
+            var tag =  heldItem.getOrCreateTag();
+            if(!gunCooldown.contains(heldItem))
+                gunCooldown.add(heldItem);
+
+            if (modifiedGun != null && tag.getInt(COOLDOWN) == 0) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
                     return;
 
@@ -115,7 +123,7 @@ public class ServerPlayHandler {
                 }
                 if (!projectileProps.isVisible()) {
                     ParticleOptions data = GunEnchantmentHelper.getParticle(heldItem);
-                    S2CMessageBulletTrail messageBulletTrail = new S2CMessageBulletTrail(spawnedProjectiles, projectileProps, player.getId(), data);
+                    var messageBulletTrail = new MessageBulletTrail(spawnedProjectiles, projectileProps, player.getId(), data);
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), Config.COMMON.network.projectileTrackingRange.get(), player.level.dimension())), messageBulletTrail);
                 }
 
@@ -148,13 +156,13 @@ public class ServerPlayHandler {
                     float pitch = 0.9F + world.random.nextFloat() * 0.2F;
                     double radius = GunModifierHelper.getModifiedFireSoundRadius(heldItem, Config.SERVER.gunShotMaxDistance.get());
                     boolean muzzle = modifiedGun.getDisplay().getFlash() != null;
-                    S2CMessageGunSound messageSound = new S2CMessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, player.getId(), muzzle, false);
+                    var messageSound = new MessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, player.getId(), muzzle, false);
                     PacketDistributor.TargetPoint targetPoint = new PacketDistributor.TargetPoint(posX, posY, posZ, radius, player.level.dimension());
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> targetPoint), messageSound);
                 }
 
                 if (!player.isCreative()) {
-                    CompoundTag tag = heldItem.getOrCreateTag();
+                    tag = heldItem.getOrCreateTag();
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);
                         if (level == 0 || player.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
@@ -162,6 +170,10 @@ public class ServerPlayHandler {
                         }
                     }
                 }
+
+                int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
+                rate = GunModifierHelper.getModifiedRate(heldItem, rate);
+                tag.putInt(COOLDOWN, rate);
 
                 player.awardStat(Stats.ITEM_USED.get(item));
             }

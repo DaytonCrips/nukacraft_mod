@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:ice_spikes": 1,
+      "nukacraft:ice_spikes2": 1
+    }
+  }
+}

@@ -62,7 +62,7 @@ public class PipBoy {
     }
 
     public static void start(ItemStack stack, String skin) {
-        pipboy_name = new ResourceLocation("nukacraft:textures/screens/" + skin + ".png");
+        pipboy_name = new ResourceLocation("nukacraft:textures/screens/" + skin + "_pipboy.png");
         switch (stack.getOrCreateTag().getString("screen")) {
             case "white" -> {
                 bred = 1;

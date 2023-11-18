@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:jungle": 1,
+      "nukacraft:jungle2": 1
+    }
+  }
+}

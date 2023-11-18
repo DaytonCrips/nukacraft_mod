@@ -64,23 +64,4 @@ public class ACMath {
 
         return Mth.wrapDegrees(current + f);
     }
-
-//    public static Vec3 getGroundBelowPosition(BlockGetter level, Vec3 in) {
-//        BlockPos pos = BlockPos.containing(in);
-//        while (pos.getY() > level.getMinBuildHeight() && level.getBlockState(pos).getCollisionShape(level, pos).isEmpty()) {
-//            pos = pos.below();
-//        }
-//        float top;
-//        BlockState state = level.getBlockState(pos);
-//        VoxelShape shape = state.getCollisionShape(level, pos);
-//        if (shape.isEmpty()) {
-//            top = 0.0F;
-//        } else {
-//            Optional<Vec3> closest = shape.closestPointTo(in);
-//            top = closest.isPresent() ? (float) closest.get().y : 0.0F;
-//        }
-//
-//        return Vec3.upFromBottomCenterOf(pos, top);
-//    }
-
 }

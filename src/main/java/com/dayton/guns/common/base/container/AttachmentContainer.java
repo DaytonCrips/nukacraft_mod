@@ -3,7 +3,9 @@ package com.dayton.guns.common.base.container;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.base.container.slot.AttachmentSlot;
 import com.dayton.guns.common.foundation.init.ModContainers;
+import com.dayton.guns.common.foundation.item.AttachmentItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
+import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -80,16 +82,20 @@ public class AttachmentContainer extends AbstractContainerMenu {
 
     @Override
     public void slotsChanged(Container inventoryIn) {
-        CompoundTag attachments = new CompoundTag();
+        var attachments = new CompoundTag();
 
         for (int i = 0; i < this.getWeaponInventory().getContainerSize(); i++) {
-            ItemStack attachment = this.getSlot(i).getItem();
-            if (attachment.getItem() instanceof IAttachment) {
-                attachments.put(((IAttachment) attachment.getItem()).getType().getTagKey(), attachment.save(new CompoundTag()));
+            var itemStack = this.getSlot(i).getItem();
+            if (itemStack.getItem() instanceof IAttachment attachment
+                    && itemStack.getItem() instanceof AttachmentItem attachmentItem) {
+                var tagKey = attachment.getType().getTagKey();
+                attachments.put(tagKey, itemStack.save(new CompoundTag()));
+//                //Jetug
+//                StackUtils.setAttachment(itemStack, tagKey, attachmentItem.getName());
             }
         }
 
-        CompoundTag tag = this.weapon.getOrCreateTag();
+        var tag = this.weapon.getOrCreateTag();
         tag.put("Attachments", attachments);
         super.broadcastChanges();
     }

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:hills": 3,
+      "nukacraft:hills_bushes": 1
+    }
+  }
+}

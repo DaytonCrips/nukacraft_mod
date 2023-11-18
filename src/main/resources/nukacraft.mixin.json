@@ -3,18 +3,33 @@
   "package": "com.dayton.nukacraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "common.DebugMixin",
     "common.EndPortalBlockMixin",
     "common.LivingEntityMixin",
-    "common.SittingPhaseMixin"
+    "common.SittingPhaseMixin",
+    "map.MixinCartographyTableScreenHandler",
+    "map.MixinCraftingResultSlot",
+    "map.MixinEntity",
+    "map.MixinPlayerEntity",
+    "map.MixinPlayerEntityDeath",
+    "map.MixinPlayerManager",
+    "map.structure.StructureStartMixin"
   ],
   "client": [
-    "client.GuiMixin",
     "client.GameRendererMixin",
+    "client.GuiMixin",
+    "client.ItemInHandRendererMixin",
+    "client.ItemRendererMixin",
     "client.LevelRendererMixin",
     "client.MinecraftMixin",
+    "client.MinecraftStaticMixin",
     "client.MouseHandlerMixin",
     "client.PlayerItemInHandLayerMixin",
-    "client.PlayerModelMixin"
+    "client.PlayerModelMixin",
+    "map.HeldItemRendererMixin",
+    "map.MixinClientPlayNetworkHandler",
+    "map.MixinInGameHud",
+    "map.MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1

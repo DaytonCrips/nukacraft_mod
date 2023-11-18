@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:forest": 1,
+      "nukacraft:forest2": 1,
+      "nukacraft:forest3": 1
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:pines_hills": 1,
+      "nukacraft:pines_hills2": 1,
+      "nukacraft:pines_hills3": 1
+    }
+  }
+}

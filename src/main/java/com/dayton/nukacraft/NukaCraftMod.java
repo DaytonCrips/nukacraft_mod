@@ -29,6 +29,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
+import static com.dayton.map.impl.atlas.AntiqueAtlasMod.*;
+
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 @Mod(NukaCraftMod.MOD_ID)
@@ -44,6 +46,7 @@ public class NukaCraftMod {
         MOD_EVENT_BUS.addListener(this::setup);
 
         new GunMod().initGunMod(MOD_EVENT_BUS);
+        initMap();
 
         ModItems.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);

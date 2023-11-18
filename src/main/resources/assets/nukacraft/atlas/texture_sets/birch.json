@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:birch": 1,
+      "nukacraft:birch2": 1
+    }
+  }
+}

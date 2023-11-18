@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:sand": 2,
+      "nukacraft:sand2": 2,
+      "nukacraft:sand3": 2,
+      "nukacraft:sand_bushes": 2,
+      "nukacraft:cacti": 1
+    },
+    "stitch": {
+      "nukacraft:mesa": "both",
+      "nukacraft:bryce": "both"
+    }
+  }
+}

@@ -8,16 +8,9 @@ import com.dayton.guns.common.data.util.GunEnchantmentHelper;
 import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.debug.Debug;
 import com.dayton.guns.common.foundation.enchantment.EnchantmentTypes;
-import com.dayton.nukacraft.client.render.renderers.GunRenderer;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
-import mod.azure.azurelib.animatable.GeoEntity;
-import mod.azure.azurelib.constant.DataTickets;
-import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.AnimationController.AnimationStateHandler;
-import mod.azure.azurelib.core.object.PlayState;
-import mod.azure.azurelib.util.AzureLibUtil;
+import com.jetug.chassis_core.common.foundation.item.CustomizableItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
@@ -41,17 +34,13 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static com.dayton.nukacraft.client.ClientConfig.gunRenderer;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
-import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
-import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResourceProvider {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+public class GunItem extends CustomizableItem implements IColored, IMeta, IResourceProvider {
+//    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
 
@@ -69,6 +58,7 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         return this.gun;
     }
 
+    @Override
     public String getName() {
         return name.get();
     }
@@ -90,15 +80,15 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flag) {
-        Gun modifiedGun = this.getModifiedGun(stack);
+        var modifiedGun = this.getModifiedGun(stack);
+        var ammo = ForgeRegistries.ITEMS.getValue(modifiedGun.getProjectile().getItem());
 
-        Item ammo = ForgeRegistries.ITEMS.getValue(modifiedGun.getProjectile().getItem());
         if (ammo != null) {
             tooltip.add(new TranslatableComponent("info.nukacraft.ammo_type", new TranslatableComponent(ammo.getDescriptionId()).withStyle(ChatFormatting.WHITE)).withStyle(ChatFormatting.GRAY));
         }
 
-        String additionalDamageText = "";
-        CompoundTag tagCompound = stack.getTag();
+        var additionalDamageText = "";
+        var tagCompound = stack.getTag();
         if (tagCompound != null) {
             if (tagCompound.contains("AdditionalDamage", Tag.TAG_ANY_NUMERIC)) {
                 float additionalDamage = tagCompound.getFloat("AdditionalDamage");
@@ -151,7 +141,6 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         Gun modifiedGun = this.getModifiedGun(stack);
         return (int) (13.0 * (tagCompound.getInt("AmmoCount") / (double) GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)));
     }
-
 
     public Gun getModifiedGun(ItemStack stack) {
         CompoundTag tagCompound = stack.getTag();
@@ -207,7 +196,7 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         return 5;
     }
 
-    private static final Map<ItemStack, String> stackAnimations = new HashMap<>();
+    public static final Map<ItemStack, String> stackAnimations = new HashMap<>();
 
     public static void doAnim(ItemStack stack, String animation) {
         stackAnimations.put(stack, animation);
@@ -217,52 +206,10 @@ public class GunItem extends Item implements IColored, IMeta, GeoEntity, IResour
         stackAnimations.put(stack, null);
     }
 
-    public GunRenderer getRenderer() {
-        return gunRenderer;
-    }
-
-    @Override
-    public void registerControllers(ControllerRegistrar controllerRegistrar) {
-//        var c = new AnimationController<>(this, "controllerName", event -> PlayState.CONTINUE)
-//                .triggerableAnim("animation",
-//                        RawAnimation.begin().then("animation", Animation.LoopType.PLAY_ONCE));
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
-    }
-
     public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
             NONE,
             HEAD,
             GUI,
             GROUND,
             FIXED);
-
-    private AnimationStateHandler<GunItem> animate() {
-        return event -> {
-            var controller = event.getController();
-            controller.setAnimationSpeed(1);
-            var stack = event.getData(DataTickets.ITEMSTACK);
-            var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
-
-            if (bannedTransforms.contains(transformType)) {
-                resetAnim(stack);
-                return PlayState.STOP;
-            }
-
-            var anim = stackAnimations.get(stack);
-            if (anim == null) return PlayState.STOP;
-
-            var animation = begin().then(anim, LOOP);
-
-            if (controller.hasAnimationFinished())
-                controller.forceAnimationReset();
-
-
-            return event.setAndContinue(animation);
-        };
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
-    }
 }

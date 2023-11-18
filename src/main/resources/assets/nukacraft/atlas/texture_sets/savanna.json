@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:savanna": 1,
+      "nukacraft:savanna2": 1,
+      "nukacraft:savanna3": 1,
+      "nukacraft:grass": 1,
+      "nukacraft:grass2": 2,
+      "nukacraft:grass3": 2,
+      "nukacraft:grass4": 2
+    }
+  }
+}

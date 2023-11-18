@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:sunflowers": 1,
+      "nukacraft:sunflowers2": 1,
+      "nukacraft:grass3": 1,
+      "nukacraft:grass4": 1
+    },
+    "stitch": {
+      "nukacraft:plains": "both"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:fence": 1
+    },
+    "stitch": {
+      "nukacraft:house": "both"
+    }
+  }
+}

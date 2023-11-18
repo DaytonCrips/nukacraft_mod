@@ -21,6 +21,8 @@ import java.util.Random;
  */
 public class RecoilHandler {
     private static RecoilHandler instance;
+    public float lastRandPitch = 0f;
+    public float lastRandYaw = 0f;
 
     public static RecoilHandler get() {
         if (instance == null) {
@@ -55,6 +57,8 @@ public class RecoilHandler {
         this.cameraRecoil = modifiedGun.getGeneral().getRecoilAngle() * recoilModifier;
         this.progressCameraRecoil = 0F;
         this.gunRecoilRandom = random.nextFloat();
+        this.lastRandPitch = random.nextFloat();
+        this.lastRandYaw = random.nextFloat();
     }
 
     @SubscribeEvent

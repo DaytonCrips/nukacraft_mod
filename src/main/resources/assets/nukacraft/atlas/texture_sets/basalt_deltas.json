@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:basalt_columns1": 1,
+      "nukacraft:basalt_columns2": 1,
+      "nukacraft:basalt_columns3": 1,
+      "nukacraft:basalt_columns_lava1": 1
+    }
+  }
+}
