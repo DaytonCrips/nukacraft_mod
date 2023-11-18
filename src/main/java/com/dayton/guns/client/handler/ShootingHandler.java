@@ -157,10 +157,10 @@ public class ShootingHandler {
 
             ItemStack heldItem = player.getMainHandItem();
             if (heldItem.getItem() instanceof GunItem && (Gun.hasAmmo(heldItem) || player.isCreative())) {
-                final float dist = Math.abs(player.zza) / 2.5F
-                        + Math.abs(player.xxa) / 1.25F
-                        + (player.getDeltaMovement().y > 0D ? 0.5F : 0F);
-                PacketHandler.getPlayChannel().sendToServer(new MessageUpdateMoveInacc(dist));
+//                final float dist = Math.abs(player.zza) / 2.5F
+//                        + Math.abs(player.xxa) / 1.25F
+//                        + (player.getDeltaMovement().y > 0D ? 0.5F : 0F);
+//                PacketHandler.getPlayChannel().sendToServer(new MessageUpdateMoveInacc(dist));
 
                 // Update #shooting state if it has changed
 //                final boolean shooting = Keys.PULL_TRIGGER.isDown() && GunRenderingHandler.get().sprintTransition == 0;

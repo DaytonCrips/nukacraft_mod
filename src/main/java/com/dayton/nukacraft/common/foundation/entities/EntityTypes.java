@@ -31,13 +31,17 @@ public class EntityTypes {
                     .of(PowerArmorFrame::new, MobCategory.MISC)
                     .sized(1.0f, 2.3f));
 
+    public static final RegistryObject<EntityType<RaiderEntity>> RAIDER =
+            registerEntity("raider", Builder
+                    .of(RaiderEntity::new, MobCategory.CREATURE)
+                    .sized(1.0f, 1.9f));
+
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder
                     .of(NuclearExplosionEffectEntity::new, MobCategory.MISC)
                     .sized(10.5F, 10.5F)
                     .clientTrackingRange(20)
                     .build("nuclear_explosion_effect"));
-
 
     public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION
             = ENTITY_TYPES.register("nuclear_explosion", () -> (EntityType) EntityType.Builder

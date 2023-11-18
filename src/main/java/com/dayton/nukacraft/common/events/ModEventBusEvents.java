@@ -5,9 +5,7 @@ import com.dayton.nukacraft.client.render.particles.GammaParticles;
 import com.dayton.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.dayton.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.dayton.nukacraft.common.registery.ModParticles;
-import com.dayton.nukacraft.common.foundation.entities.Deathclaw;
-import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
-import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.dayton.nukacraft.common.foundation.entities.*;
 import com.dayton.nukacraft.common.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.*;
@@ -33,6 +31,7 @@ public class ModEventBusEvents {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
+        event.put(EntityTypes.RAIDER.get(), RaiderEntity.createAttributes().build());
     }
 
     @SubscribeEvent

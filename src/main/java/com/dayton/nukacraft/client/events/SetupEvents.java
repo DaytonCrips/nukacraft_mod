@@ -2,6 +2,7 @@ package com.dayton.nukacraft.client.events;
 
 import com.dayton.nukacraft.*;
 import com.dayton.nukacraft.client.render.renderers.*;
+import com.dayton.nukacraft.common.foundation.entities.EntityTypes;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
@@ -14,9 +15,11 @@ public class SetupEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent()
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event){
+        event.registerEntityRenderer(MININUKE.get(), MiniNukeRenderer::new);
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
+        event.registerEntityRenderer(RAIDER.get(), RaiderRenderer::new);
     }
 }
