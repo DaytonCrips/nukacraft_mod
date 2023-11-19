@@ -4,6 +4,7 @@
     "rate": 3,
     "gripType": "nukacraft:two_handed",
     "maxAmmo": 40,
+    "reloadTime": 20,
     "reloadAmount": 10,
     "recoilAngle": 3.0,
     "recoilKick": 0.25,

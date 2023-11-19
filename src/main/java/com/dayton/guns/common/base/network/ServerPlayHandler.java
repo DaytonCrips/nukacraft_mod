@@ -78,12 +78,14 @@ public class ServerPlayHandler {
         if (entity.getUseItem().getItem() == Items.SHIELD)
             return;
 
-        Level world = entity.level;
-        ItemStack heldItem = entity.getItemInHand(InteractionHand.MAIN_HAND);
-        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem) || (entity instanceof Player player && player.isCreative()))) {
-            Gun modifiedGun = item.getModifiedGun(heldItem);
+        var world = entity.level;
+        var heldItem = entity.getItemInHand(InteractionHand.MAIN_HAND);
 
+        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem)
+                || (entity instanceof Player player && player.isCreative()))) {
+            var modifiedGun = item.getModifiedGun(heldItem);
             var tag =  heldItem.getOrCreateTag();
+
             if(!gunCooldown.contains(heldItem))
                 gunCooldown.add(heldItem);
 
@@ -162,7 +164,7 @@ public class ServerPlayHandler {
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> targetPoint), messageSound);
                 }
 
-                if (entity instanceof Player player && !player.isCreative()) {
+                if (!(entity instanceof Player player && player.isCreative())) {
                     tag = heldItem.getOrCreateTag();
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);

@@ -11,6 +11,7 @@ import com.dayton.guns.common.debug.IEditorMenu;
 import com.dayton.guns.common.debug.screen.widget.DebugButton;
 import com.dayton.guns.common.debug.screen.widget.DebugSlider;
 import com.dayton.guns.common.debug.screen.widget.DebugToggle;
+import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.foundation.item.ScopeItem;
 import com.dayton.guns.common.foundation.item.attachment.IAttachment;
 import com.dayton.guns.common.foundation.item.attachment.impl.Scope;
@@ -106,6 +107,8 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         private GripType gripType = GripType.ONE_HANDED;
         private int maxAmmo;
         @Optional
+        private int reloadTime = 1;
+        @Optional
         private int reloadAmount = 1;
         @Optional
         private float recoilAngle;
@@ -130,6 +133,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             tag.putString("GripType", this.gripType.getId().toString());
             tag.putInt("MaxAmmo", this.maxAmmo);
             tag.putInt("ReloadSpeed", this.reloadAmount);
+            tag.putInt("ReloadTime", this.reloadTime);
             tag.putFloat("RecoilAngle", this.recoilAngle);
             tag.putFloat("RecoilKick", this.recoilKick);
             tag.putFloat("RecoilDurationOffset", this.recoilDurationOffset);
@@ -157,6 +161,9 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             if (tag.contains("ReloadSpeed", Tag.TAG_ANY_NUMERIC)) {
                 this.reloadAmount = tag.getInt("ReloadSpeed");
             }
+            if (tag.contains("ReloadTime", Tag.TAG_ANY_NUMERIC)) {
+                this.reloadTime = tag.getInt("ReloadTime");
+            }
             if (tag.contains("RecoilAngle", Tag.TAG_ANY_NUMERIC)) {
                 this.recoilAngle = tag.getFloat("RecoilAngle");
             }
@@ -183,7 +190,8 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         public JsonObject toJsonObject() {
             Preconditions.checkArgument(this.rate > 0, "Rate must be more than zero");
             Preconditions.checkArgument(this.maxAmmo > 0, "Max ammo must be more than zero");
-            Preconditions.checkArgument(this.reloadAmount >= 1, "Reload angle must be more than or equal to zero");
+            Preconditions.checkArgument(this.reloadAmount >= 1, "Reload amount must be more than or equal to zero");
+            Preconditions.checkArgument(this.reloadTime >= 1, "Reload time must be more than or equal to zero");
             Preconditions.checkArgument(this.recoilAngle >= 0.0F, "Recoil angle must be more than or equal to zero");
             Preconditions.checkArgument(this.recoilKick >= 0.0F, "Recoil kick must be more than or equal to zero");
             Preconditions.checkArgument(this.recoilDurationOffset >= 0.0F && this.recoilDurationOffset <= 1.0F, "Recoil duration offset must be between 0.0 and 1.0");
@@ -196,6 +204,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             object.addProperty("gripType", this.gripType.getId().toString());
             object.addProperty("maxAmmo", this.maxAmmo);
             if (this.reloadAmount != 1) object.addProperty("reloadAmount", this.reloadAmount);
+            if (this.reloadTime != 1) object.addProperty("reloadTime", this.reloadTime);
             if (this.recoilAngle != 0.0F) object.addProperty("recoilAngle", this.recoilAngle);
             if (this.recoilKick != 0.0F) object.addProperty("recoilKick", this.recoilKick);
             if (this.recoilDurationOffset != 0.0F)
@@ -217,6 +226,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             general.gripType = this.gripType;
             general.maxAmmo = this.maxAmmo;
             general.reloadAmount = this.reloadAmount;
+            general.reloadTime = this.reloadTime;
             general.recoilAngle = this.recoilAngle;
             general.recoilKick = this.recoilKick;
             general.recoilDurationOffset = this.recoilDurationOffset;
@@ -260,6 +270,13 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          */
         public int getReloadAmount() {
             return this.reloadAmount;
+        }
+
+        /**
+         * @return Time to reload the gun
+         */
+        public int getReloadTime() {
+            return this.reloadTime;
         }
 
         /**
@@ -1332,6 +1349,14 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         return tag.getBoolean("IgnoreAmmo") || tag.getInt("AmmoCount") > 0;
     }
 
+    public static void fillAmmo(ItemStack gunStack) {
+        if(gunStack.getItem() instanceof GunItem gunItem){
+            var tag = gunStack.getOrCreateTag();
+            var maxAmmo = gunItem.getModifiedGun(gunStack).getGeneral().getMaxAmmo();
+            tag.putInt("AmmoCount", maxAmmo);
+        }
+    }
+
     public static float getFovModifier(ItemStack stack, Gun modifiedGun) {
         float modifier = 0.0F;
         if (hasAttachmentEquipped(stack, modifiedGun, IAttachment.Type.SCOPE)) {
@@ -1384,6 +1409,11 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
 
         public Builder setReloadAmount(int reloadAmount) {
             this.gun.general.reloadAmount = reloadAmount;
+            return this;
+        }
+
+        public Builder setReloadTime(int reloadTime) {
+            this.gun.general.reloadTime = reloadTime;
             return this;
         }
 

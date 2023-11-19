@@ -4,6 +4,7 @@
     "rate": 2,
     "gripType": "nukacraft:mini_gun",
     "maxAmmo": 100,
+    "reloadTime": 20,
     "reloadAmount": 10,
     "recoilAngle": 1.0,
     "alwaysSpread": true,

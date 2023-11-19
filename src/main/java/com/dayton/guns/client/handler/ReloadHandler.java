@@ -85,9 +85,11 @@ public class ReloadHandler {
             if (reloading) {
                 ItemStack stack = player.getMainHandItem();
                 if (stack.getItem() instanceof GunItem) {
-                    CompoundTag tag = stack.getTag();
+                    var tag = stack.getTag();
+
                     if (tag != null && !tag.contains("IgnoreAmmo", Tag.TAG_BYTE)) {
                         Gun gun = ((GunItem) stack.getItem()).getModifiedGun(stack);
+
                         if (tag.getInt("AmmoCount") >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
                             return;
                         if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack)))

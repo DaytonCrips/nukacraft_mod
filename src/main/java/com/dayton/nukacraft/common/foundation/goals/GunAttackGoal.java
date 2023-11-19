@@ -71,6 +71,8 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         return true;
     }
 
+    private int reloadTimer = 0;
+
     /**
      * Keep ticking a continuous task that has already been started
      */
@@ -102,10 +104,22 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
 
         this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
-//        var gun = (GunItem)mob.getMainHandItem().getItem();
+        var gunStack = mob.getMainHandItem();
+
+        var gun = (GunItem)mob.getMainHandItem().getItem();
 
         if(Gun.hasAmmo(mob.getMainHandItem())){
             mob.performRangedAttack(target, 1);
+        }
+        else if(reloadTimer == -1){
+            reloadTimer = gun.getGun().getGeneral().getReloadTime();
+        }
+        else if(reloadTimer > 0){
+            reloadTimer = Math.max(reloadTimer - 1, 0);
+        }
+        else if(reloadTimer == 0){
+            Gun.fillAmmo(gunStack);
+            reloadTimer = -1;
         }
 
 //        if (this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED) {

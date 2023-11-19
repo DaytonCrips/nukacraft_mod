@@ -1,16 +1,9 @@
 package com.dayton.guns.client.render.renderers;
 
-import com.dayton.guns.client.GunRenderType;
-import com.dayton.guns.common.base.Gun;
-import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.foundation.item.AnimatedGunItem;
-import com.dayton.guns.common.foundation.item.GunItem;
-import com.dayton.guns.common.foundation.item.attachment.IAttachment;
-import com.dayton.guns.common.foundation.item.attachment.IBarrel;
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
 import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -22,7 +15,6 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.dayton.guns.client.handler.GunRenderingHandler.*;
-import static com.dayton.guns.client.util.PropertyHelper.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
@@ -62,7 +54,8 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
 //            drawMuzzleFlash(poseStack, currentTransform, bone, currentItemStack, bufferSource, partialTick);
         }
 
-        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
+                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     public void renderGun(LivingEntity entity, TransformType transformType, ItemStack stack,

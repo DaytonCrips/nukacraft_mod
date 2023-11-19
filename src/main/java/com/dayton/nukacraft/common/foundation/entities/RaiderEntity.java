@@ -38,6 +38,8 @@ public class RaiderEntity extends PathfinderMob implements RangedAttackMob, IGun
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        ShootingHandler.get().fire(this, getMainHandItem());
+        var s = level.isClientSide;
+        var item = getMainHandItem();
+        ShootingHandler.get().fire(this, item);
     }
 }
