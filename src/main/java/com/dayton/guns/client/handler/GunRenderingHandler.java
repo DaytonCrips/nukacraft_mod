@@ -130,7 +130,11 @@ public class GunRenderingHandler {
         this.prevSprintTransition = this.sprintTransition;
 
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player != null && mc.player.isSprinting() && !ModSyncedDataKeys.SHOOTING.getValue(mc.player) && !ModSyncedDataKeys.RELOADING.getValue(mc.player) && !AimingHandler.get().isAiming() && this.sprintCooldown == 0) {
+        if (mc.player != null && mc.player.isSprinting()
+                && !ModSyncedDataKeys.SHOOTING.getValue(mc.player)
+                && !ModSyncedDataKeys.RELOADING.getValue(mc.player)
+                && !AimingHandler.get().isAiming()
+                && this.sprintCooldown == 0) {
             if (this.sprintTransition < 5) {
                 this.sprintTransition++;
             }

@@ -311,8 +311,8 @@ public class ShootingHandler {
         // CHECK HERE: Restrict the fire rate
 //      if(!tracker.hasCooldown(heldItem.getItem()))
         if (shootTickGapLeft <= 0F) {
-            GunItem gunItem = (GunItem) heldItem.getItem();
-            Gun modifiedGun = gunItem.getModifiedGun(heldItem);
+            var gunItem = (GunItem) heldItem.getItem();
+            var modifiedGun = gunItem.getModifiedGun(heldItem);
 
             if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(shooter, heldItem)))
                 return;

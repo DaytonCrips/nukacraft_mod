@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
 import com.dayton.guns.client.handler.ShootingHandler;
+import com.dayton.nukacraft.common.data.interfaces.IGunUser;
 import com.dayton.nukacraft.common.foundation.goals.GunAttackGoal;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -12,7 +13,7 @@ import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class RaiderEntity extends PathfinderMob implements RangedAttackMob{
+public class RaiderEntity extends PathfinderMob implements RangedAttackMob, IGunUser {
     protected RaiderEntity(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setCanPickUpLoot(true);
@@ -28,13 +29,15 @@ public class RaiderEntity extends PathfinderMob implements RangedAttackMob{
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_DAMAGE, 3.0D)
-                .add(Attributes.ARMOR, 2.0D).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+        return Monster.createMonsterAttributes()
+                .add(Attributes.FOLLOW_RANGE, 35.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 2.0D);
     }
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        ShootingHandler.get().fire(this,getUseItem());
+        ShootingHandler.get().fire(this, getMainHandItem());
     }
 }
