@@ -21,6 +21,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static net.minecraftforge.event.TickEvent.Type.RENDER;
 
@@ -30,6 +31,9 @@ import static net.minecraftforge.event.TickEvent.Type.RENDER;
 public class ShootingHandler {
     public static final String COOLDOWN = "Cooldown";
     private static ShootingHandler instance;
+    public HashMap<LivingEntity, Float> entityShootGaps = new HashMap<>();
+    private static float shootTickGapLeft = 0F;
+    public static float shootMsGap = 0F;
 
     public static ShootingHandler get() {
         if (instance == null) {
@@ -152,7 +156,8 @@ public class ShootingHandler {
         Player player = mc.player;
         if (player != null) {
             // CHECK HERE: Reduce by 1F in each tick until it is less than 0F
-            shootTickGapLeft -= shootTickGapLeft > 0F ? 1F : 0F;
+//            shootTickGapLeft -= shootTickGapLeft > 0F ? 1F : 0F;
+            reduceGaps();
 
             ItemStack heldItem = player.getMainHandItem();
             if (heldItem.getItem() instanceof GunItem && (Gun.hasAmmo(heldItem) || player.isCreative())) {
@@ -175,6 +180,13 @@ public class ShootingHandler {
         } else {
             this.shooting = false;
         }
+    }
+
+    private void reduceGaps(){
+        entityShootGaps.forEach( (key, val) -> {
+            val -= val > 0F ? 1F : 0F;
+            entityShootGaps.put(key, val);
+        } );
     }
 
     @SubscribeEvent
@@ -288,20 +300,19 @@ public class ShootingHandler {
 //            this.clickUp = true;
 //        }
 //    }
-    
-    private static float shootTickGapLeft = 0F;
-    public static float shootMsGap = 0F;
+
 //    public int burstTracker = 0;
 
-    public static float getShootTickGapLeft() {
-        return shootTickGapLeft;
+    public float getShootTickGapLeft(LivingEntity entity) {
+        return entityShootGaps.getOrDefault(entity, 0f);
     }
 
     public static float calcShootTickGap(int rpm) {
         float shootTickGap = 60F / rpm * 20F;
         return shootTickGap;
     }
-    
+
+
     public void fire(LivingEntity shooter, ItemStack heldItem) {
         if (!(heldItem.getItem() instanceof GunItem)) return;
         if (!Gun.hasAmmo(heldItem)) return;
@@ -310,7 +321,10 @@ public class ShootingHandler {
 
         // CHECK HERE: Restrict the fire rate
 //      if(!tracker.hasCooldown(heldItem.getItem()))
-        if (shootTickGapLeft <= 0F) {
+
+        var shootGap = entityShootGaps.getOrDefault(shooter, 0f);
+
+        if (shootGap <= 0F) {
             var gunItem = (GunItem) heldItem.getItem();
             var modifiedGun = gunItem.getModifiedGun(heldItem);
 
@@ -320,7 +334,8 @@ public class ShootingHandler {
             // CHECK HERE: Change this to test different rpm settings.
             // TODO: Test serverside, possible issues 0.3.4-alpha
             final float rpm = modifiedGun.getGeneral().getRate(); // Rounds per sec. Should come from gun properties in the end.
-            shootTickGapLeft += rpm;
+            shootGap += rpm;
+            entityShootGaps.put(shooter, shootGap);
             shootMsGap = calcShootTickGap((int) rpm);
             RecoilHandler.get().lastRandPitch = RecoilHandler.get().lastRandPitch;
             RecoilHandler.get().lastRandYaw = RecoilHandler.get().lastRandYaw;

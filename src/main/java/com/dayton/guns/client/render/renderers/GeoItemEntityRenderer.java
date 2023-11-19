@@ -1,6 +1,7 @@
 package com.dayton.guns.client.render.renderers;
 
 import com.dayton.guns.client.model.GunModel;
+import com.dayton.guns.common.foundation.item.AnimatedGunItem;
 import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,8 +12,12 @@ import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.model.data.EntityModelData;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
+import net.minecraft.client.model.SkeletonModel;
+import net.minecraft.client.model.ZombieModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -24,12 +29,13 @@ import static net.minecraft.client.renderer.block.model.ItemTransforms.Transform
 public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;
+    protected Entity currentEntity;
 
     public GeoItemEntityRenderer() {
         super(new GunModel<>());
     }
 
-    public void render(ItemStack stack, TransformType transformType,
+    public void render(LivingEntity entity, ItemStack stack, TransformType transformType,
                        PoseStack poseStack, T animatable,
                        @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType,
@@ -37,6 +43,7 @@ public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> 
                        int packedLight) {
         this.currentItemStack = stack;
         this.currentTransform = transformType;
+        this.currentEntity = entity;
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
     }
 
@@ -68,7 +75,7 @@ public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> 
             animationState.setData(DataTickets.ITEMSTACK, this.currentItemStack);
 //            animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
             animationState.setData(DataTickets.TICK, animatable.getTick(animatable));
-            animationState.setData(DataTickets.ENTITY, null);//jet
+            animationState.setData(DataTickets.ENTITY, currentEntity);//jet
             animationState.setData(DataTickets.ENTITY_MODEL_DATA, new EntityModelData(shouldSit, false, -netHeadYaw, -headPitch));
             var var31 = this.model;
             Objects.requireNonNull(animationState);

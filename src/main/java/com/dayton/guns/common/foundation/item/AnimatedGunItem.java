@@ -7,11 +7,13 @@ import com.dayton.nukacraft.common.data.interfaces.IResourceProvider;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
+import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.Lazy;
 
@@ -70,16 +72,19 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 //                var stack = event.getData(DataTickets.ITEMSTACK);
 //                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
+                var entity = (LivingEntity)event.getData(DataTickets.ENTITY);
+
                 var stack = renderStack;
 
-                var entity = entityForStack.get(stack);
+//                var entity = entityForStack.get(stack);
                 if(entity == null) entity = player;
 
-                if (bannedTransforms.contains(transformType) || (entity != player && !(entity instanceof PowerArmorFrame))) {
+                if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
                     return PlayState.STOP;
                 }
 
-                float cooldown = ShootingHandler.getShootTickGapLeft(); // getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
+//                float cooldown = ShootingHandler.get().getShootTickGapLeft(entity);
+                float cooldown = getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
                 float reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
 
                 RawAnimation animation;

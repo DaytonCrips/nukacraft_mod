@@ -14,7 +14,6 @@ import com.mojang.math.Vector3f;
 import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -46,11 +45,11 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
     protected Random random = new Random();
 
     @Override
-    public void render(ItemStack stack, TransformType transformType, PoseStack poseStack,
+    public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
                        AnimatedGunItem animatable, @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType, @Nullable VertexConsumer buffer, int packedLight) {
         renderAttachments(stack, animatable);
-        super.render(stack, transformType, poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+        super.render(entity, stack, transformType, poseStack, animatable, bufferSource, renderType, buffer, packedLight);
     }
 
     @Override
@@ -66,73 +65,13 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    private void drawMuzzleFlash(PoseStack poseStack, TransformType transformType, GeoBone bone, ItemStack weapon,
-                                 MultiBufferSource buffer, float partialTicks) {
-        var modifiedGun = ((GunItem) weapon.getItem()).getModifiedGun(weapon);
-
-        if (!hasMuzzleFlash(weapon, modifiedGun)) return;
-
-        if (modifiedGun.getDisplay().getFlash() == null)
-            return;
-
-        if (transformType != TransformType.FIRST_PERSON_RIGHT_HAND && transformType
-                != TransformType.THIRD_PERSON_RIGHT_HAND && transformType
-                != TransformType.FIRST_PERSON_LEFT_HAND && transformType
-                != TransformType.THIRD_PERSON_LEFT_HAND)
-            return;
-
-        var random = this.random.nextFloat();
-//        var poseStack = new PoseStack();
-        var flip = random >= 0.5F;
-        poseStack.pushPose();
-
-//        poseStack.translate(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
-
-        var flashPosition = getMuzzleFlashPosition(weapon, modifiedGun);
-        poseStack.translate(flashPosition.x * 0.2, flashPosition.y * 0.2, flashPosition.z * 0.2);
-
-        // Legacy method to move muzzle flash to be at the end of the barrel attachment
-        var barrelStack = Gun.getAttachment(IAttachment.Type.BARREL, weapon);
-        if (!barrelStack.isEmpty() && barrelStack.getItem() instanceof IBarrel barrel
-                && !isUsingBarrelMuzzleFlash(barrelStack)) {
-            var scale = getAttachmentScale(weapon, modifiedGun, IAttachment.Type.BARREL);
-            double length = barrel.getProperties().getLength();
-            poseStack.translate(0, 0, -length * 0.0625 * scale.z);
-        }
-
-        poseStack.mulPose(Vector3f.ZP.rotationDegrees(360F * random));
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(flip ? 180F : 0F));
-
-        var flashScale = getMuzzleFlashScale(weapon, modifiedGun);
-        var scaleX = ((float) flashScale.x / 2F) - ((float) flashScale.x / 2F) * (1.0F - partialTicks);
-        var scaleY = ((float) flashScale.y / 2F) - ((float) flashScale.y / 2F) * (1.0F - partialTicks);
-        poseStack.scale(scaleX, scaleY, 1.0F);
-
-        var scaleModifier = (float) GunModifierHelper.getMuzzleFlashScale(weapon, 1.0);
-        poseStack.scale(scaleModifier, scaleModifier, 1.0F);
-
-        // Center the texture
-        poseStack.translate(0, 0, 0);
-
-        var minU = weapon.isEnchanted() ? 0.5F : 0.0F;
-        var maxU = weapon.isEnchanted() ? 1.0F : 0.5F;
-        var matrix = poseStack.last().pose();
-        var builder = buffer.getBuffer(GunRenderType.getMuzzleFlash());
-
-        builder.vertex(matrix, 0, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 1.0F).uv2(PACKED_OVERLAY).endVertex();
-        builder.vertex(matrix, 1, 0, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 1.0F).uv2(PACKED_OVERLAY).endVertex();
-        builder.vertex(matrix, 1, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(minU, 0).uv2(PACKED_OVERLAY).endVertex();
-        builder.vertex(matrix, 0, 1, 0).color(1.0F, 1.0F, 1.0F, 1.0F).uv(maxU, 0).uv2(PACKED_OVERLAY).endVertex();
-
-        poseStack.popPose();
-    }
-
     public void renderGun(LivingEntity entity, TransformType transformType, ItemStack stack,
                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         try {
             renderStack = stack;
 
             this.render(
+                    entity,
                     stack,
                     transformType,
                     poseStack,
