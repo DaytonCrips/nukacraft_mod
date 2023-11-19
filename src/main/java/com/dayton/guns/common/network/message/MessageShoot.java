@@ -4,6 +4,7 @@ import com.dayton.guns.common.base.network.ServerPlayHandler;
 import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -12,16 +13,16 @@ import java.util.function.Supplier;
  * Author: MrCrayfish
  */
 public class MessageShoot extends PlayMessage<MessageShoot> {
+    private int shooterId;
     private float rotationYaw;
     private float rotationPitch;
-
     private float randP;
     private float randY;
 
-    public MessageShoot() {
-    }
+    public MessageShoot() {}
 
-    public MessageShoot(float yaw, float pitch, float randP, float randY) {
+    public MessageShoot(int shooterId, float yaw, float pitch, float randP, float randY) {
+        this.shooterId = shooterId;
         this.rotationPitch = pitch;
         this.rotationYaw = yaw;
         this.randP = randP;
@@ -30,6 +31,7 @@ public class MessageShoot extends PlayMessage<MessageShoot> {
 
     @Override
     public void encode(MessageShoot messageShoot, FriendlyByteBuf buffer) {
+        buffer.writeInt(messageShoot.shooterId);
         buffer.writeFloat(messageShoot.rotationYaw);
         buffer.writeFloat(messageShoot.rotationPitch);
         buffer.writeFloat(messageShoot.randP);
@@ -38,7 +40,7 @@ public class MessageShoot extends PlayMessage<MessageShoot> {
 
     @Override
     public MessageShoot decode(FriendlyByteBuf buffer) {
-        return new MessageShoot(buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
+        return new MessageShoot(buffer.readInt(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat());
     }
 
     @Override
@@ -47,7 +49,10 @@ public class MessageShoot extends PlayMessage<MessageShoot> {
         {
             ServerPlayer player = supplier.get().getSender();
             if (player != null) {
-                ServerPlayHandler.handleShoot(messageShoot, player);
+                var shooter = player.level.getEntity(messageShoot.shooterId);
+
+                if (shooter instanceof LivingEntity livingEntity)
+                    ServerPlayHandler.handleShoot(messageShoot, livingEntity);
             }
         });
         supplier.get().setPacketHandled(true);

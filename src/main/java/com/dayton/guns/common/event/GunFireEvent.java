@@ -1,8 +1,8 @@
 package com.dayton.guns.common.event;
 
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 /**
@@ -10,11 +10,11 @@ import net.minecraftforge.eventbus.api.Cancelable;
  *
  * @author Ocelot
  */
-public class GunFireEvent extends PlayerEvent {
+public class GunFireEvent extends LivingEvent {
     private final ItemStack stack;
 
-    public GunFireEvent(Player player, ItemStack stack) {
-        super(player);
+    public GunFireEvent(LivingEntity entity, ItemStack stack) {
+        super(entity);
         this.stack = stack;
     }
 
@@ -29,7 +29,7 @@ public class GunFireEvent extends PlayerEvent {
      * @return Whether or not this event was fired on the client side
      */
     public boolean isClient() {
-        return this.getPlayer().getCommandSenderWorld().isClientSide();
+        return this.getEntity().getCommandSenderWorld().isClientSide();
     }
 
     /**
@@ -39,8 +39,8 @@ public class GunFireEvent extends PlayerEvent {
      */
     @Cancelable
     public static class Pre extends GunFireEvent {
-        public Pre(Player player, ItemStack stack) {
-            super(player, stack);
+        public Pre(LivingEntity entity, ItemStack stack) {
+            super(entity, stack);
         }
     }
 
@@ -50,8 +50,8 @@ public class GunFireEvent extends PlayerEvent {
      * @author Ocelot
      */
     public static class Post extends GunFireEvent {
-        public Post(Player player, ItemStack stack) {
-            super(player, stack);
+        public Post(LivingEntity entity, ItemStack stack) {
+            super(entity, stack);
         }
     }
 }

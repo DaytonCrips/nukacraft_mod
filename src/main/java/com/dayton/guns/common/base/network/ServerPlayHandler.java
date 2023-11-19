@@ -41,6 +41,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -68,18 +69,18 @@ public class ServerPlayHandler {
      * Fires the weapon the player is currently holding.
      * This is only intended for use on the logical server.
      *
-     * @param player the player for who's weapon to fire
+     * @param entity the player for who's weapon to fire
      */
-    public static void handleShoot(MessageShoot message, ServerPlayer player) {
-        if (player.isSpectator())
+    public static void handleShoot(MessageShoot message, LivingEntity entity) {
+        if (entity.isSpectator())
             return;
 
-        if (player.getUseItem().getItem() == Items.SHIELD)
+        if (entity.getUseItem().getItem() == Items.SHIELD)
             return;
 
-        Level world = player.level;
-        ItemStack heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
-        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem) || player.isCreative())) {
+        Level world = entity.level;
+        ItemStack heldItem = entity.getItemInHand(InteractionHand.MAIN_HAND);
+        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem) || (entity instanceof Player player && player.isCreative()))) {
             Gun modifiedGun = item.getModifiedGun(heldItem);
 
             var tag =  heldItem.getOrCreateTag();
@@ -87,26 +88,26 @@ public class ServerPlayHandler {
                 gunCooldown.add(heldItem);
 
             if (modifiedGun != null && tag.getInt(COOLDOWN) == 0) {
-                if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
+                if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(entity, heldItem)))
                     return;
 
                 /* Updates the yaw and pitch with the clients current yaw and pitch */
-                player.setYRot(Mth.wrapDegrees(message.getRotationYaw()));
-                player.setXRot(Mth.clamp(message.getRotationPitch(), -90F, 90F));
+                entity.setYRot(Mth.wrapDegrees(message.getRotationYaw()));
+                entity.setXRot(Mth.clamp(message.getRotationPitch(), -90F, 90F));
 
-                ShootTracker tracker = ShootTracker.getShootTracker(player);
+                ShootTracker tracker = ShootTracker.getShootTracker(entity);
                 if (tracker.hasCooldown(item) && tracker.getRemaining(item) > Config.SERVER.cooldownThreshold.get()) {
-                    NukaCraftMod.LOGGER.warn(player.getName().getContents() + "(" + player.getUUID() + ") tried to fire before cooldown finished or server is lagging? Remaining milliseconds: " + tracker.getRemaining(item));
+                    NukaCraftMod.LOGGER.warn(entity.getName().getContents() + "(" + entity.getUUID() + ") tried to fire before cooldown finished or server is lagging? Remaining milliseconds: " + tracker.getRemaining(item));
                     return;
                 }
                 tracker.putCooldown(heldItem, item, modifiedGun);
 
-                if (ModSyncedDataKeys.RELOADING.getValue(player)) {
-                    ModSyncedDataKeys.RELOADING.setValue(player, false);
+                if (ModSyncedDataKeys.RELOADING.getValue(entity)) {
+                    ModSyncedDataKeys.RELOADING.setValue(entity, false);
                 }
 
                 if (!modifiedGun.getGeneral().isAlwaysSpread() && modifiedGun.getGeneral().getSpread() > 0.0F) {
-                    SpreadTracker.get(player).update(player, item);
+                    SpreadTracker.get(entity).update(entity, item);
                 }
 
                 int count = modifiedGun.getGeneral().getProjectileAmount();
@@ -114,7 +115,7 @@ public class ServerPlayHandler {
                 ProjectileEntity[] spawnedProjectiles = new ProjectileEntity[count];
                 for (int i = 0; i < count; i++) {
                     IProjectileFactory factory = ProjectileManager.getInstance().getFactory(projectileProps.getItem());
-                    ProjectileEntity projectileEntity = factory.create(world, player, heldItem, item, modifiedGun);
+                    ProjectileEntity projectileEntity = factory.create(world, entity, heldItem, item, modifiedGun);
                     projectileEntity.setWeapon(heldItem);
                     projectileEntity.setAdditionalDamage(Gun.getAdditionalDamage(heldItem));
                     world.addFreshEntity(projectileEntity);
@@ -123,49 +124,49 @@ public class ServerPlayHandler {
                 }
                 if (!projectileProps.isVisible()) {
                     ParticleOptions data = GunEnchantmentHelper.getParticle(heldItem);
-                    var messageBulletTrail = new MessageBulletTrail(spawnedProjectiles, projectileProps, player.getId(), data);
-                    PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), player.getY(), player.getZ(), Config.COMMON.network.projectileTrackingRange.get(), player.level.dimension())), messageBulletTrail);
+                    var messageBulletTrail = new MessageBulletTrail(spawnedProjectiles, projectileProps, entity.getId(), data);
+                    PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(entity.getX(), entity.getY(), entity.getZ(), Config.COMMON.network.projectileTrackingRange.get(), entity.level.dimension())), messageBulletTrail);
                 }
 
-                MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
+                MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(entity, heldItem));
 
                 if (Config.COMMON.aggroMobs.enabled.get()) {
                     double radius = GunModifierHelper.getModifiedFireSoundRadius(heldItem, Config.COMMON.aggroMobs.unsilencedRange.get());
-                    double x = player.getX();
-                    double y = player.getY() + 0.5;
-                    double z = player.getZ();
+                    double x = entity.getX();
+                    double y = entity.getY() + 0.5;
+                    double z = entity.getZ();
                     AABB box = new AABB(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius);
                     radius *= radius;
                     double dx, dy, dz;
-                    for (LivingEntity entity : world.getEntitiesOfClass(LivingEntity.class, box, HOSTILE_ENTITIES)) {
-                        dx = x - entity.getX();
-                        dy = y - entity.getY();
-                        dz = z - entity.getZ();
+                    for (LivingEntity hostile : world.getEntitiesOfClass(LivingEntity.class, box, HOSTILE_ENTITIES)) {
+                        dx = x - hostile.getX();
+                        dy = y - hostile.getY();
+                        dz = z - hostile.getZ();
                         if (dx * dx + dy * dy + dz * dz <= radius) {
-                            entity.setLastHurtByMob(Config.COMMON.aggroMobs.angerHostileMobs.get() ? player : entity);
+                            hostile.setLastHurtByMob(Config.COMMON.aggroMobs.angerHostileMobs.get() ? hostile : hostile);
                         }
                     }
                 }
 
                 ResourceLocation fireSound = getFireSound(heldItem, modifiedGun);
                 if (fireSound != null) {
-                    double posX = player.getX();
-                    double posY = player.getY() + player.getEyeHeight();
-                    double posZ = player.getZ();
+                    double posX = entity.getX();
+                    double posY = entity.getY() + entity.getEyeHeight();
+                    double posZ = entity.getZ();
                     float volume = GunModifierHelper.getFireSoundVolume(heldItem);
                     float pitch = 0.9F + world.random.nextFloat() * 0.2F;
                     double radius = GunModifierHelper.getModifiedFireSoundRadius(heldItem, Config.SERVER.gunShotMaxDistance.get());
                     boolean muzzle = modifiedGun.getDisplay().getFlash() != null;
-                    var messageSound = new MessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, player.getId(), muzzle, false);
-                    PacketDistributor.TargetPoint targetPoint = new PacketDistributor.TargetPoint(posX, posY, posZ, radius, player.level.dimension());
+                    var messageSound = new MessageGunSound(fireSound, SoundSource.PLAYERS, (float) posX, (float) posY, (float) posZ, volume, pitch, entity.getId(), muzzle, false);
+                    PacketDistributor.TargetPoint targetPoint = new PacketDistributor.TargetPoint(posX, posY, posZ, radius, entity.level.dimension());
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> targetPoint), messageSound);
                 }
 
-                if (!player.isCreative()) {
+                if (entity instanceof Player player && !player.isCreative()) {
                     tag = heldItem.getOrCreateTag();
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);
-                        if (level == 0 || player.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
+                        if (level == 0 || entity.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
                             tag.putInt("AmmoCount", Math.max(0, tag.getInt("AmmoCount") - 1));
                         }
                     }
@@ -175,10 +176,11 @@ public class ServerPlayHandler {
                 rate = GunModifierHelper.getModifiedRate(heldItem, rate);
                 tag.putInt(COOLDOWN, rate);
 
-                player.awardStat(Stats.ITEM_USED.get(item));
+                if(entity instanceof Player player)
+                    player.awardStat(Stats.ITEM_USED.get(item));
             }
         } else {
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.8F);
+            world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.8F);
         }
     }
 

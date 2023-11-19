@@ -5,7 +5,9 @@ import com.dayton.guns.common.foundation.init.ModSyncedDataKeys;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.nukacraft.NukaCraftMod;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,11 +24,11 @@ import java.util.WeakHashMap;
  */
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID)
 public class SpreadTracker {
-    private static final Map<Player, SpreadTracker> TRACKER_MAP = new WeakHashMap<>();
+    private static final Map<LivingEntity, SpreadTracker> TRACKER_MAP = new WeakHashMap<>();
 
     private final Map<GunItem, Pair<MutableLong, MutableInt>> SPREAD_TRACKER_MAP = new HashMap<>();
 
-    public void update(Player player, GunItem item) {
+    public void update(LivingEntity entity, GunItem item) {
         Pair<MutableLong, MutableInt> entry = SPREAD_TRACKER_MAP.computeIfAbsent(item, gun -> Pair.of(new MutableLong(-1), new MutableInt()));
         MutableLong lastFire = entry.getLeft();
         if (lastFire.getValue() != -1) {
@@ -37,7 +39,7 @@ public class SpreadTracker {
                     spreadCount.increment();
 
                     /* Increases the spread count quicker if the player is not aiming down sight */
-                    if (spreadCount.getValue() < Config.COMMON.projectileSpread.maxCount.get() && !ModSyncedDataKeys.AIMING.getValue(player)) {
+                    if (spreadCount.getValue() < Config.COMMON.projectileSpread.maxCount.get() && !ModSyncedDataKeys.AIMING.getValue(entity)) {
                         spreadCount.increment();
                     }
                 }
@@ -56,8 +58,8 @@ public class SpreadTracker {
         return 0F;
     }
 
-    public static SpreadTracker get(Player player) {
-        return TRACKER_MAP.computeIfAbsent(player, player1 -> new SpreadTracker());
+    public static SpreadTracker get(LivingEntity entity) {
+        return TRACKER_MAP.computeIfAbsent(entity, player1 -> new SpreadTracker());
     }
 
     @SubscribeEvent
@@ -65,6 +67,15 @@ public class SpreadTracker {
         MinecraftServer server = event.getPlayer().getServer();
         if (server != null) {
             server.execute(() -> TRACKER_MAP.remove(event.getPlayer()));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerDisconnect(LivingDeathEvent event) {
+        var entity = (LivingEntity)event.getEntity();
+        MinecraftServer server = entity.getServer();
+        if (server != null) {
+            server.execute(() -> TRACKER_MAP.remove(entity));
         }
     }
 }

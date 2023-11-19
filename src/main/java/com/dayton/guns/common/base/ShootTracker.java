@@ -5,7 +5,7 @@ import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.google.common.collect.Maps;
 import net.minecraft.Util;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -28,18 +28,18 @@ public class ShootTracker {
      * cooldown tracker quietly and not send cooldown packet back to client. The cooldown is still
      * applied on the client in {@link GunItem#onItemUseFirst(ItemStack, UseOnContext)} and {@link GunItem#onUsingTick}.
      */
-    private static final Map<Player, ShootTracker> SHOOT_TRACKER_MAP = new WeakHashMap<>();
+    private static final Map<LivingEntity, ShootTracker> SHOOT_TRACKER_MAP = new WeakHashMap<>();
 
     private final Map<Item, Pair<Long, Integer>> cooldownMap = Maps.newHashMap();
 
     /**
      * Gets the cooldown tracker for the specified player UUID.
      *
-     * @param player the player instance
+     * @param entity the player instance
      * @return a cooldown tracker get
      */
-    public static ShootTracker getShootTracker(Player player) {
-        return SHOOT_TRACKER_MAP.computeIfAbsent(player, player1 -> new ShootTracker());
+    public static ShootTracker getShootTracker(LivingEntity entity) {
+        return SHOOT_TRACKER_MAP.computeIfAbsent(entity, entity1 -> new ShootTracker());
     }
 
     /**

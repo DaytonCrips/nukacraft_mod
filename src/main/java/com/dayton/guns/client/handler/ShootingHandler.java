@@ -1,10 +1,8 @@
 package com.dayton.guns.client.handler;
 
-import com.dayton.guns.Config;
 import com.dayton.guns.common.base.GripType;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.data.interfaces.CurrentFpsGetter;
-import com.dayton.guns.common.data.util.GunModifierHelper;
 import com.dayton.guns.common.event.GunFireEvent;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.guns.common.helpers.PlayerReviveHelper;
@@ -12,6 +10,7 @@ import com.dayton.guns.common.network.PacketHandler;
 import com.dayton.guns.common.network.message.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -303,23 +302,11 @@ public class ShootingHandler {
         return shootTickGap;
     }
     
-    public void fire(Player player, ItemStack heldItem) {
-//        if (magError(player, heldItem)) return;
-
-        if (!(heldItem.getItem() instanceof GunItem))
-            return;
-
-        if (!Gun.hasAmmo(heldItem) && !player.isCreative())
-            return;
-
-        if (player.isSpectator())
-            return;
-
-//        player.setSprinting(false);
-//        if (GunRenderingHandler.get().sprintTransition != 0) {
-//            this.shooting = false;
-//            return;
-//        }
+    public void fire(LivingEntity shooter, ItemStack heldItem) {
+        if (!(heldItem.getItem() instanceof GunItem)) return;
+        if (!Gun.hasAmmo(heldItem)) return;
+        if (!Gun.hasAmmo(heldItem) && shooter instanceof Player player && !player.isCreative()) return;
+        if (shooter.isSpectator()) return;
 
         // CHECK HERE: Restrict the fire rate
 //      if(!tracker.hasCooldown(heldItem.getItem()))
@@ -327,7 +314,7 @@ public class ShootingHandler {
             GunItem gunItem = (GunItem) heldItem.getItem();
             Gun modifiedGun = gunItem.getModifiedGun(heldItem);
 
-            if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
+            if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(shooter, heldItem)))
                 return;
 
             // CHECK HERE: Change this to test different rpm settings.
@@ -337,13 +324,13 @@ public class ShootingHandler {
             shootMsGap = calcShootTickGap((int) rpm);
             RecoilHandler.get().lastRandPitch = RecoilHandler.get().lastRandPitch;
             RecoilHandler.get().lastRandYaw = RecoilHandler.get().lastRandYaw;
-            PacketHandler.getPlayChannel().sendToServer(new MessageShoot(player.getViewYRot(1),
-                            player.getViewXRot(1),
+            PacketHandler.getPlayChannel().sendToServer(new MessageShoot(shooter.getId(), shooter.getViewYRot(1),
+                            shooter.getViewXRot(1),
                             RecoilHandler.get().lastRandPitch, RecoilHandler.get().lastRandYaw));
 
 //            if (Config.CLIENT.controls.burstPress.get()) this.burstTracker--;
 //            else this.burstTracker++;
-            MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
+            MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(shooter, heldItem));
         }
     }
 

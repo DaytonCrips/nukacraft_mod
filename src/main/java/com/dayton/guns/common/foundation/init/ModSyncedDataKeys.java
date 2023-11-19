@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
  * Author: MrCrayfish
  */
 public class ModSyncedDataKeys {
-    public static final SyncedDataKey<Player, Boolean> AIMING = SyncedDataKey.builder(SyncedClassKey.PLAYER, Serializers.BOOLEAN)
+    public static final SyncedDataKey<LivingEntity, Boolean> AIMING = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
             .id(new ResourceLocation(NukaCraftMod.MOD_ID, "aiming"))
             .defaultValueSupplier(() -> false)
             .resetOnDeath()
@@ -25,7 +25,7 @@ public class ModSyncedDataKeys {
             .resetOnDeath()
             .build();
 
-    public static final SyncedDataKey<Player, Boolean> RELOADING = SyncedDataKey.builder(SyncedClassKey.PLAYER, Serializers.BOOLEAN)
+    public static final SyncedDataKey<LivingEntity, Boolean> RELOADING = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
             .id(new ResourceLocation(NukaCraftMod.MOD_ID, "reloading"))
             .defaultValueSupplier(() -> false)
             .resetOnDeath()

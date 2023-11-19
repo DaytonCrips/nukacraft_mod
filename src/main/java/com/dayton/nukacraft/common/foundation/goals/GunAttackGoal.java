@@ -3,16 +3,18 @@ package com.dayton.nukacraft.common.foundation.goals;
 import com.dayton.guns.common.foundation.item.GunItem;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.CrossbowItem;
 
 import java.util.EnumSet;
 
-public class GunAttackGoal<T extends Monster & RangedAttackMob & CrossbowAttackMob> extends Goal {
+public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob> extends Goal {
     public static final UniformInt PATHFINDING_DELAY_RANGE = TimeUtil.rangeOfSeconds(1, 2);
     private final T mob;
     private GunAttackGoal.CrossbowState crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
