@@ -8,7 +8,6 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.*;
-
 import java.util.EnumSet;
 
 public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser> extends Goal {
@@ -121,38 +120,6 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
             Gun.fillAmmo(gunStack);
             reloadTimer = -1;
         }
-
-//        if (this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED) {
-//            if (!flag2) {
-//                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof CrossbowItem));
-//                this.crossbowState = GunAttackGoal.CrossbowState.CHARGING;
-//                this.mob.setChargingCrossbow(true);
-//            }
-//        } else if (this.crossbowState == GunAttackGoal.CrossbowState.CHARGING) {
-//            if (!this.mob.isUsingItem()) {
-//                this.crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
-//            }
-//
-//            int i = this.mob.getTicksUsingItem();
-//            var itemStack = this.mob.getUseItem();
-//            if (i >= CrossbowItem.getChargeDuration(itemStack)) {
-//                this.mob.releaseUsingItem();
-//                this.crossbowState = GunAttackGoal.CrossbowState.CHARGED;
-//                this.attackDelay = 20 + this.mob.getRandom().nextInt(20);
-//                this.mob.setChargingCrossbow(false);
-//            }
-//        } else if (this.crossbowState == GunAttackGoal.CrossbowState.CHARGED) {
-//            --this.attackDelay;
-//            if (this.attackDelay == 0) {
-//                this.crossbowState = GunAttackGoal.CrossbowState.READY_TO_ATTACK;
-//            }
-//        } else if (this.crossbowState == GunAttackGoal.CrossbowState.READY_TO_ATTACK && hasLineOfSight) {
-//            this.mob.performRangedAttack(target, 1.0F);
-//            var itemStack = this.mob.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof CrossbowItem));
-//            CrossbowItem.setCharged(itemStack, false);
-//            this.crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
-//        }
-
     }
 
     private boolean canRun() {
