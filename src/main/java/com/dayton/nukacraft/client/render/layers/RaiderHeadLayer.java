@@ -10,12 +10,10 @@ import mod.azure.azurelib.renderer.GeoRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-import static com.jetug.chassis_core.common.util.helpers.BufferedImageHelper.*;
 import static com.jetug.chassis_core.common.util.helpers.BufferedImageHelper.*;
 import static com.jetug.chassis_core.common.util.helpers.TextureHelper.*;
 
