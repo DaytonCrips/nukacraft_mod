@@ -37,7 +37,8 @@ public class OneHandedPose implements IHeldAnimation {
     }
 
     @Override
-    public void renderFirstPersonArms(Player player, HumanoidArm hand, ItemStack stack, PoseStack poseStack, MultiBufferSource buffer, int light, float partialTicks) {
+    public void renderFirstPersonArms(Player player, HumanoidArm hand, ItemStack stack, PoseStack poseStack,
+                                      MultiBufferSource buffer, int light, float partialTicks) {
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
 
         var model = Minecraft.getInstance().getItemRenderer().getModel(stack, player.level, player, 0);
@@ -50,10 +51,9 @@ public class OneHandedPose implements IHeldAnimation {
         var armWidth = slim ? 3.0F : 4.0F;
 
         poseStack.scale(0.5F, 0.5F, 0.5F);
-        poseStack.translate(10 * 0.0625 * side, 1.1, -2);
+        poseStack.translate(10 * 0.0625 * side, 1.3, -2.7);
         poseStack.translate(-(armWidth / 2.0) * 0.0625 * side, 0, 0);
-
-        poseStack.translate(0, 0.15, -1.3125);
+//        poseStack.translate(0, 0.15, -1.3125);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(75F));
 
         RenderUtil.renderFirstPersonArm((LocalPlayer) player, hand, poseStack, buffer, light);

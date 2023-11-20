@@ -182,10 +182,10 @@ public class PowerArmorFrame extends WearableChassis {
             controller.setAnimationSpeed(1);
             RawAnimation animation = null;
 
-            var player = getPlayerPassenger();
+            var entity = getPassenger();
 
-            if (player != null) {
-                if (player.attackAnim > 0) {
+            if (entity != null) {
+                if (entity.attackAnim > 0) {
                     controller.setAnimationSpeed(2.0D);
                     animation = begin().then(HIT, PLAY_ONCE);
                 } else if (hurtTime > 0) {
@@ -206,14 +206,14 @@ public class PowerArmorFrame extends WearableChassis {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
-            RawAnimation animation = null;
+            RawAnimation animation;
 
-            if (!hasPlayerPassenger()) return PlayState.STOP;
+            if (!hasPassenger()) return PlayState.STOP;
 
-            var player = getPlayerPassenger();
+            var passenger = getPassenger();
 
             if (this.isWalking()) {
-                if (player.isShiftKeyDown()){
+                if (passenger.isShiftKeyDown()){
                     animation = begin().then(SNEAK_WALK, LOOP);
                 }
                 else {
@@ -221,7 +221,7 @@ public class PowerArmorFrame extends WearableChassis {
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                 }
             }
-            else if (player.isShiftKeyDown()) {
+            else if (passenger.isShiftKeyDown()) {
                 animation = begin().then(SNEAK_END, LOOP);
             }
             else {

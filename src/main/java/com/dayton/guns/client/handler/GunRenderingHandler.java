@@ -233,11 +233,12 @@ public class GunRenderingHandler {
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
 
-        boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+        boolean isRight = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
                 event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
-        HumanoidArm hand = right ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+        var hand = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
 
-        ItemStack heldItem = event.getItemStack();
+        var heldItem = event.getItemStack();
+
         if (event.getHand() == InteractionHand.OFF_HAND) {
             if (heldItem.getItem() instanceof GunItem) {
                 event.setCanceled(true);
@@ -262,7 +263,6 @@ public class GunRenderingHandler {
         if (!(heldItem.getItem() instanceof GunItem gunItem)) {
             return;
         }
-
         /* Cancel it because we are doing our own custom render */
         event.setCanceled(true);
 
@@ -276,6 +276,64 @@ public class GunRenderingHandler {
         var player = Objects.requireNonNull(Minecraft.getInstance().player);
         var model = Minecraft.getInstance().getItemRenderer()
                 .getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
+        var translateX = model.getTransforms().firstPersonRightHand.translation.x();
+        var translateY = model.getTransforms().firstPersonRightHand.translation.y();
+        var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
+
+        poseStack.pushPose();
+
+        var modifiedGun = gunItem.getModifiedGun(heldItem);
+
+        this.applyIronSightTransforms(event, poseStack, model, isRight, heldItem, modifiedGun);
+        this.applyBobbingTransforms(poseStack, event.getPartialTicks());
+
+        /* Applies equip progress animation translations */
+        float equipProgress = this.getEquipProgress(event.getPartialTicks());
+        //poseStack.translate(0, equipProgress * -0.6F, 0);
+        poseStack.mulPose(Vector3f.XP.rotationDegrees(equipProgress * -50F));
+        /* Renders the reload arm. Will only render if actually reloading. This is applied before
+         * any recoil or reload rotations as the animations would be borked if applied after. */
+        this.renderReloadArm(poseStack, event.getMultiBufferSource(), event.getPackedLight(), modifiedGun, heldItem, hand, translateX);
+
+        // Values are based on vanilla translations for first person
+        int offset = isRight ? 1 : -1;
+//        poseStack.translate(0.56 * offset, -0.52, -0.72);
+        poseStack.translate(0.3 * offset, -1.3, -1.55);
+
+        /* Applies recoil and reload rotations */
+        this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
+        this.applySwayTransforms(poseStack, modifiedGun, player, translateX, translateY, translateZ, event.getPartialTicks());
+        this.applySprintingTransforms(modifiedGun, hand, poseStack, event.getPartialTicks());
+        this.applyRecoilTransforms(poseStack, heldItem, modifiedGun);
+        this.applyReloadTransforms(poseStack, event.getPartialTicks());
+        this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());
+
+        /* Determines the lighting for the weapon. Weapon will appear bright from muzzle flash or light sources */
+        int blockLight = player.isOnFire() ? 15 : player.level.getBrightness(LightLayer.BLOCK, new BlockPos(player.getEyePosition(event.getPartialTicks())));
+        blockLight += (this.entityIdForMuzzleFlash.contains(player.getId()) ? 3 : 0);
+        blockLight = Math.min(blockLight, 15);
+        int packedLight = LightTexture.pack(blockLight, player.level.getBrightness(LightLayer.SKY, new BlockPos(player.getEyePosition(event.getPartialTicks()))));
+
+        /* Renders the first persons arms from the grip type of the weapon */
+        poseStack.pushPose();
+        modifiedGun.getGeneral().getGripType().getHeldAnimation().renderFirstPersonArms(
+                Minecraft.getInstance().player, hand,
+                heldItem, poseStack, event.getMultiBufferSource(),
+                packedLight, event.getPartialTicks());
+        poseStack.popPose();
+
+        /* Renders the weapon */
+        ItemTransforms.TransformType transformType = isRight ?
+                ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND :
+                ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
+        this.renderWeapon(Minecraft.getInstance().player, heldItem, transformType, event.getPoseStack(),
+                event.getMultiBufferSource(), packedLight, event.getPartialTicks());
+
+        poseStack.popPose();
+    }
+
+    private void applyIronSightTransforms(RenderHandEvent event, PoseStack poseStack, BakedModel model,
+                                                 boolean isRight, ItemStack heldItem, Gun modifiedGun) {
         var scaleX = model.getTransforms().firstPersonRightHand.scale.x();
         var scaleY = model.getTransforms().firstPersonRightHand.scale.y();
         var scaleZ = model.getTransforms().firstPersonRightHand.scale.z();
@@ -283,9 +341,6 @@ public class GunRenderingHandler {
         var translateY = model.getTransforms().firstPersonRightHand.translation.y();
         var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
 
-        poseStack.pushPose();
-
-        Gun modifiedGun = gunItem.getModifiedGun(heldItem);
         if (AimingHandler.get().getNormalisedAdsProgress() > 0 && modifiedGun.canAimDownSight()) {
             if (event.getHand() == InteractionHand.MAIN_HAND) {
                 double xOffset = translateX;
@@ -334,7 +389,7 @@ public class GunRenderingHandler {
                 }
 
                 /* Controls the direction of the following translations, changes depending on the main hand. */
-                var side = right ? 1.0F : -1.0F;
+                var side = isRight ? 1.0F : -1.0F;
                 var time = AimingHandler.get().getNormalisedAdsProgress();
                 var transition = getSightAnimations(heldItem, modifiedGun).getSightCurve().apply(time);
 
@@ -345,54 +400,6 @@ public class GunRenderingHandler {
                 poseStack.translate(-xOffset * side * transition, -yOffset * transition, -zOffset * transition);
             }
         }
-
-        /* Applies custom bobbing animations */
-        this.applyBobbingTransforms(poseStack, event.getPartialTicks());
-
-        /* Applies equip progress animation translations */
-        float equipProgress = this.getEquipProgress(event.getPartialTicks());
-        //poseStack.translate(0, equipProgress * -0.6F, 0);
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(equipProgress * -50F));
-
-        /* Renders the reload arm. Will only render if actually reloading. This is applied before
-         * any recoil or reload rotations as the animations would be borked if applied after. */
-        this.renderReloadArm(poseStack, event.getMultiBufferSource(), event.getPackedLight(), modifiedGun, heldItem, hand, translateX);
-
-        // Values are based on vanilla translations for first person
-        int offset = right ? 1 : -1;
-//        poseStack.translate(0.56 * offset, -0.52, -0.72);
-        poseStack.translate(0.3 * offset, -1.3, -1.55);
-
-        /* Applies recoil and reload rotations */
-        this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
-        this.applySwayTransforms(poseStack, modifiedGun, player, translateX, translateY, translateZ, event.getPartialTicks());
-        this.applySprintingTransforms(modifiedGun, hand, poseStack, event.getPartialTicks());
-        this.applyRecoilTransforms(poseStack, heldItem, modifiedGun);
-        this.applyReloadTransforms(poseStack, event.getPartialTicks());
-        this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());
-
-        /* Determines the lighting for the weapon. Weapon will appear bright from muzzle flash or light sources */
-        int blockLight = player.isOnFire() ? 15 : player.level.getBrightness(LightLayer.BLOCK, new BlockPos(player.getEyePosition(event.getPartialTicks())));
-        blockLight += (this.entityIdForMuzzleFlash.contains(player.getId()) ? 3 : 0);
-        blockLight = Math.min(blockLight, 15);
-        int packedLight = LightTexture.pack(blockLight, player.level.getBrightness(LightLayer.SKY, new BlockPos(player.getEyePosition(event.getPartialTicks()))));
-
-        /* Renders the first persons arms from the grip type of the weapon */
-        poseStack.pushPose();
-        modifiedGun.getGeneral().getGripType().getHeldAnimation().renderFirstPersonArms(
-                Minecraft.getInstance().player, hand,
-                heldItem, poseStack, event.getMultiBufferSource(),
-                packedLight, event.getPartialTicks());
-        poseStack.popPose();
-
-        /* Renders the weapon */
-        ItemTransforms.TransformType transformType = right ?
-                ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND :
-                ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
-        this.renderWeapon(Minecraft.getInstance().player, heldItem, transformType, event.getPoseStack(),
-                event.getMultiBufferSource(), packedLight, event.getPartialTicks());
-
-        poseStack.popPose();
     }
 
     private void applyBobbingTransforms(PoseStack poseStack, float partialTicks) {

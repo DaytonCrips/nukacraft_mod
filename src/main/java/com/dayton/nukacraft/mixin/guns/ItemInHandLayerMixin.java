@@ -31,10 +31,10 @@ public class ItemInHandLayerMixin {
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
         if (hand == InteractionHand.OFF_HAND) {
-            if (stack.getItem() instanceof GunItem) {
-                ci.cancel();
-                return;
-            }
+//            if (stack.getItem() instanceof GunItem) {
+//                ci.cancel();
+//                return;
+//            }
 
             if (entity.getMainHandItem().getItem() instanceof GunItem gunItem) {
                 Gun modifiedGun = gunItem.getModifiedGun(entity.getMainHandItem());
@@ -61,14 +61,16 @@ public class ItemInHandLayerMixin {
         layer.getParentModel().translateToHand(arm, poseStack);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
-        poseStack.translate(((arm == HumanoidArm.LEFT ? 3 : -3) / 16F), 0, -0.625);/*0.125, -0.625*/
+
+//        var d= ((arm == HumanoidArm.LEFT ? 2.5 : -2.5) / 16F);
+
+        poseStack.translate(-0.6, -0.8, -1);/*0.125, -0.625*/
         GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
         Gun gun = item.getModifiedGun(stack);
 
-//        if(entity instanceof Player player) {
-            gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(entity, hand,
-                    /*AimingHandler.get().getAimProgress(entity, deltaTicks)*/ 0, poseStack, source);
-//        }
+        gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(entity, hand,
+                AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
+
         GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
         poseStack.popPose();
     }
