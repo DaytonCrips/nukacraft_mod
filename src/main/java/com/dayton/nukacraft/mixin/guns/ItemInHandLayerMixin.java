@@ -4,6 +4,7 @@ import com.dayton.guns.client.handler.AimingHandler;
 import com.dayton.guns.client.handler.GunRenderingHandler;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.item.GunItem;
+import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -30,6 +31,8 @@ public class ItemInHandLayerMixin {
                                        ItemTransforms.TransformType transformType, HumanoidArm arm,
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+
+//        if(entity instanceof PowerArmorFrame) return;
         if (hand == InteractionHand.OFF_HAND) {
 //            if (stack.getItem() instanceof GunItem) {
 //                ci.cancel();
@@ -53,6 +56,7 @@ public class ItemInHandLayerMixin {
         }
     }
 
+    //Third person render
     private static void renderArmWithGun(ItemInHandLayer<?, ?> layer, LivingEntity entity, ItemStack stack,
                                          GunItem item, ItemTransforms.TransformType transformType,
                                          InteractionHand hand, HumanoidArm arm, PoseStack poseStack,
@@ -62,9 +66,8 @@ public class ItemInHandLayerMixin {
         poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
 
-//        var d= ((arm == HumanoidArm.LEFT ? 2.5 : -2.5) / 16F);
-
-        poseStack.translate(-0.6, -0.8, -1);/*0.125, -0.625*/
+        var side = arm == HumanoidArm.LEFT ? 1 : -1;
+        poseStack.translate(0.5 * side, -0.5, -1.2);/*0.125, -0.625*/
         GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
         Gun gun = item.getModifiedGun(stack);
 

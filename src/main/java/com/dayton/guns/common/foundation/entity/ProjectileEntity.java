@@ -40,7 +40,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
@@ -107,7 +106,8 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         double posZ = shooter.zOld + (shooter.getZ() - shooter.zOld) / 2.0;
         this.setPos(posX, posY, posZ);
 
-        Item ammo = ForgeRegistries.ITEMS.getValue(this.projectile.getItem());
+        var ammo = ForgeRegistries.ITEMS.getValue(this.projectile.getItem());
+
         if (ammo != null) {
             int customModelData = -1;
             if (weapon.getTag() != null) {
@@ -195,8 +195,9 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
 
             List<EntityResult> hitEntities = null;
             int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.COLLATERAL.get(), this.weapon);
+
             if (level == 0) {
-                EntityResult entityResult = this.findEntityOnPath(startVec, endVec);
+                var entityResult = this.findEntityOnPath(shooter, startVec, endVec);
                 if (entityResult != null) {
                     hitEntities = Collections.singletonList(entityResult);
                 }
@@ -205,7 +206,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
             }
 
             if (hitEntities != null && hitEntities.size() > 0) {
-                for (EntityResult entityResult : hitEntities) {
+                for (var entityResult : hitEntities) {
                     result = new ExtendedEntityRayTraceResult(entityResult);
                     if (((EntityHitResult) result).getEntity() instanceof Player) {
                         Player player = (Player) ((EntityHitResult) result).getEntity();
@@ -255,11 +256,15 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
     }
 
     @Nullable
-    protected EntityResult findEntityOnPath(Vec3 startVec, Vec3 endVec) {
+    protected EntityResult findEntityOnPath(LivingEntity shooter, Vec3 startVec, Vec3 endVec) {
         Vec3 hitVec = null;
         Entity hitEntity = null;
         boolean headshot = false;
-        List<Entity> entities = this.level.getEntities(this, this.getBoundingBox().expandTowards(this.getDeltaMovement()).inflate(1.0), PROJECTILE_TARGETS);
+        var entities = this.level.getEntities(this,
+                this.getBoundingBox()
+                .expandTowards(this.getDeltaMovement())
+                .inflate(1.0), (entity) -> PROJECTILE_TARGETS.test(entity) && shooter.getVehicle() != entity);
+
         double closestDistance = Double.MAX_VALUE;
         for (Entity entity : entities) {
             if (!entity.equals(this.shooter)) {

@@ -98,10 +98,12 @@ public class ServerPlayHandler {
                 entity.setXRot(Mth.clamp(message.getRotationPitch(), -90F, 90F));
 
                 ShootTracker tracker = ShootTracker.getShootTracker(entity);
+
                 if (tracker.hasCooldown(item) && tracker.getRemaining(item) > Config.SERVER.cooldownThreshold.get()) {
                     NukaCraftMod.LOGGER.warn(entity.getName().getContents() + "(" + entity.getUUID() + ") tried to fire before cooldown finished or server is lagging? Remaining milliseconds: " + tracker.getRemaining(item));
                     return;
                 }
+
                 tracker.putCooldown(heldItem, item, modifiedGun);
 
                 if (ModSyncedDataKeys.RELOADING.getValue(entity)) {
@@ -113,11 +115,12 @@ public class ServerPlayHandler {
                 }
 
                 int count = modifiedGun.getGeneral().getProjectileAmount();
-                Gun.Projectile projectileProps = modifiedGun.getProjectile();
-                ProjectileEntity[] spawnedProjectiles = new ProjectileEntity[count];
+                var projectileProps = modifiedGun.getProjectile();
+                var spawnedProjectiles = new ProjectileEntity[count];
+
                 for (int i = 0; i < count; i++) {
-                    IProjectileFactory factory = ProjectileManager.getInstance().getFactory(projectileProps.getItem());
-                    ProjectileEntity projectileEntity = factory.create(world, entity, heldItem, item, modifiedGun);
+                    var factory = ProjectileManager.getInstance().getFactory(projectileProps.getItem());
+                    var projectileEntity = factory.create(world, entity, heldItem, item, modifiedGun);
                     projectileEntity.setWeapon(heldItem);
                     projectileEntity.setAdditionalDamage(Gun.getAdditionalDamage(heldItem));
                     world.addFreshEntity(projectileEntity);
@@ -125,7 +128,7 @@ public class ServerPlayHandler {
                     projectileEntity.tick();
                 }
                 if (!projectileProps.isVisible()) {
-                    ParticleOptions data = GunEnchantmentHelper.getParticle(heldItem);
+                    var data = GunEnchantmentHelper.getParticle(heldItem);
                     var messageBulletTrail = new MessageBulletTrail(spawnedProjectiles, projectileProps, entity.getId(), data);
                     PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(entity.getX(), entity.getY(), entity.getZ(), Config.COMMON.network.projectileTrackingRange.get(), entity.level.dimension())), messageBulletTrail);
                 }
