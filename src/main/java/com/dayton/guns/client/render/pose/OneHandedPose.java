@@ -37,6 +37,12 @@ public class OneHandedPose implements IHeldAnimation {
     }
 
     @Override
+    public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
+        var side = hand == InteractionHand.OFF_HAND ? 1 : -1;
+        poseStack.translate(0.5 * side, -0.5, -1.2);
+    }
+
+    @Override
     public void renderFirstPersonArms(Player player, HumanoidArm hand, ItemStack stack, PoseStack poseStack,
                                       MultiBufferSource buffer, int light, float partialTicks) {
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));

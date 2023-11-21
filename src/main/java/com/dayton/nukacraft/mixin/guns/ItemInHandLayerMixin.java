@@ -2,6 +2,7 @@ package com.dayton.nukacraft.mixin.guns;
 
 import com.dayton.guns.client.handler.AimingHandler;
 import com.dayton.guns.client.handler.GunRenderingHandler;
+import com.dayton.guns.client.render.pose.OneHandedPose;
 import com.dayton.guns.common.base.Gun;
 import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
@@ -27,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ItemInHandLayerMixin {
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
-    private void renderArmWithItemHead(LivingEntity entity, ItemStack stack,
+    private void renderArmWithItem(LivingEntity entity, ItemStack stack,
                                        ItemTransforms.TransformType transformType, HumanoidArm arm,
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
@@ -66,12 +67,19 @@ public class ItemInHandLayerMixin {
         poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
 
-        var side = arm == HumanoidArm.LEFT ? 1 : -1;
-        poseStack.translate(0.5 * side, -0.5, -1.2);/*0.125, -0.625*/
+
         GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
         Gun gun = item.getModifiedGun(stack);
 
-        gun.getGeneral().getGripType().getHeldAnimation().applyHeldItemTransforms(entity, hand,
+        var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
+
+        var side = arm == HumanoidArm.LEFT ? 1 : -1;
+
+//        if(heldAnimation instanceof OneHandedPose)
+//            poseStack.translate(0.5 * side, -0.5, -1.2);
+//        else poseStack.translate((side * 3) / 16F, 0, -0.625);/*0.125, -0.625*/
+
+        heldAnimation.applyHeldItemTransforms(entity, hand,
                 AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
 
         GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);

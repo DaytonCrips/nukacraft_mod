@@ -236,29 +236,28 @@ public class GunRenderingHandler {
         boolean isRight = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
                 event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
         var hand = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
-
         var heldItem = event.getItemStack();
 
-        if (event.getHand() == InteractionHand.OFF_HAND) {
-            if (heldItem.getItem() instanceof GunItem) {
-                event.setCanceled(true);
-                return;
-            }
-
-            float offhand = 1.0F - Mth.lerp(event.getPartialTicks(), this.prevOffhandTranslate, this.offhandTranslate);
-            poseStack.translate(0, offhand * -0.6F, 0);
-
-            var player = Minecraft.getInstance().player;
-            if (player != null && player.getMainHandItem().getItem() instanceof GunItem) {
-                Gun modifiedGun = ((GunItem) player.getMainHandItem().getItem()).getModifiedGun(player.getMainHandItem());
-                if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
-                    return;
-                }
-            }
-
-            /* Makes the off hand item move out of view */
-            poseStack.translate(0, -1 * AimingHandler.get().getNormalisedAdsProgress(), 0);
-        }
+//        if (event.getHand() == InteractionHand.OFF_HAND) {
+//            if (heldItem.getItem() instanceof GunItem) {
+//                event.setCanceled(true);
+//                return;
+//            }
+//
+//            float offhand = 1.0F - Mth.lerp(event.getPartialTicks(), this.prevOffhandTranslate, this.offhandTranslate);
+//            poseStack.translate(0, offhand * -0.6F, 0);
+//
+//            var player = Minecraft.getInstance().player;
+//            if (player != null && player.getMainHandItem().getItem() instanceof GunItem) {
+//                Gun modifiedGun = ((GunItem) player.getMainHandItem().getItem()).getModifiedGun(player.getMainHandItem());
+//                if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
+//                    return;
+//                }
+//            }
+//
+//            /* Makes the off hand item move out of view */
+//            poseStack.translate(0, -1 * AimingHandler.get().getNormalisedAdsProgress(), 0);
+//        }
 
         if (!(heldItem.getItem() instanceof GunItem gunItem)) {
             return;
@@ -298,6 +297,8 @@ public class GunRenderingHandler {
         // Values are based on vanilla translations for first person
         int offset = isRight ? 1 : -1;
 //        poseStack.translate(0.56 * offset, -0.52, -0.72);
+
+//Jetug
         poseStack.translate(0.3 * offset, -1.3, -1.55);
 
         /* Applies recoil and reload rotations */

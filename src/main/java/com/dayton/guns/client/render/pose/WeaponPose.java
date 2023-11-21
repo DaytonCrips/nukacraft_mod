@@ -138,6 +138,10 @@ public abstract class WeaponPose implements IHeldAnimation {
     @OnlyIn(Dist.CLIENT)
     public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress,
                                         PoseStack poseStack, MultiBufferSource buffer) {
+
+        var side = hand == InteractionHand.OFF_HAND ? 1 : -1;
+        poseStack.translate((side * 3) / 16F, 0, -0.625);
+
         if (hand == InteractionHand.MAIN_HAND) {
             var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
             var leftHanded = right ? 1 : -1;

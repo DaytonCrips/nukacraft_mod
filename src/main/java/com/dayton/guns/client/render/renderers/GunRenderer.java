@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static com.dayton.guns.client.handler.GunRenderingHandler.*;
+import static com.dayton.nukacraft.common.data.utils.PowerArmorUtils.isWearingPowerArmor;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
@@ -40,8 +41,29 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
                        AnimatedGunItem animatable, @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType, @Nullable VertexConsumer buffer, int packedLight) {
+        poseStack.pushPose();
+
+        switch (transformType){
+            case THIRD_PERSON_LEFT_HAND, THIRD_PERSON_RIGHT_HAND -> {
+                if(isWearingPowerArmor(entity))
+                    poseStack.translate(-0.5, -0.5, -0.8);
+//                else
+//                    poseStack.translate(-0.5, -0.5, -1.2);
+            }
+            case FIRST_PERSON_LEFT_HAND, FIRST_PERSON_RIGHT_HAND -> {
+//                poseStack.translate(0.3, -1.3, -1.55);
+            }
+            case GUI -> {
+                poseStack.translate(0.2, -0.55, -0.5);
+            }
+            case GROUND -> {
+                poseStack.translate(-0.5, -0.5, -1);
+            }
+        }
+
         renderAttachments(stack, animatable);
         super.render(entity, stack, transformType, poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+        poseStack.popPose();
     }
 
     @Override
@@ -62,7 +84,6 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         try {
             renderStack = stack;
-
             this.render(
                     entity,
                     stack,
