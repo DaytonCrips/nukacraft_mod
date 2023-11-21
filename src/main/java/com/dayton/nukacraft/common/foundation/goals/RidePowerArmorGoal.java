@@ -1,21 +1,14 @@
 package com.dayton.nukacraft.common.foundation.goals;
 
 import com.dayton.nukacraft.common.foundation.entities.PowerArmorFrame;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.goal.EatBlockGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.AABB;
 
 import java.util.EnumSet;
@@ -30,17 +23,17 @@ public class RidePowerArmorGoal extends Goal {
     private final double speedModifier;
     private final PathNavigation navigation;
     private int timeToRecalcPath;
-    private final float followDistance;
+    private final float searchDistance;
     private float oldWaterCost;
     protected TargetingConditions targetConditions;
 
-    public RidePowerArmorGoal(PathfinderMob entity, double speedModifier, float followDistance) {
+    public RidePowerArmorGoal(PathfinderMob entity, double speedModifier, float searchDistance) {
         this.entity = entity;
         this.level = entity.level;
         this.speedModifier = speedModifier;
         this.navigation = entity.getNavigation();
-        this.followDistance = followDistance;
-        this.targetConditions = forCombat().range(followDistance).selector((target) -> !target.isVehicle());
+        this.searchDistance = searchDistance;
+        this.targetConditions = forCombat().range(searchDistance).selector((target) -> !target.isVehicle());
 
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
         if (!(entity.getNavigation() instanceof GroundPathNavigation) && !(entity.getNavigation() instanceof FlyingPathNavigation)) {
@@ -89,7 +82,7 @@ public class RidePowerArmorGoal extends Goal {
      */
     public void tick() {
         this.target = entity.level.getNearestEntity(entity.level.getEntitiesOfClass(PowerArmorFrame.class,
-                getTargetSearchArea(followDistance), (p_148152_) -> true),
+                getTargetSearchArea(searchDistance), (p_148152_) -> true),
                 targetConditions, entity, entity.getX(), entity.getEyeY(), entity.getZ());
 
 

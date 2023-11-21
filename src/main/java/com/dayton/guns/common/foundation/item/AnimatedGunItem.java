@@ -68,7 +68,6 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 //                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
                 var player = Minecraft.getInstance().player;
 //                var playerHasNotStack = !player.getInventory().items.contains(stack);
-
 //                var stack = event.getData(DataTickets.ITEMSTACK);
 //                var transformType = event.getData(DataTickets.ITEM_RENDER_PERSPECTIVE);
 
@@ -96,6 +95,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 //                else
                 if(cooldown > 0) {
                     animation = begin().then(SHOT, LOOP);
+
                 }
                 else{
                     return PlayState.STOP;

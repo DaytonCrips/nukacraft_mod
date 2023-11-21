@@ -8,12 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
-public class RainerModel extends HumanoidModel<RaiderEntity> {
-    public RainerModel(ModelPart pRoot) {
+public class RaiderModel extends HumanoidModel<RaiderEntity> {
+    public RaiderModel(ModelPart pRoot) {
         super(pRoot);
     }
 
-    public RainerModel(ModelPart pRoot, Function<ResourceLocation, RenderType> pRenderType) {
+    public RaiderModel(ModelPart pRoot, Function<ResourceLocation, RenderType> pRenderType) {
         super(pRoot, pRenderType);
     }
 }
