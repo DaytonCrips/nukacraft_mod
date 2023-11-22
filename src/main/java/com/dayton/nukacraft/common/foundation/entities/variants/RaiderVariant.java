@@ -1,5 +1,7 @@
 package com.dayton.nukacraft.common.foundation.entities.variants;
 
+import com.dayton.guns.client.render.pose.OneHandedPose;
+
 import java.util.Arrays;
 import java.util.Comparator;
 

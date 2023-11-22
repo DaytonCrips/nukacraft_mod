@@ -4,6 +4,8 @@ import com.dayton.guns.client.render.IHeldAnimation;
 import com.dayton.guns.client.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,6 +21,9 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.dayton.nukacraft.client.render.renderers.PowerArmorRenderer.copyRotations;
+import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
+
 /**
  * Author: MrCrayfish
  */
@@ -26,8 +31,8 @@ public class OneHandedPose implements IHeldAnimation {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
-        boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
-        ModelPart arm = right ? rightArm : leftArm;
+        var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+        var arm = right ? rightArm : leftArm;
         IHeldAnimation.copyModelAngles(head, arm);
         arm.xRot += (float) Math.toRadians(-70F);
 
@@ -35,6 +40,19 @@ public class OneHandedPose implements IHeldAnimation {
             arm.xRot = (float) Math.toRadians(-30F);
         }
     }
+
+//    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+        doSafe(() -> {
+            if (bone.getName().equals("right_arm")) {
+                GeoBone head = (GeoBone) model.getBone("head").get();
+                copyRotations(bone, head);
+                bone.setRotX(head.getRotX() + 70);
+            }
+        });
+    }
+
 
     @Override
     public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
