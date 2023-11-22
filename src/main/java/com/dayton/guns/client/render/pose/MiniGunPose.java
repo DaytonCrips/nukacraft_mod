@@ -4,6 +4,8 @@ import com.dayton.guns.Config;
 import com.dayton.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -60,6 +62,11 @@ public class MiniGunPose extends WeaponPose {
         } else {
             super.applyHumanoidModelRotation(entity, rightArm, leftArm, head, hand, aimProgress);
         }
+    }
+
+    @Override
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+
     }
 
     @Override

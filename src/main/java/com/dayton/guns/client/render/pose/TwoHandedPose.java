@@ -6,6 +6,8 @@ import com.dayton.guns.client.util.RenderUtil;
 import com.dayton.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelPart;
@@ -72,6 +74,11 @@ public class TwoHandedPose extends WeaponPose {
             float angle = this.getEntityPitch(entity);
             head.xRot = (float) Math.toRadians(angle > 0.0 ? angle * 70F : angle * 90F);
         }
+    }
+
+    @Override
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+
     }
 
     @Override

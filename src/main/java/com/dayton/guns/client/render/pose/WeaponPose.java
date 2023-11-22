@@ -3,6 +3,8 @@ package com.dayton.guns.client.render.pose;
 import com.dayton.guns.client.render.IHeldAnimation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -68,6 +70,11 @@ public abstract class WeaponPose implements IHeldAnimation {
         float zoom = this.hasAimPose() ? aimProgress : 0F;
         AimPose targetPose = angle > 0.0 ? this.downPose : this.upPose;
         this.applyAimPose(targetPose, mainArm, secondaryArm, angleAbs, zoom, right ? 1 : -1, entity.isCrouching());
+    }
+
+    @Override
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+
     }
 
     /**
