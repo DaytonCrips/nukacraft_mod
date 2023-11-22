@@ -31,9 +31,9 @@ public class EntityTypes {
                     .of(PowerArmorFrame::new, MobCategory.MISC)
                     .sized(1.0f, 2.3f));
 
-    public static final RegistryObject<EntityType<RaiderEntity>> RAIDER =
+    public static final RegistryObject<EntityType<Raider>> RAIDER =
             registerEntity("raider", Builder
-                    .of(RaiderEntity::new, MobCategory.CREATURE)
+                    .of(Raider::new, MobCategory.CREATURE)
                     .sized(1.0f, 1.9f));
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT

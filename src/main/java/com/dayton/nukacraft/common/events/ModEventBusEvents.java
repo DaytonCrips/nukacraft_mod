@@ -31,7 +31,7 @@ public class ModEventBusEvents {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
-        event.put(EntityTypes.RAIDER.get(), RaiderEntity.createAttributes().build());
+        event.put(EntityTypes.RAIDER.get(), Raider.createAttributes().build());
     }
 
     @SubscribeEvent

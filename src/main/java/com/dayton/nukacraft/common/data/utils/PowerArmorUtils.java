@@ -12,7 +12,7 @@ public class PowerArmorUtils {
     }
 
     @Nullable
-    public static WearableChassis getPowerArmor(Entity player) {
+    public static PowerArmorFrame getPowerArmor(Entity player) {
         return player.getVehicle() instanceof PowerArmorFrame ? (PowerArmorFrame)player.getVehicle() : null;
     }
 }

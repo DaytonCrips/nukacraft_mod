@@ -1,6 +1,7 @@
 package com.dayton.nukacraft.client.render.layers;
 
-import com.dayton.nukacraft.common.foundation.entities.RaiderEntity;
+import com.dayton.nukacraft.common.foundation.entities.Raider;
+import com.dayton.nukacraft.common.foundation.entities.variants.RaiderVariant;
 import com.jetug.chassis_core.client.render.layers.LayerBase;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -29,9 +30,7 @@ public class RaiderHeadLayer<T extends WearableChassis> extends LayerBase<T> {
     @Override
     public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType renderType,
                        MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
-        if(!animatable.isInvisible()
-                && animatable.isVehicle()
-                && animatable.getControllingPassenger() instanceof RaiderEntity raider ) {
+        if(!animatable.isInvisible() && animatable.getControllingPassenger() instanceof Raider raider ) {
 
             var texture = getRaiderHead(raider, animatable);
             resourceToBufferedImage(texture);
@@ -48,14 +47,13 @@ public class RaiderHeadLayer<T extends WearableChassis> extends LayerBase<T> {
     }
 
     @Nullable
-    private ResourceLocation getRaiderHead(RaiderEntity raider, T animatable) {
-        var tag = raider.getVariant();
-
+    private ResourceLocation getRaiderHead(Raider raider, T animatable) {
+        var tag = String.valueOf(raider.getTypeVariant());
         if (!raiderHeads.containsKey(tag)) {
             setTextureSize(animatable);
             var image = resourceToBufferedImage(raider.getTexture());
             image = extendImage(image, textureWidth, textureHeight);
-            var resource = createResource(image, "raider_" + raider.getVariant());
+            var resource = createResource(image, "raider_" + tag);
             raiderHeads.put(tag, resource);
         }
         return raiderHeads.get(tag);

@@ -86,7 +86,7 @@ public class RidePowerArmorGoal extends Goal {
                 targetConditions, entity, entity.getX(), entity.getEyeY(), entity.getZ());
 
 
-        if(target == null) return;
+        if(target == null || !target.hasEnergy()) return;
 
         entity.getLookControl().setLookAt(target, 10.0F, (float)entity.getMaxHeadXRot());
 
