@@ -65,7 +65,7 @@ public class MiniGunPose extends WeaponPose {
     }
 
     @Override
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
 
     }
 

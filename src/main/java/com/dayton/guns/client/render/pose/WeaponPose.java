@@ -73,55 +73,8 @@ public abstract class WeaponPose implements IHeldAnimation {
     }
 
     @Override
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
 
-    }
-
-    /**
-     * Gets the pitch of the player with an except when a screen is open. If a screen is open, the
-     * pitch will always be zero.
-     *
-     * @param entity the player the pose is being applied to
-     * @return the current pitch of the player
-     */
-    protected float getEntityPitch(LivingEntity entity) {
-        if (Minecraft.getInstance().getCameraEntity() == entity && Minecraft.getInstance().screen != null) {
-            return 0F;
-        }
-        return Mth.lerp(Minecraft.getInstance().getFrameTime(), entity.xRotO, entity.getXRot()) / 90F;
-    }
-
-    private void applyAimPose(AimPose targetPose, ModelPart rightArm, ModelPart leftArm,
-                              float partial, float zoom, float offhand, boolean sneaking) {
-        this.applyLimbPoseToModelRenderer(
-                targetPose.getIdle().getRightArm(),
-                targetPose.getAiming().getRightArm(),
-                this.forwardPose.getIdle().getRightArm(),
-                this.forwardPose.getAiming().getRightArm(),
-                rightArm, partial, zoom, offhand, sneaking);
-        this.applyLimbPoseToModelRenderer(
-                targetPose.getIdle().getLeftArm(),
-                targetPose.getAiming().getLeftArm(),
-                this.forwardPose.getIdle().getLeftArm(),
-                this.forwardPose.getAiming().getLeftArm(),
-                leftArm, partial, zoom, offhand, sneaking);
-    }
-
-    private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose,
-                                              LimbPose idlePose, LimbPose aimingPose, ModelPart modelPart,
-                                              float partial, float zoom, float leftHanded, boolean sneaking) {
-        modelPart.xRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), modelPart.xRot, partial, zoom, 1F));
-        modelPart.yRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), modelPart.yRot, partial, zoom, leftHanded));
-        modelPart.zRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), modelPart.zRot, partial, zoom, leftHanded));
-        modelPart.x = this.getValue(targetIdlePose.getRotationPointX(), targetAimingPose.getRotationPointX(), idlePose.getRotationPointX(), aimingPose.getRotationPointX(), modelPart.x, partial, zoom, leftHanded);
-        modelPart.y = this.getValue(targetIdlePose.getRotationPointY(), targetAimingPose.getRotationPointY(), idlePose.getRotationPointY(), aimingPose.getRotationPointY(), modelPart.y, partial, zoom, 1F) + (sneaking ? 2F : 0F);
-        modelPart.z = this.getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), modelPart.z, partial, zoom, 1F);
-    }
-
-    private float getValue(@Nullable Float t1, @Nullable Float t2, Float s1, Float s2, Float def, float partial, float zoom, float leftHanded) {
-        float start = t1 != null && s1 != null ? (s1 + (t1 - s1) * partial) * leftHanded : (s1 != null ? s1 * leftHanded : def);
-        float end = t2 != null && s2 != null ? (s2 + (t2 - s2) * partial) * leftHanded : (s2 != null ? s2 * leftHanded : def);
-        return Mth.lerp(zoom, start, end);
     }
 
     @Override
@@ -173,5 +126,52 @@ public abstract class WeaponPose implements IHeldAnimation {
             poseStack.mulPose(Vector3f.YP.rotationDegrees(rotateY * leftHanded));
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(rotateZ * leftHanded));
         }
+    }
+
+    /**
+     * Gets the pitch of the player with an except when a screen is open. If a screen is open, the
+     * pitch will always be zero.
+     *
+     * @param entity the player the pose is being applied to
+     * @return the current pitch of the player
+     */
+    protected float getEntityPitch(LivingEntity entity) {
+        if (Minecraft.getInstance().getCameraEntity() == entity && Minecraft.getInstance().screen != null) {
+            return 0F;
+        }
+        return Mth.lerp(Minecraft.getInstance().getFrameTime(), entity.xRotO, entity.getXRot()) / 90F;
+    }
+
+    private void applyAimPose(AimPose targetPose, ModelPart rightArm, ModelPart leftArm,
+                              float partial, float zoom, float offhand, boolean sneaking) {
+        this.applyLimbPoseToModelRenderer(
+                targetPose.getIdle().getRightArm(),
+                targetPose.getAiming().getRightArm(),
+                this.forwardPose.getIdle().getRightArm(),
+                this.forwardPose.getAiming().getRightArm(),
+                rightArm, partial, zoom, offhand, sneaking);
+        this.applyLimbPoseToModelRenderer(
+                targetPose.getIdle().getLeftArm(),
+                targetPose.getAiming().getLeftArm(),
+                this.forwardPose.getIdle().getLeftArm(),
+                this.forwardPose.getAiming().getLeftArm(),
+                leftArm, partial, zoom, offhand, sneaking);
+    }
+
+    private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose,
+                                              LimbPose idlePose, LimbPose aimingPose, ModelPart modelPart,
+                                              float partial, float zoom, float leftHanded, boolean sneaking) {
+        modelPart.xRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), modelPart.xRot, partial, zoom, 1F));
+        modelPart.yRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), modelPart.yRot, partial, zoom, leftHanded));
+        modelPart.zRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), modelPart.zRot, partial, zoom, leftHanded));
+        modelPart.x = this.getValue(targetIdlePose.getRotationPointX(), targetAimingPose.getRotationPointX(), idlePose.getRotationPointX(), aimingPose.getRotationPointX(), modelPart.x, partial, zoom, leftHanded);
+        modelPart.y = this.getValue(targetIdlePose.getRotationPointY(), targetAimingPose.getRotationPointY(), idlePose.getRotationPointY(), aimingPose.getRotationPointY(), modelPart.y, partial, zoom, 1F) + (sneaking ? 2F : 0F);
+        modelPart.z = this.getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), modelPart.z, partial, zoom, 1F);
+    }
+
+    private float getValue(@Nullable Float t1, @Nullable Float t2, Float s1, Float s2, Float def, float partial, float zoom, float leftHanded) {
+        float start = t1 != null && s1 != null ? (s1 + (t1 - s1) * partial) * leftHanded : (s1 != null ? s1 * leftHanded : def);
+        float end = t2 != null && s2 != null ? (s2 + (t2 - s2) * partial) * leftHanded : (s2 != null ? s2 * leftHanded : def);
+        return Mth.lerp(zoom, start, end);
     }
 }

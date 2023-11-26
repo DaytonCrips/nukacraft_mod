@@ -108,7 +108,6 @@ public class Deathclaw extends Monster implements GeoEntity {
         };
     }
 
-
 //    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
 //        var controller = event.getController();
 //        controller.animationSpeed = 1;
@@ -133,8 +132,6 @@ public class Deathclaw extends Monster implements GeoEntity {
 //        startAttacking = false;
 //        return PlayState.CONTINUE;
 //    }
-
-
 
     private boolean startAttacking = false;
 

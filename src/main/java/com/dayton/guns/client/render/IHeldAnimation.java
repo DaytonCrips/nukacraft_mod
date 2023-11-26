@@ -31,7 +31,7 @@ public interface IHeldAnimation {
                                             InteractionHand hand, float aimProgress) {
     }
 
-    default void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone){}
+    default void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack){}
 
     /**
      * Allows for transformations of the entity model. This is where the entire entity model can

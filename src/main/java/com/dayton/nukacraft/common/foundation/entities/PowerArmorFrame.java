@@ -1,5 +1,6 @@
 package com.dayton.nukacraft.common.foundation.entities;
 
+import com.dayton.guns.common.foundation.item.GunItem;
 import com.dayton.nukacraft.NukaCraftMod;
 import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorMenu;
 import com.dayton.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
@@ -32,7 +33,6 @@ import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
-@SuppressWarnings("unchecked")
 public class PowerArmorFrame extends WearableChassis {
     public static final int INVENTORY_SIZE = ChassisBase.INVENTORY_SIZE + 6;
     public static final ResourceLocation ICON
@@ -177,16 +177,20 @@ public class PowerArmorFrame extends WearableChassis {
         controllerRegistrar.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
     }
 
+    protected boolean passengerHaveGun(){
+        return getPassenger().getMainHandItem().getItem() instanceof GunItem;
+    }
+
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateArms() {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
             RawAnimation animation = null;
 
-            var entity = getPassenger();
+            var passenger = getPassenger();
 
-            if (entity != null) {
-                if (entity.attackAnim > 0) {
+            if (passenger != null && !passengerHaveGun()) {
+                if (passenger.attackAnim > 0) {
                     controller.setAnimationSpeed(2.0D);
                     animation = begin().then(HIT, PLAY_ONCE);
                 } else if (hurtTime > 0) {
@@ -199,9 +203,12 @@ public class PowerArmorFrame extends WearableChassis {
                 else animation = begin().then(IDLE, LOOP);
             }
 
-            return event.setAndContinue(animation != null ? animation : begin().then(IDLE, LOOP));
+            currentAnimation = animation;
+            return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };
     }
+
+    public RawAnimation currentAnimation = null;
 
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateLegs() {
         return event -> {

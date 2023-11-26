@@ -43,7 +43,7 @@ public class OneHandedPose implements IHeldAnimation {
 
 //    @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone) {
+    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
         doSafe(() -> {
             if (bone.getName().equals("right_arm")) {
                 GeoBone head = (GeoBone) model.getBone("head").get();

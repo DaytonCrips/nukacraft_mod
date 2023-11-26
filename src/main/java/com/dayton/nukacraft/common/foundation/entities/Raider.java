@@ -46,9 +46,9 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(3, new GunAttackGoal<>(this, 1.0D, 20.0F));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(4, new RidePowerArmorGoal(this, 1.0D, 20.0F));
+        this.goalSelector.addGoal(7, new RidePowerArmorGoal(this, 1.0D, 20.0F));
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
     }
