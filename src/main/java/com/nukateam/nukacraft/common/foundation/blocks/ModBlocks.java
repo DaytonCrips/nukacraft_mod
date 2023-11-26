@@ -91,8 +91,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> CYANTILE = registerBlock("cyantile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DARKFLOOR = registerBlock("darkfloor",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
 
-
+    public static final RegistryObject<Block> CRCKDWHITEBRICKS = registerBlock("crackedwhitebricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2f, 6.0f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> WHITEBRICKS = registerBlock("whitebricks",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2f, 6.0f).requiresCorrectToolForDrops()));

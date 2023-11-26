@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ModMenuClass {
     private static final List<MenuType<?>> REGISTRY = new ArrayList<>();
-    public static final MenuType<PipBoyMenu> PIPBOY = register("sadzsd", (id, inv, extraData) -> new PipBoyMenu(id, inv, extraData));
+    public static final MenuType<PipBoyMenu> PIPBOY = register("pipboy", (id, inv, extraData) -> new PipBoyMenu(id, inv, extraData));
 
     private static <T extends AbstractContainerMenu> MenuType<T> register(String registryname, IContainerFactory<T> containerFactory) {
         MenuType<T> menuType = new MenuType<T>(containerFactory);
