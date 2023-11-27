@@ -41,11 +41,6 @@ public class ModBlocks {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
-
-
-
-
-
     public static final RegistryObject<Block> ASHWOOD = registerBlock("dwoodlog",
             () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> STRIPPED_ASHWOOD = registerBlock("strippeddwood",
@@ -54,7 +49,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> SILVER_ORE = registerBlock("silver_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2.1F, 3.0F).requiresCorrectToolForDrops()));
-
 
     public static final RegistryObject<Block> QUARTS_ORE = registerBlock("quarts_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
@@ -94,7 +88,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> DARKFLOOR = registerBlock("darkfloor",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
-
     public static final RegistryObject<Block> CRCKDWHITEBRICKS = registerBlock("crackedwhitebricks",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2f, 6.0f).requiresCorrectToolForDrops()));

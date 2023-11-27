@@ -4,8 +4,8 @@
 		{
 			"description": {
 				"identifier": "geometry.power_armor_frame",
-				"texture_width": 300,
-				"texture_height": 300,
+				"texture_width": 465,
+				"texture_height": 620,
 				"visible_bounds_width": 8,
 				"visible_bounds_height": 4.5,
 				"visible_bounds_offset": [0, 1.75, 0]
