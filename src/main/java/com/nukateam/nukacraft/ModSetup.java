@@ -1,11 +1,16 @@
 package com.nukateam.nukacraft;
 
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.registries.RegistryObject;
 
 import static net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer;
@@ -94,6 +99,8 @@ public class ModSetup {
         setRenderLayer(ModBlocks.MEGAHATTER.get(), RenderType.cutout());
 
     }
+
+
 
     public static void flowerPotSetup()
     {

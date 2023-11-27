@@ -20,7 +20,7 @@ public class ModGuns {
     public static final RegistryObject<GunItem> PIPE_PISTOL = ITEMS.register("pipepistol", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> CLASSIC10MM = ITEMS.register("classic10mm", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> SCOUT10MM = ITEMS.register("scout10mm", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
-    //public static final RegistryObject<GunItem> CLASSIC10MM_ZAP = ITEMS.register("classic10mm_zapaway", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
+    //public static final RegistryObject<GunItem> CLASSIC10MM_ZAP = ITEMS.register("classic10mm_zapaway", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_EQUIP)));
     public static final RegistryObject<GunItem> PIPEREVOLVER = ITEMS.register("piperevolver", () -> new PistolGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> FATMAN = ITEMS.register("fatman", () -> new FatmanGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> MINIGUN = ITEMS.register("minigun", () -> new MinigunGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
@@ -32,21 +32,22 @@ public class ModGuns {
 
     //SCOPES
     public static final RegistryObject<Item> LONG_SCOPE = ITEMS.register("long_scope", () -> new ScopeItem(Attachments.LONG_SCOPE, new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
+
+    public static final RegistryObject<Item> SILENCER  = ITEMS.register("army_silencer", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.ARMY_SILENCER), new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> OLD_SCOPE = ITEMS.register("old_scope", () -> new ScopeItem(Scopes.OLD_SCOPE, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> HUNTING_SCOPE = ITEMS.register("hunting_scope", () -> new ScopeItem(Scopes.HUNTING_SCOPE, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> HANDMADE_COLLIMATOR = ITEMS.register("handmade_collimator", () -> new ScopeItem(Scopes.HANDMADE_COLL, new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
-    public static final RegistryObject<Item> COLLIMATOR = ITEMS.register("short_scope", () -> new ScopeItem(Scopes.HANDMADE_COLL, new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> HANDMADE_SCOPE = ITEMS.register("handmade_scope", () -> new ScopeItem(Scopes.HUNTING_SCOPE, new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
 
     public static final RegistryObject<Item> HANDMADE_STOCK  = ITEMS.register("handmade_stock", () -> new StockItem(Stock.create(ExtraGunModifiers.HANDMADE_STOCK), new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
 
-    public static final RegistryObject<Item> SILENCER  = ITEMS.register("army_silencer", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.ARMY_SILENCER), new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> OLD_SILENCER  = ITEMS.register("old_silencer", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.OLD_SILENCER), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
-
     public static final RegistryObject<Item> HANDMADE_FLASHER  = ITEMS.register("handmade_flashhider", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.HANDMADE_FLASHER), new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
+
 
     public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
+    public static final RegistryObject<Item> BASEGRENADE = ITEMS.register("baseballgrenade", () -> new BaseGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 72000));
 
     //Rounds

@@ -13,11 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-/**
- * Author: MrCrayfish
- */
+
 public class GrenadeItem extends AmmoItem {
     protected int maxCookTime;
+
 
     public GrenadeItem(Item.Properties properties, int maxCookTime) {
         super(properties);
@@ -85,6 +84,8 @@ public class GrenadeItem extends AmmoItem {
     public ThrowableGrenadeEntity create(Level world, LivingEntity entity, int timeLeft) {
         return new ThrowableGrenadeEntity(world, entity, timeLeft);
     }
+
+
 
     public boolean canCook() {
         return true;

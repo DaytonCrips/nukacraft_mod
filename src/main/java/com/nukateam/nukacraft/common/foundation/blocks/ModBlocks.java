@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.common.foundation.blocks;
 import com.nukateam.guns.common.foundation.block.WorkbenchBlock;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.custom.blocks.*;
+import com.nukateam.nukacraft.common.foundation.blocks.custom.blocks.PipeBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.custom.plants.*;
 import com.nukateam.nukacraft.common.foundation.items.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.items.ModItems;
@@ -418,6 +419,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> RADIOTERMINAL = registerBlock("radioterminal",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
+
+
+
+
+    public static final RegistryObject<Block> RUSTYPIPE = registerBlock("rusty_pipe",
+            () -> new PipeBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(1.1f, 4.1f).requiresCorrectToolForDrops()));
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));

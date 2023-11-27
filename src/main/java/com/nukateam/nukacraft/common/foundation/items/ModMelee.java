@@ -21,7 +21,9 @@ public class ModMelee {
     public static final RegistryObject<Item> COSMICKNIFE = ITEMS.register("cosmicknife",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 0, 0,
                     new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
-
+    public static final RegistryObject<Item> COMBATPIPE = ITEMS.register("combatpipe",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
+                    new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

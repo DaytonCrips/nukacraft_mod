@@ -8,9 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
-/**
- * Author: MrCrayfish
- */
+
 public class StunGrenadeItem extends GrenadeItem {
     public StunGrenadeItem(Item.Properties properties, int maxCookTime) {
         super(properties, maxCookTime);

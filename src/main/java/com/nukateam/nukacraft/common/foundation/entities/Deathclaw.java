@@ -36,7 +36,7 @@ public class Deathclaw extends Monster implements GeoEntity {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 200)
-                .add(Attributes.ATTACK_DAMAGE, 2.0D)
+                .add(Attributes.ATTACK_DAMAGE, 10.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
                 .add(Attributes.FOLLOW_RANGE, 48);

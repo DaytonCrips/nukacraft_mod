@@ -1,9 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.custom.armor.LeatherArmorItem;
-import com.nukateam.nukacraft.common.foundation.items.custom.armor.RaiderArmorItem;
-import com.nukateam.nukacraft.common.foundation.items.custom.armor.WoodenArmorItem;
+import com.nukateam.nukacraft.common.foundation.items.custom.armor.*;
 import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
@@ -144,6 +142,33 @@ public class ModArmorItems {
                     new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
     public static final RegistryObject<Item> RAIDER_BOOTS = ITEMS.register("raiders_boots",
             () -> new RaiderArmorItem(ModArmorMaterials.HARDLEATHER, EquipmentSlot.FEET, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+
+
+    public static final RegistryObject<Item> METAL_HELMET = ITEMS.register("metalhelmet",
+            () -> new MetalArmorItem(ModArmorMaterials.METAL, EquipmentSlot.HEAD, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> METAL_BODY = ITEMS.register("metalchest",
+            () -> new MetalArmorItem(ModArmorMaterials.METAL, EquipmentSlot.CHEST, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> METAL_LEGGINS = ITEMS.register("metalleggins",
+            () -> new MetalArmorItem(ModArmorMaterials.METAL, EquipmentSlot.LEGS, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> METAL_BOOTS = ITEMS.register("metalboots",
+            () -> new MetalArmorItem(ModArmorMaterials.METAL, EquipmentSlot.FEET, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+
+    public static final RegistryObject<Item> TRAP_HELMET = ITEMS.register("traphelmet",
+            () -> new TrapperArmorItem(ModArmorMaterials.METAL, EquipmentSlot.HEAD, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> TRAP_BODY = ITEMS.register("trapchest",
+            () -> new TrapperArmorItem(ModArmorMaterials.METAL, EquipmentSlot.CHEST, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> TRAP_LEGGINS = ITEMS.register("trapleggins",
+            () -> new TrapperArmorItem(ModArmorMaterials.METAL, EquipmentSlot.LEGS, "default",
+                    new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+    public static final RegistryObject<Item> TRAP_BOOTS = ITEMS.register("trapboots",
+            () -> new TrapperArmorItem(ModArmorMaterials.TRAPPER, EquipmentSlot.FEET, "default",
                     new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

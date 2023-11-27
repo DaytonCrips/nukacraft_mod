@@ -2,7 +2,8 @@
   "part": "head",
   "model": "nukacraft:geo/armor/t60.geo.json",
   "texture": {
-    "default": "nukacraft:textures/power_armor/t60.png"
+    "default": "nukacraft:textures/power_armor/t60.png",
+    "rust": "nukacraft:textures/power_armor/t60_rust.png"
   },
   "uv": [310, 0, 155, 155],
   "hide": ["head_frame"],
