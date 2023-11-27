@@ -2,6 +2,7 @@ package com.nukateam.guns.common.foundation.block;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
+import com.nukateam.nukacraft.common.foundation.blocks.custom.blocks.CustomModelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,15 +37,19 @@ public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock {
         super(properties);
     }
 
+
+    @Override
+    public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+        return 6;
+    }
+
     private VoxelShape getShape(BlockState state) {
         if (SHAPES.containsKey(state)) {
             return SHAPES.get(state);
         }
         Direction direction = state.getValue(FACING);
         List<VoxelShape> shapes = new ArrayList<>();
-        shapes.add(box(0.5, 0, 0.5, 15.5, 13, 15.5));
-        shapes.add(box(0, 13, 0, 16, 15, 16));
-        shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(box(0, 15, 0, 16, 16, 2), Direction.SOUTH))[direction.get2DDataValue()]);
+        shapes.add(box(0.1, 0, 0.1, 15.9, 15.9, 15.9));
         VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
         SHAPES.put(state, shape);
         return shape;

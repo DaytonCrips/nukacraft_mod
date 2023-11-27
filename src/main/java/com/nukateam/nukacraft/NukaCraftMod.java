@@ -85,6 +85,7 @@ public class NukaCraftMod {
         pipBoy.init();
         event.enqueueWork(ModBiomeGeneration::generateBiomes);
         ModSetup.flowerPotSetup();
+        //ModSetup.entityPlacement();
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {

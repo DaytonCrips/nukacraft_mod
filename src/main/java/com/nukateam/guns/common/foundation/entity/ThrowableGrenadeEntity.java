@@ -10,9 +10,6 @@ import net.minecraft.world.level.Level;
 
 import static com.nukateam.nukacraft.common.foundation.items.ModGuns.GRENADE;
 
-/**
- * Author: MrCrayfish
- */
 public class ThrowableGrenadeEntity extends ThrowableItemEntity {
     public float rotation;
     public float prevRotation;

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "nukacraft:block/rusty_pipe",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "nukacraft:block/rusty_pipe",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nukacraft:block/rusty_pipe",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "nukacraft:block/rusty_pipe",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "nukacraft:block/rusty_pipe"
+    },
+    "facing=west": {
+      "model": "nukacraft:block/rusty_pipe",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

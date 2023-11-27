@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.models;
+package com.nukateam.nukacraft.client.models.armors;
 
 
 import com.nukateam.nukacraft.common.foundation.items.custom.armor.LeatherArmorItem;

@@ -1,6 +1,8 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
+import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 public class PipBoy {
     public static List<Archive> content;
     public static float bred = 0.443f;
+    public static int rad = 0;
     public static float bgreen = 0.749f;
     public static float bblue = 0.459f;
     public static int fontColor = -6684775;
@@ -29,7 +32,7 @@ public class PipBoy {
 
     };
     public static ResourceLocation warning_image = new ResourceLocation("nukacraft:textures/screens/pipboy_screens/warning_pipboy.png");
-    public static Integer[] warn_cords = new Integer[]{30, -22};
+    public static Integer[] warn_cords = new Integer[]{-8, -22};
 //
 //
 //    public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
@@ -52,16 +55,18 @@ public class PipBoy {
                 }))
         );
 
-//        content.add(new Archive("▪ Ам ням").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ Kakavozik").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ SUKA").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ Метро Люблино").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ Вкусно и почка").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ Ну а шо еще писать").addPage(new ArchivePage(warning_screen)));
-//        content.add(new Archive("▪ WARN1").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ Ам ням").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ Kakavozik").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ SUKA").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ Метро Люблино").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ Вкусно и почка").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ Ну а шо еще писать").addPage(new ArchivePage(warning_screen)));
+        content.add(new Archive("▪ WARN1").addPage(new ArchivePage(warning_screen)));
     }
 
-    public static void start(ItemStack stack, String skin) {
+    public static void start(ItemStack stack, String skin, Player player) {
+        double rad_val = player.getAttributeValue(ModAttributesClass.RADIATION.get());
+        rad = (int)Math.ceil(rad_val);
         pipboy_name = new ResourceLocation("nukacraft:textures/screens/" + skin + "_pipboy.png");
         switch (stack.getOrCreateTag().getString("screen")) {
             case "white" -> {

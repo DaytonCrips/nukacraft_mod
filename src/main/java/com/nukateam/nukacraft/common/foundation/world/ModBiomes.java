@@ -2,12 +2,16 @@ package com.nukateam.nukacraft.common.foundation.world;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -57,6 +61,7 @@ public class ModBiomes {
                 PlacementUtils.register("nukacraft:ashgrasss", ModFeatures.PATCH_ASHGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 1),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
+
         ModDefaultFeatures.addSittbeans(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandBerrys(biomeGenerationSettings);
         ModDefaultFeatures.addGins(biomeGenerationSettings);
@@ -69,8 +74,10 @@ public class ModBiomes {
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         ModDefaultFeatures.addAgave(biomeGenerationSettings);
 
+
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
+
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
                 .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
@@ -116,6 +123,7 @@ public class ModBiomes {
     }
 
     private static Biome createGlowSea() {
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-5399162).waterColor(-13486806).waterFogColor(-9997233)
                 .skyColor(-13486806).foliageColorOverride(-12038345).grassColorOverride(-11776440).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
@@ -132,9 +140,12 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
-        MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
+
+
+
+        mobspawnsettings$builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.DEATHCLAW.get(), 40, 10, 20));
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.5f)
-                .downfall(0.9f).specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build()).generationSettings(biomeGenerationSettings.build())
+                .downfall(0.9f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 

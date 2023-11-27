@@ -31,7 +31,7 @@ public abstract class ThrowableItemEntity extends ThrowableProjectile implements
     /* The max life of the entity. If -1, will stay alive forever and will need to be explicitly removed. */
     private int maxLife = 20 * 10;
 
-    public ThrowableItemEntity(EntityType<? extends ThrowableItemEntity> entityType, Level worldIn) {
+    public ThrowableItemEntity(EntityType<? extends ThrowableItemEntity> entityType, Level worldIn){
         super(entityType, worldIn);
     }
 
@@ -42,6 +42,8 @@ public abstract class ThrowableItemEntity extends ThrowableProjectile implements
     public ThrowableItemEntity(EntityType<? extends ThrowableItemEntity> entityType, Level world, double x, double y, double z) {
         super(entityType, x, y, z, world);
     }
+
+
 
     public void setItem(ItemStack item) {
         this.item = item;

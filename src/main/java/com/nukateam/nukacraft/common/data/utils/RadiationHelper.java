@@ -31,6 +31,7 @@ public class RadiationHelper {
     private static void updateAttributes(LivingEntity entity, double value) {
         var oldMaxHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
         var totalRadiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+        var currentHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
         var totalHealth = oldMaxHealth + totalRadiation;
         var maxHealth = oldMaxHealth - value;
         var radiation = totalRadiation + value;
@@ -40,7 +41,10 @@ public class RadiationHelper {
 
         entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation);
         entity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxHealth);
-        entity.hurt(DamageSource.GENERIC, 0.1f);
+        if (value > 0 & !(currentHealth <= 2)) {
+            entity.hurt(DamageSource.GENERIC, 2f);
+        }
+
     }
 }
 

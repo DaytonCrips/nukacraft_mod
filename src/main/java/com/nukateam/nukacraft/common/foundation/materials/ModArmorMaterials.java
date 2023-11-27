@@ -12,12 +12,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
-    WOOD("wood", 5, new int[]{1, 2, 2, 1}, 14, SoundEvents.ARMOR_EQUIP_TURTLE,
+    WOOD("wood", 3, new int[]{1, 3, 2, 1}, 0, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),
-    HARDLEATHER("leather", 5, new int[]{2, 2, 2, 2}, 17, SoundEvents.ARMOR_EQUIP_TURTLE,
+    HARDLEATHER("leather", 3, new int[]{2, 3, 3, 2}, 2, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(ModItems.LEATHERHARD.get())),
-    RAIDER("raider", 5, new int[]{2, 3, 3, 2}, 17, SoundEvents.ARMOR_EQUIP_TURTLE,
-            0.0F, 0.0F, () -> Ingredient.of(ModItems.CERAMIC.get()));
+    RAIDER("raider", 3, new int[]{2, 4, 3, 3}, 5, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.0F, 0.0F, () -> Ingredient.of(ModItems.SCRAP.get())),
+    METAL("metal", 4, new int[]{3, 4, 4, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.2F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
+    TRAPPER("trapper", 4, new int[]{4, 5, 5, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.1F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get()));
+
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
