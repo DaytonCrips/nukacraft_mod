@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -249,27 +250,30 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     public void drawMap() {
-        addRenderableWidget(new MainPipBoyButton(leftPos + -71, topPos + 61, 14, 14,
-                new TextComponent(""), e -> {
-            clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            renderArchiveNavigation();
-            }));
-        page_buffer = new String[]{
-                "", //string1
-                "", //string2
-                "", //string3
-                "", //string4
-                "", //string5
-                "", //string6
-                "", //string7
-                "", //string8
-                "", //string9
-                "" //string10
-        };
-        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+//        addRenderableWidget(new MainPipBoyButton(leftPos + -71, topPos + 61, 14, 14,
+//                new TextComponent(""), e -> {
+//            clearWidgets();
+//            archive_pages = round(PipBoy.content.size(), 7) - 1;
+//            current_archive_page = 0;
+//            buttonMenu();
+//            renderArchiveNavigation();
+//            }));
+//        page_buffer = new String[]{
+//                "", //string1
+//                "", //string2
+//                "", //string3
+//                "", //string4
+//                "", //string5
+//                "", //string6
+//                "", //string7
+//                "", //string8
+//                "", //string9
+//                "" //string10
+//        };
+//        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+
+        Minecraft.getInstance().player.closeContainer();
+        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
     public void buttonMenu() {

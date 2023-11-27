@@ -87,7 +87,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
                 && player.isShiftKeyDown()) {
 
             var blockPos = new BlockPos(0, 0, 0);
-            PipBoy.start(stack, skin);
+            PipBoy.start(stack, skin, player);
             openPipboyScreen(serverPlayer, blockPos);
         }
 
