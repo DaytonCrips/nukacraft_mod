@@ -5,7 +5,8 @@ import com.nukateam.guns.client.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.model.GeoModel;
+import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
+import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -43,13 +44,14 @@ public class OneHandedPose implements IHeldAnimation {
 
 //    @Override
     @OnlyIn(Dist.CLIENT)
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
+    public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
         doSafe(() -> {
-            if (bone.getName().equals("right_arm")) {
-                GeoBone head = (GeoBone) model.getBone("head").get();
-                copyRotations(bone, head);
-                bone.setRotX(head.getRotX() + 70);
-            }
+            CoreGeoBone head = animationProcessor.getBone("head");
+            CoreGeoBone rightArm = animationProcessor.getBone("right_arm");
+            rightArm.setRotX(head.getRotX());
+            rightArm.setRotY(head.getRotY());
+            rightArm.setRotZ(head.getRotZ());
+            rightArm.setRotX(head.getRotX() + 70);
         });
     }
 

@@ -10,14 +10,9 @@ import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimati
 
 public class DeathclawModel<Type extends Deathclaw> extends GeoModel<Type> {
 
-    // Models must be stored in assets/<modid>/geo with subfolders supported inside the geo folder
     private static final ResourceLocation model = nukaResource("geo/deathclaw.geo.json");
-    // Textures must be stored in assets/<modid>/geo with subfolders supported inside the textures folder
     private static final ResourceLocation texture = nukaResource( "textures/deathclaw/deathclaw.png");
-    // Animations must be stored in assets/<modid>/animations with subfolders supported inside the animations folder
     private static final ResourceLocation animation = nukaResource( "animations/deathclaw.animation.json");
-
-
 
     @Override
     public ResourceLocation getModelResource(Type object) {
@@ -37,19 +32,7 @@ public class DeathclawModel<Type extends Deathclaw> extends GeoModel<Type> {
     @Override
     public void setCustomAnimations(Type animatable, long instanceId, AnimationState<Type> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
-//        var extraData = (EntityModelData)animationState.getExtraData().get(EntityModelData.class);
-//        if (extraData == null) return;
         setHeadAnimation(animatable, this.getAnimationProcessor(), animationState);
-//        var head = this.getAnimationProcessor().getBone("head");
-//        var partialTick = Minecraft.getInstance().getFrameTime();
-//
-//        float lerpBodyRot = Mth.rotLerp(partialTick, animatable.yBodyRotO, animatable.yBodyRot);
-//        float lerpHeadRot = Mth.rotLerp(partialTick, animatable.yHeadRotO, animatable.yHeadRot);
-//        float headPitch = Mth.lerp(partialTick, animatable.xRotO, animatable.getXRot());
-//        float netHeadYaw = lerpHeadRot - lerpBodyRot;
-//
-//        head.setRotX(-headPitch * ((float) Math.PI / 180F));
-//        head.setRotY(-netHeadYaw * ((float) Math.PI / 180F));
     }
 
 //    @Override

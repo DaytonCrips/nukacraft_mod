@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.client.render.renderers;
 
 import com.nukateam.guns.common.foundation.item.GunItem;
+import com.nukateam.nukacraft.client.models.PowerArmorModel;
 import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
@@ -16,10 +17,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 
 public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
-    public GunItem gunItem;
+//    public GunItem gunItem;
 
     public PowerArmorRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager);
+        super(renderManager, new PowerArmorModel());
         addRenderLayer(new RaiderHeadLayer<>(this));
     }
 
@@ -31,19 +32,19 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     @Override
     public void preRender(PoseStack poseStack, PowerArmorFrame animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-        if (animatable == null) return;
+//        if (animatable == null) return;
 
-        if (animatable.hasPassenger() && animatable.getPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
-            this.gunItem = gunItem;
-        } else {
-            doSafe(() -> {
-                this.gunItem = null;
-                GeoBone rightArm = model.getBone("right_arm").get();
-                GeoBone leftArm = model.getBone("left_arm").get();
-                setRotation(rightArm, 0);
-                setRotation(leftArm, 0);
-            });
-        }
+//        if (animatable.hasPassenger() && animatable.getPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
+//            this.gunItem = gunItem;
+//        } else {
+//            doSafe(() -> {
+//                this.gunItem = null;
+//                var rightArm = model.getBone("right_arm").get();
+//                var leftArm = model.getBone("left_arm").get();
+//                setRotation(rightArm, 0);
+//                setRotation(leftArm, 0);
+//            });
+//        }
     }
 
     @Override
@@ -53,10 +54,10 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 //        Vector3f buffVec = null;
 //        buffVec = getRotations(bone);
 
-        if (gunItem != null) {
-            gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
-                    .applyGeoModelRotation(animatable, getGeoModel(), bone, poseStack);
-        }
+//        if (gunItem != null) {
+//            gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
+//                    .applyGeoModelRotation(animatable, , getGeoModel());
+//        }
 //        else{
 //            if (bone.getName().equals("right_arm") || bone.getName().equals("left_arm")) {
 //                setRotation(bone, 0);
@@ -78,25 +79,25 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     public static void setRotations(GeoBone bone, Vector3f vec) {
         bone.setRotX(vec.x());
         bone.setRotY(vec.y());
-        bone.setRotX(vec.z());
+        bone.setRotZ(vec.z());
     }
 
     public static void copyRotations(GeoBone dist, GeoBone source) {
         dist.setRotX(source.getRotX());
         dist.setRotY(source.getRotY());
-        dist.setRotX(source.getRotZ());
+        dist.setRotZ(source.getRotZ());
     }
 
     private static void addRotation(GeoBone bone, int x, int y, int z) {
         bone.setRotX(bone.getRotX() + x);
         bone.setRotY(bone.getRotY() + y);
-        bone.setRotX(bone.getRotZ() + z);
+        bone.setRotZ(bone.getRotZ() + z);
     }
 
     private static void setRotation(GeoBone bone, int rot) {
         bone.setRotX(rot);
         bone.setRotY(rot);
-        bone.setRotX(rot);
+        bone.setRotZ(rot);
     }
 
 

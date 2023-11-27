@@ -1,10 +1,11 @@
 package com.nukateam.guns.client.render.pose;
 
+import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.render.IHeldAnimation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.model.GeoModel;
+import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
+import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -73,8 +74,17 @@ public abstract class WeaponPose implements IHeldAnimation {
     }
 
     @Override
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
+    public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
+        var mc = Minecraft.getInstance();
 
+        CoreGeoBone rightArm = animationProcessor.getBone("right_arm");
+        CoreGeoBone leftArm = animationProcessor.getBone("left_arm");
+
+        float angle = this.getEntityPitch(entity);
+        float angleAbs = Math.abs(angle);
+        float zoom = this.hasAimPose() ? AimingHandler.get().getAimProgress(entity, mc.getFrameTime()) : 0F;
+        AimPose targetPose = angle > 0.0 ? this.downPose : this.upPose;
+        this.applyAimPose(targetPose, rightArm, leftArm, angleAbs, zoom, 1, entity.isCrouching());
     }
 
     @Override
@@ -142,6 +152,33 @@ public abstract class WeaponPose implements IHeldAnimation {
         return Mth.lerp(Minecraft.getInstance().getFrameTime(), entity.xRotO, entity.getXRot()) / 90F;
     }
 
+    private void applyAimPose(AimPose targetPose, CoreGeoBone rightArm, CoreGeoBone leftArm,
+                              float partial, float zoom, float offhand, boolean sneaking) {
+        this.applyLimbPoseToModelRenderer(
+                targetPose.getIdle().getRightArm(),
+                targetPose.getAiming().getRightArm(),
+                this.forwardPose.getIdle().getRightArm(),
+                this.forwardPose.getAiming().getRightArm(),
+                rightArm, partial, zoom, offhand, sneaking);
+        this.applyLimbPoseToModelRenderer(
+                targetPose.getIdle().getLeftArm(),
+                targetPose.getAiming().getLeftArm(),
+                this.forwardPose.getIdle().getLeftArm(),
+                this.forwardPose.getAiming().getLeftArm(),
+                leftArm, partial, zoom, offhand, sneaking);
+    }
+
+    private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose,
+                                              LimbPose idlePose, LimbPose aimingPose, CoreGeoBone modelPart,
+                                              float partial, float zoom, float leftHanded, boolean sneaking) {
+        modelPart.setRotX(getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), modelPart.getRotX(), partial, zoom, 1F));
+        modelPart.setRotY(getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), modelPart.getRotY(), partial, zoom, leftHanded));
+        modelPart.setRotZ(getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), modelPart.getRotZ(), partial, zoom, leftHanded));
+//        modelPart.setPosX(getValue(targetIdlePose.getRotationPointX(), targetAimingPose.getRotationPointX(), idlePose.getRotationPointX(), aimingPose.getRotationPointX(), modelPart.getRotX(), partial, zoom, leftHanded));
+//        modelPart.setPosY(getValue(targetIdlePose.getRotationPointY(), targetAimingPose.getRotationPointY(), idlePose.getRotationPointY(), aimingPose.getRotationPointY(), modelPart.getRotY(), partial, zoom, 1F) + (sneaking ? 2F : 0F));
+//        modelPart.setPosZ(getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), modelPart.getRotZ(), partial, zoom, 1F));
+    }
+
     private void applyAimPose(AimPose targetPose, ModelPart rightArm, ModelPart leftArm,
                               float partial, float zoom, float offhand, boolean sneaking) {
         this.applyLimbPoseToModelRenderer(
@@ -161,13 +198,15 @@ public abstract class WeaponPose implements IHeldAnimation {
     private void applyLimbPoseToModelRenderer(LimbPose targetIdlePose, LimbPose targetAimingPose,
                                               LimbPose idlePose, LimbPose aimingPose, ModelPart modelPart,
                                               float partial, float zoom, float leftHanded, boolean sneaking) {
-        modelPart.xRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), modelPart.xRot, partial, zoom, 1F));
-        modelPart.yRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), modelPart.yRot, partial, zoom, leftHanded));
-        modelPart.zRot = (float) Math.toRadians(this.getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), modelPart.zRot, partial, zoom, leftHanded));
-        modelPart.x = this.getValue(targetIdlePose.getRotationPointX(), targetAimingPose.getRotationPointX(), idlePose.getRotationPointX(), aimingPose.getRotationPointX(), modelPart.x, partial, zoom, leftHanded);
-        modelPart.y = this.getValue(targetIdlePose.getRotationPointY(), targetAimingPose.getRotationPointY(), idlePose.getRotationPointY(), aimingPose.getRotationPointY(), modelPart.y, partial, zoom, 1F) + (sneaking ? 2F : 0F);
-        modelPart.z = this.getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), modelPart.z, partial, zoom, 1F);
+        modelPart.xRot = (float) Math.toRadians(getValue(targetIdlePose.getRotationAngleX(), targetAimingPose.getRotationAngleX(), idlePose.getRotationAngleX(), aimingPose.getRotationAngleX(), modelPart.xRot, partial, zoom, 1F));
+        modelPart.yRot = (float) Math.toRadians(getValue(targetIdlePose.getRotationAngleY(), targetAimingPose.getRotationAngleY(), idlePose.getRotationAngleY(), aimingPose.getRotationAngleY(), modelPart.yRot, partial, zoom, leftHanded));
+        modelPart.zRot = (float) Math.toRadians(getValue(targetIdlePose.getRotationAngleZ(), targetAimingPose.getRotationAngleZ(), idlePose.getRotationAngleZ(), aimingPose.getRotationAngleZ(), modelPart.zRot, partial, zoom, leftHanded));
+        modelPart.x = getValue(targetIdlePose.getRotationPointX(), targetAimingPose.getRotationPointX(), idlePose.getRotationPointX(), aimingPose.getRotationPointX(), modelPart.x, partial, zoom, leftHanded);
+        modelPart.y = getValue(targetIdlePose.getRotationPointY(), targetAimingPose.getRotationPointY(), idlePose.getRotationPointY(), aimingPose.getRotationPointY(), modelPart.y, partial, zoom, 1F) + (sneaking ? 2F : 0F);
+        modelPart.z = getValue(targetIdlePose.getRotationPointZ(), targetAimingPose.getRotationPointZ(), idlePose.getRotationPointZ(), aimingPose.getRotationPointZ(), modelPart.z, partial, zoom, 1F);
     }
+
+
 
     private float getValue(@Nullable Float t1, @Nullable Float t2, Float s1, Float s2, Float def, float partial, float zoom, float leftHanded) {
         float start = t1 != null && s1 != null ? (s1 + (t1 - s1) * partial) * leftHanded : (s1 != null ? s1 * leftHanded : def);

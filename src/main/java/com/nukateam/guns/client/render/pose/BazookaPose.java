@@ -4,8 +4,7 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.model.GeoModel;
+import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -66,7 +65,7 @@ public class BazookaPose extends WeaponPose {
     }
 
     @Override
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
+    public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
 
     }
 

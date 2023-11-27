@@ -2,6 +2,7 @@ package com.nukateam.guns.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.core.animation.AnimationProcessor;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -31,7 +32,7 @@ public interface IHeldAnimation {
                                             InteractionHand hand, float aimProgress) {
     }
 
-    default void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack){}
+    default void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor){}
 
     /**
      * Allows for transformations of the entity model. This is where the entire entity model can

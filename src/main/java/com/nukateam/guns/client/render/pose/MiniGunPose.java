@@ -4,8 +4,8 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.model.GeoModel;
+import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
+import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -65,8 +65,20 @@ public class MiniGunPose extends WeaponPose {
     }
 
     @Override
-    public void applyGeoModelRotation(LivingEntity entity, GeoModel model, GeoBone bone, PoseStack poseStack) {
+    public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
+        if (Config.CLIENT.display.oldAnimations.get()) {
+            CoreGeoBone mainArm = animationProcessor.getBone("right_arm");
+            CoreGeoBone secondaryArm = animationProcessor.getBone("left_arm");
 
+            mainArm.setRotX(-15F);
+            mainArm.setRotY(-45F);
+            mainArm.setRotZ(0F);
+            secondaryArm.setRotX(-45F);
+            secondaryArm.setRotY(30F);
+            secondaryArm.setRotZ(0F);
+        } else {
+            super.applyGeoModelRotation(entity, animationProcessor);
+        }
     }
 
     @Override
