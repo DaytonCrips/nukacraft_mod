@@ -22,6 +22,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
@@ -176,8 +177,15 @@ public class PowerArmorFrame extends WearableChassis {
         controllerRegistrar.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
     }
 
-    protected boolean passengerHaveGun(){
-        return getPassenger().getMainHandItem().getItem() instanceof GunItem;
+    public boolean passengerHaveGun(){
+        return hasPassenger() && getPassenger().getMainHandItem().getItem() instanceof GunItem;
+    }
+
+    @Nullable
+    public GunItem getPassengerGun(){
+        if(passengerHaveGun())
+            return (GunItem)getPassenger().getMainHandItem().getItem();
+        return null;
     }
 
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateArms() {

@@ -58,14 +58,14 @@ public class GuiAtlasBase extends GuiComponent {
     public static final int WIDTH = 310;
     public static final int HEIGHT = 218;
 
-    private static final int MAP_BORDER_WIDTH = 17;
-    private static final int MAP_BORDER_HEIGHT = 11;
-    private static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2;
-    private static final int MAP_HEIGHT = 194;
+    public static final int MAP_BORDER_WIDTH = 17;
+    public static final int MAP_BORDER_HEIGHT = 11;
+    public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2;
+    public static final int MAP_HEIGHT = 194;
 
-    private static final float PLAYER_ROTATION_STEPS = 16;
-    private static final int PLAYER_ICON_WIDTH = 7;
-    private static final int PLAYER_ICON_HEIGHT = 8;
+    public static final float PLAYER_ROTATION_STEPS = 16;
+    public static final int PLAYER_ICON_WIDTH = 7;
+    public static final int PLAYER_ICON_HEIGHT = 8;
 
     public static final int MARKER_SIZE = 32;
 
@@ -155,34 +155,15 @@ public class GuiAtlasBase extends GuiComponent {
 
     // Buttons =================================================================
 
-    /**
-     * Arrow buttons for navigating the map view via mouse clicks.
-     */
     private final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
-
-    /**
-     * Button for exporting PNG image of the Atlas's contents.
-     */
     private final GuiBookmarkButton btnExportPng;
-
-    /**
-     * Button for placing a marker at current position, local to this Atlas instance.
-     */
     private final GuiBookmarkButton btnMarker;
-
-    /**
-     * Button for deleting local markers.
-     */
     private final GuiBookmarkButton btnDelMarker;
-
-    /**
-     * Button for showing/hiding all markers.
-     */
     private final GuiBookmarkButton btnShowMarkers;
 
-    /** Button for restoring player's position at the center of the Atlas.*/
-    private final GuiPositionButton btnPosition;
+    private final GuiBookmarkButton testButton;
 
+    private final GuiPositionButton btnPosition;
 
     // Navigation ==============================================================
 
@@ -308,6 +289,9 @@ public class GuiAtlasBase extends GuiComponent {
             }
         };
 
+        testButton = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
+
+
         setupButtons();
 
         addChild(markers).setRelativeCoords(-10, 14);
@@ -325,13 +309,20 @@ public class GuiAtlasBase extends GuiComponent {
         btnRight.addListener    (this::onPositionChanged);
         btnPosition.addListener (this::onPositionChanged);
 
-        addChild(btnUp).offsetGuiCoords(148, 10);
-        addChild(btnDown).offsetGuiCoords(148, 194);
-        addChild(btnLeft).offsetGuiCoords(15, 100);
-        addChild(btnRight).offsetGuiCoords(283, 100);
+//        addChild(btnUp).offsetGuiCoords(148, 10);
+//        addChild(btnDown).offsetGuiCoords(148, 194);
+//        addChild(btnLeft).offsetGuiCoords(15, 100);
+//        addChild(btnRight).offsetGuiCoords(283, 100);
         addChild(btnPosition).offsetGuiCoords(283, 194);
-        addChild(btnExportPng).offsetGuiCoords(300, 75);
-        addChild(scaleBar).offsetGuiCoords(20, 198);
+        addChild(scaleBar   ).offsetGuiCoords(20, 198);
+
+        addChild(btnMarker      ).offsetGuiCoords(200, 14);
+        addChild(btnDelMarker   ).offsetGuiCoords(200, 33);
+        addChild(btnShowMarkers ).offsetGuiCoords(200, 52);
+        addChild(btnExportPng   ).offsetGuiCoords(200, 75);
+        addChild(testButton     ).offsetGuiCoords(280, 100);
+
+        testButton.addListener(button -> {});
 
         btnExportPng.addListener(button -> {
             if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
@@ -339,11 +330,6 @@ public class GuiAtlasBase extends GuiComponent {
                 exportThread.start();
             }
         });
-
-        addChild(btnMarker).offsetGuiCoords(300, 14);
-        addChild(btnDelMarker).offsetGuiCoords(300, 33);
-        addChild(btnShowMarkers).offsetGuiCoords(300, 52);
-
         btnMarker.addListener(this::addMarker);
         btnDelMarker.addListener(this::deleteMarker);
         btnShowMarkers.addListener(this::showMarkers);
@@ -366,7 +352,7 @@ public class GuiAtlasBase extends GuiComponent {
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
 
-        updateBookmarkerList();
+//        updateBookmarkerList();
     }
 
     @Override

@@ -98,7 +98,7 @@ public class MarkersS2CPacket extends S2CPacket {
 			}
 		}
 
-		AntiqueAtlasModClient.getAtlasGUI().updateBookmarkerList();
+//		AntiqueAtlasModClient.getAtlasGUI().updateBookmarkerList();
 		return true;
 	}
 

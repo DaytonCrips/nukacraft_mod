@@ -75,16 +75,16 @@ public abstract class WeaponPose implements IHeldAnimation {
 
     @Override
     public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
-        var mc = Minecraft.getInstance();
-
-        CoreGeoBone rightArm = animationProcessor.getBone("right_arm");
-        CoreGeoBone leftArm = animationProcessor.getBone("left_arm");
-
-        float angle = this.getEntityPitch(entity);
-        float angleAbs = Math.abs(angle);
-        float zoom = this.hasAimPose() ? AimingHandler.get().getAimProgress(entity, mc.getFrameTime()) : 0F;
-        AimPose targetPose = angle > 0.0 ? this.downPose : this.upPose;
-        this.applyAimPose(targetPose, rightArm, leftArm, angleAbs, zoom, 1, entity.isCrouching());
+//        var mc = Minecraft.getInstance();
+//
+//        var rightArm = animationProcessor.getBone("right_arm");
+//        var leftArm = animationProcessor.getBone("left_arm");
+//
+//        float angle = this.getEntityPitch(entity);
+//        float angleAbs = Math.abs(angle);
+//        float zoom = this.hasAimPose() ? AimingHandler.get().getAimProgress(entity, mc.getFrameTime()) : 0F;
+//        var targetPose = angle > 0.0 ? this.downPose : this.upPose;
+//        this.applyAimPose(targetPose, rightArm, leftArm, angleAbs, zoom, 1, entity.isCrouching());
     }
 
     @Override

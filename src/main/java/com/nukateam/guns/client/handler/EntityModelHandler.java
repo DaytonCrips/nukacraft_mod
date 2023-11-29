@@ -36,9 +36,9 @@ public class EntityModelHandler {
     public void onRenderEntityPre(RenderLivingEvent.Pre<LivingEntity, EntityModel<LivingEntity>> event) {
         var entity = event.getEntity();
         var heldItem = entity.getMainHandItem();
-        var isHumanoidModel = event.getRenderer().getModel() instanceof HumanoidModel<LivingEntity>;
+        var isHumanoidModel = true;//event.getRenderer().getModel() instanceof HumanoidModel<LivingEntity>;
 
-        if (heldItem.getItem() instanceof GunItem gunItem && isHumanoidModel) {
+        if (heldItem.getItem() instanceof GunItem gunItem) {
             var gun = gunItem.getModifiedGun(heldItem);
             var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
             var aimProgress = AimingHandler.get().getAimProgress(event.getEntity(), event.getPartialTick());

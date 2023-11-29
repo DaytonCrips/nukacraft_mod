@@ -21,7 +21,7 @@ public class GuiAtlas extends GuiAtlasBase {
     protected int topPos;
 
     public GuiAtlas() {
-        renderNavigation();
+//        renderNavigation();
     }
     
     @Override

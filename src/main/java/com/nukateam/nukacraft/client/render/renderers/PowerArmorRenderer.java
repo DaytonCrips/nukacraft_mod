@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.render.renderers;
 
+import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.client.models.PowerArmorModel;
 import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
@@ -13,6 +14,7 @@ import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.InteractionHand;
 
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 
@@ -30,7 +32,9 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     }
 
     @Override
-    public void preRender(PoseStack poseStack, PowerArmorFrame animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void preRender(PoseStack poseStack, PowerArmorFrame animatable, BakedGeoModel model,
+                          MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
+                          float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 //        if (animatable == null) return;
 
@@ -45,6 +49,24 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 //                setRotation(leftArm, 0);
 //            });
 //        }
+
+        var heldItem = animatable.getMainHandItem();
+
+        if(animatable.passengerHaveGun()) {
+            var gunItem = animatable.getPassengerGun();
+
+            var gun = gunItem.getModifiedGun(heldItem);
+            var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
+            var aimProgress = AimingHandler.get().getAimProgress(animatable, partialTick);
+
+            heldAnimation.applyEntityPreRender(
+                    animatable,
+                    InteractionHand.MAIN_HAND,
+                    aimProgress,
+                    poseStack,
+                    bufferSource);
+        }
+
     }
 
     @Override

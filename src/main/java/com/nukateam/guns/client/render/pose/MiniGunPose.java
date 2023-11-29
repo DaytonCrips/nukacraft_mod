@@ -4,7 +4,6 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -66,25 +65,26 @@ public class MiniGunPose extends WeaponPose {
 
     @Override
     public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
-        if (Config.CLIENT.display.oldAnimations.get()) {
-            CoreGeoBone mainArm = animationProcessor.getBone("right_arm");
-            CoreGeoBone secondaryArm = animationProcessor.getBone("left_arm");
+        var mainArm = animationProcessor.getBone("right_arm");
+        var secondaryArm = animationProcessor.getBone("left_arm");
 
-            mainArm.setRotX(-15F);
-            mainArm.setRotY(-45F);
-            mainArm.setRotZ(0F);
-            secondaryArm.setRotX(-45F);
-            secondaryArm.setRotY(30F);
-            secondaryArm.setRotZ(0F);
-        } else {
-            super.applyGeoModelRotation(entity, animationProcessor);
-        }
+        mainArm.setRotX((float)Math.toRadians(15F));
+        mainArm.setRotY((float)Math.toRadians(45F));
+        mainArm.setRotZ((float)Math.toRadians(0F));
+        secondaryArm.setRotX((float)Math.toRadians(45F));
+        secondaryArm.setRotY((float)Math.toRadians(-30F));
+        secondaryArm.setRotZ((float)Math.toRadians(0F));
+    }
+
+    public static boolean rightHandIsMain(InteractionHand hand){
+        return Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+                hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
     }
 
     @Override
     public void applyEntityPreRender(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
         if (Config.CLIENT.display.oldAnimations.get()) {
-            boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+            var right = rightHandIsMain(hand);
             entity.yBodyRotO = entity.yRotO + 45F * (right ? 1F : -1F);
             entity.yBodyRot = entity.getYRot() + 45F * (right ? 1F : -1F);
         } else {

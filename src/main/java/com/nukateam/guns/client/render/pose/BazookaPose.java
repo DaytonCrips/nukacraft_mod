@@ -66,7 +66,15 @@ public class BazookaPose extends WeaponPose {
 
     @Override
     public void applyGeoModelRotation(LivingEntity entity, AnimationProcessor animationProcessor) {
+        var mainArm = animationProcessor.getBone("right_arm");
+        var secondaryArm = animationProcessor.getBone("left_arm");
 
+        mainArm.setRotX((float)Math.toRadians(80F));
+        mainArm.setRotY((float)Math.toRadians(35F));
+        mainArm.setRotZ((float)Math.toRadians(0F));
+        secondaryArm.setRotX((float)Math.toRadians(75));
+        secondaryArm.setRotY((float)Math.toRadians(-30F));
+        secondaryArm.setRotZ((float)Math.toRadians(0F));
     }
 
     @Override

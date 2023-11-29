@@ -49,7 +49,7 @@ public class DeleteMarkerResponseS2CPacket extends S2CPacket {
 				AntiqueAtlasMod.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
 		data.removeMarker(markerID);
 
-		AntiqueAtlasModClient.getAtlasGUI().updateBookmarkerList();
+//		AntiqueAtlasModClient.getAtlasGUI().updateBookmarkerList();
 				return true;
 	}
 

@@ -1,9 +1,20 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 
+import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
+import com.nukateam.map.impl.atlas.client.TileRenderIterator;
+import com.nukateam.map.impl.atlas.client.TileTextureMap;
+import com.nukateam.map.impl.atlas.client.texture.TileTexture;
+import com.nukateam.map.impl.atlas.core.WorldData;
+import com.nukateam.map.impl.atlas.item.AtlasItem;
+import com.nukateam.map.impl.atlas.marker.DimensionMarkersData;
+import com.nukateam.map.impl.atlas.marker.MarkersData;
+import com.nukateam.map.impl.atlas.util.MathUtil;
+import com.nukateam.map.impl.atlas.util.Rect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -13,8 +24,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
+
+import static com.nukateam.map.impl.atlas.client.gui.GuiAtlasBase.*;
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     private final static HashMap<String, Object> guistate = PipBoyMenu.guiState;
@@ -22,6 +36,19 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     private final Level world;
     private final int x, y, z;
     private final Player entity;
+
+    private double mapScale = 1;
+    int tileHalfSize = 1;
+    private int tile2ChunkScale = 1;
+    private double screenScale;
+    protected int mapOffsetX, mapOffsetY = 0;
+    private int guiX = 0, guiY = 0;
+    protected WorldData biomeData;
+    Player player = Minecraft.getInstance().player;
+
+    private DimensionMarkersData localMarkersData;
+    private DimensionMarkersData globalMarkersData;
+
 //Шо? ☢
     public static String[] page_buffer = new String[]{
             "", //string1
@@ -35,10 +62,20 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "", //string9
             "" //string10
     };
+
     public static Integer[] cords = new Integer[]{0, 0};
     private static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
 
     private static int page_count, current_page, current_archive, archive_pages, current_archive_page;
+
+    public int getGuiX() {
+        return guiX;
+    }
+
+    public int getGuiY() {
+        return guiY;
+    }
+
 
     public PipBoyScreen(PipBoyMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
@@ -69,37 +106,117 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             renderArchiveNavigation();
         }
         minecraft.keyboardHandler.setSendRepeatsToGui(true);
+        screenScale = Minecraft.getInstance().getWindow().getGuiScale();
+
+        updateAtlasData();
 //        addRenderableWidget(new MainPipBoyButton(leftPos + -114, topPos + 58, 30, 20, new TextComponent("X"), e -> {
 //        }));
     }
 
     @Override
-    public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(ms);
-        super.render(ms, mouseX, mouseY, partialTicks);
-        this.renderTooltip(ms, mouseX, mouseY);
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(poseStack);
+        super.render(poseStack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(poseStack, mouseX, mouseY);
+    }
+
+    private void renderTiles(PoseStack poseStack, Rect mapPos) {
+        RenderSystem.enableScissor(
+                (int) ((getGuiX() + MAP_BORDER_WIDTH) * screenScale),
+                (int) ((Minecraft.getInstance().getWindow().getHeight() - (getGuiY() + MAP_BORDER_HEIGHT + MAP_HEIGHT) * screenScale)),
+                (int) (MAP_WIDTH * screenScale), (int) (MAP_HEIGHT * screenScale));
+        RenderSystem.enableBlend();
+        RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        var startScreenPos = getStartScreenPos(mapPos);
+        var tiles = new TileRenderIterator(biomeData);
+
+        tiles.setScope(mapPos);
+        tiles.setStep(tile2ChunkScale);
+        renderSubTiles(poseStack, tiles, startScreenPos);
+
+        RenderSystem.disableScissor();
+    }
+
+    protected Pos2I getStartScreenPos(Rect mapPos){
+        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
+        var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
+        return new Pos2I(mapStartScreenX, mapStartScreenY);
+    }
+
+    protected Rect getMapPos(){
+        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndX   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndZ   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+
+        return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
+    }
+
+    private void renderSubTiles(PoseStack poseStack, TileRenderIterator tiles, Pos2I startScreenPos) {
+        poseStack.pushPose();
+        poseStack.translate(startScreenPos.x, startScreenPos.y, 0);
+        for(var subtiles : tiles) {
+            for (var subtile : subtiles) {
+                if (subtile == null || subtile.tile == null) continue;
+                var texture = TileTextureMap.instance().getTexture(subtile);
+                if (texture instanceof TileTexture) {
+                    var tileTexture = (TileTexture) texture;
+                    tileTexture.bind();
+                    tileTexture.drawSubTile(poseStack, subtile, tileHalfSize);
+                }
+            }
+        }
+        poseStack.popPose();
+    }
+
+    private int getAtlasID() {
+        return AntiqueAtlasMod.CONFIG.itemNeeded ?
+                AtlasItem.getAtlasID(Minecraft.getInstance().player.getOffhandItem()) :
+                Minecraft.getInstance().player.getUUID().hashCode();
+    }
+
+    protected void updateAtlasData() {
+        int atlasID = getAtlasID();
+
+        biomeData = AntiqueAtlasMod.tileData
+                .getData(atlasID, player.getCommandSenderWorld())
+                .getWorldData(player.getCommandSenderWorld().dimension());
+        globalMarkersData = AntiqueAtlasMod.globalMarkersData.getData()
+                .getMarkersDataInWorld(player.getCommandSenderWorld().dimension());
+        MarkersData markersData = AntiqueAtlasMod.markersData
+                .getMarkersData(atlasID, player.getCommandSenderWorld());
+        if (markersData != null) {
+            localMarkersData = markersData
+                    .getMarkersDataInWorld(player.getCommandSenderWorld().dimension());
+        } else {
+            localMarkersData = null;
+        }
     }
 
     @Override
-    protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
+    protected void renderBg(PoseStack poseStack, float partialTicks, int gx, int gy) {
         RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, texture);
-        blit(ms, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
+        blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
         RenderSystem.setShaderTexture(0, pipboy_screen); //Pip Boy Skin
-        blit(ms, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
+        blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
 
         if (!(image == null)) {
             RenderSystem.setShaderTexture(0, image); //Pip Boy Skin
-            blit(ms, leftPos + cords[0], topPos + cords[1], 0, 0, 106, 65, 106, 65);
+            blit(poseStack, leftPos + cords[0], topPos + cords[1], 0, 0, 106, 65, 106, 65);
         }
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
         RenderSystem.setShaderTexture(0, pipboy); //Pip Boy Skin
-        blit(ms, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
+        blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
         RenderSystem.setShaderTexture(0, new ResourceLocation("nukacraft:textures/screens/rad_marker.png")); //Radiation Marker
-        blit(ms, leftPos + 91+PipBoy.rad*3, topPos + 72, 0, 0, 3, 4, 3, 4);
+        blit(poseStack, leftPos + 91+PipBoy.rad*3, topPos + 72, 0, 0, 3, 4, 3, 4);
+        
+        var mapPos = getMapPos();
+        renderTiles(poseStack, mapPos);
     }
 
     public void warningPipboy() {
