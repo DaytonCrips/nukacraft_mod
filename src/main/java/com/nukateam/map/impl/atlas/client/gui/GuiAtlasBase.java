@@ -594,7 +594,7 @@ public class GuiAtlasBase extends GuiComponent {
 
 //        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
 
-//        renderScaleOverlay(poseStack, deltaMillis);
+        renderScaleOverlay(poseStack, deltaMillis);
 
         if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
 
@@ -995,6 +995,7 @@ public class GuiAtlasBase extends GuiComponent {
     private void renderSubTiles(PoseStack poseStack, TileRenderIterator tiles, Pos2I startScreenPos) {
         poseStack.pushPose();
         poseStack.translate(startScreenPos.x, startScreenPos.y, 0);
+
         for(var subtiles : tiles) {
             for (var subtile : subtiles) {
                 if (subtile == null || subtile.tile == null) continue;
@@ -1006,6 +1007,7 @@ public class GuiAtlasBase extends GuiComponent {
                 }
             }
         }
+
         poseStack.popPose();
     }
 
@@ -1028,7 +1030,7 @@ public class GuiAtlasBase extends GuiComponent {
         int playerOffsetX = (int) (player.getX() * mapScale) + mapOffsetX;
         int playerOffsetZ = (int) (player.getZ() * mapScale) + mapOffsetY;
         playerOffsetX = Mth.clamp(playerOffsetX, -MAP_WIDTH / 2, MAP_WIDTH / 2);
-        playerOffsetZ = Mth.clamp(playerOffsetZ, -MAP_HEIGHT / 2, MAP_HEIGHT / 2 - 2);
+        playerOffsetZ = Mth.clamp(playerOffsetZ, -MAP_HEIGHT / 2 + 45, MAP_HEIGHT / 2 - 4);
 
         // Draw the icon:
 //        RenderSystem.setShaderColor(1, 1, 1, state.is(PLACING_MARKER) ? 0.5f : 1);
@@ -1040,7 +1042,7 @@ public class GuiAtlasBase extends GuiComponent {
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(180 + playerRotation));
         poseStack.translate((float) (-PLAYER_ICON_WIDTH / 2 * iconScale), (float) (-PLAYER_ICON_HEIGHT / 2 * iconScale), 0f);
 
-        Textures.PLAYER.draw(poseStack, 0, 0, (int) Math.round(PLAYER_ICON_WIDTH * iconScale), (int) Math.round(PLAYER_ICON_HEIGHT * iconScale));
+        Textures.PLAYER.draw(poseStack, 0, 1, (int) Math.round(PLAYER_ICON_WIDTH * iconScale), (int) Math.round(PLAYER_ICON_HEIGHT * iconScale));
 
         poseStack.popPose();
 
