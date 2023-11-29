@@ -52,11 +52,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import static com.nukateam.map.impl.atlas.util.MathUtil.*;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
-    public static final int WIDTH = 310;
-    public static final int HEIGHT = 218;
+    public static final int WIDTH = 235;
+    public static final int HEIGHT = 145;
 
     public static final int MAP_BORDER_WIDTH = 17;
     public static final int MAP_BORDER_HEIGHT = 11;
@@ -351,7 +352,7 @@ public class GuiAtlasBase extends GuiComponent {
         Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(true);
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
-
+//        offsetGuiCoords(-6, 16);
 //        updateBookmarkerList();
     }
 
@@ -570,18 +571,14 @@ public class GuiAtlasBase extends GuiComponent {
         if (AntiqueAtlasMod.CONFIG.debugRender) printDebugInfo();
 
         super.renderBackground(poseStack);
-
-//        TODO fix me for 1.17
-//        RenderSystem.enableAlphaTest();
-//        RenderSystem.alphaFunc(GL11.GL_GREATER, 0); // So light detail on tiles is visible
         setPipboyShader();
         Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
 
         if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
             return;
 
-        if (state.is(DELETING_MARKER)) setPipboyShader(0.5f);
-//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
+        if (state.is(DELETING_MARKER))
+            setPipboyShader(0.5f);
 
         var mapPos = getMapPos();
         var markerPos = getMarkerPos(mapPos);
@@ -590,20 +587,22 @@ public class GuiAtlasBase extends GuiComponent {
         renderTiles(poseStack, mapPos);
         // Overlay the frame so that edges of the map are smooth:
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
+        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX() + 5, getGuiY());
 
         renderMarkers(poseStack, markerPos, globalMarkersData);
         renderMarkers(poseStack, markerPos, localMarkersData);
 
-        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
-        renderScaleOverlay(poseStack, deltaMillis);
+//        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
+
+//        renderScaleOverlay(poseStack, deltaMillis);
 
         if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
 
         // Draw buttons:
         super.render(poseStack, mouseX, mouseY, par3);
 
-        if (state.is(PLACING_MARKER)) drawPlacingMarker(poseStack, mouseX, mouseY, iconScale);
+        if (state.is(PLACING_MARKER))
+            drawPlacingMarker(poseStack, mouseX, mouseY, iconScale);
 
         renderDebugTooltip();
 
@@ -655,13 +654,13 @@ public class GuiAtlasBase extends GuiComponent {
 
         if(localMarkersData == null) return;
 
-
         int contentY = 0;
         for (Marker marker : localMarkersData.getAllMarkers()) {
             if (!marker.isVisibleAhead() || marker.isGlobal()) {
                 continue;
             }
-            GuiMarkerBookmark bookmark = new GuiMarkerBookmark(marker);
+
+            var bookmark = new GuiMarkerBookmark(marker);
 
             bookmark.addListener(button -> {
                 if(state.is(NORMAL)) {
@@ -690,25 +689,25 @@ public class GuiAtlasBase extends GuiComponent {
     // The +-2 at the end provide margin so that tiles at the edges of
     // the page have their stitched texture correct.
     protected Rect getMapPos(){
-        int mapStartX = MathUtil.roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapStartZ = MathUtil.roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndX   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndZ   = MathUtil.roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapStartX = roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapStartZ = roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndX   = roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndZ   = roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
 
         return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
     }
 
     protected Rect getMarkerPos(Rect mapPos){
-        int markersStartX = MathUtil.roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersStartZ = MathUtil.roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersEndX   = MathUtil.roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
-        int markersEndZ   = MathUtil.roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersStartX = roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersStartZ = roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
+        int markersEndX   = roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersEndZ   = roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
 
         return new Rect(markersStartX, markersStartZ, markersEndX, markersEndZ);
     }
 
     protected Pos2I getStartScreenPos(Rect mapPos){
-        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
+        var mapStartScreenX = getGuiX() + WIDTH  / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
         var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
         return new Pos2I(mapStartScreenX, mapStartScreenY);
     }

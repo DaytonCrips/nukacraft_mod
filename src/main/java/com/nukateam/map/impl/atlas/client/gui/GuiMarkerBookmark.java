@@ -29,7 +29,7 @@ public class GuiMarkerBookmark extends GuiComponentButton {
         this.colorIndex = 3;
         this.marker = marker;
 
-        MarkerType type = MarkerType.REGISTRY.get(marker.getType());
+        var type = MarkerType.REGISTRY.get(marker.getType());
         setIconTexture(type.getTexture());
 
         setSize(WIDTH, HEIGHT);
