@@ -11,7 +11,7 @@ import com.nukateam.guns.common.foundation.enchantment.EnchantmentTypes;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import com.jetug.chassis_core.common.foundation.item.CustomizableItem;
-import net.minecraft.ChatFormatting;
+import net.minecraft.*;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -36,7 +36,7 @@ import java.util.function.Consumer;
 
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class GunItem extends CustomizableItem implements IColored, IMeta, IResourceProvider {

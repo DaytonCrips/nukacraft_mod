@@ -110,7 +110,7 @@ public class GuiAtlas extends GuiAtlasBase {
             clearWidgets();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
             current_archive_page = 0;
-            //drawMap();
+            //openMap();
         });
     }
 

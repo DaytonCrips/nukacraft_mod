@@ -291,8 +291,6 @@ public class GuiAtlasBase extends GuiComponent {
         };
 
         testButton = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
-
-
         setupButtons();
 
         addChild(markers).setRelativeCoords(-10, 14);

@@ -10,12 +10,12 @@ import java.util.List;
 
 public class PipBoy {
     public static List<Archive> content;
-    public static float bred = 0.443f;
     public static int rad = 0;
-    public static float bgreen = 0.749f;
-    public static float bblue = 0.459f;
+    public static float red   = 0.443f;
+    public static float green = 0.749f;
+    public static float blue  = 0.459f;
     public static int fontColor = -6684775;
-    public static ResourceLocation pipboy_name;
+    public static ResourceLocation pipboySkin;
 
     public static String[] warning_screen = new String[]{
 
@@ -33,12 +33,11 @@ public class PipBoy {
     };
     public static ResourceLocation warning_image = new ResourceLocation("nukacraft:textures/screens/pipboy_screens/warning_pipboy.png");
     public static Integer[] warn_cords = new Integer[]{-8, -22};
-//
-//
-//    public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
+
     public PipBoy() {
         content = new ArrayList<>();
     }
+
     public void init() {
         content.add(new Archive("archive.nukacraft.vaultboy.name")
             .addPage(new ArchivePage( new String[]{
@@ -67,18 +66,18 @@ public class PipBoy {
     public static void start(ItemStack stack, String skin, Player player) {
         double rad_val = player.getAttributeValue(ModAttributesClass.RADIATION.get());
         rad = (int)Math.ceil(rad_val);
-        pipboy_name = new ResourceLocation("nukacraft:textures/screens/" + skin + "_pipboy.png");
+        pipboySkin = new ResourceLocation("nukacraft:textures/screens/" + skin + "_pipboy.png");
         switch (stack.getOrCreateTag().getString("screen")) {
             case "white" -> {
-                bred = 1;
-                bgreen = 1;
-                bblue = 1;
+                red = 1;
+                green = 1;
+                blue = 1;
                 fontColor = -1;
             }
             case "green" -> {
-                bred = 0.443f;
-                bgreen = 0.749f;
-                bblue = 0.459f;
+                red = 0.443f;
+                green = 0.749f;
+                blue = 0.459f;
                 fontColor = -6684775;
             }
         }

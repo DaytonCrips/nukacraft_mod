@@ -23,7 +23,7 @@ public class TextPipBoyButton extends Button {
         Font font = minecraft.font;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, TEXTURES_LOC);
-        RenderSystem.setShaderColor(PipBoy.bred, PipBoy.bgreen, PipBoy.bblue, this.alpha);
+        RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, this.alpha);
         int i = this.getYImage(this.isHoveredOrFocused());
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();

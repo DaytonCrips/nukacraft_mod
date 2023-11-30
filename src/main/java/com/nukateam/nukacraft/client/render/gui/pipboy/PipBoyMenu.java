@@ -20,15 +20,13 @@ public class PipBoyMenu extends AbstractContainerMenu implements Supplier<Map<In
     public final Level world;
     public final Player entity;
     public int x, y, z;
-    private IItemHandler internal;
     private final Map<Integer, Slot> customSlots = new HashMap<>();
-    private boolean bound = false;
 
     public PipBoyMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         super(ModMenuClass.PIPBOY, id);
         this.entity = inv.player;
         this.world = inv.player.level;
-        this.internal = new ItemStackHandler(0);
+
         if (extraData != null) {
             var pos = extraData.readBlockPos();
             this.x = pos.getX();
