@@ -471,9 +471,6 @@
   "skin.rust" : "§7§oRusty",
 
 
-
-
-
   "block.nukacraft.workbench": "Assembly Workbench",
   "item.nukacraft.pistol": "Pistol",
   "item.nukacraft.shotgun": "Shotgun",
@@ -515,7 +512,7 @@
   "info.nukacraft.ammo": "Ammo: %s",
   "info.nukacraft.ammo_type": "Ammo Type: %s",
   "info.nukacraft.attachment_help": "Press %s in-game for Attachments",
-  "key.categories.nukacraft": "Nuka Craft Weapons",
+  "key.categories.nukacraft": "Nuka Craft",
   "key.nukacraft.reload": "Reload",
   "key.nukacraft.unload": "Unload",
   "key.nukacraft.attachments": "Modify Attachments",
@@ -620,5 +617,6 @@
   "nukacraft.action.steady_aim": "Steady Aim",
   "nukacraft.button.config.tooltip": "Config Options",
   "nukacraft.chat.open_curseforge_page": "Open CurseForge Page",
-  "nukacraft.chat.install_configured": "Install %s to access config options"
+  "nukacraft.chat.install_configured": "Install %s to access config options",
+  "key.open_map": "Open map"
 }

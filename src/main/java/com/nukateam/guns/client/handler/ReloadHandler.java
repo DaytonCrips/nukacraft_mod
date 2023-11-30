@@ -9,6 +9,7 @@ import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.C2SMessageReload;
 import com.nukateam.guns.common.network.message.C2SMessageUnload;
+import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;
@@ -65,16 +66,17 @@ public class ReloadHandler {
         if (player == null)
             return;
 
-        if (KeyBinds.KEY_RELOAD.isDown() && event.getAction() == GLFW.GLFW_PRESS) {
-            if (!ModSyncedDataKeys.RELOADING.getValue(player)) {
-                this.setReloading(true);
-            } else {
-                this.setReloading(false);
+        if(event.getAction() == GLFW.GLFW_PRESS) {
+            if (KeyBinds.KEY_RELOAD.isDown()) {
+                this.setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
             }
-        }
-        if (KeyBinds.KEY_UNLOAD.consumeClick() && event.getAction() == GLFW.GLFW_PRESS) {
-            this.setReloading(false);
-            PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
+            if (KeyBinds.KEY_MAP.isDown()) {
+                PipBoyScreen.openMap();
+            }
+            if (KeyBinds.KEY_UNLOAD.consumeClick()) {
+                this.setReloading(false);
+                PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
+            }
         }
     }
 

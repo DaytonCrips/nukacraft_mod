@@ -217,9 +217,14 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             renderNavigationPage();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
             current_archive_page = 0;
-            warningPipboy();
+            openRadio();
         });
     }
+
+    public void openRadio(){
+        warningPipboy();
+    }
+
     private MainPipBoyButton getBackButton(Runnable runnable){
         return new MainPipBoyButton(leftPos + -71, topPos + 61, 14, 14,
                 new TextComponent(""), e -> runnable.run());
@@ -245,7 +250,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
     }
 
-    public void openMap() {
+    public static void openMap() {
         Minecraft.getInstance().player.closeContainer();
         AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
