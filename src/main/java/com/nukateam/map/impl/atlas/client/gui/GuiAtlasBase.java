@@ -69,7 +69,7 @@ public class GuiAtlasBase extends GuiComponent {
     public static final int PLAYER_ICON_HEIGHT = 8;
 
     public static final int MARKER_SIZE = 32;
-
+    private static final Rect PLAYER_MARKER_BOX = new Rect(0, 45, 0, -6);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
     /**
@@ -352,6 +352,9 @@ public class GuiAtlasBase extends GuiComponent {
         Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(true);
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
+
+        offsetGuiCoords(0,-15);
+
 //        offsetGuiCoords(-6, 16);
 //        updateBookmarkerList();
     }
@@ -594,7 +597,7 @@ public class GuiAtlasBase extends GuiComponent {
 
 //        Textures.PIPBOY_FRAME_NARROW.draw(poseStack, getGuiX(), getGuiY());
 
-        renderScaleOverlay(poseStack, deltaMillis);
+//        renderScaleOverlay(poseStack, deltaMillis);
 
         if (!state.is(HIDING_MARKERS)) renderPlayer(poseStack, iconScale);
 
@@ -1029,8 +1032,8 @@ public class GuiAtlasBase extends GuiComponent {
         // How much the player has moved from the top left corner of the map, in pixels:
         int playerOffsetX = (int) (player.getX() * mapScale) + mapOffsetX;
         int playerOffsetZ = (int) (player.getZ() * mapScale) + mapOffsetY;
-        playerOffsetX = Mth.clamp(playerOffsetX, -MAP_WIDTH / 2, MAP_WIDTH / 2);
-        playerOffsetZ = Mth.clamp(playerOffsetZ, -MAP_HEIGHT / 2 + 45, MAP_HEIGHT / 2 - 4);
+        playerOffsetX = Mth.clamp(playerOffsetX, -MAP_WIDTH / 2 + PLAYER_MARKER_BOX.minX, MAP_WIDTH / 2 + PLAYER_MARKER_BOX.maxX);
+        playerOffsetZ = Mth.clamp(playerOffsetZ, -MAP_HEIGHT / 2 + PLAYER_MARKER_BOX.minY, MAP_HEIGHT / 2 + PLAYER_MARKER_BOX.maxY);
 
         // Draw the icon:
 //        RenderSystem.setShaderColor(1, 1, 1, state.is(PLACING_MARKER) ? 0.5f : 1);
