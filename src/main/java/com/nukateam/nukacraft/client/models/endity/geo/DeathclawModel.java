@@ -9,10 +9,9 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 
 public class DeathclawModel<Type extends Deathclaw> extends GeoModel<Type> {
-
-    private static final ResourceLocation model = nukaResource("geo/deathclaw.geo.json");
-    private static final ResourceLocation texture = nukaResource( "textures/deathclaw/deathclaw.png");
-    private static final ResourceLocation animation = nukaResource( "animations/deathclaw.animation.json");
+    private static final ResourceLocation model = nukaResource("geo/entity/deathclaw.geo.json");
+    private static final ResourceLocation texture = nukaResource( "textures/entity/deathclaw/deathclaw.png");
+    private static final ResourceLocation animation = nukaResource( "animations/entity/deathclaw.animation.json");
 
     @Override
     public ResourceLocation getModelResource(Type object) {

@@ -4,7 +4,7 @@ import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyMenu;
-import com.nukateam.nukacraft.common.foundation.entities.PipBoyRenderer;
+import com.nukateam.nukacraft.client.render.renderers.geo.PipBoyRenderer;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;

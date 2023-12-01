@@ -32,6 +32,7 @@ public class ModEventBusEvents {
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
         event.put(EntityTypes.RAIDER.get(), Raider.createAttributes().build());
+        event.put(EntityTypes.RADROACH.get(), Radroach.createAttributes().build());
     }
 
     @SubscribeEvent

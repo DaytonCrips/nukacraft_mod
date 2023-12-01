@@ -353,14 +353,20 @@ public class ModItems {
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",
             () -> new FusionCoreItem(new Item.Properties()
                     .durability(100000)
-                    .tab(NUKA_MATERIAL)
-            ));
+                    .tab(NUKA_MATERIAL)));
+    
     //Spawn Eggs
     public static final RegistryObject<ForgeSpawnEggItem> RAIDER_SPAWN_EGG = ITEMS.register("raider_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.RAIDER, 0xcdb59b, 0x85725c, new Item.Properties().tab(NUKA_MATERIAL)));
+            () -> new ForgeSpawnEggItem(EntityTypes.RAIDER, 0xcdb59b, 0x85725c,
+                    new Item.Properties().tab(NUKA_MATERIAL)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> RADROACH_SPAWN_EGG = ITEMS.register("radroach_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.RADROACH, 0xcdb50b, 0x85005c,
+                    new Item.Properties().tab(NUKA_MATERIAL)));
 
     public static final RegistryObject<ForgeSpawnEggItem> DEATHCLAW_SPAWN_EGG = ITEMS.register("deathclaw_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.DEATHCLAW, 0x4b3b35, 0x322926, new Item.Properties().tab(NUKA_MATERIAL)));
+            () -> new ForgeSpawnEggItem(EntityTypes.DEATHCLAW, 0x4b3b35, 0x322926,
+                    new Item.Properties().tab(NUKA_MATERIAL)));
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

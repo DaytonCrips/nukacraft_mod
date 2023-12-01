@@ -36,6 +36,11 @@ public class EntityTypes {
                     .of(Raider::new, MobCategory.CREATURE)
                     .sized(1.0f, 1.9f));
 
+    public static final RegistryObject<EntityType<Radroach>> RADROACH =
+            registerEntity("radroach", Builder
+                    .of(Radroach::new, MobCategory.MONSTER)
+                    .sized(1.0f, 0.5f));
+
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder
                     .of(NuclearExplosionEffectEntity::new, MobCategory.MISC)

@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.client.ClientRegistry;
-import net.minecraftforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;

@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.custom.armor;
 
-import com.nukateam.nukacraft.common.foundation.entities.armors.MetalArmorRenderer;
-import com.nukateam.nukacraft.common.foundation.entities.armors.TrapArmortRenderer;
+import com.nukateam.nukacraft.common.foundation.entities.armor.TrapArmortRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;

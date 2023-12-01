@@ -32,8 +32,6 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
 
-    private static final int VARIANTS = 6;
-
     protected Raider(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setCanPickUpLoot(true);

@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.render.renderers;
+package com.nukateam.nukacraft.client.render.renderers.geo;
 
 import com.nukateam.nukacraft.client.models.endity.geo.DeathclawModel;
 import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;

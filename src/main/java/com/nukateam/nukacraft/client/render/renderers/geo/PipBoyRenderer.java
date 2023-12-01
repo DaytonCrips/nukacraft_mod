@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.client.render.renderers.geo;
 
 import com.nukateam.nukacraft.client.models.items.PipBoyItemModel;
 import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;

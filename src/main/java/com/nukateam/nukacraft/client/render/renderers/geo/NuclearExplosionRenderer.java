@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.render.renderers;
+package com.nukateam.nukacraft.client.render.renderers.geo;
 
 import com.nukateam.nukacraft.client.models.*;
 import com.nukateam.nukacraft.common.foundation.entities.*;

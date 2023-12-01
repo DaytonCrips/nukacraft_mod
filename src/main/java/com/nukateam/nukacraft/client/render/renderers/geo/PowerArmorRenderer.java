@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.render.renderers;
+package com.nukateam.nukacraft.client.render.renderers.geo;
 
 import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.common.foundation.item.GunItem;

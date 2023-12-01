@@ -4,7 +4,6 @@ import com.nukateam.guns.client.render.IHeldAnimation;
 import com.nukateam.guns.client.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
@@ -22,7 +21,6 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import static com.nukateam.nukacraft.client.render.renderers.PowerArmorRenderer.copyRotations;
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 
 /**
