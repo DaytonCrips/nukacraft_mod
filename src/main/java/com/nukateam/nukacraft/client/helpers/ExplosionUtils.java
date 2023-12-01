@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.function.Function;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.nukateam.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
-import static com.nukateam.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION_EFFECT;
+import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOSION;
+import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOSION_EFFECT;
 
 public class ExplosionUtils {
     public static final ResourceLocation BOMB_FLASH = nukaResource( "textures/misc/bomb_flash.png");

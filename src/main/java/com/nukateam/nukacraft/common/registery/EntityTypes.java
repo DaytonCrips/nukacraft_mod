@@ -1,6 +1,7 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.entities.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -39,7 +40,12 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Radroach>> RADROACH =
             registerEntity("radroach", Builder
                     .of(Radroach::new, MobCategory.MONSTER)
-                    .sized(1.0f, 0.5f));
+                    .sized(0.5f, 0.25f));
+
+    public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
+            registerEntity("brahmin", Builder
+                    .of(Brahmin::new, MobCategory.CREATURE)
+                    .sized(1.0f, 1.0f));
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder

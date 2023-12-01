@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
 import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.foundation.entities.*;
 import com.nukateam.nukacraft.common.network.PacketHandler;
@@ -33,6 +34,7 @@ public class ModEventBusEvents {
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
         event.put(EntityTypes.RAIDER.get(), Raider.createAttributes().build());
         event.put(EntityTypes.RADROACH.get(), Radroach.createAttributes().build());
+        event.put(EntityTypes.BRAHMIN.get(), Radroach.createAttributes().build());
     }
 
     @SubscribeEvent

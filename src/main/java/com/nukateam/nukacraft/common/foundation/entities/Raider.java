@@ -32,7 +32,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
 
-    protected Raider(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
+    public Raider(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setCanPickUpLoot(true);
     }
@@ -47,6 +47,8 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Radroach.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
     }
 

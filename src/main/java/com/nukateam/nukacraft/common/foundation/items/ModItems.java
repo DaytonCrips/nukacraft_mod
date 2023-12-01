@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.foundation.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.items.custom.*;
 import com.nukateam.nukacraft.common.foundation.items.custom.frame.FusionCoreItem;
 import net.minecraft.world.food.Foods;
@@ -362,6 +362,10 @@ public class ModItems {
 
     public static final RegistryObject<ForgeSpawnEggItem> RADROACH_SPAWN_EGG = ITEMS.register("radroach_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.RADROACH, 0xcdb50b, 0x85005c,
+                    new Item.Properties().tab(NUKA_MATERIAL)));
+
+    public static final RegistryObject<ForgeSpawnEggItem> BRAHMIN_SPAWN_EGG = ITEMS.register("brahmin_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.BRAHMIN, 0xcdb0db, 0x85058c,
                     new Item.Properties().tab(NUKA_MATERIAL)));
 
     public static final RegistryObject<ForgeSpawnEggItem> DEATHCLAW_SPAWN_EGG = ITEMS.register("deathclaw_spawn_egg",

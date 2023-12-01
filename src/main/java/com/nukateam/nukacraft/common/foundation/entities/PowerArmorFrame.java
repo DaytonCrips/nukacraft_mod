@@ -15,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -63,6 +64,16 @@ public class PowerArmorFrame extends WearableChassis {
 //    public Collection<String> getEquipment() {
 //        return List.of(armorParts);
 //    }
+
+
+    @Override
+    public void positionRider(Entity entity) {
+        super.positionRider(entity);
+
+        if(entity instanceof Raider){
+            entity.setPos(this.position());
+        }
+    }
 
     @Override
     public void tick() {

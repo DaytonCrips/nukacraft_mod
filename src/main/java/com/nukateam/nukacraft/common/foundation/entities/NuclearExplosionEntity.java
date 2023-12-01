@@ -21,7 +21,7 @@ import net.minecraftforge.network.PlayMessages;
 
 import java.util.Stack;
 
-import static com.nukateam.nukacraft.common.foundation.entities.EntityTypes.NUCLEAR_EXPLOSION;
+import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOSION;
 import static com.nukateam.nukacraft.common.registery.ModParticles.MUSHROOM_CLOUD;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 

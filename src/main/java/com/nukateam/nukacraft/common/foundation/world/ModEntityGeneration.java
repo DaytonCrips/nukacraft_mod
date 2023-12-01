@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.nukateam.guns.common.foundation.init.ModEntities;
-import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.Biome;
@@ -10,8 +9,6 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 import java.util.Arrays;
 import java.util.List;
-
-import java.util.Arrays;
 
 public class ModEntityGeneration {
 

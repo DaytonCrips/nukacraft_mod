@@ -12,7 +12,7 @@ import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
 import com.nukateam.nukacraft.common.foundation.container.ContainerRegistry;
 import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
 import com.nukateam.nukacraft.common.foundation.effects.ModEffect;
-import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.nukateam.nukacraft.common.registery.ModSounds;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.entities.EntityTypes;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.items.custom.frame.ArmorPart;
 import com.nukateam.nukacraft.common.foundation.items.custom.frame.Jetpack;
