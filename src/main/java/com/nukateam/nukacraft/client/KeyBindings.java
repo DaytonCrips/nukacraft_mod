@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KeyBindings {
-    public static final KeyMapping MAP = new KeyMapping("key.open_map", KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, "key.categories.nukacraft");
+    public static final KeyMapping KEY_MAP = new KeyMapping("key.open_map", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_M, "key.categories.nukacraft");
 
     public static List<KeyMapping> getKeys() {
         List<KeyMapping> keys = new ArrayList<>();
 
-        for (Field field: com.jetug.chassis_core.client.KeyBindings.class.getFields()) try {
+        for (Field field: KeyBindings.class.getFields()) try {
             if (field.get(null) instanceof KeyMapping)
                 keys.add((KeyMapping)field.get(null));
         } catch (IllegalAccessException ignored) {}

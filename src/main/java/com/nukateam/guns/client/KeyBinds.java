@@ -17,8 +17,6 @@ public class KeyBinds {
     public static final KeyMapping KEY_RELOAD = new KeyMapping("key.nukacraft.reload", GLFW.GLFW_KEY_R, "key.categories.nukacraft");
     public static final KeyMapping KEY_UNLOAD = new KeyMapping("key.nukacraft.unload", GLFW.GLFW_KEY_U, "key.categories.nukacraft");
     public static final KeyMapping KEY_ATTACHMENTS = new KeyMapping("key.nukacraft.attachments", GLFW.GLFW_KEY_Z, "key.categories.nukacraft");
-    public static final KeyMapping KEY_MAP = new KeyMapping("key.open_map", KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, "key.categories.nukacraft");
 
     public static void register(){
         for (KeyMapping key: getKeys())
@@ -28,7 +26,7 @@ public class KeyBinds {
     private static List<KeyMapping> getKeys() {
         List<KeyMapping> keys = new ArrayList<>();
 
-        for (Field field: com.jetug.chassis_core.client.KeyBindings.class.getFields()) try {
+        for (Field field: KeyBinds.class.getFields()) try {
             if (field.get(null) instanceof KeyMapping)
                 keys.add((KeyMapping)field.get(null));
         } catch (IllegalAccessException ignored) {}

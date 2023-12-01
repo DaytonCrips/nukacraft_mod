@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.models.endity;
+package com.nukateam.nukacraft.client.models.endity.geo;
 
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
@@ -22,7 +22,7 @@ public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoMode
 
     @Override
     public ResourceLocation getModelResource(T object) {
-        return getChassisResource(object,"geo/chassis/", ".geo.json");
+        return getChassisResource(object,"geo/entity/", ".geo.json");
     }
 
     @Override

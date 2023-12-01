@@ -70,9 +70,6 @@ public class ReloadHandler {
             if (KeyBinds.KEY_RELOAD.isDown()) {
                 this.setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
             }
-            if (KeyBinds.KEY_MAP.isDown()) {
-                PipBoyScreen.openMap();
-            }
             if (KeyBinds.KEY_UNLOAD.consumeClick()) {
                 this.setReloading(false);
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
