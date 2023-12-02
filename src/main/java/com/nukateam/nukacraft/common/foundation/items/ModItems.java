@@ -364,6 +364,10 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(EntityTypes.RADROACH, 0xcdb50b, 0x85005c,
                     new Item.Properties().tab(NUKA_MATERIAL)));
 
+    public static final RegistryObject<ForgeSpawnEggItem> BLOATFLY_SPAWN_EGG = ITEMS.register("bloatfly_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.BLOATFLY, 0xcdbcdb, 0x58008c,
+                    new Item.Properties().tab(NUKA_MATERIAL)));
+
     public static final RegistryObject<ForgeSpawnEggItem> BRAHMIN_SPAWN_EGG = ITEMS.register("brahmin_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.BRAHMIN, 0xcdb0db, 0x85058c,
                     new Item.Properties().tab(NUKA_MATERIAL)));

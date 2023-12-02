@@ -30,7 +30,6 @@ public class Radroach extends Monster implements GeoEntity {
 
     public Radroach(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.setCanPickUpLoot(true);
     }
 
     @Override

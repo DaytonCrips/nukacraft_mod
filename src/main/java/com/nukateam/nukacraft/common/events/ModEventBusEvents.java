@@ -34,7 +34,8 @@ public class ModEventBusEvents {
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
         event.put(EntityTypes.RAIDER.get(), Raider.createAttributes().build());
         event.put(EntityTypes.RADROACH.get(), Radroach.createAttributes().build());
-        event.put(EntityTypes.BRAHMIN.get(), Radroach.createAttributes().build());
+        event.put(EntityTypes.BRAHMIN.get(), Brahmin.createAttributes().build());
+        event.put(EntityTypes.BLOATFLY.get(), Bloatfly.createAttributes().build());
     }
 
     @SubscribeEvent

@@ -40,7 +40,6 @@ public class Brahmin extends Cow implements GeoEntity {
 
     public Brahmin(EntityType<? extends Cow> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.setCanPickUpLoot(true);
     }
 
     @Override
