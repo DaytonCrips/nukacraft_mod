@@ -1,5 +1,6 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiComponent;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
@@ -18,8 +19,8 @@ import java.util.Map;
  * Atlas style it is rendered at half-scale.
  */
 public class GuiScaleBar extends GuiComponent {
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 8;
+    private static final int WIDTH = 93;
+    private static final int HEIGHT = 17;
 
     private static final Map<Double, ITexture> textureMap;
 
@@ -60,7 +61,7 @@ public class GuiScaleBar extends GuiComponent {
     public void render(PoseStack matrices, int mouseX, int mouseY, float partialTick) {
         ITexture texture = getTexture();
         if (texture == null) return;
-
+        RenderSystem.setShaderColor(1,1,1,1);
         texture.draw(matrices, getGuiX(), getGuiY());
 
         if (isMouseOver) {

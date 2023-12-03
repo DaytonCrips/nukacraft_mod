@@ -25,6 +25,7 @@ import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -56,11 +57,11 @@ import static com.nukateam.map.impl.atlas.util.MathUtil.*;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
-    public static final int WIDTH = 235;
+    public static final int WIDTH = 255;
     public static final int HEIGHT = 145;
 
     public static final int MAP_BORDER_WIDTH = 17;
-    public static final int MAP_BORDER_HEIGHT = 11;
+    public static final int MAP_BORDER_HEIGHT = 10;
     public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2;
     public static final int MAP_HEIGHT = 194;
 
@@ -161,6 +162,7 @@ public class GuiAtlasBase extends GuiComponent {
     private final GuiBookmarkButton btnMarker;
     private final GuiBookmarkButton btnDelMarker;
     private final GuiBookmarkButton btnShowMarkers;
+    //private final GuiPipboyButton btnExit;
 
     private final GuiBookmarkButton testButton;
 
@@ -283,6 +285,8 @@ public class GuiAtlasBase extends GuiComponent {
         btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
         btnDelMarker = new GuiBookmarkButton(2, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
         btnShowMarkers = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
+        //btnExit = new GuiPipboyButton(Textures.)
+
         btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
             @Override
             public boolean isEnabled() {
@@ -312,23 +316,23 @@ public class GuiAtlasBase extends GuiComponent {
 //        addChild(btnDown).offsetGuiCoords(148, 194);
 //        addChild(btnLeft).offsetGuiCoords(15, 100);
 //        addChild(btnRight).offsetGuiCoords(283, 100);
-        addChild(btnPosition).offsetGuiCoords(283, 194);
-        addChild(scaleBar   ).offsetGuiCoords(20, 198);
+        addChild(btnPosition).offsetGuiCoords(225, 148);
+        addChild(scaleBar   ).offsetGuiCoords(121, 171);
 
-        addChild(btnMarker      ).offsetGuiCoords(200, 14);
-        addChild(btnDelMarker   ).offsetGuiCoords(200, 33);
-        addChild(btnShowMarkers ).offsetGuiCoords(200, 52);
-        addChild(btnExportPng   ).offsetGuiCoords(200, 75);
-        addChild(testButton     ).offsetGuiCoords(280, 100);
+        addChild(btnMarker      ).offsetGuiCoords(219, 14);
+        addChild(btnDelMarker   ).offsetGuiCoords(219, 33);
+        addChild(btnShowMarkers ).offsetGuiCoords(219, 52);
+        //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
+        //addChild(testButton     ).offsetGuiCoords(280, 100);
 
-        testButton.addListener(button -> {});
+        //testButton.addListener(button -> {});
 
-        btnExportPng.addListener(button -> {
-            if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
-                exportThread = new Thread(() -> exportImage(getAtlasID()), "Atlas file export thread");
-                exportThread.start();
-            }
-        });
+//        btnExportPng.addListener(button -> {
+//            if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+//                exportThread = new Thread(() -> exportImage(getAtlasID()), "Atlas file export thread");
+//                exportThread.start();
+//            }
+//        });
         btnMarker.addListener(this::addMarker);
         btnDelMarker.addListener(this::deleteMarker);
         btnShowMarkers.addListener(this::showMarkers);
@@ -351,8 +355,8 @@ public class GuiAtlasBase extends GuiComponent {
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
 
-        offsetGuiCoords(0,-15);
-
+        offsetGuiCoords(-46,-25);
+        //addRenderableWidget(getOffButton());
 //        offsetGuiCoords(-6, 16);
 //        updateBookmarkerList();
     }
@@ -573,7 +577,7 @@ public class GuiAtlasBase extends GuiComponent {
 
         super.renderBackground(poseStack);
         setPipboyShader();
-        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
+        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX() + 11, getGuiY()+1);
 
         if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
             return;
@@ -588,7 +592,7 @@ public class GuiAtlasBase extends GuiComponent {
         renderTiles(poseStack, mapPos);
         // Overlay the frame so that edges of the map are smooth:
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX() + 5, getGuiY());
+        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX() + 11, getGuiY()+2);
 
         renderMarkers(poseStack, markerPos, globalMarkersData);
         renderMarkers(poseStack, markerPos, localMarkersData);
@@ -613,8 +617,15 @@ public class GuiAtlasBase extends GuiComponent {
             progressBar.draw(poseStack, (width - 100) / 2, height / 2 - 34);
         }
         RenderSystem.setShaderColor(1, 1, 1, 1);
+
     }
 
+    private MainPipBoyButton getOffButton(){
+        return new MainPipBoyButton( -256,  11, 14, 14,
+                new TextComponent("✖"), e -> {
+            minecraft.player.closeContainer();
+        });
+    }
     public void openMarkerFinalizer(Component name) {
         markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
                 getAtlasID(),

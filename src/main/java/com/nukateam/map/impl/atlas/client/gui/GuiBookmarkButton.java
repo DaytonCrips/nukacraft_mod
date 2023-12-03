@@ -5,6 +5,7 @@ import com.nukateam.map.impl.atlas.client.gui.core.GuiToggleButton;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
@@ -35,6 +36,7 @@ public class GuiBookmarkButton extends GuiToggleButton {
         setSize(WIDTH, HEIGHT);
     }
 
+
     void setIconTexture(ITexture iconTexture) {
         this.iconTexture = iconTexture;
     }
@@ -49,8 +51,8 @@ public class GuiBookmarkButton extends GuiToggleButton {
 
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float partialTick) {
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
+        //RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        PipBoyScreenBase.setPipboyShader();
         // Render background:
         int u = colorIndex * WIDTH;
         int v = isMouseOver || isSelected() ? 0 : HEIGHT;
