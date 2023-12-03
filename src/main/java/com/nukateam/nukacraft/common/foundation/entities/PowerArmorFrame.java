@@ -26,6 +26,7 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
+import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
@@ -77,7 +78,7 @@ public class PowerArmorFrame extends WearableChassis {
 
     @Override
     public void tick() {
-        super.tick();
+        doSafe(super::tick);
 
         if(!hasFusionCore()) return;
         var core = getFusionCore();

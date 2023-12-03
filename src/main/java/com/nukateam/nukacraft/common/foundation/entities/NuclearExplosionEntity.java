@@ -28,7 +28,6 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
     public static final int LIFE_TIME = 20;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-
     private boolean spawnedParticle = false;
     private Stack<BlockPos> destroyingChunks = new Stack<>();
     private static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(NuclearExplosionEntity.class, EntityDataSerializers.FLOAT);
@@ -54,12 +53,12 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
         } else {
             if (!getLevel().isClientSide) {
                 if (destroyingChunks.isEmpty()) {
-                    BlockPos center = this.blockPosition();
+                    var center = this.blockPosition();
                     int chunks = chunksAffected;
                     for (int i = -chunks; i <= chunks; i++) {
                         for (int j = -chunks; j <= chunks; j++) {
                             for (int k = -chunks; k <= chunks; k++) {
-                                destroyingChunks.push(center.offset(i * 16, j * 16, k * 16));
+                                destroyingChunks.push(center.offset(i * 16, j * 2, k * 16));
                             }
                         }
                     }
@@ -71,10 +70,12 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
                     }
                 }
             }
+
             var killBox = this.getBoundingBox().inflate(radius + radius * 0.5F, radius * 0.6, radius + radius * 0.5F);
             var flingStrength = getSize() * 0.33F;
             var maximumDistance = radius + radius * 0.5F + 1;
-            for (LivingEntity entity : this.getLevel().getEntitiesOfClass(LivingEntity.class, killBox)) {
+
+            for (var entity : this.getLevel().getEntitiesOfClass(LivingEntity.class, killBox)) {
                 var dist = entity.distanceTo(this);
                 var damage = calculateDamage(dist, maximumDistance);
                 var vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
