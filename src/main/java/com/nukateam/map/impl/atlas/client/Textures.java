@@ -41,6 +41,8 @@ public class Textures {
             MARKER_FRAME_OFF = gui("marker_frame_off.png", 34, 34),
             ERASER = gui("eraser.png", 24, 24),
 
+
+
             SCALEBAR_4 = scaleBar("scalebar_4.png"),
             SCALEBAR_8 = scaleBar("scalebar_8.png"),
             SCALEBAR_16 = scaleBar("scalebar_16.png"),
@@ -83,7 +85,7 @@ public class Textures {
     }
 
     private static ITexture scaleBar(String fileName) {
-        return new Texture(new ResourceLocation(GUI_SCALEBAR + fileName), 20, 8);
+        return new Texture(new ResourceLocation(GUI_SCALEBAR + fileName), 102, 19);
     }
 
     private static ITexture icon(String fileName) {
