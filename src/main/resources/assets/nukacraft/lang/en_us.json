@@ -427,6 +427,7 @@
   "gui.nukacraft.hideMarkers": "Hide All Markers",
   "gui.nukacraft.showMarkers": "Show All Markers",
   "gui.nukacraft.followPlayer": "Follow Player",
+  "gui.nukacraft.scalebar": "Map Scale",
 
   "tooltip.nukacraft.irradiation": "§aRad ",
   "tooltip.nukacraft.radiation": "§cRad ",

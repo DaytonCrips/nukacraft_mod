@@ -1,6 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
+import com.nukateam.nukacraft.common.registery.EntityTypes;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class ModDefaultFeatures {
@@ -76,4 +79,14 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, WastelandVegetation.PATCH_WASTELAND_MUSHROOMS);
     }
 
+    public static void MonsterWastelandSpawns(MobSpawnSettings.Builder builder) {
+        //builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        //builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+        //builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.DEATHCLAW.get(), 1, 1, 1));
+    }
+
+    public static void CreatureWastelandSpawns(MobSpawnSettings.Builder builder) {
+        //builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 2));
+
+    }
 }

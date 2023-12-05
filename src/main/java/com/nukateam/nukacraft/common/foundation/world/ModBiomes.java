@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.block.Blocks;
@@ -44,6 +45,7 @@ public class ModBiomes {
             ModBiomes::createCranberryBog);
 
     private static Biome createPoisonValley() {
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-5399162).waterColor(-9547964).waterFogColor(11648455)
                 .skyColor(-7964315).foliageColorOverride(1783388).grassColorOverride(-861768).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
@@ -72,16 +74,20 @@ public class ModBiomes {
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         ModDefaultFeatures.addAgave(biomeGenerationSettings);
 
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
-        MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
+
 
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
-                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build()).generationSettings(biomeGenerationSettings.build())
+                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 
     private static Biome createCranberryBog() {
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-10990522).waterColor(-11386816).waterFogColor(-11590620)
                 .skyColor(-3024201).foliageColorOverride(-6797754).grassColorOverride(-7714230).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
@@ -114,9 +120,16 @@ public class ModBiomes {
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
-        MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
+
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
+
+
+        //ModDefaultFeatures.CreatureWastelandSpawns(mobspawnsettings$builder);
+
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
-                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build()).generationSettings(biomeGenerationSettings.build())
+                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 
@@ -139,9 +152,12 @@ public class ModBiomes {
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
 
+        mobspawnsettings$builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.DEATHCLAW.get(), 2, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
 
 
-        mobspawnsettings$builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.DEATHCLAW.get(), 40, 10, 20));
+
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.5f)
                 .downfall(0.9f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
@@ -149,6 +165,7 @@ public class ModBiomes {
 
 
     private static Biome createAshHeap() {
+        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-10990522).waterColor(-9551310).waterFogColor(11648455)
                 .skyColor(-10990522).foliageColorOverride(-10465466).grassColorOverride(-11187642).ambientParticle(new AmbientParticleSettings(ParticleTypes.SMOKE, 0.0009f)).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
@@ -157,6 +174,7 @@ public class ModBiomes {
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
         BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
         BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+        ModDefaultFeatures.MonsterWastelandSpawns(mobspawnsettings$builder);
 
         ModDefaultFeatures.addWastelandBerrys(biomeGenerationSettings);
         ModDefaultFeatures.addXander(biomeGenerationSettings);
@@ -166,9 +184,13 @@ public class ModBiomes {
         ModDefaultFeatures.addWastelandOres(biomeGenerationSettings);
         ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
-        MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
+
+
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)
-                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobSpawnInfo.build()).generationSettings(biomeGenerationSettings.build())
+                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 

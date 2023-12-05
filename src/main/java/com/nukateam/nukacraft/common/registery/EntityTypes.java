@@ -39,7 +39,7 @@ public class EntityTypes {
 
     public static final RegistryObject<EntityType<Radroach>> RADROACH =
             registerEntity("radroach", Builder
-                    .of(Radroach::new, MobCategory.MONSTER)
+                    .of(Radroach::new, MobCategory.CREATURE)
                     .sized(0.5f, 0.25f));
 
     public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
