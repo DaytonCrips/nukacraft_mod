@@ -26,6 +26,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
+import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -55,6 +56,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.nukateam.map.impl.atlas.util.MathUtil.*;
+import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen.openArchive;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
@@ -351,9 +353,11 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
     private void openRadio(GuiComponentButton guiComponentButton) {
+        PipBoyScreen.openRadio();
     }
 
     private void openArchives(GuiComponentButton guiComponentButton) {
+        PipBoyScreen.openArchive();
     }
 
     private void close(GuiComponentButton guiComponentButton) {

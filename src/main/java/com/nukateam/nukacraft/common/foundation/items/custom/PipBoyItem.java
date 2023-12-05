@@ -5,6 +5,7 @@ import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyMenu;
 import com.nukateam.nukacraft.client.render.renderers.geo.PipBoyRenderer;
+import com.nukateam.nukacraft.common.data.utils.PlayerUtils;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -35,6 +36,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Consumer;
+
+import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
+import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.getPipboyStack;
 
 public class PipBoyItem extends AtlasItem implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
@@ -85,17 +89,16 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
         if (player instanceof ServerPlayer serverPlayer
                 && player.getOffhandItem().getItem() instanceof PipBoyItem
                 && player.isShiftKeyDown()) {
-
-            var blockPos = new BlockPos(0, 0, 0);
-            PipBoy.start(stack, skin, player);
-            openPipboyScreen(serverPlayer, blockPos);
+            openPipboyScreen(serverPlayer);
         }
 
-//        if (level.isClientSide) {
-//            AntiqueAtlasModClient.openAtlasGUI(stack);
-//        }
-
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
+    }
+
+    public static void openPipboyScreen(ServerPlayer player) {
+        if(!hasPipboy(player)) return;
+        PipBoy.start(getPipboyStack(player), getPipboy().getSkin(), player);
+        PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
     }
 
     public static void openPipboyScreen(ServerPlayer serverPlayer, BlockPos blockPos) {

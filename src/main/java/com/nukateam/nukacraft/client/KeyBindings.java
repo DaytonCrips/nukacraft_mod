@@ -11,6 +11,8 @@ import java.util.List;
 
 public class KeyBindings {
     public static final KeyMapping KEY_MAP = new KeyMapping("key.open_map", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_M, "key.categories.nukacraft");
+    public static final KeyMapping KEY_RADIO = new KeyMapping("key.open_radio", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B, "key.categories.nukacraft");
+    public static final KeyMapping KEY_ARCHIVE = new KeyMapping("key.open_archive", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, "key.categories.nukacraft");
 
     public static List<KeyMapping> getKeys() {
         List<KeyMapping> keys = new ArrayList<>();
