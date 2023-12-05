@@ -422,7 +422,11 @@
   "item.nukacraft.sittpuree": "Sitt Puree",
   "tooltip.nukacraft.regen": "§9Regeneration ",
   "effect.nukacraft.speed": "§9Speed ",
-
+  "gui.nukacraft.addMarker": "Add Marker",
+  "gui.nukacraft.delMarker": "Delete Marker",
+  "gui.nukacraft.hideMarkers": "Hide All Markers",
+  "gui.nukacraft.showMarkers": "Show All Markers",
+  "gui.nukacraft.followPlayer": "Follow Player",
 
   "tooltip.nukacraft.irradiation": "§aRad ",
   "tooltip.nukacraft.radiation": "§cRad ",

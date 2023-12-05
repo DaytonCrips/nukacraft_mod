@@ -12,16 +12,14 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.Collections;
 
 public class GuiPipboyButton extends GuiToggleButton{
-    private static final int WIDTH = 21;
-    private static final int HEIGHT = 18;
-    private static final ResourceLocation button_t = new ResourceLocation("nukacraft:textures/screens/button_t.png");
-    private static final ResourceLocation button_f = new ResourceLocation("nukacraft:textures/screens/button_f.png");
+    private static final int WIDTH = 14;
+    private static final int HEIGHT = 14;
 
 
     private ITexture iconTexture;
-    private Component title;
 
-    GuiPipboyButton(ITexture iconTexture) {
+
+    public GuiPipboyButton(ITexture iconTexture) {
         setIconTexture(iconTexture);
         setSize(WIDTH, HEIGHT);
     }
@@ -31,22 +29,20 @@ public class GuiPipboyButton extends GuiToggleButton{
         this.iconTexture = iconTexture;
     }
 
-    public Component getTitle() {
-        return title;
-    }
 
-    void setTitle(Component title) {
-        this.title = title;
-    }
+
 
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float partialTick) {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, button_t);
+        // Render background:
+
+        int v = isMouseOver || isSelected() ? 0 : WIDTH;
+        Textures.EXIT.draw(matrices, getGuiX(), getGuiY(), v, 0, WIDTH, HEIGHT);
+
+        // Render the icon:
+        //iconTexture.draw(matrices, getGuiX() + 2, getGuiY() + 1, 0, v, WIDTH, HEIGHT);
 
 
-        if (isMouseOver) {
-            RenderSystem.setShaderTexture(0, button_f);
-        }
     }
 }

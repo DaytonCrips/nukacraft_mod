@@ -426,6 +426,11 @@
   "tooltip.nukacraft.irradiation": "§aРад ",
   "tooltip.nukacraft.radiation": "§cРад ",
   "tooltip.nukacraft.fire_res": "§9Огнестойкость ",
+  "gui.nukacraft.addMarker": "Добавить Маркер",
+  "gui.nukacraft.delMarker": "Удалить Маркер",
+  "gui.nukacraft.hideMarkers": "Скрыть Все Маркеры",
+  "gui.nukacraft.showMarkers": "Показать Все Маркеры",
+  "gui.nukacraft.followPlayer": "Показать Игрока",
 
 
   "item.nukacraft.holotape_white": "Цветовая Голозапись",

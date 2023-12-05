@@ -127,10 +127,10 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             font.draw(poseStack, new TranslatableComponent(page_buffer[xt]), -150, -87 + (xt * 13), PipBoy.fontColor);
         }
 
-        font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.data"), 79, -91, -1);
-        font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.map"), 79, -68, -1);
-        font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.radio"), 79, -45, -1);
-        font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.rad"), 83, 52, -1);
+        //font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.data"), 79, -91, -1);
+        //font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.map"), 79, -68, -1);
+        //font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.radio"), 79, -45, -1);
+        //font.draw(poseStack, new TranslatableComponent("pipboy.nukacraft.rad"), 83, 52, -1);
 
         if (menu)
             font.draw(poseStack, new TranslatableComponent("   [" + current_archive_page + "/" + archive_pages + "]"), -25, 64, -1);
@@ -189,7 +189,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private MainPipBoyButton getHomeButton(){
         return new MainPipBoyButton(leftPos + 125, topPos + -94, 14, 14,
-                new TextComponent("♦"), e -> {
+                new TextComponent(""), e -> {
             clearWidgets();
             menu = true;
             archive_pages = round(PipBoy.content.size(), 7) - 1;
@@ -201,7 +201,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private MainPipBoyButton getMapButton(){
         return new MainPipBoyButton(leftPos + 125, topPos + -71, 14, 14,
-                new TextComponent("♦"), e -> {
+                new TextComponent(""), e -> {
             clearWidgets();
             renderNavigationPage();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
@@ -212,7 +212,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private MainPipBoyButton getRadioButton(){
         return new MainPipBoyButton(leftPos + 125, topPos + -48, 14, 14,
-                new TextComponent("♦"), e -> {
+                new TextComponent(""), e -> {
             clearWidgets();
             renderNavigationPage();
             archive_pages = round(PipBoy.content.size(), 7) - 1;
@@ -232,7 +232,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private MainPipBoyButton getOffButton(){
         return new MainPipBoyButton(leftPos + -156, topPos + 61, 14, 14,
-                new TextComponent("✖"), e -> {
+                new TextComponent(""), e -> {
             minecraft.player.closeContainer();
         });
     }

@@ -40,6 +40,7 @@ public class Textures {
             MARKER_FRAME_ON = gui("marker_frame_on.png", 34, 34),
             MARKER_FRAME_OFF = gui("marker_frame_off.png", 34, 34),
             ERASER = gui("eraser.png", 24, 24),
+            EXIT = gui("pipboy_btn.png", 28, 14),
 
 
 

@@ -26,6 +26,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
+import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -162,9 +163,11 @@ public class GuiAtlasBase extends GuiComponent {
     private final GuiBookmarkButton btnMarker;
     private final GuiBookmarkButton btnDelMarker;
     private final GuiBookmarkButton btnShowMarkers;
-    //private final GuiPipboyButton btnExit;
+    private final GuiPipboyButton btnExit;
+    private final GuiPipboyButton btnArchive;
+    private final GuiPipboyButton btnRadio;
 
-    private final GuiBookmarkButton testButton;
+
 
     private final GuiPositionButton btnPosition;
 
@@ -283,9 +286,11 @@ public class GuiAtlasBase extends GuiComponent {
         btnPosition = new GuiPositionButton();
         btnPosition.setEnabled(!followPlayer);
         btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
-        btnDelMarker = new GuiBookmarkButton(2, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
-        btnShowMarkers = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
-        //btnExit = new GuiPipboyButton(Textures.)
+        btnDelMarker = new GuiBookmarkButton(0, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
+        btnShowMarkers = new GuiBookmarkButton(0, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
+        btnExit = new GuiPipboyButton(Textures.EXIT);
+        btnArchive = new GuiPipboyButton(Textures.EXIT);
+        btnRadio = new GuiPipboyButton(Textures.EXIT);
 
         btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
             @Override
@@ -294,7 +299,7 @@ public class GuiAtlasBase extends GuiComponent {
             }
         };
 
-        testButton = new GuiBookmarkButton(3, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
+
         setupButtons();
 
         addChild(markers).setRelativeCoords(-10, 14);
@@ -322,6 +327,9 @@ public class GuiAtlasBase extends GuiComponent {
         addChild(btnMarker      ).offsetGuiCoords(219, 14);
         addChild(btnDelMarker   ).offsetGuiCoords(219, 33);
         addChild(btnShowMarkers ).offsetGuiCoords(219, 52);
+        addChild(btnExit).offsetGuiCoords(18, 176);
+        addChild(btnArchive).offsetGuiCoords(299, 21);
+        addChild(btnRadio).offsetGuiCoords(299, 67);
         //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
         //addChild(testButton     ).offsetGuiCoords(280, 100);
 
@@ -336,9 +344,22 @@ public class GuiAtlasBase extends GuiComponent {
         btnMarker.addListener(this::addMarker);
         btnDelMarker.addListener(this::deleteMarker);
         btnShowMarkers.addListener(this::showMarkers);
-
+        btnExit.addListener(this::close);
+        btnArchive.addListener(this::openArchives);
+        btnRadio.addListener(this::openRadio);
         scaleBar.setMapScale(1);
     }
+
+    private void openRadio(GuiComponentButton guiComponentButton) {
+    }
+
+    private void openArchives(GuiComponentButton guiComponentButton) {
+    }
+
+    private void close(GuiComponentButton guiComponentButton) {
+        close();
+    }
+
 
     ///////////////
 
@@ -355,8 +376,8 @@ public class GuiAtlasBase extends GuiComponent {
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
 
-        offsetGuiCoords(-46,-25);
-        //addRenderableWidget(getOffButton());
+        offsetGuiCoords(-12,-25);
+
 //        offsetGuiCoords(-6, 16);
 //        updateBookmarkerList();
     }
@@ -620,12 +641,6 @@ public class GuiAtlasBase extends GuiComponent {
 
     }
 
-    private MainPipBoyButton getOffButton(){
-        return new MainPipBoyButton( -256,  11, 14, 14,
-                new TextComponent("✖"), e -> {
-            minecraft.player.closeContainer();
-        });
-    }
     public void openMarkerFinalizer(Component name) {
         markerFinalizer.setMarkerData(player.getCommandSenderWorld(),
                 getAtlasID(),
