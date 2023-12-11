@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.events;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.entities.ExplosionType;
+import com.nukateam.nukacraft.common.data.constants.ExplosionType;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;

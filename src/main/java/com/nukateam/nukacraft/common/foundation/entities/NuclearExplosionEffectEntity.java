@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.entities;
 
+import com.nukateam.nukacraft.common.data.constants.ExplosionType;
 import mod.azure.azurelib.core.animation.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

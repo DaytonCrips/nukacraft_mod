@@ -103,7 +103,8 @@ public class CrosshairHandler {
         if (event.getOverlay() != ForgeIngameGui.CROSSHAIR_ELEMENT)
             return;
 
-        Crosshair crosshair = this.getCurrentCrosshair();
+        var crosshair = this.getCurrentCrosshair();
+
         if (AimingHandler.get().getNormalisedAdsProgress() > 0.5) {
             event.setCanceled(true);
             return;

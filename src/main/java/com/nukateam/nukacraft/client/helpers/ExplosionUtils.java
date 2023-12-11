@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.helpers;
 
-import com.nukateam.nukacraft.common.foundation.entities.ExplosionType;
+import com.nukateam.nukacraft.common.data.constants.ExplosionType;
 import com.nukateam.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
