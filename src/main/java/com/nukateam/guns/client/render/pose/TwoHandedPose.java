@@ -128,9 +128,13 @@ public class TwoHandedPose extends WeaponPose {
             poseStack.translate(reloadProgress * 0.5, -reloadProgress, -reloadProgress * 0.5);
 
             poseStack.scale(0.5F, 0.5F, 0.5F);
-            poseStack.translate(4.0 * 0.0625 * side, 0, 0);
-            poseStack.translate((armWidth / 2.0) * 0.0625 * side, 0, 0);
-            poseStack.translate(-0.3125 * side, -0.1, -0.4375);
+
+
+            poseStack.translate(0.8 * side, 1.45, -2.9);
+
+//            poseStack.translate(4.0 * 0.0625 * side, 0, 0);
+//            poseStack.translate((armWidth / 2.0) * 0.0625 * side, 0, 0);
+//            poseStack.translate(-0.3125 * side, -0.1, -0.4375);
 
             poseStack.mulPose(Vector3f.XP.rotationDegrees(80F));
             poseStack.mulPose(Vector3f.YP.rotationDegrees(15F * -side));
