@@ -20,7 +20,14 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
-
+    public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> LEGWEAPONPARTS = ITEMS.register("leg_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> MTHWEAPONPARTS = ITEMS.register("myth_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> WEAPONPARTS = ITEMS.register("weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
