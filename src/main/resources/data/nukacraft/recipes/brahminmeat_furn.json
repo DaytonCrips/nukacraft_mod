@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 1,
+  "cookingtime": 125,
+  "ingredient": {
+    "item": "nukacraft:raw_brahminmeat"
+  },
+  "result": "nukacraft:c_brahminmeat"
+}
