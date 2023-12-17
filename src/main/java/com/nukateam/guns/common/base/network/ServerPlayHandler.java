@@ -291,7 +291,8 @@ public class ServerPlayHandler {
     public static void handleAttachments(ServerPlayer player) {
         ItemStack heldItem = player.getMainHandItem();
         if (heldItem.getItem() instanceof GunItem) {
-            NetworkHooks.openGui(player, new SimpleMenuProvider((windowId, playerInventory, player1) -> new AttachmentContainer(windowId, playerInventory, heldItem), new TranslatableComponent("container.nukacraft.attachments")));
+            NetworkHooks.openGui(player, new SimpleMenuProvider((windowId, playerInventory, player1) ->
+                    new AttachmentContainer(windowId, playerInventory, heldItem), new TranslatableComponent("container.nukacraft.attachments")));
         }
     }
 }
