@@ -10,6 +10,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 public class ModDimension {
     public static final ResourceKey<Level> FALLOUT_WASTELAND = ResourceKey.create(Registry.DIMENSION_REGISTRY,
             new ResourceLocation(NukaCraftMod.MOD_ID, "fallout_wasteland"));
+
     public static final ResourceKey<DimensionType> FALLOUT_WASTELAND_TYPE =
             ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, FALLOUT_WASTELAND.getRegistryName());
 

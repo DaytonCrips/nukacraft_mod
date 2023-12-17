@@ -27,6 +27,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
             () -> new WorkbenchBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
 
+    public static final RegistryObject<Block> TERMINAL = registerBlock("wasteland_terminal",
+            () -> new TerminalBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
+
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
