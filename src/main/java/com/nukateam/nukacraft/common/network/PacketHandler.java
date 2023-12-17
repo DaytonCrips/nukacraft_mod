@@ -26,10 +26,9 @@ public class PacketHandler {
 	private static int disc = 0;
 
 	public static void register() {
-		HANDLER.registerMessage(disc++, MobPacket.class	   , MobPacket::write	 , MobPacket::read	 , MobPacket::handle);
-		HANDLER.registerMessage(disc++, FramePickupPacket.class, FramePickupPacket::write, FramePickupPacket::read, FramePickupPacket::handle);
+		HANDLER.registerMessage(disc++, MobPacket.class	        , MobPacket::write	       , MobPacket::read	     , MobPacket::handle		 );
+		HANDLER.registerMessage(disc++, FramePickupPacket.class , FramePickupPacket::write , FramePickupPacket::read , FramePickupPacket::handle );
 		HANDLER.registerMessage(disc++, PipboyScreenPacket.class, PipboyScreenPacket::write, PipboyScreenPacket::read, PipboyScreenPacket::handle);
-
 	}
 
 	public static void sendToServer(Object msg) {

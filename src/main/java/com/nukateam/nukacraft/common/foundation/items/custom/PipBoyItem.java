@@ -67,12 +67,11 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        ItemStack stack = player.getItemInHand(usedHand);
-
+        var stack = player.getItemInHand(usedHand);
         var stackTag = stack.getOrCreateTag();
 
         if(!level.isClientSide && !stackTag.contains(ATLAS_ID)) {
-            int atlasID = AntiqueAtlasMod.getGlobalAtlasData(level).getNextAtlasId();
+            var atlasID = AntiqueAtlasMod.getGlobalAtlasData(level).getNextAtlasId();
             stackTag.putInt(ATLAS_ID, atlasID);
 
             var atlasData = AntiqueAtlasMod.tileData.getData(atlasID, level);

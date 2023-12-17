@@ -86,7 +86,7 @@ public class AttachmentContainer extends AbstractContainerMenu {
         for (int i = 0; i < this.getWeaponInventory().getContainerSize(); i++) {
             var itemStack = this.getSlot(i).getItem();
             if (itemStack.getItem() instanceof IAttachment attachment
-                    && itemStack.getItem() instanceof AttachmentItem attachmentItem) {
+                    && itemStack.getItem() instanceof AttachmentItem) {
                 var tagKey = attachment.getType().getTagKey();
                 attachments.put(tagKey, itemStack.save(new CompoundTag()));
 //                //Jetug
