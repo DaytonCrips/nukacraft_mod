@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.base;
 
-import com.nukateam.guns.client.util.Easings;
+import com.nukateam.guns.client.data.util.Easings;
 import com.nukateam.guns.common.data.annotation.Validator;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.network.PacketHandler;

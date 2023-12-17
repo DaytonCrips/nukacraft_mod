@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.render;
 
 import com.nukateam.guns.client.handler.GunRenderingHandler;
 import com.nukateam.guns.client.render.ScreenTextureState;

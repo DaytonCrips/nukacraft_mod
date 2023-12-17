@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.data.enums;
 
 import com.mojang.math.Vector3f;
 

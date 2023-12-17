@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.client.models.guns;
 
 
-import com.nukateam.guns.client.GunModel;
+import com.nukateam.guns.client.model.GunModel;
 import com.nukateam.guns.client.render.gun.IOverrideModel;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.nukacraft.client.SpecialModels;

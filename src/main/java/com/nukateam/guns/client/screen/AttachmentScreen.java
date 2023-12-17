@@ -3,7 +3,7 @@ package com.nukateam.guns.client.screen;
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.handler.GunRenderingHandler;
 import com.nukateam.guns.client.screen.widget.MiniButton;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.container.AttachmentContainer;
 import com.nukateam.guns.common.base.container.slot.AttachmentSlot;
 import com.nukateam.guns.common.foundation.item.GunItem;

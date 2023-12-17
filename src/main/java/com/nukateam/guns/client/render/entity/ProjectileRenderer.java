@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.entity;
 
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.util;
+package com.nukateam.guns.client.data.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.data;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleOptions;

@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.data.enums;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.client.Minecraft;

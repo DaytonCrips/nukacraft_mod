@@ -2,10 +2,12 @@ package com.nukateam.guns.client;
 
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.client.handler.*;
+import com.nukateam.guns.client.input.GunButtonBindings;
+import com.nukateam.guns.client.input.KeyBinds;
 import com.nukateam.guns.client.screen.AttachmentScreen;
 import com.nukateam.guns.client.screen.WorkbenchScreen;
 import com.nukateam.guns.client.settings.GunOptions;
-import com.nukateam.guns.client.util.PropertyHelper;
+import com.nukateam.guns.client.data.util.PropertyHelper;
 import com.nukateam.guns.common.debug.IEditorMenu;
 import com.nukateam.guns.common.debug.screen.EditorScreen;
 import com.nukateam.guns.common.foundation.init.ModContainers;

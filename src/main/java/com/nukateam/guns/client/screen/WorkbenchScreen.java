@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.screen;
 
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.base.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.InventoryUtil;

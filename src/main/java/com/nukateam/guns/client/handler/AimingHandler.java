@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.handler;
 
 import com.nukateam.guns.GunMod;
-import com.nukateam.guns.client.util.PropertyHelper;
+import com.nukateam.guns.client.data.util.PropertyHelper;
 import com.nukateam.guns.common.base.GripType;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;

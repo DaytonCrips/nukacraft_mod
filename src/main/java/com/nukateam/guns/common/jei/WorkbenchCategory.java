@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.jei;
 
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipe;
 import com.nukateam.guns.common.foundation.item.IColored;
 import com.nukateam.nukacraft.NukaCraftMod;

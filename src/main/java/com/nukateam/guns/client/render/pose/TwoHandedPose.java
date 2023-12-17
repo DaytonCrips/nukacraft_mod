@@ -2,7 +2,7 @@ package com.nukateam.guns.client.render.pose;
 
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.handler.ReloadHandler;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

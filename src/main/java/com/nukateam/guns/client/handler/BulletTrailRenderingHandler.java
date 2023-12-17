@@ -1,8 +1,8 @@
 package com.nukateam.guns.client.handler;
 
-import com.nukateam.guns.client.BulletTrail;
-import com.nukateam.guns.client.GunRenderType;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.BulletTrail;
+import com.nukateam.guns.client.render.GunRenderType;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;

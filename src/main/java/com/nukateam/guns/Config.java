@@ -1,6 +1,6 @@
 package com.nukateam.guns;
 
-import com.nukateam.guns.client.SwayType;
+import com.nukateam.guns.client.data.enums.SwayType;
 import com.nukateam.guns.client.render.crosshair.Crosshair;
 import com.nukateam.guns.client.screen.ButtonAlignment;
 import net.minecraftforge.common.ForgeConfigSpec;

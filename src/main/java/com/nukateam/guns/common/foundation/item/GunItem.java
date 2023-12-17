@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.foundation.item;
 
 import com.nukateam.guns.GunMod;
-import com.nukateam.guns.client.GunItemStackRenderer;
+import com.nukateam.guns.client.render.renderers.GunItemStackRenderer;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;

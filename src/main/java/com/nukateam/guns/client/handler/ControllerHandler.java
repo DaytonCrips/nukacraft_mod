@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.handler;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.GunButtonBindings;
+import com.nukateam.guns.client.input.GunButtonBindings;
 import com.nukateam.guns.client.screen.WorkbenchScreen;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.models.guns;
 
 import com.nukateam.guns.client.render.gun.IOverrideModel;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.nukacraft.client.SpecialModels;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

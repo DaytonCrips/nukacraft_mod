@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.event;
 
 import com.nukateam.guns.client.render.entity.GrenadeRenderer;
 import com.nukateam.guns.client.render.entity.MissileRenderer;

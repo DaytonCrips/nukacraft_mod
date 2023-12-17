@@ -1,4 +1,4 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.input;
 
 import com.nukateam.guns.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;

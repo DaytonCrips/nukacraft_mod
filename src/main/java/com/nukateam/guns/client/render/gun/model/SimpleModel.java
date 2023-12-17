@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.render.gun.model;
 
 import com.nukateam.guns.client.render.gun.IOverrideModel;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;

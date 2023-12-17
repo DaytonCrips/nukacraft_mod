@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.render.gun.model;
 
-import com.nukateam.guns.client.GunModel;
-import com.nukateam.guns.client.GunRenderType;
+import com.nukateam.guns.client.model.GunModel;
+import com.nukateam.guns.client.render.GunRenderType;
 import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.handler.RecoilHandler;
 import com.nukateam.guns.client.render.gun.IOverrideModel;

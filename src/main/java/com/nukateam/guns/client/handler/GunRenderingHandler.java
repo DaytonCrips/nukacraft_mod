@@ -1,8 +1,8 @@
 package com.nukateam.guns.client.handler;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.GunRenderType;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.render.GunRenderType;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.GripType;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
@@ -30,7 +30,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
@@ -58,7 +57,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
-import static com.nukateam.guns.client.util.PropertyHelper.*;
+import static com.nukateam.guns.client.data.util.PropertyHelper.*;
 import static com.nukateam.nukacraft.client.ClientConfig.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
@@ -233,8 +232,8 @@ public class GunRenderingHandler {
     @SubscribeEvent
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
-
-        boolean isRight = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+        var minecraft = Minecraft.getInstance();
+        var isRight = minecraft.options.mainHand == HumanoidArm.RIGHT ?
                 event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
         var hand = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
         var heldItem = event.getItemStack();
@@ -273,9 +272,9 @@ public class GunRenderingHandler {
             }
         }
 
-        var player = Objects.requireNonNull(Minecraft.getInstance().player);
-        var model = Minecraft.getInstance().getItemRenderer()
-                .getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
+
+        var player = Objects.requireNonNull(minecraft.player);
+        var model = minecraft.getItemRenderer().getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
         var translateX = model.getTransforms().firstPersonRightHand.translation.x();
         var translateY = model.getTransforms().firstPersonRightHand.translation.y();
         var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
@@ -291,8 +290,6 @@ public class GunRenderingHandler {
         float equipProgress = this.getEquipProgress(event.getPartialTicks());
         //poseStack.translate(0, equipProgress * -0.6F, 0);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(equipProgress * -50F));
-        /* Renders the reload arm. Will only render if actually reloading. This is applied before
-         * any recoil or reload rotations as the animations would be borked if applied after. */
         this.renderReloadArm(poseStack, event.getMultiBufferSource(), event.getPackedLight(), modifiedGun, heldItem, hand, translateX);
 
         int offset = isRight ? 1 : -1;
@@ -307,12 +304,11 @@ public class GunRenderingHandler {
         this.applyReloadTransforms(poseStack, event.getPartialTicks());
         this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());
 
-        int packedLight = getWeaponLghtning(event, player);
+        var packedLight = getWeaponLghtning(event, player);
+        var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
 
         this.renderFirstPersonArms(event, poseStack, hand, heldItem, modifiedGun, packedLight);
-
-        var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
-        this.renderWeapon(Minecraft.getInstance().player, heldItem, transformType, event.getPoseStack(),
+        this.renderWeapon(minecraft.player, heldItem, transformType, event.getPoseStack(),
                 event.getMultiBufferSource(), packedLight, event.getPartialTicks());
 
         poseStack.popPose();
@@ -333,6 +329,12 @@ public class GunRenderingHandler {
                 Minecraft.getInstance().player, hand,
                 heldItem, poseStack, event.getMultiBufferSource(),
                 packedLight, event.getPartialTicks());
+        poseStack.popPose();
+    }
+
+    private void renderFirstPersonArmsGecko(RenderHandEvent event, PoseStack poseStack, HumanoidArm hand, ItemStack heldItem, Gun modifiedGun, int packedLight) {
+        poseStack.pushPose();
+
         poseStack.popPose();
     }
 
@@ -724,6 +726,8 @@ public class GunRenderingHandler {
         poseStack.popPose();
     }
 
+    /* Renders the reload arm. Will only render if actually reloading. This is applied before
+     * any recoil or reload rotations as the animations would be borked if applied after. */
     private void renderReloadArm(PoseStack poseStack, MultiBufferSource buffer, int light,
                                  Gun modifiedGun, ItemStack stack, HumanoidArm hand, float translateX) {
         Minecraft mc = Minecraft.getInstance();

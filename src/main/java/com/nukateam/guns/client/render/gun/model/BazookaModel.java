@@ -1,8 +1,8 @@
 package com.nukateam.guns.client.render.gun.model;
 
-import com.nukateam.guns.client.GunModel;
+import com.nukateam.guns.client.model.GunModel;
 import com.nukateam.guns.client.handler.AimingHandler;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

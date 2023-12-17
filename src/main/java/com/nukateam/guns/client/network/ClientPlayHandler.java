@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.network;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.BulletTrail;
+import com.nukateam.guns.client.data.BulletTrail;
 import com.nukateam.guns.client.CustomGunManager;
 import com.nukateam.guns.client.audio.GunShotSound;
 import com.nukateam.guns.client.handler.BulletTrailRenderingHandler;

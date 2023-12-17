@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.base;
 
-import com.nukateam.guns.client.util.Easings;
+import com.nukateam.guns.client.data.util.Easings;
 import com.google.gson.JsonDeserializer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

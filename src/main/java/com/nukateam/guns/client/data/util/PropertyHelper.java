@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.util;
+package com.nukateam.guns.client.data.util;
 
 import com.nukateam.guns.client.MetaLoader;
 import com.nukateam.guns.common.base.Gun;

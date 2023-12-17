@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.base.properties;
 
-import com.nukateam.guns.client.util.Easings;
+import com.nukateam.guns.client.data.util.Easings;
 import com.nukateam.guns.common.data.annotation.Optional;
 import com.nukateam.guns.common.debug.Debug;
 import com.nukateam.guns.common.debug.IDebugWidget;

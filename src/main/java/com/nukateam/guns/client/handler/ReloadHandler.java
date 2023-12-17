@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.handler;
 
-import com.nukateam.guns.client.KeyBinds;
+import com.nukateam.guns.client.input.KeyBinds;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.event.GunReloadEvent;
@@ -9,7 +9,6 @@ import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.C2SMessageReload;
 import com.nukateam.guns.common.network.message.C2SMessageUnload;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;

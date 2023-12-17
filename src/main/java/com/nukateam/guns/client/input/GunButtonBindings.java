@@ -1,8 +1,9 @@
-package com.nukateam.guns.client;
+package com.nukateam.guns.client.input;
 
 import com.mrcrayfish.controllable.client.BindingRegistry;
 import com.mrcrayfish.controllable.client.ButtonBinding;
 import com.mrcrayfish.controllable.client.Buttons;
+import com.nukateam.guns.client.input.GunConflictContext;
 
 /**
  * Author: MrCrayfish

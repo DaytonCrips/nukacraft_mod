@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.util;
+package com.nukateam.guns.client.data.util;
 
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;

@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.renderers;
 
-import com.nukateam.guns.client.model.GunModel;
+import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -29,7 +29,7 @@ public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> 
     protected Entity currentEntity;
 
     public GeoItemEntityRenderer() {
-        super(new GunModel<>());
+        super(new GeoGunModel<>());
     }
 
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType,

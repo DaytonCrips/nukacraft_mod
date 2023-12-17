@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.render.renderers;
 
-import com.nukateam.guns.client.SpecialModels;
-import com.nukateam.guns.client.util.RenderUtil;
+import com.nukateam.guns.client.data.enums.SpecialModels;
+import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.nukacraft.common.foundation.entities.MiniNukeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
