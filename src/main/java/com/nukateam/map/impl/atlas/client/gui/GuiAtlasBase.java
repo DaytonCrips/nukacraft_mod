@@ -60,11 +60,11 @@ import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen.openA
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
-    public static final int WIDTH = 255;
+    public static final int WIDTH = 255; //255
     public static final int HEIGHT = 145;
 
     public static final int MAP_BORDER_WIDTH = 17;
-    public static final int MAP_BORDER_HEIGHT = 10;
+    public static final int MAP_BORDER_HEIGHT = 15;
     public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2;
     public static final int MAP_HEIGHT = 194;
 

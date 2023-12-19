@@ -25,6 +25,9 @@ public class ModGuns {
     public static final RegistryObject<GunItem> FATMAN = ITEMS.register("fatman", () -> new FatmanGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> MINIGUN = ITEMS.register("minigun", () -> new MinigunGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
 
+
+    public static final RegistryObject<GunItem> POWDERGUN = ITEMS.register("powdergun", () -> new ShotGun(new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
+
     ///MAGAZINES
     public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> MAGAZINE2  = ITEMS.register("magazine_t2", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(ModItemTabs.NUKA_WEAPONS)));
@@ -54,6 +57,8 @@ public class ModGuns {
     public static final RegistryObject<Item> ROUND10MM = ModItems.ITEMS.register("round10mm",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND38 = ModItems.ITEMS.register("round38",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<Item> STEELBALLS = ModItems.ITEMS.register("steel_ball",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND45 = ModItems.ITEMS.register("round45",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));

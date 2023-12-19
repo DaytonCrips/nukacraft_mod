@@ -36,6 +36,13 @@ public class ModFoodTypes {
     public static final FoodProperties SITTPUREE = (new FoodProperties.Builder()).nutrition(5).alwaysEat().saturationMod(2.1f).build();
     public static final FoodProperties FMSOUP = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(1.4f).build();
     public static final FoodProperties FMPUREE = (new FoodProperties.Builder()).nutrition(5).alwaysEat().saturationMod(2.1f).build();
+    public static final FoodProperties DEATHMEAT = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(1.1f).build();
+    public static final FoodProperties CDEATHMEAT = (new FoodProperties.Builder()).nutrition(5).alwaysEat().saturationMod(2.5f).build();
+    public static final FoodProperties ROACHMEAT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1.2f).build();
+    public static final FoodProperties CROACHMEAT = (new FoodProperties.Builder()).nutrition(3).alwaysEat().saturationMod(1.7f).build();
+    public static final FoodProperties RAWBRMEAT = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(1f).build();
+    public static final FoodProperties CBRMEAT = (new FoodProperties.Builder()).nutrition(6).alwaysEat().saturationMod(3f).build();
+
 
     public static final FoodProperties MED = (new FoodProperties.Builder()).alwaysEat().nutrition(0).saturationMod(0.0f).build();
 

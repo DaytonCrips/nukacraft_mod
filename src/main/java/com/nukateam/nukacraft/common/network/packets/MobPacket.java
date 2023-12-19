@@ -35,6 +35,6 @@ public class MobPacket {
         boolean isClientSide = context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT;
         if(isClientSide){
             ((Deathclaw)Minecraft.getInstance().level.getEntity(message.entityId)).setIsRunning(message.isRunning);
-        } else{}
+        }else{}
     }
 }

@@ -45,6 +45,15 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "" //string10
     };
 
+
+    public enum PipboyPage{
+        ARCHIVE,
+        MAP,
+        RADIO
+    }
+
+    private static PipboyPage page = PipboyPage.ARCHIVE;
+
     public static Integer[] cords = new Integer[]{0, 0};
     private static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
     private static int page_count, current_page, current_archive, archive_pages, current_archive_page;
@@ -73,17 +82,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         }
 
         minecraft.keyboardHandler.setSendRepeatsToGui(true);
-    }
-
-    private void renderHomePage(){
-        if (PipBoy.content.size() == 0) {
-            warningPipboy();
-        } else {
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
-            current_archive_page = 0;
-            buttonMenu();
-            renderArchive();
-        }
     }
 
     @Override
@@ -167,13 +165,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
-    public enum PipboyPage{
-        ARCHIVE,
-        MAP,
-        RADIO
-    }
-
-    private static PipboyPage page = PipboyPage.ARCHIVE;
 
     public static void openArchive() {
         if(!PlayerUtils.hasPipboy()) return;
@@ -189,6 +180,17 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         page = PipboyPage.RADIO;
         Minecraft.getInstance().player.closeContainer();
         PacketSender.openPipboyScreen();
+    }
+
+    private void renderHomePage(){
+        if (PipBoy.content.size() == 0) {
+            warningPipboy();
+        } else {
+            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            current_archive_page = 0;
+            buttonMenu();
+            renderArchive();
+        }
     }
 
     private void renderNavigation() {
@@ -233,6 +235,18 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         }));
     }
 
+    private void renderRadio(){
+        warningPipboy();
+    }
+
+
+    private void renderPage() {
+        page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
+        image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
+        cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
+        cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+    }
+
     private MainPipBoyButton getArchiveButton(){
         return new MainPipBoyButton(leftPos + 125, topPos + -71, 14, 14,
                 new TextComponent(""), e -> {
@@ -267,12 +281,13 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         });
     }
 
-    private void renderRadio(){
-        warningPipboy();
-    }
-
     private MainPipBoyButton getBackButton(Runnable runnable){
         return new MainPipBoyButton(leftPos + -71, topPos + 61, 14, 14,
+                new TextComponent(""), e -> runnable.run());
+    }
+
+    private MainPipBoyButton getForwardButton(Runnable runnable){
+        return new MainPipBoyButton(leftPos + 52, topPos + 61, 14, 14,
                 new TextComponent(""), e -> runnable.run());
     }
 
@@ -281,19 +296,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
                 new TextComponent(""), e -> {
             minecraft.player.closeContainer();
         });
-    }
-
-    private MainPipBoyButton getForwardButton(Runnable runnable){
-        return new MainPipBoyButton(leftPos + 52, topPos + 61, 14, 14,
-                new TextComponent(""), e -> runnable.run());
-    }
-
-
-    private void renderPage() {
-        page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
-        image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
-        cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
-        cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
     }
 
     private void buttonMenu() {

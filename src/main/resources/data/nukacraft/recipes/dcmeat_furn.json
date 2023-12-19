@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 110,
+  "ingredient": {
+    "item": "nukacraft:raw_dcmeat"
+  },
+  "result": "nukacraft:c_dcmeat"
+}

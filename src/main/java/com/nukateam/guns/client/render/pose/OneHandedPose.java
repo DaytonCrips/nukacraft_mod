@@ -75,8 +75,8 @@ public class OneHandedPose implements IHeldAnimation {
         var armWidth = slim ? 3.0F : 4.0F;
 
         poseStack.scale(0.5F, 0.5F, 0.5F);
-        poseStack.translate(10 * 0.0625 * side, 1.3, -2.7);
-        poseStack.translate(-(armWidth / 2.0) * 0.0625 * side, 0, 0);
+        poseStack.translate(0.8 * side, 1.45, -2.9);
+ //       poseStack.translate(-(armWidth / 2.0) * 0.0625 * side, 0, 0);
 //        poseStack.translate(0, 0.15, -1.3125);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(75F));
 

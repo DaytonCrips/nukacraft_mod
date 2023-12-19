@@ -20,7 +20,16 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
-
+    public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> DEATHCLAW = ITEMS.register("deathclaw",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> LEGWEAPONPARTS = ITEMS.register("leg_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> MTHWEAPONPARTS = ITEMS.register("myth_weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+    public static final RegistryObject<Item> WEAPONPARTS = ITEMS.register("weapon_parts",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
@@ -84,6 +93,8 @@ public class ModItems {
     public static final RegistryObject<Item> GLOWMASS = ITEMS.register("glowmass",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> LEATHERHARD = ITEMS.register("leatherhard",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> DCLEATHER = ITEMS.register("dcleather",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> BBLOODLEAF = ITEMS.register("bbloodleafl",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
@@ -294,6 +305,18 @@ public class ModItems {
             () -> new RadFoodItem(0.4f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.FCAKES)));
     public static final RegistryObject<Item> MCCHESSE = ITEMS.register("maccheese",
             () -> new RadFoodItem(0.3f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MCCHESSE)));
+    public static final RegistryObject<Item> RDCMEAT = ITEMS.register("raw_dcmeat",
+            () -> new RadFoodItem(0.3f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.DEATHMEAT)));
+    public static final RegistryObject<Item> RAWROACHMEAT = ITEMS.register("raw_radroachmeat",
+            () -> new RadFoodItem(0.6f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.ROACHMEAT)));
+    public static final RegistryObject<Item> CROACHMEAT = ITEMS.register("c_radroachmeat",
+            () -> new RadFoodItem(0.1f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.CROACHMEAT)));
+    public static final RegistryObject<Item> CDCMEAT = ITEMS.register("c_dcmeat",
+            () -> new RadFoodItem(0.1f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.CDEATHMEAT)));
+    public static final RegistryObject<Item> BRAHMINMEAT = ITEMS.register("raw_brahminmeat",
+            () -> new RadFoodItem(0.2f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.RAWBRMEAT)));
+    public static final RegistryObject<Item> CBRAHMINMEAT = ITEMS.register("c_brahminmeat",
+            () -> new RadFoodItem(0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.CBRMEAT)));
     public static final RegistryObject<Item> PURES = ITEMS.register("pures",
             () -> new RadFoodItem(0.2f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.PURES)));
     public static final RegistryObject<Item> COTTONCANDY = ITEMS.register("cottoncandy",
