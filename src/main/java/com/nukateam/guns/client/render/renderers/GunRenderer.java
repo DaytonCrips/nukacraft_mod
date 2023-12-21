@@ -89,7 +89,7 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
                     stack,
                     transformType,
                     poseStack,
-                    getRenderItem(entity, stack, transformType),
+                    getRenderItem(transformType),
                     renderTypeBuffer,
                     null,
                     null,
@@ -98,7 +98,7 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
         } catch (Exception ignored) {}
     }
 
-    protected static AnimatedGunItem getRenderItem(LivingEntity entity, ItemStack stack, TransformType transformType){
+    protected static AnimatedGunItem getRenderItem(TransformType transformType){
         return items.get(transformType);
     }
 

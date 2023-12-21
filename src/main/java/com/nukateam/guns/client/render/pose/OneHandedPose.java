@@ -1,7 +1,6 @@
 package com.nukateam.guns.client.render.pose;
 
 import com.nukateam.guns.client.render.IHeldAnimation;
-import com.nukateam.guns.client.data.util.RenderUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
@@ -9,7 +8,6 @@ import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -22,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
+import static com.nukateam.guns.client.render.Render.*;
 
 /**
  * Author: MrCrayfish
@@ -63,24 +62,29 @@ public class OneHandedPose implements IHeldAnimation {
     @Override
     public void renderFirstPersonArms(Player player, HumanoidArm hand, ItemStack stack, PoseStack poseStack,
                                       MultiBufferSource buffer, int light, float partialTicks) {
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
+//        poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
+//        var model = Minecraft.getInstance().getItemRenderer().getModel(stack, player.level, player, 0);
+//        var translateX = model.getTransforms().firstPersonRightHand.translation.x();
+//        var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
+//        var side = hand == HumanoidArm.RIGHT ? -1 : 1;
+//        poseStack.translate(translateX * side, 0, -translateZ);
+//
+//        var slim = Minecraft.getInstance().player.getModelName().equals("slim");
+//        var armWidth = slim ? 3.0F : 4.0F;
+//
+//        poseStack.scale(0.5F, 0.5F, 0.5F);
+//        poseStack.translate(0.8 * side, 1.45, -2.9);
+// //       poseStack.translate(-(armWidth / 2.0) * 0.0625 * side, 0, 0);
+////        poseStack.translate(0, 0.15, -1.3125);
+//        poseStack.mulPose(Vector3f.XP.rotationDegrees(75F));
 
-        var model = Minecraft.getInstance().getItemRenderer().getModel(stack, player.level, player, 0);
-        var translateX = model.getTransforms().firstPersonRightHand.translation.x();
-        var translateZ = model.getTransforms().firstPersonRightHand.translation.z();
-        var side = hand == HumanoidArm.RIGHT ? -1 : 1;
-        poseStack.translate(translateX * side, 0, -translateZ);
+//        RIGHT_HAND_RENDERER.render();
 
-        var slim = Minecraft.getInstance().player.getModelName().equals("slim");
-        var armWidth = slim ? 3.0F : 4.0F;
 
-        poseStack.scale(0.5F, 0.5F, 0.5F);
-        poseStack.translate(0.8 * side, 1.45, -2.9);
- //       poseStack.translate(-(armWidth / 2.0) * 0.0625 * side, 0, 0);
-//        poseStack.translate(0, 0.15, -1.3125);
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(75F));
+//        poseStack.translate(-0.75, 0, 0);
+        RIGHT_HAND_RENDERER.renderHand(player, stack, poseStack, buffer, light);
 
-        RenderUtil.renderFirstPersonArm((LocalPlayer) player, hand, poseStack, buffer, light);
+//        RenderUtil.renderFirstPersonArm((LocalPlayer) player, hand, poseStack, buffer, light);
     }
 
     @Override
