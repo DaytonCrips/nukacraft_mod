@@ -77,8 +77,7 @@ public class ItemInHandLayerMixin {
 //            poseStack.translate(0.5 * side, -0.5, -1.2);
 //        else poseStack.translate((side * 3) / 16F, 0, -0.625);/*0.125, -0.625*/
 
-        heldAnimation.applyHeldItemTransforms(entity, hand,
-                AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
+        heldAnimation.applyHeldItemTransforms(entity, hand, AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
 
         GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
         poseStack.popPose();

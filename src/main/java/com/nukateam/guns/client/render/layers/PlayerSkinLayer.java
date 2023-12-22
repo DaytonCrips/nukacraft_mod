@@ -3,6 +3,7 @@ package com.nukateam.guns.client.render.layers;
 import com.jetug.chassis_core.client.render.layers.LayerBase;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.nukateam.guns.client.render.renderers.GunRenderer;
 import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
@@ -37,6 +38,9 @@ public class PlayerSkinLayer<T extends AnimatedGunItem> extends LayerBase<T> {
     @Override
     public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType renderType,
                        MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+
+//        poseStack.translate(0.3 * -1, -0.5, 0);
+
         var player = Minecraft.getInstance().player;
         if(player == null) return;
         var texture = getPlayerSkin(player, animatable);

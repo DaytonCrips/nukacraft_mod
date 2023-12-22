@@ -1,7 +1,10 @@
 package com.nukateam.guns.common.foundation.item;
 
+import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.nukateam.guns.GunMod;
+import com.nukateam.guns.client.render.renderers.GunItemRenderer;
 import com.nukateam.guns.client.render.renderers.GunItemStackRenderer;
+import com.nukateam.guns.client.render.renderers.GunRendererTest;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
@@ -11,6 +14,9 @@ import com.nukateam.guns.common.foundation.enchantment.EnchantmentTypes;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
 import com.jetug.chassis_core.common.foundation.item.CustomizableItem;
+import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
 import net.minecraft.*;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.NonNullList;
@@ -33,13 +39,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
+import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
+import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunItem extends CustomizableItem implements IColored, IMeta, IResourceProvider {
+public class GunItem extends CustomizableItem implements GeoItem, IColored, IMeta, IResourceProvider {
 //    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceHelper.getResourceName(getRegistryName()));
     private final WeakHashMap<CompoundTag, Gun> modifiedGunCache = new WeakHashMap<>();
@@ -71,12 +80,18 @@ public class GunItem extends CustomizableItem implements IColored, IMeta, IResou
     @Override
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
         consumer.accept(new IItemRenderProperties() {
+            private GunItemRenderer renderer;
+
             @Override
             public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
-                return new GunItemStackRenderer();
+                if (renderer == null)
+                    return new GunItemRenderer();
+                return this.renderer;
             }
         });
     }
+
+
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flag) {
@@ -212,4 +227,13 @@ public class GunItem extends CustomizableItem implements IColored, IMeta, IResou
             GUI,
             GROUND,
             FIXED);
+    protected final AnimatableInstanceCache cache = createInstanceCache(this);
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
 }

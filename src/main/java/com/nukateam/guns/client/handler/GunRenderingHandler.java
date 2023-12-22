@@ -4,6 +4,8 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.client.render.GunRenderType;
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.client.render.Render;
+import com.nukateam.guns.client.render.renderers.GunRenderer;
+import com.nukateam.guns.client.render.renderers.GunRendererTest;
 import com.nukateam.guns.common.base.*;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
@@ -229,7 +231,7 @@ public class GunRenderingHandler {
         event.setFOV(Mth.lerp(time, event.getFOV(), newFov));
     }
 
-    @SubscribeEvent
+//    @SubscribeEvent
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
         var minecraft = Minecraft.getInstance();
@@ -594,7 +596,10 @@ public class GunRenderingHandler {
             this.renderingWeapon = stack;
 
             Render.GUN_RENDERER.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
-//
+//            GunRendererTest.INSTANCE.render(entity,stack,transformType,
+////                    poseStack, GunRenderer.getRenderItem(transformType),renderTypeBuffer,null, null, light);
+//            GunRendererTest.INSTANCE.render(poseStack, stack,GunRenderer.getRenderItem(transformType),
+//                    renderTypeBuffer, null, null, light);
 //            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
 //            this.renderAttachments(entity, transformType, stack, poseStack, renderTypeBuffer, light, partialTicks);
             this.renderMuzzleFlash(entity, poseStack, renderTypeBuffer, stack, transformType, partialTicks);
