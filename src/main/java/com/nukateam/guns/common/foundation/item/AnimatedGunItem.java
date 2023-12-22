@@ -66,7 +66,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
             RawAnimation animation = null;
 
             if(reloadProgress > 0){
-                animation = begin().then("pistol_reload", LOOP);
+                animation = begin().then("pistol_reload", PLAY_ONCE);
             }
             else if (grip == ONE_HANDED) {
                 animation = begin().then("one_hand_hold", LOOP);
