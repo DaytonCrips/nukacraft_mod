@@ -1,29 +1,22 @@
 package com.nukateam.guns.client.handler;
 
-import com.nukateam.guns.Config;
-import com.nukateam.guns.client.render.GunRenderType;
-import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.client.render.Render;
-import com.nukateam.guns.client.render.renderers.GunRenderer;
-import com.nukateam.guns.client.render.renderers.GunRendererTest;
-import com.nukateam.guns.common.base.*;
-import com.nukateam.guns.common.base.Gun;
-import com.nukateam.guns.common.base.properties.SightAnimation;
-import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
-import com.nukateam.guns.common.data.util.GunModifierHelper;
-import com.nukateam.guns.common.event.GunFireEvent;
-import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
-import com.nukateam.guns.common.foundation.item.AttachmentItem;
-import com.nukateam.guns.common.foundation.item.GrenadeItem;
-import com.nukateam.guns.common.foundation.item.GunItem;
-import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
-import com.nukateam.guns.common.foundation.item.attachment.IBarrel;
-import com.nukateam.guns.common.foundation.item.attachment.impl.Scope;
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import com.nukateam.guns.Config;
+import com.nukateam.guns.client.data.util.RenderUtil;
+import com.nukateam.guns.client.render.GunRenderType;
+import com.nukateam.guns.common.base.*;
+import com.nukateam.guns.common.base.properties.SightAnimation;
+import com.nukateam.guns.common.data.util.*;
+import com.nukateam.guns.common.data.util.GunModifierHelper;
+import com.nukateam.guns.common.event.GunFireEvent;
+import com.nukateam.guns.common.foundation.init.*;
+import com.nukateam.guns.common.foundation.item.*;
+import com.nukateam.guns.common.foundation.item.attachment.*;
+import com.nukateam.guns.common.foundation.item.attachment.impl.Scope;
+import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
@@ -59,9 +52,9 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
 import static com.nukateam.guns.client.data.util.PropertyHelper.*;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
+import static com.nukateam.guns.client.render.renderers.GunRenderer.PACKED_OVERLAY;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GunRenderingHandler {
     private static GunRenderingHandler instance;
@@ -595,7 +588,7 @@ public class GunRenderingHandler {
 
             this.renderingWeapon = stack;
 
-            Render.GUN_RENDERER.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
+//            Render.GUN_RENDERER.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
 //            GunRendererTest.INSTANCE.render(entity,stack,transformType,
 ////                    poseStack, GunRenderer.getRenderItem(transformType),renderTypeBuffer,null, null, light);
 //            GunRendererTest.INSTANCE.render(poseStack, stack,GunRenderer.getRenderItem(transformType),

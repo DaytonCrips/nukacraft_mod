@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemInHandLayer.class)
 public class ItemInHandLayerMixin {
     @SuppressWarnings("ConstantConditions")
-    @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
+//    @Inject(method = "renderArmWithItem", at = @At(value = "HEAD"), cancellable = true)
     private void renderArmWithItem(LivingEntity entity, ItemStack stack,
                                        ItemTransforms.TransformType transformType, HumanoidArm arm,
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {

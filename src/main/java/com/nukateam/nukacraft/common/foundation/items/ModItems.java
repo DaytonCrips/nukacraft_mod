@@ -1,5 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items;
 
+import com.nukateam.guns.client.model.TestModel;
+import com.nukateam.guns.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
@@ -371,6 +373,11 @@ public class ModItems {
             () -> new ColoredHolotapeItem("white", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_1D2 = ITEMS.register("holotape_green",
             () -> new ColoredHolotapeItem("green", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+
+
+    public static final RegistryObject<Item> TEST = ITEMS.register("test",
+            () -> new TestItem(new Item.Properties()));
+
 
     //Power armor
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",
