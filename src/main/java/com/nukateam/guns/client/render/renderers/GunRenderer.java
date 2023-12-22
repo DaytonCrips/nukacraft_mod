@@ -1,12 +1,21 @@
 package com.nukateam.guns.client.render.renderers;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
+import com.nukateam.guns.client.render.layers.PlayerSkinLayer;
 import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.util.RenderUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -36,6 +45,11 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
     );
 
     protected Random random = new Random();
+
+    public GunRenderer(){
+        super();
+//        addRenderLayer(new PlayerSkinLayer(this));
+    }
 
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
@@ -74,6 +88,67 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem>{
 
         if(bone.getName().equals("muzzle_flash")){
 //            drawMuzzleFlash(poseStack, currentTransform, bone, currentItemStack, bufferSource, partialTick);
+        }
+
+        var client = Minecraft.getInstance();
+
+        boolean renderArms = false;
+
+        //Bones malone let's gooo
+        switch (bone.getName())
+        {
+            case "leftArm", "rightArm" ->
+            {
+                bone.setHidden(true);
+                renderArms = true;
+            }
+        }
+
+        if(renderArms)
+        {
+            var playerEntityRenderer = (PlayerRenderer)client.getEntityRenderDispatcher().getRenderer(client.player);
+            PlayerModel<AbstractClientPlayer> playerEntityModel = playerEntityRenderer.getModel();
+
+            poseStack.pushPose();
+
+            RenderUtils.translateMatrixToBone(poseStack, bone);
+            RenderUtils.translateToPivotPoint(poseStack,bone);
+            RenderUtils.rotateMatrixAroundBone(poseStack, bone);
+            RenderUtils.scaleMatrixForBone(poseStack, bone);
+            RenderUtils.translateAwayFromPivotPoint(poseStack, bone);
+
+            assert(client.player != null);
+
+            var playerSkin = client.player.getSkinTextureLocation();
+            VertexConsumer arm = bufferSource.getBuffer(RenderType.entitySolid(playerSkin));
+            VertexConsumer sleeve = bufferSource.getBuffer(RenderType.entityTranslucent(playerSkin));
+
+            if(bone.getName().equals("leftArm"))
+            {
+                poseStack.scale(0.67f, 1.33f, 0.67f);
+                poseStack.translate(-0.25,-0.43625,0.1625);
+                playerEntityModel.leftArm.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
+                playerEntityModel.leftArm.setRotation(0,0,0);
+                playerEntityModel.leftArm.render(poseStack, arm, packedLight, packedOverlay, 1, 1, 1, 1);
+
+                playerEntityModel.leftSleeve.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
+                playerEntityModel.leftSleeve.setRotation(0,0,0);
+                playerEntityModel.leftSleeve.render(poseStack, sleeve, packedLight, packedOverlay, 1, 1, 1, 1);
+            }
+            else if (bone.getName().equals("rightArm"))
+            {
+                poseStack.scale(0.67f, 1.33f, 0.67f);
+                poseStack.translate(0.25,-0.43625,0.1625);
+                playerEntityModel.rightArm.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
+                playerEntityModel.rightArm.setRotation(0,0,0);
+                playerEntityModel.rightArm.render(poseStack, arm, packedLight, packedOverlay, 1, 1, 1, 1);
+
+                playerEntityModel.rightSleeve.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
+                playerEntityModel.rightSleeve.setRotation(0,0,0);
+                playerEntityModel.rightSleeve.render(poseStack, sleeve, packedLight, packedOverlay, 1, 1, 1, 1);
+            }
+
+            poseStack.popPose();
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,

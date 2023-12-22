@@ -308,7 +308,7 @@ public class GunRenderingHandler {
         var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
 
         this.renderFirstPersonArms(event, poseStack, hand, heldItem, modifiedGun, packedLight);
-//        this.renderWeapon(minecraft.player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), packedLight, event.getPartialTicks());
+        this.renderWeapon(minecraft.player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), packedLight, event.getPartialTicks());
 
         poseStack.popPose();
     }
