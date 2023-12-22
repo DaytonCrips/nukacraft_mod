@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.client;
 
-import com.nukateam.guns.client.render.renderers.GunRenderer;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -9,7 +8,6 @@ import java.util.HashMap;
 
 //@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientConfig {
-    public static GunRenderer gunRenderer = new GunRenderer();
     public static LivingEntity currentEntity;
     public static HashMap<ItemStack, LivingEntity> entityForStack = new HashMap<>();
     public static ItemStack currentStack;

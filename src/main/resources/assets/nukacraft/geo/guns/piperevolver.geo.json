@@ -12,12 +12,12 @@
 			},
 			"bones": [
 				{
-					"name": "revolver",
+					"name": "model",
 					"pivot": [0, 1, 8]
 				},
 				{
 					"name": "body",
-					"parent": "revolver",
+					"parent": "model",
 					"pivot": [-0.04367, 2.62788, 6.1739],
 					"cubes": [
 						{
@@ -317,7 +317,7 @@
 				},
 				{
 					"name": "cylinder",
-					"parent": "revolver",
+					"parent": "model",
 					"pivot": [-0.00005, 3.25005, 5.594],
 					"cubes": [
 						{

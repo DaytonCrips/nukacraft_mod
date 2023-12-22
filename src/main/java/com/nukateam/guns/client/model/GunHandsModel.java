@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
-public class RightHandModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
+public class GunHandsModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T geoAnimatable) {
         return nukaResource("geo/hand/gun_hands.geo.json");

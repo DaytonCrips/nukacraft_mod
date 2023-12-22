@@ -94,6 +94,11 @@ public class ReloadHandler {
                         ModSyncedDataKeys.RELOADING.setValue(player, true);
                         PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(true));
                         this.reloadingSlot = player.getInventory().selected;
+
+
+                        var reloadTime = gun.getGeneral().getReloadTime();
+                        reloadTimer = reloadTime;
+
                         MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Post(player, stack));
                     }
                 }
@@ -106,21 +111,26 @@ public class ReloadHandler {
     }
 
     private void updateReloadTimer(Player player) {
-        if (ModSyncedDataKeys.RELOADING.getValue(player)) {
-            if (this.startReloadTick == -1) {
-                this.startReloadTick = player.tickCount + 5;
-            }
-            if (this.reloadTimer < 5) {
-                this.reloadTimer++;
-            }
-        } else {
-            if (this.startReloadTick != -1) {
-                this.startReloadTick = -1;
-            }
-            if (this.reloadTimer > 0) {
-                this.reloadTimer--;
-            }
+
+        if(reloadTimer > 0){
+            reloadTimer--;
         }
+
+//        if (ModSyncedDataKeys.RELOADING.getValue(player)) {
+//            if (this.startReloadTick == -1) {
+//                this.startReloadTick = player.tickCount + 5;
+//            }
+//            if (this.reloadTimer < 5) {
+//                this.reloadTimer++;
+//            }
+//        } else {
+//            if (this.startReloadTick != -1) {
+//                this.startReloadTick = -1;
+//            }
+//            if (this.reloadTimer > 0) {
+//                this.reloadTimer--;
+//            }
+//        }
     }
 
     public int getStartReloadTick() {

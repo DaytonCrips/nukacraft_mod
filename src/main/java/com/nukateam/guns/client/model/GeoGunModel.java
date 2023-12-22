@@ -1,11 +1,14 @@
 package com.nukateam.guns.client.model;
 
+import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
+    public static final GeoGunModel<AnimatedGunItem> INSTANCE = new GeoGunModel<>();
+
     @Override
     public ResourceLocation getModelResource(T gunItem) {
         return getGunResource(gunItem, "geo/guns/", ".geo.json");

@@ -2,8 +2,7 @@ package com.nukateam.guns.client.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.nukateam.guns.client.model.LeftHandModel;
-import com.nukateam.guns.client.model.RightHandModel;
+import com.nukateam.guns.client.model.*;
 import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;

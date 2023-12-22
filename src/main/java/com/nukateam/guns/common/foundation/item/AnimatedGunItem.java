@@ -59,6 +59,8 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
     private AnimationController.AnimationStateHandler<AnimatedGunItem> holdAnimation() {
         return event -> {
             var stack = renderStack;
+            if(stack == null || stack.isEmpty()) return PlayState.STOP;
+
             var gun = (GunItem)stack.getItem();
             var grip = gun.getGun().getGeneral().getGripType();
             var reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
@@ -68,9 +70,9 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
             if(reloadProgress > 0){
                 animation = begin().then("pistol_reload", PLAY_ONCE);
             }
-            else if (grip == ONE_HANDED) {
-                animation = begin().then("one_hand_hold", LOOP);
-            }
+//            else if (grip == ONE_HANDED) {
+//                animation = begin().then("one_hand_hold", LOOP);
+//            }
 //            else if(grip == TWO_HANDED){
 //                animation = begin().then("two_hand_hold", LOOP);
 //            }

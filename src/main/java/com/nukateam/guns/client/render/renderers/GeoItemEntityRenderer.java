@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.renderers;
 
-import com.nukateam.guns.client.model.GeoGunModel;
+import com.nukateam.guns.client.model.*;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
