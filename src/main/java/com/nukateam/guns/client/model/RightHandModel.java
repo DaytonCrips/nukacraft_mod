@@ -11,7 +11,7 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 public class RightHandModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T geoAnimatable) {
-        return nukaResource("geo/hand/right_hand.geo.json");
+        return nukaResource("geo/hand/gun_hands.geo.json");
     }
 
     @Override
@@ -23,6 +23,6 @@ public class RightHandModel<T extends IResourceProvider & GeoAnimatable> extends
 
     @Override
     public ResourceLocation getAnimationResource(T geoAnimatable) {
-        return null;
+        return nukaResource("animations/hand/hands.animation.json");
     }
 }

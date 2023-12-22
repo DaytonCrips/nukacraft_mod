@@ -21,6 +21,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.nukateam.guns.client.render.Render.*;
+
 /**
  * Author: MrCrayfish
  */
@@ -142,6 +144,8 @@ public class TwoHandedPose extends WeaponPose {
             poseStack.mulPose(Vector3f.XP.rotationDegrees(-35F));
 
             RenderUtil.renderFirstPersonArm((LocalPlayer) player, hand.getOpposite(), poseStack, buffer, light);
+
+//            LEFT_HAND_RENDERER.renderHand(player, stack, poseStack, buffer, light);
         }
         poseStack.popPose();
 
@@ -156,6 +160,8 @@ public class TwoHandedPose extends WeaponPose {
             poseStack.mulPose(Vector3f.XP.rotationDegrees(80F));
 
             RenderUtil.renderFirstPersonArm((LocalPlayer) player, hand, poseStack, buffer, light);
+
+//            RIGHT_HAND_RENDERER.renderHand(player, stack, poseStack, buffer, light);
         }
         poseStack.popPose();
     }

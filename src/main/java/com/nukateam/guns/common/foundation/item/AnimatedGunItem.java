@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 import static com.nukateam.guns.client.handler.ShootingHandler.*;
 import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
+import static com.nukateam.guns.common.base.GripType.ONE_HANDED;
+import static com.nukateam.guns.common.base.GripType.TWO_HANDED;
 import static com.nukateam.guns.common.foundation.item.GunItem.*;
 import static com.nukateam.nukacraft.common.data.constants.Animations.*;
 import static com.jetug.chassis_core.client.ClientConfig.*;
@@ -34,7 +36,8 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, animate()));
+        controllerRegistrar.add(new AnimationController<>(this, "controller1", 0, animate()));
+        controllerRegistrar.add(new AnimationController<>(this, "controller2", 0, holdAnimation()));
     }
 
     @Override
@@ -51,6 +54,33 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
     @Nullable
     public ItemConfig getConfig() {
         return config.get();
+    }
+
+    private AnimationController.AnimationStateHandler<AnimatedGunItem> holdAnimation() {
+        return event -> {
+            var stack = renderStack;
+            var gun = (GunItem)stack.getItem();
+            var grip = gun.getGun().getGeneral().getGripType();
+            var reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
+
+            RawAnimation animation = null;
+
+            if(reloadProgress > 0){
+                animation = begin().then("pistol_reload", LOOP);
+            }
+            else if (grip == ONE_HANDED) {
+                animation = begin().then("one_hand_hold", LOOP);
+            }
+//            else if(grip == TWO_HANDED){
+//                animation = begin().then("two_hand_hold", LOOP);
+//            }
+            try {
+                return event.setAndContinue(animation);
+            }
+            catch (Exception e){
+                return PlayState.STOP;
+            }
+        };
     }
 
     private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
@@ -89,7 +119,6 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 //                else
                 if(cooldown > 0) {
                     animation = begin().then(SHOT, LOOP);
-
                 }
                 else{
                     return PlayState.STOP;

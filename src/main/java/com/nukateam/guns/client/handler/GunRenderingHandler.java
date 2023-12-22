@@ -3,7 +3,7 @@ package com.nukateam.guns.client.handler;
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.render.GunRenderType;
 import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.common.base.GripType;
+import com.nukateam.guns.common.base.*;
 import com.nukateam.guns.common.base.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
@@ -290,7 +290,7 @@ public class GunRenderingHandler {
         float equipProgress = this.getEquipProgress(event.getPartialTicks());
         //poseStack.translate(0, equipProgress * -0.6F, 0);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(equipProgress * -50F));
-        this.renderReloadArm(poseStack, event.getMultiBufferSource(), event.getPackedLight(), modifiedGun, heldItem, hand, translateX);
+//        this.renderReloadArm(poseStack, event.getMultiBufferSource(), event.getPackedLight(), modifiedGun, heldItem, hand, translateX);
 
         int offset = isRight ? 1 : -1;
         //poseStack.translate(0.56 * offset, -0.52, -0.72);
@@ -301,7 +301,7 @@ public class GunRenderingHandler {
         this.applySwayTransforms(poseStack, modifiedGun, player, translateX, translateY, translateZ, event.getPartialTicks());
         this.applySprintingTransforms(modifiedGun, hand, poseStack, event.getPartialTicks());
         this.applyRecoilTransforms(poseStack, heldItem, modifiedGun);
-        this.applyReloadTransforms(poseStack, event.getPartialTicks());
+//        this.applyReloadTransforms(poseStack, event.getPartialTicks());
         this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());
 
         var packedLight = getWeaponLghtning(event, player);
