@@ -15,6 +15,10 @@ import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.*;
 import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
 import static com.nukateam.guns.common.base.GripType.ONE_HANDED;
@@ -25,12 +29,14 @@ import static com.jetug.chassis_core.client.ClientConfig.*;
 import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class AnimatedGunItem extends GunItemBase implements IResourceProvider, IConfigProvider {
-    protected final ItemTransforms.TransformType transformType;
+    protected final TransformType transformType;
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
 
-    public AnimatedGunItem(ItemTransforms.TransformType transformType) {
+    public AnimatedGunItem(TransformType transformType) {
         this.transformType = transformType;
     }
 
@@ -56,6 +62,12 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
         return config.get();
     }
 
+    private ArrayList<TransformType> reloadTransforms = arrayListOf(
+            TransformType.FIRST_PERSON_RIGHT_HAND,
+            TransformType.FIRST_PERSON_LEFT_HAND,
+            TransformType.THIRD_PERSON_RIGHT_HAND,
+            TransformType.THIRD_PERSON_LEFT_HAND);
+
     private AnimationController.AnimationStateHandler<AnimatedGunItem> holdAnimation() {
         return event -> {
             var stack = renderStack;
@@ -68,7 +80,11 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
             RawAnimation animation = null;
 
             if(reloadProgress > 0){
-                animation = begin().then("pistol_reload", PLAY_ONCE);
+                if(transformType == TransformType.FIRST_PERSON_RIGHT_HAND ||
+                   transformType == TransformType.FIRST_PERSON_LEFT_HAND ||
+                   transformType == TransformType.THIRD_PERSON_RIGHT_HAND||
+                   transformType == TransformType.THIRD_PERSON_LEFT_HAND)
+                    animation = begin().then("pistol_reload", PLAY_ONCE);
             }
             else if (grip == ONE_HANDED) {
                 animation = begin().then("one_hand_hold", LOOP);

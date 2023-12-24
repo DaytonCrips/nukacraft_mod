@@ -6,20 +6,13 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.render.layers.PlayerSkinLayer;
 import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.util.RenderUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 
 import static com.nukateam.guns.client.handler.GunRenderingHandler.getAttachmentNames;
@@ -29,10 +22,14 @@ import static net.minecraft.client.renderer.block.model.ItemTransforms.Transform
 
 public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
     public static final int PACKED_OVERLAY = 15728880;
+    public static final String RIGHT_ARM = "right_arm";
+    public static final String LEFT_ARM = "left_arm";
     public static ItemStack renderStack;
     public static PoseStack poseStack;
     private MultiBufferSource bufferSource;
     private RenderType renderType;
+    private TransformType transformType;
+    private boolean renderHends = false;
 
     private static final Map<TransformType, AnimatedGunItem> items = Map.of(
             NONE, new AnimatedGunItem(NONE),
@@ -72,10 +69,11 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
 //                poseStack.translate(0.3, -1.3, -1.55);
             }
             case GUI -> {
-                poseStack.translate(0.2, -0.55, -0.5);
+//                poseStack.translate(0.2, -0.55, -0.5);
+                poseStack.translate(0.2, 0, -0.5);
             }
             case GROUND -> {
-                poseStack.translate(-0.5, -0.5, -1);
+//                poseStack.translate(-0.5, -0.5, -1);
             }
         }
 
@@ -86,75 +84,16 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
 
     @Override
     public void renderRecursively(PoseStack poseStack, AnimatedGunItem animatable, GeoBone bone, RenderType renderType,
-                                  MultiBufferSource bufferSource, VertexConsumer buffer,
-                                  boolean isReRender, float partialTick, int packedLight, int packedOverlay,
-                                  float red, float green, float blue, float alpha) {
-
-        if (bone.getName().equals("muzzle_flash")) {
-//            drawMuzzleFlash(poseStack, currentTransform, bone, currentItemStack, bufferSource, partialTick);
+                                  MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
+                                  int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        poseStack.pushPose();
+        if(bone.getName().equals(RIGHT_ARM) || bone.getName().equals(LEFT_ARM)){
+            bone.setHidden(!renderHends);
+            poseStack.scale(0.5f, 0.5f, 0.5f);
         }
 
-        var client = Minecraft.getInstance();
-
-        boolean renderArms = false;
-
-        //Bones malone let's gooo
-        switch (bone.getName()) {
-            case "leftArm", "rightArm" -> {
-                bone.setHidden(true);
-                renderArms = true;
-            }
-        }
-
-        if (renderArms) {
-            var playerEntityRenderer = (PlayerRenderer) client.getEntityRenderDispatcher().getRenderer(client.player);
-            PlayerModel<AbstractClientPlayer> playerEntityModel = playerEntityRenderer.getModel();
-
-            poseStack.pushPose();
-
-            RenderUtils.translateMatrixToBone(poseStack, bone);
-            RenderUtils.translateToPivotPoint(poseStack, bone);
-            RenderUtils.rotateMatrixAroundBone(poseStack, bone);
-            RenderUtils.scaleMatrixForBone(poseStack, bone);
-            RenderUtils.translateAwayFromPivotPoint(poseStack, bone);
-
-            assert (client.player != null);
-
-            var playerSkin = client.player.getSkinTextureLocation();
-            VertexConsumer arm = bufferSource.getBuffer(RenderType.entitySolid(playerSkin));
-            VertexConsumer sleeve = bufferSource.getBuffer(RenderType.entityTranslucent(playerSkin));
-
-            if (bone.getName().equals("leftArm")) {
-                poseStack.scale(0.67f, 1.33f, 0.67f);
-                poseStack.translate(-0.25, -0.43625, 0.1625);
-                playerEntityModel.leftArm.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
-                playerEntityModel.leftArm.setRotation(0, 0, 0);
-                playerEntityModel.leftArm.render(poseStack, arm, packedLight, packedOverlay, 1, 1, 1, 1);
-
-                playerEntityModel.leftSleeve.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
-                playerEntityModel.leftSleeve.setRotation(0, 0, 0);
-                playerEntityModel.leftSleeve.render(poseStack, sleeve, packedLight, packedOverlay, 1, 1, 1, 1);
-            } else if (bone.getName().equals("rightArm")) {
-                poseStack.scale(0.67f, 1.33f, 0.67f);
-                poseStack.translate(0.25, -0.43625, 0.1625);
-                playerEntityModel.rightArm.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
-                playerEntityModel.rightArm.setRotation(0, 0, 0);
-                playerEntityModel.rightArm.render(poseStack, arm, packedLight, packedOverlay, 1, 1, 1, 1);
-
-                playerEntityModel.rightSleeve.setPos(bone.getPivotX(), bone.getPivotY(), bone.getPivotZ());
-                playerEntityModel.rightSleeve.setRotation(0, 0, 0);
-                playerEntityModel.rightSleeve.render(poseStack, sleeve, packedLight, packedOverlay, 1, 1, 1, 1);
-            }
-
-            poseStack.popPose();
-        }
-
-//        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource,
-//                this.bufferSource.getBuffer(this.renderType), isReRender, partialTick,
-//                packedLight, packedOverlay, red, green, blue, alpha);
-
-        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+        poseStack.popPose();
     }
 
     public void renderGun(LivingEntity entity, TransformType transformType, ItemStack stack,
@@ -162,6 +101,8 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
         try {
             GunRenderer.renderStack = stack;
             GunRenderer.poseStack = poseStack;
+            this.transformType = transformType;
+            renderHends = transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
 
             this.render(
                     entity,
