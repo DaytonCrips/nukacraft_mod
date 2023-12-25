@@ -37,6 +37,9 @@ public class ReloadHandler {
     private int prevReloadTimer;
     private int reloadingSlot;
 
+    private int reloadTicks;
+
+
     private ReloadHandler() {
     }
 
@@ -44,6 +47,8 @@ public class ReloadHandler {
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END)
             return;
+
+        if(reloadTicks > 0) reloadTicks--;
 
         this.prevReloadTimer = this.reloadTimer;
 
@@ -81,11 +86,13 @@ public class ReloadHandler {
         if (player != null) {
             if (reloading) {
                 ItemStack stack = player.getMainHandItem();
-                if (stack.getItem() instanceof GunItem) {
+                if (stack.getItem() instanceof GunItem gunItem) {
                     var tag = stack.getTag();
 
                     if (tag != null && !tag.contains("IgnoreAmmo", Tag.TAG_BYTE)) {
                         Gun gun = ((GunItem) stack.getItem()).getModifiedGun(stack);
+
+                        reloadTicks = gun.getGeneral().getReloadTime();
 
                         if (tag.getInt("AmmoCount") >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
                             return;
@@ -106,6 +113,7 @@ public class ReloadHandler {
                 ModSyncedDataKeys.RELOADING.setValue(player, false);
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(false));
                 this.reloadingSlot = -1;
+                reloadTicks = -1;
             }
         }
     }
@@ -139,6 +147,14 @@ public class ReloadHandler {
 
     public int getReloadTimer() {
         return this.reloadTimer;
+    }
+
+    public boolean isReloading(Player player) {
+        return ModSyncedDataKeys.RELOADING.getValue(player);
+    }
+
+    public int getReloadingTicks() {
+        return reloadTicks;
     }
 
     public float getReloadProgress(float partialTicks) {

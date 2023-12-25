@@ -1,28 +1,27 @@
 package com.nukateam.guns.common.foundation.item;
 
 import com.nukateam.guns.client.handler.ReloadHandler;
+import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
+import mod.azure.azurelib.cache.AzureLibCache;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.*;
 import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
 import static com.nukateam.guns.common.base.GripType.ONE_HANDED;
-import static com.nukateam.guns.common.base.GripType.TWO_HANDED;
 import static com.nukateam.guns.common.foundation.item.GunItem.*;
 import static com.nukateam.nukacraft.common.data.constants.Animations.*;
 import static com.jetug.chassis_core.client.ClientConfig.*;
@@ -30,11 +29,11 @@ import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class AnimatedGunItem extends GunItemBase implements IResourceProvider, IConfigProvider {
     protected final TransformType transformType;
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
+    private Minecraft minecraft = Minecraft.getInstance();
 
     public AnimatedGunItem(TransformType transformType) {
         this.transformType = transformType;
@@ -79,12 +78,15 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 
             RawAnimation animation = null;
 
-            if(reloadProgress > 0){
-                if(transformType == TransformType.FIRST_PERSON_RIGHT_HAND ||
-                   transformType == TransformType.FIRST_PERSON_LEFT_HAND ||
-                   transformType == TransformType.THIRD_PERSON_RIGHT_HAND||
-                   transformType == TransformType.THIRD_PERSON_LEFT_HAND)
-                    animation = begin().then("pistol_reload", PLAY_ONCE);
+            if(ReloadHandler.get().isReloading(minecraft.player)){
+                if(reloadTransforms.contains(transformType)) {
+                    animation = begin().then("pistol_reload", HOLD_ON_LAST_FRAME);
+
+                    var reloadDuration = gun.getModifiedGun(stack).getGeneral().getReloadTime();
+                    var multiplier = (float) getSpeedMultiplier("pistol_reload", reloadDuration);
+
+                    event.setControllerSpeed(multiplier);
+                }
             }
             else if (grip == ONE_HANDED) {
                 animation = begin().then("one_hand_hold", LOOP);
@@ -99,6 +101,20 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
                 return PlayState.STOP;
             }
         };
+    }
+
+    private double getSpeedMultiplier(String animationName, double targetDuration){
+        var duration = getAnimationDuration(animationName);
+        return targetDuration / duration;
+    }
+
+    private double getAnimationDuration(String animationName){
+        var map = AzureLibCache.getBakedAnimations();
+        var animationResource = GeoGunModel.INSTANCE.getAnimationResource(this);
+        var bakedAnimations = map.get(animationResource);
+        var animation = bakedAnimations.animations().get(animationName);
+
+        return animation.length();
     }
 
     private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
