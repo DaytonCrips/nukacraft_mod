@@ -54,6 +54,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.nukateam.guns.client.data.util.PropertyHelper.*;
+import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.PACKED_OVERLAY;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
@@ -574,7 +575,7 @@ public class GunRenderingHandler {
 
     public void renderWeapon(@Nullable LivingEntity entity, ItemStack stack,
                              TransformType transformType, PoseStack poseStack,
-                             MultiBufferSource renderTypeBuffer, int light, float partialTicks) {
+                             MultiBufferSource bufferSource, int packedLight, float partialTicks) {
         if (stack.getItem() instanceof GunItem) {
             poseStack.pushPose();
 
@@ -589,6 +590,16 @@ public class GunRenderingHandler {
 
             this.renderingWeapon = stack;
 
+            GUN_RENDERER.render(
+                    entity,
+                    model.isEmpty() ? stack : model,
+                    transformType,
+                    poseStack,
+                    bufferSource,
+                    null,
+                    null,
+                    packedLight);
+
 //            Render.GUN_RENDERER.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
 //            GunRendererTest.INSTANCE.render(entity,stack,transformType,
 ////                    poseStack, GunRendererDynamic.getRenderItem(transformType),renderTypeBuffer,null, null, light);
@@ -596,7 +607,7 @@ public class GunRenderingHandler {
 //                    renderTypeBuffer, null, null, light);
 //            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
 //            this.renderAttachments(entity, transformType, stack, poseStack, renderTypeBuffer, light, partialTicks);
-            this.renderMuzzleFlash(entity, poseStack, renderTypeBuffer, stack, transformType, partialTicks);
+            this.renderMuzzleFlash(entity, poseStack, bufferSource, stack, transformType, partialTicks);
             this.renderingWeapon = null;
 
             poseStack.popPose();
