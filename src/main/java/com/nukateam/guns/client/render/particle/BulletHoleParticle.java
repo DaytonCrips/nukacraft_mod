@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.particle;
+package com.nukateam.guns.client.render.particle;
 
 import com.nukateam.guns.Config;
 import com.mojang.blaze3d.vertex.VertexConsumer;

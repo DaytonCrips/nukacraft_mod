@@ -40,8 +40,7 @@ public class ReloadHandler {
     private int reloadTicks;
 
 
-    private ReloadHandler() {
-    }
+    private ReloadHandler() {}
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {

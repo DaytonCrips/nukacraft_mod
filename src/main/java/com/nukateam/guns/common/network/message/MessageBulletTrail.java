@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.network.message;
 
-import com.nukateam.guns.client.network.ClientPlayHandler;
+import com.nukateam.guns.client.ClientPlayHandler;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;
 import com.nukateam.guns.common.network.BufferUtil;

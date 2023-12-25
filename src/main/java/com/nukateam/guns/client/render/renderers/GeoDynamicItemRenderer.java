@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.renderers;
 
-import com.nukateam.guns.client.model.*;
+import com.nukateam.guns.client.animators.ItemAnimator;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -9,6 +9,7 @@ import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.AnimationState;
+import mod.azure.azurelib.model.GeoModel;
 import mod.azure.azurelib.model.data.EntityModelData;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -19,17 +20,26 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
-public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
+public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable, Animator extends ItemAnimator> extends GeoObjectRenderer<T> {
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;
     protected Entity currentEntity;
 
-    public GeoDynamicItemRenderer() {
-        super(new GeoGunModel<>());
+    private final Map<TransformType, Animator> animatorsByTransform = new HashMap<>();
+
+    public GeoDynamicItemRenderer(GeoModel<T> model, Function<TransformType, Animator> animatorFactory) {
+        super(model);
+
+        for (var transform: TransformType.values()) {
+            animatorsByTransform.put(transform, animatorFactory.apply(transform));
+        }
     }
 
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType,
@@ -42,6 +52,11 @@ public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable>
         this.currentTransform = transformType;
         this.currentEntity = entity;
         super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+    }
+
+
+    public Animator getRenderItem(TransformType transformType) {
+        return animatorsByTransform.get(transformType);
     }
 
     @Override

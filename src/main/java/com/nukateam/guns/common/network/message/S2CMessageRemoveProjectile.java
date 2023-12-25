@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.network.message;
 
-import com.nukateam.guns.client.network.ClientPlayHandler;
+import com.nukateam.guns.client.ClientPlayHandler;
 import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;

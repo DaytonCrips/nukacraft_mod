@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.network;
+package com.nukateam.guns.client;
 
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.data.BulletTrail;

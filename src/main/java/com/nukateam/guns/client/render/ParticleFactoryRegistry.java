@@ -1,8 +1,8 @@
 package com.nukateam.guns.client.render;
 
-import com.nukateam.guns.client.particle.BloodParticle;
-import com.nukateam.guns.client.particle.BulletHoleParticle;
-import com.nukateam.guns.client.particle.TrailParticle;
+import com.nukateam.guns.client.render.particle.BloodParticle;
+import com.nukateam.guns.client.render.particle.BulletHoleParticle;
+import com.nukateam.guns.client.render.particle.TrailParticle;
 import com.nukateam.guns.common.foundation.init.ModParticleTypes;
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.client.Minecraft;

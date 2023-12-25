@@ -1,7 +1,8 @@
-package com.nukateam.guns.common.foundation.item;
+package com.nukateam.guns.client.animators;
 
 import com.nukateam.guns.client.handler.ReloadHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
+import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.*;
+import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.*;
 import static com.nukateam.guns.common.base.gun.GripType.ONE_HANDED;
 import static com.nukateam.guns.common.foundation.item.GunItem.*;
@@ -30,13 +32,12 @@ import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
-public class AnimatedGunItem extends GunItemBase implements IResourceProvider, IConfigProvider {
-    protected final TransformType transformType;
+public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
-    private Minecraft minecraft = Minecraft.getInstance();
+    private final Minecraft minecraft = Minecraft.getInstance();
 
-    public AnimatedGunItem(TransformType transformType) {
-        this.transformType = transformType;
+    public GunItemAnimator(TransformType transformType) {
+        super(transformType);
     }
 
     @Override
@@ -47,12 +48,12 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 
     @Override
     public String getName() {
-        return ((IResourceProvider)renderStack.getItem()).getName();
+        return ((IResourceProvider)GUN_RENDERER.getRenderStack().getItem()).getName();
     }
 
     @Override
     public String getNamespace() {
-        return ((IResourceProvider)renderStack.getItem()).getNamespace();
+        return ((IResourceProvider)GUN_RENDERER.getRenderStack().getItem()).getNamespace();
     }
 
     @Override
@@ -67,9 +68,9 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
             TransformType.THIRD_PERSON_RIGHT_HAND,
             TransformType.THIRD_PERSON_LEFT_HAND);
 
-    private AnimationController.AnimationStateHandler<AnimatedGunItem> holdAnimation() {
+    private AnimationController.AnimationStateHandler<GunItemAnimator> holdAnimation() {
         return event -> {
-            var stack = renderStack;
+            var stack = GUN_RENDERER.getRenderStack();
             if(stack == null || stack.isEmpty()) return PlayState.STOP;
 
             var gun = (GunItem)stack.getItem();
@@ -117,7 +118,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
         return animation.length();
     }
 
-    private AnimationController.AnimationStateHandler<AnimatedGunItem> animate() {
+    private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
             try{
                 var controller = event.getController();
@@ -131,7 +132,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 
                 var entity = (LivingEntity)event.getData(DataTickets.ENTITY);
 
-                var stack = renderStack;
+                var stack = GUN_RENDERER.getRenderStack();
 
 //                var entity = entityForStack.get(stack);
                 if(entity == null) entity = player;

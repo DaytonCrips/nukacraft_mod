@@ -1,4 +1,4 @@
-package com.nukateam.guns.client.particle;
+package com.nukateam.guns.client.render.particle;
 
 import com.nukateam.guns.common.foundation.particles.TrailData;
 import net.minecraft.client.multiplayer.ClientLevel;
