@@ -2,10 +2,7 @@ package com.nukateam.guns.client.render.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.guns.client.model.GeoGunModel;
-import com.nukateam.guns.client.model.GunModel;
 import com.nukateam.guns.common.foundation.item.GunItem;
-import mod.azure.azurelib.animatable.GeoItem;
-import mod.azure.azurelib.model.GeoModel;
 import mod.azure.azurelib.renderer.GeoItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -22,8 +19,16 @@ public class GunItemRenderer extends GeoItemRenderer<GunItem> {
     @Override
     public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack poseStack,
                              MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-//        super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);
         var player = Minecraft.getInstance().player;
-        GUN_RENDERER.renderGun(player, transformType, stack, poseStack, bufferSource, packedLight);
+
+        GUN_RENDERER.render(
+                player,
+                stack,
+                transformType,
+                poseStack,
+                bufferSource,
+                null,
+                null,
+                packedLight);
     }
 }

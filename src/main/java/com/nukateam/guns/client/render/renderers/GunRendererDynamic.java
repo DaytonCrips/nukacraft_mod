@@ -21,7 +21,7 @@ import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.isWearing
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator, GunItemAnimator> {
+public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> {
     public static final int PACKED_OVERLAY = 15728880;
     public static final String RIGHT_ARM = "right_arm";
     public static final String LEFT_ARM = "left_arm";
@@ -40,8 +40,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator, 
 
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
-                       GunItemAnimator animatable, @Nullable MultiBufferSource bufferSource,
+                       @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType, @Nullable VertexConsumer buffer, int packedLight) {
+
+        this.renderStack = stack;
+        this.renderHands = transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
 
 //        poseStack.pushPose();
         switch (transformType) {
@@ -63,8 +66,8 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator, 
             }
         }
 
-        renderAttachments(stack, animatable);
-        super.render(entity, stack, transformType, poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+        renderAttachments(stack, getRenderItem(transformType));
+        super.render(entity, stack, transformType, poseStack, bufferSource, renderType, buffer, packedLight);
 //        poseStack.popPose();
     }
 
@@ -80,26 +83,6 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator, 
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
         poseStack.popPose();
-    }
-
-    public void renderGun(LivingEntity entity, TransformType transformType, ItemStack stack,
-                          PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
-        try {
-            this.renderStack = stack;
-            renderHands = transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
-
-            this.render(
-                    entity,
-                    stack,
-                    transformType,
-                    poseStack,
-                    getRenderItem(transformType),
-                    renderTypeBuffer,
-                    null,
-                    null,
-                    light);
-
-        } catch (Exception ignored) {}
     }
 
     protected void renderAttachments(ItemStack stack, GunItemAnimator item) {

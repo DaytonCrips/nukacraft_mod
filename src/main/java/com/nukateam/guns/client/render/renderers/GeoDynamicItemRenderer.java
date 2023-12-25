@@ -26,15 +26,13 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
-
-public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable, Animator extends ItemAnimator> extends GeoObjectRenderer<T> {
+public class GeoDynamicItemRenderer<T extends ItemAnimator> extends GeoObjectRenderer<T> {
+    private final Map<TransformType, T> animatorsByTransform = new HashMap<>();
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;
     protected Entity currentEntity;
 
-    private final Map<TransformType, Animator> animatorsByTransform = new HashMap<>();
-
-    public GeoDynamicItemRenderer(GeoModel<T> model, Function<TransformType, Animator> animatorFactory) {
+    public GeoDynamicItemRenderer(GeoModel<T> model, Function<TransformType, T> animatorFactory) {
         super(model);
 
         for (var transform: TransformType.values()) {
@@ -43,7 +41,7 @@ public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable,
     }
 
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType,
-                       PoseStack poseStack, T animatable,
+                       PoseStack poseStack,
                        @Nullable MultiBufferSource bufferSource,
                        @Nullable RenderType renderType,
                        @Nullable VertexConsumer buffer,
@@ -51,11 +49,10 @@ public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable,
         this.currentItemStack = stack;
         this.currentTransform = transformType;
         this.currentEntity = entity;
-        super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight);
+        super.render(poseStack, getRenderItem(transformType), bufferSource, renderType, buffer, packedLight);
     }
 
-
-    public Animator getRenderItem(TransformType transformType) {
+    public T getRenderItem(TransformType transformType) {
         return animatorsByTransform.get(transformType);
     }
 
@@ -87,7 +84,7 @@ public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable,
             animationState.setData(DataTickets.ITEMSTACK, this.currentItemStack);
 //            animatable.getAnimatableInstanceCache().getManagerForId(instanceId).setData(DataTickets.ITEM_RENDER_PERSPECTIVE, this.currentTransform);
             animationState.setData(DataTickets.TICK, animatable.getTick(animatable));
-            animationState.setData(DataTickets.ENTITY, currentEntity);//jet
+            animationState.setData(DataTickets.ENTITY, currentEntity);
             animationState.setData(DataTickets.ENTITY_MODEL_DATA, new EntityModelData(shouldSit, false, -netHeadYaw, -headPitch));
             var var31 = this.model;
             Objects.requireNonNull(animationState);
