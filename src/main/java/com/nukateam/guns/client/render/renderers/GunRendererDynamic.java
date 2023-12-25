@@ -20,7 +20,7 @@ import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.isWearing
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
-public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
+public class GunRendererDynamic extends GeoDynamicItemRenderer<AnimatedGunItem> {
     public static final int PACKED_OVERLAY = 15728880;
     public static final String RIGHT_ARM = "right_arm";
     public static final String LEFT_ARM = "left_arm";
@@ -45,7 +45,7 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
 
     protected Random random = new Random();
 
-    public GunRenderer() {
+    public GunRendererDynamic() {
         super();
         addRenderLayer(new PlayerSkinLayer<>(this));
     }
@@ -99,8 +99,8 @@ public class GunRenderer extends GeoItemEntityRenderer<AnimatedGunItem> {
     public void renderGun(LivingEntity entity, TransformType transformType, ItemStack stack,
                           PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
         try {
-            GunRenderer.renderStack = stack;
-            GunRenderer.poseStack = poseStack;
+            GunRendererDynamic.renderStack = stack;
+            GunRendererDynamic.poseStack = poseStack;
             this.transformType = transformType;
             renderHends = transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
 

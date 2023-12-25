@@ -2,7 +2,7 @@ package com.nukateam.nukacraft;
 
 
 import com.nukateam.guns.GunMod;
-import com.nukateam.guns.common.base.ProjectileManager;
+import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.common.foundation.items.*;

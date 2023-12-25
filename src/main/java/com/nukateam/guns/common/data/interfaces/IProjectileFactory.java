@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.data.interfaces;
 
-import com.nukateam.guns.common.base.Gun;
-import com.nukateam.guns.common.base.ProjectileManager;
+import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import net.minecraft.world.entity.LivingEntity;

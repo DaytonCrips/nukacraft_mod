@@ -8,12 +8,10 @@ import com.nukateam.guns.common.foundation.item.AnimatedGunItem;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.guns.client.render.renderers.GunRenderer.renderStack;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.renderStack;
 
 public class GunRendererTest extends GeoObjectRenderer<AnimatedGunItem> {
     public static GunRendererTest INSTANCE = new GunRendererTest();

@@ -3,7 +3,7 @@ package com.nukateam.guns.client.render.pose;
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.handler.ReloadHandler;
 import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.common.base.GripType;
+import com.nukateam.guns.common.base.gun.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
@@ -20,8 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import static com.nukateam.guns.client.render.Render.*;
 
 /**
  * Author: MrCrayfish

@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.utils;
 
 import com.nukateam.guns.common.data.interfaces.IProjectileFactory;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;

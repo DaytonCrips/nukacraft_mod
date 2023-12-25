@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.data.util;
 
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.init.ModEnchantments;
 import com.nukateam.guns.common.foundation.particles.TrailData;
 import net.minecraft.core.particles.ParticleOptions;

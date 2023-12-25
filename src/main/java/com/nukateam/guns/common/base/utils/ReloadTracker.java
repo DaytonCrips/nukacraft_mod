@@ -1,6 +1,9 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.utils;
 
 import com.nukateam.guns.Config;
+import com.nukateam.guns.common.base.AmmoContext;
+import com.nukateam.guns.common.base.DelayedTask;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -34,13 +37,19 @@ public class ReloadTracker {
     private final int startTick;
     private final int slot;
     private final ItemStack stack;
+    private final GunItem gunItem;
     private final Gun gun;
+
+    public int reloadTick = 0;
 
     private ReloadTracker(Player player) {
         this.startTick = player.tickCount;
         this.slot = player.getInventory().selected;
         this.stack = player.getInventory().getSelected();
-        this.gun = ((GunItem) stack.getItem()).getModifiedGun(stack);
+        this.gunItem = ((GunItem) stack.getItem());
+        this.gun = gunItem.getModifiedGun(stack);
+
+        reloadTick = gun.getGeneral().getReloadTime();
     }
 
     /**
@@ -71,12 +80,44 @@ public class ReloadTracker {
         return deltaTicks > 0 && deltaTicks % interval == 0;
     }
 
-    private void increaseAmmo(Player player) {
-        AmmoContext context = Gun.findAmmo(player, this.gun.getProjectile().getItem());
-        ItemStack ammo = context.stack();
+    private void reloadMagazine(Player player) {
+        var context = Gun.findAmmo(player, this.gun.getProjectile().getItem());
+        var ammo = context.stack();
+
         if (!ammo.isEmpty()) {
-            int amount = Math.min(ammo.getCount(), this.gun.getGeneral().getReloadAmount());
-            CompoundTag tag = this.stack.getTag();
+            var amount = Math.min(ammo.getCount(), this.gun.getGeneral().getMaxAmmo());
+            var tag = this.stack.getTag();
+
+            if (tag != null) {
+                int maxAmmo = GunEnchantmentHelper.getAmmoCapacity(this.stack, this.gun);
+                amount = Math.min(amount, maxAmmo - tag.getInt("AmmoCount"));
+                tag.putInt("AmmoCount", tag.getInt("AmmoCount") + amount);
+            }
+            ammo.shrink(amount);
+
+            // Trigger that the container changed
+            Container container = context.container();
+            if (container != null) {
+                container.setChanged();
+            }
+        }
+
+        ResourceLocation reloadSound = this.gun.getSounds().getReload();
+        if (reloadSound != null) {
+            double radius = Config.SERVER.reloadMaxDistance.get();
+            MessageGunSound message = new MessageGunSound(reloadSound, SoundSource.PLAYERS, (float) player.getX(), (float) player.getY() + 1.0F, (float) player.getZ(), 1.0F, 1.0F, player.getId(), false, true);
+            PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(player.getX(), (player.getY() + 1.0), player.getZ(), radius, player.level.dimension())), message);
+        }
+    }
+
+    private void increaseAmmo(Player player) {
+        var context = Gun.findAmmo(player, this.gun.getProjectile().getItem());
+        var ammo = context.stack();
+
+        if (!ammo.isEmpty()) {
+            var amount = Math.min(ammo.getCount(), this.gun.getGeneral().getReloadAmount());
+            var tag = this.stack.getTag();
+
             if (tag != null) {
                 int maxAmmo = GunEnchantmentHelper.getAmmoCapacity(this.stack, this.gun);
                 amount = Math.min(amount, maxAmmo - tag.getInt("AmmoCount"));
@@ -102,7 +143,8 @@ public class ReloadTracker {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START && !event.player.level.isClientSide) {
-            Player player = event.player;
+            var player = event.player;
+
             if (ModSyncedDataKeys.RELOADING.getValue(player)) {
                 if (!RELOAD_TRACKER_MAP.containsKey(player)) {
                     if (!(player.getInventory().getSelected().getItem() instanceof GunItem)) {
@@ -111,35 +153,52 @@ public class ReloadTracker {
                     }
                     RELOAD_TRACKER_MAP.put(player, new ReloadTracker(player));
                 }
-                ReloadTracker tracker = RELOAD_TRACKER_MAP.get(player);
+
+                var tracker = RELOAD_TRACKER_MAP.get(player);
+                final var finalPlayer = player;
+                final var gun = tracker.gun;
+
                 if (!tracker.isSameWeapon(player) || tracker.isWeaponFull() || tracker.hasNoAmmo(player)) {
                     RELOAD_TRACKER_MAP.remove(player);
                     ModSyncedDataKeys.RELOADING.setValue(player, false);
                     return;
                 }
-                if (tracker.canReload(player)) {
-                    tracker.increaseAmmo(player);
-                    if (tracker.isWeaponFull() || tracker.hasNoAmmo(player)) {
-                        RELOAD_TRACKER_MAP.remove(player);
-                        ModSyncedDataKeys.RELOADING.setValue(player, false);
+                else if(gun.getGeneral().getLoadingType().equals(Gun.General.MAGAZINE)){
+                    if(tracker.reloadTick > 0)
+                        tracker.reloadTick--;
 
-                        final Player finalPlayer = player;
-                        final Gun gun = tracker.gun;
-                        DelayedTask.runAfter(4, () ->
-                        {
-                            ResourceLocation cockSound = gun.getSounds().getCock();
-                            if (cockSound != null && finalPlayer.isAlive()) {
-                                double radius = Config.SERVER.reloadMaxDistance.get();
-                                MessageGunSound messageSound = new MessageGunSound(cockSound, SoundSource.PLAYERS, (float) finalPlayer.getX(), (float) (finalPlayer.getY() + 1.0), (float) finalPlayer.getZ(), 1.0F, 1.0F, finalPlayer.getId(), false, true);
-                                PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(finalPlayer.getX(), (finalPlayer.getY() + 1.0), finalPlayer.getZ(), radius, finalPlayer.level.dimension())), messageSound);
-                            }
-                        });
+                    if(tracker.reloadTick == 0){
+                        tracker.reloadMagazine(player);
+                        stopReloading(player, finalPlayer, gun);
                     }
                 }
+                else if (tracker.canReload(player)) {
+                    tracker.increaseAmmo(player);
+                    if (tracker.isWeaponFull() || tracker.hasNoAmmo(player)) {
+                        stopReloading(player, finalPlayer, gun);
+                    }
+                }
+
+
             } else if (RELOAD_TRACKER_MAP.containsKey(player)) {
                 RELOAD_TRACKER_MAP.remove(player);
             }
         }
+    }
+
+    private static void stopReloading(Player player, Player finalPlayer, Gun gun) {
+        RELOAD_TRACKER_MAP.remove(player);
+        ModSyncedDataKeys.RELOADING.setValue(player, false);
+
+        DelayedTask.runAfter(4, () ->
+        {
+            ResourceLocation cockSound = gun.getSounds().getCock();
+            if (cockSound != null && finalPlayer.isAlive()) {
+                double radius = Config.SERVER.reloadMaxDistance.get();
+                MessageGunSound messageSound = new MessageGunSound(cockSound, SoundSource.PLAYERS, (float) finalPlayer.getX(), (float) (finalPlayer.getY() + 1.0), (float) finalPlayer.getZ(), 1.0F, 1.0F, finalPlayer.getId(), false, true);
+                PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(finalPlayer.getX(), (finalPlayer.getY() + 1.0), finalPlayer.getZ(), radius, finalPlayer.level.dimension())), messageSound);
+            }
+        });
     }
 
     @SubscribeEvent

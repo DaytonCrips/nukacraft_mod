@@ -1,5 +1,6 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.constants;
 
+import com.nukateam.guns.common.base.GunModifiers;
 import com.nukateam.guns.common.foundation.item.attachment.impl.Scope;
 
 /**

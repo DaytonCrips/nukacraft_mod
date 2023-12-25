@@ -7,7 +7,8 @@ import com.mojang.math.Vector3f;
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.client.render.GunRenderType;
-import com.nukateam.guns.common.base.*;
+import com.nukateam.guns.common.base.gun.GripType;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
 import com.nukateam.guns.common.data.util.*;
 import com.nukateam.guns.common.data.util.GunModifierHelper;
@@ -53,7 +54,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.nukateam.guns.client.data.util.PropertyHelper.*;
-import static com.nukateam.guns.client.render.renderers.GunRenderer.PACKED_OVERLAY;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.PACKED_OVERLAY;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GunRenderingHandler {
@@ -590,8 +591,8 @@ public class GunRenderingHandler {
 
 //            Render.GUN_RENDERER.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light);
 //            GunRendererTest.INSTANCE.render(entity,stack,transformType,
-////                    poseStack, GunRenderer.getRenderItem(transformType),renderTypeBuffer,null, null, light);
-//            GunRendererTest.INSTANCE.render(poseStack, stack,GunRenderer.getRenderItem(transformType),
+////                    poseStack, GunRendererDynamic.getRenderItem(transformType),renderTypeBuffer,null, null, light);
+//            GunRendererTest.INSTANCE.render(poseStack, stack,GunRendererDynamic.getRenderItem(transformType),
 //                    renderTypeBuffer, null, null, light);
 //            this.renderGun(entity, transformType, model.isEmpty() ? stack : model, poseStack, renderTypeBuffer, light, partialTicks);
 //            this.renderAttachments(entity, transformType, stack, poseStack, renderTypeBuffer, light, partialTicks);

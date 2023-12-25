@@ -2,6 +2,7 @@
   "general": {
     "rate": 5,
     "gripType": "nukacraft:one_handed",
+    "loadingType": "magazine",
     "maxAmmo": 10,
     "reloadTime": 20,
     "reloadAmount": 2,

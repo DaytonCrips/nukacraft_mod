@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.foundation;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.resources.ResourceLocation;

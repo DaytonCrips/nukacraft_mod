@@ -1,10 +1,8 @@
 package com.nukateam.guns.common.foundation.item;
 
-import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.client.render.renderers.GunItemRenderer;
-import com.nukateam.guns.client.render.renderers.*;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.data.util.GunModifierHelper;
@@ -38,9 +36,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
-import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;

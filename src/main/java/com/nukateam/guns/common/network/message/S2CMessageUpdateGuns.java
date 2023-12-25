@@ -1,9 +1,9 @@
 package com.nukateam.guns.common.network.message;
 
 import com.nukateam.guns.client.network.ClientPlayHandler;
-import com.nukateam.guns.common.base.CustomGun;
+import com.nukateam.guns.common.base.gun.CustomGun;
 import com.nukateam.guns.common.base.CustomGunLoader;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.framework.api.network.PlayMessage;

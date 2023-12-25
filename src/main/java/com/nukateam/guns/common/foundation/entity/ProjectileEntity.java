@@ -1,11 +1,11 @@
 package com.nukateam.guns.common.foundation.entity;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.common.base.BoundingBoxManager;
-import com.nukateam.guns.common.base.Gun;
-import com.nukateam.guns.common.base.Gun.Projectile;
-import com.nukateam.guns.common.base.ModTags;
-import com.nukateam.guns.common.base.SpreadTracker;
+import com.nukateam.guns.common.base.utils.BoundingBoxManager;
+import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.base.gun.Gun.Projectile;
+import com.nukateam.guns.common.foundation.ModTags;
+import com.nukateam.guns.common.base.utils.SpreadTracker;
 import com.nukateam.guns.common.data.interfaces.IDamageable;
 import com.nukateam.guns.common.data.interfaces.IExplosionDamageable;
 import com.nukateam.guns.common.data.interfaces.IHeadshotBox;

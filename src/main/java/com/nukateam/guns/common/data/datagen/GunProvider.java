@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.data.datagen;
 
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

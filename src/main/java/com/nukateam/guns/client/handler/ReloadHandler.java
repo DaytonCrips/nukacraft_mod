@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.handler;
 
 import com.nukateam.guns.client.input.KeyBinds;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.event.GunReloadEvent;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;

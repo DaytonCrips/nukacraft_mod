@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.utils;
 
 import com.nukateam.guns.Config;
 import com.nukateam.guns.common.base.headshot.*;

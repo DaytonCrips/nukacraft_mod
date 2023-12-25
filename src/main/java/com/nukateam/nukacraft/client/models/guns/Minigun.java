@@ -4,7 +4,7 @@ package com.nukateam.nukacraft.client.models.guns;
 import com.nukateam.guns.client.model.GunModel;
 import com.nukateam.guns.client.render.gun.IOverrideModel;
 import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.nukacraft.client.SpecialModels;
 import com.mojang.blaze3d.vertex.PoseStack;

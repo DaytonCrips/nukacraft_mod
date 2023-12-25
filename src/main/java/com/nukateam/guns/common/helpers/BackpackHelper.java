@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.helpers;
 
 import com.nukateam.guns.common.base.AmmoContext;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.mrcrayfish.backpacked.Backpacked;
 import com.mrcrayfish.backpacked.core.ModEnchantments;
 import com.mrcrayfish.backpacked.inventory.BackpackInventory;

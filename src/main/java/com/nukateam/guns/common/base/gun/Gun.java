@@ -1,6 +1,7 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.gun;
 
 import com.nukateam.guns.GunMod;
+import com.nukateam.guns.common.base.AmmoContext;
 import com.nukateam.guns.common.data.annotation.Ignored;
 import com.nukateam.guns.common.data.annotation.Optional;
 import com.nukateam.guns.common.data.util.GunJsonUtil;
@@ -100,6 +101,23 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
     }
 
     public static class General implements INBTSerializable<CompoundTag> {
+        public static final String LOADING_TYPE = "LoadingType";
+        public static final String RATE = "Rate";
+        public static final String GRIP_TYPE = "GripType";
+        public static final String AUTO = "Auto";
+        public static final String MAX_AMMO = "MaxAmmo";
+        public static final String RELOAD_SPEED = "ReloadSpeed";
+        public static final String RELOAD_TIME = "ReloadTime";
+        public static final String RECOIL_ANGLE = "RecoilAngle";
+        public static final String RECOIL_KICK = "RecoilKick";
+        public static final String RECOIL_DURATION_OFFSET = "RecoilDurationOffset";
+        public static final String RECOIL_ADS_REDUCTION = "RecoilAdsReduction";
+        public static final String PROJECTILE_AMOUNT = "ProjectileAmount";
+        public static final String ALWAYS_SPREAD = "AlwaysSpread";
+        public static final String SPREAD = "Spread";
+        public static final String MAGAZINE = "magazine";
+        public static final String PER_CARTRIDGE = "per_cartridge";
+
         @Optional
         private boolean auto = false;
         private int rate;
@@ -108,6 +126,8 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         private int maxAmmo;
         @Optional
         private int reloadTime = 1;
+        @Optional
+        private String loadingType = MAGAZINE;
         @Optional
         private int reloadAmount = 1;
         @Optional
@@ -128,62 +148,66 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         @Override
         public CompoundTag serializeNBT() {
             CompoundTag tag = new CompoundTag();
-            tag.putBoolean("Auto", this.auto);
-            tag.putInt("Rate", this.rate);
-            tag.putString("GripType", this.gripType.getId().toString());
-            tag.putInt("MaxAmmo", this.maxAmmo);
-            tag.putInt("ReloadSpeed", this.reloadAmount);
-            tag.putInt("ReloadTime", this.reloadTime);
-            tag.putFloat("RecoilAngle", this.recoilAngle);
-            tag.putFloat("RecoilKick", this.recoilKick);
-            tag.putFloat("RecoilDurationOffset", this.recoilDurationOffset);
-            tag.putFloat("RecoilAdsReduction", this.recoilAdsReduction);
-            tag.putInt("ProjectileAmount", this.projectileAmount);
-            tag.putBoolean("AlwaysSpread", this.alwaysSpread);
-            tag.putFloat("Spread", this.spread);
+            tag.putBoolean  (AUTO, this.auto);
+            tag.putInt      (RATE, this.rate);
+            tag.putString   (GRIP_TYPE, this.gripType.getId().toString());
+            tag.putInt      (MAX_AMMO, this.maxAmmo);
+            tag.putInt      (RELOAD_SPEED, this.reloadAmount);
+            tag.putInt      (RELOAD_TIME, this.reloadTime);
+            tag.putString   (LOADING_TYPE, this.loadingType);
+            tag.putFloat    (RECOIL_ANGLE, this.recoilAngle);
+            tag.putFloat    (RECOIL_KICK, this.recoilKick);
+            tag.putFloat    (RECOIL_DURATION_OFFSET, this.recoilDurationOffset);
+            tag.putFloat    (RECOIL_ADS_REDUCTION, this.recoilAdsReduction);
+            tag.putInt      (PROJECTILE_AMOUNT, this.projectileAmount);
+            tag.putFloat    (SPREAD, this.spread);
+            tag.putBoolean  (ALWAYS_SPREAD, this.alwaysSpread);
             return tag;
         }
 
         @Override
         public void deserializeNBT(CompoundTag tag) {
-            if (tag.contains("Auto", Tag.TAG_ANY_NUMERIC)) {
-                this.auto = tag.getBoolean("Auto");
+            if (tag.contains(AUTO, Tag.TAG_ANY_NUMERIC)) {
+                this.auto = tag.getBoolean(AUTO);
             }
-            if (tag.contains("Rate", Tag.TAG_ANY_NUMERIC)) {
-                this.rate = tag.getInt("Rate");
+            if (tag.contains(RATE, Tag.TAG_ANY_NUMERIC)) {
+                this.rate = tag.getInt(RATE);
             }
-            if (tag.contains("GripType", Tag.TAG_STRING)) {
-                this.gripType = GripType.getType(ResourceLocation.tryParse(tag.getString("GripType")));
+            if (tag.contains(GRIP_TYPE, Tag.TAG_STRING)) {
+                this.gripType = GripType.getType(ResourceLocation.tryParse(tag.getString(GRIP_TYPE)));
             }
-            if (tag.contains("MaxAmmo", Tag.TAG_ANY_NUMERIC)) {
-                this.maxAmmo = tag.getInt("MaxAmmo");
+            if (tag.contains(MAX_AMMO, Tag.TAG_ANY_NUMERIC)) {
+                this.maxAmmo = tag.getInt(MAX_AMMO);
             }
-            if (tag.contains("ReloadSpeed", Tag.TAG_ANY_NUMERIC)) {
-                this.reloadAmount = tag.getInt("ReloadSpeed");
+            if (tag.contains(RELOAD_SPEED, Tag.TAG_ANY_NUMERIC)) {
+                this.reloadAmount = tag.getInt(RELOAD_SPEED);
             }
-            if (tag.contains("ReloadTime", Tag.TAG_ANY_NUMERIC)) {
-                this.reloadTime = tag.getInt("ReloadTime");
+            if (tag.contains(RELOAD_TIME, Tag.TAG_ANY_NUMERIC)) {
+                this.reloadTime = tag.getInt(RELOAD_TIME);
             }
-            if (tag.contains("RecoilAngle", Tag.TAG_ANY_NUMERIC)) {
-                this.recoilAngle = tag.getFloat("RecoilAngle");
+            if (tag.contains(LOADING_TYPE, Tag.TAG_STRING)) {
+                this.loadingType = tag.getString(LOADING_TYPE);
             }
-            if (tag.contains("RecoilKick", Tag.TAG_ANY_NUMERIC)) {
-                this.recoilKick = tag.getFloat("RecoilKick");
+            if (tag.contains(RECOIL_ANGLE, Tag.TAG_ANY_NUMERIC)) {
+                this.recoilAngle = tag.getFloat(RECOIL_ANGLE);
             }
-            if (tag.contains("RecoilDurationOffset", Tag.TAG_ANY_NUMERIC)) {
-                this.recoilDurationOffset = tag.getFloat("RecoilDurationOffset");
+            if (tag.contains(RECOIL_KICK, Tag.TAG_ANY_NUMERIC)) {
+                this.recoilKick = tag.getFloat(RECOIL_KICK);
             }
-            if (tag.contains("RecoilAdsReduction", Tag.TAG_ANY_NUMERIC)) {
-                this.recoilAdsReduction = tag.getFloat("RecoilAdsReduction");
+            if (tag.contains(RECOIL_DURATION_OFFSET, Tag.TAG_ANY_NUMERIC)) {
+                this.recoilDurationOffset = tag.getFloat(RECOIL_DURATION_OFFSET);
             }
-            if (tag.contains("ProjectileAmount", Tag.TAG_ANY_NUMERIC)) {
-                this.projectileAmount = tag.getInt("ProjectileAmount");
+            if (tag.contains(RECOIL_ADS_REDUCTION, Tag.TAG_ANY_NUMERIC)) {
+                this.recoilAdsReduction = tag.getFloat(RECOIL_ADS_REDUCTION);
             }
-            if (tag.contains("AlwaysSpread", Tag.TAG_ANY_NUMERIC)) {
-                this.alwaysSpread = tag.getBoolean("AlwaysSpread");
+            if (tag.contains(PROJECTILE_AMOUNT, Tag.TAG_ANY_NUMERIC)) {
+                this.projectileAmount = tag.getInt(PROJECTILE_AMOUNT);
             }
-            if (tag.contains("Spread", Tag.TAG_ANY_NUMERIC)) {
-                this.spread = tag.getFloat("Spread");
+            if (tag.contains(ALWAYS_SPREAD, Tag.TAG_ANY_NUMERIC)) {
+                this.alwaysSpread = tag.getBoolean(ALWAYS_SPREAD);
+            }
+            if (tag.contains(SPREAD, Tag.TAG_ANY_NUMERIC)) {
+                this.spread = tag.getFloat(SPREAD);
             }
         }
 
@@ -192,6 +216,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             Preconditions.checkArgument(this.maxAmmo > 0, "Max ammo must be more than zero");
             Preconditions.checkArgument(this.reloadAmount >= 1, "Reload amount must be more than or equal to zero");
             Preconditions.checkArgument(this.reloadTime >= 1, "Reload time must be more than or equal to zero");
+            Preconditions.checkArgument(!this.loadingType.equals(MAGAZINE) && !this.loadingType.equals(PER_CARTRIDGE), "Loading type must be " + MAGAZINE + " or " + PER_CARTRIDGE);
             Preconditions.checkArgument(this.recoilAngle >= 0.0F, "Recoil angle must be more than or equal to zero");
             Preconditions.checkArgument(this.recoilKick >= 0.0F, "Recoil kick must be more than or equal to zero");
             Preconditions.checkArgument(this.recoilDurationOffset >= 0.0F && this.recoilDurationOffset <= 1.0F, "Recoil duration offset must be between 0.0 and 1.0");
@@ -205,6 +230,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             object.addProperty("maxAmmo", this.maxAmmo);
             if (this.reloadAmount != 1) object.addProperty("reloadAmount", this.reloadAmount);
             if (this.reloadTime != 1) object.addProperty("reloadTime", this.reloadTime);
+            if (this.loadingType.equals(MAGAZINE) || this.loadingType.equals(PER_CARTRIDGE)) object.addProperty("loadingType", this.loadingType);
             if (this.recoilAngle != 0.0F) object.addProperty("recoilAngle", this.recoilAngle);
             if (this.recoilKick != 0.0F) object.addProperty("recoilKick", this.recoilKick);
             if (this.recoilDurationOffset != 0.0F)
@@ -227,6 +253,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             general.maxAmmo = this.maxAmmo;
             general.reloadAmount = this.reloadAmount;
             general.reloadTime = this.reloadTime;
+            general.loadingType = this.loadingType;
             general.recoilAngle = this.recoilAngle;
             general.recoilKick = this.recoilKick;
             general.recoilDurationOffset = this.recoilDurationOffset;
@@ -277,6 +304,14 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          */
         public int getReloadTime() {
             return this.reloadTime;
+        }
+
+
+        /**
+         * @return Type of loading
+         */
+        public String getLoadingType() {
+            return this.loadingType;
         }
 
         /**
@@ -1414,6 +1449,11 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
 
         public Builder setReloadTime(int reloadTime) {
             this.gun.general.reloadTime = reloadTime;
+            return this;
+        }
+
+        public Builder setLoadingType(String loadingType) {
+            this.gun.general.loadingType = loadingType;
             return this;
         }
 

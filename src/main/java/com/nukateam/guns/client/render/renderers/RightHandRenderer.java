@@ -16,8 +16,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.guns.client.render.renderers.GunRenderer.getRenderItem;
-import static com.nukateam.guns.client.render.renderers.GunRenderer.renderStack;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.getRenderItem;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.renderStack;
 
 public class RightHandRenderer extends GeoObjectRenderer<AnimatedGunItem> {
     public RightHandRenderer() {

@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.gun;
 
 import com.nukateam.guns.client.render.IHeldAnimation;
 import com.nukateam.guns.client.render.pose.BazookaPose;

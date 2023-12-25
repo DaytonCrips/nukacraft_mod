@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.data.interfaces;
 
-import com.nukateam.guns.common.base.BoundingBoxManager;
+import com.nukateam.guns.common.base.utils.BoundingBoxManager;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.AABB;

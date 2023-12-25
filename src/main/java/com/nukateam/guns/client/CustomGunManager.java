@@ -1,6 +1,6 @@
 package com.nukateam.guns.client;
 
-import com.nukateam.guns.common.base.CustomGun;
+import com.nukateam.guns.common.base.gun.CustomGun;
 import com.nukateam.guns.common.base.CustomGunLoader;
 import com.nukateam.guns.common.network.message.S2CMessageUpdateGuns;
 import com.nukateam.nukacraft.NukaCraftMod;

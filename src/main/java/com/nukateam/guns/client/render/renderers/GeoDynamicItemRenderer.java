@@ -23,12 +23,12 @@ import java.util.Objects;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
-public class GeoItemEntityRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
+public class GeoDynamicItemRenderer<T extends IResourceProvider & GeoAnimatable> extends GeoObjectRenderer<T> {
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;
     protected Entity currentEntity;
 
-    public GeoItemEntityRenderer() {
+    public GeoDynamicItemRenderer() {
         super(new GeoGunModel<>());
     }
 

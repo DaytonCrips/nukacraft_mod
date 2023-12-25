@@ -1,10 +1,10 @@
 package com.nukateam.guns.common.base.network;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.common.base.Gun;
-import com.nukateam.guns.common.base.ProjectileManager;
-import com.nukateam.guns.common.base.ShootTracker;
-import com.nukateam.guns.common.base.SpreadTracker;
+import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.base.utils.ProjectileManager;
+import com.nukateam.guns.common.base.utils.ShootTracker;
+import com.nukateam.guns.common.base.utils.SpreadTracker;
 import com.nukateam.guns.common.base.container.AttachmentContainer;
 import com.nukateam.guns.common.base.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;

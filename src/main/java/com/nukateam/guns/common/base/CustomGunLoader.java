@@ -1,5 +1,8 @@
 package com.nukateam.guns.common.base;
 
+import com.nukateam.guns.common.base.gun.CustomGun;
+import com.nukateam.guns.common.base.gun.GripType;
+import com.nukateam.guns.common.base.utils.JsonDeserializers;
 import com.nukateam.guns.common.data.annotation.Validator;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.google.common.collect.ImmutableMap;

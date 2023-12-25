@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.base.container.slot;
 
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.container.AttachmentContainer;
 import com.nukateam.guns.common.foundation.init.ModSounds;
 import com.nukateam.guns.common.foundation.item.GunItem;

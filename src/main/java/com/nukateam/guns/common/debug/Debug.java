@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.debug;
 
 import com.nukateam.guns.client.ClientHandler;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.debug.screen.widget.DebugButton;
 import com.nukateam.guns.common.debug.screen.widget.DebugToggle;
 import com.nukateam.guns.common.foundation.item.GunItem;

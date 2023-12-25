@@ -1,5 +1,6 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.gun;
 
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.annotation.Ignored;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;

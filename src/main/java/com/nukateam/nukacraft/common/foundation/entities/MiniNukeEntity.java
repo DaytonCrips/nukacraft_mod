@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities;
 
 
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.constants.ExplosionType;

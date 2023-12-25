@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.foundation.entity;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

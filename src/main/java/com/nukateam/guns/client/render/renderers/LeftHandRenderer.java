@@ -13,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.guns.client.render.renderers.GunRenderer.getRenderItem;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.getRenderItem;
 
 public class LeftHandRenderer extends GeoObjectRenderer<AnimatedGunItem> {
     public LeftHandRenderer() {

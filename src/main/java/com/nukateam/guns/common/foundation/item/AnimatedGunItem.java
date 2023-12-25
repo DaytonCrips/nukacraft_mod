@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.*;
-import static com.nukateam.guns.client.render.renderers.GunRenderer.*;
-import static com.nukateam.guns.common.base.GripType.ONE_HANDED;
+import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.*;
+import static com.nukateam.guns.common.base.gun.GripType.ONE_HANDED;
 import static com.nukateam.guns.common.foundation.item.GunItem.*;
 import static com.nukateam.nukacraft.common.data.constants.Animations.*;
 import static com.jetug.chassis_core.client.ClientConfig.*;
@@ -61,7 +61,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
         return config.get();
     }
 
-    private ArrayList<TransformType> reloadTransforms = arrayListOf(
+    private final ArrayList<TransformType> reloadTransforms = arrayListOf(
             TransformType.FIRST_PERSON_RIGHT_HAND,
             TransformType.FIRST_PERSON_LEFT_HAND,
             TransformType.THIRD_PERSON_RIGHT_HAND,
@@ -105,7 +105,7 @@ public class AnimatedGunItem extends GunItemBase implements IResourceProvider, I
 
     private double getSpeedMultiplier(String animationName, double targetDuration){
         var duration = getAnimationDuration(animationName);
-        return targetDuration / duration;
+        return duration / targetDuration;
     }
 
     private double getAnimationDuration(String animationName){

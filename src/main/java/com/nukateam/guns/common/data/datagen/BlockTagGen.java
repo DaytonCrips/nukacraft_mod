@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.data.datagen;
 
-import com.nukateam.guns.common.base.ModTags;
+import com.nukateam.guns.common.foundation.ModTags;
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;

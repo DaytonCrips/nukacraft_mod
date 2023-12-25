@@ -1,5 +1,6 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.utils;
 
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.foundation.item.GunItem;

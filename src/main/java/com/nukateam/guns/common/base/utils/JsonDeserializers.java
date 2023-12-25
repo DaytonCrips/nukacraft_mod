@@ -1,7 +1,8 @@
-package com.nukateam.guns.common.base;
+package com.nukateam.guns.common.base.utils;
 
 import com.nukateam.guns.client.data.util.Easings;
 import com.google.gson.JsonDeserializer;
+import com.nukateam.guns.common.base.gun.GripType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;

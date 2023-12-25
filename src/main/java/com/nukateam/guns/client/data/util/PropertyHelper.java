@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.data.util;
 
 import com.nukateam.guns.client.MetaLoader;
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
 import com.nukateam.guns.common.cache.ObjectCache;
 import com.nukateam.guns.common.foundation.item.IMeta;

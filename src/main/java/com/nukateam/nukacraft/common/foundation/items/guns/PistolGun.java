@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.guns.common.base.Gun;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.init.ModEnchantments;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;

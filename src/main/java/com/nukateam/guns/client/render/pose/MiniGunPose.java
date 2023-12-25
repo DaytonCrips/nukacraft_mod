@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.render.pose;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.common.base.GripType;
+import com.nukateam.guns.common.base.gun.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
