@@ -1,10 +1,10 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"pistol_reload": {
+		"reload": {
 			"animation_length": 1.5,
 			"bones": {
-				"right_arm": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -22,7 +22,7 @@
 						}
 					}
 				},
-				"left_arm": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [20, 0, 0]
@@ -70,7 +70,7 @@
 						}
 					}
 				},
-				"model": {
+				"gunbody": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -124,7 +124,7 @@
 		"one_hand_hold": {
 			"loop": true,
 			"bones": {
-				"left_arm": {
+				"leftArm": {
 					"position": {
 						"vector": [0, 0, 12]
 					},
@@ -132,7 +132,7 @@
 						"vector": [0, 0, 0]
 					}
 				},
-				"right_arm": {
+				"rightArm": {
 					"position": {
 						"vector": [8, -1.75, 6.25]
 					}
@@ -156,6 +156,35 @@
 							"vector": [0, 0, 0],
 							"easing": "linear"
 						}
+					}
+				}
+			}
+		},
+		"aim": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"muzzleflash": {
+					"position": {
+						"vector": [2.46125, 1.125, -1.5]
+					}
+				},
+				"gunbody": {
+					"position": {
+						"vector": [2.46125, 1.125, -1.5]
+					}
+				},
+				"rightArm": {
+					"position": {
+						"vector": [8, -1.75, 6.25]
+					}
+				},
+				"leftArm": {
+					"position": {
+						"vector": [0, 0, 12]
+					},
+					"scale": {
+						"vector": [0, 0, 0]
 					}
 				}
 			}

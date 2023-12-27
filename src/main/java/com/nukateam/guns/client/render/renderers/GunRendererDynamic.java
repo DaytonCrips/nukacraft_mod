@@ -38,6 +38,10 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
         return renderStack;
     }
 
+    public LivingEntity getRenderEntity() {
+        return currentEntity;
+    }
+
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
                        @Nullable MultiBufferSource bufferSource,
@@ -66,7 +70,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
             }
         }
 
-        renderAttachments(stack, getRenderItem(transformType));
+        renderAttachments(stack, getRenderItem(entity, transformType));
         super.render(entity, stack, transformType, poseStack, bufferSource, renderType, buffer, packedLight);
 //        poseStack.popPose();
     }
@@ -75,14 +79,14 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public void renderRecursively(PoseStack poseStack, GunItemAnimator animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
                                   int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        poseStack.pushPose();
+//        poseStack.pushPose();
         if(bone.getName().equals(RIGHT_ARM) || bone.getName().equals(LEFT_ARM)){
             bone.setHidden(!renderHands);
-            poseStack.scale(0.5f, 0.5f, 0.5f);
+//            poseStack.scale(0.5f, 0.5f, 0.5f);
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-        poseStack.popPose();
+//        poseStack.popPose();
     }
 
     protected void renderAttachments(ItemStack stack, GunItemAnimator item) {

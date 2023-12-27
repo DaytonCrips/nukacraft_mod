@@ -12,12 +12,12 @@
 			},
 			"bones": [
 				{
-					"name": "model",
+					"name": "gunbody",
 					"pivot": [0, 1, 7.5]
 				},
 				{
 					"name": "gun",
-					"parent": "model",
+					"parent": "gunbody",
 					"pivot": [3, -0.2, -8]
 				},
 				{
@@ -516,19 +516,21 @@
 					]
 				},
 				{
-					"name": "right_arm",
-					"parent": "model",
+					"name": "rightArm",
+					"parent": "gunbody",
 					"pivot": [-8, 2, 9],
 					"cubes": [
-						{"origin": [-10, -7, 7], "size": [4, 12, 4], "pivot": [-8, 2, 9], "rotation": [-90, 0, 0], "uv": [40, 16]}
+						{"origin": [-10, -7, 7], "size": [4, 12, 4], "inflate": -0.5, "pivot": [-8, 2, 9], "rotation": [-90, 0, 0], "uv": [40, 16]},
+						{"origin": [-10, 0, -4], "size": [4, 12, 4], "inflate": -0.25, "pivot": [0, 0, 0], "rotation": [-90, 0, 0], "uv": [40, 32]}
 					]
 				},
 				{
-					"name": "left_arm",
-					"parent": "model",
+					"name": "leftArm",
+					"parent": "gunbody",
 					"pivot": [8, 1.62983, 9.8883],
 					"cubes": [
-						{"origin": [6, -8.37017, 7.8883], "size": [4, 12, 4], "pivot": [8, 1.62983, 9.8883], "rotation": [-90, 0, 0], "uv": [32, 48]}
+						{"origin": [6, -8.37017, 7.8883], "size": [4, 12, 4], "inflate": -0.5, "pivot": [8, 1.62983, 9.8883], "rotation": [-90, 0, 0], "uv": [32, 48]},
+						{"origin": [6, -0.15, -3.65], "size": [4, 12, 4], "inflate": -0.25, "pivot": [0, 0, 0], "rotation": [-90, 0, 0], "uv": [48, 48]}
 					]
 				}
 			]

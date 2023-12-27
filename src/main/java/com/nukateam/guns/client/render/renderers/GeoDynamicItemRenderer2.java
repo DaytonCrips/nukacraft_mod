@@ -1,20 +1,17 @@
 package com.nukateam.guns.client.render.renderers;
 
-import com.nukateam.guns.client.animators.ItemAnimator;
-import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Matrix4f;
+import com.nukateam.guns.client.animators.ItemAnimator;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.constant.DataTickets;
-import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.model.GeoModel;
 import mod.azure.azurelib.model.data.EntityModelData;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -27,14 +24,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
-public class GeoDynamicItemRenderer<T extends ItemAnimator> extends GeoObjectRenderer<T> {
+
+public class GeoDynamicItemRenderer2<T extends ItemAnimator> extends GeoObjectRenderer<T> {
     private Map<LivingEntity, Map<TransformType, T>> animatorsByTransform = new HashMap<>();
     private final Function<TransformType, T> animatorFactory;
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;
-    protected LivingEntity currentEntity;
+    protected Entity currentEntity;
 
-    public GeoDynamicItemRenderer(GeoModel<T> model, Function<TransformType, T> animatorFactory) {
+    public GeoDynamicItemRenderer2(GeoModel<T> model, Function<TransformType, T> animatorFactory) {
         super(model);
         this.animatorFactory = animatorFactory;
     }

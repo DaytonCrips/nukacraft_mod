@@ -11,6 +11,7 @@ import com.nukateam.guns.common.network.message.C2SMessageReload;
 import com.nukateam.guns.common.network.message.C2SMessageUnload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
@@ -148,7 +149,7 @@ public class ReloadHandler {
         return this.reloadTimer;
     }
 
-    public boolean isReloading(Player player) {
+    public boolean isReloading(LivingEntity player) {
         return ModSyncedDataKeys.RELOADING.getValue(player);
     }
 

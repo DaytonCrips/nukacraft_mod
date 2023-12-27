@@ -13,6 +13,7 @@ import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
@@ -32,6 +33,7 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
+    public static final String RELOAD = "reload";
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
     private final Minecraft minecraft = Minecraft.getInstance();
 
@@ -75,15 +77,16 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
             var gun = (GunItem)stack.getItem();
             var grip = gun.getGun().getGeneral().getGripType();
             var reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
+            var entity = GUN_RENDERER.getRenderEntity();//(LivingEntity)event.getData(DataTickets.ENTITY);
 
             RawAnimation animation = null;
 
-            if(ReloadHandler.get().isReloading(minecraft.player)){
+            if(entity != null && ReloadHandler.get().isReloading(entity)){
                 if(reloadTransforms.contains(transformType)) {
-                    animation = begin().then("pistol_reload", HOLD_ON_LAST_FRAME);
+                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
 
                     var reloadDuration = gun.getModifiedGun(stack).getGeneral().getReloadTime();
-                    var multiplier = (float) getSpeedMultiplier("pistol_reload", reloadDuration);
+                    var multiplier = (float) getSpeedMultiplier(RELOAD, reloadDuration);
 
                     event.setControllerSpeed(multiplier);
                 }
