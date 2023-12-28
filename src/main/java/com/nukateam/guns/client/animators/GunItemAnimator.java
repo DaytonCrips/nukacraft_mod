@@ -2,6 +2,7 @@ package com.nukateam.guns.client.animators;
 
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
+import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.handler.ReloadHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -91,12 +92,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                     event.setControllerSpeed(multiplier);
                 }
             }
-            else if (grip == ONE_HANDED) {
-                animation = begin().then("one_hand_hold", LOOP);
+            else if(AimingHandler.get().isAiming()){
+                animation = begin().then("aim", HOLD_ON_LAST_FRAME);
             }
-//            else if(grip == TWO_HANDED){
-//                animation = begin().then("two_hand_hold", LOOP);
-//            }
+            else {
+                animation = begin().then("idle", LOOP);
+            }
             try {
                 return event.setAndContinue(animation);
             }
@@ -117,7 +118,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         var bakedAnimations = map.get(animationResource);
         var animation = bakedAnimations.animations().get(animationName);
 
-        return animation.length();
+        return animation != null ? animation.length() : 1;
     }
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {

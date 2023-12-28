@@ -294,9 +294,9 @@ public class GunRenderingHandler {
         poseStack.translate(0.3 * offset, -1.3, -1.55);//Jetug
 
         /* Applies recoil and reload rotations */
-        this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
+//        this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);
         this.applySwayTransforms(poseStack, modifiedGun, player, translateX, translateY, translateZ, event.getPartialTicks());
-        this.applySprintingTransforms(modifiedGun, hand, poseStack, event.getPartialTicks());
+//        this.applySprintingTransforms(modifiedGun, hand, poseStack, event.getPartialTicks());
         this.applyRecoilTransforms(poseStack, heldItem, modifiedGun);
 //        this.applyReloadTransforms(poseStack, event.getPartialTicks());
         this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());

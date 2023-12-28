@@ -6,6 +6,9 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.client.render.layers.PlayerSkinLayer;
+import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -28,6 +31,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 
     private ItemStack renderStack;
     private boolean renderHands = false;
+    protected LivingEntity buffEntity = null;
 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
@@ -42,6 +46,10 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
         return currentEntity;
     }
 
+    public void setEntity(LivingEntity entity) {
+        this.buffEntity = entity;
+    }
+
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
                        @Nullable MultiBufferSource bufferSource,
@@ -50,11 +58,20 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
         this.renderStack = stack;
         this.renderHands = transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
 
+        if(buffEntity != null){
+            entity = buffEntity;
+            buffEntity = null;
+        }
+
+        if(entity instanceof Raider){
+            NukaCraftMod.LOGGER.debug("");
+        }
+
 //        poseStack.pushPose();
         switch (transformType) {
             case THIRD_PERSON_LEFT_HAND, THIRD_PERSON_RIGHT_HAND -> {
-                if (isWearingPowerArmor(entity))
-                    poseStack.translate(-0.5, -0.5, -0.8);
+                if (entity instanceof PowerArmorFrame)
+                    poseStack.translate(0, 0.2, 0.5);
 //                else
 //                    poseStack.translate(-0.5, -0.5, -1.2);
             }
@@ -71,8 +88,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
         }
 
         renderAttachments(stack, getRenderItem(entity, transformType));
+
         super.render(entity, stack, transformType, poseStack, bufferSource, renderType, buffer, packedLight);
 //        poseStack.popPose();
+
+
     }
 
     @Override

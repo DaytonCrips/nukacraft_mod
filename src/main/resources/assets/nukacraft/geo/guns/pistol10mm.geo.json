@@ -516,7 +516,7 @@
 					]
 				},
 				{
-					"name": "rightArm",
+					"name": "right_arm",
 					"parent": "gunbody",
 					"pivot": [-8, 2, 9],
 					"cubes": [
@@ -525,7 +525,7 @@
 					]
 				},
 				{
-					"name": "leftArm",
+					"name": "left_arm",
 					"parent": "gunbody",
 					"pivot": [8, 1.62983, 9.8883],
 					"cubes": [

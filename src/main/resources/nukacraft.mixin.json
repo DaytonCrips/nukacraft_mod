@@ -22,6 +22,7 @@
     "client.ItemInHandRendererMixin",
     "client.ItemRendererMixin",
     "guns.ItemInHandLayerMixin",
+    "guns.ItemRendererMixin",
     "guns.LevelRendererMixin",
     "guns.LivingEntityModelMixin",
     "guns.MinecraftMixin",

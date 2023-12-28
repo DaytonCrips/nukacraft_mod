@@ -1,6 +1,7 @@
 package com.nukateam.guns.client.render.layers;
 
 import com.jetug.chassis_core.client.render.layers.LayerBase;
+import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
