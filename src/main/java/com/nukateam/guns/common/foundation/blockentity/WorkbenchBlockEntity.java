@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.foundation.blockentity;
 
-import com.nukateam.guns.common.base.container.WorkbenchContainer;
+import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.foundation.blockentity.inventory.IStorageBlock;
 import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import net.minecraft.core.BlockPos;

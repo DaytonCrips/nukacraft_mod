@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base.constants;
+package com.nukateam.guns.common.data.constants;
 
 import com.nukateam.guns.common.base.GunModifiers;
 import com.nukateam.guns.common.foundation.item.attachment.impl.Scope;

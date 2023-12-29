@@ -4,8 +4,8 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.client.handler.GunRenderingHandler;
 import com.nukateam.guns.client.screen.widget.MiniButton;
 import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.common.base.container.AttachmentContainer;
-import com.nukateam.guns.common.base.container.slot.AttachmentSlot;
+import com.nukateam.guns.common.foundation.container.AttachmentContainer;
+import com.nukateam.guns.common.foundation.container.slot.AttachmentSlot;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
 import com.nukateam.nukacraft.NukaCraftMod;
@@ -149,9 +149,12 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
         {
             RenderSystem.enableBlend();
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+            int xOffset = this.windowX + (this.mouseGrabbed && this.mouseGrabbedButton == 0 ? mouseX - this.mouseClickedX : 0);
+            int yOffset = this.windowY + (this.mouseGrabbed && this.mouseGrabbedButton == 0 ? mouseY - this.mouseClickedY : 0);
+
             stack.translate(96, 50, 100);
-            stack.translate(this.windowX + (this.mouseGrabbed && this.mouseGrabbedButton == 0 ? mouseX - this.mouseClickedX : 0), 0, 0);
-            stack.translate(0, this.windowY + (this.mouseGrabbed && this.mouseGrabbedButton == 0 ? mouseY - this.mouseClickedY : 0), 0);
+            stack.translate(100, 60, 0);
+            stack.translate(xOffset, yOffset, 0);
             stack.mulPose(Vector3f.XP.rotationDegrees(-30F));
             stack.mulPose(Vector3f.XP.rotationDegrees(this.windowRotationY - (this.mouseGrabbed && this.mouseGrabbedButton == 1 ? mouseY - this.mouseClickedY : 0)));
             stack.mulPose(Vector3f.YP.rotationDegrees(this.windowRotationX + (this.mouseGrabbed && this.mouseGrabbedButton == 1 ? mouseX - this.mouseClickedX : 0)));

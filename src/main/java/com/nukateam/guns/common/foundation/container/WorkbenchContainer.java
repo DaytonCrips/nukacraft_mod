@@ -1,4 +1,4 @@
-package com.nukateam.guns.common.base.container;
+package com.nukateam.guns.common.foundation.container;
 
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipes;

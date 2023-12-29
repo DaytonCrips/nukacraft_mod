@@ -2,7 +2,7 @@ package com.nukateam.guns.client.screen;
 
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.NetworkGunManager;
-import com.nukateam.guns.common.base.container.WorkbenchContainer;
+import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.InventoryUtil;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchIngredient;
@@ -87,7 +87,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         List<WorkbenchRecipe> ammo = new ArrayList<>();
         List<WorkbenchRecipe> misc = new ArrayList<>();
 
-        for (WorkbenchRecipe recipe : recipes) {
+        for (var recipe : recipes) {
             ItemStack output = recipe.getItem();
             if (output.getItem() instanceof GunItem) {
                 weapons.add(recipe);
@@ -370,7 +370,8 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
                     modelViewStack.mulPose(Vector3f.YP.rotationDegrees(Minecraft.getInstance().player.tickCount + finalPartialTicks));
                     RenderSystem.applyModelViewMatrix();
                     MultiBufferSource.BufferSource buffer = this.minecraft.renderBuffers().bufferSource();
-                    Minecraft.getInstance().getItemRenderer().render(currentItem, ItemTransforms.TransformType.FIXED, false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, RenderUtil.getModel(currentItem));
+                    Minecraft.getInstance().getItemRenderer().render(currentItem, ItemTransforms.TransformType.FIXED,
+                            false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, RenderUtil.getModel(currentItem));
                     buffer.endBatch();
                 }
                 modelViewStack.popPose();

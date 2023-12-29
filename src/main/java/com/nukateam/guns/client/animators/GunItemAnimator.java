@@ -10,11 +10,11 @@ import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.cache.AzureLibCache;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
@@ -24,7 +24,6 @@ import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.getCooldown;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
-import static com.nukateam.guns.common.base.gun.GripType.ONE_HANDED;
 import static com.nukateam.guns.common.foundation.item.GunItem.bannedTransforms;
 import static com.nukateam.nukacraft.common.data.constants.Animations.SHOT;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
@@ -72,24 +71,20 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> holdAnimation() {
         return event -> {
+            event.getController().setAnimationSpeed(1);
             var stack = GUN_RENDERER.getRenderStack();
             if(stack == null || stack.isEmpty()) return PlayState.STOP;
 
             var gun = (GunItem)stack.getItem();
-            var grip = gun.getGun().getGeneral().getGripType();
-            var reloadProgress = ReloadHandler.get().getReloadProgress(Minecraft.getInstance().getFrameTime());
-            var entity = GUN_RENDERER.getRenderEntity();//(LivingEntity)event.getData(DataTickets.ENTITY);
+            var general = gun.getModifiedGun(stack).getGeneral();
+            var entity = GUN_RENDERER.getRenderEntity();
 
             RawAnimation animation = null;
 
             if(entity != null && ReloadHandler.get().isReloading(entity)){
                 if(reloadTransforms.contains(transformType)) {
                     animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
-
-                    var reloadDuration = gun.getModifiedGun(stack).getGeneral().getReloadTime();
-                    var multiplier = (float) getSpeedMultiplier(RELOAD, reloadDuration);
-
-                    event.setControllerSpeed(multiplier);
+                    syncAnimation(event, RELOAD , general.getReloadTime());
                 }
             }
             else if(AimingHandler.get().isAiming()){
@@ -107,6 +102,44 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         };
     }
 
+    private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
+        return event -> {
+            try{
+                var controller = event.getController();
+                controller.setAnimationSpeed(1);
+                var stack = GUN_RENDERER.getRenderStack();
+                var gun = (GunItem)stack.getItem();
+                var general = gun.getModifiedGun(stack).getGeneral();
+
+                if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
+                    return PlayState.STOP;
+                }
+
+                float cooldown = getCooldown(stack);
+                RawAnimation animation;
+
+                if(cooldown > 0) {
+                    animation = begin().then(SHOT, LOOP);
+                    syncAnimation(event, SHOT, general.getRate());
+                }
+                else return PlayState.STOP;
+
+                if (controller.hasAnimationFinished())
+                    controller.forceAnimationReset();
+
+                return event.setAndContinue(animation);
+            }
+            catch (Exception e){
+                return PlayState.STOP;
+            }
+        };
+    }
+
+    private void syncAnimation(AnimationState<GunItemAnimator> event, String animationName, int reloadDuration) {
+        var multiplier = (float) getSpeedMultiplier(animationName, reloadDuration);
+        event.setControllerSpeed(multiplier);
+    }
+
     private double getSpeedMultiplier(String animationName, double targetDuration){
         var duration = getAnimationDuration(animationName);
         return duration / targetDuration;
@@ -119,39 +152,5 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         var animation = bakedAnimations.animations().get(animationName);
 
         return animation != null ? animation.length() : 1;
-    }
-
-    private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
-        return event -> {
-            try{
-                var controller = event.getController();
-                controller.setAnimationSpeed(1);
-                var player = Minecraft.getInstance().player;
-                var entity = (LivingEntity)event.getData(DataTickets.ENTITY);
-                var stack = GUN_RENDERER.getRenderStack();
-
-                if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
-                    return PlayState.STOP;
-                }
-
-                float cooldown = getCooldown(stack);//tracker.getCooldownPercent(stack.getItem(), Minecraft.getInstance().getFrameTime());
-                RawAnimation animation;
-
-                if(cooldown > 0) {
-                    animation = begin().then(SHOT, LOOP);
-                }
-                else{
-                    return PlayState.STOP;
-                }
-
-                if (controller.hasAnimationFinished())
-                    controller.forceAnimationReset();
-
-                return event.setAndContinue(animation);
-            }
-            catch (Exception e){
-                return PlayState.STOP;
-            }
-        };
     }
 }

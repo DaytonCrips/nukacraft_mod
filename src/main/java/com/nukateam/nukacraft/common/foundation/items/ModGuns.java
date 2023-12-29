@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items;
 
-import com.nukateam.guns.common.base.constants.Attachments;
+import com.nukateam.guns.common.data.constants.Attachments;
 import com.nukateam.guns.common.foundation.item.*;
 import com.nukateam.guns.common.foundation.item.attachment.impl.*;
 import com.nukateam.nukacraft.*;

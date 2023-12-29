@@ -3,10 +3,10 @@
   "materials": [
     {
       "tag": "forge:ingots/iron",
-      "count": 36
+      "count": 14
     }
   ],
   "result": {
-    "item": "nukacraft:heavy_rifle"
+    "item": "nukacraft:pistol10mm"
   }
 }

@@ -1,7 +1,7 @@
 package com.nukateam.guns.common.foundation.init;
 
-import com.nukateam.guns.common.base.container.AttachmentContainer;
-import com.nukateam.guns.common.base.container.WorkbenchContainer;
+import com.nukateam.guns.common.foundation.container.AttachmentContainer;
+import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.world.inventory.AbstractContainerMenu;
