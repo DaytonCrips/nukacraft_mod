@@ -31,6 +31,9 @@ import static mod.azure.azurelib.core.animation.Animation.LoopType.HOLD_ON_LAST_
 import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND;
 
 public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
     public static final String RELOAD = "reload";
@@ -64,10 +67,14 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
     }
 
     private final ArrayList<TransformType> reloadTransforms = arrayListOf(
-            TransformType.FIRST_PERSON_RIGHT_HAND,
-            TransformType.FIRST_PERSON_LEFT_HAND,
-            TransformType.THIRD_PERSON_RIGHT_HAND,
-            TransformType.THIRD_PERSON_LEFT_HAND);
+            FIRST_PERSON_RIGHT_HAND,
+            FIRST_PERSON_LEFT_HAND,
+            THIRD_PERSON_RIGHT_HAND,
+            THIRD_PERSON_LEFT_HAND);
+
+    private boolean isFirstPerson(TransformType transformType){
+        return transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
+    }
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> holdAnimation() {
         return event -> {
@@ -87,7 +94,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                     syncAnimation(event, RELOAD , general.getReloadTime());
                 }
             }
-            else if(AimingHandler.get().isAiming()){
+            else if(isFirstPerson(transformType) && AimingHandler.get().isAiming()){
                 animation = begin().then("aim", HOLD_ON_LAST_FRAME);
             }
             else {

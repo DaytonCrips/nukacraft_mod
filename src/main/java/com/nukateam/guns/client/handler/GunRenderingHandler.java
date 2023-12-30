@@ -280,7 +280,7 @@ public class GunRenderingHandler {
 
         var modifiedGun = gunItem.getModifiedGun(heldItem);
 
-        this.applyIronSightTransforms(event, poseStack, model, isRight, heldItem, modifiedGun);
+//        this.applyIronSightTransforms(event, poseStack, model, isRight, heldItem, modifiedGun);
         this.applyBobbingTransforms(poseStack, event.getPartialTicks());
 
         /* Applies equip progress animation translations */
@@ -304,7 +304,7 @@ public class GunRenderingHandler {
         var packedLight = getWeaponLghtning(event, player);
         var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
 
-        this.renderFirstPersonArms(event, poseStack, hand, heldItem, modifiedGun, packedLight);
+//        this.renderFirstPersonArms(event, poseStack, hand, heldItem, modifiedGun, packedLight);
         this.renderWeapon(minecraft.player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), packedLight, event.getPartialTicks());
 
         poseStack.popPose();

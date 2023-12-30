@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities;
 
 import com.nukateam.guns.client.handler.ShootingHandler;
+import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
@@ -110,6 +112,11 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     public RaiderVariant getVariant() {
         return RaiderVariant.byId(this.getTypeVariant() & 255);
     }
+
+//    @Override
+//    public boolean canHoldItem(ItemStack pStack) {
+//        return pStack.getItem() instanceof GunItem;
+//    }
 
     @Override
     public boolean isInvisible() {

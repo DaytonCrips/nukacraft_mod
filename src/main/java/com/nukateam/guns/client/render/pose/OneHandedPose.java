@@ -29,7 +29,11 @@ public class OneHandedPose implements IHeldAnimation {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
-        var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+//        var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+        var flip = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
+
+        var right = hand == InteractionHand.MAIN_HAND;
+
         var arm = right ? rightArm : leftArm;
         IHeldAnimation.copyModelAngles(head, arm);
         arm.xRot += (float) Math.toRadians(-70F);

@@ -70,7 +70,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
                     poseStack.translate(0, 0.07, -0.25);
             }
             case FIRST_PERSON_LEFT_HAND, FIRST_PERSON_RIGHT_HAND -> {
-//                poseStack.translate(0.3, -1.3, -1.55);
+//                poseStack.translate(0, -1.3, -1.55);
             }
             case GUI -> {
 //                poseStack.translate(0.2, -0.55, -0.5);

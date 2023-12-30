@@ -28,7 +28,7 @@ import java.util.function.Function;
 
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 public class GeoDynamicItemRenderer<T extends ItemAnimator> extends GeoObjectRenderer<T> {
-    private Map<LivingEntity, Map<TransformType, T>> animatorsByTransform = new HashMap<>();
+    private final Map<LivingEntity, Map<TransformType, T>> animatorsByTransform = new HashMap<>();
     private final Function<TransformType, T> animatorFactory;
     protected ItemStack currentItemStack;
     protected TransformType currentTransform;

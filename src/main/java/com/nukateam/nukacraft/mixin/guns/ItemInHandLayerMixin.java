@@ -31,7 +31,6 @@ public class ItemInHandLayerMixin {
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
 
-//        if(entity instanceof PowerArmorFrame) return;
         if (hand == InteractionHand.OFF_HAND) {
 //            if (stack.getItem() instanceof GunItem) {
 //                ci.cancel();
@@ -52,7 +51,6 @@ public class ItemInHandLayerMixin {
             ItemInHandLayer<?, ?> layer = (ItemInHandLayer<?, ?>) (Object) this;
 
 //            GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, Minecraft.getInstance().getFrameTime());
-
 
             renderArmWithGun(layer, entity, stack, gunItem, transformType, hand, arm,
                     poseStack, source, light, Minecraft.getInstance().getFrameTime());

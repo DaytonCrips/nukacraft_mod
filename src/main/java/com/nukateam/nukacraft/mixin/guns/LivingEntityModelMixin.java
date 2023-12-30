@@ -9,7 +9,9 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -24,10 +26,14 @@ public class LivingEntityModelMixin<T extends LivingEntity> {
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "setupAnim*", at = @At(value = "TAIL"))
     private void setupAnimTail(T entity, float animationPos, float animationSpeed, float animationBob, float deltaHeadYaw, float headPitch, CallbackInfo ci) {
-//        if (!(entity instanceof Player player))
-//            return;
         var model = (HumanoidModel<T>)(Object)this;
-        var heldItem = entity.getMainHandItem();
+        setupForArm(entity, animationPos, model, InteractionHand.MAIN_HAND);
+        setupForArm(entity, animationPos, model, InteractionHand.OFF_HAND );
+    }
+
+    @Unique
+    private void setupForArm(T entity, float animationPos, HumanoidModel<T> model, InteractionHand interactionHand) {
+        var heldItem = entity.getItemInHand(interactionHand);
         if (heldItem.getItem() instanceof GunItem gunItem) {
             if (animationPos == 0.0F) {
                 model.rightArm.xRot = 0;
@@ -46,7 +52,7 @@ public class LivingEntityModelMixin<T extends LivingEntity> {
             var gun = gunItem.getModifiedGun(heldItem);
 
             gun.getGeneral().getGripType().getHeldAnimation().applyHumanoidModelRotation(entity, model.rightArm,
-                    model.leftArm, model.head, InteractionHand.MAIN_HAND,
+                    model.leftArm, model.head, interactionHand,
                     AimingHandler.get().getAimProgress(entity, Minecraft.getInstance().getFrameTime()));
 
             if(model instanceof PlayerModel<T> playerModel) {
@@ -56,6 +62,7 @@ public class LivingEntityModelMixin<T extends LivingEntity> {
             copyModelAngles(model.head, model.hat);
         }
     }
+
 
     private static void copyModelAngles(ModelPart source, ModelPart target) {
         target.xRot = source.xRot;
