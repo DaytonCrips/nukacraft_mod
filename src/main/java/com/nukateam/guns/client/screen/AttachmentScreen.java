@@ -153,7 +153,7 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
             int yOffset = this.windowY + (this.mouseGrabbed && this.mouseGrabbedButton == 0 ? mouseY - this.mouseClickedY : 0);
 
             stack.translate(96, 50, 100);
-            stack.translate(100, 60, 0);
+            stack.translate(50, 45, 0);
             stack.translate(xOffset, yOffset, 0);
             stack.mulPose(Vector3f.XP.rotationDegrees(-30F));
             stack.mulPose(Vector3f.XP.rotationDegrees(this.windowRotationY - (this.mouseGrabbed && this.mouseGrabbedButton == 1 ? mouseY - this.mouseClickedY : 0)));

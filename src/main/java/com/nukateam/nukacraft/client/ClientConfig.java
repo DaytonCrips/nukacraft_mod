@@ -9,7 +9,7 @@ import java.util.HashMap;
 //@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class ClientConfig {
     public static LivingEntity currentEntity;
-    public static HashMap<ItemStack, LivingEntity> entityForStack = new HashMap<>();
+//    public static HashMap<ItemStack, LivingEntity> entityForStack = new HashMap<>();
     public static ItemStack currentStack;
     public static ItemTransforms.TransformType currentTransform;
 

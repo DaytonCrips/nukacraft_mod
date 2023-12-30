@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.guns.client.model.GeoGunModel;
-import com.nukateam.guns.client.render.layers.PlayerSkinLayer;
+import com.nukateam.guns.client.render.layers.LocalPlayerSkinLayer;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
@@ -16,11 +16,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
-import java.util.Random;
-
 import static com.nukateam.guns.client.handler.GunRenderingHandler.getAttachmentNames;
-import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.isWearingPowerArmor;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
@@ -35,7 +31,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
-        addRenderLayer(new PlayerSkinLayer<>(this));
+        addRenderLayer(new LocalPlayerSkinLayer<>(this));
     }
 
     public ItemStack getRenderStack() {
@@ -78,7 +74,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
             }
             case GUI -> {
 //                poseStack.translate(0.2, -0.55, -0.5);
-                poseStack.translate(0.2, 0.1, -0.5);
+//                poseStack.translate(0.2, 0.1, -0.5);
             }
             case GROUND -> {
 //                poseStack.translate(-0.5, -0.5, -1);

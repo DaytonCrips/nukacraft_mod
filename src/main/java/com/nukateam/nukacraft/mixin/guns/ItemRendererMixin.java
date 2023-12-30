@@ -23,16 +23,13 @@ import javax.annotation.Nullable;
 
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin {
-    @Inject(method = "renderStatic*", at = @At(value = "HEAD"), cancellable = true)
-    public void renderStatic(@Nullable LivingEntity entity, ItemStack itemStack,
-                             ItemTransforms.TransformType pTransformType, boolean pLeftHand,
-                             PoseStack poseStack, MultiBufferSource buffer, @Nullable Level pLevel,
+    @Inject(method = "renderStatic(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemTransforms$TransformType;ZLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/level/Level;III)V",
+            at = @At(value = "HEAD"))
+    public void renderStatic(LivingEntity p_174243_, ItemStack pItemStack, ItemTransforms.TransformType pTransformType,
+                             boolean pLeftHand, PoseStack pPoseStack, MultiBufferSource pBuffer, Level pLevel,
                              int pCombinedLight, int pCombinedOverlay, int p_174252_, CallbackInfo ci) {
-        if(itemStack.getItem() instanceof GunItem){
-            Render.GUN_RENDERER.setEntity(entity);
-//            GunRenderingHandler.get().renderWeapon(entity, itemStack, pTransformType,
-//                    poseStack, buffer, pCombinedLight, Minecraft.getInstance().getDeltaFrameTime());
-//            ci.cancel();
+        if(pItemStack.getItem() instanceof GunItem){
+            Render.GUN_RENDERER.setEntity(p_174243_);
         }
     }
 }

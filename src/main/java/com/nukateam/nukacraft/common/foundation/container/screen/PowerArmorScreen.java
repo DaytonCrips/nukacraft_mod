@@ -28,7 +28,8 @@ public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
         this.addButton(new IconButton(leftPos + 133, topPos + 49, 88, 166, GUI_DONE, POWER_ARMOR_GUI) {
             @Override
             public void onPress() {
-                PacketHandler.sendToServer(new FramePickupPacket(referenceMob.getId()));
+                if(referenceMob != null)
+                    PacketHandler.sendToServer(new FramePickupPacket(referenceMob.getId()));
             }
         });
     }

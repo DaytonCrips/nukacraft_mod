@@ -41,8 +41,8 @@ public class RaiderHeadLayer<T extends WearableChassis> extends LayerBase<T> {
 
     private void setTextureSize(T entity){
         var size = getTextureSize(getRenderer().getTextureLocation(entity));
-        textureWidth = size.getA();
-        textureHeight = size.getB();
+        textureWidth = size.first;
+        textureHeight = size.second;
     }
 
     @Nullable

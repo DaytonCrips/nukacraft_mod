@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.guns.client.model.GeoGunModel;
-import com.nukateam.guns.client.render.layers.PlayerSkinLayer;
+import com.nukateam.guns.client.render.layers.LocalPlayerSkinLayer;
 import mod.azure.azurelib.renderer.GeoObjectRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,7 +16,7 @@ public class GunRendererTest extends GeoObjectRenderer<GunItemAnimator> {
 
     public GunRendererTest() {
         super(new GeoGunModel<>());
-        addRenderLayer(new PlayerSkinLayer<>(this));
+        addRenderLayer(new LocalPlayerSkinLayer<>(this));
     }
 
     public void render(PoseStack poseStack, ItemStack stack, GunItemAnimator animatable, @Nullable MultiBufferSource bufferSource,
