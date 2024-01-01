@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.mixin.guns;
 
 import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.handler.GunRenderingHandler;
+import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -32,10 +33,10 @@ public class ItemInHandLayerMixin {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
 
         if (hand == InteractionHand.OFF_HAND) {
-//            if (stack.getItem() instanceof GunItem) {
-//                ci.cancel();
-//                return;
-//            }
+            if (stack.getItem() instanceof GunItem gunItem && gunItem.getGun().getGeneral().getGripType() != GripType.ONE_HANDED) {
+                ci.cancel();
+                return;
+            }
 
             if (entity.getMainHandItem().getItem() instanceof GunItem gunItem) {
                 Gun modifiedGun = gunItem.getModifiedGun(entity.getMainHandItem());

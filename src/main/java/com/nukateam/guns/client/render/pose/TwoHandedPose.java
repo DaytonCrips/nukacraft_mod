@@ -52,6 +52,8 @@ public class TwoHandedPose extends WeaponPose {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+        if(hand == InteractionHand.OFF_HAND) return;
+
         if (Config.CLIENT.display.oldAnimations.get()) {
             Minecraft mc = Minecraft.getInstance();
             boolean right = mc.options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;

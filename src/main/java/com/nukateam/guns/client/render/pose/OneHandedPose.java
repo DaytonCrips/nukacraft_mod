@@ -3,6 +3,8 @@ package com.nukateam.guns.client.render.pose;
 import com.nukateam.guns.client.render.IHeldAnimation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import com.nukateam.guns.common.base.gun.GripType;
+import com.nukateam.guns.common.foundation.item.GunItem;
 import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;
@@ -33,6 +35,11 @@ public class OneHandedPose implements IHeldAnimation {
         var flip = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
 
         var right = hand == InteractionHand.MAIN_HAND;
+        var isOneHanded = entity.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof GunItem gunItem
+                && gunItem.getGun().getGeneral().getGripType() != GripType.ONE_HANDED;
+
+        if(!right && isOneHanded)
+            return;
 
         var arm = right ? rightArm : leftArm;
         IHeldAnimation.copyModelAngles(head, arm);

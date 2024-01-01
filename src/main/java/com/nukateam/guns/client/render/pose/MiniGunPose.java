@@ -48,6 +48,7 @@ public class MiniGunPose extends WeaponPose {
 
     @Override
     public void applyHumanoidModelRotation(LivingEntity entity, ModelPart rightArm, ModelPart leftArm, ModelPart head, InteractionHand hand, float aimProgress) {
+        if(hand == InteractionHand.OFF_HAND) return;
         if (Config.CLIENT.display.oldAnimations.get()) {
             boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ? hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
             ModelPart mainArm = right ? rightArm : leftArm;
