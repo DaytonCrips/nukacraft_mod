@@ -98,7 +98,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 animation = begin().then("aim", HOLD_ON_LAST_FRAME);
             }
             else {
-                animation = begin().then("idle", LOOP);
+                animation = begin().then("hold", LOOP);
             }
             try {
                 return event.setAndContinue(animation);

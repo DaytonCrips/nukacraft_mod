@@ -3,6 +3,7 @@
     "rate": 10,
     "gripType": "nukacraft:bazooka",
     "maxAmmo": 1,
+    "reloadTime": 60,
     "recoilAngle": 10.0,
     "recoilDurationOffset": 0.25
   },

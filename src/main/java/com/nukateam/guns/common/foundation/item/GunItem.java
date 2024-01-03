@@ -51,7 +51,7 @@ public class GunItem extends CustomizableItem implements GeoItem, IColored, IMet
     private Gun gun = new Gun();
 
     public GunItem(Item.Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
 
     public void setGun(NetworkGunManager.Supplier supplier) {
