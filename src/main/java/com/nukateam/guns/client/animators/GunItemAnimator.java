@@ -141,7 +141,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 RawAnimation animation;
 
                 if(cooldown > 0) {
-                    animation = begin().then(SHOT, LOOP);
+                    animation = begin().then(SHOT, PLAY_ONCE).thenPlay("hold");
                     syncAnimation(event, SHOT, general.getRate());
                 }
                 else if(!Gun.hasAmmo(stack)){
