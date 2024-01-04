@@ -96,19 +96,20 @@ public class TwoHandedPose extends WeaponPose {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
-        if (Config.CLIENT.display.oldAnimations.get()) {
-            if (hand == InteractionHand.MAIN_HAND) {
-                boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
-                        hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
-                poseStack.translate(0, 0, 0.05);
-                float invertRealProgress = 1.0F - aimProgress;
-                poseStack.mulPose(Vector3f.ZP.rotationDegrees((25F * invertRealProgress) * (right ? 1F : -1F)));
-                poseStack.mulPose(Vector3f.YP.rotationDegrees((30F * invertRealProgress + aimProgress * -20F) * (right ? 1F : -1F)));
-                poseStack.mulPose(Vector3f.XP.rotationDegrees(25F * invertRealProgress + aimProgress * 5F));
-            }
-        } else {
-            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
-        }
+//        if (Config.CLIENT.display.oldAnimations.get()) {
+//            if (hand == InteractionHand.MAIN_HAND) {
+//                boolean right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT ?
+//                        hand == InteractionHand.MAIN_HAND : hand == InteractionHand.OFF_HAND;
+//                poseStack.translate(0, 0, 0.05);
+//                float invertRealProgress = 1.0F - aimProgress;
+//                poseStack.mulPose(Vector3f.ZP.rotationDegrees((25F * invertRealProgress) * (right ? 1F : -1F)));
+//                poseStack.mulPose(Vector3f.YP.rotationDegrees((30F * invertRealProgress + aimProgress * -20F) * (right ? 1F : -1F)));
+//                poseStack.mulPose(Vector3f.XP.rotationDegrees(25F * invertRealProgress + aimProgress * 5F));
+//            }
+//        } else {
+//            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
+//        }
+        poseStack.translate(-0.41, -0.35, -1);
     }
 
     @Override

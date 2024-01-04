@@ -5,6 +5,7 @@ import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
 import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.handler.ReloadHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.cache.AzureLibCache;
@@ -27,8 +28,7 @@ import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.guns.common.foundation.item.GunItem.bannedTransforms;
 import static com.nukateam.nukacraft.common.data.constants.Animations.SHOT;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.HOLD_ON_LAST_FRAME;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
@@ -86,6 +86,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
             var general = gun.getModifiedGun(stack).getGeneral();
             var entity = GUN_RENDERER.getRenderEntity();
 
+//            if(currentGun != gun){
+//                currentGun = gun;
+//                event.getController().stop();
+//                return event.setAndContinue(begin().then(RELOAD, HOLD_ON_LAST_FRAME));
+//            }
+
             RawAnimation animation = null;
 
             if(entity != null && ReloadHandler.get().isReloading(entity)){
@@ -109,14 +115,23 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         };
     }
 
+    private GunItem currentGun = null;
+
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
             try{
+
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
                 var stack = GUN_RENDERER.getRenderStack();
                 var gun = (GunItem)stack.getItem();
                 var general = gun.getModifiedGun(stack).getGeneral();
+
+//                if(currentGun != gun){
+//                    currentGun = gun;
+//                    event.getController().stop();
+//                    return event.setAndContinue(begin().then(RELOAD, HOLD_ON_LAST_FRAME));
+//                }
 
                 if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
                     return PlayState.STOP;
@@ -128,6 +143,9 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 if(cooldown > 0) {
                     animation = begin().then(SHOT, LOOP);
                     syncAnimation(event, SHOT, general.getRate());
+                }
+                else if(!Gun.hasAmmo(stack)){
+                    animation = begin().then("slide_off", LOOP);
                 }
                 else return PlayState.STOP;
 

@@ -109,33 +109,33 @@ public abstract class WeaponPose implements IHeldAnimation {
     public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress,
                                         PoseStack poseStack, MultiBufferSource buffer) {
 
-        var side = hand == InteractionHand.OFF_HAND ? 1 : -1;
-        poseStack.translate((side * 3) / 16F, 0, -0.625);
-
-        if (hand == InteractionHand.MAIN_HAND) {
-            var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
-            var leftHanded = right ? 1 : -1;
-            poseStack.translate(0, 0, 0.05);
-
-            var angle = this.getEntityPitch(entity);
-            var angleAbs = Math.abs(angle);
-            var zoom = this.hasAimPose() ? aimProgress : 0F;
-            var targetPose = angle > 0.0 ? this.downPose : this.upPose;
-
-            var idle = targetPose.getIdle();
-            var aiming = targetPose.getAiming();
-            var translateX = this.getValue(idle.getItemTranslate().x(), aiming.getItemTranslate().x(), this.forwardPose.getIdle().getItemTranslate().x(), this.forwardPose.getAiming().getItemTranslate().x(), 0F, angleAbs, zoom, 1F);
-            var translateY = this.getValue(idle.getItemTranslate().y(), aiming.getItemTranslate().y(), this.forwardPose.getIdle().getItemTranslate().y(), this.forwardPose.getAiming().getItemTranslate().y(), 0F, angleAbs, zoom, 1F);
-            var translateZ = this.getValue(idle.getItemTranslate().z(), aiming.getItemTranslate().z(), this.forwardPose.getIdle().getItemTranslate().z(), this.forwardPose.getAiming().getItemTranslate().z(), 0F, angleAbs, zoom, 1F);
-            poseStack.translate(translateX * 0.0625 * leftHanded, translateY * 0.0625, translateZ * 0.0625);
-
-            var rotateX = this.getValue(idle.getItemRotation().x(), aiming.getItemRotation().x(), this.forwardPose.getIdle().getItemRotation().x(), this.forwardPose.getAiming().getItemRotation().x(), 0F, angleAbs, zoom, 1F);
-            var rotateY = this.getValue(idle.getItemRotation().y(), aiming.getItemRotation().y(), this.forwardPose.getIdle().getItemRotation().y(), this.forwardPose.getAiming().getItemRotation().y(), 0F, angleAbs, zoom, 1F);
-            var rotateZ = this.getValue(idle.getItemRotation().z(), aiming.getItemRotation().z(), this.forwardPose.getIdle().getItemRotation().z(), this.forwardPose.getAiming().getItemRotation().z(), 0F, angleAbs, zoom, 1F);
-            poseStack.mulPose(Vector3f.XP.rotationDegrees(rotateX));
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(rotateY * leftHanded));
-            poseStack.mulPose(Vector3f.ZP.rotationDegrees(rotateZ * leftHanded));
-        }
+//        var side = hand == InteractionHand.OFF_HAND ? 1 : -1;
+//        poseStack.translate((side * 3) / 16F, 0, -0.625);
+//
+//        if (hand == InteractionHand.MAIN_HAND) {
+//            var right = Minecraft.getInstance().options.mainHand == HumanoidArm.RIGHT;
+//            var leftHanded = right ? 1 : -1;
+//            poseStack.translate(0, 0, 0.05);
+//
+//            var angle = this.getEntityPitch(entity);
+//            var angleAbs = Math.abs(angle);
+//            var zoom = this.hasAimPose() ? aimProgress : 0F;
+//            var targetPose = angle > 0.0 ? this.downPose : this.upPose;
+//
+//            var idle = targetPose.getIdle();
+//            var aiming = targetPose.getAiming();
+//            var translateX = this.getValue(idle.getItemTranslate().x(), aiming.getItemTranslate().x(), this.forwardPose.getIdle().getItemTranslate().x(), this.forwardPose.getAiming().getItemTranslate().x(), 0F, angleAbs, zoom, 1F);
+//            var translateY = this.getValue(idle.getItemTranslate().y(), aiming.getItemTranslate().y(), this.forwardPose.getIdle().getItemTranslate().y(), this.forwardPose.getAiming().getItemTranslate().y(), 0F, angleAbs, zoom, 1F);
+//            var translateZ = this.getValue(idle.getItemTranslate().z(), aiming.getItemTranslate().z(), this.forwardPose.getIdle().getItemTranslate().z(), this.forwardPose.getAiming().getItemTranslate().z(), 0F, angleAbs, zoom, 1F);
+//            poseStack.translate(translateX * 0.0625 * leftHanded, translateY * 0.0625, translateZ * 0.0625);
+//
+//            var rotateX = this.getValue(idle.getItemRotation().x(), aiming.getItemRotation().x(), this.forwardPose.getIdle().getItemRotation().x(), this.forwardPose.getAiming().getItemRotation().x(), 0F, angleAbs, zoom, 1F);
+//            var rotateY = this.getValue(idle.getItemRotation().y(), aiming.getItemRotation().y(), this.forwardPose.getIdle().getItemRotation().y(), this.forwardPose.getAiming().getItemRotation().y(), 0F, angleAbs, zoom, 1F);
+//            var rotateZ = this.getValue(idle.getItemRotation().z(), aiming.getItemRotation().z(), this.forwardPose.getIdle().getItemRotation().z(), this.forwardPose.getAiming().getItemRotation().z(), 0F, angleAbs, zoom, 1F);
+//            poseStack.mulPose(Vector3f.XP.rotationDegrees(rotateX));
+//            poseStack.mulPose(Vector3f.YP.rotationDegrees(rotateY * leftHanded));
+//            poseStack.mulPose(Vector3f.ZP.rotationDegrees(rotateZ * leftHanded));
+//        }
     }
 
     /**

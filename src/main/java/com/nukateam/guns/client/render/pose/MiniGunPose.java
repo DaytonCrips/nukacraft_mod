@@ -96,14 +96,18 @@ public class MiniGunPose extends WeaponPose {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void applyHeldItemTransforms(LivingEntity entity, InteractionHand hand, float aimProgress, PoseStack poseStack, MultiBufferSource buffer) {
-        if (Config.CLIENT.display.oldAnimations.get()) {
-            if (hand == InteractionHand.OFF_HAND) {
-                poseStack.translate(0, -10 * 0.0625F, 0);
-                poseStack.translate(0, 0, -2 * 0.0625F);
-            }
-        } else {
-            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
-        }
+//        if (Config.CLIENT.display.oldAnimations.get()) {
+//            if (hand == InteractionHand.OFF_HAND) {
+//                poseStack.translate(0, -10 * 0.0625F, 0);
+//                poseStack.translate(0, 0, -2 * 0.0625F);
+//            }
+//        } else {
+//            super.applyHeldItemTransforms(entity, hand, aimProgress, poseStack, buffer);
+//        }
+
+        // z = y; y = z; x = x
+        poseStack.translate(-0.5, 0.37, -1.25);
+
     }
 
     @Override

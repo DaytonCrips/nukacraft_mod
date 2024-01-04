@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.render.layers;
 
+import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import com.jetug.chassis_core.client.render.layers.LayerBase;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
@@ -52,7 +53,7 @@ public class RaiderHeadLayer<T extends WearableChassis> extends LayerBase<T> {
             setTextureSize(animatable);
             var image = resourceToBufferedImage(raider.getTexture());
             image = extendImage(image, textureWidth, textureHeight);
-            var resource = createResource(image, "raider_" + tag);
+            var resource = createResource(image, NukaCraftMod.MOD_ID, "raider_" + tag);
             raiderHeads.put(tag, resource);
         }
         return raiderHeads.get(tag);
