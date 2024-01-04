@@ -89,6 +89,11 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
     }
 
     @Override
+    public boolean isOnFire() {
+        return false;
+    }
+
+    @Override
     protected void defineSynchedData() {
         this.entityData.define(SIZE, 1.0F);
     }

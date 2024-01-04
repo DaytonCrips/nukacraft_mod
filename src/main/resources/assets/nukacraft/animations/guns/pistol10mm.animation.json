@@ -1,6 +1,50 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
+		"aim": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.25,
+			"bones": {
+				"muzzleflash": {
+					"position": {
+						"vector": [2.46125, 1.125, -1.5]
+					}
+				},
+				"gunbody": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [2.46125, 1.125, -1.5]
+						}
+					}
+				},
+				"right_arm": {
+					"position": {
+						"vector": [8, -1.75, 6.25]
+					}
+				},
+				"left_arm": {
+					"position": {
+						"vector": [0, 0, 12]
+					},
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"gun": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.25": {
+							"vector": [2.46125, 1.125, -1.5]
+						}
+					}
+				}
+			}
+		},
 		"slide_on": {
 			"animation_length": 0.04167,
 			"bones": {

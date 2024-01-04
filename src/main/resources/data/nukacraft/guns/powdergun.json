@@ -1,6 +1,6 @@
 {
   "general": {
-    "rate": 15,
+    "rate": 5,
     "gripType": "nukacraft:two_handed",
     "maxAmmo": 1,
     "reloadTime": 80,

@@ -8,6 +8,7 @@ import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
+import com.nukateam.nukacraft.common.foundation.items.ModGuns;
 import mod.azure.azurelib.cache.AzureLibCache;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -104,7 +105,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 animation = begin().then("aim", HOLD_ON_LAST_FRAME);
             }
             else {
-                animation = begin().then("hold", LOOP);
+                if(currentGun == gun)
+                    animation = begin().then("hold", LOOP);
+                else {
+                    currentGun = gun;
+                    animation = begin().then("aim", LOOP);
+                }
             }
             try {
                 return event.setAndContinue(animation);
@@ -120,7 +126,6 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
             try{
-
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
                 var stack = GUN_RENDERER.getRenderStack();
@@ -141,12 +146,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 RawAnimation animation;
 
                 if(cooldown > 0) {
-                    animation = begin().then(SHOT, PLAY_ONCE).thenPlay("hold");
+                    animation = begin().then(SHOT, LOOP);
                     syncAnimation(event, SHOT, general.getRate());
                 }
-                else if(!Gun.hasAmmo(stack)){
-                    animation = begin().then("slide_off", LOOP);
-                }
+//                else if(!Gun.hasAmmo(stack)){
+//                    animation = begin().then("slide_off", LOOP);
+//                }
                 else return PlayState.STOP;
 
                 if (controller.hasAnimationFinished())

@@ -28,7 +28,6 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
     public float nukeFlashAmount = 0;
     public float masterVolumeNukeModifier = 0.0F;
 
-
     public NuclearExplosionEffectEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         noCulling = true;
@@ -37,6 +36,11 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
         lifeTime = explosionType.getDuration();
         tremorFor = explosionType.getTremorDuration();
         renderNukeFlashFor = explosionType.getFlashDuration();
+    }
+
+    @Override
+    public boolean isOnFire() {
+        return false;
     }
 
     public void setType(ExplosionType explosionType) {

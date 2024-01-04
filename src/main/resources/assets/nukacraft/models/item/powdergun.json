@@ -15,6 +15,20 @@
         -6.5
       ]
     },
+    "firstperson_righthand": {
+      "translation": [
+        0,
+        0,
+        -5.25
+      ]
+    },
+    "firstperson_lefthand": {
+      "translation": [
+        0,
+        0,
+        -5.25
+      ]
+    },
     "ground": {
       "translation": [
         0,
