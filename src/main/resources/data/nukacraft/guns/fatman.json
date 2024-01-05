@@ -2,6 +2,7 @@
   "general": {
     "rate": 10,
     "gripType": "nukacraft:bazooka",
+    "category": "heavy",
     "maxAmmo": 1,
     "reloadTime": 60,
     "recoilAngle": 10.0,

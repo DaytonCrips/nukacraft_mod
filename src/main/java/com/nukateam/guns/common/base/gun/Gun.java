@@ -117,6 +117,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         public static final String SPREAD = "Spread";
         public static final String MAGAZINE = "magazine";
         public static final String PER_CARTRIDGE = "per_cartridge";
+        public static final String CATEGORY = "category";
 
         @Optional
         private boolean auto = false;
@@ -128,6 +129,8 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         private int reloadTime = 1;
         @Optional
         private String loadingType = MAGAZINE;
+        @Optional
+        private String category = "pistol";
         @Optional
         private int reloadAmount = 1;
         @Optional
@@ -155,6 +158,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             tag.putInt      (RELOAD_SPEED, this.reloadAmount);
             tag.putInt      (RELOAD_TIME, this.reloadTime);
             tag.putString   (LOADING_TYPE, this.loadingType);
+            tag.putString   (CATEGORY, this.category);
             tag.putFloat    (RECOIL_ANGLE, this.recoilAngle);
             tag.putFloat    (RECOIL_KICK, this.recoilKick);
             tag.putFloat    (RECOIL_DURATION_OFFSET, this.recoilDurationOffset);
@@ -187,6 +191,9 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             }
             if (tag.contains(LOADING_TYPE, Tag.TAG_STRING)) {
                 this.loadingType = tag.getString(LOADING_TYPE);
+            }
+            if (tag.contains(CATEGORY, Tag.TAG_STRING)) {
+                this.category = tag.getString(CATEGORY);
             }
             if (tag.contains(RECOIL_ANGLE, Tag.TAG_ANY_NUMERIC)) {
                 this.recoilAngle = tag.getFloat(RECOIL_ANGLE);
@@ -254,6 +261,7 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
             general.reloadAmount = this.reloadAmount;
             general.reloadTime = this.reloadTime;
             general.loadingType = this.loadingType;
+            general.category = this.category;
             general.recoilAngle = this.recoilAngle;
             general.recoilKick = this.recoilKick;
             general.recoilDurationOffset = this.recoilDurationOffset;
@@ -312,6 +320,13 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
          */
         public String getLoadingType() {
             return this.loadingType;
+        }
+
+        /**
+         * @return Weapon category
+         */
+        public String getCategory() {
+            return this.category;
         }
 
         /**
@@ -1454,6 +1469,11 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
 
         public Builder setLoadingType(String loadingType) {
             this.gun.general.loadingType = loadingType;
+            return this;
+        }
+
+        public Builder setCategory(String category) {
+            this.gun.general.category = category;
             return this;
         }
 
