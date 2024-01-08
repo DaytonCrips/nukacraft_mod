@@ -21,8 +21,8 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '0.22'
-group = 'com.vaultteam.nukacraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = '1.18.2-1.1-SNAPSHOT'
+group = 'com.nukateam.nukacraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'nukacraft'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.

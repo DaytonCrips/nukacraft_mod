@@ -1,6 +1,5 @@
 package com.nukateam.guns.common.network.message;
 
-import com.nukateam.guns.common.base.network.ServerPlayHandler;
 import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,11 +25,10 @@ public class C2SMessageAttachments extends PlayMessage<C2SMessageAttachments> {
 
     @Override
     public void handle(C2SMessageAttachments message, Supplier<NetworkEvent.Context> supplier) {
-        supplier.get().enqueueWork(() ->
-        {
+        supplier.get().enqueueWork(() -> {
             ServerPlayer player = supplier.get().getSender();
             if (player != null) {
-                ServerPlayHandler.handleAttachments(player);
+//                ServerPlayHandler.handleAttachments(player);
             }
         });
         supplier.get().setPacketHandled(true);

@@ -75,7 +75,7 @@ public class GunMod {
             ModSyncedDataKeys.register();
             CraftingHelper.register(new ResourceLocation(NukaCraftMod.MOD_ID, "workbench_ingredient"), WorkbenchIngredient.Serializer.INSTANCE);
             ProjectileManager.getInstance().registerFactory(GRENADE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new GrenadeEntity(ModEntities.GRENADE.get(), worldIn, entity, weapon, item, modifiedGun));
-            ProjectileManager.getInstance().registerFactory(MISSILE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MissileEntity(ModEntities.MISSILE.get(), worldIn, entity, weapon, item, modifiedGun));
+//            ProjectileManager.getInstance().registerFactory(MISSILE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MissileEntity(ModEntities.MISSILE.get(), worldIn, entity, weapon, item, modifiedGun));
             PacketHandler.init();
             if (Config.COMMON.gameplay.improvedHitboxes.get()) {
                 MinecraftForge.EVENT_BUS.register(new BoundingBoxManager());

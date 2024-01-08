@@ -162,7 +162,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     public static void openMap() {
         Minecraft.getInstance().player.closeContainer();
-        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
+//        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
 
@@ -213,26 +213,28 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     private void renderArchive(){
-        addRenderableWidget(getArchiveButton());
-        addRenderableWidget(getMapButton());
-        addRenderableWidget(getRadioButton());
-        addRenderableWidget(getOffButton());
-        addRenderableWidget(getBackButton(() -> {
-            if (current_archive_page > 0) {
-                current_archive_page--;
-                clearWidgets();
-                renderArchive();
-                buttonMenu();
-            }
-        }));
-        addRenderableWidget(getForwardButton(() -> {
-            if (!(current_archive_page == archive_pages)) {
-                current_archive_page++;
-                clearWidgets();
-                renderArchive();
-                buttonMenu();
-            }
-        }));
+        warningPipboy();
+
+//        addRenderableWidget(getArchiveButton());
+//        addRenderableWidget(getMapButton());
+//        addRenderableWidget(getRadioButton());
+//        addRenderableWidget(getOffButton());
+//        addRenderableWidget(getBackButton(() -> {
+//            if (current_archive_page > 0) {
+//                current_archive_page--;
+//                clearWidgets();
+//                renderArchive();
+//                buttonMenu();
+//            }
+//        }));
+//        addRenderableWidget(getForwardButton(() -> {
+//            if (!(current_archive_page == archive_pages)) {
+//                current_archive_page++;
+//                clearWidgets();
+//                renderArchive();
+//                buttonMenu();
+//            }
+//        }));
     }
 
     private void renderRadio(){
