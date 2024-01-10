@@ -61,11 +61,6 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
         return this.projectile;
     }
 
-//    public Reloads getReloads()
-//    {
-//        return this.reloads;
-//    }
-
     public Sounds getSounds() {
         return this.sounds;
     }

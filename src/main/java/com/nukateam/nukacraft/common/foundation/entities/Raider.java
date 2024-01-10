@@ -6,6 +6,7 @@ import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.RidePowerArmorGoal;
+import com.nukateam.nukacraft.common.foundation.items.ModGuns;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,6 +14,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -22,10 +24,13 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
 
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.*;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
@@ -34,6 +39,8 @@ import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingCh
 public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
+
+    public PowerArmorFrame armorTarget = null;
 
     public Raider(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -77,11 +84,21 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
             stopRiding();
     }
 
+    private GunItem[] guns = new GunItem[]{
+            ModGuns.PISTOL10MM.get(),
+            ModGuns.PIPEREVOLVER.get(),
+            ModGuns.PIPE_PISTOL.get(),
+            ModGuns.SCOUT10MM.get(),
+            ModGuns.MINIGUN.get(),
+    };
+
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
                                         @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
         setVariant(Util.getRandom(RaiderVariant.values(), random));
+        var id = random.nextInt(guns.length);
+        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(guns[id]));
         return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 

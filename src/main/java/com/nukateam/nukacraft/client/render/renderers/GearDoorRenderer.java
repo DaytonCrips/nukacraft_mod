@@ -6,7 +6,6 @@ import mod.azure.azurelib.model.GeoModel;
 import mod.azure.azurelib.renderer.GeoBlockRenderer;
 
 public class GearDoorRenderer extends GeoBlockRenderer<GearDoorEntity> {
-
     public GearDoorRenderer() {
         super(new GearDoorModel());
     }

@@ -26,10 +26,6 @@ public class ModTileEntities {
                     BlockEntityType.Builder.of(GearDoorEntity::new,
                             ModBlocks.GEARDOOR.get()).build(null));
 
-
-
-
-
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factoryIn, Supplier<Block[]> validBlocksSupplier) {
         return REGISTER.register(id, () -> BlockEntityType.Builder.of(factoryIn, validBlocksSupplier.get()).build(null));
     }

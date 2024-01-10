@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
@@ -16,8 +17,7 @@ import java.util.EnumSet;
 import static net.minecraft.world.entity.ai.targeting.TargetingConditions.*;
 
 public class RidePowerArmorGoal extends Goal {
-    private final PathfinderMob entity;
-
+    private final Raider entity;
     private final LevelReader level;
     private PowerArmorFrame target;
     private final double speedModifier;
@@ -27,7 +27,7 @@ public class RidePowerArmorGoal extends Goal {
     private float oldWaterCost;
     protected TargetingConditions targetConditions;
 
-    public RidePowerArmorGoal(PathfinderMob entity, double speedModifier, float searchDistance) {
+    public RidePowerArmorGoal(Raider entity, double speedModifier, float searchDistance) {
         this.entity = entity;
         this.level = entity.level;
         this.speedModifier = speedModifier;
@@ -41,33 +41,20 @@ public class RidePowerArmorGoal extends Goal {
         }
     }
 
-    /**
-     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-     * method as well.
-     */
     public boolean canUse() {
         return entity.getVehicle() == null;
     }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
     public boolean canContinueToUse() {
-        return !this.navigation.isDone();
+        return !this.navigation.isDone() && target != null && !target.hasPassenger();
     }
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
     public void start() {
         this.timeToRecalcPath = 0;
         this.oldWaterCost = this.entity.getPathfindingMalus(BlockPathTypes.WATER);
         this.entity.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
-    /**
-     * Reset the task's internal state. Called when this task is interrupted by another one
-     */
     public void stop() {
         this.navigation.stop();
         this.entity.setPathfindingMalus(BlockPathTypes.WATER, this.oldWaterCost);
@@ -77,16 +64,17 @@ public class RidePowerArmorGoal extends Goal {
         return this.entity.getBoundingBox().inflate(pTargetDistance, 4.0D, pTargetDistance);
     }
 
-    /**
-     * Keep ticking a continuous task that has already been started
-     */
     public void tick() {
         this.target = entity.level.getNearestEntity(entity.level.getEntitiesOfClass(PowerArmorFrame.class,
-                getTargetSearchArea(searchDistance), (p_148152_) -> true),
+                getTargetSearchArea(searchDistance), (entity) -> true),
                 targetConditions, entity, entity.getX(), entity.getEyeY(), entity.getZ());
 
+//        var raiders = entity.level.getEntitiesOfClass(Raider.class, getTargetSearchArea(searchDistance),
+//                (entity) -> entity != this.entity && entity.armorTarget != null);
 
-        if(target == null || !target.hasEnergy()) return;
+        if(target == null || !target.hasEnergy() /*|| !raiders.isEmpty()*/) return;
+
+        entity.armorTarget = target;
 
         entity.getLookControl().setLookAt(target, 10.0F, (float)entity.getMaxHeadXRot());
 
@@ -97,7 +85,9 @@ public class RidePowerArmorGoal extends Goal {
             }
         }
 
-        if(entity.distanceTo(target) < 2)
+        if(entity.distanceTo(target) < 2) {
             target.ride(entity);
+            entity.armorTarget = null;
+        }
     }
 }

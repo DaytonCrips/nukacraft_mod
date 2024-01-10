@@ -18,7 +18,6 @@ public class GearDoorEntity extends BlockEntity implements GeoBlockEntity {
         super(ModTileEntities.GEARDOOR_ENTITY.get(), pPos, pBlockState);
     }
 
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
 
