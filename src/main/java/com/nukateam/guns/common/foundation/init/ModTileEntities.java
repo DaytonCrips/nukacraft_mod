@@ -3,6 +3,7 @@ package com.nukateam.guns.common.foundation.init;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,10 +21,10 @@ public class ModTileEntities {
     public static final RegistryObject<BlockEntityType<BasicStorageEntity>> STORAGE = register("storage", BasicStorageEntity::new, () -> new Block[]{ModBlocks.STORAGE1.get()});
 
 
-//    public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR =
-//            REGISTER.register("geardoor", () ->
-//                    BlockEntityType.Builder.of(GearDoorEntity::new,
-//                            ModBlocks.GEARDOOR.get()).build(null));
+    public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR_ENTITY =
+            REGISTER.register("animated_block_entity", () ->
+                    BlockEntityType.Builder.of(GearDoorEntity::new,
+                            ModBlocks.GEARDOOR.get()).build(null));
 
 
 

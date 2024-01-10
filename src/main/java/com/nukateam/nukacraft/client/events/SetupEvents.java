@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.client.events;
 
 
+import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.client.models.endity.geo.BrahminModel;
@@ -40,7 +41,7 @@ public class SetupEvents {
         event.registerEntityRenderer(RADROACH.get(), (context) -> new SimpleEntityRenderer<>(context).setScale(3));
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
-        event.registerBlockEntityRenderer(ModBlocksEntity.GEARDOOR.get(), GearDoorRenderer::new);
+        event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), GearDoorRenderer::new);
     }
 
 }

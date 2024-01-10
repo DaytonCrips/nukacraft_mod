@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.custom.blocks;
 
+import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
 import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import net.minecraft.core.BlockPos;
@@ -17,7 +18,7 @@ public class GearDoorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new GearDoorEntity(ModBlocksEntity.GEARDOOR.get(), pPos, pState);
+        return new GearDoorEntity(pPos, pState);
     }
 
     @Override

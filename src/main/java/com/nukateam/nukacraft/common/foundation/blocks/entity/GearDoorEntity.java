@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.entity;
 
+import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import mod.azure.azurelib.animatable.GeoBlockEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -13,8 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 public class GearDoorEntity extends BlockEntity implements GeoBlockEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public GearDoorEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
-        super(pType, pPos, pBlockState);
+    public GearDoorEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModTileEntities.GEARDOOR_ENTITY.get(), pPos, pBlockState);
     }
 
 
