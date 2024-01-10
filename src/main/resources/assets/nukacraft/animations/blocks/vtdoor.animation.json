@@ -1,0 +1,127 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"close": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 10,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 90]
+						},
+						"3.0": {
+							"vector": [0, 0, 0]
+						},
+						"6.0": {
+							"vector": [0, 0, 0]
+						},
+						"8.0": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [48, 0, -14]
+						},
+						"3.0": {
+							"vector": [0, 0, -14]
+						},
+						"6.0": {
+							"vector": [0, 0, 0]
+						},
+						"8.0": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"vector": [1, 1, 1]
+					}
+				},
+				"gear": {
+					"relative_to": {
+						"rotation": "entity"
+					},
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -90]
+						},
+						"1.6": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [-48, 0, 13]
+						},
+						"1.6": {
+							"vector": [0.1, 0, 13.83]
+						},
+						"2.1": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"open": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 2.1,
+			"bones": {
+				"gear": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.4": {
+							"vector": [0, 0, 0]
+						},
+						"2.1": {
+							"vector": [0, 0, -90]
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.4": {
+							"vector": [0.1, 0, 13.83]
+						},
+						"2.1": {
+							"vector": [-48, 0, 13]
+						}
+					}
+				}
+			}
+		},
+		"open_idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"gear": {
+					"rotation": {
+						"vector": [0, 0, -90]
+					},
+					"position": {
+						"vector": [-48, 0, 13]
+					}
+				}
+			}
+		},
+		"close_idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"gear": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
+					}
+				}
+			}
+		}
+	},
+	"azurelib_format_version": 2
+}

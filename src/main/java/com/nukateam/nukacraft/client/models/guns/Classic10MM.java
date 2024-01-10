@@ -20,12 +20,12 @@ public class Classic10MM implements IOverrideModel {
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.CLASSIC10mm.getModel(), stack, matrixStack, buffer, light, overlay);
 
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE1.get())
-            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t1.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE2.get())
-            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t2.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE3.get())
-            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t3.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE1.get())
+//            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t1.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE2.get())
+//            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t2.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE3.get())
+//            RenderUtil.renderModel(SpecialModels.CLASSIC10mm_t3.getModel(), stack, matrixStack, buffer, light, overlay);
 
 
         if(entity.equals(Minecraft.getInstance().player)) {

@@ -184,6 +184,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         super.tick();
         this.updateHeading();
         this.onProjectileTick();
+        if (shooter == null) {return;}
 
         if (!this.level.isClientSide()) {
             Vec3 startVec = this.position();

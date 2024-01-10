@@ -125,8 +125,7 @@ public class GunItem extends CustomizableItem implements GeoItem, IColored, IMet
                 tooltip.add(new TranslatableComponent("info.nukacraft.ammo", ChatFormatting.WHITE.toString() + ammoCount + "/" + GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)).withStyle(ChatFormatting.GRAY));
             }
         }
-
-        tooltip.add(new TranslatableComponent("info.nukacraft.attachment_help", new KeybindComponent("key.nukacraft.attachments").getString().toUpperCase(Locale.ENGLISH)).withStyle(ChatFormatting.YELLOW));
+        //tooltip.add(new TranslatableComponent("info.nukacraft.attachment_help", new KeybindComponent("key.nukacraft.attachments").getString().toUpperCase(Locale.ENGLISH)).withStyle(ChatFormatting.YELLOW));
     }
 
     @Override

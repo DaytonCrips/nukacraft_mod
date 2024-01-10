@@ -20,14 +20,14 @@ public class PipePistol implements IOverrideModel {
     public void render(float partialTicks, ItemTransforms.TransformType transformType, ItemStack stack, ItemStack parent, LivingEntity entity, PoseStack matrixStack, MultiBufferSource buffer, int light, int overlay) {
         RenderUtil.renderModel(SpecialModels.PIPE_PISTOL.getModel(), stack, matrixStack, buffer, light, overlay);
 
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == Items.AIR)
-            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t0.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE1.get())
-            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t1.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE2.get())
-            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t2.getModel(), stack, matrixStack, buffer, light, overlay);
-        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE3.get())
-            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t3.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == Items.AIR)
+//            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t0.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE1.get())
+//            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t1.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE2.get())
+//            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t2.getModel(), stack, matrixStack, buffer, light, overlay);
+//        if(Gun.getAttachment(IAttachment.Type.UNDER_BARREL, stack).getItem() == ModGuns.MAGAZINE3.get())
+//            RenderUtil.renderModel(SpecialModels.PIPE_PISTOL_t3.getModel(), stack, matrixStack, buffer, light, overlay);
 
 
         if(entity.equals(Minecraft.getInstance().player)) {

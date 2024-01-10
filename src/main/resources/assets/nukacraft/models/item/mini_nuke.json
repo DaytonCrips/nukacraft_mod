@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "nukacraft:guns/fatman/fatman",
-		"particle": "nukacraft:guns/fatman/fatman"
+		"0": "nukacraft:guns/fatman/mini_nuke",
+		"particle": "nukacraft:guns/fatman/mini_nuke"
 	},
 	"elements": [
 		{

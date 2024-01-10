@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.events;
 
+
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.client.models.endity.geo.BrahminModel;
@@ -8,6 +9,7 @@ import com.nukateam.nukacraft.client.render.renderers.geo.DeathclawRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.NuclearExplosionRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.PowerArmorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.SimpleEntityRenderer;
+import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
@@ -24,6 +26,8 @@ public class SetupEvents {
         KeyBindings.register();
     }
 
+
+
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent()
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event){
@@ -36,5 +40,7 @@ public class SetupEvents {
         event.registerEntityRenderer(RADROACH.get(), (context) -> new SimpleEntityRenderer<>(context).setScale(3));
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlocksEntity.GEARDOOR.get(), GearDoorRenderer::new);
     }
+
 }

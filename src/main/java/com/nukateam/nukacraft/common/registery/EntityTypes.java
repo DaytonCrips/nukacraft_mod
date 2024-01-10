@@ -59,6 +59,9 @@ public class EntityTypes {
                     .clientTrackingRange(20)
                     .build("nuclear_explosion_effect"));
 
+
+
+
     public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION
             = ENTITY_TYPES.register("nuclear_explosion", () -> (EntityType) EntityType.Builder
                     .of(NuclearExplosionEntity::new, MobCategory.MISC)

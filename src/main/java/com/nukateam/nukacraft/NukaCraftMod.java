@@ -5,7 +5,10 @@ import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.nukacraft.client.render.gui.RadiationHudOverlay;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.nukateam.nukacraft.client.render.renderers.GearDoorRenderer;
+import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import com.nukateam.nukacraft.common.foundation.items.*;
+import com.nukateam.nukacraft.common.foundation.world.structures.ModStructures;
 import com.nukateam.nukacraft.common.registery.ACSoundRegistry;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
@@ -19,6 +22,7 @@ import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.mojang.logging.LogUtils;
 import mod.azure.azurelib.AzureLib;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -53,6 +57,7 @@ public class NukaCraftMod {
         ModAttributesClass.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);
+        ModBlocksEntity.register(MOD_EVENT_BUS);
         ModMelee.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
         RadiationHudOverlay.register();
@@ -60,6 +65,7 @@ public class NukaCraftMod {
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         ACSoundRegistry.REGISTER.register(MOD_EVENT_BUS);
+        ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
 
         MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
@@ -77,6 +83,7 @@ public class NukaCraftMod {
 
     private void clientSetup(final FMLCommonSetupEvent event) {
         ModSetup.renderTypeSetup();
+        BlockEntityRenderers.register(ModBlocksEntity.GEARDOOR.get(), GearDoorRenderer::new);
         //ClientConfig.setup();
     }
 

@@ -83,13 +83,13 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
 
     private List<MiniButton> gatherButtons() {
         List<MiniButton> buttons = new ArrayList<>();
-        if (!Config.CLIENT.hideConfigButton.get()) {
-            buttons.add(new MiniButton(0, 0, 192, 0, GUI_TEXTURES, onPress -> {
-                this.openConfigScreen();
-            }, (button, matrixStack, mouseX, mouseY) -> {
-                this.renderTooltip(matrixStack, CONFIG_TOOLTIP, mouseX, mouseY);
-            }));
-        }
+//        if (!Config.CLIENT.hideConfigButton.get()) {
+//            buttons.add(new MiniButton(0, 0, 192, 0, GUI_TEXTURES, onPress -> {
+//                this.openConfigScreen();
+//            }, (button, matrixStack, mouseX, mouseY) -> {
+//                this.renderTooltip(matrixStack, CONFIG_TOOLTIP, mouseX, mouseY);
+//            }));
+//        }
         return buttons;
     }
 
@@ -288,22 +288,22 @@ public class AttachmentScreen extends AbstractContainerScreen<AttachmentContaine
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
-    private void openConfigScreen() {
-        ModList.get().getModContainerById(NukaCraftMod.MOD_ID).ifPresent(container ->
-        {
-            Screen screen = container.getCustomExtension(ConfigGuiHandler.ConfigGuiFactory.class).map(function -> function.screenFunction().apply(this.minecraft, null)).orElse(null);
-            if (screen != null) {
-                this.minecraft.setScreen(screen);
-            } else if (this.minecraft != null && this.minecraft.player != null) {
-                MutableComponent modName = new TextComponent("Configured");
-                modName.setStyle(modName.getStyle()
-                        .withColor(ChatFormatting.YELLOW)
-                        .withUnderlined(true)
-                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("nukacraft.chat.open_curseforge_page")))
-                        .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/configured")));
-                Component message = new TranslatableComponent("nukacraft.chat.install_configured", modName);
-                this.minecraft.player.displayClientMessage(message, false);
-            }
-        });
-    }
+//    private void openConfigScreen() {
+//        ModList.get().getModContainerById(NukaCraftMod.MOD_ID).ifPresent(container ->
+//        {
+//            Screen screen = container.getCustomExtension(ConfigGuiHandler.ConfigGuiFactory.class).map(function -> function.screenFunction().apply(this.minecraft, null)).orElse(null);
+//            if (screen != null) {
+//                this.minecraft.setScreen(screen);
+//            } else if (this.minecraft != null && this.minecraft.player != null) {
+//                MutableComponent modName = new TextComponent("Configured");
+//                modName.setStyle(modName.getStyle()
+//                        .withColor(ChatFormatting.YELLOW)
+//                        .withUnderlined(true)
+//                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("nukacraft.chat.open_curseforge_page")))
+//                        .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/configured")));
+//                Component message = new TranslatableComponent("nukacraft.chat.install_configured", modName);
+//                this.minecraft.player.displayClientMessage(message, false);
+//            }
+//        });
+//    }
 }

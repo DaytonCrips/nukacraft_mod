@@ -13,14 +13,20 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-/**
- * Author: MrCrayfish
- */
 public class ModTileEntities {
     public static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<WorkbenchBlockEntity>> WORKBENCH = register("workbench", WorkbenchBlockEntity::new, () -> new Block[]{ModBlocks.WORKBENCH.get()});
     public static final RegistryObject<BlockEntityType<BasicStorageEntity>> STORAGE = register("storage", BasicStorageEntity::new, () -> new Block[]{ModBlocks.STORAGE1.get()});
+
+
+//    public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR =
+//            REGISTER.register("geardoor", () ->
+//                    BlockEntityType.Builder.of(GearDoorEntity::new,
+//                            ModBlocks.GEARDOOR.get()).build(null));
+
+
+
 
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factoryIn, Supplier<Block[]> validBlocksSupplier) {

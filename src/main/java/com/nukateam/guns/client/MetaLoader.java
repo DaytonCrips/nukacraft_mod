@@ -43,7 +43,7 @@ public final class MetaLoader implements IDataLoader<MetaLoader.ItemResource> {
         ForgeRegistries.ITEMS.getValues().stream().filter(item -> item instanceof IMeta).forEach(item ->
         {
             var key = item.builtInRegistryHolder().key().location();
-            var location = new ResourceLocation(key.getNamespace(), "config/guns/" + key.getPath() + ".cgmmeta");
+            var location = new ResourceLocation(key.getNamespace(), "config/guns/" + key.getPath() + ".gunmeta");
             resources.add(new ItemResource(item, location));
         });
         return resources;

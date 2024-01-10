@@ -161,19 +161,19 @@ public class ClientHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void onKeyPressed(InputEvent.KeyInputEvent event) {
-        Minecraft mc = Minecraft.getInstance();
-        if (mc.player != null && mc.screen == null && event.getAction() == GLFW.GLFW_PRESS) {
-            if (KeyBinds.KEY_ATTACHMENTS.isDown()) {
-                PacketHandler.getPlayChannel().sendToServer(new C2SMessageAttachments());
-            }
-            /*else if(event.getKey() == GLFW.GLFW_KEY_KP_9)
-            {
-                mc.setScreen(new EditorScreen(null, new Debug.Menu()));
-            }*/
-        }
-    }
+//    @SubscribeEvent
+//    public static void onKeyPressed(InputEvent.KeyInputEvent event) {
+//        Minecraft mc = Minecraft.getInstance();
+//        if (mc.player != null && mc.screen == null && event.getAction() == GLFW.GLFW_PRESS) {
+//            if (KeyBinds.KEY_ATTACHMENTS.isDown()) {
+//                PacketHandler.getPlayChannel().sendToServer(new C2SMessageAttachments());
+//            }
+//            /*else if(event.getKey() == GLFW.GLFW_KEY_KP_9)
+//            {
+//                mc.setScreen(new EditorScreen(null, new Debug.Menu()));
+//            }*/
+//        }
+//    }
 
     public static void onRegisterReloadListener(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener((ResourceManagerReloadListener) manager -> {

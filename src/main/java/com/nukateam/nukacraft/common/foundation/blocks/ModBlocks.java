@@ -22,6 +22,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
+
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
@@ -33,6 +34,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> GEARDOOR = registerBlock("geardoor",
+            () -> new GearDoorBlock(BlockBehaviour.Properties.of(Material.STONE).strength(4f)));
+    public static final  RegistryObject<Block> HALFBARRIER = registerBlock("half_barrier",
+            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
 
     public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)

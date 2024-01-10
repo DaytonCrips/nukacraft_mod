@@ -20,7 +20,7 @@ public class AimPose {
     public static class Instance {
         private LimbPose leftArm = new LimbPose();
         private LimbPose rightArm = new LimbPose();
-        private float renderYawOffset = 0F;
+        private float renderYawOffset = 5F;
         private Vector3f itemTranslate = new Vector3f();
         private Vector3f itemRotation = new Vector3f();
 
