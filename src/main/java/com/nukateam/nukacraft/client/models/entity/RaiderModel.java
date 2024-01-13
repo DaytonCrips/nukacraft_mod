@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.models.endity;
+package com.nukateam.nukacraft.client.models.entity;
 
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import net.minecraft.client.model.HumanoidModel;

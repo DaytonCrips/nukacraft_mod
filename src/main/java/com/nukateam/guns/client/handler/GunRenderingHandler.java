@@ -226,7 +226,7 @@ public class GunRenderingHandler {
         event.setFOV(Mth.lerp(time, event.getFOV(), newFov));
     }
 
-//    @SubscribeEvent
+    @SubscribeEvent
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
         var minecraft = Minecraft.getInstance();
@@ -291,7 +291,7 @@ public class GunRenderingHandler {
 
         int offset = isRight ? 1 : -1;
         //poseStack.translate(0.56 * offset, -0.52, -0.72);
-        poseStack.translate(0.3 * offset, -1.3, -1.55);//Jetug
+        poseStack.translate(0.15 * offset, -1.0, -1.3);//Jetug
 
         /* Applies recoil and reload rotations */
 //        this.applyAimingTransforms(poseStack, heldItem, modifiedGun, translateX, translateY, translateZ, offset);

@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
-import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.getPipboyStack;
+import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
 
 public class PipBoyItem extends AtlasItem implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
@@ -96,7 +96,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
 
     public static void openPipboyScreen(ServerPlayer player) {
         if(!hasPipboy(player)) return;
-        PipBoy.start(getPipboyStack(player), getPipboy().getSkin(), player);
+        PipBoy.start(getPipboyStack(player), getPipboy(player).getSkin(), player);
         PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
     }
 

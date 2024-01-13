@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static com.nukateam.guns.client.ClientHandler.createEditorScreen;
+import static com.nukateam.guns.client.ClientHandler.*;
 
 
 public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {

@@ -4,20 +4,28 @@ package com.nukateam.nukacraft.client.events;
 import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
-import com.nukateam.nukacraft.client.models.endity.geo.BrahminModel;
+import com.nukateam.nukacraft.client.models.entity.geo.BrahminModel;
+import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.nukateam.nukacraft.client.render.particles.GammaParticles;
+import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
+import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.*;
 import com.nukateam.nukacraft.client.render.renderers.geo.DeathclawRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.NuclearExplosionRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.PowerArmorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.geo.SimpleEntityRenderer;
-import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
+import com.nukateam.nukacraft.common.registery.ModParticles;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
+import static com.nukateam.map.impl.atlas.AntiqueAtlasMod.initMap;
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
+import static com.nukateam.nukacraft.common.registery.ModParticles.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupEvents {
@@ -27,7 +35,23 @@ public class SetupEvents {
         KeyBindings.register();
     }
 
+    @SubscribeEvent
+    public static void clientSetup(final FMLCommonSetupEvent event) {
+        ModSetup.renderTypeSetup();
+        initMap();
+        PipBoy pipBoy = new PipBoy();
+        pipBoy.init();
+        //ClientConfig.setup();
+    }
 
+    @SubscribeEvent
+    public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
+        var particleEngine = Minecraft.getInstance().particleEngine;
+        particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
+        particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
+        particleEngine.register(MUSHROOM_CLOUD_SMOKE.get(), SmallExplosionParticle.NukeFactory::new);
+        particleEngine.register(MUSHROOM_CLOUD_EXPLOSION.get(), SmallExplosionParticle.NukeFactory::new);
+    }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent()

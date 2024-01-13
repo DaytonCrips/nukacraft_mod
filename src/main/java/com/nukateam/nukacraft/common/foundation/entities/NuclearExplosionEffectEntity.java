@@ -7,6 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
@@ -70,6 +72,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
         return s;
     }
 
+    @OnlyIn(Dist.CLIENT)
     public double getDistanceToPlayer(){
         var minecraft = Minecraft.getInstance();
         assert minecraft.player != null;
@@ -78,18 +81,17 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
     }
 
     public BlockPos getBlockPos(){
-        var pos = getPosition(0);
+        var pos = position();
         pos = pos.subtract(0,1,0);
 
         return new BlockPos(pos);
     }
 
     public Vec3 getExplosionPos(){
-        var pos = getPosition(0);
+        var pos = position();
 
-        while (level.isEmptyBlock(new BlockPos(pos)) && pos.y >= WORLD_MIN_Y){
-            pos = pos.subtract(0,1,0);
-        }
+        while (level.isEmptyBlock(new BlockPos(pos)) && pos.y >= WORLD_MIN_Y)
+            pos = pos.subtract(0, 1, 0);
 
         return pos;
     }

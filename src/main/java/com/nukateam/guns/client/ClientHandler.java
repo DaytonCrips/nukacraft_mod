@@ -9,7 +9,7 @@ import com.nukateam.guns.client.screen.WorkbenchScreen;
 import com.nukateam.guns.client.settings.GunOptions;
 import com.nukateam.guns.client.data.util.PropertyHelper;
 import com.nukateam.guns.common.debug.IEditorMenu;
-import com.nukateam.guns.common.debug.screen.EditorScreen;
+import com.nukateam.guns.common.debug.screen.*;
 import com.nukateam.guns.common.foundation.init.ModContainers;
 import com.nukateam.guns.common.foundation.item.IColored;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;

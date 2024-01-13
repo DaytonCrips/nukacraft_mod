@@ -17,6 +17,8 @@ import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
@@ -26,7 +28,7 @@ import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static com.nukateam.guns.client.handler.ShootingHandler.getCooldown;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
-import static com.nukateam.guns.common.foundation.item.GunItem.bannedTransforms;
+import static com.nukateam.guns.common.foundation.item.GunItem.*;
 import static com.nukateam.nukacraft.common.data.constants.Animations.SHOT;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
@@ -36,8 +38,10 @@ import static net.minecraft.client.renderer.block.model.ItemTransforms.Transform
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND;
 
+@OnlyIn(Dist.CLIENT)
 public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
     public static final String RELOAD = "reload";
+    public static final String HOLD = "hold";
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
     private final Minecraft minecraft = Minecraft.getInstance();
 
@@ -95,23 +99,27 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
 
             RawAnimation animation = null;
 
-            if(entity != null && ReloadHandler.get().isReloading(entity)){
-                if(reloadTransforms.contains(transformType)) {
-                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
-                    syncAnimation(event, RELOAD , general.getReloadTime());
-                }
-            }
-            else if(isFirstPerson(transformType) && AimingHandler.get().isAiming()){
+//            if(entity != null && ReloadHandler.get().isReloading(entity)){
+//                if(reloadTransforms.contains(transformType)) {
+//                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
+//                    syncAnimation(event, RELOAD , general.getReloadTime());
+//                }
+//            }
+//            else
+            if(isFirstPerson(transformType) && AimingHandler.get().isAiming()){
                 animation = begin().then("aim", HOLD_ON_LAST_FRAME);
             }
             else {
-                if(currentGun == gun)
-                    animation = begin().then("hold", LOOP);
-                else {
-                    currentGun = gun;
-                    animation = begin().then("aim", LOOP);
-                }
+                return PlayState.STOP;
             }
+//            else {
+//                if(currentGun == gun)
+//                    animation = begin().then(HOLD, LOOP);
+//                else {
+//                    currentGun = gun;
+//                    animation = begin().then("aim", LOOP);
+//                }
+//            }
             try {
                 return event.setAndContinue(animation);
             }
@@ -123,6 +131,13 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
 
     private GunItem currentGun = null;
 
+    public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
+            NONE,
+            HEAD,
+            GUI,
+            GROUND,
+            FIXED);
+
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
             try{
@@ -131,28 +146,36 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 var stack = GUN_RENDERER.getRenderStack();
                 var gun = (GunItem)stack.getItem();
                 var general = gun.getModifiedGun(stack).getGeneral();
-
-//                if(currentGun != gun){
-//                    currentGun = gun;
-//                    event.getController().stop();
-//                    return event.setAndContinue(begin().then(RELOAD, HOLD_ON_LAST_FRAME));
-//                }
+                var entity = GUN_RENDERER.getRenderEntity();
 
                 if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
-                    return PlayState.STOP;
+                    return event.setAndContinue(begin().then(HOLD, LOOP));
                 }
 
                 float cooldown = getCooldown(stack);
-                RawAnimation animation;
+                RawAnimation animation = null;
 
-                if(cooldown > 0) {
+                if(entity != null && ReloadHandler.get().isReloading(entity)){
+                    if(reloadTransforms.contains(transformType)) {
+                        animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
+                        syncAnimation(event, RELOAD , general.getReloadTime());
+                    }
+                }
+                else if(cooldown > 0) {
                     animation = begin().then(SHOT, LOOP);
                     syncAnimation(event, SHOT, general.getRate());
+                }
+                else{
+                    if(currentGun == gun)
+                        animation = begin().then(HOLD, LOOP);
+                    else {
+                        currentGun = gun;
+                        animation = begin().then(SHOT, LOOP);
+                    }
                 }
 //                else if(!Gun.hasAmmo(stack)){
 //                    animation = begin().then("slide_off", LOOP);
 //                }
-                else return PlayState.STOP;
 
                 if (controller.hasAnimationFinished())
                     controller.forceAnimationReset();

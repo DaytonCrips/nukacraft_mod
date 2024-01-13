@@ -24,30 +24,6 @@
 					"scale": {
 						"vector": [0, 0, 0]
 					}
-				},
-				"slide": {
-					"rotation": {
-						"vector": [0, 0, 0]
-					},
-					"position": {
-						"vector": [0, 0, 0]
-					}
-				},
-				"body": {
-					"rotation": {
-						"vector": [0, 0, 0]
-					},
-					"position": {
-						"vector": [0, 0, 0]
-					}
-				},
-				"bullet": {
-					"rotation": {
-						"vector": [0, 0, 0]
-					},
-					"position": {
-						"vector": [0, 0, 0]
-					}
 				}
 			}
 		},
@@ -417,6 +393,27 @@
 						"0.25": {
 							"vector": ["0+", "0+", "0+"]
 						}
+					}
+				},
+				"muzzle_flash": {
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"vector": [-7, -14, 0]
+					},
+					"position": {
+						"vector": [6.05, -3.45, 6.55]
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"vector": [-0.29494, 47.33577, 6.61145]
+					},
+					"position": {
+						"vector": [-0.45, -3.5, -1.35]
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.models.endity.geo;
+package com.nukateam.nukacraft.client.models.entity.geo;
 
 import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;
 import mod.azure.azurelib.core.animation.AnimationState;

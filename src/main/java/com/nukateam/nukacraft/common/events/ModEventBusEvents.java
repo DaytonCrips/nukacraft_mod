@@ -19,14 +19,6 @@ import static com.nukateam.nukacraft.common.registery.ModParticles.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
-    @SubscribeEvent
-    public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
-        var engine = Minecraft.getInstance().particleEngine;
-        engine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
-        engine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
-        engine.register(MUSHROOM_CLOUD_SMOKE.get(), SmallExplosionParticle.NukeFactory::new);
-        engine.register(MUSHROOM_CLOUD_EXPLOSION.get(), SmallExplosionParticle.NukeFactory::new);
-    }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {

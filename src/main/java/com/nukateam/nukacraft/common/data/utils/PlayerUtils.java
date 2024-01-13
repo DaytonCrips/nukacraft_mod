@@ -14,14 +14,14 @@ public class PlayerUtils {
         return hasPipboy(Minecraft.getInstance().player);
     }
 
-    @Nullable
-    public static PipBoyItem getPipboy(){
-        return getPipboy(Minecraft.getInstance().player);
-    }
+//    @Nullable
+//    public static PipBoyItem getPipboy(Player player){
+//        return getPipboy(player);
+//    }
 
-    public static ItemStack getPipboyStack(){
-        return getPipboyStack(Minecraft.getInstance().player);
-    }
+//    public static ItemStack getPipboyStack(){
+//        return getPipboyStack(Minecraft.getInstance().player);
+//    }
 
     public static boolean hasPipboy(Player player){
         return player.getOffhandItem().getItem() instanceof PipBoyItem;

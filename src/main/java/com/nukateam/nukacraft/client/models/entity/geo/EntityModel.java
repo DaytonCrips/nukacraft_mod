@@ -1,20 +1,15 @@
-package com.nukateam.nukacraft.client.models.endity.geo;
+package com.nukateam.nukacraft.client.models.entity.geo;
 
 import com.jetug.chassis_core.client.render.utils.ResourceHelper;
-import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
-import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.model.GeoModel;
-import mod.azure.azurelib.model.data.EntityModelData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 import static com.jetug.chassis_core.client.render.utils.ResourceHelper.getChassisResource;
-import static com.jetug.chassis_core.common.data.constants.Resources.resourceLocation;
-import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoModel<T> {
     @Override

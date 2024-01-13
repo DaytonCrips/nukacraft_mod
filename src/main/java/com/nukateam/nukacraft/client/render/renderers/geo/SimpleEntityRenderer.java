@@ -1,16 +1,12 @@
 package com.nukateam.nukacraft.client.render.renderers.geo;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.nukacraft.client.models.endity.geo.DeathclawModel;
-import com.nukateam.nukacraft.client.models.endity.geo.EntityModel;
-import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;
-import com.nukateam.nukacraft.common.foundation.entities.NuclearExplosionEffectEntity;
+import com.nukateam.nukacraft.client.models.entity.geo.EntityModel;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.model.GeoModel;
 import mod.azure.azurelib.renderer.GeoEntityRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extends GeoEntityRenderer<T> {

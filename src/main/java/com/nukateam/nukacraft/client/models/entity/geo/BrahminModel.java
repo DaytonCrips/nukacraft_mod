@@ -1,7 +1,6 @@
-package com.nukateam.nukacraft.client.models.endity.geo;
+package com.nukateam.nukacraft.client.models.entity.geo;
 
 import com.nukateam.nukacraft.common.foundation.entities.Brahmin;
-import mod.azure.azurelib.core.animation.AnimationState;
 import net.minecraft.resources.ResourceLocation;
 
 public class BrahminModel extends EntityModel<Brahmin>{

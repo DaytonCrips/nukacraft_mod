@@ -11,6 +11,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -24,9 +26,9 @@ import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOS
 public class ExplosionUtils {
     public static final ResourceLocation BOMB_FLASH = nukaResource( "textures/misc/bomb_flash.png");
     public static final int EXPLOSION_SEARCH_DISTANCE = 45;
-
     public static int lastTremorTick = -1;
 
+    @OnlyIn(Dist.CLIENT)
     public static void preScreenRender(float partialTick) {
         float screenEffectIntensity = Minecraft.getInstance().options.screenEffectScale;
 
@@ -49,6 +51,7 @@ public class ExplosionUtils {
         level.addFreshEntity(explosionEffect);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static ArrayList<NuclearExplosionEffectEntity> getNukesAround(){
         var minecraft = Minecraft.getInstance();
         var result = new ArrayList<NuclearExplosionEffectEntity>();
@@ -64,6 +67,7 @@ public class ExplosionUtils {
     }
 
     @Nullable
+    @OnlyIn(Dist.CLIENT)
     public static Double getDistanceToNearestExplosion(){
         var nukes = getNukesAround();
         if(nukes.isEmpty()) return null;
@@ -81,10 +85,12 @@ public class ExplosionUtils {
         return min;
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static float getNukeFlashAmount(NuclearExplosionEffectEntity entity, float partialTicks) {
         return entity.prevNukeFlashAmount + (entity.nukeFlashAmount - entity.prevNukeFlashAmount) * partialTicks;
     }
 
+    @OnlyIn(Dist.CLIENT)
     private static void createFlash(float screenEffectIntensity, float nukeFlashAmount) {
         if (nukeFlashAmount > 0) {
             int screenWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
