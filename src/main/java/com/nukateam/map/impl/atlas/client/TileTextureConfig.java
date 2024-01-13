@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
 import com.nukateam.map.impl.atlas.util.Log;
 import com.google.gson.JsonObject;
@@ -61,7 +61,7 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
 
                             int version = object.getAsJsonPrimitive("version").getAsInt();
                             if (version != VERSION) {
-                                AntiqueAtlasMod.LOG.warn("The tile " + tile_id + " is in the wrong version! Skipping.");
+                                MapCore.LOG.warn("The tile " + tile_id + " is in the wrong version! Skipping.");
                                 continue;
                             }
 
@@ -70,7 +70,7 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
                             map.put(tile_id, texture_set);
                         }
                     } catch (Exception e) {
-                        AntiqueAtlasMod.LOG.warn("Error reading tile mapping " + tile_id + "!", e);
+                        MapCore.LOG.warn("Error reading tile mapping " + tile_id + "!", e);
                     }
                 }
             } catch (Throwable e) {
@@ -89,7 +89,7 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
 	        TextureSet set = textureSetMap.getByName(entry.getValue());
 
 	        if(set == null) {
-	            AntiqueAtlasMod.LOG.error("Missing texture set `{}` for tile `{}`. Using default.", texture_set, tile_id);
+	            MapCore.LOG.error("Missing texture set `{}` for tile `{}`. Using default.", texture_set, tile_id);
 
 	            set = tileTextureMap.getDefaultTexture();
             }

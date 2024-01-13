@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.util;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
  * @author Hunternif
  */
 public class Log {
-    private static final Logger LOGGER = LogManager.getLogger(AntiqueAtlasMod.ID);
+    private static final Logger LOGGER = LogManager.getLogger(MapCore.ID);
 
     private static void log(Level level, Throwable ex, String msg, Object... data) {
         LOGGER.log(level, () -> data == null ? msg : String.format(msg, data), ex);

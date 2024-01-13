@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.network.packet.c2s.play;
 
 import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.packet.c2s.C2SPacket;
 import com.nukateam.map.impl.atlas.util.Log;
 import net.minecraft.core.Registry;
@@ -21,7 +21,7 @@ import java.util.function.Supplier;
  * @author Haven King
  */
 public class BrowsingPositionC2SPacket extends C2SPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "c2s", "browsing_position");
+	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "browsing_position");
 
 	int atlasID;
 	ResourceKey<Level> world;
@@ -61,13 +61,13 @@ public class BrowsingPositionC2SPacket extends C2SPacket {
 			if (sender == null) {
 				return;
 			}
-			if (AntiqueAtlasMod.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
+			if (MapCore.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
 				Log.warn("Player %s attempted to put position marker into someone else's Atlas #%d",
 						sender.createCommandSourceStack().getTextName(), msg.atlasID);
 				return;
 			}
 
-			AntiqueAtlasMod.tileData.getData(msg.atlasID, sender.getCommandSenderWorld())
+			MapCore.tileData.getData(msg.atlasID, sender.getCommandSenderWorld())
 					.getWorldData(msg.world).setBrowsingPosition(msg.x, msg.y, msg.zoom);
 		});
 		context.setPacketHandled(true);

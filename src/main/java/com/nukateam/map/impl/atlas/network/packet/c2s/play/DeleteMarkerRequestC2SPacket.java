@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.network.packet.c2s.play;
 
 import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.packet.c2s.C2SPacket;
 import com.nukateam.map.impl.atlas.util.Log;
 import net.minecraft.network.FriendlyByteBuf;
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
  * @author Hunternif
  */
 public class DeleteMarkerRequestC2SPacket extends C2SPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "c2s", "marker", "delete");
+	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "marker", "delete");
 
 	private static final int GLOBAL = -1;
 
@@ -48,7 +48,7 @@ public class DeleteMarkerRequestC2SPacket extends C2SPacket {
 			if (sender == null) {
 				return;
 			}
-			if (AntiqueAtlasMod.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
+			if (MapCore.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
 				Log.warn("Player %s attempted to delete marker from someone else's Atlas #%d",
 						sender.getName(), msg.atlasID);
 				return;

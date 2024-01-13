@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.api.impl;
 
 import com.nukateam.map.api.TileAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileDataStorage;
 import com.nukateam.map.impl.atlas.network.packet.c2s.play.PutTileC2SPacket;
@@ -31,7 +31,7 @@ public class TileApiImpl implements TileAPI {
         if (world.isClientSide) {
             new PutTileC2SPacket(atlasID, chunkX, chunkZ, tile).send();
         } else {
-            AtlasData data = AntiqueAtlasMod.tileData.getData(atlasID, world);
+            AtlasData data = MapCore.tileData.getData(atlasID, world);
             data.setTile(dimension, chunkX, chunkZ, tile);
             for (Player syncedPlayer : data.getSyncedPlayers()) {
                 new PutTileS2CPacket(atlasID, dimension, chunkX, chunkZ, tile).send((ServerPlayer) syncedPlayer);
@@ -41,7 +41,7 @@ public class TileApiImpl implements TileAPI {
 
     @Override
     public ResourceLocation getTile(Level world, int atlasID, int chunkX, int chunkZ) {
-        AtlasData data = AntiqueAtlasMod.tileData.getData(atlasID, world);
+        AtlasData data = MapCore.tileData.getData(atlasID, world);
 
         return data.getWorldData(world.dimension()).getTile(chunkX, chunkZ);
     }
@@ -58,7 +58,7 @@ public class TileApiImpl implements TileAPI {
             return;
         }
 
-        TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(world);
+        TileDataStorage data = MapCore.globalTileData.getData(world);
         data.setTile(chunkX, chunkZ, tileId);
 
         // Send tile packet:
@@ -67,7 +67,7 @@ public class TileApiImpl implements TileAPI {
 
     @Override
     public ResourceLocation getGlobalTile(Level world, int chunkX, int chunkZ) {
-        TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(world);
+        TileDataStorage data = MapCore.globalTileData.getData(world);
         return data.getTile(chunkX, chunkZ);
     }
 
@@ -77,7 +77,7 @@ public class TileApiImpl implements TileAPI {
             Log.warn("Client attempted to delete global tile");
             return;
         }
-        TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(world);
+        TileDataStorage data = MapCore.globalTileData.getData(world);
         if (data.getTile(chunkX, chunkZ) != null) {
             data.removeTile(chunkX, chunkZ);
             new DeleteCustomGlobalTileS2CPacket(world.dimension(), chunkX, chunkZ).send((ServerLevel) world);

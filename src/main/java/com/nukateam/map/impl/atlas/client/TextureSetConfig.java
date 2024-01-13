@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
 import com.nukateam.map.impl.atlas.util.Log;
 import com.google.gson.JsonElement;
@@ -55,7 +55,7 @@ public class TextureSetConfig implements IResourceReloadListener<Collection<Text
 
                             int version = object.getAsJsonPrimitive("version").getAsInt();
                             if (version != VERSION) {
-                                AntiqueAtlasMod.LOG.warn("The TextureSet " + texture_id + " is in the wrong version! Skipping.");
+                                MapCore.LOG.warn("The TextureSet " + texture_id + " is in the wrong version! Skipping.");
                                 continue;
                             }
 
@@ -108,7 +108,7 @@ public class TextureSetConfig implements IResourceReloadListener<Collection<Text
                             sets.put(texture_id, set);
                         }
                     } catch (Exception e) {
-                        AntiqueAtlasMod.LOG.warn("Error reading TextureSet " + texture_id + "!", e);
+                        MapCore.LOG.warn("Error reading TextureSet " + texture_id + "!", e);
                     }
                 }
             } catch (Throwable e) {

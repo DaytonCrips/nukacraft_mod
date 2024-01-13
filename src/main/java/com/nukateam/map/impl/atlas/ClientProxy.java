@@ -55,7 +55,7 @@ public class ClientProxy implements /*SimpleSynchronousResourceReloadListener*/R
 	            type.initMips();
 	        }
 
-	        if (!AntiqueAtlasMod.CONFIG.itemNeeded) {
+	        if (!MapCore.CONFIG.itemNeeded) {
 	            KeyHandler.registerBindings();
 	            MinecraftForge.EVENT_BUS.addListener(KeyHandler::onClientTick);
 	        }
@@ -91,7 +91,7 @@ public class ClientProxy implements /*SimpleSynchronousResourceReloadListener*/R
 
 //    @Override
 //    public ResourceLocation getFabricId() {
-//        return AntiqueAtlasMod.id("proxy");
+//        return MapCore.id("proxy");
 //    }
 
     @Override

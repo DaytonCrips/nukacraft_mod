@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.TileDataStorage;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
 import net.minecraft.client.player.LocalPlayer;
@@ -18,7 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Haven King
  */
 public class DeleteCustomGlobalTileS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "c2s", "tile", "delete");
+	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "tile", "delete");
 
 	ResourceKey<Level> world;
 	int chunkX, chunkZ;
@@ -46,7 +46,7 @@ public class DeleteCustomGlobalTileS2CPacket extends S2CPacket {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public boolean handle(LocalPlayer player) {
-		TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(this.world);
+		TileDataStorage data = MapCore.globalTileData.getData(this.world);
 		data.removeTile(this.chunkX, this.chunkZ);
 		return true;
 	}

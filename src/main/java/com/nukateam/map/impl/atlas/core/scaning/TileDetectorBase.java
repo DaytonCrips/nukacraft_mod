@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.core.scaning;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.TileIdMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -112,7 +112,7 @@ public class TileDetectorBase implements ITileDetector {
 
     @Override
     public int getScanRadius() {
-        return AntiqueAtlasMod.CONFIG.scanRadius;
+        return MapCore.CONFIG.scanRadius;
     }
 
     /**
@@ -133,7 +133,7 @@ public class TileDetectorBase implements ITileDetector {
                 // biomes seems to be changing with height as well. Let's scan at sea level.
                 Biome biome = chunk.getNoiseBiome(x, world.getSeaLevel(), z).value();
 
-                if (AntiqueAtlasMod.CONFIG.doScanPonds) {
+                if (MapCore.CONFIG.doScanPonds) {
                     int y = chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.MOTION_BLOCKING).getFirstAvailable(x, z);
                     if (y > 0) {
                         Block topBlock = chunk.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
@@ -150,7 +150,7 @@ public class TileDetectorBase implements ITileDetector {
                     }
                 }
 
-                if (AntiqueAtlasMod.CONFIG.doScanRavines) {
+                if (MapCore.CONFIG.doScanRavines) {
                     int height = chunk.getOrCreateHeightmapUnprimed(Heightmap.Types.MOTION_BLOCKING).getFirstAvailable(x, z);
 
                     if (height > 0 && height < world.getSeaLevel() - ravineMinDepth) {

@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.marker;
 
 import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.map.impl.atlas.mixinhooks.EntityHooksAA;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
@@ -86,7 +86,7 @@ public class NetherPortalWatcher {
 	/** Put the Portal marker at the player's current coordinates into all
 	 * atlases that he is carrying, if the same marker is not already there. */
 	private void addPortalMarkerIfNone(Player player) {
-		if (!AntiqueAtlasMod.CONFIG.autoNetherPortalMarkers || player.getCommandSenderWorld().isClientSide) {
+		if (!MapCore.CONFIG.autoNetherPortalMarkers || player.getCommandSenderWorld().isClientSide) {
 			return;
 		}
 
@@ -94,7 +94,7 @@ public class NetherPortalWatcher {
 		// We need the very specific dimension each time.
 		Level world = player.getCommandSenderWorld();
 
-		if (!AntiqueAtlasMod.CONFIG.itemNeeded) {
+		if (!MapCore.CONFIG.itemNeeded) {
 			addPortalMarkerIfNone(player, world, player.getUUID().hashCode());
 			return;
 		}
@@ -107,13 +107,13 @@ public class NetherPortalWatcher {
 	}
 
 	private void addPortalMarkerIfNone(Player player, Level world, int atlasID) {
-		MarkerType netherPortalType = MarkerType.REGISTRY.get(AntiqueAtlasMod.id("nether_portal"));
+		MarkerType netherPortalType = MarkerType.REGISTRY.get(MapCore.id("nether_portal"));
 		if (netherPortalType == null) {
 			return;
 		}
 
 		// Can't use entity.dimension here, because its value has already been updated!
-		DimensionMarkersData data = AntiqueAtlasMod.markersData.getMarkersData(atlasID, world)
+		DimensionMarkersData data = MapCore.markersData.getMarkersData(atlasID, world)
 				.getMarkersDataInWorld(world.dimension());
 
 		int x = (int)player.getX();

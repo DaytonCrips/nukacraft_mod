@@ -48,17 +48,17 @@ public abstract class HeldItemRendererMixin {
 
     @Inject(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void renderAtlas(AbstractClientPlayer player, float tickDelta, float pitch, InteractionHand hand, float swingProgress, ItemStack item, float equipProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, CallbackInfo ci, boolean bl, HumanoidArm arm) {
-        if (item.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-            if (bl && this.offHandItem.isEmpty()) {
-                renderAtlasInBothHands(matrices, vertexConsumers, light, pitch, equipProgress, swingProgress);
-            } else {
-                renderAtlasInOneHand(matrices, vertexConsumers, light, equipProgress, arm, swingProgress, item);
-            }
-
-            matrices.popPose();
-
-            ci.cancel();
-        }
+//        if (item.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+//            if (bl && this.offHandItem.isEmpty()) {
+//                renderAtlasInBothHands(matrices, vertexConsumers, light, pitch, equipProgress, swingProgress);
+//            } else {
+//                renderAtlasInOneHand(matrices, vertexConsumers, light, equipProgress, arm, swingProgress, item);
+//            }
+//
+//            matrices.popPose();
+//
+//            ci.cancel();
+//        }
     }
 
     private void renderAtlasInBothHands(PoseStack matrices, MultiBufferSource vertexConsumers, int light, float pitch, float equipProgress, float swingProgress) {

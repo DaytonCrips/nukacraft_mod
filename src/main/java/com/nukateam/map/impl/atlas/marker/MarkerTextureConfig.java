@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.marker;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
 import com.google.gson.JsonObject;
@@ -60,7 +60,7 @@ public class MarkerTextureConfig implements IResourceReloadListener<Map<Resource
                         typeMap.put(markerId, markerType);
                     }
                 } catch (Exception e) {
-                    AntiqueAtlasMod.LOG.warn("Error reading marker " + markerId + "!", e);
+                    MapCore.LOG.warn("Error reading marker " + markerId + "!", e);
                 }
             }
 

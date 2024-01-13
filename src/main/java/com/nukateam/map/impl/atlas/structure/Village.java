@@ -1,14 +1,14 @@
 package com.nukateam.map.impl.atlas.structure;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.TileIdMap;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 
 public class Village {
     public static void registerMarkers() {
-        if (AntiqueAtlasMod.CONFIG.autoVillageMarkers) {
-            StructureHandler.registerMarker(StructureFeature.VILLAGE, AntiqueAtlasMod.id("village"), new TranslatableComponent("gui.nukacraft.marker.village"));
+        if (MapCore.CONFIG.autoVillageMarkers) {
+            StructureHandler.registerMarker(StructureFeature.VILLAGE, MapCore.id("village"), new TranslatableComponent("gui.nukacraft.marker.village"));
         }
     }
 

@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.registry;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.Texture;
 import com.nukateam.map.impl.atlas.util.BitMatrix;
@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarkerType {
-	public static final ResourceKey<Registry<MarkerType>> KEY = ResourceKey.createRegistryKey(AntiqueAtlasMod.id("marker"));
+	public static final ResourceKey<Registry<MarkerType>> KEY = ResourceKey.createRegistryKey(MapCore.id("marker"));
 	public static final DefaultedRegistry<MarkerType> REGISTRY = new DefaultedRegistry<>(
-			AntiqueAtlasMod.id("red_x_small").toString(),
+			MapCore.id("red_x_small").toString(),
 			KEY, Lifecycle.experimental(),null);
 
 	private ResourceLocation[] icons;
@@ -374,7 +374,7 @@ public class MarkerType {
 					int i = 0;
 					for (JsonElement elem : object.get(ICONS).getAsJsonArray()) {
 						if (elem.isJsonPrimitive()) {
-							list.add(AntiqueAtlasMod.id(elem.getAsString()));
+							list.add(MapCore.id(elem.getAsString()));
 						} else {
 							Log.warn("Loading marker %s from JSON: Texture item %d isn't a primitive", typeName, i);
 						}

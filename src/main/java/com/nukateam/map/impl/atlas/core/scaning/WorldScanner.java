@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.core.scaning;
 
 import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileInfo;
 import net.minecraft.resources.ResourceKey;
@@ -46,7 +46,7 @@ public class WorldScanner {
      */
     public Collection<TileInfo> updateAtlasAroundPlayer(AtlasData data, Player player) {
         // Update the actual map only so often:
-        int newScanInterval = Math.round(AntiqueAtlasMod.CONFIG.newScanInterval * 20);
+        int newScanInterval = Math.round(MapCore.CONFIG.newScanInterval * 20);
 
         if (player.getCommandSenderWorld().getGameTime() % newScanInterval != 0) {
             return Collections.emptyList(); //no new tiles
@@ -54,8 +54,8 @@ public class WorldScanner {
 
         ArrayList<TileInfo> updatedTiles = new ArrayList<>();
 
-        int rescanInterval = newScanInterval * AntiqueAtlasMod.CONFIG.rescanRate;
-        boolean rescanRequired = AntiqueAtlasMod.CONFIG.doRescan && player.getCommandSenderWorld().getGameTime() % rescanInterval == 0;
+        int rescanInterval = newScanInterval * MapCore.CONFIG.rescanRate;
+        boolean rescanRequired = MapCore.CONFIG.doRescan && player.getCommandSenderWorld().getGameTime() % rescanInterval == 0;
 
         ITileDetector biomeDetector = getBiomeDetectorForWorld(player.getCommandSenderWorld().dimension());
 
@@ -98,7 +98,7 @@ public class WorldScanner {
                 return null;
 
             // TODO FABRIC: forceChunkLoading crashes here
-            var chunk = world.getChunk(x, z, ChunkStatus.FULL, AntiqueAtlasMod.CONFIG.forceChunkLoading);
+            var chunk = world.getChunk(x, z, ChunkStatus.FULL, MapCore.CONFIG.forceChunkLoading);
 
             // Skip chunk if it hasn't loaded yet:
             if (chunk == null) return null;

@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.texture.DynamicTexture;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.IconTexture;
@@ -20,7 +20,7 @@ import static com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem.g
 public class Textures {
     public final static Map<ResourceLocation, ITexture> TILE_TEXTURES_MAP  = new HashMap<>();
 
-    private static final String MOD_PREFIX = AntiqueAtlasMod.ID + ":";
+    private static final String MOD_PREFIX = MapCore.ID + ":";
     private static final String GUI = MOD_PREFIX + "textures/gui/";
     private static final String GUI_ICONS = GUI + "icons/";
     private static final String GUI_SCALEBAR = GUI + "scalebar/";

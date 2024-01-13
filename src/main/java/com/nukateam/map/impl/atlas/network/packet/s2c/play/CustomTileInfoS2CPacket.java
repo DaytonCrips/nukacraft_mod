@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.TileDataStorage;
 import com.nukateam.map.impl.atlas.forge.EntryPair;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Haven King
  */
 public class CustomTileInfoS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "custom_tile", "info");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "custom_tile", "info");
 
 	ResourceKey<Level> world;
 	List<Map.Entry<ChunkPos, ResourceLocation>> tiles;
@@ -66,7 +66,7 @@ public class CustomTileInfoS2CPacket extends S2CPacket {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public boolean handle(LocalPlayer player) {
-		TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(this.world);
+		TileDataStorage data = MapCore.globalTileData.getData(this.world);
 		for (Map.Entry<ChunkPos, ResourceLocation> entry : this.tiles) {
 			data.setTile(entry.getKey().x, entry.getKey().z, entry.getValue());
 		}

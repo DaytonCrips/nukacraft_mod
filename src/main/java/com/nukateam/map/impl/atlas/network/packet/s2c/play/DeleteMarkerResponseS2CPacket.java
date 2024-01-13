@@ -1,7 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
-import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
 import net.minecraft.client.player.LocalPlayer;
@@ -18,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Haven King
  */
 public class DeleteMarkerResponseS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "marker", "delete");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "marker", "delete");
 
 	private static final int GLOBAL = -1;
 
@@ -45,8 +44,8 @@ public class DeleteMarkerResponseS2CPacket extends S2CPacket {
 	@Override
 	public boolean handle(LocalPlayer player) {
 		MarkersData data = atlasID == GLOBAL ?
-				AntiqueAtlasMod.globalMarkersData.getData() :
-				AntiqueAtlasMod.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
+				MapCore.globalMarkersData.getData() :
+				MapCore.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
 		data.removeMarker(markerID);
 
 //		AntiqueAtlasModClient.getAtlasGUI().updateBookmarkerList();

@@ -3,7 +3,6 @@ package com.nukateam.nukacraft;
 
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import com.nukateam.nukacraft.common.foundation.items.*;
 import com.nukateam.nukacraft.common.foundation.world.structures.ModStructures;
@@ -27,8 +26,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-import static com.nukateam.map.impl.atlas.AntiqueAtlasMod.*;
-import static com.nukateam.nukacraft.common.foundation.blocks.ModBlocks.GEARDOOR;
+import static com.nukateam.map.impl.atlas.MapCore.*;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 

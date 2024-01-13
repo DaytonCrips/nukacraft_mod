@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.api.client.impl;
 
 import com.nukateam.map.api.client.ClientTileAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.TileRenderIterator;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileDataStorage;
@@ -22,7 +22,7 @@ public class TileApiImplClient implements ClientTileAPI {
 
     @Override
     public ResourceLocation getTile(Level world, int atlasID, int chunkX, int chunkZ) {
-        AtlasData data = AntiqueAtlasMod.tileData.getData(atlasID, world);
+        AtlasData data = MapCore.tileData.getData(atlasID, world);
         return data.getWorldData(world.dimension()).getTile(chunkX, chunkZ);
     }
 
@@ -33,7 +33,7 @@ public class TileApiImplClient implements ClientTileAPI {
 
     @Override
     public ResourceLocation getGlobalTile(Level world, int chunkX, int chunkZ) {
-        TileDataStorage data = AntiqueAtlasMod.globalTileData.getData(world);
+        TileDataStorage data = MapCore.globalTileData.getData(world);
         return data.getTile(chunkX, chunkZ);
     }
 
@@ -44,7 +44,7 @@ public class TileApiImplClient implements ClientTileAPI {
 
     @Override
     public TileRenderIterator getTiles(Level world, int atlasID, Rect scope, int step) {
-        TileRenderIterator iter = new TileRenderIterator(AntiqueAtlasMod.tileData
+        TileRenderIterator iter = new TileRenderIterator(MapCore.tileData
                 .getData(atlasID, world)
                 .getWorldData(world.dimension()));
         iter.setScope(scope);

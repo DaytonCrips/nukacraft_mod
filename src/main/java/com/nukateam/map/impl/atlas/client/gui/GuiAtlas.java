@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
@@ -41,7 +41,7 @@ public class GuiAtlas extends GuiAtlasBase {
 
         this.player = Minecraft.getInstance().player;
         updateAtlasData();
-        if (!followPlayer && AntiqueAtlasMod.CONFIG.doSaveBrowsingPos) {
+        if (!followPlayer && MapCore.CONFIG.doSaveBrowsingPos) {
             loadSavedBrowsingPosition();
         }
 

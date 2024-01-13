@@ -1,7 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
-import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
@@ -28,7 +27,7 @@ import java.util.List;
  * @author Haven King
  */
 public class MarkersS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "marker", "info");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "marker", "info");
 
 	private static final int GLOBAL = -1;
 
@@ -88,8 +87,8 @@ public class MarkersS2CPacket extends S2CPacket {
 	@Override
 	public boolean handle(LocalPlayer player) {
 		MarkersData markersData = atlasID == GLOBAL
-				? AntiqueAtlasMod.globalMarkersData.getData()
-						: AntiqueAtlasMod.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
+				? MapCore.globalMarkersData.getData()
+						: MapCore.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
 
 		for (ResourceLocation type : markersByType.keys()) {
 			MarkerType markerType = MarkerType.REGISTRY.get(type);

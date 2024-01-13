@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileGroup;
 import com.nukateam.map.impl.atlas.core.WorldData;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class TileGroupsS2CPacket extends S2CPacket {
 	public static final int TILE_GROUPS_PER_PACKET = 100;
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "tile", "groups");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "groups");
 
 	int atlasID;
 	ResourceKey<Level> world;
@@ -68,7 +68,7 @@ public class TileGroupsS2CPacket extends S2CPacket {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean handle(LocalPlayer player) {
-		AtlasData atlasData = AntiqueAtlasMod.tileData.getData(atlasID, player.level);
+		AtlasData atlasData = MapCore.tileData.getData(atlasID, player.level);
 		WorldData dimData = atlasData.getWorldData(world);
 		for (TileGroup t : tileGroups) {
 			dimData.putTileGroup(t);

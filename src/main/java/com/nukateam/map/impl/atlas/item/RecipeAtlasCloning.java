@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.item;
 
 import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
@@ -21,31 +21,30 @@ public class RecipeAtlasCloning implements CraftingRecipe {
 
     @Override
     public String getGroup() {
-        return AntiqueAtlasMod.ID + ":atlas";
+        return MapCore.ID + ":atlas";
     }
 
     @Override
     public boolean matches(CraftingContainer inv, Level world) {
         int i = 0; // number of empty atlases
         ItemStack filledAtlas = ItemStack.EMPTY;
-
-        for (int j = 0; j < inv.getContainerSize(); ++j) {
-            ItemStack stack = inv.getItem(j);
-
-            if (!stack.isEmpty()) {
-                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-                    if (!filledAtlas.isEmpty()) {
-                        return false;
-                    }
-                    filledAtlas = stack;
-                } else {
-                    if (stack.getItem() != AntiqueAtlasItems.EMPTY_ATLAS.get()) {
-                        return false;
-                    }
-                    i++;
-                }
-            }
-        }
+//
+//        for (int j = 0; j < inv.getContainerSize(); ++j) {
+////            ItemStack stack = inv.getItem(j);
+////            if (!stack.isEmpty()) {
+////                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+////                    if (!filledAtlas.isEmpty()) {
+////                        return false;
+////                    }
+////                    filledAtlas = stack;
+////                } else {
+////                    if (stack.getItem() != AntiqueAtlasItems.EMPTY_ATLAS.get()) {
+////                        return false;
+////                    }
+////                    i++;
+////                }
+////            }
+//        }
 
         return !filledAtlas.isEmpty() && i > 0;
     }
@@ -58,33 +57,33 @@ public class RecipeAtlasCloning implements CraftingRecipe {
         for (int j = 0; j < inv.getContainerSize(); ++j) {
             ItemStack stack = inv.getItem(j);
 
-            if (!stack.isEmpty()) {
-                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-                    if (!filledAtlas.isEmpty()) {
-                        return ItemStack.EMPTY;
-                    }
-                    filledAtlas = stack;
-                } else {
-                    if (stack.getItem() != AntiqueAtlasItems.EMPTY_ATLAS.get()) {
-                        return ItemStack.EMPTY;
-                    }
-                    i++;
-                }
-            }
+//            if (!stack.isEmpty()) {
+//                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+//                    if (!filledAtlas.isEmpty()) {
+//                        return ItemStack.EMPTY;
+//                    }
+//                    filledAtlas = stack;
+//                } else {
+//                    if (stack.getItem() != AntiqueAtlasItems.EMPTY_ATLAS.get()) {
+//                        return ItemStack.EMPTY;
+//                    }
+//                    i++;
+//                }
+//            }
         }
 
-        if (!filledAtlas.isEmpty() && i >= 1) {
-            ItemStack newAtlas = new ItemStack(AntiqueAtlasItems.ATLAS.get(), i + 1);
-            newAtlas.getOrCreateTag().putInt("atlasID", AtlasItem.getAtlasID(filledAtlas));
-
-            if (filledAtlas.hasCustomHoverName()) {
-                newAtlas.setHoverName(filledAtlas.getHoverName());
-            }
-
-            return newAtlas;
-        } else {
+//        if (!filledAtlas.isEmpty() && i >= 1) {
+//            ItemStack newAtlas = new ItemStack(AntiqueAtlasItems.ATLAS.get(), i + 1);
+//            newAtlas.getOrCreateTag().putInt("atlasID", AtlasItem.getAtlasID(filledAtlas));
+//
+//            if (filledAtlas.hasCustomHoverName()) {
+//                newAtlas.setHoverName(filledAtlas.getHoverName());
+//            }
+//
+//            return newAtlas;
+//        } else {
             return ItemStack.EMPTY;
-        }
+//        }
     }
 
     @Override

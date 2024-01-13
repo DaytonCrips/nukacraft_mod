@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.TileTexture;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
@@ -47,11 +47,11 @@ public class TextureConfig implements IResourceReloadListener<Map<ResourceLocati
 							id.getPath().replace("textures/gui/tiles/", "").replace(".png", "")
 							);
 
-					AntiqueAtlasMod.LOG.info("Found new Texture: " + texture_id);
+					MapCore.LOG.info("Found new Texture: " + texture_id);
 
 					textures.put(texture_id, new TileTexture(id));
 				} catch (Throwable e) {
-					AntiqueAtlasMod.LOG.warn("Failed to read textures!", e);
+					MapCore.LOG.warn("Failed to read textures!", e);
 				}
 			}
 

@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.util.Log;
 import net.minecraft.data.BuiltinRegistries;
@@ -49,7 +49,7 @@ public class TileTextureMap {
     }
 
     public TextureSet getDefaultTexture() {
-        return TextureSetMap.instance().getByName(AntiqueAtlasMod.id("test"));
+        return TextureSetMap.instance().getByName(MapCore.id("test"));
     }
 
     /**
@@ -73,26 +73,26 @@ public class TileTextureMap {
         }
 
         var textureSet = switch (biomeCategory) {
-            case SWAMP -> AntiqueAtlasMod.id("swamp");
-            case OCEAN, RIVER -> AntiqueAtlasMod.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "ice" : "water");
-            case BEACH -> AntiqueAtlasMod.id("shore");
-            case JUNGLE -> AntiqueAtlasMod.id("jungle");
-            case SAVANNA -> AntiqueAtlasMod.id("savanna");
-            case MESA -> AntiqueAtlasMod.id("plateau_mesa");
-            case FOREST -> AntiqueAtlasMod.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "snow_pines" : "forest");
-            case PLAINS -> AntiqueAtlasMod.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "snow" : "plains");
-            case ICY -> AntiqueAtlasMod.id("ice_spikes");
-            case DESERT -> AntiqueAtlasMod.id("desert");
-            case TAIGA -> AntiqueAtlasMod.id("snow");
-            case EXTREME_HILLS -> AntiqueAtlasMod.id("hills");
-            case MOUNTAIN -> AntiqueAtlasMod.id("mountains");
+            case SWAMP -> MapCore.id("swamp");
+            case OCEAN, RIVER -> MapCore.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "ice" : "water");
+            case BEACH -> MapCore.id("shore");
+            case JUNGLE -> MapCore.id("jungle");
+            case SAVANNA -> MapCore.id("savanna");
+            case MESA -> MapCore.id("plateau_mesa");
+            case FOREST -> MapCore.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "snow_pines" : "forest");
+            case PLAINS -> MapCore.id(biome.getPrecipitation() == Biome.Precipitation.SNOW ? "snow" : "plains");
+            case ICY -> MapCore.id("ice_spikes");
+            case DESERT -> MapCore.id("desert");
+            case TAIGA -> MapCore.id("snow");
+            case EXTREME_HILLS -> MapCore.id("hills");
+            case MOUNTAIN -> MapCore.id("mountains");
             case THEEND -> {
 //                var features = biome.getGenerationSettings().features();
 //                boolean has_chorus_plant = features.stream().anyMatch(supplier -> supplier.stream()
 //                        .anyMatch(step -> step == CHORUS_PLANT));
 //
 //                var name = has_chorus_plant ? "end_island_plants" : "end_island";
-//                setTexture(id, TextureSetMap.instance().getByName(AntiqueAtlasMod.id(name)));
+//                setTexture(id, TextureSetMap.instance().getByName(MapCore.id(name)));
 //
 //
 
@@ -100,12 +100,12 @@ public class TileTextureMap {
                 var chorus_plant_feature = BuiltinRegistries.PLACED_FEATURE.get(new ResourceLocation("chorus_plant"));
                 assert chorus_plant_feature != null;
                 boolean has_chorus_plant = features.stream().anyMatch(entries -> entries.stream().anyMatch(feature -> feature.value() == chorus_plant_feature));
-                if (has_chorus_plant) yield AntiqueAtlasMod.id("end_island_plants");
-                else yield AntiqueAtlasMod.id("end_island");
+                if (has_chorus_plant) yield MapCore.id("end_island_plants");
+                else yield MapCore.id("end_island");
             }
-            case MUSHROOM -> AntiqueAtlasMod.id("mushroom");
-            case NETHER -> AntiqueAtlasMod.id("soul_sand_valley");
-            case NONE -> AntiqueAtlasMod.id("end_void");
+            case MUSHROOM -> MapCore.id("mushroom");
+            case NETHER -> MapCore.id("soul_sand_valley");
+            case NONE -> MapCore.id("end_void");
             case UNDERGROUND -> {
                 Log.warn("Underground biomes aren't supported yet.");
                 yield null;

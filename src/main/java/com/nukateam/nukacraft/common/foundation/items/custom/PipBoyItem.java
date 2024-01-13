@@ -1,11 +1,10 @@
 package com.nukateam.nukacraft.common.foundation.items.custom;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyMenu;
 import com.nukateam.nukacraft.client.render.renderers.geo.PipBoyRenderer;
-import com.nukateam.nukacraft.common.data.utils.PlayerUtils;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -37,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
 import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
 
 public class PipBoyItem extends AtlasItem implements GeoItem {
@@ -71,14 +69,14 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
         var stackTag = stack.getOrCreateTag();
 
         if(!level.isClientSide && !stackTag.contains(ATLAS_ID)) {
-            var atlasID = AntiqueAtlasMod.getGlobalAtlasData(level).getNextAtlasId();
+            var atlasID = MapCore.getGlobalAtlasData(level).getNextAtlasId();
             stackTag.putInt(ATLAS_ID, atlasID);
 
-            var atlasData = AntiqueAtlasMod.tileData.getData(atlasID, level);
+            var atlasData = MapCore.tileData.getData(atlasID, level);
             atlasData.getWorldData(player.getCommandSenderWorld().dimension()).setBrowsingPositionTo(player);
             atlasData.setDirty();
 
-            var markersData = AntiqueAtlasMod.markersData.getMarkersData(atlasID, level);
+            var markersData = MapCore.markersData.getMarkersData(atlasID, level);
             markersData.setDirty();
         }
         if ((stackTag.getString(SCREEN)).equals("")) {

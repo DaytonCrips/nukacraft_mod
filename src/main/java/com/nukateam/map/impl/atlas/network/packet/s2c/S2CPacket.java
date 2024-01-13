@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.packet.AntiqueAtlasPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -34,7 +34,7 @@ public abstract class S2CPacket extends AntiqueAtlasPacket {
 	public abstract boolean handle(LocalPlayer player);
 	
 	public void send(ServerPlayer playerEntity) {
-		AntiqueAtlasMod.MOD_CHANNEL.sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+		MapCore.MOD_CHANNEL.sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
 	}
 
 	public void send(ServerLevel world) {

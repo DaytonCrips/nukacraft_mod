@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
 import com.nukateam.map.api.client.AtlasClientAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.*;
 import com.nukateam.map.impl.atlas.client.gui.core.*;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiStates.IState;
@@ -19,15 +19,12 @@ import com.nukateam.map.impl.atlas.registry.MarkerRenderInfo;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
 import com.nukateam.map.impl.atlas.util.ExportImageUtil;
 import com.nukateam.map.impl.atlas.util.Log;
-import com.nukateam.map.impl.atlas.util.MathUtil;
 import com.nukateam.map.impl.atlas.util.Rect;
 import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
-import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -56,7 +53,6 @@ import java.util.Date;
 import java.util.List;
 
 import static com.nukateam.map.impl.atlas.util.MathUtil.*;
-import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen.openArchive;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
@@ -338,7 +334,7 @@ public class GuiAtlasBase extends GuiComponent {
         //testButton.addListener(button -> {});
 
 //        btnExportPng.addListener(button -> {
-//            if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+//            if (stack != null || !MapCore.CONFIG.itemNeeded) {
 //                exportThread = new Thread(() -> exportImage(getAtlasID()), "Atlas file export thread");
 //                exportThread.start();
 //            }
@@ -508,7 +504,7 @@ public class GuiAtlasBase extends GuiComponent {
 
         if (!handled && wheelMove != 0) {
             wheelMove = wheelMove > 0 ? 1 : -1;
-            if (AntiqueAtlasMod.CONFIG.doReverseWheelZoom) {
+            if (MapCore.CONFIG.doReverseWheelZoom) {
                 wheelMove *= -1;
             }
 
@@ -598,13 +594,13 @@ public class GuiAtlasBase extends GuiComponent {
         long currentMillis = System.currentTimeMillis();
         long deltaMillis = currentMillis - lastUpdateMillis;
         lastUpdateMillis = currentMillis;
-        if (AntiqueAtlasMod.CONFIG.debugRender) printDebugInfo();
+        if (MapCore.CONFIG.debugRender) printDebugInfo();
 
         super.renderBackground(poseStack);
         setPipboyShader();
         Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX() + 11, getGuiY()+1);
 
-        if ((stack == null && AntiqueAtlasMod.CONFIG.itemNeeded) || biomeData == null)
+        if ((stack == null && MapCore.CONFIG.itemNeeded) || biomeData == null)
             return;
 
         if (state.is(DELETING_MARKER))
@@ -750,12 +746,12 @@ public class GuiAtlasBase extends GuiComponent {
     protected void updateAtlasData() {
         int atlasID = getAtlasID();
 
-        biomeData = AntiqueAtlasMod.tileData
+        biomeData = MapCore.tileData
                 .getData(atlasID, player.getCommandSenderWorld())
                 .getWorldData(player.getCommandSenderWorld().dimension());
-        globalMarkersData = AntiqueAtlasMod.globalMarkersData.getData()
+        globalMarkersData = MapCore.globalMarkersData.getData()
                 .getMarkersDataInWorld(player.getCommandSenderWorld().dimension());
-        MarkersData markersData = AntiqueAtlasMod.markersData
+        MarkersData markersData = MapCore.markersData
                 .getMarkersData(atlasID, player.getCommandSenderWorld());
         if (markersData != null) {
             localMarkersData = markersData
@@ -873,7 +869,7 @@ public class GuiAtlasBase extends GuiComponent {
      */
     private void setMapScale(double scale, int addOffsetX, int addOffsetY) {
         double oldScale = mapScale;
-        mapScale = Math.min(Math.max(scale, AntiqueAtlasMod.CONFIG.minScale), AntiqueAtlasMod.CONFIG.maxScale);
+        mapScale = Math.min(Math.max(scale, MapCore.CONFIG.minScale), MapCore.CONFIG.maxScale);
 
         // Scaling not needed
         if (oldScale == mapScale) {
@@ -920,7 +916,7 @@ public class GuiAtlasBase extends GuiComponent {
         selectedButton = null;
         if (state.is(HIDING_MARKERS)) {
             state.switchTo(NORMAL);
-        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+        } else if (stack != null || !MapCore.CONFIG.itemNeeded) {
             selectedButton = null;
             state.switchTo(HIDING_MARKERS);
         }
@@ -930,7 +926,7 @@ public class GuiAtlasBase extends GuiComponent {
         if (state.is(DELETING_MARKER)) {
             selectedButton = null;
             state.switchTo(NORMAL);
-        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+        } else if (stack != null || !MapCore.CONFIG.itemNeeded) {
             selectedButton = button;
             state.switchTo(DELETING_MARKER);
         }
@@ -940,7 +936,7 @@ public class GuiAtlasBase extends GuiComponent {
         if (state.is(PLACING_MARKER)) {
             selectedButton = null;
             state.switchTo(NORMAL);
-        } else if (stack != null || !AntiqueAtlasMod.CONFIG.itemNeeded) {
+        } else if (stack != null || !MapCore.CONFIG.itemNeeded) {
             selectedButton = button;
             state.switchTo(PLACING_MARKER);
 
@@ -988,7 +984,7 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
     private void renderDebugTooltip() {
-        if (AntiqueAtlasMod.CONFIG.debugRender && !isDragging && isMouseOver) {
+        if (MapCore.CONFIG.debugRender && !isDragging && isMouseOver) {
             int x = screenXToWorldX((int) getMouseX());
             int z = screenYToWorldZ((int) getMouseY());
 
@@ -1185,7 +1181,7 @@ public class GuiAtlasBase extends GuiComponent {
 //            RenderSystem.setShaderColor(1, 1, 1, 1);
         }
 
-        if (AntiqueAtlasMod.CONFIG.debugRender) {
+        if (MapCore.CONFIG.debugRender) {
             System.out.println("Rendering Marker: " + info.tex);
         }
 
@@ -1252,7 +1248,7 @@ public class GuiAtlasBase extends GuiComponent {
      * Returns the scale of markers and player icon at given mapScale.
      */
     private double getIconScale() {
-        if (AntiqueAtlasMod.CONFIG.doScaleMarkers) {
+        if (MapCore.CONFIG.doScaleMarkers) {
             if (mapScale < 0.5) return 0.5;
             if (mapScale > 1) return 2;
         }
@@ -1263,6 +1259,6 @@ public class GuiAtlasBase extends GuiComponent {
      * Returns atlas id based on "itemNeeded" option
      */
     private int getAtlasID() {
-        return AntiqueAtlasMod.CONFIG.itemNeeded ? AtlasItem.getAtlasID(stack) : player.getUUID().hashCode();
+        return MapCore.CONFIG.itemNeeded ? AtlasItem.getAtlasID(stack) : player.getUUID().hashCode();
     }
 }

@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.network.packet.c2s.play;
 
 import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.packet.c2s.C2SPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
  * @author Haven King
  */
 public class AddMarkerC2SPacket extends C2SPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "c2s", "marker", "add");
+	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "marker", "add");
 
 	int atlasID; 
 	ResourceLocation markerType; 
@@ -64,7 +64,7 @@ public class AddMarkerC2SPacket extends C2SPacket {
 			}
 			ServerPlayer player = (ServerPlayer) context.getSender();
 			if (!AtlasAPI.getPlayerAtlases(player).contains(msg.atlasID)) {
-				AntiqueAtlasMod.LOG.warn(
+				MapCore.LOG.warn(
 								"Player {} attempted to put marker into someone else's Atlas #{}}",
 						player.getName(), msg.atlasID);
 				return;

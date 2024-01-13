@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
 import net.minecraft.client.player.LocalPlayer;
@@ -18,7 +18,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Haven King
  */
 public class PutTileS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "tile", "put");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "put");
 
 	int atlasID;
 	ResourceKey<Level> world;
@@ -50,7 +50,7 @@ public class PutTileS2CPacket extends S2CPacket {
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public boolean handle(LocalPlayer player) {
-		AtlasData data = AntiqueAtlasMod.tileData.getData(this.atlasID, player.getCommandSenderWorld());
+		AtlasData data = MapCore.tileData.getData(this.atlasID, player.getCommandSenderWorld());
 		data.setTile(this.world, this.x, this.z, this.tile);
 		return true;
 	}

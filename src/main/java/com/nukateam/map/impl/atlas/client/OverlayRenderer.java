@@ -2,7 +2,7 @@ package com.nukateam.map.impl.atlas.client;
 
 import com.nukateam.map.api.client.AtlasClientAPI;
 import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
 import com.nukateam.map.impl.atlas.core.WorldData;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
@@ -53,10 +53,10 @@ public class OverlayRenderer extends GuiComponent {
         this.player = Minecraft.getInstance().player;
         this.world = Minecraft.getInstance().level;
 
-        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-            int atlasID = AtlasItem.getAtlasID(atlas);
-            drawMinimap(matrices, atlasID, vertexConsumer, light);
-        }
+//        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+//            int atlasID = AtlasItem.getAtlasID(atlas);
+//            drawMinimap(matrices, atlasID, vertexConsumer, light);
+//        }
     }
 
     private void drawMinimap(PoseStack matrices, int atlasID, MultiBufferSource buffer, int light) {
@@ -75,7 +75,7 @@ public class OverlayRenderer extends GuiComponent {
 
         drawTiles(buffer, matrices, atlasID, light);
         matrices.translate(0, 0, -0.01);
-        if (AntiqueAtlasMod.CONFIG.markerSize > 0) {
+        if (MapCore.CONFIG.markerSize > 0) {
             drawMarkers(buffer, matrices, atlasID, light);
         }
         matrices.popPose();
@@ -98,7 +98,7 @@ public class OverlayRenderer extends GuiComponent {
         Vec3 chunkPosition = player.position().multiply(1D / CHUNK_SIZE, 1D / CHUNK_SIZE, 1D / CHUNK_SIZE);
         int shapeMiddleX = (int) ((GuiAtlas.WIDTH * 1.5F) / (INNER_ELEMENTS_SCALE_FACTOR * 2));
         int shapeMiddleY = (int) ((GuiAtlas.HEIGHT * 1.5F) / (INNER_ELEMENTS_SCALE_FACTOR * 2));
-        SetTileRenderer renderer = new SetTileRenderer(buffer, matrices, AntiqueAtlasMod.CONFIG.tileSize / 2, light);
+        SetTileRenderer renderer = new SetTileRenderer(buffer, matrices, MapCore.CONFIG.tileSize / 2, light);
 
         while (iter.hasNext()) {
             SubTileQuartet subtiles = iter.next();
@@ -115,10 +115,10 @@ public class OverlayRenderer extends GuiComponent {
                         TileTextureMap.instance().getTexture(subtile).getTexture(),
                         shapeMiddleX
                                 + (int) Math.floor(relativeChunkPositionX
-                                * AntiqueAtlasMod.CONFIG.tileSize),
+                                * MapCore.CONFIG.tileSize),
                         shapeMiddleY
                                 + (int) Math.floor(relativeChunkPositionY
-                                * AntiqueAtlasMod.CONFIG.tileSize), subtile.getTextureU(),
+                                * MapCore.CONFIG.tileSize), subtile.getTextureU(),
                         subtile.getTextureV());
             }
         }
@@ -127,16 +127,16 @@ public class OverlayRenderer extends GuiComponent {
 
     private void drawMarkers(MultiBufferSource buffer, PoseStack matrices, int atlasID, int light) {
         // biomeData needed to prevent undiscovered markers from appearing
-        WorldData biomeData = AntiqueAtlasMod.tileData.getData(
+        WorldData biomeData = MapCore.tileData.getData(
                 atlasID, this.world).getWorldData(
                 this.world.dimension());
-        DimensionMarkersData globalMarkersData = AntiqueAtlasMod.globalMarkersData
+        DimensionMarkersData globalMarkersData = MapCore.globalMarkersData
                 .getData().getMarkersDataInWorld(this.world.dimension());
 
         // Draw global markers:
         drawMarkersData(buffer, matrices, globalMarkersData, biomeData, light);
 
-        MarkersData markersData = AntiqueAtlasMod.markersData.getMarkersData(
+        MarkersData markersData = MapCore.markersData.getMarkersData(
                 atlasID, Minecraft.getInstance().level);
         if (markersData != null) {
             DimensionMarkersData localMarkersData = markersData.getMarkersDataInWorld(world.dimension());
@@ -151,9 +151,9 @@ public class OverlayRenderer extends GuiComponent {
 
         matrices.translate((int) ((GuiAtlas.WIDTH * 1.5F) / 2F), (int) ((GuiAtlas.HEIGHT * 1.5F) / 2F), 0);
         matrices.mulPose(new Quaternion(Vector3f.ZP, this.player.getYHeadRot() + 180, true));
-        matrices.translate(-AntiqueAtlasMod.CONFIG.playerIconWidth / 2.0, -AntiqueAtlasMod.CONFIG.playerIconHeight / 2.0, 0);
+        matrices.translate(-MapCore.CONFIG.playerIconWidth / 2.0, -MapCore.CONFIG.playerIconHeight / 2.0, 0);
 
-        Textures.PLAYER.drawWithLight(buffer, matrices, 0, 0, AntiqueAtlasMod.CONFIG.playerIconWidth, AntiqueAtlasMod.CONFIG.playerIconHeight, light);
+        Textures.PLAYER.drawWithLight(buffer, matrices, 0, 0, MapCore.CONFIG.playerIconWidth, MapCore.CONFIG.playerIconHeight, light);
         matrices.popPose();
     }
 
@@ -202,22 +202,22 @@ public class OverlayRenderer extends GuiComponent {
 
         MarkerType type = MarkerType.REGISTRY.get(marker.getType());
         // TODO Fabric - Scale factor?
-        MarkerRenderInfo info = type.getRenderInfo(1, AntiqueAtlasMod.CONFIG.tileSize, 1);
+        MarkerRenderInfo info = type.getRenderInfo(1, MapCore.CONFIG.tileSize, 1);
         info.tex.drawWithLight(buffer, matrices, x - GuiAtlas.MARKER_SIZE / 4 + 4, y - GuiAtlas.MARKER_SIZE / 4 + 4, GuiAtlas.MARKER_SIZE / 2, GuiAtlas.MARKER_SIZE / 2, light);
     }
 
     private Rect getChunkCoverage(Vec3 position) {
         int minChunkX = (int) Math.floor(position.x / CHUNK_SIZE
-                - (GuiAtlas.WIDTH) / (4f * AntiqueAtlasMod.CONFIG.tileSize));
+                - (GuiAtlas.WIDTH) / (4f * MapCore.CONFIG.tileSize));
         minChunkX -= 4;
         int minChunkY = (int) Math.floor(position.z / CHUNK_SIZE
-                - (GuiAtlas.HEIGHT) / (4f * AntiqueAtlasMod.CONFIG.tileSize));
+                - (GuiAtlas.HEIGHT) / (4f * MapCore.CONFIG.tileSize));
         minChunkY -= 3;
         int maxChunkX = (int) Math.ceil(position.x / CHUNK_SIZE
-                + (GuiAtlas.WIDTH) / (4f * AntiqueAtlasMod.CONFIG.tileSize));
+                + (GuiAtlas.WIDTH) / (4f * MapCore.CONFIG.tileSize));
         maxChunkX += 4;
         int maxChunkY = (int) Math.ceil(position.z / CHUNK_SIZE
-                + (GuiAtlas.HEIGHT) / (4f * AntiqueAtlasMod.CONFIG.tileSize));
+                + (GuiAtlas.HEIGHT) / (4f * MapCore.CONFIG.tileSize));
         maxChunkY += 2;
         return new Rect(minChunkX, minChunkY, maxChunkX, maxChunkY);
     }

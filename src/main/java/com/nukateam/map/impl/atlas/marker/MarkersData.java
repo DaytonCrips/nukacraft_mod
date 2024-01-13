@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.marker;
 
 import com.nukateam.map.api.MarkerAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.NbtType;
 import com.nukateam.map.impl.atlas.network.packet.s2c.play.MarkersS2CPacket;
 import com.nukateam.map.impl.atlas.util.Log;
@@ -214,10 +214,10 @@ public class MarkersData extends SavedData {
 			for (Entry<ResourceKey<Level>, DimensionMarkersData> e: worldMap.entrySet()){
 				totalMarkers += e.getValue().getAllMarkers().size();
 			}
-			if (totalMarkers < AntiqueAtlasMod.CONFIG.markerLimit){
+			if (totalMarkers < MapCore.CONFIG.markerLimit){
 				getMarkersDataInWorld(marker.getWorld()).insertMarker(marker);
 			} else {
-				Log.warn("Could not add new marker. Atlas is at it's limit of %d markers", AntiqueAtlasMod.CONFIG.markerLimit);
+				Log.warn("Could not add new marker. Atlas is at it's limit of %d markers", MapCore.CONFIG.markerLimit);
 			}
 		}
 		return marker;

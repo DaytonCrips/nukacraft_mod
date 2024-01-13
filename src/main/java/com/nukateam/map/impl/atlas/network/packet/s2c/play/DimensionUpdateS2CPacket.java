@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.network.packet.s2c.play;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileInfo;
 import com.nukateam.map.impl.atlas.network.packet.s2c.S2CPacket;
@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class DimensionUpdateS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = AntiqueAtlasMod.id("packet", "s2c", "dimension", "update");
+	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "dimension", "update");
 
 	int atlasID;
 	ResourceKey<Level> world;
@@ -67,7 +67,7 @@ public class DimensionUpdateS2CPacket extends S2CPacket {
 	@OnlyIn(Dist.CLIENT)
 	@Override
 	public boolean handle(LocalPlayer player) {
-		AtlasData data = AntiqueAtlasMod.tileData.getData(this.atlasID, player.level);
+		AtlasData data = MapCore.tileData.getData(this.atlasID, player.level);
 		for (TileInfo info : this.tiles) {
 			data.getWorldData(this.world).setTile(info.x, info.z, info.id);
 		}

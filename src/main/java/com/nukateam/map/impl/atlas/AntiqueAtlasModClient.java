@@ -15,7 +15,7 @@ public class AntiqueAtlasModClient {
 	public static GuiAtlas getAtlasGUI() {
 		if (guiAtlas == null) {
 			guiAtlas = new GuiAtlas();
-			guiAtlas.setMapScale(AntiqueAtlasMod.CONFIG.defaultScale);
+			guiAtlas.setMapScale(MapCore.CONFIG.defaultScale);
 		}
 		return guiAtlas;
 	}

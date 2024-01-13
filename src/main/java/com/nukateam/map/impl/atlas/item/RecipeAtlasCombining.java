@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.item;
 
 import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
@@ -35,7 +35,7 @@ public class RecipeAtlasCombining implements CraftingRecipe {
 
     @Override
     public String getGroup() {
-        return AntiqueAtlasMod.ID + ":atlas_combine";
+        return MapCore.ID + ":atlas_combine";
     }
 
     @Override
@@ -48,9 +48,9 @@ public class RecipeAtlasCombining implements CraftingRecipe {
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
-                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-                    atlasesFound++;
-                }
+//                if (stack.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+//                    atlasesFound++;
+//                }
             }
         }
         return atlasesFound > 1;
@@ -82,7 +82,8 @@ public class RecipeAtlasCombining implements CraftingRecipe {
 
     @Override
     public ItemStack getResultItem() {
-        return new ItemStack(AntiqueAtlasItems.ATLAS.get());
+//        return new ItemStack(AntiqueAtlasItems.ATLAS.get());
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -103,22 +104,22 @@ public class RecipeAtlasCombining implements CraftingRecipe {
     public ItemStack onCrafted(Level world, Container inventory, ItemStack result) {
         if (world.isClientSide) return result;
         // Until the first update, on the client the returned atlas ID is the same as the first Atlas on the crafting grid.
-        int atlasID = AntiqueAtlasMod.getGlobalAtlasData(world).getNextAtlasId();
+        int atlasID = MapCore.getGlobalAtlasData(world).getNextAtlasId();
 
-        AtlasData destBiomes = AntiqueAtlasMod.tileData.getData(atlasID, world);
+        AtlasData destBiomes = MapCore.tileData.getData(atlasID, world);
         destBiomes.setDirty();
-        MarkersData destMarkers = AntiqueAtlasMod.markersData.getMarkersData(atlasID, world);
+        MarkersData destMarkers = MapCore.markersData.getMarkersData(atlasID, world);
         destMarkers.setDirty();
         for (int i = 0; i < inventory.getContainerSize(); ++i) {
             ItemStack stack = inventory.getItem(i);
             if (stack.isEmpty()) continue;
-            AtlasData srcBiomes = AntiqueAtlasMod.tileData.getData(stack, world);
+            AtlasData srcBiomes = MapCore.tileData.getData(stack, world);
             if (destBiomes != null && srcBiomes != null && destBiomes != srcBiomes) {
                 for (ResourceKey<Level> worldRegistryKey : srcBiomes.getVisitedWorlds()) {
                     destBiomes.getWorldData(worldRegistryKey).addData(srcBiomes.getWorldData(worldRegistryKey));
                 }
             }
-            MarkersData srcMarkers = AntiqueAtlasMod.markersData.getMarkersData(stack, world);
+            MarkersData srcMarkers = MapCore.markersData.getMarkersData(stack, world);
             if (destMarkers != null && srcMarkers != null && destMarkers != srcMarkers) {
                 for (ResourceKey<Level> worldRegistryKey : srcMarkers.getVisitedDimensions()) {
                     for (Marker marker : srcMarkers.getMarkersDataInWorld(worldRegistryKey).getAllMarkers()) {

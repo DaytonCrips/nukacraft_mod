@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.core;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.packet.s2c.play.TileGroupsS2CPacket;
 import com.nukateam.map.impl.atlas.util.Log;
 import com.nukateam.map.impl.atlas.util.Rect;
@@ -77,15 +77,15 @@ public class WorldData implements ITileStorage {
         this.browsingZoom = zoom;
         if (browsingZoom <= 0) {
             Log.warn("Setting map zoom to invalid value of %f", zoom);
-            browsingZoom = AntiqueAtlasMod.CONFIG.minScale;
+            browsingZoom = MapCore.CONFIG.minScale;
         }
         parent.setDirty();
     }
 
     public void setBrowsingPositionTo(Entity e) {
-        setBrowsingPosition((int) Math.round(-e.getX() * AntiqueAtlasMod.CONFIG.defaultScale),
-                (int) Math.round(-e.getZ() * AntiqueAtlasMod.CONFIG.defaultScale),
-                AntiqueAtlasMod.CONFIG.defaultScale);
+        setBrowsingPosition((int) Math.round(-e.getX() * MapCore.CONFIG.defaultScale),
+                (int) Math.round(-e.getZ() * MapCore.CONFIG.defaultScale),
+                MapCore.CONFIG.defaultScale);
     }
 
     public int getBrowsingX() {

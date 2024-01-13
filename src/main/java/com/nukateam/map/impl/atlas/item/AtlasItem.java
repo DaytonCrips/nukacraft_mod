@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas.item;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileInfo;
@@ -73,7 +73,7 @@ public class AtlasItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean isEquipped) {
-        AtlasData data = AntiqueAtlasMod.tileData.getData(stack, world);
+        AtlasData data = MapCore.tileData.getData(stack, world);
         if (data == null || !(entity instanceof Player)) return;
 
         int atlasId = getAtlasID(stack);
@@ -85,14 +85,14 @@ public class AtlasItem extends Item {
         }
 
         // Same thing with the local markers:
-        MarkersData markers = AntiqueAtlasMod.markersData.getMarkersData(stack, world);
+        MarkersData markers = MapCore.markersData.getMarkersData(stack, world);
         if (!world.isClientSide && !markers.isSyncedOnPlayer(player) && !markers.isEmpty()) {
             markers.syncOnPlayer(atlasId, (ServerPlayer) player);
         }
 
         if (!world.isClientSide) {
         	// Updating map around player
-        	Collection<TileInfo> newTiles = AntiqueAtlasMod.worldScanner.updateAtlasAroundPlayer(data, player);
+        	Collection<TileInfo> newTiles = MapCore.worldScanner.updateAtlasAroundPlayer(data, player);
             if (!newTiles.isEmpty()) {
                 new DimensionUpdateS2CPacket(atlasId, player.getCommandSenderWorld().dimension(), newTiles).send((ServerLevel) world);
             }

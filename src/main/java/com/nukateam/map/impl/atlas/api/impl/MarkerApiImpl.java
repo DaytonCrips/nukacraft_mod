@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.api.impl;
 
 import com.nukateam.map.api.MarkerAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
 import com.nukateam.map.impl.atlas.network.packet.c2s.play.DeleteMarkerRequestC2SPacket;
@@ -39,8 +39,8 @@ public class MarkerApiImpl implements MarkerAPI {
         Marker marker = null;
         if (!world.isClientSide && world.getServer() != null) {
             MarkersData data = atlasID == GLOBAL
-                    ? AntiqueAtlasMod.globalMarkersData.getData()
-                    : AntiqueAtlasMod.markersData.getMarkersData(atlasID, world);
+                    ? MapCore.globalMarkersData.getData()
+                    : MapCore.markersData.getMarkersData(atlasID, world);
 
             marker = data.createAndSaveMarker(markerId, world.dimension(), x, z, visibleAhead, label);
             new MarkersS2CPacket(atlasID, world.dimension(), Collections.singleton(marker)).send((ServerLevel) world);
@@ -68,8 +68,8 @@ public class MarkerApiImpl implements MarkerAPI {
             }
         } else {
             MarkersData data = atlasID == GLOBAL ?
-                    AntiqueAtlasMod.globalMarkersData.getData() :
-                    AntiqueAtlasMod.markersData.getMarkersData(atlasID, world);
+                    MapCore.globalMarkersData.getData() :
+                    MapCore.markersData.getMarkersData(atlasID, world);
             data.removeMarker(markerID);
 
             new DeleteMarkerResponseS2CPacket(atlasID, markerID).send(world.getServer());

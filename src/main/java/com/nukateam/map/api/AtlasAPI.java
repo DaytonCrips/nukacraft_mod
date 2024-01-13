@@ -1,6 +1,6 @@
 package com.nukateam.map.api;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.api.impl.MarkerApiImpl;
 import com.nukateam.map.impl.atlas.api.impl.TileApiImpl;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
@@ -55,7 +55,7 @@ public class AtlasAPI {
      * the player is currently carrying.
      **/
     public static List<Integer> getPlayerAtlases(Player player) {
-        if (!AntiqueAtlasMod.CONFIG.itemNeeded) {
+        if (!MapCore.CONFIG.itemNeeded) {
             return Collections.singletonList(player.getUUID().hashCode());
         }
 

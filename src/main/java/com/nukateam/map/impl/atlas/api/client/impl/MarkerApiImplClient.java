@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.api.client.impl;
 
 import com.nukateam.map.api.MarkerAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasMod;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.network.packet.c2s.play.AddMarkerC2SPacket;
 import com.nukateam.map.impl.atlas.network.packet.c2s.play.DeleteMarkerRequestC2SPacket;
@@ -26,7 +26,7 @@ public class MarkerApiImplClient implements MarkerAPI {
     @Nullable
     @Override
     public Marker putGlobalMarker(@NotNull Level world, boolean visibleAhead, ResourceLocation marker, Component label, int x, int z) {
-        AntiqueAtlasMod.LOG.warn("Client tried to add a global marker");
+        MapCore.LOG.warn("Client tried to add a global marker");
 
         return null;
     }
@@ -38,6 +38,6 @@ public class MarkerApiImplClient implements MarkerAPI {
 
     @Override
     public void deleteGlobalMarker(@NotNull Level world, int markerID) {
-        AntiqueAtlasMod.LOG.warn("Client tried to delete a global marker");
+        MapCore.LOG.warn("Client tried to delete a global marker");
     }
 }
