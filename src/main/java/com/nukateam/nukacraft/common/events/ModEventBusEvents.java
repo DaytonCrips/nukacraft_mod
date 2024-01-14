@@ -29,10 +29,4 @@ public class ModEventBusEvents {
         event.put(EntityTypes.BRAHMIN.get(), Brahmin.createAttributes().build());
         event.put(EntityTypes.BLOATFLY.get(), Bloatfly.createAttributes().build());
     }
-
-
-    @SubscribeEvent
-    public static void setup(final FMLCommonSetupEvent event) {
-        PacketHandler.register();
-    }
 }

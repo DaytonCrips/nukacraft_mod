@@ -55,7 +55,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Predicate;
 
 import static com.nukateam.guns.client.handler.ShootingHandler.COOLDOWN;
-import static com.nukateam.guns.client.handler.ShootingHandler.gunCooldown;
+//import static com.nukateam.guns.client.handler.ShootingHandler.gunCooldown;
 
 /**
  * Author: MrCrayfish
@@ -84,8 +84,8 @@ public class ServerPlayHandler {
             var modifiedGun = item.getModifiedGun(heldItem);
             var tag =  heldItem.getOrCreateTag();
 
-            if(!gunCooldown.contains(heldItem))
-                gunCooldown.add(heldItem);
+//            if(!gunCooldown.contains(heldItem))
+//                gunCooldown.add(heldItem);
 
             if (modifiedGun != null && tag.getInt(COOLDOWN) == 0) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(entity, heldItem)))
