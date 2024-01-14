@@ -5,7 +5,7 @@
   "mixins": [
     "common.DebugMixin",
     "common.EndPortalBlockMixin",
-    "common.LivingEntityMixin",
+    "guns.LivingEntityMixin",
     "common.PathNavigationMixin",
     "common.SittingPhaseMixin",
     "map.MixinCartographyTableScreenHandler",

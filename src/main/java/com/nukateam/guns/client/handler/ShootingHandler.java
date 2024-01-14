@@ -285,7 +285,7 @@ public class ShootingHandler {
 
 //    @SubscribeEvent(priority = EventPriority.HIGHEST)
 //    public void renderTick(TickEvent.RenderTickEvent evt) {
-//        // Upper is to handle rendering, bellow is handling animation calls and burst tracking
+//        // Upper is to onHandle rendering, bellow is handling animation calls and burst tracking
 //
 //        if (Minecraft.getInstance().player == null || !Minecraft.getInstance().player.isAlive() || Minecraft.getInstance().player.getMainHandItem().getItem() instanceof GunItem)
 //            return;

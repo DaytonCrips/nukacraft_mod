@@ -25,7 +25,7 @@ public class ShootTracker {
      * A custom implementation of the cooldown tracker in order to provide the best experience for
      * players. On servers, Minecraft's cooldown tracker is sent to the client but the latency creates
      * an awkward experience as the cooldown applies to the item after the packet has traveled to the
-     * server then back to the client. To fix this and still apply security, we just handle the
+     * server then back to the client. To fix this and still apply security, we just onHandle the
      * cooldown tracker quietly and not send cooldown packet back to client. The cooldown is still
      * applied on the client in {@link GunItem#onItemUseFirst(ItemStack, UseOnContext)} and {@link GunItem#onUsingTick}.
      */

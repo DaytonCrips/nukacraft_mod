@@ -482,10 +482,10 @@ public class GuiAtlasBase extends GuiComponent {
         } else {
             var hotbarKeys = Minecraft.getInstance().options.keyHotbarSlots;
             for (KeyMapping bind : hotbarKeys) {
-                // only handle hotbarkeys when marker gui isn't shown1
+                // only onHandle hotbarkeys when marker gui isn't shown1
                 if (bind.matches(keyCode, scanCode) && this.markerFinalizer.getParent() == null) {
                     onClose();
-                    // if we close the gui, then don't handle the event
+                    // if we close the gui, then don't onHandle the event
                     return false;
                 }
             }

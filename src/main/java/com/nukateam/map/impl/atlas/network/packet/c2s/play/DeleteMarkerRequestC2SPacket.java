@@ -18,8 +18,11 @@ import java.util.function.Supplier;
  * original sender.
  * @author Hunternif
  */
-public class DeleteMarkerRequestC2SPacket extends C2SPacket {
+public class DeleteMarkerRequestC2SPacket extends C2SPacket<DeleteMarkerRequestC2SPacket> {
 	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "marker", "delete");
+
+	public DeleteMarkerRequestC2SPacket() {
+	}
 
 	private static final int GLOBAL = -1;
 
@@ -30,18 +33,18 @@ public class DeleteMarkerRequestC2SPacket extends C2SPacket {
 		this.markerID = markerID;
 	}
 
-	public static void encode(final DeleteMarkerRequestC2SPacket msg, final FriendlyByteBuf packetBuffer) {
+	public void encode(final DeleteMarkerRequestC2SPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeVarInt(msg.markerID);
 	}
 
-	public static DeleteMarkerRequestC2SPacket decode(final FriendlyByteBuf packetBuffer) {
+	public DeleteMarkerRequestC2SPacket decode(final FriendlyByteBuf packetBuffer) {
 		return new DeleteMarkerRequestC2SPacket(
 				packetBuffer.readVarInt(),
 				packetBuffer.readVarInt());
 	}
 
-	public static void handle(final DeleteMarkerRequestC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
+	public void handle(final DeleteMarkerRequestC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
 		final NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
 			final ServerPlayer sender = context.getSender();

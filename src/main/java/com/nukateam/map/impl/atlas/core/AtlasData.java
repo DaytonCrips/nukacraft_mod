@@ -173,7 +173,7 @@ public class AtlasData extends SavedData {
     public boolean equals(Object obj) {
         if (!(obj instanceof AtlasData)) return false;
         AtlasData other = (AtlasData) obj;
-        // TODO: This doesn't handle disjoint DimensionType keysets of equal size
+        // TODO: This doesn't onHandle disjoint DimensionType keysets of equal size
         if (other.worldMap.size() != worldMap.size()) return false;
         for (ResourceKey<Level> key : worldMap.keySet()) {
             if (!worldMap.get(key).equals(other.worldMap.get(key))) return false;

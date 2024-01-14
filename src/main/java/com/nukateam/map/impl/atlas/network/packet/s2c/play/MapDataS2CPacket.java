@@ -17,23 +17,26 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Hunternif
  * @author Haven King
  */
-public class MapDataS2CPacket extends S2CPacket {
+public class MapDataS2CPacket extends S2CPacket<MapDataS2CPacket> {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "map", "data");
 
 	int atlasID; 
 	CompoundTag data;
+
+	public MapDataS2CPacket() {
+	}
 
 	public MapDataS2CPacket(int atlasID, CompoundTag data) {
 		this.atlasID = atlasID;
 		this.data = data;
 	}
 
-	public static void encode(final MapDataS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public void encode(final MapDataS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeNbt(msg.data);
 	}
 
-	public static MapDataS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public MapDataS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		return new MapDataS2CPacket(
 				packetBuffer.readVarInt(),
 				packetBuffer.readNbt());
@@ -46,7 +49,7 @@ public class MapDataS2CPacket extends S2CPacket {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean handle(LocalPlayer player) {
+	public boolean onHandle(LocalPlayer player) {
 		AtlasData atlasData = MapCore.tileData.getData(atlasID, player.getCommandSenderWorld());
 		atlasData.readNbt(data);
 

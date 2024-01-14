@@ -69,8 +69,7 @@ public class GunMod {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() ->
-        {
+        event.enqueueWork(() -> {
             ModRecipeType.init();
             ModSyncedDataKeys.register();
             CraftingHelper.register(new ResourceLocation(NukaCraftMod.MOD_ID, "workbench_ingredient"), WorkbenchIngredient.Serializer.INSTANCE);

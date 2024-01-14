@@ -5,6 +5,11 @@ import com.mrcrayfish.framework.api.network.FrameworkChannelBuilder;
 import com.nukateam.guns.client.CustomGunManager;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.network.message.*;
+import com.nukateam.map.impl.atlas.network.packet.c2s.play.AddMarkerC2SPacket;
+import com.nukateam.map.impl.atlas.network.packet.c2s.play.BrowsingPositionC2SPacket;
+import com.nukateam.map.impl.atlas.network.packet.c2s.play.DeleteMarkerRequestC2SPacket;
+import com.nukateam.map.impl.atlas.network.packet.c2s.play.PutTileC2SPacket;
+import com.nukateam.map.impl.atlas.network.packet.s2c.play.*;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.network.packets.*;
 import net.minecraft.resources.ResourceLocation;
@@ -31,22 +36,42 @@ public class PacketHandler {
 //	private static int disc = 0;
 
 //	public static void register() {
-//		HANDLER.registerMessage(disc++, S2CMobPacket.class	        , S2CMobPacket::write	       , S2CMobPacket::read	     , S2CMobPacket::handle		 );
-//		HANDLER.registerMessage(disc++, C2SFramePickupPacket.class , C2SFramePickupPacket::write , C2SFramePickupPacket::read , C2SFramePickupPacket::handle );
-//		HANDLER.registerMessage(disc++, C2SPipboyScreenPacket.class, C2SPipboyScreenPacket::write, C2SPipboyScreenPacket::read, C2SPipboyScreenPacket::handle);
+//		HANDLER.registerMessage(disc++, S2CMobPacket.class	        , S2CMobPacket::write	       , S2CMobPacket::read	     , S2CMobPacket::onHandle		 );
+//		HANDLER.registerMessage(disc++, C2SFramePickupPacket.class , C2SFramePickupPacket::write , C2SFramePickupPacket::read , C2SFramePickupPacket::onHandle );
+//		HANDLER.registerMessage(disc++, C2SPipboyScreenPacket.class, C2SPipboyScreenPacket::write, C2SPipboyScreenPacket::read, C2SPipboyScreenPacket::onHandle);
 //	}
 
 	public static SimpleChannel getPlayChannel() {
 		return HANDLER;
 	}
 
+
 	public static void register() {
 		HANDLER = FrameworkChannelBuilder
 				.create(NukaCraftMod.MOD_ID, "play", 1)
+				//NUKACRAFT
 				.registerPlayMessage(S2CMobPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
 				.registerPlayMessage(C2SFramePickupPacket.class			, NetworkDirection.PLAY_TO_SERVER)
 				.registerPlayMessage(C2SPipboyScreenPacket.class		, NetworkDirection.PLAY_TO_SERVER)
 
+
+				//MAP
+				.registerPlayMessage(AddMarkerC2SPacket .class				, NetworkDirection.PLAY_TO_SERVER)
+				.registerPlayMessage(BrowsingPositionC2SPacket .class		, NetworkDirection.PLAY_TO_SERVER)
+				.registerPlayMessage(DeleteMarkerRequestC2SPacket.class		, NetworkDirection.PLAY_TO_SERVER)
+				.registerPlayMessage(PutTileC2SPacket .class		      	, NetworkDirection.PLAY_TO_SERVER)
+
+
+				.registerPlayMessage(CustomTileInfoS2CPacket.class			, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(DeleteCustomGlobalTileS2CPacket.class	, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(DeleteMarkerResponseS2CPacket.class	, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(DimensionUpdateS2CPacket.class			, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(MapDataS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(MarkersS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(PutTileS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
+				.registerPlayMessage(TileGroupsS2CPacket.class				, NetworkDirection.PLAY_TO_CLIENT)
+
+				//GUNS
 				.registerPlayMessage(C2SMessageAim.class				, NetworkDirection.PLAY_TO_SERVER)
 				.registerPlayMessage(C2SMessageReload.class				, NetworkDirection.PLAY_TO_SERVER)
 				.registerPlayMessage(MessageShoot.class					, NetworkDirection.PLAY_TO_SERVER)
