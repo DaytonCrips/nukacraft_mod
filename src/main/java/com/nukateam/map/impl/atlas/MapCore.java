@@ -93,7 +93,7 @@ public class MapCore {
     }
 
     ////FORGE ONLY
-    public static final SimpleChannel MOD_CHANNEL = NetworkRegistry.newSimpleChannel(id("main"), () -> "1", "1"::equals, "1"::equals);
+    public static SimpleChannel MOD_CHANNEL; //= NetworkRegistry.newSimpleChannel(id("main"), () -> "1", "1"::equals, "1"::equals);
 
     public static void initMap() {
         onInitialize();

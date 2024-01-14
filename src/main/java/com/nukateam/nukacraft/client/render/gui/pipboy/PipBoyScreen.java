@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.nukacraft.common.data.utils.PlayerUtils;
 import com.nukateam.nukacraft.common.network.PacketSender;
 import net.minecraft.client.Minecraft;

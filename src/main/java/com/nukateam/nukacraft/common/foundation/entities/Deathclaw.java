@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities;
 
 import com.nukateam.nukacraft.common.network.PacketHandler;
-import com.nukateam.nukacraft.common.network.packets.MobPacket;
+import com.nukateam.nukacraft.common.network.packets.S2CMobPacket;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -60,7 +60,7 @@ public class Deathclaw extends Monster implements GeoEntity {
 
         if(isServerSide) {
             setIsRunning(pTarget != null);
-            PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
+            PacketHandler.sendToAllPlayers(new S2CMobPacket(getId(), isRunning));
         }
     }
 
