@@ -1,5 +1,6 @@
 package com.nukateam.guns.client.handler;
 
+import com.nukateam.guns.common.CommonShootingHandler;
 import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.interfaces.CurrentFpsGetter;
@@ -322,6 +323,7 @@ public class ShootingHandler {
         // CHECK HERE: Restrict the fire rate
 //      if(!tracker.hasCooldown(heldItem.getItem()))
 
+
         var shootGap = entityShootGaps.getOrDefault(shooter, 0f);
 
         if (shootGap <= 0F) {
@@ -345,6 +347,7 @@ public class ShootingHandler {
 
 //            if (Config.CLIENT.controls.burstPress.get()) this.burstTracker--;
 //            else this.burstTracker++;
+
             MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(shooter, heldItem));
         }
     }

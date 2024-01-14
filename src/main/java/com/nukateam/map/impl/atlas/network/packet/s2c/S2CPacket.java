@@ -47,7 +47,10 @@ public abstract class S2CPacket<T> extends AntiqueAtlasPacket<T> {
 	public abstract boolean onHandle(LocalPlayer player);
 	
 	public void send(ServerPlayer playerEntity) {
-		com.nukateam.nukacraft.common.network.PacketHandler.getPlayChannel().sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+		try{
+			com.nukateam.nukacraft.common.network.PacketHandler.getPlayChannel().sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+		}
+		catch (Exception e){}
 	}
 
 	public void send(ServerLevel world) {
