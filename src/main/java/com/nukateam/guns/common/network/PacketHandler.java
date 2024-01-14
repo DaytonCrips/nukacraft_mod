@@ -22,7 +22,7 @@ public class PacketHandler {
 
     public static void init() {
         PLAY_CHANNEL = FrameworkChannelBuilder
-                .create(NukaCraftMod.MOD_ID, "play", 1)
+            .create(NukaCraftMod.MOD_ID, "play", 1)
                 .registerPlayMessage(C2SMessageAim.class, NetworkDirection.PLAY_TO_SERVER)
                 .registerPlayMessage(C2SMessageReload.class, NetworkDirection.PLAY_TO_SERVER)
                 .registerPlayMessage(MessageShoot.class, NetworkDirection.PLAY_TO_SERVER)
