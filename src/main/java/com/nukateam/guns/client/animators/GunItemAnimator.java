@@ -4,6 +4,7 @@ import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
 import com.nukateam.guns.client.handler.AimingHandler;
 import com.nukateam.guns.client.handler.ReloadHandler;
+import com.nukateam.guns.client.handler.ShootingHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 
 import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
 import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
-import static com.nukateam.guns.client.handler.ShootingHandler.getCooldown;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.guns.common.foundation.item.GunItem.*;
 import static com.nukateam.nukacraft.common.data.constants.Animations.SHOT;
@@ -152,7 +152,8 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                     return event.setAndContinue(begin().then(HOLD, LOOP));
                 }
 
-                float cooldown = getCooldown(stack);
+//                float cooldown = ShootingHandler.get().getCooldown(stack);
+                float cooldown = ShootingHandler.get().getShootTickGapLeft(entity);
                 RawAnimation animation = null;
 
                 if(entity != null && ReloadHandler.get().isReloading(entity)){

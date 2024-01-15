@@ -76,9 +76,17 @@ public class PowerArmorFrame extends WearableChassis {
         }
     }
 
+    public static void doSafe(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception var2) {
+            var2.printStackTrace();
+        }
+    }
+
     @Override
     public void tick() {
-//        doSafe(super::tick);
+        doSafe(super::tick);
 
         if(!hasFusionCore()) return;
         var core = getFusionCore();

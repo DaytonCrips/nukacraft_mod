@@ -346,6 +346,19 @@
 							"vector": [0, 0, -90]
 						}
 					}
+				},
+				"right_arm": {
+					"position": {
+						"vector": [8, -1.75, 6.25]
+					}
+				},
+				"left_arm": {
+					"position": {
+						"vector": [0, 0, 12]
+					},
+					"scale": {
+						"vector": [0, 0, 0]
+					}
 				}
 			}
 		},
