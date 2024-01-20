@@ -15,6 +15,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static com.nukateam.nukacraft.common.foundation.items.ModItemTabs.NUKA_BLOCKS;
 import static com.nukateam.nukacraft.common.foundation.items.ModItemTabs.NUKA_MATERIAL;
 //Здесь армяне в нарды играют
 
@@ -70,6 +71,12 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> BTITANING = ITEMS.register("btitan",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> VAULTDOOR = ITEMS.register("vaultdoor",
+            () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+//    public static final RegistryObject<Item> HALFBARRIER = ITEMS.register("half_barrier_item",
+//            () -> new BlockItem(ModBlocks.HALFBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+//    public static final RegistryObject<Item> FILLERBARRIER = ITEMS.register("filler_barrier_item",
+//            () -> new BlockItem(ModBlocks.FILLERBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
     public static final RegistryObject<Item> LEADING = ITEMS.register("lead",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> SILVERING = ITEMS.register("silver",
@@ -350,6 +357,7 @@ public class ModItems {
     public static final RegistryObject<Item> FMPUREE = ITEMS.register("firemushpuree",
             () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
 //
+
 //
 //    //MEDICINE ITEMS
     public static final RegistryObject<Item> STIMPAK = ITEMS.register("stimpak",

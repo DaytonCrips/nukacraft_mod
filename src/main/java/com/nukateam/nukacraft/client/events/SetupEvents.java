@@ -67,6 +67,7 @@ public class SetupEvents {
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
+        event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());
     }
 
 }

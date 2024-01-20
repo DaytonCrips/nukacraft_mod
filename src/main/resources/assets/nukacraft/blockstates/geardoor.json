@@ -1,5 +1,9 @@
+
 {
   "variants": {
-    "": { "model":  "nukacraft:block/geardoor"}
+    "facing=north": { "model": "nukacraft:block/geardoor", "y": 0   },
+    "facing=east":  { "model": "nukacraft:block/geardoor", "y": 90  },
+    "facing=south": { "model": "nukacraft:block/geardoor", "y": 180 },
+    "facing=west":  { "model": "nukacraft:block/geardoor", "y": 270 }
   }
 }

@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class HalfBarrier extends SlabBlock {
-    public HalfBarrier(Properties pProperties) {
+    public  HalfBarrier(Properties pProperties) {
         super(pProperties);
     }
 

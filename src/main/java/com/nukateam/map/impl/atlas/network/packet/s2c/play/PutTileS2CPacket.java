@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Hunternif
  * @author Haven King
  */
-public class PutTileS2CPacket extends S2CPacket {
+public class PutTileS2CPacket extends S2CPacket<PutTileS2CPacket> {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "put");
 
 	int atlasID;
@@ -25,11 +25,11 @@ public class PutTileS2CPacket extends S2CPacket {
 	int x, z;
 	ResourceLocation tile;
 
-	public PutTileS2CPacket(int atlasID, ResourceKey<Level> world, int x, int z, ResourceLocation tile) {
+	public PutTileS2CPacket() {}
 
-	}
+	public PutTileS2CPacket(int atlasID, ResourceKey<Level> world, int x, int z, ResourceLocation tile) {}
 
-	public static void encode(final PutTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public void encode(final PutTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.x);
@@ -37,7 +37,7 @@ public class PutTileS2CPacket extends S2CPacket {
 		packetBuffer.writeResourceLocation(msg.tile);
 	}
 
-	public static PutTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public PutTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		int atlasID = packetBuffer.readVarInt();
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int x = packetBuffer.readVarInt();
@@ -49,7 +49,7 @@ public class PutTileS2CPacket extends S2CPacket {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public boolean handle(LocalPlayer player) {
+	public boolean onHandle(LocalPlayer player) {
 		AtlasData data = MapCore.tileData.getData(this.atlasID, player.getCommandSenderWorld());
 		data.setTile(this.world, this.x, this.z, this.tile);
 		return true;

@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @author Hunternif
  * @author Haven King
  */
-public class AddMarkerC2SPacket extends C2SPacket {
+public class AddMarkerC2SPacket extends C2SPacket<AddMarkerC2SPacket> {
 	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "marker", "add");
 
 	int atlasID; 
@@ -36,7 +36,9 @@ public class AddMarkerC2SPacket extends C2SPacket {
 		this.label = label;
 	}
 
-	public static void encode(final AddMarkerC2SPacket msg, final FriendlyByteBuf packetBuffer) {
+	public AddMarkerC2SPacket() {}
+
+	public void encode(final AddMarkerC2SPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.markerType);
 		packetBuffer.writeVarInt(msg.x);
@@ -45,7 +47,7 @@ public class AddMarkerC2SPacket extends C2SPacket {
 		packetBuffer.writeComponent(msg.label);
 	}
 
-	public static AddMarkerC2SPacket decode(final FriendlyByteBuf packetBuffer) {
+	public AddMarkerC2SPacket decode(final FriendlyByteBuf packetBuffer) {
 		return new AddMarkerC2SPacket(
 				packetBuffer.readVarInt(), 
 				packetBuffer.readResourceLocation(),
@@ -55,14 +57,14 @@ public class AddMarkerC2SPacket extends C2SPacket {
 				packetBuffer.readComponent());
 	}
 
-	public static void handle(final AddMarkerC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
+	public void handle(final AddMarkerC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
 		final NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
 			final ServerPlayer sender = context.getSender();
 			if (sender == null) {
 				return;
 			}
-			ServerPlayer player = (ServerPlayer) context.getSender();
+			ServerPlayer player = context.getSender();
 			if (!AtlasAPI.getPlayerAtlases(player).contains(msg.atlasID)) {
 				MapCore.LOG.warn(
 								"Player {} attempted to put marker into someone else's Atlas #{}}",
