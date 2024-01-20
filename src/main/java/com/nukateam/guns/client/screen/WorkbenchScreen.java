@@ -2,15 +2,12 @@ package com.nukateam.guns.client.screen;
 
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.NetworkGunManager;
+import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.InventoryUtil;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
-import com.nukateam.guns.common.foundation.crafting.WorkbenchIngredient;
-import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipe;
-import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipes;
-import com.nukateam.guns.common.foundation.item.GunItem;
-import com.nukateam.guns.common.foundation.item.IAmmo;
-import com.nukateam.guns.common.foundation.item.IColored;
+import com.nukateam.guns.common.foundation.crafting.*;
+import com.nukateam.guns.common.foundation.item.*;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.C2SMessageCraft;
@@ -20,19 +17,20 @@ import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import com.nukateam.nukacraft.common.foundation.items.ModMelee;
+import com.nukateam.nukacraft.common.foundation.items.melees.SimpleMeleeWeapon;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
@@ -44,6 +42,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -85,6 +84,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         List<WorkbenchRecipe> weapons = new ArrayList<>();
         List<WorkbenchRecipe> attachments = new ArrayList<>();
         List<WorkbenchRecipe> ammo = new ArrayList<>();
+        List<WorkbenchRecipe> melee = new ArrayList<>();
         List<WorkbenchRecipe> misc = new ArrayList<>();
 
         for (var recipe : recipes) {
@@ -93,21 +93,51 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
                 weapons.add(recipe);
             } else if (output.getItem() instanceof IAttachment) {
                 attachments.add(recipe);
+            } else if(output.getItem() instanceof SimpleMeleeWeapon){
+                melee.add(recipe);
             } else if (this.isAmmo(output)) {
                 ammo.add(recipe);
-            } else {
+            }else {
                 misc.add(recipe);
             }
         }
 
         if (!weapons.isEmpty()) {
-            ItemStack icon = new ItemStack(ModGuns.PISTOL10MM.get());
-            icon.getOrCreateTag().putInt("AmmoCount", ModGuns.PISTOL10MM.get().getGun().getGeneral().getMaxAmmo());
-            this.tabs.add(new Tab(icon, "weapons", weapons));
+//            ItemStack icon = new ItemStack(ModGuns.PISTOL10MM.get());
+//            icon.getOrCreateTag().putInt("AmmoCount", ModGuns.PISTOL10MM.get().getGun().getGeneral().getMaxAmmo());
+//            this.tabs.add(new Tab(icon, "weapons", weapons));
+//            var cat = new ArrayList<String>();
+            var categoryRecipes = new HashMap<String, List<WorkbenchRecipe>>();
+
+            for (var recipe : weapons){
+                var weaponStack = recipe.getItem();
+                var gunItem = (GunItem)weaponStack.getItem();
+                var category = gunItem.getModifiedGun(weaponStack).getGeneral().getCategory();
+                var buff = categoryRecipes.getOrDefault(category, new ArrayList<>());
+
+                buff.add(recipe);
+                categoryRecipes.put(category, buff);
+            }
+
+            for (var entry : categoryRecipes.entrySet()){
+                var recipeList = entry.getValue();
+                var category = entry.getKey();
+
+                if (!recipeList.isEmpty()) {
+                    var item = (GunItem)recipeList.get(0).getItem().getItem();
+                    var icon = new ItemStack(item);
+                    icon.getOrCreateTag().putInt("AmmoCount", item.getGun().getGeneral().getMaxAmmo());
+                    this.tabs.add(new Tab(icon, category, recipeList));
+                }
+            }
         }
 
         if (!attachments.isEmpty()) {
             this.tabs.add(new Tab(new ItemStack(ModGuns.BASEGRENADE.get()), "attachments", attachments));
+        }
+
+        if (!melee.isEmpty()) {
+            this.tabs.add(new Tab(new ItemStack(ModMelee.COMBATKNIFE.get()), "melee", melee));
         }
 
         if (!ammo.isEmpty()) {

@@ -85,8 +85,6 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 
         super.render(entity, stack, transformType, poseStack, bufferSource, renderType, buffer, packedLight);
 //        poseStack.popPose();
-
-
     }
 
     @Override
@@ -96,11 +94,17 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 //        poseStack.pushPose();
         if(bone.getName().equals(RIGHT_ARM) || bone.getName().equals(LEFT_ARM)){
             bone.setHidden(!renderHands);
-//            poseStack.scale(0.5f, 0.5f, 0.5f);
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
 //        poseStack.popPose();
+
+//        var vertexConsumer = Objects.equals(bone.getName(), "muzzleflash") ?
+//                bufferSource.getBuffer(MuzzleFlashRenderType.getMuzzleFlash()) :
+//                bufferSource.getBuffer(renderType);
+//
+//        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, vertexConsumer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+
     }
 
     protected void renderAttachments(ItemStack stack, GunItemAnimator item) {
