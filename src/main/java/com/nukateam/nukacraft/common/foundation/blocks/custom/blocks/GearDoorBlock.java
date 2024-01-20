@@ -96,15 +96,17 @@ public class GearDoorBlock extends  BaseEntityBlock{
 //                return InteractionResult.SUCCESS;
 //            } else return InteractionResult.FAIL;
 //        }
-        filledEraser(pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
+
         BlockState newstate = ModBlocks.OPENGEAR.get().defaultBlockState();
-//        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
-//            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
-//                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-//                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
-//            }
-//            pLevel.setBlock(pPos, newstate, 3);
-//        }
+        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
+            filledEraser(pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
+            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
+                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
+            }
+            pLevel.setBlock(pPos, newstate, 3);
+            return InteractionResult.SUCCESS;
+        } else return InteractionResult.FAIL;
         //BlockEntity block = pLevel.getBlockEntity(pPos);
 //        if (pLevel.isClientSide) {
 //            return InteractionResult.SUCCESS;
@@ -128,7 +130,6 @@ public class GearDoorBlock extends  BaseEntityBlock{
 //            } else return InteractionResult.FAIL;
 //
 //        }
-        return InteractionResult.SUCCESS;
     }
 
     @Override

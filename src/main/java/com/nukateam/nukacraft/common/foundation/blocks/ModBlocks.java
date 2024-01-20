@@ -387,6 +387,13 @@ public class ModBlocks {
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(1f)));
 
+    public static final RegistryObject<Block> FRIDGE = registerBlock("fridge",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+    public static final RegistryObject<Block> COOLER = registerBlock("cooler",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+
     public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2f)));

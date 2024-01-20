@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "nukacraft:block/c_coolercamera"
+    },
+    "facing=down,open=true": {
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=east,open=false": {
+      "y": 90,
+      "model": "nukacraft:block/c_coolercamera"
+    },
+    "facing=east,open=true": {
+      "y": 90,
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=north,open=false": {
+      "model": "nukacraft:block/c_coolercamera"
+    },
+    "facing=north,open=true": {
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=south,open=false": {
+      "y": -180,
+      "model": "nukacraft:block/c_coolercamera"
+    },
+    "facing=south,open=true": {
+      "y": -180,
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=up,open=false": {
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=up,open=true": {
+      "model": "nukacraft:block/o_coolercamera"
+    },
+    "facing=west,open=false": {
+      "y": -90,
+      "model": "nukacraft:block/c_coolercamera"
+    },
+    "facing=west,open=true": {
+      "y": -90,
+      "model": "nukacraft:block/o_coolercamera"
+    }
+  }
+}

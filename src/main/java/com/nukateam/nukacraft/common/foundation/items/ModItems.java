@@ -73,10 +73,10 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> VAULTDOOR = ITEMS.register("vaultdoor",
             () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties().tab(NUKA_BLOCKS)));
-    public static final RegistryObject<Item> HALFBARRIER = ITEMS.register("half_barrier_item",
-            () -> new BlockItem(ModBlocks.HALFBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
-    public static final RegistryObject<Item> FILLERBARRIER = ITEMS.register("filler_barrier_item",
-            () -> new BlockItem(ModBlocks.FILLERBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+//    public static final RegistryObject<Item> HALFBARRIER = ITEMS.register("half_barrier_item",
+//            () -> new BlockItem(ModBlocks.HALFBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+//    public static final RegistryObject<Item> FILLERBARRIER = ITEMS.register("filler_barrier_item",
+//            () -> new BlockItem(ModBlocks.FILLERBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
     public static final RegistryObject<Item> LEADING = ITEMS.register("lead",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> SILVERING = ITEMS.register("silver",
