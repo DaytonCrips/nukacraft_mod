@@ -17,15 +17,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class DimensionUpdateS2CPacket extends S2CPacket<DimensionUpdateS2CPacket> {
+public class DimensionUpdateS2CPacket extends S2CPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "dimension", "update");
 
 	int atlasID;
 	ResourceKey<Level> world;
 	Collection<TileInfo> tiles;
-
-	public DimensionUpdateS2CPacket() {
-	}
 
 	public DimensionUpdateS2CPacket(int atlasID, ResourceKey<Level> world, Collection<TileInfo> tiles) {
 		this.atlasID = atlasID;
@@ -33,7 +30,7 @@ public class DimensionUpdateS2CPacket extends S2CPacket<DimensionUpdateS2CPacket
 		this.tiles = tiles;
 	}
 
-	public void encode(final DimensionUpdateS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final DimensionUpdateS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.tiles.size());
@@ -45,7 +42,7 @@ public class DimensionUpdateS2CPacket extends S2CPacket<DimensionUpdateS2CPacket
 		}
 	}
 
-	public DimensionUpdateS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static DimensionUpdateS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		int atlasID = packetBuffer.readVarInt();
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int tileCount = packetBuffer.readVarInt();
@@ -69,7 +66,7 @@ public class DimensionUpdateS2CPacket extends S2CPacket<DimensionUpdateS2CPacket
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		AtlasData data = MapCore.tileData.getData(this.atlasID, player.level);
 		for (TileInfo info : this.tiles) {
 			data.getWorldData(this.world).setTile(info.x, info.z, info.id);

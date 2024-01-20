@@ -1,17 +1,8 @@
 package com.nukateam.nukacraft.common.network;
 
-import com.mrcrayfish.framework.api.FrameworkAPI;
-import com.mrcrayfish.framework.api.network.FrameworkChannelBuilder;
-import com.nukateam.guns.client.CustomGunManager;
-import com.nukateam.guns.common.base.NetworkGunManager;
-import com.nukateam.guns.common.network.message.*;
-import com.nukateam.map.impl.atlas.network.packet.c2s.play.AddMarkerC2SPacket;
-import com.nukateam.map.impl.atlas.network.packet.c2s.play.BrowsingPositionC2SPacket;
-import com.nukateam.map.impl.atlas.network.packet.c2s.play.DeleteMarkerRequestC2SPacket;
-import com.nukateam.map.impl.atlas.network.packet.c2s.play.PutTileC2SPacket;
-import com.nukateam.map.impl.atlas.network.packet.s2c.play.*;
-import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.network.packets.*;
+import com.nukateam.nukacraft.common.network.packets.FramePickupPacket;
+import com.nukateam.nukacraft.common.network.packets.MobPacket;
+import com.nukateam.nukacraft.common.network.packets.PipboyScreenPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.util.FakePlayer;
@@ -26,72 +17,18 @@ import static com.nukateam.nukacraft.NukaCraftMod.MOD_ID;
 
 public class PacketHandler {
 	private static final String PROTOCOL_VERSION = Integer.toString(1);
-	private static SimpleChannel HANDLER;
-//			= NetworkRegistry.ChannelBuilder
-//									.named(new ResourceLocation(MOD_ID, "network"))
-//									.clientAcceptedVersions(PROTOCOL_VERSION::equals)
-//									.serverAcceptedVersions(PROTOCOL_VERSION::equals)
-//									.networkProtocolVersion(() -> PROTOCOL_VERSION)
-//									.simpleChannel();
-//	private static int disc = 0;
-
-//	public static void register() {
-//		HANDLER.registerMessage(disc++, S2CMobPacket.class	        , S2CMobPacket::write	       , S2CMobPacket::read	     , S2CMobPacket::onHandle		 );
-//		HANDLER.registerMessage(disc++, C2SFramePickupPacket.class , C2SFramePickupPacket::write , C2SFramePickupPacket::read , C2SFramePickupPacket::onHandle );
-//		HANDLER.registerMessage(disc++, C2SPipboyScreenPacket.class, C2SPipboyScreenPacket::write, C2SPipboyScreenPacket::read, C2SPipboyScreenPacket::onHandle);
-//	}
-
-	public static SimpleChannel getPlayChannel() {
-		return HANDLER;
-	}
-
+	private static final SimpleChannel HANDLER = NetworkRegistry.ChannelBuilder
+									.named(new ResourceLocation(MOD_ID, "network"))
+									.clientAcceptedVersions(PROTOCOL_VERSION::equals)
+									.serverAcceptedVersions(PROTOCOL_VERSION::equals)
+									.networkProtocolVersion(() -> PROTOCOL_VERSION)
+									.simpleChannel();
+	private static int disc = 0;
 
 	public static void register() {
-		HANDLER = FrameworkChannelBuilder
-				.create(NukaCraftMod.MOD_ID, "play", 1)
-				//NUKACRAFT
-				.registerPlayMessage(S2CMobPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(C2SFramePickupPacket.class			, NetworkDirection.PLAY_TO_SERVER)
-				.registerPlayMessage(C2SPipboyScreenPacket.class		, NetworkDirection.PLAY_TO_SERVER)
-
-
-				//MAP
-				.registerPlayMessage(AddMarkerC2SPacket .class				, NetworkDirection.PLAY_TO_SERVER)
-				.registerPlayMessage(BrowsingPositionC2SPacket .class		, NetworkDirection.PLAY_TO_SERVER)
-				.registerPlayMessage(DeleteMarkerRequestC2SPacket.class		, NetworkDirection.PLAY_TO_SERVER)
-				.registerPlayMessage(PutTileC2SPacket .class		      	, NetworkDirection.PLAY_TO_SERVER)
-
-
-				.registerPlayMessage(CustomTileInfoS2CPacket.class			, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(DeleteCustomGlobalTileS2CPacket.class	, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(DeleteMarkerResponseS2CPacket.class	, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(DimensionUpdateS2CPacket.class			, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(MapDataS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(MarkersS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(PutTileS2CPacket.class					, NetworkDirection.PLAY_TO_CLIENT)
-				.registerPlayMessage(TileGroupsS2CPacket.class				, NetworkDirection.PLAY_TO_CLIENT)
-
-				//GUNS
-//				.registerPlayMessage(C2SMessageAim.class				, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(C2SMessageReload.class				, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(MessageShoot.class					, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(C2SMessageUnload.class				, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(S2CMessageStunGrenade.class		, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(C2SMessageCraft.class				, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(MessageBulletTrail.class			, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(C2SMessageAttachments.class		, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(S2CMessageUpdateGuns.class			, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(S2CMessageBlood.class				, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(MessageShooting.class				, NetworkDirection.PLAY_TO_SERVER)
-//				.registerPlayMessage(MessageGunSound.class				, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(S2CMessageProjectileHitBlock.class , NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(S2CMessageProjectileHitEntity.class, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(S2CMessageRemoveProjectile.class	, NetworkDirection.PLAY_TO_CLIENT)
-//				.registerPlayMessage(MessageUpdateMoveInacc.class		, NetworkDirection.PLAY_TO_SERVER)
-				.build();
-
-		FrameworkAPI.registerLoginData(new ResourceLocation(NukaCraftMod.MOD_ID, "network_gun_manager"), NetworkGunManager.LoginData::new);
-		FrameworkAPI.registerLoginData(new ResourceLocation(NukaCraftMod.MOD_ID, "custom_gun_manager"), CustomGunManager.LoginData::new);
+		HANDLER.registerMessage(disc++, MobPacket.class	        , MobPacket::write	       , MobPacket::read	     , MobPacket::handle		 );
+		HANDLER.registerMessage(disc++, FramePickupPacket.class , FramePickupPacket::write , FramePickupPacket::read , FramePickupPacket::handle );
+		HANDLER.registerMessage(disc++, PipboyScreenPacket.class, PipboyScreenPacket::write, PipboyScreenPacket::read, PipboyScreenPacket::handle);
 	}
 
 	public static void sendToServer(Object msg) {

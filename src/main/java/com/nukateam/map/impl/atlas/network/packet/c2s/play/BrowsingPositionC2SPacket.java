@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  * @author Hunternif
  * @author Haven King
  */
-public class BrowsingPositionC2SPacket extends C2SPacket<BrowsingPositionC2SPacket> {
+public class BrowsingPositionC2SPacket extends C2SPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "browsing_position");
 
 	int atlasID;
@@ -28,10 +28,7 @@ public class BrowsingPositionC2SPacket extends C2SPacket<BrowsingPositionC2SPack
 	int x;
 	int y;
 	double zoom;
-
-	public BrowsingPositionC2SPacket() {
-	}
-
+	
 	public BrowsingPositionC2SPacket(int atlasID, ResourceKey<Level> world, int x, int y, double zoom) {
 		this.atlasID = atlasID;
 		this.world = world;
@@ -40,7 +37,7 @@ public class BrowsingPositionC2SPacket extends C2SPacket<BrowsingPositionC2SPack
 		this.zoom = zoom;
 	}
 
-	public void encode(final BrowsingPositionC2SPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final BrowsingPositionC2SPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.x);
@@ -48,7 +45,7 @@ public class BrowsingPositionC2SPacket extends C2SPacket<BrowsingPositionC2SPack
 		packetBuffer.writeDouble(msg.zoom);
 	}
 
-	public BrowsingPositionC2SPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static BrowsingPositionC2SPacket decode(final FriendlyByteBuf packetBuffer) {
 		return new BrowsingPositionC2SPacket(
 				packetBuffer.readVarInt(),
 				ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation()),
@@ -57,7 +54,7 @@ public class BrowsingPositionC2SPacket extends C2SPacket<BrowsingPositionC2SPack
 				packetBuffer.readDouble());
 	}
 
-	public void handle(final BrowsingPositionC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
+	public static void handle(final BrowsingPositionC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
 		final NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
 			final ServerPlayer sender = context.getSender();

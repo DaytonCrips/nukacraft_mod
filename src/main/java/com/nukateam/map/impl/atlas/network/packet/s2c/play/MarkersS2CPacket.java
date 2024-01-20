@@ -26,15 +26,12 @@ import java.util.List;
  * @author Hunternif
  * @author Haven King
  */
-public class MarkersS2CPacket extends S2CPacket<MarkersS2CPacket> {
+public class MarkersS2CPacket extends S2CPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "marker", "info");
 
 	private static final int GLOBAL = -1;
 
-	public MarkersS2CPacket() {
-	}
-
-	int atlasID;
+	int atlasID; 
 	ResourceKey<Level> world; 
 	ListMultimap<ResourceLocation, Marker.Precursor> markersByType;
 
@@ -54,7 +51,7 @@ public class MarkersS2CPacket extends S2CPacket<MarkersS2CPacket> {
 		this.markersByType = markersByType;
 	}
 
-	public void encode(final MarkersS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final MarkersS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.markersByType.keySet().size());
@@ -69,7 +66,7 @@ public class MarkersS2CPacket extends S2CPacket<MarkersS2CPacket> {
 		}
 	}
 
-	public MarkersS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static MarkersS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		int atlasID = packetBuffer.readVarInt();
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int typesLength = packetBuffer.readVarInt();
@@ -88,7 +85,7 @@ public class MarkersS2CPacket extends S2CPacket<MarkersS2CPacket> {
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		MarkersData markersData = atlasID == GLOBAL
 				? MapCore.globalMarkersData.getData()
 						: MapCore.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());

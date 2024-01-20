@@ -16,27 +16,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Hunternif
  * @author Haven King
  */
-public class DeleteMarkerResponseS2CPacket extends S2CPacket<DeleteMarkerResponseS2CPacket> {
+public class DeleteMarkerResponseS2CPacket extends S2CPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "marker", "delete");
 
 	private static final int GLOBAL = -1;
 
 	int atlasID, markerID;
 
-	public DeleteMarkerResponseS2CPacket() {
-	}
-
 	public DeleteMarkerResponseS2CPacket(int atlasID, int markerID) {
 		this.atlasID = atlasID;
 		this.markerID = markerID;
 	}
 
-	public void encode(final DeleteMarkerResponseS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final DeleteMarkerResponseS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeVarInt(msg.markerID);
 	}
 
-	public DeleteMarkerResponseS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static DeleteMarkerResponseS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		int atlasID = packetBuffer.readVarInt();
 		int markerID = packetBuffer.readVarInt();
 
@@ -45,7 +42,7 @@ public class DeleteMarkerResponseS2CPacket extends S2CPacket<DeleteMarkerRespons
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		MarkersData data = atlasID == GLOBAL ?
 				MapCore.globalMarkersData.getData() :
 				MapCore.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());

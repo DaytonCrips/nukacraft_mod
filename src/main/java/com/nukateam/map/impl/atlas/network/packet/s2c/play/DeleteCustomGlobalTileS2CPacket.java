@@ -17,14 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * @author Hunternif
  * @author Haven King
  */
-public class DeleteCustomGlobalTileS2CPacket extends S2CPacket<DeleteCustomGlobalTileS2CPacket> {
+public class DeleteCustomGlobalTileS2CPacket extends S2CPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "tile", "delete");
 
 	ResourceKey<Level> world;
 	int chunkX, chunkZ;
-
-	public DeleteCustomGlobalTileS2CPacket() {
-	}
 
 	public DeleteCustomGlobalTileS2CPacket(ResourceKey<Level> world, int chunkX, int chunkZ) {
 		this.world = world;
@@ -32,13 +29,13 @@ public class DeleteCustomGlobalTileS2CPacket extends S2CPacket<DeleteCustomGloba
 		this.chunkZ = chunkZ;
 	}
 
-	public void encode(final DeleteCustomGlobalTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final DeleteCustomGlobalTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.chunkX);
 		packetBuffer.writeVarInt(msg.chunkZ);
 	}
 
-	public DeleteCustomGlobalTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static DeleteCustomGlobalTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int chunkX = packetBuffer.readVarInt();
 		int chunkZ = packetBuffer.readVarInt();
@@ -48,7 +45,7 @@ public class DeleteCustomGlobalTileS2CPacket extends S2CPacket<DeleteCustomGloba
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		TileDataStorage data = MapCore.globalTileData.getData(this.world);
 		data.removeTile(this.chunkX, this.chunkZ);
 		return true;

@@ -2,10 +2,10 @@ package com.nukateam.nukacraft.common.foundation.container.screen;
 
 import com.nukateam.nukacraft.common.foundation.container.menu.PowerArmorMenu;
 import com.nukateam.nukacraft.common.network.PacketHandler;
-import com.nukateam.nukacraft.common.network.packets.C2SFramePickupPacket;
 import com.jetug.chassis_core.client.gui.screen.ChassisScreen;
 import com.jetug.chassis_core.client.gui.ui.IconButton;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import com.nukateam.nukacraft.common.network.packets.FramePickupPacket;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -29,7 +29,7 @@ public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
             @Override
             public void onPress() {
                 if(referenceMob != null)
-                    PacketHandler.sendToServer(new C2SFramePickupPacket(referenceMob.getId()));
+                    PacketHandler.sendToServer(new FramePickupPacket(referenceMob.getId()));
             }
         });
     }

@@ -14,18 +14,16 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.NetworkEvent;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * Used to sync custom tiles from server to client.
  * @author Hunternif
  * @author Haven King
  */
-public class CustomTileInfoS2CPacket extends S2CPacket<CustomTileInfoS2CPacket> {
+public class CustomTileInfoS2CPacket extends S2CPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "custom_tile", "info");
 
 	ResourceKey<Level> world;
@@ -41,7 +39,7 @@ public class CustomTileInfoS2CPacket extends S2CPacket<CustomTileInfoS2CPacket> 
 		this.tiles = Lists.newArrayList(new EntryPair<>(new ChunkPos(chunkX, chunkZ), tileId));
 	}
 
-	public void encode(final CustomTileInfoS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final CustomTileInfoS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.tiles.size());
 
@@ -52,7 +50,7 @@ public class CustomTileInfoS2CPacket extends S2CPacket<CustomTileInfoS2CPacket> 
 		}
 	}
 
-	public CustomTileInfoS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static CustomTileInfoS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int tileCount = packetBuffer.readVarInt();
 
@@ -64,13 +62,10 @@ public class CustomTileInfoS2CPacket extends S2CPacket<CustomTileInfoS2CPacket> 
 		
 		return new CustomTileInfoS2CPacket(world, tiles);
 	}
-
-	public CustomTileInfoS2CPacket() {
-	}
-
+	
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		TileDataStorage data = MapCore.globalTileData.getData(this.world);
 		for (Map.Entry<ChunkPos, ResourceLocation> entry : this.tiles) {
 			data.setTile(entry.getKey().x, entry.getKey().z, entry.getValue());

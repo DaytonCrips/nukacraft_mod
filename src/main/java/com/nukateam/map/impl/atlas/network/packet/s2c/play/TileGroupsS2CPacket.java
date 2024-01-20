@@ -24,7 +24,7 @@ import java.util.List;
  * @author Hunternif
  * @author Haven King
  */
-public class TileGroupsS2CPacket extends S2CPacket<TileGroupsS2CPacket> {
+public class TileGroupsS2CPacket extends S2CPacket {
 	public static final int TILE_GROUPS_PER_PACKET = 100;
 	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "groups");
 
@@ -32,15 +32,13 @@ public class TileGroupsS2CPacket extends S2CPacket<TileGroupsS2CPacket> {
 	ResourceKey<Level> world;
 	List<TileGroup> tileGroups;
 
-	public TileGroupsS2CPacket() {}
-
 	public TileGroupsS2CPacket(int atlasID, ResourceKey<Level> world, List<TileGroup> tileGroups) {
 		this.atlasID = atlasID;
 		this.world = world;
 		this.tileGroups = tileGroups;
 	}
 
-	public void encode(final TileGroupsS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final TileGroupsS2CPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeVarInt(msg.atlasID);
 		packetBuffer.writeResourceLocation(msg.world.location());
 		packetBuffer.writeVarInt(msg.tileGroups.size());
@@ -50,7 +48,7 @@ public class TileGroupsS2CPacket extends S2CPacket<TileGroupsS2CPacket> {
 		}
 	}
 
-	public TileGroupsS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static TileGroupsS2CPacket decode(final FriendlyByteBuf packetBuffer) {
 		int atlasID = packetBuffer.readVarInt();
 		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
 		int length = packetBuffer.readVarInt();
@@ -69,7 +67,7 @@ public class TileGroupsS2CPacket extends S2CPacket<TileGroupsS2CPacket> {
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
-	public boolean onHandle(LocalPlayer player) {
+	public boolean handle(LocalPlayer player) {
 		AtlasData atlasData = MapCore.tileData.getData(atlasID, player.level);
 		WorldData dimData = atlasData.getWorldData(world);
 		for (TileGroup t : tileGroups) {

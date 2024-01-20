@@ -15,26 +15,13 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public abstract class S2CPacket<T> extends AntiqueAtlasPacket<T> {
-//	@SuppressWarnings("deprecation")
-//	public void message(final Supplier<NetworkEvent.Context> contextSupplier) {
-//		final NetworkEvent.Context context = contextSupplier.get();
-//		if (shouldRun()) {
-//			context.enqueueWork(() -> DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-//				context.setPacketHandled(onHandle(Minecraft.getInstance().player));
-//			}));
-//		}
-//	}
-
-
-	public S2CPacket() {}
-
-	@Override
-	public void handle(T var1, Supplier<NetworkEvent.Context> contextSupplier){
+public abstract class S2CPacket extends AntiqueAtlasPacket {
+	@SuppressWarnings("deprecation")
+	public void message(final Supplier<NetworkEvent.Context> contextSupplier) {
 		final NetworkEvent.Context context = contextSupplier.get();
 		if (shouldRun()) {
 			context.enqueueWork(() -> DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-				context.setPacketHandled(onHandle(Minecraft.getInstance().player));
+				context.setPacketHandled(handle(Minecraft.getInstance().player));
 			}));
 		}
 	}
@@ -44,13 +31,10 @@ public abstract class S2CPacket<T> extends AntiqueAtlasPacket<T> {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public abstract boolean onHandle(LocalPlayer player);
+	public abstract boolean handle(LocalPlayer player);
 	
 	public void send(ServerPlayer playerEntity) {
-		try{
-			com.nukateam.nukacraft.common.network.PacketHandler.getPlayChannel().sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
-		}
-		catch (Exception e){}
+		MapCore.MOD_CHANNEL.sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
 	}
 
 	public void send(ServerLevel world) {

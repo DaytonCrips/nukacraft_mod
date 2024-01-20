@@ -18,15 +18,12 @@ import java.util.function.Supplier;
  * @author Hunternif
  * @author Haven King
  */
-public class PutTileC2SPacket extends C2SPacket<PutTileC2SPacket> {
+public class PutTileC2SPacket extends C2SPacket {
 	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "tile", "put");
 
 	int atlasID, x, z; 
 	ResourceLocation tile;
-
-	public PutTileC2SPacket() {
-	}
-
+	
 	public PutTileC2SPacket(int atlasID, int x, int z, ResourceLocation tile) {
 		this.atlasID = atlasID;
 		this.x = x;
@@ -34,14 +31,14 @@ public class PutTileC2SPacket extends C2SPacket<PutTileC2SPacket> {
 		this.tile = tile;
 	}
 
-	public void encode(final PutTileC2SPacket msg, final FriendlyByteBuf packetBuffer) {
+	public static void encode(final PutTileC2SPacket msg, final FriendlyByteBuf packetBuffer) {
 		packetBuffer.writeInt(msg.atlasID);
 		packetBuffer.writeVarInt(msg.x);
 		packetBuffer.writeVarInt(msg.z);
 		packetBuffer.writeResourceLocation(msg.tile);
 	}
 
-	public PutTileC2SPacket decode(final FriendlyByteBuf packetBuffer) {
+	public static PutTileC2SPacket decode(final FriendlyByteBuf packetBuffer) {
 		return new PutTileC2SPacket(
 				packetBuffer.readVarInt(),
 						packetBuffer.readVarInt(),
@@ -49,7 +46,7 @@ public class PutTileC2SPacket extends C2SPacket<PutTileC2SPacket> {
 						packetBuffer.readResourceLocation());
 	}
 
-	public void handle(final PutTileC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
+	public static void handle(final PutTileC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
 		final NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {
 			final ServerPlayer sender = context.getSender();
