@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.Container;

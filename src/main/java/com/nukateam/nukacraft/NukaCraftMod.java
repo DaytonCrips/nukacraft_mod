@@ -3,7 +3,6 @@ package com.nukateam.nukacraft;
 
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
-import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import com.nukateam.nukacraft.common.foundation.items.*;
 import com.nukateam.nukacraft.common.foundation.world.structures.ModStructures;
 import com.nukateam.nukacraft.common.registery.ACSoundRegistry;
@@ -52,7 +51,6 @@ public class NukaCraftMod {
         ModAttributesClass.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);
-        ModBlocksEntity.register(MOD_EVENT_BUS);
         ModMelee.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
         EntityTypes.register(MOD_EVENT_BUS);

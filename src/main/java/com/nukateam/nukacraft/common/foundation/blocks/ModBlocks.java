@@ -35,11 +35,15 @@ public class ModBlocks {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GEARDOOR = registerBlock("geardoor",
-            () -> new GearDoorBlock(BlockBehaviour.Properties.of(Material.STONE).strength(4f)));
-    public static final  RegistryObject<Block> HALFBARRIER = registerBlock("half_barrier",
-            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+    public static final RegistryObject<Block> GEARDOOR = registerBlockWithoutItem("geardoor",
+            () -> new GearDoorBlock(BlockBehaviour.Properties.of(Material.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
+    public static final RegistryObject<Block> OPENGEAR = registerBlockWithoutItem("opengear",
+            () -> new OpenGearBlock(BlockBehaviour.Properties.of(Material.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
+    public static final  RegistryObject<Block> HALFBARRIER = registerBlockWithoutItem("half_barrier",
+            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+    public static final  RegistryObject<Block> FILLERBARRIER = registerBlockWithoutItem("filler_barrier",
+            () -> new Block(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
     public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));

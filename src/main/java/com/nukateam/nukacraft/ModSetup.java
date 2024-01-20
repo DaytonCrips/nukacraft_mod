@@ -2,7 +2,6 @@ package com.nukateam.nukacraft;
 
 import com.nukateam.nukacraft.client.render.renderers.GearDoorRenderer;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
