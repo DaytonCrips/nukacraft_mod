@@ -1,11 +1,11 @@
 package com.nukateam.guns.common.network;
 
+import com.mrcrayfish.framework.api.FrameworkAPI;
+import com.mrcrayfish.framework.api.network.FrameworkChannelBuilder;
 import com.nukateam.guns.client.CustomGunManager;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.network.message.*;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.mrcrayfish.framework.api.FrameworkAPI;
-import com.mrcrayfish.framework.api.network.FrameworkChannelBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -13,16 +13,14 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public class PacketHandler {
     private static SimpleChannel PLAY_CHANNEL;
 
-    /**
-     * Gets the play network channel for MrCrayfish's Gun Mod
-     */
     public static SimpleChannel getPlayChannel() {
         return PLAY_CHANNEL;
+//        return com.nukateam.nukacraft.common.network.PacketHandler.getPlayChannel();
     }
 
     public static void init() {
         PLAY_CHANNEL = FrameworkChannelBuilder
-                .create(NukaCraftMod.MOD_ID, "play", 1)
+            .create(NukaCraftMod.MOD_ID, "play", 1)
                 .registerPlayMessage(C2SMessageAim.class, NetworkDirection.PLAY_TO_SERVER)
                 .registerPlayMessage(C2SMessageReload.class, NetworkDirection.PLAY_TO_SERVER)
                 .registerPlayMessage(MessageShoot.class, NetworkDirection.PLAY_TO_SERVER)

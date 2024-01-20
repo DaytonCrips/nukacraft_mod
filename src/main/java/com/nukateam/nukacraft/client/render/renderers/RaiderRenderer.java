@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingChassis;
+import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.*;
 
 public class RaiderRenderer extends HumanoidMobRenderer<Raider, RaiderModel> {
     public RaiderRenderer(EntityRendererProvider.Context context) {

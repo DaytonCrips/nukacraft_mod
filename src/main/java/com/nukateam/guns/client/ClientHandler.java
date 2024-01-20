@@ -43,7 +43,7 @@ import org.lwjgl.glfw.GLFW;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import static com.nukateam.guns.client.handler.ShootingHandler.gunCooldown;
+import static com.nukateam.guns.client.handler.ShootingHandler.*;
 
 /**
  * Author: MrCrayfish

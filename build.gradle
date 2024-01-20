@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18.2-1.1-SNAPSHOT'
+version = '1.18.2-1.1.0'
 group = 'com.nukateam.nukacraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'nukacraft'
 
@@ -162,8 +162,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9'
 
     implementation fg.deobf("mod.azure.azurelib:azurelib-forge-1.18.2:1.0.23")
-    implementation fg.deobf('com.jetug:chassis_core:2.2.0')
-//    implementation fg.deobf("curse.maven:chassis_core-908954:4848543")
+//    implementation fg.deobf('com.jetug:chassis_core:2.2.0')
+    implementation fg.deobf("curse.maven:chassis_core-908954:5030459")
 //    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     implementation fg.deobf('curse.maven:framework-549225:4613856')
     implementation fg.deobf('curse.maven:configured-457570:4010624')

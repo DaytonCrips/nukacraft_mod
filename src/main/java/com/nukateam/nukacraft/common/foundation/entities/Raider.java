@@ -34,7 +34,6 @@ import java.util.ArrayList;
 
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.*;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingChassis;
 
 public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =

@@ -150,7 +150,7 @@ public class TwoHandedPose extends WeaponPose {
         }
         poseStack.popPose();
 
-        // Back arm holding the handle
+        // Back arm holding the onHandle
         poseStack.pushPose();
         {
 //            poseStack.translate(0, 0.1, -0.675);
