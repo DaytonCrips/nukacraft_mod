@@ -1,5 +1,4 @@
 {
-  "parent": "block/cube_all",
   "textures": {
     "particle": "nukacraft:blocks/vtarmor_down"
   }
