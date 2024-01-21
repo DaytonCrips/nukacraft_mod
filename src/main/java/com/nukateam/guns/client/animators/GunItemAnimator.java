@@ -53,6 +53,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "controller1", 0, animate()));
         controllerRegistrar.add(new AnimationController<>(this, "controller2", 0, holdAnimation()));
+        controllerRegistrar.add(new AnimationController<>(this, "controller3", 0, revolver()));
     }
 
     @Override
@@ -186,6 +187,35 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
             catch (Exception e){
                 return PlayState.STOP;
             }
+        };
+    }
+
+    private int chamberId = 1;
+
+    private AnimationController.AnimationStateHandler<GunItemAnimator> revolver() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            var stack = GUN_RENDERER.getRenderStack();
+            var gun = (GunItem)stack.getItem();
+            var general = gun.getModifiedGun(stack).getGeneral();
+            var entity = GUN_RENDERER.getRenderEntity();
+            var cooldown = ShootingHandler.get().getShootTickGapLeft(entity);
+            RawAnimation animation = null;
+
+            if(cooldown == general.getRate()){
+                if(chamberId < 6)
+                    chamberId++;
+                else chamberId = 1;
+            }
+
+            if(cooldown > 0) {
+                var chamber = "chamber" + chamberId;
+                animation = begin().then(chamber, HOLD_ON_LAST_FRAME);
+                syncAnimation(event, chamber, general.getRate());
+            }
+            return event.setAndContinue(animation);
+
         };
     }
 
