@@ -9,6 +9,7 @@ import com.nukateam.nukacraft.common.foundation.items.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -35,11 +36,18 @@ public class ModBlocks {
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GEARDOOR = registerBlock("geardoor",
-            () -> new GearDoorBlock(BlockBehaviour.Properties.of(Material.STONE).strength(4f)));
-    public static final  RegistryObject<Block> HALFBARRIER = registerBlock("half_barrier",
-            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+    public static final RegistryObject<Block> LANDMINE = registerBlock(ModItemTabs.NUKA_WEAPONS, "fragmine",
+            () -> new LandMineBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.6F, 1.9F).noCollission()));
+    public static final RegistryObject<Block> GEARDOOR = registerBlockWithoutItem("geardoor",
+            () -> new GearDoorBlock(BlockBehaviour.Properties.of(Material.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
+    public static final RegistryObject<Block> OPENGEAR = registerBlockWithoutItem("opengear",
+            () -> new OpenGearBlock(BlockBehaviour.Properties.of(Material.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
+    public static final  RegistryObject<Block> HALFBARRIER = registerBlockWithoutItem("half_barrier",
+            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+    public static final  RegistryObject<Block> FILLERBARRIER = registerBlockWithoutItem("filler_barrier",
+            () -> new Block(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
     public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
             () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
@@ -383,6 +391,13 @@ public class ModBlocks {
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(1f)));
 
+    public static final RegistryObject<Block> FRIDGE = registerBlock("fridge",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+    public static final RegistryObject<Block> COOLER = registerBlock("cooler",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2f)));
+
     public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2f)));
@@ -429,9 +444,10 @@ public class ModBlocks {
             () -> new PipeBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(1.1f, 4.1f).requiresCorrectToolForDrops()));
 
-    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemTabs.NUKA_BLOCKS)));
+    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
+
 
     private static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -440,10 +456,14 @@ public class ModBlocks {
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
+        registerBlockItem(name, toReturn, ModItemTabs.NUKA_BLOCKS);
         return toReturn;
     }
-
+    private static <T extends Block>RegistryObject<T> registerBlock(CreativeModeTab tab, String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItem(name, toReturn, tab);
+        return toReturn;
+    }
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
