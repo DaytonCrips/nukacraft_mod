@@ -29,10 +29,10 @@ public class LandMineBlock extends Block {
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
         if (!pLevel.isClientSide) {
             if (!(owner == pEntity.getUUID())) {
-                    pLevel.destroyBlock(pPos, false);
-                    pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
-                }
+                pLevel.destroyBlock(pPos, false);
+                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
             }
+        }
     }
 
     @Override

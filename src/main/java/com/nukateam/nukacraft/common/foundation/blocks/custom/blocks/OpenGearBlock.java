@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.foundation.blocks.custom.blocks;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
 import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
 import com.nukateam.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
@@ -132,18 +133,16 @@ public class OpenGearBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-
-        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
-        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
-            filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
-                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
-            }
-            pLevel.setBlock(pPos, newstate, 3);
-            return InteractionResult.SUCCESS;
-        } else return InteractionResult.FAIL;
-
+//        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
+//        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
+////        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
+////            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
+////                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+////                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
+////            }
+////            pLevel.setBlock(pPos, newstate, 3);
+////        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override
