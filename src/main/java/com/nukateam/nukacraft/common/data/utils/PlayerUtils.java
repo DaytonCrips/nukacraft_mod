@@ -24,12 +24,12 @@ public class PlayerUtils {
 //    }
 
     public static boolean hasPipboy(Player player){
-        return player.getOffhandItem().getItem() instanceof PipBoyItem;
+        return SlotUtils.getPipboyStack(player).getItem() instanceof PipBoyItem;
     }
 
     @Nullable
     public static PipBoyItem getPipboy(Player player){
-        return hasPipboy() ? (PipBoyItem) player.getOffhandItem().getItem() : null;
+        return hasPipboy() ? (PipBoyItem) SlotUtils.getPipboyStack(player).getItem() : null;
     }
 
     public static ItemStack getPipboyStack(Player player){
