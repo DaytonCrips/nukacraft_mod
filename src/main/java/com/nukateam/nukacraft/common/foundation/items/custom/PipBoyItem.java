@@ -5,6 +5,7 @@ import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyMenu;
 import com.nukateam.nukacraft.client.render.renderers.geo.PipBoyRenderer;
+import com.nukateam.nukacraft.common.data.utils.SlotUtils;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -94,7 +95,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
 
     public static void openPipboyScreen(ServerPlayer player) {
         if(!hasPipboy(player)) return;
-        PipBoy.start(getPipboyStack(player), getPipboy(player).getSkin(), player);
+        PipBoy.start(SlotUtils.getPipboyStack(player), getPipboy(player).getSkin(), player);
         PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
     }
 
