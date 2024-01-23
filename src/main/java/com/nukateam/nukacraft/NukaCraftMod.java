@@ -7,6 +7,7 @@ import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.foundation.blocks.ModPaintingList;
 import com.nukateam.nukacraft.common.foundation.container.ContainerRegistry;
 import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
 import com.nukateam.nukacraft.common.foundation.effects.ModEffect;
@@ -71,7 +72,7 @@ public class NukaCraftMod {
         ContainerRegistry.register(MOD_EVENT_BUS);
         ACSoundRegistry.REGISTER.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
-
+        ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);

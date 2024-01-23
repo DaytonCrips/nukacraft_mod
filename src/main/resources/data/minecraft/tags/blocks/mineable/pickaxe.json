@@ -43,6 +43,9 @@
     "nukacraft:rreddoor",
     "nukacraft:comblock",
     "nukacraft:radioterminal",
-    "nukacraft:shelter_bars"
+    "nukacraft:shelter_bars",
+    "nukacraft:supportwall",
+    "nukacraft:supportwalltop",
+    "nukacraft:supporttop"
   ]
 }
