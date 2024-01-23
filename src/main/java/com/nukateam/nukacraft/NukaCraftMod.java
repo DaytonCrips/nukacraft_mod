@@ -4,6 +4,7 @@ package com.nukateam.nukacraft;
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
+import com.nukateam.nukacraft.common.foundation.blocks.ModPaintingList;
 import com.nukateam.nukacraft.common.foundation.items.*;
 import com.nukateam.nukacraft.common.foundation.world.structures.ModStructures;
 import com.nukateam.nukacraft.common.registery.ACSoundRegistry;
@@ -56,6 +57,7 @@ public class NukaCraftMod {
         ModMelee.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
         EntityTypes.register(MOD_EVENT_BUS);
+        ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         ACSoundRegistry.REGISTER.register(MOD_EVENT_BUS);

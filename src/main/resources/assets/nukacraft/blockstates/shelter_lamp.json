@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "nukacraft:block/shelter_lamp_off"
+    },
+    "lit=true": {
+      "model": "nukacraft:block/shelter_lamp"
+    }
+  }
+}

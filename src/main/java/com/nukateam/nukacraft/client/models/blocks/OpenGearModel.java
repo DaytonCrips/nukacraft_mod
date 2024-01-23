@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.client.models.blocks;
 
-import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 

@@ -40,7 +40,7 @@ public class WorkbenchBlock extends RotatedObjectBlock implements EntityBlock {
 
     @Override
     public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
-        return 6;
+        return 15;
     }
 
     private VoxelShape getShape(BlockState state) {

@@ -2,13 +2,12 @@ package com.nukateam.nukacraft.common.foundation.blocks.custom.blocks;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 
 import com.nukateam.nukacraft.common.foundation.items.ModItems;
 import net.minecraft.core.BlockPos;
 
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TextComponent;
 
 import net.minecraft.server.level.ServerLevel;
 

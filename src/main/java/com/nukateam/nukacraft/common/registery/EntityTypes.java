@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
+import java.util.function.Supplier;
 import java.util.function.BiFunction;
 
 import static net.minecraft.world.entity.EntityType.*;
@@ -42,10 +42,13 @@ public class EntityTypes {
                     .of(Radroach::new, MobCategory.CREATURE)
                     .sized(0.5f, 0.25f));
 
+//    public static final Supplier<EntityType<PassengersEntity>> PASSENGERS_ENTITY = registerEntityType("seat",
+//            (type, world) -> new PassengersEntity(world), MobCategory.MISC, 0.0F, 0.0F);
     public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
             registerEntity("brahmin", Builder
                     .of(Brahmin::new, MobCategory.CREATURE)
                     .sized(1.0f, 1.0f));
+
 
     public static final RegistryObject<EntityType<Bloatfly>> BLOATFLY =
             registerEntity("bloatfly", Builder
@@ -60,6 +63,9 @@ public class EntityTypes {
                     .build("nuclear_explosion_effect"));
 
 
+    public static <T extends Entity> Supplier<EntityType<T>> registerEntityType(String name, EntityType.EntityFactory<T> factory, MobCategory category, float width, float height) {
+        throw new AssertionError();
+    }
 
 
     public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION

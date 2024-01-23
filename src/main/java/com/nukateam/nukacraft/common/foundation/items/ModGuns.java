@@ -48,7 +48,7 @@ public class ModGuns {
 //    public static final RegistryObject<Item> HANDMADE_FLASHER  = ITEMS.register("handmade_flashhider", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.HANDMADE_FLASHER), new Item.Properties().stacksTo(1).tab(ModItemTabs.NUKA_WEAPONS)));
 
 
-//    public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
     public static final RegistryObject<Item> BASEGRENADE = ITEMS.register("baseballgrenade", () -> new BaseGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 72000));
