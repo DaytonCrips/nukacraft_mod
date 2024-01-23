@@ -113,7 +113,6 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
         }, blockPos);
     }
 
-
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
