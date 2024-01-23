@@ -4,6 +4,7 @@ import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.model.GeoModel;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
@@ -22,6 +23,11 @@ public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends Ge
     @Override
     public ResourceLocation getAnimationResource(T gunItem) {
         return getGunResource(gunItem, "animations/guns/", ".animation.json");
+    }
+
+    @Override
+    public RenderType getRenderType(T animatable, ResourceLocation texture) {
+        return RenderType.entityTranslucent(getTextureResource(animatable));
     }
 
     public static ResourceLocation getGunResource(IResourceProvider gunItem, String path, String extension){

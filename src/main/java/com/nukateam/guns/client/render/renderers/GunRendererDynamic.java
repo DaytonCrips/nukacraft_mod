@@ -10,6 +10,7 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,7 +32,8 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
-        addRenderLayer(new LocalPlayerSkinLayer<>(this));
+//        addRenderLayer(new LocalPlayerSkinLayer<>(this));
+        addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
 
     public ItemStack getRenderStack() {
@@ -91,20 +93,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public void renderRecursively(PoseStack poseStack, GunItemAnimator animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
                                   int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//        poseStack.pushPose();
         if(bone.getName().equals(RIGHT_ARM) || bone.getName().equals(LEFT_ARM)){
             bone.setHidden(!renderHands);
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-//        poseStack.popPose();
-
-//        var vertexConsumer = Objects.equals(bone.getName(), "muzzleflash") ?
-//                bufferSource.getBuffer(MuzzleFlashRenderType.getMuzzleFlash()) :
-//                bufferSource.getBuffer(renderType);
-//
-//        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, vertexConsumer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-
     }
 
     protected void renderAttachments(ItemStack stack, GunItemAnimator item) {
