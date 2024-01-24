@@ -32,7 +32,7 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
-//        addRenderLayer(new LocalPlayerSkinLayer<>(this));
+        addRenderLayer(new LocalPlayerSkinLayer<>(this));
         addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
 
@@ -47,6 +47,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public void setEntity(LivingEntity entity) {
         this.buffEntity = entity;
     }
+
+//    @Override
+//    public float getMotionAnimThreshold(GunItemAnimator animatable) {
+//        return 0.005f;
+//    }
 
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,

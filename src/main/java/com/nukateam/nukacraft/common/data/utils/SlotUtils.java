@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.data.utils;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;

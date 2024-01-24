@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.client.models.armors;
 
-import com.nukateam.nukacraft.common.foundation.items.custom.armor.LeatherArmorItem;
-import com.nukateam.nukacraft.common.foundation.items.custom.armor.MetalArmorItem;
+import com.nukateam.nukacraft.common.foundation.items.armor.MetalArmorItem;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 

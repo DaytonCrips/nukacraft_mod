@@ -1,9 +1,7 @@
 package com.nukateam.nukacraft.common.data.utils;
 
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
-import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 

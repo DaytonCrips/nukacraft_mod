@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.helpers;
 
-import com.nukateam.nukacraft.common.foundation.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.ForgeTier;

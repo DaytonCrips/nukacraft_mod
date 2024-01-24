@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;

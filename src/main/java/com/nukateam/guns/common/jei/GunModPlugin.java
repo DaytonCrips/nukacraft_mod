@@ -4,7 +4,7 @@ import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipe;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipes;
 import com.nukateam.guns.common.jei.WorkbenchCategory;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;

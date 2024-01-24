@@ -5,7 +5,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem.openPipboyScreen;
+import static com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem.openPipboyScreen;
 
 public class PipboyScreenPacket {
     public PipboyScreenPacket(){}

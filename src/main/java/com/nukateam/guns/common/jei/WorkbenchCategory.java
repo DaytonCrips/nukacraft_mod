@@ -4,7 +4,7 @@ import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipe;
 import com.nukateam.guns.common.foundation.item.IColored;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

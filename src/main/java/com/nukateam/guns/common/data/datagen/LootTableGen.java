@@ -2,7 +2,7 @@ package com.nukateam.guns.common.data.datagen;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;

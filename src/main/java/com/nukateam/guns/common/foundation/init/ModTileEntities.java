@@ -2,7 +2,7 @@ package com.nukateam.guns.common.foundation.init;
 
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
 import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;

@@ -2,7 +2,6 @@ package com.nukateam.guns.common.foundation.block;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.guns.common.foundation.blockentity.WorkbenchBlockEntity;
-import com.nukateam.nukacraft.common.foundation.blocks.custom.blocks.CustomModelBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;

@@ -9,7 +9,6 @@ import com.nukateam.guns.common.data.datagen.*;
 import com.nukateam.guns.common.foundation.crafting.ModRecipeType;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchIngredient;
 import com.nukateam.guns.common.foundation.entity.GrenadeEntity;
-import com.nukateam.guns.common.foundation.entity.MissileEntity;
 import com.nukateam.guns.common.foundation.init.*;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.nukacraft.NukaCraftMod;
@@ -31,7 +30,7 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.nukateam.nukacraft.common.foundation.items.ModGuns.*;
+import static com.nukateam.nukacraft.common.registery.items.ModGuns.*;
 
 //@Mod(NukaCraftMod.MOD_ID)
 public class GunMod {

@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.models.items;
 
-import com.nukateam.nukacraft.common.foundation.items.custom.*;
+import com.nukateam.nukacraft.common.foundation.items.misc.*;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 

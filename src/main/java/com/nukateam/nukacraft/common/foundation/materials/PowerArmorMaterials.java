@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.materials;
 
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
-import com.nukateam.nukacraft.common.foundation.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;

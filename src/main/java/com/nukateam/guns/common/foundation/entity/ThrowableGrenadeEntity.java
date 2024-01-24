@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import static com.nukateam.nukacraft.common.foundation.items.ModGuns.GRENADE;
+import static com.nukateam.nukacraft.common.registery.items.ModGuns.GRENADE;
 
 public class ThrowableGrenadeEntity extends ThrowableItemEntity {
     public float rotation;

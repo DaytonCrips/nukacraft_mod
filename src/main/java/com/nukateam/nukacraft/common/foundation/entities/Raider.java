@@ -6,7 +6,7 @@ import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.RidePowerArmorGoal;
-import com.nukateam.nukacraft.common.foundation.items.ModGuns;
+import com.nukateam.nukacraft.common.registery.items.ModGuns;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -24,17 +24,13 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.*;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingChassis;
 
 public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =

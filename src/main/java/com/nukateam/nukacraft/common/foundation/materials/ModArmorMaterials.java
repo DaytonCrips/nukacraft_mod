@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.materials;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
