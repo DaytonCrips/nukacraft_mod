@@ -1,6 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.container.screen;
+package com.nukateam.nukacraft.client.render.gui.screen;
 
-import com.nukateam.nukacraft.common.foundation.container.menu.PowerArmorMenu;
+import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.network.packets.FramePickupPacket;
 import com.jetug.chassis_core.client.gui.screen.ChassisScreen;

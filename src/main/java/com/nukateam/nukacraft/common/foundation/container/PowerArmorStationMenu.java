@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.container.menu;
+package com.nukateam.nukacraft.common.foundation.container;
 
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.jetug.chassis_core.common.foundation.container.menu.EntityMenu;
@@ -7,7 +7,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 
-import static com.nukateam.nukacraft.common.foundation.container.ContainerRegistry.ARMOR_STATION_MENU;
+import static com.nukateam.nukacraft.common.registery.ContainerRegistry.ARMOR_STATION_MENU;
 import static com.jetug.chassis_core.common.data.constants.ChassisPart.*;
 import static com.jetug.chassis_core.common.data.constants.Gui.*;
 

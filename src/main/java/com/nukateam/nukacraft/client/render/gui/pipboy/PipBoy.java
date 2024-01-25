@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
-import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributesClass;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +18,6 @@ public class PipBoy {
     public static ResourceLocation pipboySkin;
 
     public static String[] warning_screen = new String[]{
-
             "archive.nukacraft.pip_os.string1", //string1
             "archive.nukacraft.pip_os.string2", //string2
             "archive.nukacraft.pip_os.string3", //string3

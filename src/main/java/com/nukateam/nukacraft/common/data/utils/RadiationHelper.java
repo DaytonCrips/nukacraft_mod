@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.data.utils;
 
-import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
-import com.nukateam.nukacraft.common.foundation.effects.ModEffect;
+import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModEffect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;

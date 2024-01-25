@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.effects;
+package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.world.entity.EntityType;
@@ -30,7 +30,6 @@ public class ModAttributesClass {
     public static void register(IEventBus eventBus) {
         ATTRIBUTE.register(eventBus);
     }
-
 
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {

@@ -1,6 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.container.screen;
+package com.nukateam.nukacraft.client.render.gui.screen;
 
-import com.nukateam.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
+import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;
 import com.jetug.chassis_core.client.gui.screen.ArmorStationScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

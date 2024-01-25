@@ -2,8 +2,8 @@ package com.nukateam.nukacraft.common.foundation.entities;
 
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.container.menu.PowerArmorMenu;
-import com.nukateam.nukacraft.common.foundation.container.menu.PowerArmorStationMenu;
+import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
+import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
@@ -26,7 +26,6 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
