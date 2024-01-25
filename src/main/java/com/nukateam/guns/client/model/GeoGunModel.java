@@ -21,8 +21,8 @@ public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends Ge
     }
 
     @Override
-    public ResourceLocation getGlowingTextureResource(T gunItem) {
-        return getGunResource(gunItem, "textures/guns/" + gunItem.getName() + "/", "_glowmask.png");
+    public ResourceLocation getGlowingTextureResource(T animatable) {
+        return getGunResource(animatable, "textures/guns/" + animatable.getName() + "/", "_glowmask.png");
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.nukateam.guns.client.model.IGlowingModel;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.renderer.GeoRenderer;
+import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,6 +17,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 import static com.jetug.chassis_core.common.util.helpers.TextureHelper.getTextureSize;
+import static mod.azure.azurelib.cache.texture.GeoAbstractTexture.appendToPath;
 
 public class GlowingLayer<T extends GeoAnimatable> extends LayerBase<T> {
     private Pair<Integer, Integer> size;
@@ -31,11 +33,14 @@ public class GlowingLayer<T extends GeoAnimatable> extends LayerBase<T> {
 //        poseStack.translate(-0.5, -0.5, -0.5);
 
         var model = getRenderer().getGeoModel();
-        if(model instanceof IGlowingModel glowingModel) {
-            var texture = glowingModel.getGlowingTextureResource(animatable);
-            if (texture != null)
-                renderLayer(poseStack, animatable, bakedModel, bufferSource, partialTick, packedLight, texture);
-        }
+        var texture = appendToPath(model.getTextureResource(animatable), "_glowmask");
+        renderLayer(poseStack, animatable, bakedModel, bufferSource, partialTick, packedLight, texture);
+
+//        if(model instanceof IGlowingModel glowingModel) {
+//            var texture = glowingModel.getGlowingTextureResource(animatable);
+//            if (texture != null)
+//                renderLayer(poseStack, animatable, bakedModel, bufferSource, partialTick, packedLight, texture);
+//        }
     }
 
     @Override
