@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.registery;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import com.nukateam.nukacraft.client.render.gui.screen.PowerArmorScreen;
 import com.nukateam.nukacraft.client.render.gui.screen.PowerArmorStationScreen;
-import com.nukateam.nukacraft.client.render.screen.*;
 import net.minecraft.client.gui.screens.*;
 
 public class GuiRegistry {
