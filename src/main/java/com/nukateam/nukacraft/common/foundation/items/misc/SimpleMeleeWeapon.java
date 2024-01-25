@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.common.foundation.entities.items.SimpleMeleeRenderer;
+import com.nukateam.nukacraft.client.render.renderers.items.SimpleMeleeRenderer;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import mod.azure.azurelib.animatable.GeoItem;

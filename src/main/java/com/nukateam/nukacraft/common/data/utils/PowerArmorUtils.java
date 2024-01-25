@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.data.utils;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import net.minecraft.world.entity.Entity;
 
 import javax.annotation.Nullable;

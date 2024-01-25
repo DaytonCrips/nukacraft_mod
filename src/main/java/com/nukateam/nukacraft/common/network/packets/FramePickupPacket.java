@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.network.packets;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.LogicalSide;

@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.container;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.jetug.chassis_core.common.foundation.container.menu.EntityMenu;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import net.minecraft.world.Container;

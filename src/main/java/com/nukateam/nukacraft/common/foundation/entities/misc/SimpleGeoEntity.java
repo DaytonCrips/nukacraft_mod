@@ -1,5 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
+import com.nukateam.nukacraft.common.foundation.entities.misc.SimpleEntity;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;

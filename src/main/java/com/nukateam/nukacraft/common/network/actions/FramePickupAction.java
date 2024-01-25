@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.network.actions;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.jetug.chassis_core.common.network.actions.Action;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;

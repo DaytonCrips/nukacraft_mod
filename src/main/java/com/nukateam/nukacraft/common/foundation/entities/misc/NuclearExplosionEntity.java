@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import com.nukateam.nukacraft.common.data.utils.ACMath;
 import mod.azure.azurelib.animatable.GeoEntity;

@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
@@ -7,6 +7,7 @@ import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;

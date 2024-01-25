@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.OwnableBlockEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

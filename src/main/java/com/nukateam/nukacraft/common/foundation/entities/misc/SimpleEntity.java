@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import net.minecraft.nbt.*;
 import net.minecraft.network.protocol.*;

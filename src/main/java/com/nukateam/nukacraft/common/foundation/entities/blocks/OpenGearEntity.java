@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.blocks.entity;
+package com.nukateam.nukacraft.common.foundation.entities.blocks;
 
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import mod.azure.azurelib.animatable.GeoBlockEntity;

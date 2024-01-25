@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
 import com.nukateam.nukacraft.client.models.entity.RaiderModel;
-import com.nukateam.nukacraft.common.foundation.entities.Raider;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

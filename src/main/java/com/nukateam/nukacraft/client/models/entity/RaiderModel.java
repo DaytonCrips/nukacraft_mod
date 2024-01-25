@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.models.entity;
 
-import com.nukateam.nukacraft.common.foundation.entities.Raider;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;

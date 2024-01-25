@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.world.level.block.entity.BlockEntityType;

@@ -1,5 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.world.structures;
+package com.nukateam.nukacraft.common.registery;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.world.structures.SkyStructures;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 
 import net.minecraftforge.registries.DeferredRegister;

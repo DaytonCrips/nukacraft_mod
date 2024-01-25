@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.network.packets;
 
-import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Deathclaw;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.LogicalSide;

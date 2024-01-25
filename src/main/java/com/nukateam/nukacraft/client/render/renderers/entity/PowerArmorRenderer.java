@@ -3,7 +3,7 @@ package com.nukateam.nukacraft.client.render.renderers.entity;
 import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.nukacraft.client.models.PowerArmorModel;
 import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

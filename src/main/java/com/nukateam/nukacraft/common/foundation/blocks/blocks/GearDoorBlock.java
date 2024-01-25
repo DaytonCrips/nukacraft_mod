@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.GearDoorEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;

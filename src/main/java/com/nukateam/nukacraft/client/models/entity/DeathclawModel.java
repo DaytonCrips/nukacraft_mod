@@ -1,11 +1,10 @@
 package com.nukateam.nukacraft.client.models.entity;
 
-import com.nukateam.nukacraft.common.foundation.entities.Deathclaw;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Deathclaw;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.GlowSquid;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;

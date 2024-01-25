@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import com.nukateam.nukacraft.common.data.constants.ExplosionType;
 import mod.azure.azurelib.core.animation.*;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.*;
 
-public class NuclearExplosionEffectEntity extends SimpleGeoEntity{
+public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
     private static final int explosionFade = 40;
     private static final int tremorFade = 30;
     private static final int WORLD_MIN_Y = -64;

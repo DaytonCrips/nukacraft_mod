@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.render.renderers.block;
 
 import com.nukateam.nukacraft.client.models.blocks.OpenGearModel;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import mod.azure.azurelib.renderer.GeoBlockRenderer;
 
 public class OpenGearRenderer extends GeoBlockRenderer<OpenGearEntity> {

@@ -1,7 +1,10 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.entities.*;
+import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

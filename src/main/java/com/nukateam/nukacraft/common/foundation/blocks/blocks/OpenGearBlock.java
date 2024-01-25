@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.blocks.entity.OpenGearEntity;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;

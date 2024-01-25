@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import mod.azure.azurelib.core.animation.AnimationController;

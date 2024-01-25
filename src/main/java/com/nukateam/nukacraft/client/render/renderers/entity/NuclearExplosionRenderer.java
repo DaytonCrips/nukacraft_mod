@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
 import com.nukateam.nukacraft.client.models.*;
-import com.nukateam.nukacraft.common.foundation.entities.*;
 import com.mojang.blaze3d.vertex.*;
+import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
 import mod.azure.azurelib.cache.object.*;
 import mod.azure.azurelib.core.object.Color;
 import mod.azure.azurelib.renderer.*;

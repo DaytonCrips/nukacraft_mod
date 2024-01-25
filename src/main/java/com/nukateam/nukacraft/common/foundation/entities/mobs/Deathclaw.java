@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities;
+package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.network.packets.MobPacket;

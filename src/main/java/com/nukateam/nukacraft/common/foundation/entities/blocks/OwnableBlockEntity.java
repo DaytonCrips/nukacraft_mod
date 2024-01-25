@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.blocks.entity;
+package com.nukateam.nukacraft.common.foundation.entities.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

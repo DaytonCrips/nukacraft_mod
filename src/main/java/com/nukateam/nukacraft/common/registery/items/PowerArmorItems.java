@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import com.nukateam.nukacraft.common.foundation.items.frame.Jetpack;
 import com.jetug.chassis_core.common.data.constants.ChassisPart;
