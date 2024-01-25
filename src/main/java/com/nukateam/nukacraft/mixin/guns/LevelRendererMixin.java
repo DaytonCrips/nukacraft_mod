@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.mixin.guns;
 
-import com.nukateam.guns.client.handler.BulletTrailRenderingHandler;
+import com.nukateam.guns.client.data.handler.BulletTrailRenderingHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.Camera;

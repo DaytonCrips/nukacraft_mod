@@ -2,9 +2,9 @@ package com.nukateam.guns.client.animators;
 
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
-import com.nukateam.guns.client.handler.AimingHandler;
-import com.nukateam.guns.client.handler.ReloadHandler;
-import com.nukateam.guns.client.handler.ShootingHandler;
+import com.nukateam.guns.client.data.handler.AimingHandler;
+import com.nukateam.guns.client.data.handler.ReloadHandler;
+import com.nukateam.guns.client.data.handler.ShootingHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;

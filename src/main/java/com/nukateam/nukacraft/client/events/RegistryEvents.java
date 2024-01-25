@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.events;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.client.render.renderers.vanilla.MiniNukeRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.MiniNukeRenderer;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

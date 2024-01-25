@@ -1,24 +1,24 @@
 package com.nukateam.nukacraft.client.events;
 
 
-import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
-import com.nukateam.nukacraft.client.models.entity.geo.BrahminModel;
+import com.nukateam.nukacraft.client.models.entity.BrahminModel;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
 import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
-import com.nukateam.nukacraft.client.render.renderers.geo.block.GearDoorRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.block.OpenGearRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.entity.DeathclawRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.entity.NuclearExplosionRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.entity.PowerArmorRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.entity.SimpleEntityRenderer;
-import com.nukateam.nukacraft.client.render.renderers.vanilla.EmptyRenderer;
-import com.nukateam.nukacraft.client.render.renderers.vanilla.MiniNukeRenderer;
-import com.nukateam.nukacraft.client.render.renderers.vanilla.RaiderRenderer;
+import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.NuclearExplosionRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.PowerArmorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.SimpleEntityRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.EmptyRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.MiniNukeRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.RaiderRenderer;
 import com.nukateam.nukacraft.common.registery.ModParticles;
+import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;

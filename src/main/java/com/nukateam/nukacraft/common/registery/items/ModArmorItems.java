@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.registery.items;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.armor.*;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
-import com.nukateam.nukacraft.common.foundation.items.misc.armor.*;
 import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;

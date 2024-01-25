@@ -2,7 +2,7 @@ package com.nukateam.guns;
 
 import com.nukateam.guns.client.ClientHandler;
 import com.nukateam.guns.client.MetaLoader;
-import com.nukateam.guns.client.handler.CrosshairHandler;
+import com.nukateam.guns.client.data.handler.CrosshairHandler;
 import com.nukateam.guns.common.base.utils.BoundingBoxManager;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.guns.common.data.datagen.*;

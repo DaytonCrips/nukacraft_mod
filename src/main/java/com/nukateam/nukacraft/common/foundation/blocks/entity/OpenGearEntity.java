@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.entity;
 
-import com.nukateam.guns.common.foundation.init.ModTileEntities;
+import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import mod.azure.azurelib.animatable.GeoBlockEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
@@ -22,9 +22,7 @@ public class OpenGearEntity extends BlockEntity implements GeoBlockEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "doorControl", 0, event ->
-        {
-            return event.setAndContinue( RawAnimation.begin().thenPlayAndHold("open"));
-        }));
+                event.setAndContinue( RawAnimation.begin().thenPlayAndHold("open"))));
     }
 
     @Override

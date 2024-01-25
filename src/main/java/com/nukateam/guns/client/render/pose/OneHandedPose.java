@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.pose;
 
-import com.nukateam.guns.client.render.IHeldAnimation;
+import com.nukateam.guns.client.data.IHeldAnimation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.nukateam.guns.common.base.gun.GripType;
@@ -22,7 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.jetug.chassis_core.client.render.renderers.CustomHandRenderer.doSafe;
-import static com.nukateam.guns.client.render.Render.*;
 
 /**
  * Author: MrCrayfish

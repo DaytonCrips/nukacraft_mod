@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.mixin.common;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.render.gun.IOverrideModel;
 import com.nukateam.guns.client.render.gun.ModelOverrides;
 import com.nukateam.guns.common.foundation.entity.DamageSourceProjectile;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -42,17 +41,16 @@ public class LivingEntityMixin {
         return original;
     }
 
-    @Inject(method = "tick", at = @At(value = "HEAD"))
-    public void tick(CallbackInfo ci) {
-
-        var entity = (LivingEntity)(Object)this;
-
-        ItemStack heldItem = entity.getMainHandItem();
-        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
-            IOverrideModel model = ModelOverrides.getModel(heldItem);
-            if (model != null) {
-                model.tick(entity);
-            }
-        }
-    }
+//    @Inject(method = "tick", at = @At(value = "HEAD"))
+//    public void tick(CallbackInfo ci) {
+//        var entity = (LivingEntity)(Object)this;
+//        var heldItem = entity.getMainHandItem();
+//
+//        if (!heldItem.isEmpty() && heldItem.getItem() instanceof GunItem) {
+//            var model = ModelOverrides.getModel(heldItem);
+//            if (model != null) {
+//                model.tick(entity);
+//            }
+//        }
+//    }
 }

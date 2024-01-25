@@ -7,7 +7,7 @@ import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
-public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> {
+public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> implements IGlowingModel<T> {
     public static final GeoGunModel<GunItemAnimator> INSTANCE = new GeoGunModel<>();
 
     @Override
@@ -18,6 +18,11 @@ public class GeoGunModel<T extends IResourceProvider & GeoAnimatable> extends Ge
     @Override
     public ResourceLocation getTextureResource(T gunItem) {
         return getGunResource(gunItem, "textures/guns/" + gunItem.getName() + "/", ".png");
+    }
+
+    @Override
+    public ResourceLocation getGlowingTextureResource(T gunItem) {
+        return getGunResource(gunItem, "textures/guns/" + gunItem.getName() + "/", "_glowmask.png");
     }
 
     @Override

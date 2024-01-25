@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.entity;
 
-import com.nukateam.guns.common.foundation.init.ModTileEntities;
+import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import mod.azure.azurelib.animatable.GeoBlockEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;

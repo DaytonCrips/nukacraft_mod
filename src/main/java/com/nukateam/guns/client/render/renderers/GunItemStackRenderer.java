@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.renderers;
 
-import com.nukateam.guns.client.handler.GunRenderingHandler;
+import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;

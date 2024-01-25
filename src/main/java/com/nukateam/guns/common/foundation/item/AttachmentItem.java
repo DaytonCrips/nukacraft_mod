@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.foundation.item;
 
-import com.nukateam.guns.client.handler.GunRenderingHandler;
+import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.nukateam.nukacraft.common.data.interfaces.IResourceProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

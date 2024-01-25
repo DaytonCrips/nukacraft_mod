@@ -95,8 +95,6 @@ public class ModSetup {
 
     }
 
-
-
     public static void flowerPotSetup()
     {
         addPlant(ModBlocks.ASTER.getId(), ModBlocks.POTTED_ASTER);
@@ -116,6 +114,7 @@ public class ModSetup {
         addPlant(ModBlocks.BROC.getId(), ModBlocks.POTTED_BROC);
         addPlant(ModBlocks.INVERT.getId(), ModBlocks.POTTED_INVERT);
     }
+
     static void addPlant(ResourceLocation resourceLocation, RegistryObject<Block> registryObject){
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(resourceLocation, registryObject);
     }

@@ -1,16 +1,9 @@
 package com.nukateam.nukacraft.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Matrix4f;
-import com.nukateam.guns.client.handler.BulletTrailRenderingHandler;
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.utils.SlotUtils;
-import net.minecraft.client.Camera;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;

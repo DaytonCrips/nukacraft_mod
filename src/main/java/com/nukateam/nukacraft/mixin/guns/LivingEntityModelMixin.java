@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.mixin.guns;
 
 
-import com.nukateam.guns.client.handler.AimingHandler;
+import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -9,7 +9,6 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

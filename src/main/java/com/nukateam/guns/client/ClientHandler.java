@@ -1,7 +1,7 @@
 package com.nukateam.guns.client;
 
 import com.nukateam.guns.GunMod;
-import com.nukateam.guns.client.handler.*;
+import com.nukateam.guns.client.data.handler.*;
 import com.nukateam.guns.client.input.GunButtonBindings;
 import com.nukateam.guns.client.input.KeyBinds;
 import com.nukateam.guns.client.screen.AttachmentScreen;
@@ -39,7 +39,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import static com.nukateam.guns.client.handler.ShootingHandler.gunCooldown;
+import static com.nukateam.guns.client.data.handler.ShootingHandler.gunCooldown;
 
 /**
  * Author: MrCrayfish

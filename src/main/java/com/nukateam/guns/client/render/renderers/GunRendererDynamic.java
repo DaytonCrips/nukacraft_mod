@@ -5,19 +5,19 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.guns.client.model.GeoGunModel;
+import com.nukateam.guns.client.render.layers.GlowingLayer;
 import com.nukateam.guns.client.render.layers.LocalPlayerSkinLayer;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.entities.Raider;
 import mod.azure.azurelib.cache.object.GeoBone;
-import mod.azure.azurelib.renderer.layer.AutoGlowingGeoLayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.guns.client.handler.GunRenderingHandler.getAttachmentNames;
+import static com.nukateam.guns.client.data.handler.GunRenderingHandler.getAttachmentNames;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
@@ -33,7 +33,8 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
         addRenderLayer(new LocalPlayerSkinLayer<>(this));
-        addRenderLayer(new AutoGlowingGeoLayer<>(this));
+        addRenderLayer(new GlowingLayer<>(this));
+//        addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
 
     public ItemStack getRenderStack() {

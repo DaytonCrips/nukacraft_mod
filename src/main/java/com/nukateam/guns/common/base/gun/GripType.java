@@ -1,6 +1,6 @@
 package com.nukateam.guns.common.base.gun;
 
-import com.nukateam.guns.client.render.IHeldAnimation;
+import com.nukateam.guns.client.data.IHeldAnimation;
 import com.nukateam.guns.client.render.pose.BazookaPose;
 import com.nukateam.guns.client.render.pose.MiniGunPose;
 import com.nukateam.guns.client.render.pose.OneHandedPose;
