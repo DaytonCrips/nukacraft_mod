@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.nukateam.nukacraft.common.data.constants.ExplosionType;
+import com.nukateam.nukacraft.common.data.utils.ExplosionType;
+import com.nukateam.nukacraft.common.settings.ExplosionTypes;
 import mod.azure.azurelib.core.animation.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -19,7 +20,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
     private static final int tremorFade = 30;
     private static final int WORLD_MIN_Y = -64;
     private final int lifeTime;
-    private ExplosionType explosionType = ExplosionType.MINI_NUKE;
+    private ExplosionType explosionType = ExplosionTypes.MINI_NUKE;
     private boolean initialized = false;
 
     public int darkSkyFor;

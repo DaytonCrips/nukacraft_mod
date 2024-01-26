@@ -9,7 +9,7 @@ import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
 import com.nukateam.nukacraft.common.registery.ModAttributesClass;
 import com.nukateam.nukacraft.common.registery.ModEffect;
-import com.nukateam.nukacraft.common.foundation.entities.mobs.MiniNukeEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.registery.ModStructures;

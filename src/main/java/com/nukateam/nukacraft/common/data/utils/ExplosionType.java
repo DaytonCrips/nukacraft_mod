@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.data.constants;
+package com.nukateam.nukacraft.common.data.utils;
 
 public class ExplosionType{
     private float size;
@@ -8,16 +8,6 @@ public class ExplosionType{
     private double tremorDistance;
     private double flashDistance;
     private float tremorIntensity;
-
-    public static ExplosionType MINI_NUKE = new ExplosionType()
-            .size(1)
-            .duration(140)
-            .tremorDistance(45)
-            .tremorDuration(120)
-            .tremorIntensity(1.5f)
-            .flashDistance(50)
-            .flashDuration(16);
-
 
     public ExplosionType size(float size) {
         this.size = size;

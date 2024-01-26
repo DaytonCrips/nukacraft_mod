@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common;
+package com.nukateam.nukacraft.common.settings;
 import com.nukateam.guns.common.data.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
 public class ExtraGunModifiers {

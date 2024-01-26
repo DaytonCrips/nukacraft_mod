@@ -1,10 +1,10 @@
-package com.nukateam.nukacraft.common.foundation.entities.mobs;
+package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.entity.ProjectileEntity;
 import com.nukateam.guns.common.foundation.item.GunItem;
-import com.nukateam.nukacraft.common.data.constants.ExplosionType;
+import com.nukateam.nukacraft.common.settings.ExplosionTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -42,7 +42,7 @@ public class MiniNukeEntity extends ProjectileEntity {
     }
 
     private void explode() {
-        createNuclearExplosion(this, ExplosionType.MINI_NUKE);
+        createNuclearExplosion(this, ExplosionTypes.MINI_NUKE);
     }
 
     @Override
