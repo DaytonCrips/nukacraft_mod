@@ -1,15 +1,10 @@
 package com.nukateam.guns.common;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.ArrayList;
-
-import static com.nukateam.guns.client.handler.ShootingHandler.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.DEDICATED_SERVER)
 public class CommonHandler {

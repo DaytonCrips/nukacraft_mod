@@ -1,9 +1,7 @@
 package com.nukateam.guns.client.render.pose;
 
-import com.nukateam.guns.client.handler.AimingHandler;
-import com.nukateam.guns.client.render.IHeldAnimation;
+import com.nukateam.guns.client.data.IHeldAnimation;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationProcessor;
 import net.minecraft.client.Minecraft;

@@ -1,13 +1,12 @@
 package com.nukateam.nukacraft.common.foundation.materials;
 
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
-import com.nukateam.nukacraft.common.foundation.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class PowerArmorMaterials {
-
     public static ChassisArmorMaterial RAIDER = new ChassisArmorMaterial(
             "raider", 150, new int[]{1, 4, 2, 2}, 3,9,
             SoundEvents.ARMOR_EQUIP_IRON, 0.0F,

@@ -1,10 +1,7 @@
 package com.nukateam.nukacraft;
 
-import com.nukateam.nukacraft.client.render.renderers.GearDoorRenderer;
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.entities.ModBlocksEntity;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -99,8 +96,6 @@ public class ModSetup {
         setRenderLayer(ModBlocks.COOLER.get(), RenderType.cutout());
     }
 
-
-
     public static void flowerPotSetup()
     {
         addPlant(ModBlocks.ASTER.getId(), ModBlocks.POTTED_ASTER);
@@ -120,6 +115,7 @@ public class ModSetup {
         addPlant(ModBlocks.BROC.getId(), ModBlocks.POTTED_BROC);
         addPlant(ModBlocks.INVERT.getId(), ModBlocks.POTTED_INVERT);
     }
+
     static void addPlant(ResourceLocation resourceLocation, RegistryObject<Block> registryObject){
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(resourceLocation, registryObject);
     }

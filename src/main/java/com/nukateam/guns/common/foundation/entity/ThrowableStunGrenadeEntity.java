@@ -32,7 +32,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
-import static com.nukateam.nukacraft.common.foundation.items.ModGuns.STUN_GRENADE;
+import static com.nukateam.nukacraft.common.registery.items.ModGuns.STUN_GRENADE;
 
 @Mod.EventBusSubscriber
 public class ThrowableStunGrenadeEntity extends ThrowableGrenadeEntity {

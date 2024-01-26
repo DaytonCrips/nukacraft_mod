@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.mixin.guns;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.handler.AimingHandler;
+import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.guns.common.foundation.item.GunItem;

@@ -1,18 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.guns.common.base.gun.Gun;
-import com.nukateam.guns.common.foundation.init.ModEnchantments;
 import com.nukateam.guns.common.foundation.item.GunItem;
-import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
-import com.nukateam.nukacraft.common.foundation.items.ModGuns;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
-
-import java.util.Map;
 
 public class PistolGun extends GunItem {
     public PistolGun(Properties properties) {

@@ -2,10 +2,9 @@ package com.nukateam.guns.client;
 
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.data.BulletTrail;
-import com.nukateam.guns.client.CustomGunManager;
 import com.nukateam.guns.client.audio.GunShotSound;
-import com.nukateam.guns.client.handler.BulletTrailRenderingHandler;
-import com.nukateam.guns.client.handler.GunRenderingHandler;
+import com.nukateam.guns.client.data.handler.BulletTrailRenderingHandler;
+import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.foundation.init.ModParticleTypes;
 import com.nukateam.guns.common.foundation.particles.BulletHoleData;

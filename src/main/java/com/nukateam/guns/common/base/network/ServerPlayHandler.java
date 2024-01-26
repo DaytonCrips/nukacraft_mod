@@ -54,7 +54,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Predicate;
 
-import static com.nukateam.guns.client.handler.ShootingHandler.*;
+import static com.nukateam.guns.client.data.handler.ShootingHandler.*;
 //import static com.nukateam.guns.client.handler.ShootingHandler.gunCooldown;
 
 /**

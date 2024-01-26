@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.settings;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.handler.CrosshairHandler;
+import com.nukateam.guns.client.data.handler.CrosshairHandler;
 import com.nukateam.guns.client.render.crosshair.Crosshair;
 import net.minecraft.client.CycleOption;
 import net.minecraft.client.ProgressOption;

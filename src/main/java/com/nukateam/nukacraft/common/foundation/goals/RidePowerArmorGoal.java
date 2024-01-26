@@ -1,8 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.entities.Raider;
-import net.minecraft.world.entity.PathfinderMob;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;

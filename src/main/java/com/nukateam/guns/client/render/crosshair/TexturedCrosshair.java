@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.render.crosshair;
 
 
-import com.nukateam.guns.client.handler.AimingHandler;
+import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;

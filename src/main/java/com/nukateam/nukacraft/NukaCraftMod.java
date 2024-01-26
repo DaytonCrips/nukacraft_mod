@@ -2,28 +2,20 @@ package com.nukateam.nukacraft;
 
 
 import com.mojang.logging.LogUtils;
-import com.mrcrayfish.backpacked.integration.Curios;
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
-import com.nukateam.nukacraft.common.foundation.blocks.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.blocks.ModPaintingList;
-import com.nukateam.nukacraft.common.foundation.container.ContainerRegistry;
-import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
-import com.nukateam.nukacraft.common.foundation.effects.ModEffect;
-import com.nukateam.nukacraft.common.foundation.entities.MiniNukeEntity;
-import com.nukateam.nukacraft.common.foundation.items.*;
+import com.nukateam.nukacraft.common.registery.*;
+import com.nukateam.nukacraft.common.registery.ContainerRegistry;
+import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModEffect;
+import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
-import com.nukateam.nukacraft.common.foundation.world.structures.ModStructures;
+import com.nukateam.nukacraft.common.registery.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
-import com.nukateam.nukacraft.common.registery.ACSoundRegistry;
-import com.nukateam.nukacraft.common.registery.EntityTypes;
-import com.nukateam.nukacraft.common.registery.ModParticles;
-import com.nukateam.nukacraft.common.registery.ModSounds;
+import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -36,8 +28,6 @@ import org.slf4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -70,9 +60,11 @@ public class NukaCraftMod {
         EntityTypes.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
-        ACSoundRegistry.REGISTER.register(MOD_EVENT_BUS);
+        SoundRegistry.REGISTER.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
         ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
+        ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
+
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);

@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.network.packets;
 
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.LogicalSide;
@@ -8,7 +8,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static com.nukateam.nukacraft.common.foundation.items.PowerArmorItems.FRAME_ITEM;
+import static com.nukateam.nukacraft.common.registery.items.PowerArmorItems.FRAME_ITEM;
 import static com.jetug.chassis_core.common.util.helpers.EntityHelper.entityToItem;
 import static net.minecraftforge.items.ItemHandlerHelper.giveItemToPlayer;
 

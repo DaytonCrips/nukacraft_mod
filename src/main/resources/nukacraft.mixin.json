@@ -19,6 +19,7 @@
   "client": [
     "client.GameRendererMixin",
     "client.GuiMixin",
+    "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin",
     "guns.ItemInHandLayerMixin",
     "guns.ItemRendererMixin",

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.render.layers;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.entities.Raider;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import com.jetug.chassis_core.client.render.layers.LayerBase;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.mojang.blaze3d.vertex.PoseStack;

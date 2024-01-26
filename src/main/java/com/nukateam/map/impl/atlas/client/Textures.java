@@ -5,7 +5,7 @@ import com.nukateam.map.impl.atlas.client.texture.DynamicTexture;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.IconTexture;
 import com.nukateam.map.impl.atlas.client.texture.Texture;
-import com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.foundation.items.custom.PipBoyItem.getPipboyFrame;
+import static com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem.getPipboyFrame;
 
 @OnlyIn(Dist.CLIENT)
 public class Textures {

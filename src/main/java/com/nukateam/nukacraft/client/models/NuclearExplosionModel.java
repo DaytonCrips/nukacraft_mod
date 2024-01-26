@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.models;
 
-import com.nukateam.nukacraft.common.foundation.entities.*;
+import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
 import mod.azure.azurelib.model.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.*;

@@ -5,10 +5,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.guns.client.animators.GunItemAnimator;
 import com.nukateam.guns.client.model.GeoGunModel;
+import com.nukateam.guns.client.render.layers.GlowingLayer;
 import com.nukateam.guns.client.render.layers.LocalPlayerSkinLayer;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.entities.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.entities.Raider;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -16,7 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.guns.client.handler.GunRenderingHandler.getAttachmentNames;
+import static com.nukateam.guns.client.data.handler.GunRenderingHandler.getAttachmentNames;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
@@ -32,6 +33,8 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public GunRendererDynamic() {
         super(new GeoGunModel<>(), GunItemAnimator::new);
         addRenderLayer(new LocalPlayerSkinLayer<>(this));
+        addRenderLayer(new GlowingLayer<>(this));
+//        addRenderLayer(new AutoGlowingGeoLayer<>(this));
     }
 
     public ItemStack getRenderStack() {
@@ -45,6 +48,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public void setEntity(LivingEntity entity) {
         this.buffEntity = entity;
     }
+
+//    @Override
+//    public float getMotionAnimThreshold(GunItemAnimator animatable) {
+//        return 0.005f;
+//    }
 
     @Override
     public void render(LivingEntity entity, ItemStack stack, TransformType transformType, PoseStack poseStack,
@@ -91,20 +99,11 @@ public class GunRendererDynamic extends GeoDynamicItemRenderer<GunItemAnimator> 
     public void renderRecursively(PoseStack poseStack, GunItemAnimator animatable, GeoBone bone, RenderType renderType,
                                   MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
                                   int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//        poseStack.pushPose();
         if(bone.getName().equals(RIGHT_ARM) || bone.getName().equals(LEFT_ARM)){
             bone.setHidden(!renderHands);
         }
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-//        poseStack.popPose();
-
-//        var vertexConsumer = Objects.equals(bone.getName(), "muzzleflash") ?
-//                bufferSource.getBuffer(MuzzleFlashRenderType.getMuzzleFlash()) :
-//                bufferSource.getBuffer(renderType);
-//
-//        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, vertexConsumer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-
     }
 
     protected void renderAttachments(ItemStack stack, GunItemAnimator item) {

@@ -1,14 +1,13 @@
 package com.nukateam.guns.client.screen;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.handler.GunRenderingHandler;
+import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.nukateam.guns.client.screen.widget.MiniButton;
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.foundation.container.AttachmentContainer;
 import com.nukateam.guns.common.foundation.container.slot.AttachmentSlot;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -16,7 +15,6 @@ import com.mojang.math.Vector3f;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -27,8 +25,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.ConfigGuiHandler;
-import net.minecraftforge.fml.ModList;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 

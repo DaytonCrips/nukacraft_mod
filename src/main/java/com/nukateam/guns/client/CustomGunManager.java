@@ -4,7 +4,7 @@ import com.nukateam.guns.common.base.gun.CustomGun;
 import com.nukateam.guns.common.base.CustomGunLoader;
 import com.nukateam.guns.common.network.message.S2CMessageUpdateGuns;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.ModGuns;
+import com.nukateam.nukacraft.common.registery.items.ModGuns;
 import com.mrcrayfish.framework.api.data.login.ILoginData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;

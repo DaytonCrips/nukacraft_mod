@@ -1,6 +1,6 @@
 package com.nukateam.guns.client.render.crosshair;
 
-import com.nukateam.guns.client.handler.CrosshairHandler;
+import com.nukateam.guns.client.data.handler.CrosshairHandler;
 import com.nukateam.guns.common.data.interfaces.IResourceLocation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;

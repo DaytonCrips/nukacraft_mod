@@ -1,27 +1,30 @@
 package com.nukateam.nukacraft.client.events;
 
 
-import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
-import com.nukateam.nukacraft.client.models.entity.geo.BrahminModel;
+import com.nukateam.nukacraft.client.models.entity.BrahminModel;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
 import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
-import com.nukateam.nukacraft.client.render.renderers.*;
-import com.nukateam.nukacraft.client.render.renderers.geo.DeathclawRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.NuclearExplosionRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.PowerArmorRenderer;
-import com.nukateam.nukacraft.client.render.renderers.geo.SimpleEntityRenderer;
+import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.NuclearExplosionRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.PowerArmorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.SimpleEntityRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.EmptyRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.MiniNukeRenderer;
+import com.nukateam.nukacraft.client.render.renderers.entity.RaiderRenderer;
 import com.nukateam.nukacraft.common.registery.ModParticles;
+import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import static com.nukateam.map.impl.atlas.MapCore.initMap;
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;

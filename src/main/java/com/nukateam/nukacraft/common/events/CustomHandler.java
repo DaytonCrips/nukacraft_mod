@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.events;
 
-import com.nukateam.nukacraft.common.foundation.effects.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributesClass;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
