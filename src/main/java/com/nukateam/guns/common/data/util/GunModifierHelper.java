@@ -1,7 +1,9 @@
 package com.nukateam.guns.common.data.util;
 
+import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.interfaces.IGunModifier;
+import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
@@ -11,6 +13,11 @@ import net.minecraft.world.item.ItemStack;
  */
 public class GunModifierHelper {
     private static final IGunModifier[] EMPTY = {};
+
+    public static boolean isOneHanded(ItemStack itemStack){
+        var gunItem = (GunItem)itemStack.getItem();
+        return gunItem.getModifiedGun(itemStack).getGeneral().getGripType() != GripType.ONE_HANDED;
+    }
 
     private static IGunModifier[] getModifiers(ItemStack weapon, IAttachment.Type type) {
         ItemStack stack = Gun.getAttachment(type, weapon);

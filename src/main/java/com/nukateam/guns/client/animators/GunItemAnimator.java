@@ -198,10 +198,6 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         };
     }
 
-    private InteractionHand getInteractionHand(HumanoidArm arm) {
-        return arm == HumanoidArm.RIGHT ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-    }
-
 //    private HumanoidArm getHandHoldingItem
 
     private int chamberId = 1;

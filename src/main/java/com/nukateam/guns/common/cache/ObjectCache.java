@@ -18,8 +18,7 @@ public final class ObjectCache {
 
     private final Map<Object, Object> cache = new HashMap<>();
 
-    private ObjectCache() {
-    }
+    private ObjectCache() {}
 
     @SuppressWarnings("unchecked")
     public <T> T store(Object key, Supplier<T> supplier) {

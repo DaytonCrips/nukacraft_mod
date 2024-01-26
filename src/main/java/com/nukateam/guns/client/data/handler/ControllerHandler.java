@@ -21,6 +21,7 @@ import com.mrcrayfish.controllable.event.GatherNavigationPointsEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -150,11 +151,11 @@ public class ControllerHandler {
         }
 
         if (this.reloadCounter > 40) {
-            ClientReloadHandler.get().setReloading(false);
+            ClientReloadHandler.get().setReloading(false, HumanoidArm.RIGHT);
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
             this.reloadCounter = -1;
         } else if (this.reloadCounter > 0 && !Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton())) {
-            ClientReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player));
+            ClientReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player), HumanoidArm.RIGHT);
             this.reloadCounter = -1;
         }
     }

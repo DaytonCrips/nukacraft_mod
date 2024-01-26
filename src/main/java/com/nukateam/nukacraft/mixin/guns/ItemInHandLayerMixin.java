@@ -4,6 +4,7 @@ import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -35,13 +36,13 @@ public class ItemInHandLayerMixin {
         if (hand == InteractionHand.OFF_HAND) {
             if(stack != entity.getOffhandItem()) return;
 
-            if (stack.getItem() instanceof GunItem gunItem && gunItem.getGun().getGeneral().getGripType() != GripType.ONE_HANDED) {
+            if (stack.getItem() instanceof GunItem gunItem && gunItem.getModifiedGun(stack).getGeneral().getGripType() != GripType.ONE_HANDED) {
                 ci.cancel();
                 return;
             }
 
             if (entity.getMainHandItem().getItem() instanceof GunItem gunItem) {
-                Gun modifiedGun = gunItem.getModifiedGun(entity.getMainHandItem());
+                var modifiedGun = gunItem.getModifiedGun(entity.getMainHandItem());
                 if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
                     ci.cancel();
                     return;
@@ -73,7 +74,7 @@ public class ItemInHandLayerMixin {
             var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
 
             heldAnimation.applyHeldItemTransforms(entity, hand, AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
-            GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
+            GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light);
         }
         poseStack.popPose();
     }

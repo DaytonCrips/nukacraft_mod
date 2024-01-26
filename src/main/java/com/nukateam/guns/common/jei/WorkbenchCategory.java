@@ -69,7 +69,7 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
 
     @Override
     public RecipeType<WorkbenchRecipe> getRecipeType() {
-        return com.nukateam.nukacraft.guns.jei.GunModPlugin.WORKBENCH;
+        return GunModPlugin.WORKBENCH;
     }
 
     @Override
@@ -142,13 +142,13 @@ public class WorkbenchCategory implements IRecipeCategory<WorkbenchRecipe> {
     @Override
     @SuppressWarnings("removal")
     public ResourceLocation getUid() {
-        return com.nukateam.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getUid();
+        return GunModPlugin.WORKBENCH.getUid();
     }
 
     // TODO remove in 1.19?
     @Override
     @SuppressWarnings("removal")
     public Class<? extends WorkbenchRecipe> getRecipeClass() {
-        return com.nukateam.nukacraft.guns.jei.GunModPlugin.WORKBENCH.getRecipeClass();
+        return GunModPlugin.WORKBENCH.getRecipeClass();
     }
 }

@@ -245,24 +245,30 @@ public class ServerPlayHandler {
      * @param player
      */
     public static void handleUnload(ServerPlayer player) {
-        ItemStack stack = player.getMainHandItem();
+        unloadArm(player, player.getMainHandItem());
+        unloadArm(player, player.getOffhandItem());
+    }
+
+    private static void unloadArm(ServerPlayer player, ItemStack stack) {
+//        ItemStack stack = player.getMainHandItem();
         if (stack.getItem() instanceof GunItem) {
-            CompoundTag tag = stack.getTag();
+            var tag = stack.getTag();
             if (tag != null && tag.contains("AmmoCount", Tag.TAG_INT)) {
                 int count = tag.getInt("AmmoCount");
                 tag.putInt("AmmoCount", 0);
 
-                GunItem gunItem = (GunItem) stack.getItem();
-                Gun gun = gunItem.getModifiedGun(stack);
-                ResourceLocation id = gun.getProjectile().getItem();
+                var gunItem = (GunItem) stack.getItem();
+                var gun = gunItem.getModifiedGun(stack);
+                var id = gun.getProjectile().getItem();
+                var item = ForgeRegistries.ITEMS.getValue(id);
 
-                Item item = ForgeRegistries.ITEMS.getValue(id);
                 if (item == null) {
                     return;
                 }
 
                 int maxStackSize = item.getMaxStackSize();
                 int stacks = count / maxStackSize;
+
                 for (int i = 0; i < stacks; i++) {
                     spawnAmmo(player, new ItemStack(item, maxStackSize));
                 }
