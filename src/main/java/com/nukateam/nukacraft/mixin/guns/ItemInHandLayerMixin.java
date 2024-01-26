@@ -2,9 +2,6 @@ package com.nukateam.nukacraft.mixin.guns;
 
 import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.guns.client.data.handler.GunRenderingHandler;
-import com.nukateam.guns.common.base.gun.GripType;
-import com.nukateam.guns.common.base.gun.Gun;
-import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
@@ -21,6 +18,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static com.nukateam.guns.common.data.util.GunModifierHelper.*;
+
 /**
  * Author: MrCrayfish
  */
@@ -32,31 +31,25 @@ public class ItemInHandLayerMixin {
                                        ItemTransforms.TransformType transformType, HumanoidArm arm,
                                        PoseStack poseStack, MultiBufferSource source, int light, CallbackInfo ci) {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+        if(stack != entity.getItemInHand(hand)) return;
+        var oppositeHand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
+        var oppositeStack = entity.getItemInHand(oppositeHand);
 
         if (hand == InteractionHand.OFF_HAND) {
-            if(stack != entity.getOffhandItem()) return;
-
-            if (stack.getItem() instanceof GunItem gunItem && gunItem.getModifiedGun(stack).getGeneral().getGripType() != GripType.ONE_HANDED) {
+            if(!canRenderInOffhand(stack) || !canRenderInOffhand(oppositeStack)){
                 ci.cancel();
                 return;
-            }
-
-            if (entity.getMainHandItem().getItem() instanceof GunItem gunItem) {
-                var modifiedGun = gunItem.getModifiedGun(entity.getMainHandItem());
-                if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
-                    ci.cancel();
-                    return;
-                }
             }
         }
 
         if (stack.getItem() instanceof GunItem gunItem) {
             ci.cancel();
-            ItemInHandLayer<?, ?> layer = (ItemInHandLayer<?, ?>) (Object) this;
+            var layer = (ItemInHandLayer<?, ?>) (Object) this;
             renderArmWithGun(layer, entity, stack, gunItem, transformType, hand, arm,
                     poseStack, source, light, Minecraft.getInstance().getFrameTime());
         }
     }
+
 
     //Third person render
     private static void renderArmWithGun(ItemInHandLayer<?, ?> layer, LivingEntity entity, ItemStack stack,

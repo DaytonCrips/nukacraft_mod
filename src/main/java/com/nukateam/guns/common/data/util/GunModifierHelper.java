@@ -19,6 +19,14 @@ public class GunModifierHelper {
         return gunItem.getModifiedGun(itemStack).getGeneral().getGripType() != GripType.ONE_HANDED;
     }
 
+    public static boolean canRenderInOffhand(ItemStack stack){
+        if(stack.getItem() instanceof GunItem gunItem){
+            var animation = gunItem.getModifiedGun(stack).getGeneral().getGripType().getHeldAnimation();
+            return animation.canRenderOffhandItem();
+        }
+        return true;
+    }
+
     private static IGunModifier[] getModifiers(ItemStack weapon, IAttachment.Type type) {
         ItemStack stack = Gun.getAttachment(type, weapon);
         if (!stack.isEmpty() && stack.getItem() instanceof IAttachment<?> attachment) {
