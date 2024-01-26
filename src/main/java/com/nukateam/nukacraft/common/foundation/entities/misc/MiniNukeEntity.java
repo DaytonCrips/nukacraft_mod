@@ -28,8 +28,7 @@ public class MiniNukeEntity extends ProjectileEntity {
     }
 
     @Override
-    protected void onProjectileTick()
-    {
+    protected void onProjectileTick() {
         if (this.level.isClientSide) {
             for (int i = 5; i > 0; i--) {
                 this.level.addParticle(ParticleTypes.CLOUD, true, this.getX() - (this.getDeltaMovement().x() / i), this.getY() - (this.getDeltaMovement().y() / i), this.getZ() - (this.getDeltaMovement().z() / i), 0, 0, 0);
@@ -46,22 +45,19 @@ public class MiniNukeEntity extends ProjectileEntity {
     }
 
     @Override
-    protected void onHitEntity(Entity entity, Vec3 hitVec, Vec3 startVec, Vec3 endVec, boolean headshot)
-    {
+    protected void onHitEntity(Entity entity, Vec3 hitVec, Vec3 startVec, Vec3 endVec, boolean headshot) {
         //createExplosion(this, 20f, false);
         explode();
     }
 
     @Override
-    protected void onHitBlock(BlockState state, BlockPos pos, Direction face, double x, double y, double z)
-    {
+    protected void onHitBlock(BlockState state, BlockPos pos, Direction face, double x, double y, double z) {
         //createExplosion(this, 20f, false);
         explode();
     }
 
     @Override
-    public void onExpired()
-    {
+    public void onExpired() {
         //createExplosion(this, 20f, false);
         explode();
     }

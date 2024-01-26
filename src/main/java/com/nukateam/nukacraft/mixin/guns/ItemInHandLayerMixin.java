@@ -33,6 +33,8 @@ public class ItemInHandLayerMixin {
         var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
 
         if (hand == InteractionHand.OFF_HAND) {
+            if(stack != entity.getOffhandItem()) return;
+
             if (stack.getItem() instanceof GunItem gunItem && gunItem.getGun().getGeneral().getGripType() != GripType.ONE_HANDED) {
                 ci.cancel();
                 return;
@@ -50,9 +52,6 @@ public class ItemInHandLayerMixin {
         if (stack.getItem() instanceof GunItem gunItem) {
             ci.cancel();
             ItemInHandLayer<?, ?> layer = (ItemInHandLayer<?, ?>) (Object) this;
-
-//            GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, Minecraft.getInstance().getFrameTime());
-
             renderArmWithGun(layer, entity, stack, gunItem, transformType, hand, arm,
                     poseStack, source, light, Minecraft.getInstance().getFrameTime());
         }
@@ -64,17 +63,18 @@ public class ItemInHandLayerMixin {
                                          InteractionHand hand, HumanoidArm arm, PoseStack poseStack,
                                          MultiBufferSource source, int light, float deltaTicks) {
         poseStack.pushPose();
-        layer.getParentModel().translateToHand(arm, poseStack);
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
+        {
+            layer.getParentModel().translateToHand(arm, poseStack);
+            poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));
+            GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
 
-        GunRenderingHandler.get().applyWeaponScale(stack, poseStack);
-        Gun gun = item.getModifiedGun(stack);
+            var gun = item.getModifiedGun(stack);
+            var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
 
-        var heldAnimation = gun.getGeneral().getGripType().getHeldAnimation();
-        heldAnimation.applyHeldItemTransforms(entity, hand, AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
-
-        GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
+            heldAnimation.applyHeldItemTransforms(entity, hand, AimingHandler.get().getAimProgress(entity, deltaTicks), poseStack, source);
+            GunRenderingHandler.get().renderWeapon(entity, stack, transformType, poseStack, source, light, deltaTicks);
+        }
         poseStack.popPose();
     }
 }
