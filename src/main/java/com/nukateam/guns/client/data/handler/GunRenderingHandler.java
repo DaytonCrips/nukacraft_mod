@@ -6,11 +6,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.nukateam.guns.Config;
 import com.nukateam.guns.client.data.util.RenderUtil;
-import com.nukateam.guns.client.render.GunRenderType;
 import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.properties.SightAnimation;
-import com.nukateam.guns.common.data.util.*;
 import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.event.GunFireEvent;
 import com.nukateam.guns.common.foundation.init.*;
@@ -27,7 +25,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -38,7 +35,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.LightLayer;
@@ -47,7 +43,6 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
@@ -55,7 +50,6 @@ import java.util.*;
 
 import static com.nukateam.guns.client.data.util.PropertyHelper.*;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
-import static com.nukateam.guns.client.render.renderers.GunRendererDynamic.PACKED_OVERLAY;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GunRenderingHandler {
@@ -128,8 +122,8 @@ public class GunRenderingHandler {
 
         Minecraft mc = Minecraft.getInstance();
         if (mc.player != null && mc.player.isSprinting()
-                && !ModSyncedDataKeys.SHOOTING.getValue(mc.player)
-                && !ModSyncedDataKeys.RELOADING.getValue(mc.player)
+                && !ModSyncedDataKeys.SHOOTING_RIGHT.getValue(mc.player)
+                && !ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player)
                 && !AimingHandler.get().isAiming()
                 && this.sprintCooldown == 0) {
             if (this.sprintTransition < 5) {
@@ -479,7 +473,7 @@ public class GunRenderingHandler {
     }
 
     private void applyReloadTransforms(PoseStack poseStack, float partialTicks) {
-        float reloadProgress = ReloadHandler.get().getReloadProgress(partialTicks);
+        float reloadProgress = ClientReloadHandler.get().getReloadProgress(partialTicks);
         poseStack.translate(0, 0.35 * reloadProgress, 0);
         poseStack.translate(0, 0, -0.1 * reloadProgress);
         poseStack.mulPose(Vector3f.XP.rotationDegrees(45F * reloadProgress));

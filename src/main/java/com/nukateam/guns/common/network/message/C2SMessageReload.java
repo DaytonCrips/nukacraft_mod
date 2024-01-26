@@ -40,13 +40,13 @@ public class C2SMessageReload extends PlayMessage<C2SMessageReload> {
         {
             ServerPlayer player = supplier.get().getSender();
             if (player != null && !player.isSpectator()) {
-                ModSyncedDataKeys.RELOADING.setValue(player, message.reload); // This has to be set in order to verify the packet is sent if the event is cancelled
+                ModSyncedDataKeys.RELOADING_RIGHT.setValue(player, message.reload); // This has to be set in order to verify the packet is sent if the event is cancelled
                 if (!message.reload)
                     return;
 
                 ItemStack gun = player.getMainHandItem();
                 if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, gun))) {
-                    ModSyncedDataKeys.RELOADING.setValue(player, false);
+                    ModSyncedDataKeys.RELOADING_RIGHT.setValue(player, false);
                     return;
                 }
                 MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Post(player, gun));

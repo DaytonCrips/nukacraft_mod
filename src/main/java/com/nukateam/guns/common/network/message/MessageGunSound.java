@@ -27,7 +27,8 @@ public class MessageGunSound extends PlayMessage<MessageGunSound> {
     public MessageGunSound() {
     }
 
-    public MessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z, float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
+    public MessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z,
+                           float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
         this.id = id;
         this.category = category;
         this.x = x;

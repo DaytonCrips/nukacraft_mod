@@ -138,7 +138,7 @@ public class AimingHandler {
         if (AimingHandler.get().getNormalisedAdsProgress() == 0)
             return;
 
-        if (ModSyncedDataKeys.RELOADING.getValue(mc.player))
+        if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player))
             return;
 
         Gun modifiedGun = gunItem.getModifiedGun(heldItem);
@@ -199,7 +199,7 @@ public class AimingHandler {
         if (!this.localTracker.isAiming() && this.isLookingAtInteractableBlock())
             return false;
 
-        if (ModSyncedDataKeys.RELOADING.getValue(mc.player))
+        if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player))
             return false;
 
         boolean zooming = mc.options.keyUse.isDown();

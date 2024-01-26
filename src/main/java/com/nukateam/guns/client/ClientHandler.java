@@ -54,7 +54,7 @@ public class ClientHandler {
         MinecraftForge.EVENT_BUS.register(CrosshairHandler.get());
         MinecraftForge.EVENT_BUS.register(GunRenderingHandler.get());
         MinecraftForge.EVENT_BUS.register(RecoilHandler.get());
-        MinecraftForge.EVENT_BUS.register(ReloadHandler.get());
+        MinecraftForge.EVENT_BUS.register(ClientReloadHandler.get());
         MinecraftForge.EVENT_BUS.register(ShootingHandler.get());
         MinecraftForge.EVENT_BUS.register(SoundHandler.get());
         MinecraftForge.EVENT_BUS.register(new EntityModelHandler());

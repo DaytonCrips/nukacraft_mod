@@ -1,7 +1,7 @@
 package com.nukateam.guns.client.render.pose;
 
 import com.nukateam.guns.Config;
-import com.nukateam.guns.client.data.handler.ReloadHandler;
+import com.nukateam.guns.client.data.handler.ClientReloadHandler;
 import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.guns.common.base.gun.GripType;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -127,7 +127,7 @@ public class TwoHandedPose extends WeaponPose {
         // Front arm holding the barrel
         poseStack.pushPose();
         {
-            float reloadProgress = ReloadHandler.get().getReloadProgress(partialTicks);
+            float reloadProgress = ClientReloadHandler.get().getReloadProgress(partialTicks);
             poseStack.translate(reloadProgress * 0.5, -reloadProgress, -reloadProgress * 0.5);
 
             poseStack.scale(0.5F, 0.5F, 0.5F);

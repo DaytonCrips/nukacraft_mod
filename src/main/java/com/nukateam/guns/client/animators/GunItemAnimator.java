@@ -3,7 +3,7 @@ package com.nukateam.guns.client.animators;
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
 import com.nukateam.guns.client.data.handler.AimingHandler;
-import com.nukateam.guns.client.data.handler.ReloadHandler;
+import com.nukateam.guns.client.data.handler.ClientReloadHandler;
 import com.nukateam.guns.client.data.handler.ShootingHandler;
 import com.nukateam.guns.client.model.GeoGunModel;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -14,6 +14,8 @@ import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Lazy;
@@ -21,22 +23,18 @@ import net.minecraftforge.common.util.Lazy;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
-import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
-import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
-import static com.nukateam.nukacraft.common.data.constants.Animations.SHOT;
-import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
+import static com.jetug.chassis_core.client.ClientConfig.*;
+import static com.jetug.chassis_core.common.util.extensions.Collection.*;
+import static com.nukateam.guns.client.render.Render.*;
+import static com.nukateam.nukacraft.common.data.constants.Animations.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
-import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static mod.azure.azurelib.core.animation.RawAnimation.*;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND;
 
 @OnlyIn(Dist.CLIENT)
 public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
-    public static final String RELOAD = "reload";
-    public static final String HOLD = "hold";
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
     private final Minecraft minecraft = Minecraft.getInstance();
 
@@ -95,7 +93,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
 
             RawAnimation animation = null;
 
-//            if(entity != null && ReloadHandler.get().isReloading(entity)){
+//            if(entity != null && ClientReloadHandler.get().isReloadingRight(entity)){
 //                if(reloadTransforms.contains(transformType)) {
 //                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
 //                    syncAnimation(event, RELOAD , general.getReloadTime());
@@ -143,24 +141,39 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 var gun = (GunItem)stack.getItem();
                 var general = gun.getModifiedGun(stack).getGeneral();
                 var entity = GUN_RENDERER.getRenderEntity();
+                var reloadHandler = ClientReloadHandler.get();
 
                 if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
                     return event.setAndContinue(begin().then(HOLD, LOOP));
                 }
-
-//                float cooldown = ShootingHandler.get().getCooldown(stack);
-                float cooldown = ShootingHandler.get().getShootTickGapLeft(entity);
                 RawAnimation animation = null;
 
-                if(entity != null && ReloadHandler.get().isReloading(entity)){
+//                var isShooting = ModSyncedDataKeys.SHOOTING_RIGHT.getValue(entity);
+                var isRightHand = transformType == FIRST_PERSON_RIGHT_HAND || transformType == THIRD_PERSON_RIGHT_HAND;
+                var arm = isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+                var cooldown = ShootingHandler.get().getCooldownRight(entity, arm);
+                var isShooting = ShootingHandler.get().isShooting(entity, arm);
+
+//                var oppositeItem = entity.getItemInHand(getInteractionHand(arm.getOpposite()));
+//                if(oppositeItem.getItem() instanceof GunItem)
+
+                reloadHandler.isReloading(entity, arm);
+
+//                isRightHand && reloadHandler.isReloadingRight(entity) /*entity != null*/
+//                        || !isRightHand && reloadHandler.isReloadingLeft(entity)
+
+                if(reloadHandler.isReloading(entity, arm)){
                     if(reloadTransforms.contains(transformType)) {
                         animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
                         syncAnimation(event, RELOAD , general.getReloadTime());
                     }
                 }
-                else if(cooldown > 0) {
+                else if(isShooting) {
                     animation = begin().then(SHOT, LOOP);
                     syncAnimation(event, SHOT, general.getRate());
+                }
+                else if(reloadHandler.isReloading(entity, arm.getOpposite())) {
+                    animation = begin().then("hide", HOLD_ON_LAST_FRAME);
                 }
                 else{
                     if(currentGun == gun)
@@ -185,6 +198,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         };
     }
 
+    private InteractionHand getInteractionHand(HumanoidArm arm) {
+        return arm == HumanoidArm.RIGHT ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+    }
+
+//    private HumanoidArm getHandHoldingItem
+
     private int chamberId = 1;
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> revolver() {
@@ -195,7 +214,11 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
             var gun = (GunItem)stack.getItem();
             var general = gun.getModifiedGun(stack).getGeneral();
             var entity = GUN_RENDERER.getRenderEntity();
-            var cooldown = ShootingHandler.get().getShootTickGapLeft(entity);
+            var isRightHand = transformType == FIRST_PERSON_RIGHT_HAND || transformType == THIRD_PERSON_RIGHT_HAND;
+            var arm = isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+            var cooldown = ShootingHandler.get().getCooldownRight(entity, arm);
+            var isShooting = ShootingHandler.get().isShooting(entity, arm);
+
             RawAnimation animation = null;
 
             if(cooldown == general.getRate()){
@@ -204,7 +227,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 else chamberId = 1;
             }
 
-            if(cooldown > 0) {
+            if(isShooting) {
                 var chamber = "chamber" + chamberId;
                 animation = begin().then(chamber, HOLD_ON_LAST_FRAME);
                 syncAnimation(event, chamber, general.getRate());

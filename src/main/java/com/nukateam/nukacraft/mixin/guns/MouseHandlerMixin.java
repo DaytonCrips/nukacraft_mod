@@ -27,7 +27,7 @@ public class MouseHandlerMixin {
         if (mc.player != null && !mc.player.getMainHandItem().isEmpty() && mc.options.getCameraType() == CameraType.FIRST_PERSON) {
             ItemStack heldItem = mc.player.getMainHandItem();
             if (heldItem.getItem() instanceof GunItem gunItem) {
-                if (AimingHandler.get().isAiming() && !ModSyncedDataKeys.RELOADING.getValue(mc.player)) {
+                if (AimingHandler.get().isAiming() && !ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player)) {
                     Gun modifiedGun = gunItem.getModifiedGun(heldItem);
                     if (modifiedGun.getModules().getZoom() != null) {
                         float modifier = Gun.getFovModifier(heldItem, modifiedGun);

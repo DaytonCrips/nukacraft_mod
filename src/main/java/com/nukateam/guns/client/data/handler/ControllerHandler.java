@@ -150,11 +150,11 @@ public class ControllerHandler {
         }
 
         if (this.reloadCounter > 40) {
-            ReloadHandler.get().setReloading(false);
+            ClientReloadHandler.get().setReloading(false);
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
             this.reloadCounter = -1;
         } else if (this.reloadCounter > 0 && !Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton())) {
-            ReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
+            ClientReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player));
             this.reloadCounter = -1;
         }
     }

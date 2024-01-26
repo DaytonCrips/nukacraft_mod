@@ -5,6 +5,7 @@ import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.guns.common.base.utils.ShootTracker;
 import com.nukateam.guns.common.base.utils.SpreadTracker;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.foundation.container.AttachmentContainer;
 import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
@@ -104,8 +105,8 @@ public class ServerPlayHandler {
 
                 tracker.putCooldown(heldItem, item, modifiedGun);
 
-                if (ModSyncedDataKeys.RELOADING.getValue(entity)) {
-                    ModSyncedDataKeys.RELOADING.setValue(entity, false);
+                if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(entity)) {
+                    ModSyncedDataKeys.RELOADING_RIGHT.setValue(entity, false);
                 }
 
                 if (!modifiedGun.getGeneral().isAlwaysSpread() && modifiedGun.getGeneral().getSpread() > 0.0F) {
@@ -170,7 +171,7 @@ public class ServerPlayHandler {
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);
                         if (level == 0 || entity.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
-                            tag.putInt("AmmoCount", Math.max(0, tag.getInt("AmmoCount") - 1));
+                            tag.putInt(Tags.AMMO_COUNT, Math.max(0, tag.getInt(Tags.AMMO_COUNT) - 1));
                         }
                     }
                 }

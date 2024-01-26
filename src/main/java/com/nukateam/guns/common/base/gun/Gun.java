@@ -4,6 +4,7 @@ import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.AmmoContext;
 import com.nukateam.guns.common.data.annotation.Ignored;
 import com.nukateam.guns.common.data.annotation.Optional;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.util.GunJsonUtil;
 import com.nukateam.guns.common.data.util.SuperBuilder;
 import com.nukateam.guns.common.debug.Debug;
@@ -1391,14 +1392,14 @@ public class Gun implements INBTSerializable<CompoundTag>, IEditorMenu {
 
     public static boolean hasAmmo(ItemStack gunStack) {
         CompoundTag tag = gunStack.getOrCreateTag();
-        return tag.getBoolean("IgnoreAmmo") || tag.getInt("AmmoCount") > 0;
+        return tag.getBoolean("IgnoreAmmo") || tag.getInt(Tags.AMMO_COUNT) > 0;
     }
 
     public static void fillAmmo(ItemStack gunStack) {
         if(gunStack.getItem() instanceof GunItem gunItem){
             var tag = gunStack.getOrCreateTag();
             var maxAmmo = gunItem.getModifiedGun(gunStack).getGeneral().getMaxAmmo();
-            tag.putInt("AmmoCount", maxAmmo);
+            tag.putInt(Tags.AMMO_COUNT, maxAmmo);
         }
     }
 

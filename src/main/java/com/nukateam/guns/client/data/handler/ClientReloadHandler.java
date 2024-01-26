@@ -2,6 +2,7 @@ package com.nukateam.guns.client.data.handler;
 
 import com.nukateam.guns.client.input.KeyBinds;
 import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.event.GunReloadEvent;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
@@ -11,6 +12,7 @@ import com.nukateam.guns.common.network.message.C2SMessageReload;
 import com.nukateam.guns.common.network.message.C2SMessageUnload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -23,12 +25,12 @@ import org.lwjgl.glfw.GLFW;
 /**
  * Author: MrCrayfish
  */
-public class ReloadHandler {
-    private static ReloadHandler instance;
+public class ClientReloadHandler {
+    private static ClientReloadHandler instance;
 
-    public static ReloadHandler get() {
+    public static ClientReloadHandler get() {
         if (instance == null) {
-            instance = new ReloadHandler();
+            instance = new ClientReloadHandler();
         }
         return instance;
     }
@@ -41,7 +43,7 @@ public class ReloadHandler {
     private int reloadTicks;
 
 
-    private ReloadHandler() {}
+    private ClientReloadHandler() {}
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
@@ -54,7 +56,7 @@ public class ReloadHandler {
 
         Player player = Minecraft.getInstance().player;
         if (player != null) {
-            if (ModSyncedDataKeys.RELOADING.getValue(player)) {
+            if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(player)) {
                 if (this.reloadingSlot != player.getInventory().selected) {
                     this.setReloading(false);
                 }
@@ -72,7 +74,7 @@ public class ReloadHandler {
 
         if(event.getAction() == GLFW.GLFW_PRESS) {
             if (KeyBinds.KEY_RELOAD.isDown()) {
-                this.setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
+                this.setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player));
             }
             if (KeyBinds.KEY_UNLOAD.consumeClick()) {
                 this.setReloading(false);
@@ -94,11 +96,11 @@ public class ReloadHandler {
 
                         reloadTicks = gun.getGeneral().getReloadTime();
 
-                        if (tag.getInt("AmmoCount") >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
+                        if (tag.getInt(Tags.AMMO_COUNT) >= GunEnchantmentHelper.getAmmoCapacity(stack, gun))
                             return;
                         if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, stack)))
                             return;
-                        ModSyncedDataKeys.RELOADING.setValue(player, true);
+                        ModSyncedDataKeys.RELOADING_RIGHT.setValue(player, true);
                         PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(true));
                         this.reloadingSlot = player.getInventory().selected;
 
@@ -110,7 +112,7 @@ public class ReloadHandler {
                     }
                 }
             } else {
-                ModSyncedDataKeys.RELOADING.setValue(player, false);
+                ModSyncedDataKeys.RELOADING_RIGHT.setValue(player, false);
                 PacketHandler.getPlayChannel().sendToServer(new C2SMessageReload(false));
                 this.reloadingSlot = -1;
                 reloadTicks = -1;
@@ -124,7 +126,7 @@ public class ReloadHandler {
             reloadTimer--;
         }
 
-//        if (ModSyncedDataKeys.RELOADING.getValue(player)) {
+//        if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(player)) {
 //            if (this.startReloadTick == -1) {
 //                this.startReloadTick = player.tickCount + 5;
 //            }
@@ -149,8 +151,19 @@ public class ReloadHandler {
         return this.reloadTimer;
     }
 
-    public boolean isReloading(LivingEntity player) {
-        return ModSyncedDataKeys.RELOADING.getValue(player);
+    public boolean isReloading(LivingEntity entity, HumanoidArm arm) {
+        return switch (arm) {
+            case RIGHT -> isReloadingRight(entity);
+            case LEFT -> isReloadingLeft(entity);
+        };
+    }
+
+    public boolean isReloadingRight(LivingEntity entity) {
+        return ModSyncedDataKeys.RELOADING_RIGHT.getValue(entity);
+    }
+
+    public boolean isReloadingLeft(LivingEntity entity) {
+        return ModSyncedDataKeys.RELOADING_LEFT.getValue(entity);
     }
 
     public int getReloadingTicks() {

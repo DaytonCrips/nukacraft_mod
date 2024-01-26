@@ -4,6 +4,7 @@ import com.nukateam.guns.GunMod;
 import com.nukateam.guns.client.render.renderers.GunItemRenderer;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.NetworkGunManager;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
 import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.debug.Debug;
@@ -20,7 +21,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.KeybindComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,8 +29,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -39,11 +37,8 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Consumer;
 
-import static com.jetug.chassis_core.common.util.extensions.Collection.arrayListOf;
 import static java.util.Objects.requireNonNull;
 import static mod.azure.azurelib.util.AzureLibUtil.createInstanceCache;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
 
 public class GunItem extends CustomizableItem implements GeoItem, IColored, IMeta, IResourceProvider {
 //    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -123,7 +118,7 @@ public class GunItem extends CustomizableItem implements GeoItem, IColored, IMet
             if (tagCompound.getBoolean("IgnoreAmmo")) {
                 tooltip.add(new TranslatableComponent("info.nukacraft.ignore_ammo").withStyle(ChatFormatting.AQUA));
             } else {
-                int ammoCount = tagCompound.getInt("AmmoCount");
+                int ammoCount = tagCompound.getInt(Tags.AMMO_COUNT);
                 tooltip.add(new TranslatableComponent("info.nukacraft.ammo", ChatFormatting.WHITE.toString() + ammoCount + "/" + GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)).withStyle(ChatFormatting.GRAY));
             }
         }
@@ -134,7 +129,7 @@ public class GunItem extends CustomizableItem implements GeoItem, IColored, IMet
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks) {
         if (this.allowdedIn(group)) {
             ItemStack stack = new ItemStack(this);
-            stack.getOrCreateTag().putInt("AmmoCount", this.gun.getGeneral().getMaxAmmo());
+            stack.getOrCreateTag().putInt(Tags.AMMO_COUNT, this.gun.getGeneral().getMaxAmmo());
             stacks.add(stack);
         }
     }
@@ -143,14 +138,14 @@ public class GunItem extends CustomizableItem implements GeoItem, IColored, IMet
     public boolean isBarVisible(ItemStack stack) {
         CompoundTag tagCompound = stack.getOrCreateTag();
         Gun modifiedGun = this.getModifiedGun(stack);
-        return !tagCompound.getBoolean("IgnoreAmmo") && tagCompound.getInt("AmmoCount") != GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun);
+        return !tagCompound.getBoolean("IgnoreAmmo") && tagCompound.getInt(Tags.AMMO_COUNT) != GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun);
     }
 
     @Override
     public int getBarWidth(ItemStack stack) {
         CompoundTag tagCompound = stack.getOrCreateTag();
         Gun modifiedGun = this.getModifiedGun(stack);
-        return (int) (13.0 * (tagCompound.getInt("AmmoCount") / (double) GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)));
+        return (int) (13.0 * (tagCompound.getInt(Tags.AMMO_COUNT) / (double) GunEnchantmentHelper.getAmmoCapacity(stack, modifiedGun)));
     }
 
     public Gun getModifiedGun(ItemStack stack) {

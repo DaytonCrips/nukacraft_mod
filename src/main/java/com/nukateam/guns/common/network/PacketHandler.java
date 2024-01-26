@@ -38,7 +38,6 @@ public class PacketHandler {
                 .registerPlayMessage(S2CMessageProjectileHitBlock.class, NetworkDirection.PLAY_TO_CLIENT)
                 .registerPlayMessage(S2CMessageProjectileHitEntity.class, NetworkDirection.PLAY_TO_CLIENT)
                 .registerPlayMessage(S2CMessageRemoveProjectile.class, NetworkDirection.PLAY_TO_CLIENT)
-                .registerPlayMessage(MessageUpdateMoveInacc.class, NetworkDirection.PLAY_TO_SERVER)
                 .build();
 
         FrameworkAPI.registerLoginData(new ResourceLocation(NukaCraftMod.MOD_ID, "network_gun_manager"), NetworkGunManager.LoginData::new);

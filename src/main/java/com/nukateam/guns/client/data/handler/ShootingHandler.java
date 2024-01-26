@@ -1,5 +1,6 @@
 package com.nukateam.guns.client.data.handler;
 
+import com.ibm.icu.impl.Pair;
 import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.interfaces.CurrentFpsGetter;
@@ -10,6 +11,7 @@ import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,7 +33,7 @@ import static net.minecraftforge.event.TickEvent.Type.RENDER;
 public class ShootingHandler {
     public static final String COOLDOWN = "Cooldown";
     private static ShootingHandler instance;
-    public HashMap<LivingEntity, Float> entityShootGaps = new HashMap<>();
+    public HashMap<Pair<HumanoidArm, LivingEntity>, Float> entityShootGaps = new HashMap<>();
     private static float shootTickGapLeft = 0F;
     public static float shootMsGap = 0F;
 
@@ -303,15 +305,20 @@ public class ShootingHandler {
 
 //    public int burstTracker = 0;
 
-    public float getShootTickGapLeft(LivingEntity entity) {
-        return entityShootGaps.getOrDefault(entity, 0f);
+    public float getCooldownRight(LivingEntity entity, HumanoidArm arm) {
+        return entityShootGaps.getOrDefault(Pair.of(arm, entity), 0f);
+    }
+
+    public boolean isShooting(LivingEntity entity, HumanoidArm arm){
+        var value = entityShootGaps.get(Pair.of(arm, entity));
+        if (value != null) return value > 0;
+        return false;
     }
 
     public static float calcShootTickGap(int rpm) {
         float shootTickGap = 60F / rpm * 20F;
         return shootTickGap;
     }
-
 
     public void fire(LivingEntity shooter, ItemStack heldItem) {
         if (!(heldItem.getItem() instanceof GunItem)) return;
@@ -322,7 +329,8 @@ public class ShootingHandler {
         // CHECK HERE: Restrict the fire rate
 //      if(!tracker.hasCooldown(heldItem.getItem()))
 
-        var shootGap = entityShootGaps.getOrDefault(shooter, 0f);
+        var hand = shooter.getMainHandItem() == heldItem ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+        var shootGap = entityShootGaps.getOrDefault(Pair.of(hand, shooter), 0f);
 
         if (shootGap <= 0F) {
             var gunItem = (GunItem) heldItem.getItem();
@@ -335,7 +343,7 @@ public class ShootingHandler {
             // TODO: Test serverside, possible issues 0.3.4-alpha
             final float rpm = modifiedGun.getGeneral().getRate(); // Rounds per sec. Should come from gun properties in the end.
             shootGap += rpm;
-            entityShootGaps.put(shooter, shootGap);
+            entityShootGaps.put(Pair.of(hand, shooter), shootGap);
             shootMsGap = calcShootTickGap((int) rpm);
             RecoilHandler.get().lastRandPitch = RecoilHandler.get().lastRandPitch;
             RecoilHandler.get().lastRandYaw = RecoilHandler.get().lastRandYaw;

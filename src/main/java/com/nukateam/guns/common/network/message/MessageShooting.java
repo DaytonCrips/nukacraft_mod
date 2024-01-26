@@ -36,7 +36,7 @@ public class MessageShooting extends PlayMessage<MessageShooting> {
         {
             ServerPlayer player = supplier.get().getSender();
             if (player != null) {
-                ModSyncedDataKeys.SHOOTING.setValue(player, message.shooting);
+                ModSyncedDataKeys.SHOOTING_RIGHT.setValue(player, message.shooting);
             }
         });
         supplier.get().setPacketHandled(true);
