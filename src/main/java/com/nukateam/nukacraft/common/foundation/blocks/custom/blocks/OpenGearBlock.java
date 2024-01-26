@@ -133,15 +133,15 @@ public class OpenGearBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-//        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-//        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
-////        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
-////            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
-////                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-////                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
-////            }
-////            pLevel.setBlock(pPos, newstate, 3);
-////        }
+        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
+        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
+        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
+            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
+                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
+            }
+            pLevel.setBlock(pPos, newstate, 3);
+        }
         return InteractionResult.SUCCESS;
     }
 

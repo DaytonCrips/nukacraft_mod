@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "nukacraft:block/table2" },
-    "facing=east": { "model": "nukacraft:block/table2", "y": 90 },
-    "facing=south": { "model": "nukacraft:block/table2", "y": 180 },
-    "facing=west": { "model": "nukacraft:block/table2", "y": 270 }
-  }
-}

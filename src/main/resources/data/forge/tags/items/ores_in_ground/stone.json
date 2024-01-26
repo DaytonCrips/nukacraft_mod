@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "nukacraft:aluminium_ore",
+	"nukacraft:lead_ore",
+	"nukacraft:silver_ore",
+	"nukacraft:quarts_ore",
+	"nukacraft:ultracite_ore",
+	"nukacraft:btitan_ore"
+  ]
+}

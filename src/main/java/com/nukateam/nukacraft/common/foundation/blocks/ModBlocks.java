@@ -141,6 +141,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> VAULTDINERTABLE = registerBlock("tablevt",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.4f)));
+    public static final RegistryObject<Block> WRITTINGDESK1 = registerBlock("writtingdesk1",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(0.4f)));
+    public static final RegistryObject<Block> WRITTINGDESK2 = registerBlock("writtingdesk2",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(0.4f)));
+    public static final RegistryObject<Block> WRITTINGDESK3 = registerBlock("writtingdesk3",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
+                    .strength(0.4f)));
     public static final RegistryObject<Block> VAULTDINERCHAIR = registerBlock("dinnerchair",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.3f)));

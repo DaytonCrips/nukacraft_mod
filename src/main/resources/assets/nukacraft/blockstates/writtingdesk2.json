@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/writtingdesk2" },
+    "facing=east": { "model": "nukacraft:block/writtingdesk2", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/writtingdesk2", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/writtingdesk2", "y": 270 }
+  }
+}

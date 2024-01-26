@@ -95,7 +95,8 @@ public class ModSetup {
         setRenderLayer(ModBlocks.SHELTERBARS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.HATTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.MEGAHATTER.get(), RenderType.cutout());
-
+        setRenderLayer(ModBlocks.FRIDGE.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.COOLER.get(), RenderType.cutout());
     }
 
 
