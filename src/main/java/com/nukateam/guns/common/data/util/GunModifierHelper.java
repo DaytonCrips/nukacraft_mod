@@ -2,6 +2,7 @@ package com.nukateam.guns.common.data.util;
 
 import com.nukateam.guns.common.base.gun.GripType;
 import com.nukateam.guns.common.base.gun.Gun;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.interfaces.IGunModifier;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
@@ -18,6 +19,12 @@ public class GunModifierHelper {
     public static boolean isOneHanded(ItemStack itemStack){
         var gunItem = (GunItem)itemStack.getItem();
         return gunItem.getModifiedGun(itemStack).getGeneral().getGripType() != GripType.ONE_HANDED;
+    }
+
+    public static boolean isWeaponFull(ItemStack stack) {
+        var tag = stack.getOrCreateTag();
+        var gun = ((GunItem)stack.getItem()).getModifiedGun(stack);
+        return tag.getInt(Tags.AMMO_COUNT) >= GunEnchantmentHelper.getAmmoCapacity(stack, gun);
     }
 
     public static boolean canRenderInOffhand(Player player){

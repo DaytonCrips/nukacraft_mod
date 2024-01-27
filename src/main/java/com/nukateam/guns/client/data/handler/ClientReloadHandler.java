@@ -5,6 +5,7 @@ import com.nukateam.guns.client.input.KeyBinds;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
+import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.event.*;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.guns.common.foundation.item.GunItem;
@@ -85,11 +86,20 @@ public class ClientReloadHandler {
 
     public void startReloading(){
         var player = Minecraft.getInstance().player;
+        if (player == null) return;
 
-        if (player.getMainHandItem().getItem() instanceof GunItem){
+        var mainHandItem = player.getMainHandItem();
+        var offhandItem = player.getOffhandItem();
+
+        ;
+
+        if (mainHandItem.getItem() instanceof GunItem
+                && !GunModifierHelper.isWeaponFull(mainHandItem)){
             setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player), HumanoidArm.RIGHT);
         }
-        else if (player.getOffhandItem().getItem() instanceof GunItem){
+        else if (offhandItem.getItem() instanceof GunItem
+                && GunModifierHelper.canRenderInOffhand(player)
+                && !GunModifierHelper.isWeaponFull(offhandItem)){
             setReloading(!ModSyncedDataKeys.RELOADING_LEFT.getValue(player), HumanoidArm.LEFT);
         }
     }

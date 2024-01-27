@@ -16,9 +16,9 @@ import java.util.function.Supplier;
 public class S2CMessageReload extends PlayMessage<S2CMessageReload> {
     private boolean reload;
     private boolean isRightHand;
+//    private int entityId;
 
-    public S2CMessageReload() {
-    }
+    public S2CMessageReload() {}
 
     public S2CMessageReload(boolean reload, HumanoidArm arm) {
         this.reload = reload;
@@ -46,6 +46,9 @@ public class S2CMessageReload extends PlayMessage<S2CMessageReload> {
         supplier.get().enqueueWork(() -> {
             var player = Minecraft.getInstance().player;
             if (player != null && !player.isSpectator()) {
+
+//                Minecraft.getInstance().level.getEntity()
+
                 var arm = message.isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
                 var dataKey = message.isRightHand ?
                         ModSyncedDataKeys.RELOADING_RIGHT : ModSyncedDataKeys.RELOADING_LEFT;

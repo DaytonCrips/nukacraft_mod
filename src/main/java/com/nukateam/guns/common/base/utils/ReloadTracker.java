@@ -7,17 +7,20 @@ import com.nukateam.guns.common.base.DelayedTask;
 import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
+import com.nukateam.guns.common.data.util.GunModifierHelper;
 import com.nukateam.guns.common.data.util.LivingEntityUtils;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.MessageGunSound;
+import com.nukateam.guns.common.network.message.S2CMessageProjectileHitEntity;
 import com.nukateam.guns.common.network.message.S2CMessageReload;
 import com.nukateam.guns.common.network.message.S2CMessageUpdateGuns;
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.HumanoidArm;
@@ -66,6 +69,31 @@ public class ReloadTracker {
         reloadTick = gun.getGeneral().getReloadTime();
     }
 
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.START && !event.player.level.isClientSide) {
+            var player = event.player;
+
+            if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(player)) {
+                handTick(player, HumanoidArm.RIGHT);
+            }
+            else if (ModSyncedDataKeys.RELOADING_LEFT.getValue(player)) {
+                handTick(player, HumanoidArm.LEFT);
+            }
+            else if (RELOAD_TRACKER_MAP.containsKey(player)) {
+                RELOAD_TRACKER_MAP.remove(player);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerEvent.PlayerLoggedOutEvent event) {
+        MinecraftServer server = event.getPlayer().getServer();
+        if (server != null) {
+            server.execute(() -> RELOAD_TRACKER_MAP.remove(event.getPlayer()));
+        }
+    }
+
     /**
      * Tests if the current item the player is holding is the same as the one being reloaded
      *
@@ -78,18 +106,9 @@ public class ReloadTracker {
         else return !this.stack.isEmpty() && player.getOffhandItem() == this.stack;
     }
 
-    /**
-     * @return
-     */
     private boolean isWeaponFull() {
         CompoundTag tag = this.stack.getOrCreateTag();
         return tag.getInt(Tags.AMMO_COUNT) >= GunEnchantmentHelper.getAmmoCapacity(this.stack, this.gun);
-    }
-
-    public static boolean isWeaponFull(ItemStack stack) {
-        var tag = stack.getOrCreateTag();
-        var gun = ((GunItem)stack.getItem()).getModifiedGun(stack);
-        return tag.getInt(Tags.AMMO_COUNT) >= GunEnchantmentHelper.getAmmoCapacity(stack, gun);
     }
 
     private boolean hasNoAmmo(Player player) {
@@ -141,23 +160,6 @@ public class ReloadTracker {
                     1.0F, 1.0F, player.getId(), false, true);
             PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() ->
                     new PacketDistributor.TargetPoint(player.getX(), (player.getY() + 1.0), player.getZ(), radius, player.level.dimension())), message);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START && !event.player.level.isClientSide) {
-            var player = event.player;
-
-            if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(player)) {
-                handTick(player, HumanoidArm.RIGHT);
-            }
-            else if (ModSyncedDataKeys.RELOADING_LEFT.getValue(player)) {
-                handTick(player, HumanoidArm.LEFT);
-            }
-            else if (RELOAD_TRACKER_MAP.containsKey(player)) {
-                RELOAD_TRACKER_MAP.remove(player);
-            }
         }
     }
 
@@ -231,27 +233,14 @@ public class ReloadTracker {
                         (float) finalPlayer.getX(), (float) (finalPlayer.getY() + 1.0), (float) finalPlayer.getZ(),
                         1.0F, 1.0F, finalPlayer.getId(), false, true);
                 PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() ->
-                        new PacketDistributor.TargetPoint(finalPlayer.getX(), (finalPlayer.getY() + 1.0), finalPlayer.getZ(), radius, finalPlayer.level.dimension())), messageSound);
+                        new PacketDistributor.TargetPoint(finalPlayer.getX(), finalPlayer.getY() + 1.0, finalPlayer.getZ(),
+                                radius, finalPlayer.level.dimension())), messageSound);
             }
         });
 
         var oppositeStack = LivingEntityUtils.getItemInHand(player, arm.getOpposite());
-        if (arm == HumanoidArm.RIGHT && oppositeStack.getItem() instanceof GunItem && !isWeaponFull(oppositeStack)) {
-
-//                PacketHandler.getPlayChannel().sendToServer();
-
-                PacketHandler.getPlayChannel().send(PacketDistributor.ALL.noArg(), new S2CMessageReload(true,arm.getOpposite()));
-
-//                ClientReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING_LEFT.getValue(player), HumanoidArm.LEFT);
-
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerTick(PlayerEvent.PlayerLoggedOutEvent event) {
-        MinecraftServer server = event.getPlayer().getServer();
-        if (server != null) {
-            server.execute(() -> RELOAD_TRACKER_MAP.remove(event.getPlayer()));
+        if (arm == HumanoidArm.RIGHT && oppositeStack.getItem() instanceof GunItem && !GunModifierHelper.isWeaponFull(oppositeStack)) {
+            PacketHandler.getPlayChannel().send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new S2CMessageReload(true, arm.getOpposite()));
         }
     }
 }
