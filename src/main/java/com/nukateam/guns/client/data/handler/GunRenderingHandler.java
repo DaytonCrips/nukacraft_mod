@@ -228,36 +228,18 @@ public class GunRenderingHandler {
         var player = minecraft.player;
         var isRight = minecraft.options.mainHand == HumanoidArm.RIGHT ?
                 event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
-        var arm = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
         var heldItem = event.getItemStack();
 
 //        if (event.getHand() == InteractionHand.OFF_HAND) {
-//            if (heldItem.getItem() instanceof GunItem) {
-//                event.setCanceled(true);
-//                return;
-//            }
-//
 //            float offhand = 1.0F - Mth.lerp(event.getPartialTicks(), this.prevOffhandTranslate, this.offhandTranslate);
 //            poseStack.translate(0, offhand * -0.6F, 0);
-//
-//            var player = Minecraft.getInstance().player;
-//            if (player != null && player.getMainHandItem().getItem() instanceof GunItem) {
-//                Gun modifiedGun = ((GunItem) player.getMainHandItem().getItem()).getModifiedGun(player.getMainHandItem());
-//                if (!modifiedGun.getGeneral().getGripType().getHeldAnimation().canRenderOffhandItem()) {
-//                    return;
-//                }
-//            }
 //
 //            /* Makes the off hand item move out of view */
 //            poseStack.translate(0, -1 * AimingHandler.get().getNormalisedAdsProgress(), 0);
 //        }
 
-//        var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
-//        if(stack != entity.getItemInHand(hand)) return;
-
         var hand = event.getHand();
         var oppositeHand = hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
-
         var oppositeStack = player.getItemInHand(oppositeHand);
 
         if (hand == InteractionHand.OFF_HAND) {
