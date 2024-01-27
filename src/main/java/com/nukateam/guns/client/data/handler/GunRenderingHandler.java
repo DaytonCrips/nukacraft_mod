@@ -50,6 +50,7 @@ import java.util.*;
 
 import static com.nukateam.guns.client.data.util.PropertyHelper.*;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
+import static com.nukateam.guns.common.data.util.GunModifierHelper.canRenderInOffhand;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 
 public class GunRenderingHandler {
@@ -224,9 +225,10 @@ public class GunRenderingHandler {
     public void onRenderOverlay(RenderHandEvent event) {
         PoseStack poseStack = event.getPoseStack();
         var minecraft = Minecraft.getInstance();
+        var player = minecraft.player;
         var isRight = minecraft.options.mainHand == HumanoidArm.RIGHT ?
                 event.getHand() == InteractionHand.MAIN_HAND : event.getHand() == InteractionHand.OFF_HAND;
-        var hand = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+        var arm = isRight ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
         var heldItem = event.getItemStack();
 
 //        if (event.getHand() == InteractionHand.OFF_HAND) {
@@ -250,13 +252,26 @@ public class GunRenderingHandler {
 //            poseStack.translate(0, -1 * AimingHandler.get().getNormalisedAdsProgress(), 0);
 //        }
 
+//        var hand = Minecraft.getInstance().options.mainHand == arm ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+//        if(stack != entity.getItemInHand(hand)) return;
+
+        var hand = event.getHand();
+        var oppositeHand = hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
+
+        var oppositeStack = player.getItemInHand(oppositeHand);
+
+        if (hand == InteractionHand.OFF_HAND) {
+            if(!canRenderInOffhand(heldItem) || !canRenderInOffhand(oppositeStack)){
+                event.setCanceled(true);
+                return;
+            }
+        }
+
         if (!(heldItem.getItem() instanceof GunItem gunItem)) {
             return;
         }
         /* Cancel it because we are doing our own custom render */
         event.setCanceled(true);
-
-
 
         var overrideModel = ItemStack.EMPTY;
         if (heldItem.getTag() != null) {
@@ -265,9 +280,9 @@ public class GunRenderingHandler {
             }
         }
 
-        var player = Objects.requireNonNull(minecraft.player);
         var model = minecraft.getItemRenderer().getModel(overrideModel.isEmpty() ? heldItem : overrideModel, player.level, player, 0);
         var rightHandTranslation = model.getTransforms().firstPersonRightHand.translation;
+        var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
 
         poseStack.pushPose();
         {
@@ -293,11 +308,9 @@ public class GunRenderingHandler {
 //          this.applyReloadTransforms(poseStack, event.getPartialTicks());
             this.applyShieldTransforms(poseStack, player, modifiedGun, event.getPartialTicks());
 
-            var packedLight = getWeaponLghtning(event, player);
-            var transformType = isRight ? TransformType.FIRST_PERSON_RIGHT_HAND : TransformType.FIRST_PERSON_LEFT_HAND;
 
 //        this.renderFirstPersonArms(event, poseStack, hand, heldItem, modifiedGun, packedLight);
-            this.renderWeapon(minecraft.player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), packedLight);
+            this.renderWeapon(player, heldItem, transformType, event.getPoseStack(), event.getMultiBufferSource(), getWeaponLghtning(event, player));
         }
         poseStack.popPose();
     }
