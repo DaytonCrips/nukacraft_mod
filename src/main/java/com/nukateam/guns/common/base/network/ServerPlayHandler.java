@@ -68,7 +68,7 @@ public class ServerPlayHandler {
      * Fires the weapon the player is currently holding.
      * This is only intended for use on the logical server.
      *
-     * @param entity the player for who's weapon to fire
+     * @param entity the living entity for who's weapon to fire
      */
     public static void handleShoot(MessageShoot message, LivingEntity entity) {
         if (entity.isSpectator())
@@ -78,17 +78,15 @@ public class ServerPlayHandler {
             return;
 
         var world = entity.level;
-        var heldItem = entity.getItemInHand(InteractionHand.MAIN_HAND);
+        var hand = message.isMainHand() ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+        var heldItem = entity.getItemInHand(hand);
 
-        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem)
-                || (entity instanceof Player player && player.isCreative()))) {
+        if (heldItem.getItem() instanceof GunItem item
+                && (Gun.hasAmmo(heldItem) || (entity instanceof Player player && player.isCreative()))) {
             var modifiedGun = item.getModifiedGun(heldItem);
             var tag =  heldItem.getOrCreateTag();
 
-//            if(!gunCooldown.contains(heldItem))
-//                gunCooldown.add(heldItem);
-
-            if (modifiedGun != null /*&& tag.getInt(COOLDOWN) == 0*/) {
+            if (modifiedGun != null) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(entity, heldItem)))
                     return;
 

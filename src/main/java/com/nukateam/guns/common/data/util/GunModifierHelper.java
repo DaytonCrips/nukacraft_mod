@@ -6,6 +6,7 @@ import com.nukateam.guns.common.data.interfaces.IGunModifier;
 import com.nukateam.guns.common.foundation.item.GunItem;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -17,6 +18,13 @@ public class GunModifierHelper {
     public static boolean isOneHanded(ItemStack itemStack){
         var gunItem = (GunItem)itemStack.getItem();
         return gunItem.getModifiedGun(itemStack).getGeneral().getGripType() != GripType.ONE_HANDED;
+    }
+
+    public static boolean canRenderInOffhand(Player player){
+        var mainHandItem = player.getMainHandItem();
+        var offhandItem = player.getOffhandItem();
+
+        return canRenderInOffhand(mainHandItem) && canRenderInOffhand(offhandItem);
     }
 
     public static boolean canRenderInOffhand(ItemStack stack){

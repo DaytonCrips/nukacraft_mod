@@ -69,14 +69,6 @@ public class NukaCraftMod {
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
 
-        // Register the setup method for modloading
-//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-//        // Register the processIMC method for modloading
-//        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
         curiosLoaded = ModList.get().isLoaded("curios");
@@ -90,6 +82,7 @@ public class NukaCraftMod {
         if (!curiosLoaded) return;
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
     }
+
     private void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ModBiomeGeneration.generateBiomes();

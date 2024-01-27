@@ -135,11 +135,11 @@ public class ControllerHandler {
             return;
 
         if (Controllable.isButtonPressed(GunButtonBindings.SHOOT.getButton()) && Minecraft.getInstance().screen == null) {
-            ItemStack heldItem = player.getMainHandItem();
-            if (heldItem.getItem() instanceof GunItem) {
-                Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
+            ItemStack mainHandItem = player.getMainHandItem();
+            if (mainHandItem.getItem() instanceof GunItem) {
+                Gun gun = ((GunItem) mainHandItem.getItem()).getModifiedGun(mainHandItem);
                 if (gun.getGeneral().isAuto()) {
-                    ShootingHandler.get().fire(player, heldItem);
+                    ShootingHandler.get().fire(player, mainHandItem);
                 }
             }
         }

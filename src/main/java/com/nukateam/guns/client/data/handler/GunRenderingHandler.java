@@ -223,7 +223,7 @@ public class GunRenderingHandler {
 
     @SubscribeEvent
     public void onRenderOverlay(RenderHandEvent event) {
-        PoseStack poseStack = event.getPoseStack();
+        var poseStack = event.getPoseStack();
         var minecraft = Minecraft.getInstance();
         var player = minecraft.player;
         var isRight = minecraft.options.mainHand == HumanoidArm.RIGHT ?
