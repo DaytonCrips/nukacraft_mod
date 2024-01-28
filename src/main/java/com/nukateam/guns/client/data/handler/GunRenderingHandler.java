@@ -197,7 +197,9 @@ public class GunRenderingHandler {
             return;
 
         // Test if the gun has a scope
-        LocalPlayer player = Objects.requireNonNull(Minecraft.getInstance().player);
+        var player = Minecraft.getInstance().player;
+        if(player == null) return;
+
         ItemStack heldItem = player.getMainHandItem();
         if (!(heldItem.getItem() instanceof GunItem gunItem))
             return;

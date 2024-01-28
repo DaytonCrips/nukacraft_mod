@@ -32,9 +32,8 @@ public class MessageShooting extends PlayMessage<MessageShooting> {
 
     @Override
     public void handle(MessageShooting message, Supplier<NetworkEvent.Context> supplier) {
-        supplier.get().enqueueWork(() ->
-        {
-            ServerPlayer player = supplier.get().getSender();
+        supplier.get().enqueueWork(() -> {
+            var player = supplier.get().getSender();
             if (player != null) {
                 ModSyncedDataKeys.SHOOTING_RIGHT.setValue(player, message.shooting);
             }

@@ -1,6 +1,7 @@
 package com.nukateam.guns.common.network.message;
 
 import com.mrcrayfish.framework.api.network.PlayMessage;
+import com.nukateam.guns.client.ClientPlayHandler;
 import com.nukateam.guns.client.data.handler.ClientReloadHandler;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import net.minecraft.client.Minecraft;
@@ -10,13 +11,9 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-/**
- * Author: MrCrayfish
- */
 public class S2CMessageReload extends PlayMessage<S2CMessageReload> {
     private boolean reload;
     private boolean isRightHand;
-//    private int entityId;
 
     public S2CMessageReload() {}
 
@@ -38,24 +35,22 @@ public class S2CMessageReload extends PlayMessage<S2CMessageReload> {
 
     @Override
     public S2CMessageReload decode(FriendlyByteBuf buffer) {
-        return new S2CMessageReload(buffer.readBoolean(), buffer.readBoolean());
+        return new S2CMessageReload(
+                buffer.readBoolean(),
+                buffer.readBoolean());
     }
 
     @Override
     public void handle(S2CMessageReload message, Supplier<NetworkEvent.Context> supplier) {
-        supplier.get().enqueueWork(() -> {
-            var player = Minecraft.getInstance().player;
-            if (player != null && !player.isSpectator()) {
-
-//                Minecraft.getInstance().level.getEntity()
-
-                var arm = message.isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
-                var dataKey = message.isRightHand ?
-                        ModSyncedDataKeys.RELOADING_RIGHT : ModSyncedDataKeys.RELOADING_LEFT;
-
-                ClientReloadHandler.get().setReloading(!dataKey.getValue(player), arm);
-            }
-        });
+        supplier.get().enqueueWork(() -> ClientPlayHandler.handleReload(message));
         supplier.get().setPacketHandled(true);
+    }
+
+    public boolean isReload() {
+        return reload;
+    }
+
+    public boolean isRightHand() {
+        return isRightHand;
     }
 }

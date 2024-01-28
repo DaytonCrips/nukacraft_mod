@@ -4,9 +4,11 @@ import com.nukateam.guns.Config;
 import com.nukateam.guns.client.data.BulletTrail;
 import com.nukateam.guns.client.audio.GunShotSound;
 import com.nukateam.guns.client.data.handler.BulletTrailRenderingHandler;
+import com.nukateam.guns.client.data.handler.ClientReloadHandler;
 import com.nukateam.guns.client.data.handler.GunRenderingHandler;
 import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.guns.common.foundation.init.ModParticleTypes;
+import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.guns.common.foundation.particles.BulletHoleData;
 import com.nukateam.guns.common.network.message.*;
 import net.minecraft.client.Minecraft;
@@ -22,6 +24,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -175,5 +178,16 @@ public class ClientPlayHandler {
     public static void handleUpdateGuns(S2CMessageUpdateGuns message) {
         NetworkGunManager.updateRegisteredGuns(message);
         CustomGunManager.updateCustomGuns(message);
+    }
+
+    public static void handleReload(S2CMessageReload message) {
+        var player = Minecraft.getInstance().player;
+        if (player != null && !player.isSpectator()) {
+            var arm = message.isRightHand() ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+            var dataKey = message.isRightHand() ?
+                    ModSyncedDataKeys.RELOADING_RIGHT : ModSyncedDataKeys.RELOADING_LEFT;
+
+            ClientReloadHandler.get().setReloading(!dataKey.getValue(player), arm);
+        }
     }
 }

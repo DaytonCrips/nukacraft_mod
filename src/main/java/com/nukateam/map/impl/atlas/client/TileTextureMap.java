@@ -68,6 +68,8 @@ public class TileTextureMap {
         if(biomeCategory == null) return;
 
         var biomeName = biome.getRegistryName();
+        if(biomeName == null) return;
+
         if(biomeName.getPath().equals("swamp_hills")){
             var i = 0;
         }
