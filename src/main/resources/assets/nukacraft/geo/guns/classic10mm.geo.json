@@ -81,7 +81,7 @@
 					]
 				},
 				{
-					"name": "magazine",
+					"name": "chamber",
 					"parent": "gun",
 					"pivot": [-0.00005, 3.15005, 0.994],
 					"cubes": [
@@ -141,27 +141,27 @@
 				},
 				{
 					"name": "magazine1",
-					"parent": "magazine",
+					"parent": "chamber",
 					"pivot": [0, 4.9, 1.9]
 				},
 				{
 					"name": "magazine2",
-					"parent": "magazine",
+					"parent": "chamber",
 					"pivot": [0, 4.9, 1.9]
 				},
 				{
 					"name": "magazine3",
-					"parent": "magazine",
+					"parent": "chamber",
 					"pivot": [0, 4.9, 1.9]
 				},
 				{
 					"name": "magazine4",
-					"parent": "magazine",
+					"parent": "chamber",
 					"pivot": [0, 0.03186, 3.2129]
 				},
 				{
 					"name": "magazine5",
-					"parent": "magazine",
+					"parent": "chamber",
 					"pivot": [0, 0.03186, 3.2129]
 				},
 				{

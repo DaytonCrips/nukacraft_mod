@@ -4,7 +4,7 @@
     "gripType": "nukacraft:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 6,
-    "reloadTime": 5,
+    "reloadTime": 40,
     "reloadAmount": 1,
     "recoilAngle": 7.0,
     "recoilKick": 0.4,
