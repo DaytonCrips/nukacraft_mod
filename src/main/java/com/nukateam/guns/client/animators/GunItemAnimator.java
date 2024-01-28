@@ -2,6 +2,7 @@ package com.nukateam.guns.client.animators;
 
 import com.jetug.chassis_core.common.data.json.ItemConfig;
 import com.jetug.chassis_core.common.foundation.item.IConfigProvider;
+import com.nukateam.guns.client.audio.GunShotSound;
 import com.nukateam.guns.client.data.handler.AimingHandler;
 import com.nukateam.guns.client.data.handler.ClientReloadHandler;
 import com.nukateam.guns.client.data.handler.ShootingHandler;
@@ -14,49 +15,86 @@ import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Lazy;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
-import static com.jetug.chassis_core.client.ClientConfig.*;
-import static com.jetug.chassis_core.common.util.extensions.Collection.*;
-import static com.nukateam.guns.client.render.Render.*;
+import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
+import static com.nukateam.guns.client.data.util.TransformUtils.isHandTransform;
+import static com.nukateam.guns.client.data.util.TransformUtils.isRightHand;
+import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.nukacraft.common.data.constants.Animations.*;
-import static mod.azure.azurelib.core.animation.AnimatableManager.*;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
-import static mod.azure.azurelib.core.animation.RawAnimation.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.HOLD_ON_LAST_FRAME;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
+import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
-import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.*;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_LEFT_HAND;
+import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND;
 
 @OnlyIn(Dist.CLIENT)
 public class GunItemAnimator extends ItemAnimator implements IResourceProvider, IConfigProvider {
     private final Lazy<ItemConfig> config = Lazy.of(() -> modResourceManager.getItemConfig(getName()));
     private final Minecraft minecraft = Minecraft.getInstance();
+    private int chamberId = 1;
+    private GunItem currentGun = null;
 
     public GunItemAnimator(TransformType transformType) {
         super(transformType);
     }
 
+    private ItemStack getStack() {
+        return GUN_RENDERER.getRenderStack();
+    }
+
+    private GunItem getGunItem() {
+        return (GunItem) getStack().getItem();
+    }
+
+
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller1", 0, animate()));
+        var mainController = new AnimationController<>(this, "controller1", 0, animate())
+                .setSoundKeyframeHandler((event) -> {
+                    var player = minecraft.player;
+                    if (player == null) return;
+                    var sound = event.getKeyframeData().getSound();
+                    var sounds = getGunItem().getGun().getSounds();
+
+                    switch (sound) {
+                        case "reload" -> {
+                            var reloadSound = sounds.getReload();
+
+                            minecraft.getSoundManager().play(new GunShotSound(reloadSound, SoundSource.PLAYERS,
+                                    player.position(), 1, 1, true));
+                        }
+                        case "cock" -> {
+                            var cockSound = sounds.getCock();
+
+                            minecraft.getSoundManager().play(new GunShotSound(cockSound, SoundSource.PLAYERS,
+                                    player.position(), 1, 1, true));
+                        }
+                    }
+                });
+
+        controllerRegistrar.add(mainController);
         controllerRegistrar.add(new AnimationController<>(this, "controller2", 0, holdAnimation()));
-        controllerRegistrar.add(new AnimationController<>(this, "controller3", 0, revolver()));
+        controllerRegistrar.add(new AnimationController<>(this, "controller3", 0, animateRevolver()));
     }
 
     @Override
     public String getName() {
-        return ((IResourceProvider)GUN_RENDERER.getRenderStack().getItem()).getName();
+        return ((IResourceProvider) GUN_RENDERER.getRenderStack().getItem()).getName();
     }
 
     @Override
     public String getNamespace() {
-        return ((IResourceProvider)GUN_RENDERER.getRenderStack().getItem()).getNamespace();
+        return ((IResourceProvider) GUN_RENDERER.getRenderStack().getItem()).getNamespace();
     }
 
     @Override
@@ -65,13 +103,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         return config.get();
     }
 
-    private final ArrayList<TransformType> reloadTransforms = arrayListOf(
-            FIRST_PERSON_RIGHT_HAND,
-            FIRST_PERSON_LEFT_HAND,
-            THIRD_PERSON_RIGHT_HAND,
-            THIRD_PERSON_LEFT_HAND);
-
-    private boolean isFirstPerson(TransformType transformType){
+    private boolean isFirstPerson(TransformType transformType) {
         return transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
     }
 
@@ -79,107 +111,54 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         return event -> {
             event.getController().setAnimationSpeed(1);
             var stack = GUN_RENDERER.getRenderStack();
-            if(stack == null || stack.isEmpty()) return PlayState.STOP;
-
-            var gun = (GunItem)stack.getItem();
-            var general = gun.getModifiedGun(stack).getGeneral();
-            var entity = GUN_RENDERER.getRenderEntity();
-
-//            if(currentGun != gun){
-//                currentGun = gun;
-//                event.getController().stop();
-//                return event.setAndContinue(begin().then(RELOAD, HOLD_ON_LAST_FRAME));
-//            }
+            if (stack == null || stack.isEmpty()) return PlayState.STOP;
 
             RawAnimation animation = null;
 
-//            if(entity != null && ClientReloadHandler.get().isReloadingRight(entity)){
-//                if(reloadTransforms.contains(transformType)) {
-//                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
-//                    syncAnimation(event, RELOAD , general.getReloadTime());
-//                }
-//            }
-//            else
-            if(isFirstPerson(transformType) && AimingHandler.get().isAiming()){
+            if (isFirstPerson(transformType) && AimingHandler.get().isAiming()) {
                 animation = begin().then("aim", HOLD_ON_LAST_FRAME);
-            }
-            else {
+            } else {
                 return PlayState.STOP;
             }
-//            else {
-//                if(currentGun == gun)
-//                    animation = begin().then(HOLD, LOOP);
-//                else {
-//                    currentGun = gun;
-//                    animation = begin().then("aim", LOOP);
-//                }
-//            }
             try {
                 return event.setAndContinue(animation);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 return PlayState.STOP;
             }
         };
     }
 
-    private GunItem currentGun = null;
-
-    public static final ArrayList<TransformType> bannedTransforms = arrayListOf(
-            NONE,
-            HEAD,
-            GUI,
-            GROUND,
-            FIXED);
-
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
-            try{
+            try {
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
                 var stack = GUN_RENDERER.getRenderStack();
-                var gun = (GunItem)stack.getItem();
-                var general = gun.getModifiedGun(stack).getGeneral();
+                var general = ((GunItem) stack.getItem()).getModifiedGun(stack).getGeneral();
                 var entity = GUN_RENDERER.getRenderEntity();
                 var reloadHandler = ClientReloadHandler.get();
 
-                if (bannedTransforms.contains(transformType) /*|| (entity != player && !(entity instanceof PowerArmorFrame))*/) {
+                if (!isHandTransform(transformType))
                     return event.setAndContinue(begin().then(HOLD, LOOP));
-                }
-                RawAnimation animation = null;
 
-//                var isShooting = ModSyncedDataKeys.SHOOTING_RIGHT.getValue(entity);
-                var isRightHand = transformType == FIRST_PERSON_RIGHT_HAND || transformType == THIRD_PERSON_RIGHT_HAND;
-                var arm = isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
-                var cooldown = ShootingHandler.get().getCooldownRight(entity, arm);
+                var arm = isRightHand(transformType) ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
                 var isShooting = ShootingHandler.get().isShooting(entity, arm);
 
-//                var oppositeItem = entity.getItemInHand(getInteractionHand(arm.getOpposite()));
-//                if(oppositeItem.getItem() instanceof GunItem)
+                RawAnimation animation = null;
 
-                reloadHandler.isReloading(entity, arm);
-
-//                isRightHand && reloadHandler.isReloadingRight(entity) /*entity != null*/
-//                        || !isRightHand && reloadHandler.isReloadingLeft(entity)
-
-                if(reloadHandler.isReloading(entity, arm)){
-                    if(reloadTransforms.contains(transformType)) {
-                        animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
-                        syncAnimation(event, RELOAD , general.getReloadTime());
-                    }
-                }
-                else if(isShooting) {
+                if (reloadHandler.isReloading(entity, arm)) {
+                    animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
+                    syncAnimation(event, RELOAD, general.getReloadTime());
+                } else if (isShooting) {
                     animation = begin().then(SHOT, LOOP);
                     syncAnimation(event, SHOT, general.getRate());
-                }
-                else if(reloadHandler.isReloading(entity, arm.getOpposite())) {
+                } else if (reloadHandler.isReloading(entity, arm.getOpposite())) {
                     animation = begin().then("hide", HOLD_ON_LAST_FRAME);
-                }
-                else{
-                    if(currentGun == gun)
+                } else {
+                    if (currentGun == (GunItem) stack.getItem())
                         animation = begin().then(HOLD, LOOP);
                     else {
-                        currentGun = gun;
+                        currentGun = (GunItem) stack.getItem();
                         animation = begin().then(SHOT, LOOP);
                     }
                 }
@@ -191,39 +170,35 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                     controller.forceAnimationReset();
 
                 return event.setAndContinue(animation);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 return PlayState.STOP;
             }
         };
     }
 
-//    private HumanoidArm getHandHoldingItem
-
-    private int chamberId = 1;
-
-    private AnimationController.AnimationStateHandler<GunItemAnimator> revolver() {
+    private AnimationController.AnimationStateHandler<GunItemAnimator> animateRevolver() {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
             var stack = GUN_RENDERER.getRenderStack();
-            var gun = (GunItem)stack.getItem();
-            var general = gun.getModifiedGun(stack).getGeneral();
+            var general = ((GunItem) stack.getItem()).getModifiedGun(stack).getGeneral();
             var entity = GUN_RENDERER.getRenderEntity();
-            var isRightHand = transformType == FIRST_PERSON_RIGHT_HAND || transformType == THIRD_PERSON_RIGHT_HAND;
-            var arm = isRightHand ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
+
+            if (!isHandTransform(transformType)) return PlayState.STOP;
+
+            var arm = isRightHand(transformType) ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
             var cooldown = ShootingHandler.get().getCooldownRight(entity, arm);
             var isShooting = ShootingHandler.get().isShooting(entity, arm);
 
             RawAnimation animation = null;
 
-            if(cooldown == general.getRate()){
-                if(chamberId < 6)
+            if (cooldown == general.getRate()) {
+                if (chamberId < 6)
                     chamberId++;
                 else chamberId = 1;
             }
 
-            if(isShooting) {
+            if (isShooting) {
                 var chamber = "chamber" + chamberId;
                 animation = begin().then(chamber, HOLD_ON_LAST_FRAME);
                 syncAnimation(event, chamber, general.getRate());
@@ -238,12 +213,12 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         event.setControllerSpeed(multiplier);
     }
 
-    private double getSpeedMultiplier(String animationName, double targetDuration){
+    private double getSpeedMultiplier(String animationName, double targetDuration) {
         var duration = getAnimationDuration(animationName);
         return duration / targetDuration;
     }
 
-    private double getAnimationDuration(String animationName){
+    private double getAnimationDuration(String animationName) {
         var map = AzureLibCache.getBakedAnimations();
         var animationResource = GeoGunModel.INSTANCE.getAnimationResource(this);
         var bakedAnimations = map.get(animationResource);

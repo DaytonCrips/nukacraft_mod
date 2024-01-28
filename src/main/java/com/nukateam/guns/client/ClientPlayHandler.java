@@ -48,9 +48,14 @@ public class ClientPlayHandler {
         }
 
         if (message.getShooterId() == mc.player.getId()) {
-            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(message.getId(), SoundSource.PLAYERS, message.getVolume(), message.getPitch(), false, 0, SoundInstance.Attenuation.NONE, 0, 0, 0, true));
+            Minecraft.getInstance().getSoundManager().play(new SimpleSoundInstance(message.getId(), SoundSource.PLAYERS,
+                    message.getVolume(), message.getPitch(), false, 0, SoundInstance.Attenuation.NONE,
+                    0, 0, 0, true));
         } else {
-            Minecraft.getInstance().getSoundManager().play(new GunShotSound(message.getId(), SoundSource.PLAYERS, message.getX(), message.getY(), message.getZ(), message.getVolume(), message.getPitch(), message.isReload()));
+            Minecraft.getInstance().getSoundManager().play(
+                    new GunShotSound(message.getId(), SoundSource.PLAYERS,
+                            message.getX(), message.getY(), message.getZ(),
+                            message.getVolume(), message.getPitch(), message.isReload()));
         }
     }
 

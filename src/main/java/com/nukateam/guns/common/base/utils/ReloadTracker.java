@@ -67,6 +67,8 @@ public class ReloadTracker {
         this.gun = gunItem.getModifiedGun(stack);
 
         reloadTick = gun.getGeneral().getReloadTime();
+
+//        playReloadSound(player);
     }
 
     @SubscribeEvent
@@ -146,20 +148,24 @@ public class ReloadTracker {
             ammo.shrink(amount);
 
             // Trigger that the container changed
-            Container container = context.container();
+            var container = context.container();
             if (container != null) {
                 container.setChanged();
             }
         }
+//        playReloadSound(player);
+    }
 
+    private void playReloadSound(Player player) {
         var reloadSound = this.gun.getSounds().getReload();
         if (reloadSound != null) {
-            double radius = Config.SERVER.reloadMaxDistance.get();
-            MessageGunSound message = new MessageGunSound(reloadSound, SoundSource.PLAYERS,
-                    (float) player.getX(), (float) player.getY() + 1.0F, (float) player.getZ(),
+            var pos = player.position().add(0, 1, 0);
+            var radius = Config.SERVER.reloadMaxDistance.get();
+            var message = new MessageGunSound(reloadSound, SoundSource.PLAYERS, pos,
                     1.0F, 1.0F, player.getId(), false, true);
             PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() ->
-                    new PacketDistributor.TargetPoint(player.getX(), (player.getY() + 1.0), player.getZ(), radius, player.level.dimension())), message);
+                    new PacketDistributor.TargetPoint(
+                            player.getX(), (player.getY() + 1.0), player.getZ(), radius, player.level.dimension())), message);
         }
     }
 
@@ -225,22 +231,25 @@ public class ReloadTracker {
         reloadKey.setValue(player, false);
         final var finalPlayer = player;
 
-        DelayedTask.runAfter(4, () -> {
-            ResourceLocation cockSound = gun.getSounds().getCock();
-            if (cockSound != null && finalPlayer.isAlive()) {
-                double radius = Config.SERVER.reloadMaxDistance.get();
-                MessageGunSound messageSound = new MessageGunSound(cockSound, SoundSource.PLAYERS,
-                        (float) finalPlayer.getX(), (float) (finalPlayer.getY() + 1.0), (float) finalPlayer.getZ(),
-                        1.0F, 1.0F, finalPlayer.getId(), false, true);
-                PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() ->
-                        new PacketDistributor.TargetPoint(finalPlayer.getX(), finalPlayer.getY() + 1.0, finalPlayer.getZ(),
-                                radius, finalPlayer.level.dimension())), messageSound);
-            }
-        });
+//        DelayedTask.runAfter(4, () -> {
+//            playCockSound(gun, finalPlayer);
+//        });
 
         var oppositeStack = LivingEntityUtils.getItemInHand(player, arm.getOpposite());
         if (arm == HumanoidArm.RIGHT && oppositeStack.getItem() instanceof GunItem && !GunModifierHelper.isWeaponFull(oppositeStack)) {
             PacketHandler.getPlayChannel().send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new S2CMessageReload(true, arm.getOpposite()));
+        }
+    }
+
+    private static void playCockSound(Gun gun, Player finalPlayer) {
+        var cockSound = gun.getSounds().getCock();
+        if (cockSound != null && finalPlayer.isAlive()) {
+            var radius = Config.SERVER.reloadMaxDistance.get();
+            var messageSound = new MessageGunSound(cockSound, SoundSource.PLAYERS, finalPlayer,
+                    1.0F, 1.0F, false, true);
+            PacketHandler.getPlayChannel().send(PacketDistributor.NEAR.with(() ->
+                    new PacketDistributor.TargetPoint(finalPlayer.getX(), finalPlayer.getY() + 1.0, finalPlayer.getZ(),
+                            radius, finalPlayer.level.dimension())), messageSound);
         }
     }
 }
