@@ -13,6 +13,7 @@ import mod.azure.azurelib.cache.AzureLibCache;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.AnimationState;
 import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.core.keyframe.event.SoundKeyframeEvent;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
@@ -60,28 +61,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
         var mainController = new AnimationController<>(this, "controller1", 0, animate())
-                .setSoundKeyframeHandler((event) -> {
-                    var player = minecraft.player;
-                    if (player == null) return;
-                    var sound = event.getKeyframeData().getSound();
-                    var sounds = getGunItem().getGun().getSounds();
-
-                    switch (sound) {
-                        case "reload" -> {
-                            var reloadSound = sounds.getReload();
-
-                            minecraft.getSoundManager().play(new GunShotSound(reloadSound, SoundSource.PLAYERS,
-                                    player.position(), 1, 1, true));
-                        }
-                        case "cock" -> {
-                            var cockSound = sounds.getCock();
-
-                            minecraft.getSoundManager().play(new GunShotSound(cockSound, SoundSource.PLAYERS,
-                                    player.position(), 1, 1, true));
-                        }
-                    }
-                });
-
+                .setSoundKeyframeHandler(this::soundHandler);
         controllerRegistrar.add(mainController);
         controllerRegistrar.add(new AnimationController<>(this, "controller2", 0, holdAnimation()));
         controllerRegistrar.add(new AnimationController<>(this, "controller3", 0, animateRevolver()));
@@ -225,5 +205,27 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         var animation = bakedAnimations.animations().get(animationName);
 
         return animation != null ? animation.length() : 1;
+    }
+
+    private void soundHandler(SoundKeyframeEvent<GunItemAnimator> event) {
+        var player = minecraft.player;
+        if (player == null) return;
+        var sound = event.getKeyframeData().getSound();
+        var gunSounds = getGunItem().getGun().getSounds();
+
+        switch (sound) {
+            case "reload" -> {
+                var reloadSound = gunSounds.getReload();
+
+                minecraft.getSoundManager().play(new GunShotSound(reloadSound, SoundSource.PLAYERS,
+                        player.position(), 1, 1, true));
+            }
+            case "cock" -> {
+                var cockSound = gunSounds.getCock();
+
+                minecraft.getSoundManager().play(new GunShotSound(cockSound, SoundSource.PLAYERS,
+                        player.position(), 1, 1, true));
+            }
+        }
     }
 }
