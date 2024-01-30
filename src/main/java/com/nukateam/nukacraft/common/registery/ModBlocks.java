@@ -468,6 +468,9 @@ public class ModBlocks {
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> BARREL = registerBlock("barrel",
+            () -> new RadioactiveBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.1f, 4.1f).requiresCorrectToolForDrops(), 1f));
 
 
 

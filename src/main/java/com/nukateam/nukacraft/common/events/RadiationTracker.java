@@ -2,35 +2,25 @@ package com.nukateam.nukacraft.common.events;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.RadioactiveBlock;
-import com.nukateam.nukacraft.common.registery.ModAttributesClass;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
-public class CustomHandler {
-    @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event){
-        var entity = event.getEntity();
-        if (entity instanceof Player player) {
-            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-            player.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
-        }
+public class RadiationTracker {
+    private final Player player;
+    private int counter = 10;
+    public static final Map<Player, RadiationTracker> radiationTrackers = new HashMap<>();
+
+    public RadiationTracker(Player player){
+        this.player = player;
     }
 
-    private static final Map<LivingEntity, Integer> counters = new HashMap<>();
-    private static int counter = 10;
-
     @SubscribeEvent
-    public static void onTick(TickEvent.PlayerTickEvent event) {
+    public void onTick(TickEvent.PlayerTickEvent event) {
         if(counter >= 0) {
             rareTick(event);
             counter = 10;
@@ -38,11 +28,10 @@ public class CustomHandler {
         else counter--;
     }
 
-    private static void rareTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) return;
+    private void rareTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END || event.player != player) return;
 
         var level = event.player.level;
-        var player = event.player;
         var bounding = player.getBoundingBox().inflate(10);
         var blocks = BlockPos.betweenClosedStream(bounding);
 

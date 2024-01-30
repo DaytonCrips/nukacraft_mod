@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.common.data.utils.RadiationHelper;
+import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -31,7 +31,7 @@ public class RadNamedItem extends ItemNameBlockItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
-            RadiationHelper.updateRadiation(entity, this.radiation);
+            RadiationUtils.addRadiation(entity, this.radiation);
 
             if (stack.getItem() == ModItems.CRACKBERRY.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));

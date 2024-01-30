@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 import static com.nukateam.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
-import static com.nukateam.nukacraft.common.data.utils.RadiationHelper.getPlayerRadiation;
+import static com.nukateam.nukacraft.common.data.utils.RadiationUtils.getPlayerRadiation;
 
 @Mixin(Gui.class)
 public abstract class GuiMixin extends GuiComponent {
