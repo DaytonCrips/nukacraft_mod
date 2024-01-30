@@ -38,7 +38,6 @@ public class ShootingHandler {
     public static final String COOLDOWN = "Cooldown";
     private static ShootingHandler instance;
     public HashMap<Pair<HumanoidArm, LivingEntity>, Float> entityShootGaps = new HashMap<>();
-    private static float shootTickGapLeft = 0F;
     public static float shootMsGap = 0F;
 
     public static ShootingHandler get() {
@@ -146,16 +145,11 @@ public class ShootingHandler {
 //            shootTickGapLeft -= shootTickGapLeft > 0F ? 1F : 0F;
             reduceGaps();
 
-            ItemStack heldItem = player.getMainHandItem();
-            if (heldItem.getItem() instanceof GunItem && (Gun.hasAmmo(heldItem) || player.isCreative())) {
-//                final float dist = Math.abs(player.zza) / 2.5F
-//                        + Math.abs(player.xxa) / 1.25F
-//                        + (player.getDeltaMovement().y > 0D ? 0.5F : 0F);
-//                PacketHandler.getPlayChannel().sendToServer(new MessageUpdateMoveInacc(dist));
-
+            var mainHandItem = player.getMainHandItem();
+            if (mainHandItem.getItem() instanceof GunItem && (Gun.hasAmmo(mainHandItem) || player.isCreative())) {
                 // Update #shooting state if it has changed
 //                final boolean shooting = Keys.PULL_TRIGGER.isDown() && GunRenderingHandler.get().sprintTransition == 0;
-                boolean shooting = mc.options.keyAttack.isDown();
+                var shooting = mc.options.keyAttack.isDown();
                 if (shooting ^ this.shooting) {
                     this.shooting = shooting;
                     PacketHandler.getPlayChannel().sendToServer(new MessageShooting(shooting));
@@ -211,41 +205,12 @@ public class ShootingHandler {
         }
     }
 
-    //    public static HashMap<ItemStack, Integer> gunCooldown = new HashMap<>();
     public static ArrayList<ItemStack> gunCooldown = new ArrayList<>();
 
     public static int getCooldown(ItemStack itemStack) {
         var tag =  itemStack.getOrCreateTag();
         return tag.getInt(COOLDOWN);
     }
-
-//    public void fire(Player player, ItemStack heldItem) {
-//        if (!(heldItem.getItem() instanceof GunItem) || player.isSpectator()) return;
-//        if (!Gun.hasAmmo(heldItem) && !player.isCreative()) return;
-//        if (player.getUseItem().getItem() == Items.SHIELD) return;
-//
-//        var tracker = player.getCooldowns();
-////        var cooldown = gunCooldown.get(heldItem);
-//        var tag =  heldItem.getOrCreateTag();
-//
-////        if(!gunCooldown.contains(heldItem))
-////            gunCooldown.add(heldItem);
-//
-//        if (tag.getInt(COOLDOWN) == 0) {
-//            var gunItem = (GunItem) heldItem.getItem();
-//            var modifiedGun = gunItem.getModifiedGun(heldItem);
-//
-//            if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(player, heldItem)))
-//                return;
-//
-////            int rate = GunEnchantmentHelper.getRate(heldItem, modifiedGun);
-////            rate = GunModifierHelper.getModifiedRate(heldItem, rate);
-////            tag.putInt(COOLDOWN, rate);
-//
-//            PacketHandler.getPlayChannel().sendToServer(new MessageShoot(player));
-//            MinecraftForge.EVENT_BUS.post(new GunFireEvent.Post(player, heldItem));
-//        }
-//    }
 
     private static float visualCooldownMultiplier() {
         int fps = ((CurrentFpsGetter) Minecraft.getInstance()).getCurrentFps();

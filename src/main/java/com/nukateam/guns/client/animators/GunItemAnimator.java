@@ -18,6 +18,7 @@ import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,8 +27,7 @@ import net.minecraftforge.common.util.Lazy;
 import javax.annotation.Nullable;
 
 import static com.jetug.chassis_core.client.ClientConfig.modResourceManager;
-import static com.nukateam.guns.client.data.util.TransformUtils.isHandTransform;
-import static com.nukateam.guns.client.data.util.TransformUtils.isRightHand;
+import static com.nukateam.guns.client.data.util.TransformUtils.*;
 import static com.nukateam.guns.client.render.Render.GUN_RENDERER;
 import static com.nukateam.nukacraft.common.data.constants.Animations.*;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
@@ -48,15 +48,6 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
     public GunItemAnimator(TransformType transformType) {
         super(transformType);
     }
-
-    private ItemStack getStack() {
-        return GUN_RENDERER.getRenderStack();
-    }
-
-    private GunItem getGunItem() {
-        return (GunItem) getStack().getItem();
-    }
-
 
     @Override
     public void registerControllers(ControllerRegistrar controllerRegistrar) {
@@ -83,39 +74,40 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
         return config.get();
     }
 
-    private boolean isFirstPerson(TransformType transformType) {
-        return transformType == FIRST_PERSON_RIGHT_HAND || transformType == FIRST_PERSON_LEFT_HAND;
+    private ItemStack getStack() {
+        return GUN_RENDERER.getRenderStack();
+    }
+
+    private LivingEntity getEntity() {
+        return GUN_RENDERER.getRenderEntity();
+    }
+
+    private GunItem getGunItem() {
+        return (GunItem) getStack().getItem();
     }
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> holdAnimation() {
         return event -> {
             event.getController().setAnimationSpeed(1);
-            var stack = GUN_RENDERER.getRenderStack();
-            if (stack == null || stack.isEmpty()) return PlayState.STOP;
-
-            RawAnimation animation = null;
+//            var stack = GUN_RENDERER.getRenderStack();
+//            if (stack == null || stack.isEmpty()) return PlayState.STOP;
 
             if (isFirstPerson(transformType) && AimingHandler.get().isAiming()) {
-                animation = begin().then("aim", HOLD_ON_LAST_FRAME);
+                var animation = begin().then("aim", HOLD_ON_LAST_FRAME);
+                return event.setAndContinue(animation);
             } else {
                 return PlayState.STOP;
             }
-            try {
-                return event.setAndContinue(animation);
-            } catch (Exception e) {
-                return PlayState.STOP;
-            }
         };
-    }
+}   
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> animate() {
         return event -> {
             try {
                 var controller = event.getController();
                 controller.setAnimationSpeed(1);
-                var stack = GUN_RENDERER.getRenderStack();
-                var general = ((GunItem) stack.getItem()).getModifiedGun(stack).getGeneral();
-                var entity = GUN_RENDERER.getRenderEntity();
+                var general = getGunItem().getModifiedGun(getStack()).getGeneral();
+                var entity = getEntity();
                 var reloadHandler = ClientReloadHandler.get();
 
                 if (!isHandTransform(transformType))
@@ -124,7 +116,7 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 var arm = isRightHand(transformType) ? HumanoidArm.RIGHT : HumanoidArm.LEFT;
                 var isShooting = ShootingHandler.get().isShooting(entity, arm);
 
-                RawAnimation animation = null;
+                RawAnimation animation;
 
                 if (reloadHandler.isReloading(entity, arm)) {
                     animation = begin().then(RELOAD, HOLD_ON_LAST_FRAME);
@@ -135,10 +127,10 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
                 } else if (reloadHandler.isReloading(entity, arm.getOpposite())) {
                     animation = begin().then("hide", HOLD_ON_LAST_FRAME);
                 } else {
-                    if (currentGun == (GunItem) stack.getItem())
+                    if (currentGun == getGunItem())
                         animation = begin().then(HOLD, LOOP);
                     else {
-                        currentGun = (GunItem) stack.getItem();
+                        currentGun = getGunItem();
                         animation = begin().then(SHOT, LOOP);
                     }
                 }
@@ -158,11 +150,9 @@ public class GunItemAnimator extends ItemAnimator implements IResourceProvider, 
 
     private AnimationController.AnimationStateHandler<GunItemAnimator> animateRevolver() {
         return event -> {
-            var controller = event.getController();
-            controller.setAnimationSpeed(1);
-            var stack = GUN_RENDERER.getRenderStack();
-            var general = ((GunItem) stack.getItem()).getModifiedGun(stack).getGeneral();
-            var entity = GUN_RENDERER.getRenderEntity();
+            event.getController().setAnimationSpeed(1);
+            var general = getGunItem().getModifiedGun(getStack()).getGeneral();
+            var entity = getEntity();
 
             if (!isHandTransform(transformType)) return PlayState.STOP;
 
