@@ -23,7 +23,7 @@ public class RadFoodItem extends RadItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player) {
+        if (entity instanceof Player && !level.isClientSide) {
             if (stack.getItem() == ModItems.BUBBLEAPPLE.get()) {
                 entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
             }

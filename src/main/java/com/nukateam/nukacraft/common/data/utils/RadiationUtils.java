@@ -9,14 +9,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.nukateam.nukacraft.common.data.utils.MathUtils.limit;
 
 public class RadiationUtils {
-    public static double getPlayerRadiation(){
-        return Minecraft.getInstance().player.getAttributeValue(ModAttributesClass.RADIATION.get());
-    }
-
     public static void addRadiation(LivingEntity entity, float value) {
         var effects = entity.getActiveEffects();
         if (entity instanceof Player && value > 0) {
@@ -51,12 +49,13 @@ public class RadiationUtils {
         var radiationAtt = entity.getAttribute(ModAttributesClass.RADIATION.get());
         var healthAtt =  entity.getAttribute(Attributes.MAX_HEALTH);
 
-//        modifyAttribute(value, radiationAtt);
+
+        modifyAttribute(value, radiationAtt);
         modifyAttribute(-value, healthAtt);
 
         var mod = new AttributeModifier("radiation", -value, AttributeModifier.Operation.ADDITION);
 
-        radiationAtt.setBaseValue(radiation);
+//        radiationAtt.setBaseValue(radiation);
 //        entity.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier();
 
 //        if(entity.getAttribute(Attributes.MAX_HEALTH).getValue() > 20){

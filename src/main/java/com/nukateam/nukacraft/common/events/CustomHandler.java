@@ -21,7 +21,7 @@ public class CustomHandler {
     public static void onLivingDeath(LivingDeathEvent event){
         var entity = event.getEntity();
         if (entity instanceof Player player) {
-            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
+//            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
             player.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
         }
     }

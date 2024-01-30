@@ -30,7 +30,7 @@ public class RadNamedItem extends ItemNameBlockItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player) {
+        if (entity instanceof Player && !level.isClientSide) {
             RadiationUtils.addRadiation(entity, this.radiation);
 
             if (stack.getItem() == ModItems.CRACKBERRY.get())
