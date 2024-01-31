@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.nukateam.nukacraft.common.events.RadiationTracker.radiationTrackers;
+
 @Mod.EventBusSubscriber
 public class CustomHandler {
     @SubscribeEvent
@@ -38,26 +40,31 @@ public class CustomHandler {
 
     @SubscribeEvent
     public static void onTick(TickEvent.PlayerTickEvent event) {
-        if(counter >= 0) {
-            rareTick(event);
-            counter = 10;
-        }
-        else counter--;
+        radiationTrackers.values().forEach((val) -> {
+            if(val.player == event.player)
+                val.onPlayerTick(event);
+        });
+
+//        if(counter >= 0) {
+//            rareTick(event);
+//            counter = 10;
+//        }
+//        else counter--;
     }
 
-    private static void rareTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) return;
-
-        var level = event.player.level;
-        var player = event.player;
-        var bounding = player.getBoundingBox().inflate(10);
-        var blocks = BlockPos.betweenClosedStream(bounding);
-
-        blocks.forEach((blockPos) -> {
-            var block = level.getBlockState(blockPos).getBlock();
-            if(block instanceof RadioactiveBlock radioactiveBlock){
-                RadiationUtils.addRadiation(player, radioactiveBlock.getRadiation());
-            }
-        } );
-    }
+//    private static void rareTick(TickEvent.PlayerTickEvent event) {
+//        if (event.phase == TickEvent.Phase.END) return;
+//
+//        var level = event.player.level;
+//        var player = event.player;
+//        var bounding = player.getBoundingBox().inflate(10);
+//        var blocks = BlockPos.betweenClosedStream(bounding);
+//
+//        blocks.forEach((blockPos) -> {
+//            var block = level.getBlockState(blockPos).getBlock();
+//            if(block instanceof RadioactiveBlock radioactiveBlock){
+//                RadiationUtils.addRadiation(player, radioactiveBlock.getRadiation());
+//            }
+//        } );
+//    }
 }

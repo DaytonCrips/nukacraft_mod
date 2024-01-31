@@ -63,7 +63,12 @@ public class RadiationUtils {
                 healthMod = maxHealth - currentHealth;
             }
             if(currentRad + radMod < 0){
-                radMod = currentRad;
+                radMod = -currentRad;
+            }
+        }
+        else{
+            if (currentRad + radMod > maxHealth){
+                radMod = Math.max(0, Math.min(radMod, currentHealth - 1));
             }
         }
 //        else if(currentHealth + value < 0){

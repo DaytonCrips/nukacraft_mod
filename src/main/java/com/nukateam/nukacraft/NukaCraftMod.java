@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
+import com.nukateam.nukacraft.common.events.*;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
 import com.nukateam.nukacraft.common.registery.ModAttributesClass;
@@ -69,6 +70,8 @@ public class NukaCraftMod {
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
 
+
+        MinecraftForge.EVENT_BUS.register(RadiationTracker.class);
         MinecraftForge.EVENT_BUS.register(this);
 
         curiosLoaded = ModList.get().isLoaded("curios");
