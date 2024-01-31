@@ -1,40 +1,34 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.common.registery.ModEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RadXItem extends GlowbloodItem {
-    private final int duration;
-
-    public RadXItem(int durationSeconds, Properties item) {
-        super(0, item);
-        this.duration = durationSeconds;
+public class BubbleAppleItem extends RadItem {
+    public BubbleAppleItem(float radiation, Item.Properties properties) {
+        super(radiation, properties);
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(ModEffect.RAD_RES.get(), duration * 20, 0, false, true));
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (!level.isClientSide)
+            entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 200, 0, false, false));
+
         return super.finishUsingItem(stack, level, entity);
     }
 
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-
-        var minutes = duration / 60;
-        var seconds = duration - minutes * 60;
-
-        list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9("+minutes+":" + seconds + ")"));
-
+        list.add(new TranslatableComponent("tooltip.nukacraft.jumpboost").append("§9(0:05)"));
     }
 }

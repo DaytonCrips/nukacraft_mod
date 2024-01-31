@@ -24,7 +24,7 @@ public class VioletReagent extends Item {
         BlockPos posOld = context.getClickedPos();
         BlockState state = level.getBlockState(posOld);
         if (state.getBlock().defaultBlockState().is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")))) {
-            MutationFloraClass.mutationSucces(state, posOld, level);
+            MutationFloraClass.mutationSuccess(state, posOld, level);
             if (!player.isCreative()) {player.getMainHandItem().shrink(1);}
             return InteractionResult.SUCCESS;
         }

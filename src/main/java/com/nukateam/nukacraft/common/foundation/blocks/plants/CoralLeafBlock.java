@@ -128,7 +128,7 @@ public class CoralLeafBlock  extends BushBlock implements BonemealableBlock, Liq
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity entity, ItemStack stack) {
         if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            MutationFloraClass.mutationSucces(state, pos, level);
+            MutationFloraClass.mutationSuccess(state, pos, level);
         }
         super.setPlacedBy(level, pos, state, entity, stack);
     }

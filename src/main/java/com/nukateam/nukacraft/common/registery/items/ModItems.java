@@ -331,7 +331,7 @@ public class ModItems {
     public static final RegistryObject<Item> COTTONCANDY = ITEMS.register("cottoncandy",
             () -> new RadFoodItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.COTTONCANDY)));
     public static final RegistryObject<Item> BUBBLEAPPLE = ITEMS.register("bubbleapple",
-            () -> new RadFoodItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.BUBBLEAPPLE)));  //    public static final RegistryObject<Item> ASTER_TEA = ITEMS.register("aster_tea", () -> new TeaItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new BubbleAppleItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.BUBBLEAPPLE)));  //    public static final RegistryObject<Item> ASTER_TEA = ITEMS.register("aster_tea", () -> new TeaItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> ASTER_TEA = ITEMS.register("aster_tea",
             () -> new TeaItem(0.14f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> SWEET_ASTER_TEA = ITEMS.register("sweet_aster_tea",
@@ -358,16 +358,15 @@ public class ModItems {
             () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
 //
 
-    //
-//    //MEDICINE ITEMS
+//////////MEDICINE ITEMS
     public static final RegistryObject<Item> STIMPAK = ITEMS.register("stimpak",
             () -> new StimpakItem(5, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> SUPER_STIMPAK = ITEMS.register("super_stimpak",
             () -> new StimpakItem(8, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADAWAY = ITEMS.register("radaway",
-            () -> new MedicineItem( -4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new RadItem( -4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> GLOWBLOOD = ITEMS.register("glowblood",
-            () -> new MedicineItem(4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new GlowbloodItem(4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADX = ITEMS.register("radx",
             () -> new RadXItem(100, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
 

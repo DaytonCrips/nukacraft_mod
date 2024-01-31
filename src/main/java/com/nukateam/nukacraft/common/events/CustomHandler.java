@@ -25,7 +25,7 @@ public class CustomHandler {
         if (entity instanceof Player player) {
 //            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
             var rad = player.getAttribute(ModAttributesClass.RADIATION.get());
-            rad.setBaseValue(0);
+//            rad.setBaseValue(0);
 
             for (var mod: rad.getModifiers()) {
                 if (mod.getName().equals("radiation")){
@@ -44,27 +44,5 @@ public class CustomHandler {
             if(val.player == event.player)
                 val.onPlayerTick(event);
         });
-
-//        if(counter >= 0) {
-//            rareTick(event);
-//            counter = 10;
-//        }
-//        else counter--;
     }
-
-//    private static void rareTick(TickEvent.PlayerTickEvent event) {
-//        if (event.phase == TickEvent.Phase.END) return;
-//
-//        var level = event.player.level;
-//        var player = event.player;
-//        var bounding = player.getBoundingBox().inflate(10);
-//        var blocks = BlockPos.betweenClosedStream(bounding);
-//
-//        blocks.forEach((blockPos) -> {
-//            var block = level.getBlockState(blockPos).getBlock();
-//            if(block instanceof RadioactiveBlock radioactiveBlock){
-//                RadiationUtils.addRadiation(player, radioactiveBlock.getRadiation());
-//            }
-//        } );
-//    }
 }

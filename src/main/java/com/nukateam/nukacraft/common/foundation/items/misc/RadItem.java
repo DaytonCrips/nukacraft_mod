@@ -33,6 +33,10 @@ public class RadItem extends Item {
         if (entity instanceof Player && !level.isClientSide)
             RadiationUtils.addRadiation(entity, radiation);
 
+        if (!(entity instanceof Player player) || !player.isCreative()) {
+            stack.shrink(1);
+        }
+
         return super.finishUsingItem(stack, level, entity);
     }
 

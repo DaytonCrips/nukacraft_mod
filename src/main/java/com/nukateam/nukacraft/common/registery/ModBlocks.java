@@ -220,7 +220,7 @@ public class ModBlocks {
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> GLOW_GRASS = registerBlock("glow_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
-    public static final RegistryObject<Block> DEATH_PLANT = registerBlock("death_plant",
+    public static final RegistryObject<Block> DEAD_PLANT = registerBlock("death_plant",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> DEATH_FLOWER = registerBlock("death_flower",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
