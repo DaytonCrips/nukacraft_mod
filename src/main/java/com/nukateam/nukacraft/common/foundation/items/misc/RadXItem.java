@@ -32,15 +32,10 @@ public class RadXItem extends MedicineItem {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
 
-        if (item.getItem() == ModItems.GLOWBLOOD.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.glowing"));
-        }
+        var minutes = duration / 60;
+        var seconds = duration - minutes;
 
-        if (item.getItem() == ModItems.RADX.get()) {
-            var minutes = duration / 60;
-            var seconds = duration - minutes;
+        list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9("+minutes+":" + seconds + ")"));
 
-            list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9("+minutes+":" + seconds + ")"));
-        }
     }
 }
