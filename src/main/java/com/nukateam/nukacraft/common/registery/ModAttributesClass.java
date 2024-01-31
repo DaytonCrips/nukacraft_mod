@@ -29,6 +29,7 @@ public class ModAttributesClass {
         RegistryObject<T> toReturn = ATTRIBUTE.register(name, attribute);
         return toReturn;
     }
+
     public static void register(IEventBus eventBus) {
         ATTRIBUTE.register(eventBus);
     }
@@ -40,18 +41,4 @@ public class ModAttributesClass {
         }
         event.add(EntityType.PLAYER, ModAttributesClass.RADIATION.get());
     }
-
-    @Mod.EventBusSubscriber
-    private static class Utils {
-        @SubscribeEvent
-        public static void persistAttributes(PlayerEvent.Clone event) {
-            Player oldPlayer = event.getOriginal();
-            Player newPlayer = (Player) event.getEntity();
-            newPlayer.getAttribute(ModAttributesClass.RADIATION.get())
-                    .setBaseValue(oldPlayer.getAttribute(ModAttributesClass.RADIATION.get()).getBaseValue());
-            newPlayer.getAttribute(Attributes.MAX_HEALTH)
-                    .setBaseValue(oldPlayer.getAttribute(Attributes.MAX_HEALTH).getBaseValue());
-        }
-    }
-
 }

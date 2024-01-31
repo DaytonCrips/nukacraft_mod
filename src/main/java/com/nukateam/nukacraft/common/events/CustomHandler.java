@@ -22,7 +22,14 @@ public class CustomHandler {
         var entity = event.getEntity();
         if (entity instanceof Player player) {
 //            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(20);
-            player.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(0);
+            var rad = player.getAttribute(ModAttributesClass.RADIATION.get());
+            rad.setBaseValue(0);
+
+            for (var mod: rad.getModifiers()) {
+                if (mod.getName().equals("radiation")){
+                    rad.removeModifier(mod);
+                }
+            }
         }
     }
 

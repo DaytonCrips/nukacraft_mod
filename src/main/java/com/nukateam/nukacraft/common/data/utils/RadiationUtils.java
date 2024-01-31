@@ -31,15 +31,15 @@ public class RadiationUtils {
 //    private final static Map<LivingEntity, Pair<UUID, UUID>> modifiers = new HashMap<>();
 
     private static void handleAddedRadiation(LivingEntity entity, double value) {
-        var oldMaxHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
-        var totalRadiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
-        var currentHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
-        var totalHealth = oldMaxHealth + totalRadiation;
-        var maxHealth = oldMaxHealth - value;
-        var radiation = totalRadiation + value;
+//        var oldMaxHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
+//        var totalRadiation = entity.getAttributeValue(ModAttributesClass.RADIATION.get());
+//        var currentHealth = entity.getAttributeValue(Attributes.MAX_HEALTH);
+//        var totalHealth = oldMaxHealth + totalRadiation;
+//        var maxHealth = oldMaxHealth - value;
+//        var radiation = totalRadiation + value;
 
-        radiation = limit(radiation, 0, totalHealth -2);
-        maxHealth = limit(maxHealth, 2, totalHealth);
+//        radiation = limit(radiation, 0, totalHealth -2);
+//        maxHealth = limit(maxHealth, 2, totalHealth);
 
 //        entity.getAttribute(ModAttributesClass.RADIATION.get()).setBaseValue(radiation);
 //        entity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxHealth);
@@ -49,9 +49,29 @@ public class RadiationUtils {
         var radiationAtt = entity.getAttribute(ModAttributesClass.RADIATION.get());
         var healthAtt =  entity.getAttribute(Attributes.MAX_HEALTH);
 
+        var maxHealth = healthAtt.getBaseValue();
+        var currentHealth = healthAtt.getValue();
 
-        modifyAttribute(value, radiationAtt);
-        modifyAttribute(-value, healthAtt);
+        var currentRad = radiationAtt.getValue();
+
+        var radMod = value;
+        var healthMod = -value;
+        var isRemovingRad = value < 0;
+
+        if(isRemovingRad){
+            if (currentHealth + healthMod > maxHealth) {
+                healthMod = maxHealth - currentHealth;
+            }
+            if(currentRad + radMod < 0){
+                radMod = currentRad;
+            }
+        }
+//        else if(currentHealth + value < 0){
+//
+//        }
+
+        modifyAttribute(radMod, radiationAtt);
+        modifyAttribute(healthMod, healthAtt);
 
         var mod = new AttributeModifier("radiation", -value, AttributeModifier.Operation.ADDITION);
 
