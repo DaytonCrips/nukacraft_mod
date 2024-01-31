@@ -1,10 +1,11 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
+import com.nukateam.nukacraft.common.registery.ModEffect;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -13,20 +14,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MedicineItem extends RadItem {
-    public MedicineItem(Properties item) {
-        super(0, item);
-    }
+public class RadXItem extends MedicineItem {
+    private final int duration;
 
-    public MedicineItem(float radiation, Properties item) {
-        super(radiation, item);
+    public RadXItem(int durationSeconds, Properties item) {
+        super(0, item);
+        this.duration = durationSeconds;
     }
 
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (!(entity instanceof Player player) || !player.isCreative()) {
-            stack.shrink(1);
-        }
+        entity.addEffect(new MobEffectInstance(ModEffect.RAD_RES.get(), duration * 20, 0, false, true));
         return super.finishUsingItem(stack, level, entity);
     }
 
@@ -39,17 +37,10 @@ public class MedicineItem extends RadItem {
         }
 
         if (item.getItem() == ModItems.RADX.get()) {
-            list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9(0:30)"));
-        }
-    }
+            var minutes = duration / 60;
+            var seconds = duration - minutes;
 
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        return 9;
-//        if (stack.getItem() == ModItems.RADX.get()) {
-//
-//        } else {
-//            return 25;
-//        }
+            list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9("+minutes+":" + seconds + ")"));
+        }
     }
 }

@@ -361,15 +361,15 @@ public class ModItems {
     //
 //    //MEDICINE ITEMS
     public static final RegistryObject<Item> STIMPAK = ITEMS.register("stimpak",
-            () -> new StimpakItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new StimpakItem(5, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> SUPER_STIMPAK = ITEMS.register("super_stimpak",
-            () -> new StimpakItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new StimpakItem(8, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADAWAY = ITEMS.register("radaway",
             () -> new MedicineItem( -4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> GLOWBLOOD = ITEMS.register("glowblood",
             () -> new MedicineItem(4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADX = ITEMS.register("radx",
-            () -> new MedicineItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new RadXItem(100, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
 
     //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",
