@@ -1,21 +1,18 @@
-package com.nukateam.nukacraft.common.foundation.blocks.blocks;
+package com.nukateam.nukacraft.common.data.utils;
 
-
-import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-
 import java.util.Map;
 
 import static java.util.Map.entry;
 
-
-public class MutationFloraClass {
+public class PlantMutationUtils {
     //TODO make json file for this
     private static final Map<Block, Block> mutations = Map.ofEntries(
             entry(ModBlocks.ASTER.get(), ModBlocks.RADASTER.get()),
@@ -72,17 +69,18 @@ public class MutationFloraClass {
     public static void mutationStart(Level level, BlockPos pos, BlockState state, BlockState newstate) {
         createGammaParticles(level, pos);
         for (Map.Entry<Property<?>, Comparable<?>> entry : state.getValues().entrySet()) {
-            var property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-            newstate = newstate.setValue(property, (Comparable) entry.getValue());
+            Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+            newstate = newstate.setValue(_property, (Comparable) entry.getValue());
         }
         level.setBlock(pos, newstate, 3);
     }
 
     private static void createGammaParticles(Level level, BlockPos pos) {
         for (int i = 0; i < 360; i++) {
-            if(i % 20 == 0) {
+            if (i % 20 == 0) {
                 level.addParticle(ModParticles.GAMMA_PARTICLE.get(),
-                        pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d, Math.cos(i) * 0.15d, 0.15d, Math.sin(i) * 0.1d);
+                        pos.getX() + 0.5d, pos.getY() + 0.2d, pos.getZ() + 0.5d,
+                        Math.cos(i) * 0.15d, 0.15d, Math.sin(i) * 0.1d);
             }
         }
     }

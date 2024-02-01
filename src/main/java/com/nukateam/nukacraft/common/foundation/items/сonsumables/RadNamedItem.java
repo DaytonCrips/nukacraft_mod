@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.nukateam.nukacraft.common.foundation.items.misc.RadItem.showRadiation;
+import static com.nukateam.nukacraft.common.foundation.items.сonsumables.RadItem.showRadiation;
 
 public class RadNamedItem extends ItemNameBlockItem {
     protected final float radiation;

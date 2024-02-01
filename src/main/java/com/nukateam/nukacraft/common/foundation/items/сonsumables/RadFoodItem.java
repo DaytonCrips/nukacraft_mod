@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import net.minecraft.world.item.Item;
 

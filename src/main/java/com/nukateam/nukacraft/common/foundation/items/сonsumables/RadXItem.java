@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.registery.ModEffect;
 import net.minecraft.network.chat.Component;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RadXItem extends GlowbloodItem {
+public class RadXItem extends RadItem {
     private final int duration;
 
     public RadXItem(int durationSeconds, Properties item) {

@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
-import com.nukateam.nukacraft.common.foundation.blocks.blocks.MutationFloraClass;
+import com.nukateam.nukacraft.common.data.utils.PlantMutationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -120,7 +120,7 @@ public class DaturanBlock extends BushBlock implements BonemealableBlock, Liquid
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
         if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            MutationFloraClass.mutationSuccess(state, pos, level);
+            PlantMutationUtils.mutationSuccess(state, pos, level);
         }
         super.setPlacedBy(level, pos, state, entity, stack);
     }

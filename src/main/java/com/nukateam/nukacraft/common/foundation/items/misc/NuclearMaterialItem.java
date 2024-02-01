@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.foundation.blocks.blocks.MutationFloraClass;
+import com.nukateam.nukacraft.common.data.utils.PlantMutationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
@@ -26,9 +26,9 @@ public class NuclearMaterialItem extends Item {
 
         if (isNotMelon && isNotDead && blockState.is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")))) {
             if (level.getRandom().nextInt(100) < 20)
-                MutationFloraClass.mutationSuccess(state, posOld, level);
+                PlantMutationUtils.mutationSuccess(state, posOld, level);
 
-            else MutationFloraClass.mutationFailed(posOld, level);
+            else PlantMutationUtils.mutationFailed(posOld, level);
 
             if (!player.isCreative())
                 player.getMainHandItem().shrink(1);

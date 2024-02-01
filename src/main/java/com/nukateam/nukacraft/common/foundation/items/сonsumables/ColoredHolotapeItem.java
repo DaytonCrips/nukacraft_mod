@@ -1,6 +1,8 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.items.misc.HolotapeItem;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
@@ -14,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ColoredHolotapeItem extends HolotapeItem{
+public class ColoredHolotapeItem extends HolotapeItem {
     public static final String SCREEN = "screen";
     private String color;
 

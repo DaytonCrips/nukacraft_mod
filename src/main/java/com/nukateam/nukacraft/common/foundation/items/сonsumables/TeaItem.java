@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;

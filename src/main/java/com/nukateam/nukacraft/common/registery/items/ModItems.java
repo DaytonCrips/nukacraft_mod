@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.guns.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
@@ -271,9 +272,9 @@ public class ModItems {
 
     //FOOD
     public static final RegistryObject<Item> NUKACOLA = ITEMS.register("nukacola",
-            () -> new NukaColaItem(0.08f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
+            () -> new NukaColaItem(0.08f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
     public static final RegistryObject<Item> NUKAFRUTTI = ITEMS.register("nukafrutti",
-            () -> new NukaColaItem( -0.09f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKAFRUTTI)));
+            () -> new NukaColaItem( -0.09f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKAFRUTTI)));
     public static final RegistryObject<Item> CRACKBERRY = ITEMS.register("crackberry",
             () -> new RadNamedItem(-0.1f, ModBlocks.CRACKBERRY_BUSH.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.CRACKBERRY)));
     public static final RegistryObject<Item> BOMBBERRY = ITEMS.register("bombberry",
@@ -353,9 +354,9 @@ public class ModItems {
     public static final RegistryObject<Item> SITTPUREE = ITEMS.register("sittpuree",
             () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTPUREE)));
     public static final RegistryObject<Item> FMSOUP = ITEMS.register("firemushsoup",
-            () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMSOUP)));
+            () -> new SpecialSoupItem( 0.0f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMSOUP)));
     public static final RegistryObject<Item> FMPUREE = ITEMS.register("firemushpuree",
-            () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
+            () -> new SpecialSoupItem( 0.0f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
 //
 
 //////////MEDICINE ITEMS
