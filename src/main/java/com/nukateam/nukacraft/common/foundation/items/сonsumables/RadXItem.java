@@ -4,10 +4,12 @@ import com.nukateam.nukacraft.common.registery.ModEffect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,15 +17,18 @@ import java.util.List;
 
 public class RadXItem extends RadItem {
     private final int duration;
+    private Lazy<MobEffectInstance> effect;
 
     public RadXItem(int durationSeconds, Properties item) {
         super(0, item);
         this.duration = durationSeconds;
+
+        effect = Lazy.of(() -> new MobEffectInstance(ModEffect.RAD_RES.get(), duration * 20, 0));
     }
 
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(ModEffect.RAD_RES.get(), duration * 20, 0, false, true));
+        entity.addEffect(effect.get());
         return super.finishUsingItem(stack, level, entity);
     }
 
@@ -31,10 +36,17 @@ public class RadXItem extends RadItem {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
 
-        var minutes = duration / 60;
-        var seconds = duration - minutes * 60;
+        var effect = this.effect.get();
+        var mutablecomponent = new TranslatableComponent(effect.getDescriptionId());
 
-        list.add(new TranslatableComponent("effect.nukacraft.rad_shield").append("§9("+minutes+":" + seconds + ")"));
+        if (effect.getAmplifier() > 0) {
+            mutablecomponent = new TranslatableComponent("potion.withAmplifier", mutablecomponent, new TranslatableComponent("potion.potency." + effect.getAmplifier()));
+        }
 
+        if (effect.getDuration() > 20) {
+            mutablecomponent = new TranslatableComponent("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(effect, 1));
+        }
+
+        list.add(mutablecomponent.withStyle(effect.getEffect().getCategory().getTooltipFormatting()));
     }
 }

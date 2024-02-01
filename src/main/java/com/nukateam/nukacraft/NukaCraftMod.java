@@ -48,11 +48,11 @@ public class NukaCraftMod {
 
         new GunMod().initGunMod(MOD_EVENT_BUS);
 
+        ModEffect.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModGuns.register(MOD_EVENT_BUS);
-        ModEffect.register(MOD_EVENT_BUS);
         ModAttributesClass.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);

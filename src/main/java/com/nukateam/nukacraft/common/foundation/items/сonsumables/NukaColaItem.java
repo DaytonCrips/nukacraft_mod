@@ -18,7 +18,7 @@ import static net.minecraftforge.items.ItemHandlerHelper.giveItemToPlayer;
 
 public class NukaColaItem extends EffectRadItem {
     public NukaColaItem(float radiation, int duration, Properties properties) {
-        super(radiation, MobEffects.MOVEMENT_SPEED, duration, properties);
+        super(radiation, () -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, duration * 20, 0), properties);
     }
 
     @Override
