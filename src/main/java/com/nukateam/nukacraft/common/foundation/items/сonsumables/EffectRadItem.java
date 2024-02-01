@@ -24,19 +24,28 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class EffectRadItem extends RadItem {
-//    private final List<Supplier<MobEffectInstance>> effects = new ArrayList<>();
-    private List<Lazy<MobEffectInstance>> effects = new ArrayList<>();
+    private final List<Supplier<MobEffectInstance>> effectSuppliers = new ArrayList<>();
+    private List<MobEffectInstance> effects = new ArrayList<>();
 
     public EffectRadItem(float radiation, Supplier<MobEffectInstance> effect, Properties properties) {
         super(radiation, properties);
         if(effect != null)
-            this.effects.add(Lazy.of(effect));
+            this.effectSuppliers.add(effect);
+    }
+
+    public EffectRadItem(float radiation, List<Supplier<MobEffectInstance>> effects, Properties properties) {
+        super(radiation, properties);
+        if(effects != null)
+            this.effectSuppliers.addAll(effects);
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        for (var effect: effects) {
-            entity.addEffect(effect.get());
+        for (var supp: effectSuppliers) {
+            var effect = supp.get();
+            effects.clear();
+            effects.add(effect);
+            entity.addEffect(effect);
         }
         return super.finishUsingItem(stack, level, entity);
     }
@@ -44,10 +53,10 @@ public class EffectRadItem extends RadItem {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        addPotionTooltip(list, effects);
+        addPotionTooltip(list, effectSuppliers);
     }
 
-    public static void addPotionTooltip(List<Component> pTooltips, List<Lazy<MobEffectInstance>> effects) {
+    public static void addPotionTooltip(List<Component> pTooltips, List<Supplier<MobEffectInstance>> effects) {
         List<Pair<Attribute, AttributeModifier>> list = Lists.newArrayList();
 
         for(var supplier : effects) {
