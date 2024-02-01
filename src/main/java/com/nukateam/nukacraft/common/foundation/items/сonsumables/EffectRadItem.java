@@ -15,6 +15,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -23,12 +24,13 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class EffectRadItem extends RadItem {
-    private final List<Supplier<MobEffectInstance>> effects = new ArrayList<>();
+//    private final List<Supplier<MobEffectInstance>> effects = new ArrayList<>();
+    private List<Lazy<MobEffectInstance>> effects = new ArrayList<>();
 
     public EffectRadItem(float radiation, Supplier<MobEffectInstance> effect, Properties properties) {
         super(radiation, properties);
         if(effect != null)
-            this.effects.add(effect);
+            this.effects.add(Lazy.of(effect));
     }
 
     @Override
@@ -45,7 +47,7 @@ public class EffectRadItem extends RadItem {
         addPotionTooltip(list, effects);
     }
 
-    public static void addPotionTooltip(List<Component> pTooltips, List<Supplier<MobEffectInstance>> effects) {
+    public static void addPotionTooltip(List<Component> pTooltips, List<Lazy<MobEffectInstance>> effects) {
         List<Pair<Attribute, AttributeModifier>> list = Lists.newArrayList();
 
         for(var supplier : effects) {
