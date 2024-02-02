@@ -35,9 +35,10 @@ public class AntiqueAtlasModClient {
 			mc.setScreen(gui);
 //		}
 	}
-	
+
+	@OnlyIn(Dist.CLIENT)
 	public void onInitializeClient() {
-		ClientProxy clientProxy = new ClientProxy();
+		var clientProxy = new ClientProxy();
 		clientProxy.initClient();
 
 		AntiqueAtlasNetworking.registerS2CListeners();

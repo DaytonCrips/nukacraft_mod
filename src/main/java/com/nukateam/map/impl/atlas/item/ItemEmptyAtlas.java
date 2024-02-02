@@ -1,18 +1,6 @@
 package com.nukateam.map.impl.atlas.item;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
-import com.nukateam.map.impl.atlas.MapCore;
-import com.nukateam.map.impl.atlas.core.AtlasData;
-import com.nukateam.map.impl.atlas.marker.MarkersData;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 
 public class ItemEmptyAtlas extends Item {
     public ItemEmptyAtlas(Properties settings) {

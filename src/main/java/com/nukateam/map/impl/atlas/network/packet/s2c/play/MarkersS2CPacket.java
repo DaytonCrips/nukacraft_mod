@@ -91,7 +91,7 @@ public class MarkersS2CPacket extends S2CPacket {
 						: MapCore.markersData.getMarkersData(atlasID, player.getCommandSenderWorld());
 
 		for (ResourceLocation type : markersByType.keys()) {
-			MarkerType markerType = MarkerType.REGISTRY.get(type);
+			var markerType = MarkerType.REGISTRY.get(type);
 			for (Marker.Precursor precursor : markersByType.get(type)) {
 				markersData.loadMarker(new Marker(MarkerType.REGISTRY.getKey(markerType), world, precursor));
 			}

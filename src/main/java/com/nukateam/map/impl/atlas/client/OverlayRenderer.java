@@ -1,11 +1,9 @@
 package com.nukateam.map.impl.atlas.client;
 
 import com.nukateam.map.api.client.AtlasClientAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
 import com.nukateam.map.impl.atlas.core.WorldData;
-import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.map.impl.atlas.marker.DimensionMarkersData;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.marker.MarkersData;

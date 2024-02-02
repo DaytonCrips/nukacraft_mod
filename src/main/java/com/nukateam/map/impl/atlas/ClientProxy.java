@@ -23,7 +23,7 @@ import java.util.function.Consumer;
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy implements /*SimpleSynchronousResourceReloadListener*/ResourceManagerReloadListener {
 	public void initClient() {
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		final var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener((Consumer<RegisterClientReloadListenersEvent>)resourceManager-> {
 			// read Textures first from assets
 	        TextureConfig textureConfig = new TextureConfig(Textures.TILE_TEXTURES_MAP);

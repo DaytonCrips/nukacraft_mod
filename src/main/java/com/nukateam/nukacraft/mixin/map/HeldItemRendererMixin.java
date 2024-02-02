@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.mixin.map;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.client.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

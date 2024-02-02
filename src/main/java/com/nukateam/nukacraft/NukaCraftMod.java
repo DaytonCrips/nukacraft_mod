@@ -4,6 +4,7 @@ package com.nukateam.nukacraft;
 import com.mojang.logging.LogUtils;
 import com.nukateam.guns.GunMod;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.events.*;
 import com.nukateam.nukacraft.common.registery.*;
@@ -30,6 +31,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import static com.nukateam.map.impl.atlas.MapCore.initMapClient;
+import static com.nukateam.map.impl.atlas.MapCore.initMapCommon;
+
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 @Mod(NukaCraftMod.MOD_ID)
@@ -45,6 +49,9 @@ public class NukaCraftMod {
 
         //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 //        MOD_EVENT_BUS.addListener(this::setup);
+
+        MapCore.onInitialize();
+        MapCore.initMapClient();
 
         new GunMod().initGunMod(MOD_EVENT_BUS);
 
@@ -69,7 +76,6 @@ public class NukaCraftMod {
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
-
 
         MinecraftForge.EVENT_BUS.register(RadiationTracker.class);
         MinecraftForge.EVENT_BUS.register(this);
