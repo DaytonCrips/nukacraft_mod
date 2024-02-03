@@ -5,6 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.nukacraft.common.data.utils.PlayerUtils;
+import com.nukateam.nukacraft.common.data.utils.SlotUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
 import com.nukateam.nukacraft.common.network.PacketSender;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import top.theillusivec4.curios.Curios;
 
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
@@ -161,8 +163,10 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     public static void openMap() {
-        Minecraft.getInstance().player.closeContainer();
-        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
+        var minecraft = Minecraft.getInstance();
+        var pipboy = SlotUtils.getPipboyStack(minecraft.player);
+        minecraft.player.closeContainer();
+        AntiqueAtlasModClient.openAtlasGUI(pipboy);
     }
 
     public static void openArchive() {

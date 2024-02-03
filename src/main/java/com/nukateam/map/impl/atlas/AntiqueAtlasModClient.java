@@ -1,6 +1,7 @@
 package com.nukateam.map.impl.atlas;
 
 import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
+import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +22,8 @@ public class AntiqueAtlasModClient {
 	}
 
 	public static void openAtlasGUI(ItemStack stack) {
-		openAtlasGUI(getAtlasGUI().prepareToOpen(stack));
+		if(stack.getItem() instanceof AtlasItem)
+			openAtlasGUI(getAtlasGUI().prepareToOpen(stack));
 	}
 
 	public static void openAtlasGUI() {
