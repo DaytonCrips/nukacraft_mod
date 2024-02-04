@@ -23,7 +23,7 @@ public class GuiAtlas extends GuiAtlasBase {
     public GuiAtlas() {
 //        renderNavigation();
     }
-    
+
     @Override
     public void init() {
         super.init();
@@ -123,7 +123,7 @@ public class GuiAtlas extends GuiAtlasBase {
         return new MainPipBoyButton(leftPos + -24, topPos + 58, 30, 20,
                 new TextComponent("▶"), e -> runnable.run());
     }
-    
+
     private void renderPage() {
         page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
         image = PipBoy.content.get(current_archive).getPage(current_page).getImage();

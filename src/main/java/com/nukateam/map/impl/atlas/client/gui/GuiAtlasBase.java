@@ -19,6 +19,7 @@ import com.nukateam.map.impl.atlas.registry.MarkerRenderInfo;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
 import com.nukateam.map.impl.atlas.util.ExportImageUtil;
 import com.nukateam.map.impl.atlas.util.Log;
+import com.nukateam.map.impl.atlas.util.MathUtil;
 import com.nukateam.map.impl.atlas.util.Rect;
 import com.jetug.chassis_core.common.util.Pos2I;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -53,6 +54,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.nukateam.map.impl.atlas.util.MathUtil.*;
+import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen.openArchive;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
@@ -998,10 +1000,10 @@ public class GuiAtlasBase extends GuiComponent {
             } else {
                 String texture_set = TileTextureMap.instance().getTextureSet(tile).name.toString();
                 drawTooltip(Arrays.asList(
-                        new TextComponent(coords),
-                        new TextComponent(chunks),
-                        new TextComponent("Tile: " + tile),
-                        new TextComponent("TSet: " + texture_set)),
+                                new TextComponent(coords),
+                                new TextComponent(chunks),
+                                new TextComponent("Tile: " + tile),
+                                new TextComponent("TSet: " + texture_set)),
                         font);
             }
         }
