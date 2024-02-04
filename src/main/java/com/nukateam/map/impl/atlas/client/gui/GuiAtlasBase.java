@@ -6,7 +6,6 @@ import com.nukateam.map.impl.atlas.client.*;
 import com.nukateam.map.impl.atlas.client.gui.core.*;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiStates.IState;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiStates.SimpleState;
-import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.TileTexture;
 import com.nukateam.map.impl.atlas.core.WorldData;
 import com.nukateam.map.impl.atlas.event.MarkerClickedCallback;
@@ -57,14 +56,18 @@ public class GuiAtlasBase extends GuiComponent {
 
     public static final int MAP_BORDER_WIDTH = 17;
     public static final int MAP_BORDER_HEIGHT = 15;
-    public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2;
+    public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2; //226
     public static final int MAP_HEIGHT = 147;
 
-    public static final float PLAYER_ROTATION_STEPS = 16;
+    public static final int MARKER_SIZE = 32;
     public static final int PLAYER_ICON_WIDTH = 7;
     public static final int PLAYER_ICON_HEIGHT = 8;
 
-    public static final int MARKER_SIZE = 32;
+    private static final Pos2I BOOKMARKS_POS = new Pos2I(15, 16);
+    private static final Pos2I BOOKMARKS_SIZE = new Pos2I(21, MAP_HEIGHT - 8);
+
+    public static final float PLAYER_ROTATION_STEPS = 16;
+
     private static final Rect PLAYER_MARKER_BOX = new Rect(0, 45, 0, -6);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
@@ -293,8 +296,8 @@ public class GuiAtlasBase extends GuiComponent {
 
         setupButtons();
 
-        addChild(markers).setRelativeCoords(10, 16);
-        markers.setViewportSize(21, 180);
+        addChild(markers).setRelativeCoords(BOOKMARKS_POS.x, BOOKMARKS_POS.y);
+        markers.setViewportSize(BOOKMARKS_SIZE.x, BOOKMARKS_SIZE.y);
         markers.setWheelScrollsVertically();
         markerFinalizer.addMarkerListener(blinkingIcon);
         eraser.setTexture(Textures.ERASER, 12, 14, 2, 11);

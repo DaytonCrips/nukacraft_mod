@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import static com.nukateam.map.impl.atlas.core.scaning.TileDetectorBase.getCategory;
+import static net.minecraft.data.worldgen.placement.EndPlacements.CHORUS_PLANT;
 
 /**
  * Maps biome IDs (or pseudo IDs) to textures. <i>Not thread-safe!</i>
@@ -95,8 +96,8 @@ public class TileTextureMap {
 //
 //                var name = has_chorus_plant ? "end_island_plants" : "end_island";
 //                setTexture(id, TextureSetMap.instance().getByName(MapCore.id(name)));
-//
-//
+
+
 
                 var features = biome.getGenerationSettings().features();
                 var chorus_plant_feature = BuiltinRegistries.PLACED_FEATURE.get(new ResourceLocation("chorus_plant"));

@@ -18,13 +18,14 @@ import static com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem.get
 
 @OnlyIn(Dist.CLIENT)
 public class Textures {
-    public final static Map<ResourceLocation, ITexture> TILE_TEXTURES_MAP  = new HashMap<>();
-
     private static final String MOD_PREFIX = MapCore.ID + ":";
     private static final String GUI = MOD_PREFIX + "textures/gui/";
     private static final String GUI_ICONS = GUI + "icons/";
     private static final String GUI_SCALEBAR = GUI + "scalebar/";
     private static final String SCREEN = GUI + "screens/";
+
+    public static final Map<ResourceLocation, ITexture> TILE_TEXTURES_MAP  = new HashMap<>();
+    public static final ResourceLocation EXPORTED_BG = new ResourceLocation(GUI + "exported_bg.png");
 
     public static final ITexture
             PIPBOY_SCREEN = screen("pipboy_screen.png", 327, 207), //327, 207,
@@ -35,14 +36,12 @@ public class Textures {
             BOOKMARKS = gui("bookmarks.png", 84, 36),
             BOOKMARKS_LEFT = gui("bookmarks_l.png", 84, 36),
             PLAYER = gui("player.png", 7, 8),
-            SCROLLBAR_HOR = gui("scrollbar_hor.png", 8, 7),
-            SCROLLBAR_VER = gui("scrollbar_ver.png", 7,8),
+            SCROLLBAR_HOR = pipboyGui("scrollbar_hor.png", 8, 7),
+            SCROLLBAR_VER = pipboyGui("scrollbar_ver.png", 7,8),
             MARKER_FRAME_ON = gui("marker_frame_on.png", 34, 34),
             MARKER_FRAME_OFF = gui("marker_frame_off.png", 34, 34),
             ERASER = gui("eraser.png", 24, 24),
             EXIT = gui("pipboy_btn.png", 28, 14),
-
-
 
             SCALEBAR_4 = scaleBar("scalebar_4.png"),
             SCALEBAR_8 = scaleBar("scalebar_8.png"),
@@ -58,10 +57,6 @@ public class Textures {
             ICON_SHOW_MARKERS = icon("show_markers.png"),
             ICON_HIDE_MARKERS = icon("hide_markers.png"),
             ICON_EXPORT = icon("export.png");
-
-    public static final ResourceLocation EXPORTED_BG = new ResourceLocation(GUI + "exported_bg.png");
-
-
 
     // Constructor helpers:
     private static ITexture screen(String fileName, int width, int height) {
@@ -83,6 +78,10 @@ public class Textures {
 
     private static ITexture gui(String fileName, int width, int height) {
         return new Texture(new ResourceLocation(GUI + fileName), width, height);
+    }
+
+    private static ITexture pipboyGui(String fileName, int width, int height) {
+        return new Texture(new ResourceLocation(GUI + fileName), width, height, true);
     }
 
     private static ITexture scaleBar(String fileName) {

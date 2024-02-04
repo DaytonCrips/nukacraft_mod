@@ -19,7 +19,6 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
     public static boolean menu = true;
     public static Integer[] cords = new Integer[]{0, 0};
-
     public static String[] page_buffer = new String[]{ "", "", "", "", "", "", "", "", "", "" };
 
     public PipBoyScreenBase(T container, Inventory inventory, Component text) {
