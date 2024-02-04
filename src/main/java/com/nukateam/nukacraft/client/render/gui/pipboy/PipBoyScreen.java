@@ -64,7 +64,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
 
     private static final ResourceLocation PIPBOY_FRAME = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
     private static ResourceLocation pipboy = new ResourceLocation("nukacraft:textures/screens/pimpboy.png");
-    private static final ResourceLocation PIPBOY_SCREEN = new ResourceLocation("nukacraft:textures/screens/PIPBOY_SCREEN.png");
+    private static final ResourceLocation PIPBOY_SCREEN = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
 
     @Override
     public void init() {

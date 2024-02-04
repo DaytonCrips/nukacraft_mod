@@ -27,7 +27,7 @@ public class Textures {
     private static final String SCREEN = GUI + "screens/";
 
     public static final ITexture
-            PIPBOY_SCREEN = screen("pipboy_screen.png", 239, 210), //327, 207,
+            PIPBOY_SCREEN = screen("pipboy_screen.png", 327, 207), //327, 207,
             PIPBOY_FRAME = dynamicScreen("default_pipboy.png", 327, 207), //327, 207,
             PIPBOY_FRAME_NARROW = dynamicScreen("default_pipboy.png", 310, 218),
             BTN_ARROWS = gui("navigate_arrows.png", 24, 24),
