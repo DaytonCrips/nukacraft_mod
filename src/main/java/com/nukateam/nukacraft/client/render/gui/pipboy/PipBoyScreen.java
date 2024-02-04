@@ -14,7 +14,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import top.theillusivec4.curios.Curios;
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     private static boolean menu = true;
@@ -63,9 +62,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         this.imageHeight = 0;
     }
 
-    private static final ResourceLocation texture = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
+    private static final ResourceLocation PIPBOY_FRAME = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
     private static ResourceLocation pipboy = new ResourceLocation("nukacraft:textures/screens/pimpboy.png");
-    private static final ResourceLocation pipboy_screen = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
+    private static final ResourceLocation PIPBOY_SCREEN = new ResourceLocation("nukacraft:textures/screens/PIPBOY_SCREEN.png");
 
     @Override
     public void init() {
@@ -95,9 +94,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderTexture(0, PIPBOY_FRAME);
         blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
-        RenderSystem.setShaderTexture(0, pipboy_screen); //Pip Boy Skin
+        RenderSystem.setShaderTexture(0, PIPBOY_SCREEN); //Pip Boy Skin
         blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
 
         if (!(image == null)) {
