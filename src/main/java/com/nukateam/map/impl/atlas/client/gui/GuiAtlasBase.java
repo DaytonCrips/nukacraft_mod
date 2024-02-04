@@ -142,6 +142,7 @@ public class GuiAtlasBase extends GuiComponent {
             btnDelMarker.setSelected(false);
         }
     };
+
     private final GuiCursor eraser = new GuiCursor();
 
     private final IState EXPORTING_IMAGE = new IState() {
@@ -166,9 +167,6 @@ public class GuiAtlasBase extends GuiComponent {
     private final GuiPipboyButton btnExit;
     private final GuiPipboyButton btnArchive;
     private final GuiPipboyButton btnRadio;
-
-
-
     private final GuiPositionButton btnPosition;
 
     // Navigation ==============================================================
@@ -362,11 +360,6 @@ public class GuiAtlasBase extends GuiComponent {
         close();
     }
 
-
-    ///////////////
-
-    ///////////////
-
     @Override
     public void init() {
         super.init();
@@ -381,7 +374,7 @@ public class GuiAtlasBase extends GuiComponent {
         offsetGuiCoords(-12,-25);
 
 //        offsetGuiCoords(-6, 16);
-//        updateBookmarkerList();
+        updateBookmarkerList();
     }
 
     @Override
@@ -684,7 +677,7 @@ public class GuiAtlasBase extends GuiComponent {
         if(localMarkersData == null) return;
 
         int contentY = 0;
-        for (Marker marker : localMarkersData.getAllMarkers()) {
+        for (var marker : localMarkersData.getAllMarkers()) {
             if (!marker.isVisibleAhead() || marker.isGlobal()) {
                 continue;
             }
@@ -1133,7 +1126,7 @@ public class GuiAtlasBase extends GuiComponent {
 
         for (int x = pos.minX; x <= pos.minY; x++) {
             for (int z = pos.maxX; z <= pos.minY; z++) {
-                List<Marker> markers = markersData.getMarkersAtChunk(x, z);
+                var markers = markersData.getMarkersAtChunk(x, z);
                 if (markers == null) continue;
                 for (Marker marker : markers) {
                     renderMarker(poseStack, marker, getIconScale());
@@ -1143,21 +1136,20 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
     private void renderMarker(PoseStack poseStack, Marker marker, double scale) {
-        MarkerType type = MarkerType.REGISTRY.get(marker.getType());
-        if (type.shouldHide(state.is(HIDING_MARKERS), scaleClipIndex)) {
+        var type = MarkerType.REGISTRY.get(marker.getType());
+
+        if (type.shouldHide(state.is(HIDING_MARKERS), scaleClipIndex))
             return;
-        }
 
         int markerX = worldXToScreenX(marker.getX());
         int markerY = worldZToScreenY(marker.getZ());
-        if (!marker.isVisibleAhead() &&
-                !biomeData.hasTileAt(marker.getChunkX(), marker.getChunkZ())) {
-            return;
-        }
-        type.calculateMip(scale, mapScale, screenScale);
-        MarkerRenderInfo info = type.getRenderInfo(scale, mapScale, screenScale);
 
-        boolean mouseIsOverMarker = type.shouldHover((getMouseX() - (markerX + info.x)) / info.tex.width(), (getMouseY() - (markerY + info.y)) / info.tex.height());
+        if (!marker.isVisibleAhead() && !biomeData.hasTileAt(marker.getChunkX(), marker.getChunkZ()))
+            return;
+
+        type.calculateMip(scale, mapScale, screenScale);
+        var info = type.getRenderInfo(scale, mapScale, screenScale);
+        var mouseIsOverMarker = type.shouldHover((getMouseX() - (markerX + info.x)) / info.tex.width(), (getMouseY() - (markerY + info.y)) / info.tex.height());
         type.resetMip();
 
         if (mouseIsOverMarker) {
@@ -1166,7 +1158,6 @@ public class GuiAtlasBase extends GuiComponent {
             MinecraftForge.EVENT_BUS.post(new MarkerHoveredCallback.TheEvent(player, marker));
         } else {
             setPipboyShader();
-//            RenderSystem.setShaderColor(1, 1, 1, 1);
             if (hoveredMarker == marker) {
                 hoveredMarker = null;
             }
@@ -1174,13 +1165,10 @@ public class GuiAtlasBase extends GuiComponent {
 
         if (state.is(PLACING_MARKER)) {
             setPipboyShader(0.5f);
-//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
         } else if (state.is(DELETING_MARKER) && marker.isGlobal()) {
             setPipboyShader(0.5f);
-//            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
         } else {
             setPipboyShader();
-//            RenderSystem.setShaderColor(1, 1, 1, 1);
         }
 
         if (MapCore.CONFIG.debugRender) {
@@ -1188,8 +1176,7 @@ public class GuiAtlasBase extends GuiComponent {
         }
 
         if (markerX <= getGuiX() + MAP_BORDER_WIDTH || markerX >= getGuiX() + MAP_WIDTH + MAP_BORDER_WIDTH
-                || markerY <= getGuiY() + MAP_BORDER_HEIGHT || markerY >= getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT
-        ) {
+                || markerY <= getGuiY() + MAP_BORDER_HEIGHT || markerY >= getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT) {
             setPipboyShader(0.5f);
 //            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
             info.scale(0.8);

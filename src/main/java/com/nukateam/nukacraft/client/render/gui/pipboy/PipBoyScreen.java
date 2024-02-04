@@ -30,7 +30,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "", //string9
             "" //string10
     };
-//Шо? ☢
+
     public static String[] page_buffer = new String[]{
             "", //string1
             "", //string2
@@ -193,10 +193,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     private void renderNavigation() {
-        addRenderableWidget(getArchiveButton());
-        addRenderableWidget(getMapButton());
-        addRenderableWidget(getOffButton());
-        addRenderableWidget(getRadioButton());
+        renderButtons();
         addRenderableWidget(getBackButton(() -> {
             if (current_page > 0) {
                 current_page--;
@@ -211,13 +208,17 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         }));
     }
 
+    private void renderButtons() {
+        addRenderableWidget(getArchiveButton());
+        addRenderableWidget(getMapButton());
+        addRenderableWidget(getOffButton());
+        addRenderableWidget(getRadioButton());
+    }
+
     private void renderArchive(){
         warningPipboy();
 
-//        addRenderableWidget(getArchiveButton());
-//        addRenderableWidget(getMapButton());
-//        addRenderableWidget(getRadioButton());
-//        addRenderableWidget(getOffButton());
+//        renderButtons();
 //        addRenderableWidget(getBackButton(() -> {
 //            if (current_archive_page > 0) {
 //                current_archive_page--;

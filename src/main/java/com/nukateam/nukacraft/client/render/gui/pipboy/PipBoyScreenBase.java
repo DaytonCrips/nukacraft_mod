@@ -15,7 +15,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import static com.nukateam.nukacraft.common.data.utils.MathUtils.round;
 
 public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractContainerScreen<T>{
-
     public static int page_count, current_page, current_archive, archive_pages, current_archive_page;
     public static ResourceLocation image = new ResourceLocation("nukacraft:textures/screens/empty.png");
     public static boolean menu = true;
