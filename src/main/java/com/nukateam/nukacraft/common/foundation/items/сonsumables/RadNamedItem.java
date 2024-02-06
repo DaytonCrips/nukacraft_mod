@@ -1,6 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
-import com.nukateam.nukacraft.common.data.utils.RadiationHelper;
+import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.nukateam.nukacraft.common.foundation.items.misc.RadItem.showRadiation;
+import static com.nukateam.nukacraft.common.foundation.items.сonsumables.RadItem.showRadiation;
 
 public class RadNamedItem extends ItemNameBlockItem {
     protected final float radiation;
@@ -30,8 +30,8 @@ public class RadNamedItem extends ItemNameBlockItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player) {
-            RadiationHelper.updateRadiation(entity, this.radiation);
+        if (entity instanceof Player && !level.isClientSide) {
+            RadiationUtils.addRadiation(entity, this.radiation);
 
             if (stack.getItem() == ModItems.CRACKBERRY.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));

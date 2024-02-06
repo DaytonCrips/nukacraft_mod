@@ -18,21 +18,35 @@ public class ModSyncedDataKeys {
             .resetOnDeath()
             .build();
 
-    public static final SyncedDataKey<LivingEntity, Boolean> SHOOTING = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
-            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "shooting"))
+    public static final SyncedDataKey<LivingEntity, Boolean> SHOOTING_RIGHT = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
+            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "shooting_right"))
             .defaultValueSupplier(() -> false)
             .resetOnDeath()
             .build();
 
-    public static final SyncedDataKey<LivingEntity, Boolean> RELOADING = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
-            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "reloading"))
+    public static final SyncedDataKey<LivingEntity, Boolean> SHOOTING_LEFT = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
+            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "shooting_left"))
+            .defaultValueSupplier(() -> false)
+            .resetOnDeath()
+            .build();
+
+    public static final SyncedDataKey<LivingEntity, Boolean> RELOADING_RIGHT = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
+            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "reloading_right"))
+            .defaultValueSupplier(() -> false)
+            .resetOnDeath()
+            .build();
+
+    public static final SyncedDataKey<LivingEntity, Boolean> RELOADING_LEFT = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
+            .id(new ResourceLocation(NukaCraftMod.MOD_ID, "reloading_left"))
             .defaultValueSupplier(() -> false)
             .resetOnDeath()
             .build();
 
     public static void register() {
         FrameworkAPI.registerSyncedDataKey(AIMING);
-        FrameworkAPI.registerSyncedDataKey(SHOOTING);
-        FrameworkAPI.registerSyncedDataKey(RELOADING);
+        FrameworkAPI.registerSyncedDataKey(SHOOTING_RIGHT);
+        FrameworkAPI.registerSyncedDataKey(SHOOTING_LEFT);
+        FrameworkAPI.registerSyncedDataKey(RELOADING_RIGHT);
+        FrameworkAPI.registerSyncedDataKey(RELOADING_LEFT);
     }
 }

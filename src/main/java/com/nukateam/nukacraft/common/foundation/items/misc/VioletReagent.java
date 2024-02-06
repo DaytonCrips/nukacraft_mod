@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.common.foundation.blocks.blocks.MutationFloraClass;
+import com.nukateam.nukacraft.common.data.utils.PlantMutationUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -19,16 +19,17 @@ public class VioletReagent extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        Player player = context.getPlayer();
-        Level level = context.getLevel();
-        BlockPos posOld = context.getClickedPos();
-        BlockState state = level.getBlockState(posOld);
-        if (state.getBlock().defaultBlockState().is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")))) {
-            MutationFloraClass.mutationSucces(state, posOld, level);
-            if (!player.isCreative()) {player.getMainHandItem().shrink(1);}
+        var player = context.getPlayer();
+        var posOld = context.getClickedPos();
+        var state = context.getLevel().getBlockState(posOld);
+        var isMutablePlant = state.getBlock().defaultBlockState().is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")));
+
+        if (isMutablePlant) {
+            PlantMutationUtils.mutationSuccess(state, posOld, context.getLevel());
+            if (!player.isCreative())
+                player.getMainHandItem().shrink(1);
             return InteractionResult.SUCCESS;
         }
-        //if (!player.isCreative()) {player.getMainHandItem().shrink(1);}
         return InteractionResult.FAIL;
     }
 

@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.guns.jei;
+package com.nukateam.guns.common.jei;
 
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipe;
 import com.nukateam.guns.common.foundation.crafting.WorkbenchRecipes;

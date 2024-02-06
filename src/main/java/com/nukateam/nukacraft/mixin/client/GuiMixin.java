@@ -3,10 +3,14 @@ package com.nukateam.nukacraft.mixin.client;
 import com.nukateam.nukacraft.common.registery.HeartType;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Random;
 
 import static com.nukateam.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
-import static com.nukateam.nukacraft.common.data.utils.RadiationHelper.getPlayerRadiation;
 
 @Mixin(Gui.class)
 public abstract class GuiMixin extends GuiComponent {
@@ -26,6 +29,10 @@ public abstract class GuiMixin extends GuiComponent {
     @Unique
     private void renderHeart(PoseStack poseStack, HeartType heartType, int x, int y, int vOffset, boolean highlight, boolean p_168707_) {
         this.blit(poseStack, x, y, heartType.getX(p_168707_, highlight), vOffset, 9, 9);
+    }
+
+    private static double getPlayerRadiation(){
+        return Minecraft.getInstance().player.getAttributeValue(ModAttributesClass.RADIATION.get());
     }
 
     @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)
@@ -39,7 +46,7 @@ public abstract class GuiMixin extends GuiComponent {
         int yOffset = 9 * (player.level.getLevelData().isHardcore() ? 5 : 0);
 
         var rads = getPlayerRadiation();
-        int radHearts = Mth.ceil((double) rads / 2.0D);
+        int radHearts = Mth.ceil(rads / 2.0D);
         int maxHearts = Mth.ceil((double) healthMax / 2.0D);
         int absorbHearts = Mth.ceil((double) absorb / 2.0D);
         int maxHalfHearts = maxHearts * 2;

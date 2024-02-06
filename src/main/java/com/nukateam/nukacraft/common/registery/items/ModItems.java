@@ -2,11 +2,14 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.guns.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.items.misc.*;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -271,9 +274,9 @@ public class ModItems {
 
     //FOOD
     public static final RegistryObject<Item> NUKACOLA = ITEMS.register("nukacola",
-            () -> new NukaColaItem(0.08f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
+            () -> new NukaColaItem(0.08f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
     public static final RegistryObject<Item> NUKAFRUTTI = ITEMS.register("nukafrutti",
-            () -> new NukaColaItem( -0.09f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKAFRUTTI)));
+            () -> new NukaColaItem( -0.09f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKAFRUTTI)));
     public static final RegistryObject<Item> CRACKBERRY = ITEMS.register("crackberry",
             () -> new RadNamedItem(-0.1f, ModBlocks.CRACKBERRY_BUSH.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.CRACKBERRY)));
     public static final RegistryObject<Item> BOMBBERRY = ITEMS.register("bombberry",
@@ -331,19 +334,26 @@ public class ModItems {
     public static final RegistryObject<Item> COTTONCANDY = ITEMS.register("cottoncandy",
             () -> new RadFoodItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.COTTONCANDY)));
     public static final RegistryObject<Item> BUBBLEAPPLE = ITEMS.register("bubbleapple",
-            () -> new RadFoodItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.BUBBLEAPPLE)));  //    public static final RegistryObject<Item> ASTER_TEA = ITEMS.register("aster_tea", () -> new TeaItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new BubbleAppleItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.BUBBLEAPPLE)));
+
     public static final RegistryObject<Item> ASTER_TEA = ITEMS.register("aster_tea",
-            () -> new TeaItem(0.14f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new TeaItem(0.14f, () -> new MobEffectInstance(MobEffects.REGENERATION, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> SWEET_ASTER_TEA = ITEMS.register("sweet_aster_tea",
-            () -> new TeaItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new TeaItem( 0.0f, () -> new MobEffectInstance(MobEffects.REGENERATION, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> ASH_TEA = ITEMS.register("ash_tea",
-            () -> new TeaItem(0.1f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new TeaItem(0.1f, () -> new MobEffectInstance(MobEffects.DIG_SPEED, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> SWEET_ASH_TEA = ITEMS.register("sweet_ash_tea",
-            () -> new TeaItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new TeaItem( 0.0f, () -> new MobEffectInstance(MobEffects.DIG_SPEED, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
     public static final RegistryObject<Item> THISTLE_TEA = ITEMS.register("thistle_tea",
-            () -> new TeaItem(0.2f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.THISTLE)));
+            () -> new TeaItem(0.2f, null, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.THISTLE)));
     public static final RegistryObject<Item> SOOT_TEA = ITEMS.register("soot_tea",
-            () -> new TeaItem( 0.1f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+            () -> new TeaItem( 0.1f, () -> new MobEffectInstance(MobEffects.DIG_SPEED, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
+
     public static final RegistryObject<Item> VEGSOUP = ITEMS.register("vegsoup",
             () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.VEGSOUP)));
     public static final RegistryObject<Item> TATOSALAD = ITEMS.register("tato_salad",
@@ -352,24 +362,25 @@ public class ModItems {
             () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTSOUP)));
     public static final RegistryObject<Item> SITTPUREE = ITEMS.register("sittpuree",
             () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTPUREE)));
+
     public static final RegistryObject<Item> FMSOUP = ITEMS.register("firemushsoup",
-            () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMSOUP)));
+            () -> new SpecialSoupItem( 0.0f, () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 10 * 20),
+                    new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMSOUP)));
     public static final RegistryObject<Item> FMPUREE = ITEMS.register("firemushpuree",
-            () -> new SpecialSoupItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
+            () -> new SpecialSoupItem( 0.0f, () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 10 * 20), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.FMPUREE)));
 //
 
-    //
-//    //MEDICINE ITEMS
+//////////MEDICINE ITEMS
     public static final RegistryObject<Item> STIMPAK = ITEMS.register("stimpak",
-            () -> new StimpakItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new StimpakItem(5, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> SUPER_STIMPAK = ITEMS.register("super_stimpak",
-            () -> new StimpakItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new StimpakItem(8, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADAWAY = ITEMS.register("radaway",
-            () -> new MedicineItem( -4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new RadItem( -4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> GLOWBLOOD = ITEMS.register("glowblood",
-            () -> new MedicineItem(4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new GlowbloodItem(4.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
     public static final RegistryObject<Item> RADX = ITEMS.register("radx",
-            () -> new MedicineItem( 0.0f, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
+            () -> new RadXItem(100, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.MED)));
 
     //Others
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",

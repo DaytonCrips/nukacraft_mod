@@ -5,6 +5,9 @@ import com.mrcrayfish.framework.api.network.PlayMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -24,10 +27,38 @@ public class MessageGunSound extends PlayMessage<MessageGunSound> {
     private boolean muzzle;
     private boolean reload;
 
-    public MessageGunSound() {
+    public MessageGunSound() {}
+
+    public MessageGunSound(ResourceLocation id, SoundSource category, LivingEntity shooter,
+                           float volume, float pitch, boolean muzzle, boolean reload) {
+        this.id = id;
+        this.category = category;
+        this.x = (float)shooter.position().x;
+        this.y = (float)shooter.position().y;
+        this.z = (float)shooter.position().z;
+        this.volume = volume;
+        this.pitch = pitch;
+        this.shooterId = shooter.getId();
+        this.muzzle = muzzle;
+        this.reload = reload;
     }
 
-    public MessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z, float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
+    public MessageGunSound(ResourceLocation id, SoundSource category, Vec3 position,
+                           float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
+        this.id = id;
+        this.category = category;
+        this.x = (float)position.x;
+        this.y = (float)position.y;
+        this.z = (float)position.z;
+        this.volume = volume;
+        this.pitch = pitch;
+        this.shooterId = shooterId;
+        this.muzzle = muzzle;
+        this.reload = reload;
+    }
+
+    public MessageGunSound(ResourceLocation id, SoundSource category, float x, float y, float z,
+                           float volume, float pitch, int shooterId, boolean muzzle, boolean reload) {
         this.id = id;
         this.category = category;
         this.x = x;
@@ -56,8 +87,8 @@ public class MessageGunSound extends PlayMessage<MessageGunSound> {
 
     @Override
     public MessageGunSound decode(FriendlyByteBuf buffer) {
-        ResourceLocation id = buffer.readResourceLocation();
-        SoundSource category = buffer.readEnum(SoundSource.class);
+        var id = buffer.readResourceLocation();
+        var category = buffer.readEnum(SoundSource.class);
         float x = buffer.readFloat();
         float y = buffer.readFloat();
         float z = buffer.readFloat();

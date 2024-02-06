@@ -23,32 +23,28 @@ import java.util.function.Consumer;
 @OnlyIn(Dist.CLIENT)
 public class ClientProxy implements /*SimpleSynchronousResourceReloadListener*/ResourceManagerReloadListener {
 	public void initClient() {
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		final var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener((Consumer<RegisterClientReloadListenersEvent>)resourceManager-> {
 			// read Textures first from assets
-	        TextureConfig textureConfig = new TextureConfig(Textures.TILE_TEXTURES_MAP);
+			var textureConfig = new TextureConfig(Textures.TILE_TEXTURES_MAP);
 	        resourceManager
 	        .registerReloadListener(textureConfig);
 
 	        // than read TextureSets
-	        TextureSetMap textureSetMap = TextureSetMap.instance();
-	        TextureSetConfig textureSetConfig = new TextureSetConfig(textureSetMap);
-	        resourceManager
-	        .registerReloadListener(textureSetConfig);
+			var textureSetMap = TextureSetMap.instance();
+			var textureSetConfig = new TextureSetConfig(textureSetMap);
+	        resourceManager.registerReloadListener(textureSetConfig);
 
 	        // After that, we can read the tile mappings
-	        TileTextureMap tileTextureMap = TileTextureMap.instance();
-	        TileTextureConfig tileTextureConfig = new TileTextureConfig(tileTextureMap, textureSetMap);
-	        resourceManager
-	        .registerReloadListener(tileTextureConfig);
+			var tileTextureMap = TileTextureMap.instance();
+	        var tileTextureConfig = new TileTextureConfig(tileTextureMap, textureSetMap);
+	        resourceManager.registerReloadListener(tileTextureConfig);
 
 	        // Legacy file name:
-	        resourceManager
-	        .registerReloadListener(this);
+	        resourceManager.registerReloadListener(this);
 
-	        MarkerTextureConfig markerTextureConfig = new MarkerTextureConfig();
-	        resourceManager
-	        .registerReloadListener(markerTextureConfig);
+			var markerTextureConfig = new MarkerTextureConfig();
+	        resourceManager.registerReloadListener(markerTextureConfig);
 		});
 		modEventBus.addListener((Consumer<FMLClientSetupEvent>)resourceManager-> {
 			for (MarkerType type : MarkerType.REGISTRY) {

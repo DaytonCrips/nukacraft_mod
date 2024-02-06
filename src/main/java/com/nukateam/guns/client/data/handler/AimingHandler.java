@@ -40,6 +40,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import static com.nukateam.guns.common.data.util.GunModifierHelper.canRenderInOffhand;
+
 /**
  * Author: MrCrayfish
  */
@@ -138,7 +140,7 @@ public class AimingHandler {
         if (AimingHandler.get().getNormalisedAdsProgress() == 0)
             return;
 
-        if (ModSyncedDataKeys.RELOADING.getValue(mc.player))
+        if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player))
             return;
 
         Gun modifiedGun = gunItem.getModifiedGun(heldItem);
@@ -170,26 +172,21 @@ public class AimingHandler {
 
     public boolean isAiming() {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null)
+        if (mc.player == null || mc.player.isSpectator()) return false;
+        if (Debug.isForceAim()) return true;
+        if (mc.screen != null || PlayerReviveHelper.isBleeding(mc.player)) return false;
+
+        var mainHandItem = mc.player.getMainHandItem();
+        var offhandItem = mc.player.getOffhandItem();
+
+        if (!(mainHandItem.getItem() instanceof GunItem))
             return false;
 
-        if (mc.player.isSpectator())
+        if(canRenderInOffhand(mainHandItem) && canRenderInOffhand(offhandItem))
             return false;
 
-        if (Debug.isForceAim())
-            return true;
+        var gun = ((GunItem) mainHandItem.getItem()).getModifiedGun(mainHandItem);
 
-        if (mc.screen != null)
-            return false;
-
-        if (PlayerReviveHelper.isBleeding(mc.player))
-            return false;
-
-        ItemStack heldItem = mc.player.getMainHandItem();
-        if (!(heldItem.getItem() instanceof GunItem))
-            return false;
-
-        Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
         if (!gun.canAimDownSight())
             return false;
 
@@ -199,7 +196,7 @@ public class AimingHandler {
         if (!this.localTracker.isAiming() && this.isLookingAtInteractableBlock())
             return false;
 
-        if (ModSyncedDataKeys.RELOADING.getValue(mc.player))
+        if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(mc.player))
             return false;
 
         boolean zooming = mc.options.keyUse.isDown();

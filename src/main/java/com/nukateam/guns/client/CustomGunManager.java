@@ -2,6 +2,7 @@ package com.nukateam.guns.client;
 
 import com.nukateam.guns.common.base.gun.CustomGun;
 import com.nukateam.guns.common.base.CustomGunLoader;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.network.message.S2CMessageUpdateGuns;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.items.ModGuns;
@@ -47,7 +48,7 @@ public class CustomGunManager {
                 tag.put("Model", gun.getModel().save(new CompoundTag()));
                 tag.put("Gun", gun.getGun().serializeNBT());
                 tag.putBoolean("Custom", true);
-                tag.putInt("AmmoCount", gun.getGun().getGeneral().getMaxAmmo());
+                tag.putInt(Tags.AMMO_COUNT, gun.getGun().getGeneral().getMaxAmmo());
                 items.add(stack);
             });
         }

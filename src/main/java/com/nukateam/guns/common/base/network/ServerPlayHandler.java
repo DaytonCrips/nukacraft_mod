@@ -5,6 +5,7 @@ import com.nukateam.guns.common.base.gun.Gun;
 import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.guns.common.base.utils.ShootTracker;
 import com.nukateam.guns.common.base.utils.SpreadTracker;
+import com.nukateam.guns.common.data.constants.Tags;
 import com.nukateam.guns.common.foundation.container.AttachmentContainer;
 import com.nukateam.guns.common.foundation.container.WorkbenchContainer;
 import com.nukateam.guns.common.data.util.GunEnchantmentHelper;
@@ -67,7 +68,7 @@ public class ServerPlayHandler {
      * Fires the weapon the player is currently holding.
      * This is only intended for use on the logical server.
      *
-     * @param entity the player for who's weapon to fire
+     * @param entity the living entity for who's weapon to fire
      */
     public static void handleShoot(MessageShoot message, LivingEntity entity) {
         if (entity.isSpectator())
@@ -77,17 +78,15 @@ public class ServerPlayHandler {
             return;
 
         var world = entity.level;
-        var heldItem = entity.getItemInHand(InteractionHand.MAIN_HAND);
+        var hand = message.isMainHand() ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+        var heldItem = entity.getItemInHand(hand);
 
-        if (heldItem.getItem() instanceof GunItem item && (Gun.hasAmmo(heldItem)
-                || (entity instanceof Player player && player.isCreative()))) {
+        if (heldItem.getItem() instanceof GunItem item
+                && (Gun.hasAmmo(heldItem) || (entity instanceof Player player && player.isCreative()))) {
             var modifiedGun = item.getModifiedGun(heldItem);
             var tag =  heldItem.getOrCreateTag();
 
-//            if(!gunCooldown.contains(heldItem))
-//                gunCooldown.add(heldItem);
-
-            if (modifiedGun != null /*&& tag.getInt(COOLDOWN) == 0*/) {
+            if (modifiedGun != null) {
                 if (MinecraftForge.EVENT_BUS.post(new GunFireEvent.Pre(entity, heldItem)))
                     return;
 
@@ -104,8 +103,8 @@ public class ServerPlayHandler {
 
                 tracker.putCooldown(heldItem, item, modifiedGun);
 
-                if (ModSyncedDataKeys.RELOADING.getValue(entity)) {
-                    ModSyncedDataKeys.RELOADING.setValue(entity, false);
+                if (ModSyncedDataKeys.RELOADING_RIGHT.getValue(entity)) {
+                    ModSyncedDataKeys.RELOADING_RIGHT.setValue(entity, false);
                 }
 
                 if (!modifiedGun.getGeneral().isAlwaysSpread() && modifiedGun.getGeneral().getSpread() > 0.0F) {
@@ -170,7 +169,7 @@ public class ServerPlayHandler {
                     if (!tag.getBoolean("IgnoreAmmo")) {
                         int level = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.RECLAIMED.get(), heldItem);
                         if (level == 0 || entity.level.random.nextInt(4 - Mth.clamp(level, 1, 2)) != 0) {
-                            tag.putInt("AmmoCount", Math.max(0, tag.getInt("AmmoCount") - 1));
+                            tag.putInt(Tags.AMMO_COUNT, Math.max(0, tag.getInt(Tags.AMMO_COUNT) - 1));
                         }
                     }
                 }
@@ -244,24 +243,30 @@ public class ServerPlayHandler {
      * @param player
      */
     public static void handleUnload(ServerPlayer player) {
-        ItemStack stack = player.getMainHandItem();
+        unloadArm(player, player.getMainHandItem());
+        unloadArm(player, player.getOffhandItem());
+    }
+
+    private static void unloadArm(ServerPlayer player, ItemStack stack) {
+//        ItemStack stack = player.getMainHandItem();
         if (stack.getItem() instanceof GunItem) {
-            CompoundTag tag = stack.getTag();
+            var tag = stack.getTag();
             if (tag != null && tag.contains("AmmoCount", Tag.TAG_INT)) {
                 int count = tag.getInt("AmmoCount");
                 tag.putInt("AmmoCount", 0);
 
-                GunItem gunItem = (GunItem) stack.getItem();
-                Gun gun = gunItem.getModifiedGun(stack);
-                ResourceLocation id = gun.getProjectile().getItem();
+                var gunItem = (GunItem) stack.getItem();
+                var gun = gunItem.getModifiedGun(stack);
+                var id = gun.getProjectile().getItem();
+                var item = ForgeRegistries.ITEMS.getValue(id);
 
-                Item item = ForgeRegistries.ITEMS.getValue(id);
                 if (item == null) {
                     return;
                 }
 
                 int maxStackSize = item.getMaxStackSize();
                 int stacks = count / maxStackSize;
+
                 for (int i = 0; i < stacks; i++) {
                     spawnAmmo(player, new ItemStack(item, maxStackSize));
                 }

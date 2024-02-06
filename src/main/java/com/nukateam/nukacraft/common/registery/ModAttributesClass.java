@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.events.RadiationTracker;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -21,32 +22,23 @@ import java.util.function.Supplier;
 public class ModAttributesClass {
     public static final DeferredRegister<Attribute> ATTRIBUTE = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation", () -> new RangedAttribute("nukacraft_radiation", 0, 0, 100));
+    public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation",
+            () -> new RangedAttribute("nukacraft_radiation", 0, 0, 100).setSyncable(true));
 
     private static <T extends Attribute>RegistryObject<T> registryAttribute(String name, Supplier<T> attribute) {
         RegistryObject<T> toReturn = ATTRIBUTE.register(name, attribute);
         return toReturn;
     }
+
     public static void register(IEventBus eventBus) {
         ATTRIBUTE.register(eventBus);
     }
 
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
+        if (!event.has(EntityType.PLAYER, ModAttributesClass.RADIATION.get())) {
+            event.add(EntityType.PLAYER, ModAttributesClass.RADIATION.get());
+        }
         event.add(EntityType.PLAYER, ModAttributesClass.RADIATION.get());
     }
-
-    @Mod.EventBusSubscriber
-    private static class Utils {
-        @SubscribeEvent
-        public static void persistAttributes(PlayerEvent.Clone event) {
-            Player oldPlayer = event.getOriginal();
-            Player newPlayer = (Player) event.getEntity();
-            newPlayer.getAttribute(ModAttributesClass.RADIATION.get())
-                    .setBaseValue(oldPlayer.getAttribute(ModAttributesClass.RADIATION.get()).getBaseValue());
-            newPlayer.getAttribute(Attributes.MAX_HEALTH)
-                    .setBaseValue(oldPlayer.getAttribute(Attributes.MAX_HEALTH).getBaseValue());
-        }
-    }
-
 }

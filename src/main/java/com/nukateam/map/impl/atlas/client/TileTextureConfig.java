@@ -45,19 +45,19 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
             Map<ResourceLocation, ResourceLocation> map = new HashMap<>();
 
             try {
-                for (ResourceLocation id : manager.listResources("atlas/tiles", (s) -> s.endsWith(".json"))) {
-                    ResourceLocation tile_id = new ResourceLocation(
+                for (var id : manager.listResources("atlas/tiles", (s) -> s.endsWith(".json"))) {
+                    var tile_id = new ResourceLocation(
                             id.getNamespace(),
                             id.getPath().replace("atlas/tiles/", "").replace(".json", "")
                     );
 
                     try {
-                        Resource resource = manager.getResource(id);
+                        var resource = manager.getResource(id);
                         try (
-                                InputStream stream = resource.getInputStream();
-                                InputStreamReader reader = new InputStreamReader(stream)
-                        ) {
-                            JsonObject object = PARSER.parse(reader).getAsJsonObject();
+                                var stream = resource.getInputStream();
+                                var reader = new InputStreamReader(stream)
+                        ){
+                            var object = PARSER.parse(reader).getAsJsonObject();
 
                             int version = object.getAsJsonPrimitive("version").getAsInt();
                             if (version != VERSION) {
@@ -65,7 +65,7 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
                                 continue;
                             }
 
-                            ResourceLocation texture_set = new ResourceLocation(object.get("texture_set").getAsString());
+                            var texture_set = new ResourceLocation(object.get("texture_set").getAsString());
 
                             map.put(tile_id, texture_set);
                         }
@@ -83,10 +83,10 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
 
     @Override
     public CompletableFuture<Void> apply(Map<ResourceLocation, ResourceLocation> tileMap, ResourceManager manager, ProfilerFiller profiler, Executor executor) {
-    	for (Map.Entry<ResourceLocation, ResourceLocation> entry : tileMap.entrySet()) {
-	        ResourceLocation tile_id = entry.getKey();
-	        ResourceLocation texture_set = entry.getValue();
-	        TextureSet set = textureSetMap.getByName(entry.getValue());
+    	for (var entry : tileMap.entrySet()) {
+	        var tile_id = entry.getKey();
+	        var texture_set = entry.getValue();
+	        var set = textureSetMap.getByName(entry.getValue());
 
 	        if(set == null) {
 	            MapCore.LOG.error("Missing texture set `{}` for tile `{}`. Using default.", texture_set, tile_id);

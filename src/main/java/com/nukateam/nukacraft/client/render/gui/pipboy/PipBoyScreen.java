@@ -1,9 +1,10 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.nukacraft.common.data.utils.PlayerUtils;
+import com.nukateam.nukacraft.common.data.utils.SlotUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
 import com.nukateam.nukacraft.common.network.PacketSender;
 import net.minecraft.client.Minecraft;
@@ -13,7 +14,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     private static boolean menu = true;
@@ -30,7 +30,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "", //string9
             "" //string10
     };
-//Шо? ☢
+
     public static String[] page_buffer = new String[]{
             "", //string1
             "", //string2
@@ -43,7 +43,6 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
             "", //string9
             "" //string10
     };
-
 
     public enum PipboyPage{
         ARCHIVE,
@@ -63,9 +62,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         this.imageHeight = 0;
     }
 
-    private static final ResourceLocation texture = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
+    private static final ResourceLocation PIPBOY_FRAME = new ResourceLocation("nukacraft:textures/screens/pipboy_template.png");
     private static ResourceLocation pipboy = new ResourceLocation("nukacraft:textures/screens/pimpboy.png");
-    private static final ResourceLocation pipboy_screen = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
+    private static final ResourceLocation PIPBOY_SCREEN = new ResourceLocation("nukacraft:textures/screens/pipboy_screen.png");
 
     @Override
     public void init() {
@@ -95,9 +94,9 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, 1);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderTexture(0, PIPBOY_FRAME);
         blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
-        RenderSystem.setShaderTexture(0, pipboy_screen); //Pip Boy Skin
+        RenderSystem.setShaderTexture(0, PIPBOY_SCREEN); //Pip Boy Skin
         blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
 
         if (!(image == null)) {
@@ -160,10 +159,11 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     public static void openMap() {
-        Minecraft.getInstance().player.closeContainer();
-//        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
+        var minecraft = Minecraft.getInstance();
+        var pipboy = SlotUtils.getPipboyStack(minecraft.player);
+        minecraft.player.closeContainer();
+        AntiqueAtlasModClient.openAtlasGUI(pipboy);
     }
-
 
     public static void openArchive() {
         if(!PlayerUtils.hasPipboy()) return;
@@ -193,10 +193,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
     }
 
     private void renderNavigation() {
-        addRenderableWidget(getArchiveButton());
-        addRenderableWidget(getMapButton());
-        addRenderableWidget(getOffButton());
-        addRenderableWidget(getRadioButton());
+        renderButtons();
         addRenderableWidget(getBackButton(() -> {
             if (current_page > 0) {
                 current_page--;
@@ -211,13 +208,17 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu>{
         }));
     }
 
+    private void renderButtons() {
+        addRenderableWidget(getArchiveButton());
+        addRenderableWidget(getMapButton());
+        addRenderableWidget(getOffButton());
+        addRenderableWidget(getRadioButton());
+    }
+
     private void renderArchive(){
         warningPipboy();
 
-//        addRenderableWidget(getArchiveButton());
-//        addRenderableWidget(getMapButton());
-//        addRenderableWidget(getRadioButton());
-//        addRenderableWidget(getOffButton());
+//        renderButtons();
 //        addRenderableWidget(getBackButton(() -> {
 //            if (current_archive_page > 0) {
 //                current_archive_page--;

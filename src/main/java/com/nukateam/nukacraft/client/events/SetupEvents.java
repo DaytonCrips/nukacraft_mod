@@ -20,8 +20,9 @@ import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static com.nukateam.map.impl.atlas.MapCore.initMap;
+import static com.nukateam.map.impl.atlas.MapCore.*;
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
 import static com.nukateam.nukacraft.common.registery.ModParticles.*;
 
@@ -30,7 +31,6 @@ public class SetupEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        initMap();
         KeyBindings.register();
         ModSetup.renderTypeSetup();
         PipBoy pipBoy = new PipBoy();

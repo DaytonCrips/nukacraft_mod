@@ -21,7 +21,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.RADASTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_RADASTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_DEATH_FLOWER.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.DEATH_PLANT.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.DEAD_PLANT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.REDLIGHT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.DEATH_FLOWER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.FIREMUSHROOM.get(), RenderType.cutout());

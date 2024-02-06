@@ -168,9 +168,10 @@ dependencies {
     implementation fg.deobf('curse.maven:framework-549225:4613856')
     implementation fg.deobf('curse.maven:configured-457570:4010624')
     implementation fg.deobf('curse.maven:catalogue-459701:3803098')
-    implementation fg.deobf('curse.maven:backpacked-352835:3923041')
     compileOnly    fg.deobf('curse.maven:controllable-317269:4120618')
+    implementation fg.deobf('curse.maven:backpacked-352835:3923041')
     compileOnly    fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255:api")
+    compileOnly    fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -189,11 +190,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "nukacraft",
-                "Specification-Vendor"    : "VaultTeam",
+                "Specification-Vendor"    : "NukaTeam",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : "NukaCraft",
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "VaultTeam",
+                "Implementation-Vendor"   : "NukaTeam",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
                 "TweakOrder"              : 0,

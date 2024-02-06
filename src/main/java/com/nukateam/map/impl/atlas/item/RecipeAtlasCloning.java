@@ -1,6 +1,5 @@
 package com.nukateam.map.impl.atlas.item;
 
-import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.MapCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;

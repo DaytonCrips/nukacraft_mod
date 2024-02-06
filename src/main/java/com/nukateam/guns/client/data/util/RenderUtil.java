@@ -62,26 +62,6 @@ public class RenderUtil {
         poseStack.translate(-xOffset, -yOffset, 0);
     }
 
-    public static void renderGun(ItemStack stack, PoseStack poseStack, MultiBufferSource buffer,
-                                 int light, int overlay, @Nullable LivingEntity entity) {
-        renderModel(stack, TransformType.NONE, poseStack, buffer, light, overlay, entity);
-    }
-
-    public static void renderModel(ItemStack child, ItemStack parent, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
-        BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(child);
-        renderModel(model, TransformType.NONE, null, child, parent, poseStack, buffer, light, overlay);
-    }
-
-    public static void renderModel(ItemStack stack, TransformType transformType, PoseStack poseStack,
-                                   MultiBufferSource buffer, int light, int overlay,
-                                   @Nullable LivingEntity entity) {
-        BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
-        if (entity != null) {
-            model = Minecraft.getInstance().getItemRenderer().getModel(stack, entity.level, entity, 0);
-        }
-        renderModel(model, transformType, stack, poseStack, buffer, light, overlay);
-    }
-
     public static void renderModel(ItemStack stack, TransformType transformType, PoseStack poseStack,
                                    MultiBufferSource buffer, int light, int overlay,
                                    @Nullable Level world, @Nullable LivingEntity entity) {

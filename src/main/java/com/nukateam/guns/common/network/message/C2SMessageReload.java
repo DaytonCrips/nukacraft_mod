@@ -1,10 +1,14 @@
 package com.nukateam.guns.common.network.message;
 
-import com.nukateam.guns.common.event.GunReloadEvent;
+import com.nukateam.guns.client.data.handler.ClientReloadHandler;
+import com.nukateam.guns.common.event.*;
 import com.nukateam.guns.common.foundation.init.ModSyncedDataKeys;
 import com.mrcrayfish.framework.api.network.PlayMessage;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.network.NetworkEvent;
@@ -16,22 +20,29 @@ import java.util.function.Supplier;
  */
 public class C2SMessageReload extends PlayMessage<C2SMessageReload> {
     private boolean reload;
+    private boolean isRightHand;
 
-    public C2SMessageReload() {
+    public C2SMessageReload() {}
+
+    public C2SMessageReload(boolean reload, HumanoidArm arm) {
+        this.reload = reload;
+        this.isRightHand = arm == HumanoidArm.RIGHT;
     }
 
-    public C2SMessageReload(boolean reload) {
+    public C2SMessageReload(boolean reload, boolean isRightHand) {
         this.reload = reload;
+        this.isRightHand = isRightHand;
     }
 
     @Override
     public void encode(C2SMessageReload message, FriendlyByteBuf buffer) {
         buffer.writeBoolean(message.reload);
+        buffer.writeBoolean(message.isRightHand);
     }
 
     @Override
     public C2SMessageReload decode(FriendlyByteBuf buffer) {
-        return new C2SMessageReload(buffer.readBoolean());
+        return new C2SMessageReload(buffer.readBoolean(), buffer.readBoolean());
     }
 
     @Override
@@ -40,13 +51,21 @@ public class C2SMessageReload extends PlayMessage<C2SMessageReload> {
         {
             ServerPlayer player = supplier.get().getSender();
             if (player != null && !player.isSpectator()) {
-                ModSyncedDataKeys.RELOADING.setValue(player, message.reload); // This has to be set in order to verify the packet is sent if the event is cancelled
+
+                var dataKey = message.isRightHand ?
+                        ModSyncedDataKeys.RELOADING_RIGHT:
+                        ModSyncedDataKeys.RELOADING_LEFT;
+
+//                var dataKey = ModSyncedDataKeys.RELOADING_RIGHT;
+
+                dataKey.setValue(player, message.reload); // This has to be set in order to verify the packet is sent if the event is cancelled
                 if (!message.reload)
                     return;
 
-                ItemStack gun = player.getMainHandItem();
+                var gun = isRightHand ? player.getMainHandItem(): player.getOffhandItem();
+
                 if (MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Pre(player, gun))) {
-                    ModSyncedDataKeys.RELOADING.setValue(player, false);
+                    dataKey.setValue(player, false);
                     return;
                 }
                 MinecraftForge.EVENT_BUS.post(new GunReloadEvent.Post(player, gun));

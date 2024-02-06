@@ -105,7 +105,7 @@ public class TileDetectorBase implements ITileDetector {
     }
 
     protected static void updateOccurrencesMap(Map<ResourceLocation, Integer> map, Level world, Biome biome, int weight) {
-        ResourceLocation id = getBiomeIdentifier(world, biome);
+        var id = getBiomeIdentifier(world, biome);
         int occurrence = map.getOrDefault(id, 0) + weight;
         map.put(id, occurrence);
     }

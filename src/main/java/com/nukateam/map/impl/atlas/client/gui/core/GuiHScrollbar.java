@@ -2,6 +2,8 @@ package com.nukateam.map.impl.atlas.client.gui.core;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+
 public class GuiHScrollbar extends AGuiScrollbar {
 
     public GuiHScrollbar(GuiViewport viewport) {
@@ -11,6 +13,7 @@ public class GuiHScrollbar extends AGuiScrollbar {
     @Override
     protected void drawAnchor(PoseStack matrices) {
         // Draw left cap:
+        setPipboyShader();
         texture.draw(matrices, getGuiX() + anchorPos, getGuiY(), capLength, textureHeight, 0, 0, capLength, textureHeight);
 
         // Draw body:

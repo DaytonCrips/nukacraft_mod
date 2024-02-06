@@ -14,6 +14,7 @@ import com.nukateam.map.impl.atlas.marker.MarkersDataHandler;
 import com.nukateam.map.impl.atlas.mixinhooks.NewPlayerConnectionCallback;
 import com.nukateam.map.impl.atlas.mixinhooks.NewServerConnectionCallback;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
+import com.nukateam.map.impl.atlas.registry.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.structure.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -95,8 +96,14 @@ public class MapCore {
     ////FORGE ONLY
     public static final SimpleChannel MOD_CHANNEL = NetworkRegistry.newSimpleChannel(id("main"), () -> "1", "1"::equals, "1"::equals);
 
-    public static void initMap() {
+    public static void initMapCommon() {
         onInitialize();
-        new AntiqueAtlasModClient().onInitializeClient();
+    }
+
+    public static void initMapClient() {
+        try {
+            new AntiqueAtlasModClient().onInitializeClient();
+        }
+        catch (Exception e){}
     }
 }

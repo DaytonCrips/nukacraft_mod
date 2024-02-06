@@ -1,6 +1,6 @@
-package com.nukateam.nukacraft.common.foundation.items.misc;
+package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
-import com.nukateam.nukacraft.common.data.utils.RadiationHelper;
+import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,8 +30,12 @@ public class RadItem extends Item {
 
     @Override @NotNull
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player)
-            RadiationHelper.updateRadiation(entity, radiation);
+        if (entity instanceof Player && !level.isClientSide)
+            RadiationUtils.addRadiation(entity, radiation);
+
+        if (!(entity instanceof Player player) || !player.isCreative()) {
+            stack.shrink(1);
+        }
 
         return super.finishUsingItem(stack, level, entity);
     }

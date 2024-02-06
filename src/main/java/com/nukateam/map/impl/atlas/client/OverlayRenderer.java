@@ -1,7 +1,6 @@
 package com.nukateam.map.impl.atlas.client;
 
 import com.nukateam.map.api.client.AtlasClientAPI;
-import com.nukateam.map.impl.atlas.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
 import com.nukateam.map.impl.atlas.core.WorldData;
@@ -9,6 +8,7 @@ import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.map.impl.atlas.marker.DimensionMarkersData;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
+import com.nukateam.map.impl.atlas.registry.AntiqueAtlasItems;
 import com.nukateam.map.impl.atlas.registry.MarkerRenderInfo;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
 import com.nukateam.map.impl.atlas.util.Rect;
@@ -53,10 +53,10 @@ public class OverlayRenderer extends GuiComponent {
         this.player = Minecraft.getInstance().player;
         this.world = Minecraft.getInstance().level;
 
-//        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-//            int atlasID = AtlasItem.getAtlasID(atlas);
-//            drawMinimap(matrices, atlasID, vertexConsumer, light);
-//        }
+        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+            int atlasID = AtlasItem.getAtlasID(atlas);
+            drawMinimap(matrices, atlasID, vertexConsumer, light);
+        }
     }
 
     private void drawMinimap(PoseStack matrices, int atlasID, MultiBufferSource buffer, int light) {

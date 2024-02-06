@@ -21,6 +21,7 @@ import com.mrcrayfish.controllable.event.GatherNavigationPointsEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -134,11 +135,11 @@ public class ControllerHandler {
             return;
 
         if (Controllable.isButtonPressed(GunButtonBindings.SHOOT.getButton()) && Minecraft.getInstance().screen == null) {
-            ItemStack heldItem = player.getMainHandItem();
-            if (heldItem.getItem() instanceof GunItem) {
-                Gun gun = ((GunItem) heldItem.getItem()).getModifiedGun(heldItem);
+            ItemStack mainHandItem = player.getMainHandItem();
+            if (mainHandItem.getItem() instanceof GunItem) {
+                Gun gun = ((GunItem) mainHandItem.getItem()).getModifiedGun(mainHandItem);
                 if (gun.getGeneral().isAuto()) {
-                    ShootingHandler.get().fire(player, heldItem);
+                    ShootingHandler.get().fire(player, mainHandItem);
                 }
             }
         }
@@ -150,11 +151,11 @@ public class ControllerHandler {
         }
 
         if (this.reloadCounter > 40) {
-            ReloadHandler.get().setReloading(false);
+            ClientReloadHandler.get().setReloading(false, HumanoidArm.RIGHT);
             PacketHandler.getPlayChannel().sendToServer(new C2SMessageUnload());
             this.reloadCounter = -1;
         } else if (this.reloadCounter > 0 && !Controllable.isButtonPressed(GunButtonBindings.RELOAD.getButton())) {
-            ReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING.getValue(player));
+            ClientReloadHandler.get().setReloading(!ModSyncedDataKeys.RELOADING_RIGHT.getValue(player), HumanoidArm.RIGHT);
             this.reloadCounter = -1;
         }
     }
