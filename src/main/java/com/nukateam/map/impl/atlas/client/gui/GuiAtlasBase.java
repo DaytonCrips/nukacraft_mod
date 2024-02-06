@@ -51,6 +51,14 @@ import static com.nukateam.map.impl.atlas.util.MathUtil.*;
 import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
+//    public static final int WIDTH = 327; //255
+//    public static final int HEIGHT = 207;
+//
+//    public static final int MAP_BORDER_WIDTH = 17;
+//    public static final int MAP_BORDER_HEIGHT = 15;
+//    public static final int MAP_WIDTH = 226; //WIDTH - MAP_BORDER_WIDTH * 2; //226
+//    public static final int MAP_HEIGHT = 147;
+
     public static final int WIDTH = 255; //255
     public static final int HEIGHT = 145;
 
@@ -63,7 +71,7 @@ public class GuiAtlasBase extends GuiComponent {
     public static final int PLAYER_ICON_WIDTH = 7;
     public static final int PLAYER_ICON_HEIGHT = 8;
 
-    private static final Pos2I BOOKMARKS_POS = new Pos2I(15, 16);
+    private static final Pos2I BOOKMARKS_POS = new Pos2I(10, 16);
     private static final Pos2I BOOKMARKS_SIZE = new Pos2I(21, MAP_HEIGHT - 8);
 
     public static final float PLAYER_ROTATION_STEPS = 16;
@@ -71,13 +79,9 @@ public class GuiAtlasBase extends GuiComponent {
     private static final Rect PLAYER_MARKER_BOX = new Rect(0, 45, 0, -6);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
-    /**
-     * If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.
-     */
+    /** If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.*/
     private static final double MIN_SCALE_THRESHOLD = 0.5;
-
     private final long[] renderTimes = new long[30];
-
     private int renderTimesIndex = 0;
 
     // States ==================================================================
@@ -121,9 +125,7 @@ public class GuiAtlasBase extends GuiComponent {
         }
     };
 
-    /**
-     * If on, the closest marker will be deleted upon mouseclick.
-     */
+    /** If on, the closest marker will be deleted upon mouseclick.*/
     private final IState DELETING_MARKER = new IState() {
         @Override
         public void onEnterState() {
@@ -140,7 +142,6 @@ public class GuiAtlasBase extends GuiComponent {
         }
     };
 
-    private final GuiCursor eraser = new GuiCursor();
 
     private final IState EXPORTING_IMAGE = new IState() {
         @Override
@@ -156,25 +157,26 @@ public class GuiAtlasBase extends GuiComponent {
 
     // Buttons =================================================================
 
-    private final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
-    private final GuiBookmarkButton btnExportPng;
-    private final GuiBookmarkButton btnMarker;
-    private final GuiBookmarkButton btnDelMarker;
-    private final GuiBookmarkButton btnShowMarkers;
-    private final GuiPipboyButton btnExit;
-    private final GuiPipboyButton btnArchive;
-    private final GuiPipboyButton btnRadio;
-    private final GuiPositionButton btnPosition;
+    protected final GuiCursor eraser = new GuiCursor();
+    protected final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
+    protected final GuiBookmarkButton btnExportPng;
+    protected final GuiBookmarkButton btnMarker;
+    protected final GuiBookmarkButton btnDelMarker;
+    protected final GuiBookmarkButton btnShowMarkers;
+    protected final GuiPipboyButton btnExit;
+    protected final GuiPipboyButton btnArchive;
+    protected final GuiPipboyButton btnRadio;
+    protected final GuiPositionButton btnPosition;
 
     // Navigation ==============================================================
 
     /** Pause between after the arrow button is pressed and continuousnavigation starts, in ticks.*/
     private static final int BUTTON_PAUSE = 8;
 
-    /**How much the map view is offset, in blocks, per click (or per tick).*/
+    /** How much the map view is offset, in blocks, per click (or per tick).*/
     private static final int navigateStep = 24;
 
-    /**The button which is currently being pressed. Used for continuousnavigation using the arrow buttons. Also used to prevent immediatecanceling of placing marker.*/
+    /** The button which is currently being pressed. Used for continuousnavigation using the arrow buttons. Also used to prevent immediatecanceling of placing marker.*/
     protected GuiComponentButton selectedButton = null;
 
     /**
@@ -206,17 +208,11 @@ public class GuiAtlasBase extends GuiComponent {
 
     protected final GuiScrollingContainer markers = new GuiScrollingContainer();
 
-    /**
-     * Pixel-to-block ratio.
-     */
+    /** Pixel-to-block ratio.*/
     private double mapScale;
-    /**
-     * The visual size of a tile in pixels.
-     */
+    /** The visual size of a tile in pixels.*/
     private int tileHalfSize;
-    /**
-     * The number of chunks a tile spans.
-     */
+    /*** The number of chunks a tile spans.*/
     private int tile2ChunkScale;
 
 
@@ -315,15 +311,18 @@ public class GuiAtlasBase extends GuiComponent {
 //        addChild(btnDown).offsetGuiCoords(148, 194);
 //        addChild(btnLeft).offsetGuiCoords(15, 100);
 //        addChild(btnRight).offsetGuiCoords(283, 100);
-        addChild(btnPosition).offsetGuiCoords(225, 148);
-        addChild(scaleBar   ).offsetGuiCoords(121, 171);
 
-        addChild(btnMarker      ).offsetGuiCoords(219, 14);
-        addChild(btnDelMarker   ).offsetGuiCoords(219, 33);
-        addChild(btnShowMarkers ).offsetGuiCoords(219, 52);
-        addChild(btnExit).offsetGuiCoords(18, 176);
-        addChild(btnArchive).offsetGuiCoords(299, 21);
-        addChild(btnRadio).offsetGuiCoords(299, 67);
+        var x = -11;
+        var y = -2;
+
+        addChild(btnPosition    ).offsetGuiCoords(x + 225, y + 148);
+        addChild(scaleBar       ).offsetGuiCoords(x + 121, y + 171);
+        addChild(btnMarker      ).offsetGuiCoords(x + 219, y + 14);
+        addChild(btnDelMarker   ).offsetGuiCoords(x + 219, y + 33);
+        addChild(btnShowMarkers ).offsetGuiCoords(x + 219, y + 52);
+        addChild(btnExit        ).offsetGuiCoords(x + 18 , y + 176);
+        addChild(btnArchive     ).offsetGuiCoords(x + 299, y + 21);
+        addChild(btnRadio       ).offsetGuiCoords(x + 299, y + 67);
         //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
         //addChild(testButton     ).offsetGuiCoords(280, 100);
 
@@ -581,7 +580,7 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
 //    @Override
-    public void render(PoseStack matrices, int mouseX, int mouseY, float par3) {
+    public void render2(PoseStack matrices, int mouseX, int mouseY, float par3) {
         long currentMillis = System.currentTimeMillis();
         long deltaMillis = currentMillis - lastUpdateMillis;
         lastUpdateMillis = currentMillis;
@@ -723,8 +722,7 @@ public class GuiAtlasBase extends GuiComponent {
         }
     }
 
-
-    public void render2(PoseStack poseStack, int mouseX, int mouseY, float par3) {
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float par3) {
         long currentMillis = System.currentTimeMillis();
         long deltaMillis = currentMillis - lastUpdateMillis;
         lastUpdateMillis = currentMillis;
@@ -1340,14 +1338,11 @@ public class GuiAtlasBase extends GuiComponent {
             MinecraftForge.EVENT_BUS.post(new MarkerHoveredCallback.TheEvent(player, marker));
         } else {
             setPipboyShader();
-            if (hoveredMarker == marker) {
+            if (hoveredMarker == marker)
                 hoveredMarker = null;
-            }
         }
 
-        if (state.is(PLACING_MARKER)) {
-            setPipboyShader(0.5f);
-        } else if (state.is(DELETING_MARKER) && marker.isGlobal()) {
+        if (state.is(PLACING_MARKER) || state.is(DELETING_MARKER) && marker.isGlobal()) {
             setPipboyShader(0.5f);
         } else {
             setPipboyShader();
@@ -1366,8 +1361,6 @@ public class GuiAtlasBase extends GuiComponent {
 
         markerX = Mth.clamp(markerX, getGuiX() + MAP_BORDER_WIDTH,  getGuiX() + MAP_WIDTH + MAP_BORDER_WIDTH);
         markerY = Mth.clamp(markerY, getGuiY() + MAP_BORDER_HEIGHT,  getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT);
-
-
         info.tex.draw(poseStack, markerX + info.x, markerY + info.y, info.width, info.height);
 
         RenderSystem.setShaderColor(1, 1, 1, 1);

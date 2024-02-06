@@ -41,9 +41,11 @@ public class GuiScrollingContainer extends GuiComponent {
 
     public void setViewportSize(int width, int height) {
         viewport.setSize(width, height);
+        if(isVertical)
+            viewport.setRelativeCoords(7, 0);
         scrollbarHor.setRelativeCoords(0, height);
         scrollbarHor.setSize(width, scrollbarHor.getHeight());
-        scrollbarVer.setRelativeCoords(width, 0);
+        scrollbarVer.setRelativeCoords(0, 0);
         scrollbarVer.setSize(scrollbarVer.getWidth(), height);
     }
 
@@ -54,11 +56,14 @@ public class GuiScrollingContainer extends GuiComponent {
         scrollbarVer.updateContent();
     }
 
+    private boolean isVertical = false;
+
     /**
      * Mouse wheel will affect <b>horizontal</b> scrolling and not vertical.
      * This is the default behavior.
      */
     public void setWheelScrollsHorizontally() {
+        isVertical = false;
         scrollbarHor.setUsesWheel(true);
         scrollbarVer.setUsesWheel(false);
     }
@@ -67,6 +72,7 @@ public class GuiScrollingContainer extends GuiComponent {
      * Mouse wheel will affect <b>vertical</b> scrolling and not horizontal.
      */
     public void setWheelScrollsVertically() {
+        isVertical = true;
         scrollbarHor.setUsesWheel(false);
         scrollbarVer.setUsesWheel(true);
     }
