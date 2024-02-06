@@ -13,9 +13,11 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BarrelBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -30,8 +32,10 @@ import java.util.*;
 public class BasicStorageBlock extends BarrelBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
-    public BasicStorageBlock(Properties pProperties) {
+    private String model;
+    public BasicStorageBlock(Properties pProperties, String model) {
         super(pProperties);
+        this.model = model;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)));
     }
 
@@ -81,12 +85,31 @@ public class BasicStorageBlock extends BarrelBlock {
     }
     private VoxelShape getShape(BlockState state)
     {
+        Direction direction = state.getValue(FACING);
         if(SHAPES.containsKey(state))
         {
             return SHAPES.get(state);
         }
         List<VoxelShape> shapes = new ArrayList<>();
-        shapes.add(box(0.1, 0, 0.1, 15.9, 15.9, 15.9));
+        switch (model) {
+            case "SideHalf":
+                switch (direction) {
+                    case EAST -> shapes.add(box(7.01, 0.01, 0.010000000000001563,
+                            15.99, 15.99, 15.990000000000002));
+                    case WEST -> shapes.add(box(0.009999999999999787, 0.01, 0.010000000000001563,
+                            8.99, 15.99, 15.990000000000002));
+                    case SOUTH -> shapes.add(box(0.01, 0.01, 7.01,
+                            15.99, 15.99, 15.99));
+                    case NORTH -> shapes.add(box(0.01, 0.01, 0.01,
+                            15.99, 15.99, 8.99));
+                }
+                break;
+
+            case "FullBlock":
+                shapes.add(box(0.1, 0, 0.1, 15.9, 15.9, 15.9));
+                break;
+        }
+
         VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
         SHAPES.put(state, shape);
         return shape;
@@ -100,5 +123,9 @@ public class BasicStorageBlock extends BarrelBlock {
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return this.getShape(state);
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
     }
 }

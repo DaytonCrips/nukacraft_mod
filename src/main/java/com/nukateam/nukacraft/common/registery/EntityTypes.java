@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.ChairBlockEntity;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
 import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEntity;
@@ -24,10 +25,15 @@ public class EntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, NukaCraftMod.MOD_ID);
 
+    public static final RegistryObject<EntityType<Entity>> CHAIRENTITY =
+            registerEntity("chairblockentity", Builder
+                    .of(ChairBlockEntity::new, MobCategory.MISC)
+                    .sized(1.5f, 3f));
+
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
             registerEntity("deathclaw", Builder
                     .of(Deathclaw::new, MobCategory.MONSTER)
-                    .sized(1.5f, 3f));
+                    .sized(0.0F, 0.0F));
 
     public static final RegistryObject<EntityType<MiniNukeEntity>> MININUKE = registerBasic("mini_nuke", MiniNukeEntity::new);
 

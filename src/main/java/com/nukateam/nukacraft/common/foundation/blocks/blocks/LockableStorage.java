@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class LockableStorage extends BasicStorageBlock{
-    public LockableStorage(Properties pProperties) {
-        super(pProperties);
+    public LockableStorage(Properties pProperties, String model) {
+        super(pProperties, model);
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {

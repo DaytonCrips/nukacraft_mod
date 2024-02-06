@@ -94,6 +94,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.MEGAHATTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.FRIDGE.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.COOLER.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.VTLATTICE.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nukacraft:block/vtlatticeslab_bottom"
+    },
+    "type=double": {
+      "model": "nukacraft:block/vtlatticeslab_full"
+    },
+    "type=top": {
+      "model": "nukacraft:block/vtlatticeslab_top"
+    }
+  }
+}
