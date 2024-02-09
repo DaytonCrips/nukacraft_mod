@@ -34,9 +34,6 @@ public class CustomHandler {
         }
     }
 
-    private static final Map<LivingEntity, Integer> counters = new HashMap<>();
-    private static int counter = 10;
-
     @SubscribeEvent
     public static void onTick(TickEvent.PlayerTickEvent event) {
         radiationTrackers.values().forEach((val) -> {
