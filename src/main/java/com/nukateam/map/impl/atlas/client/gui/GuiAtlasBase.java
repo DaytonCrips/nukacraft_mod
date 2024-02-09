@@ -737,8 +737,8 @@ public class GuiAtlasBase extends GuiComponent {
         RenderSystem.setShaderColor(1, 1, 1, 1);
         Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
 
-//        setPipboyShader();
-//        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
+        setPipboyShader();
+        Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
 
         if ((stack == null && MapCore.CONFIG.itemNeeded) || biomeData == null)
             return;
