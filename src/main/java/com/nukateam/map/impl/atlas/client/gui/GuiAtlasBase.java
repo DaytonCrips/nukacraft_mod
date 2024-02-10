@@ -165,6 +165,7 @@ public class GuiAtlasBase extends GuiComponent {
     protected final GuiBookmarkButton btnShowMarkers;
     protected final GuiPipboyButton btnExit;
     protected final GuiPipboyButton btnArchive;
+    protected final GuiPipboyButton btnMap;
     protected final GuiPipboyButton btnRadio;
     protected final GuiPositionButton btnPosition;
 
@@ -281,6 +282,7 @@ public class GuiAtlasBase extends GuiComponent {
         btnShowMarkers = new GuiBookmarkButton(0, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
         btnExit = new GuiPipboyButton(Textures.EXIT);
         btnArchive = new GuiPipboyButton(Textures.EXIT);
+        btnMap = new GuiPipboyButton(Textures.EXIT);
         btnRadio = new GuiPipboyButton(Textures.EXIT);
 
         btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
@@ -312,20 +314,27 @@ public class GuiAtlasBase extends GuiComponent {
 //        addChild(btnLeft).offsetGuiCoords(15, 100);
 //        addChild(btnRight).offsetGuiCoords(283, 100);
 
-        var x = 0;
-        var y = 5;
+        var x = -11;
+        var y = -2;
 
         addChild(btnPosition    ).offsetGuiCoords(x + 225, y + 148);
         addChild(scaleBar       ).offsetGuiCoords(x + 121, y + 171);
         addChild(btnExit        ).offsetGuiCoords(x + 18 , y + 176);
         addChild(btnArchive     ).offsetGuiCoords(x + 299, y + 21);
+        addChild(btnMap         ).offsetGuiCoords(x + 299, y + 40);
         addChild(btnRadio       ).offsetGuiCoords(x + 299, y + 67);
 
-        var navX = -11;
-        var navY = -2;
+//        addChild(btnMarker      ).offsetGuiCoords( x + 219, y + 14);
+//        addChild(btnDelMarker   ).offsetGuiCoords( x + 219, y + 33);
+//        addChild(btnShowMarkers ).offsetGuiCoords( x + 219, y + 52);
+
+        var navX = 0;
+        var navY = 5;
         addChild(btnMarker      ).offsetGuiCoords(navX + x + 219, navY + y + 14);
         addChild(btnDelMarker   ).offsetGuiCoords(navX + x + 219, navY + y + 33);
         addChild(btnShowMarkers ).offsetGuiCoords(navX + x + 219, navY + y + 52);
+
+
 
         //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
         //addChild(testButton     ).offsetGuiCoords(280, 100);
