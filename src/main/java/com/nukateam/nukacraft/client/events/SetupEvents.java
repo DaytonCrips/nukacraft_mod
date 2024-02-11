@@ -17,9 +17,12 @@ import com.nukateam.nukacraft.client.render.renderers.entity.SimpleEntityRendere
 import com.nukateam.nukacraft.client.render.renderers.entity.EmptyRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.MiniNukeRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.RaiderRenderer;
+import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.*;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
@@ -40,6 +43,10 @@ public class SetupEvents {
         ModSetup.renderTypeSetup();
         PipBoy pipBoy = new PipBoy();
         pipBoy.init();
+
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLOWING.get(), RenderType.translucent());
     }
 
 //    @SubscribeEvent

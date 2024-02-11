@@ -656,5 +656,6 @@
   "nukacraft.button.config.tooltip": "Config Options",
   "nukacraft.chat.open_curseforge_page": "Open CurseForge Page",
   "nukacraft.chat.install_configured": "Install %s to access config options",
-  "key.open_map": "Open map"
+  "key.open_map": "Open map",
+  "item.nukacraft.acid_bucket": "Acid Bucket"
 }

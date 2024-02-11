@@ -156,7 +156,6 @@ public class GuiAtlasBase extends GuiComponent {
     };
 
     // Buttons =================================================================
-
     protected final GuiCursor eraser = new GuiCursor();
     protected final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
     protected final GuiBookmarkButton btnExportPng;

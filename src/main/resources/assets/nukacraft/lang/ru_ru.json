@@ -636,7 +636,6 @@
   "perk.nukacraft.rate.negative": "Пониженная скорострельность",
   "gui.nukacraft.assemble": "Собрать",
   "gui.nukacraft.show_remaining": "Показать оставшееся",
-  "button.categories.nukacraft": "MrCrayfish's Gun Mod",
   "nukacraft.button.shoot": "Стрельба из оружия",
   "nukacraft.button.aim": "Aim Down Sight (ADS)",
   "nukacraft.button.reload": "Перезарядить / Разрядить",
@@ -647,5 +646,6 @@
   "nukacraft.action.aim": "Прицел",
   "nukacraft.action.shoot": "Выстрел",
   "nukacraft.action.reload": "Перезарядка",
-  "nukacraft.action.steady_aim": "Твёрдая рука"
+  "nukacraft.action.steady_aim": "Твёрдая рука",
+  "item.nukacraft.acid_bucket": "Ведро кислоты"
 }
