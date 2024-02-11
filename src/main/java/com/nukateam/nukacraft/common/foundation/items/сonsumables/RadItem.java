@@ -30,12 +30,15 @@ public class RadItem extends Item {
 
     @Override @NotNull
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player && !level.isClientSide)
+        if (entity instanceof Player)//&& !level.isClientSide
             RadiationUtils.addRadiation(entity, radiation);
 
         if (!(entity instanceof Player player) || !player.isCreative()) {
             stack.shrink(1);
         }
+
+//        if (entity instanceof Player player)//&& !level.isClientSide
+//            RadiationUtils.setAddMaxHealth(player, 10);
 
         return super.finishUsingItem(stack, level, entity);
     }

@@ -79,7 +79,7 @@ public class RadiationUtils {
         radiationAtt.addPermanentModifier(new AttributeModifier("radiation", radValue + value, AttributeModifier.Operation.ADDITION));
     }
 
-    private static void setAddMaxHealth(Player player, double value) {
+    public static void setAddMaxHealth(Player player, double value) {
         player.getAttribute(Attributes.MAX_HEALTH)
                 .addPermanentModifier(new AttributeModifier("health", value, AttributeModifier.Operation.ADDITION));
     }
