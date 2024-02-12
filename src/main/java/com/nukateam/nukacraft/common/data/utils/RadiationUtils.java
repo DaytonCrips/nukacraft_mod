@@ -2,18 +2,11 @@ package com.nukateam.nukacraft.common.data.utils;
 
 import com.nukateam.nukacraft.common.registery.ModAttributesClass;
 import com.nukateam.nukacraft.common.registery.ModEffect;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Snowball;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-
-import static com.nukateam.nukacraft.common.data.utils.MathUtils.limit;
 
 public class RadiationUtils {
     public static void addRadiation(LivingEntity entity, float value) {
@@ -50,13 +43,16 @@ public class RadiationUtils {
             }
         }
         else{
+            if (currentHealth + healthMod > maxHealth - 1) {
+                healthMod = maxHealth - currentHealth - 1;
+            }
             if (currentRad + radMod > maxHealth - 1){
                 radMod = Math.max(0, Math.min(radMod, currentHealth - 1));
             }
         }
 
-        modifyAttribute(radMod, radiationAtt);
-        modifyAttribute(healthMod, healthAtt);
+        modifyAttribute(radiationAtt, radMod, 0, maxHealth - 1);
+        modifyAttribute(healthAtt, healthMod, -maxHealth + 1, 0);
 
         entity.setHealth(Math.min(entity.getMaxHealth(), entity.getHealth()));
 
@@ -65,29 +61,30 @@ public class RadiationUtils {
 //        }
     }
 
-    private static void modifyAttribute(double value, AttributeInstance radiationAtt) {
+    private static void modifyAttribute(AttributeInstance radiationAtt, double value, double minBound, double maxBound) {
         if (radiationAtt == null) return;
 
-        var radValue = 0.0;
+        var currentValue = 0.0;
 
         for (var mod: radiationAtt.getModifiers()) {
             if (mod.getName().equals("radiation")){
-                radValue = mod.getAmount();
+                currentValue = mod.getAmount();
                 radiationAtt.removeModifier(mod);
             }
         }
 
-        radiationAtt.addPermanentModifier(new AttributeModifier("radiation", radValue + value, AttributeModifier.Operation.ADDITION));
+        var newValue = currentValue + value;
+
+        if(newValue < minBound) newValue = minBound;
+        if(newValue > maxBound) newValue = maxBound;
+
+        radiationAtt.addPermanentModifier(new AttributeModifier("radiation", newValue, AttributeModifier.Operation.ADDITION));
     }
 
-    public static void setAddMaxHealth(Player player, double value) {
-        player.getAttribute(Attributes.MAX_HEALTH)
-                .addPermanentModifier(new AttributeModifier("health", value, AttributeModifier.Operation.ADDITION));
-    }
 
     public static void setAddMaxHealth2(Player player, double value) {
         var attribute = player.getAttribute(Attributes.MAX_HEALTH);
-                //.addPermanentModifier(new AttributeModifier("health", value, AttributeModifier.Operation.ADDITION));
+
         if (attribute == null) return;
 
         var currentValue = 0.0;

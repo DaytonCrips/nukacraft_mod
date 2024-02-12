@@ -59,4 +59,9 @@ public class RadItem extends Item {
             list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append("§c+" + abs(radiation)));
         }
     }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 10;
+    }
 }
