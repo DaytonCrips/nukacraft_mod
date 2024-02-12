@@ -99,7 +99,7 @@ public class GuiAtlasBase extends GuiComponent {
             btnShowMarkers.setSelected(false);
             btnShowMarkers.setTitle(new TranslatableComponent("gui.nukacraft.showMarkers"));
             btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
-            btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
+//            btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
         }
 
         @Override
