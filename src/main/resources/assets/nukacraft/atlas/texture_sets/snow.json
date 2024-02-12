@@ -3,12 +3,8 @@
   "data": {
     "textures": {
       "nukacraft:snow": 5,
-      "nukacraft:snow1": 3,
       "nukacraft:snow2": 3,
-      "nukacraft:snow3": 1,
-      "nukacraft:snow4": 1,
-      "nukacraft:snow5": 1,
-      "nukacraft:snow6": 1
+      "nukacraft:snow3": 3
     },
     "stitch": {
       "nukacraft:snow_pines": "both",

@@ -25,8 +25,10 @@ import java.util.Map;
 public class VaultSupportBlock extends Block {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public VaultSupportBlock(Properties pProperties) {
+    private String type;
+    public VaultSupportBlock(Properties pProperties, String type) {
         super(pProperties);
+        this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.SOUTH));
     }
     @Override
@@ -35,7 +37,7 @@ public class VaultSupportBlock extends Block {
             return SHAPES.get(pState);
         }
         List<VoxelShape> shapes = new ArrayList<>();
-        if (pState.getBlock() == ModBlocks.SUPPORTWALL.get()) {
+        if (this.type.equals("wall")) {
             switch (pState.getValue(FACING)) {
                 case NORTH ->
                         shapes.add(box(5.399999999999999, 0, 0, 10.599999999999987, 16, 4));
@@ -46,7 +48,7 @@ public class VaultSupportBlock extends Block {
                 default ->
                         shapes.add(box(5.399999999999999, 0, 12, 10.599999999999987, 16, 16));
             }
-        } else if (pState.getBlock() == ModBlocks.SUPPORTWALLTOP.get()) {
+        } else if (this.type.equals("walltop")) {
             switch (pState.getValue(FACING)) {
                 case NORTH ->
                         shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
@@ -57,7 +59,7 @@ public class VaultSupportBlock extends Block {
                 default ->
                         shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
             }
-        } else if (pState.getBlock() == ModBlocks.SUPPORTTOP.get()) {
+        } else if (this.type.equals("top")) {
             switch (pState.getValue(FACING)) {
                 case NORTH:
                     shapes.add(box(5.4, 0.05, 0.1, 10.6, 15.95, 4.700000000000001));

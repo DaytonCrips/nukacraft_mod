@@ -2,12 +2,12 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:snow_caps": 2,
+      "nukacraft:mountains": 2,
       "nukacraft:mountains": 1,
-      "nukacraft:mountains2": 1,
-      "nukacraft:mountains3": 1,
-      "nukacraft:mountains4": 1,
-      "nukacraft:mountains5": 2
+      "nukacraft:mountains": 1,
+      "nukacraft:mountains": 1,
+      "nukacraft:mountains": 1,
+      "nukacraft:mountains": 2
     },
     "stitch": {
       "nukacraft:mountains": "both",

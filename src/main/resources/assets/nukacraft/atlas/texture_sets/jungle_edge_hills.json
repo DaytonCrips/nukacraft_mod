@@ -2,10 +2,10 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:jungle_edge_hills": 1,
-      "nukacraft:jungle_edge_hills2": 1,
-      "nukacraft:jungle_edge_hills3": 1,
-      "nukacraft:hills_grass": 2
+      "nukacraft:default_forest": 1,
+      "nukacraft:default_hills": 1,
+      "nukacraft:default_hills2": 1,
+      "nukacraft:hills_bushes": 2
     }
   }
 }

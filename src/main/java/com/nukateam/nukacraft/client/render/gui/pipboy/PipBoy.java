@@ -74,10 +74,40 @@ public class PipBoy {
                 fontColor = -1;
             }
             case "green" -> {
-                red = 0.443f;
-                green = 0.749f;
-                blue = 0.459f;
+                red = 0.4f;
+                green = 0.7f;
+                blue = 0.4f;
                 fontColor = -6684775;
+            }
+            case "cyan" -> {
+                red = 0.341f;
+                green = 0.914f;
+                blue = 0.906f;
+                fontColor = 5761254;
+            }
+            case "orange" -> {
+                red = 0.902f;
+                green = 0.478f;
+                blue = 0.157f;
+                fontColor = 15104552;
+            }
+            case "gold" -> {
+                red = 0.918f;
+                green = 0.808f;
+                blue = 0.118f;
+                fontColor = 15387933;
+            }
+            case "red" -> {
+                red = 0.949f;
+                green = 0.192f;
+                blue = 0.192f;
+                fontColor = 15806512;
+            }
+            case "violet" -> {
+                red = 0.647f;
+                green = 0.29f;
+                blue = 0.718f;
+                fontColor = 10766775;
             }
         }
     }

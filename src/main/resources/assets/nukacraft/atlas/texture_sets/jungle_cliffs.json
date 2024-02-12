@@ -2,8 +2,7 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:jungle_cliffs": 1,
-      "nukacraft:jungle_cliffs2": 1,
+      "nukacraft:cliffs": 1,
       "nukacraft:bushes_cliffs": 1
     }
   }

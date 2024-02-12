@@ -392,7 +392,16 @@ public class ModItems {
             () -> new ColoredHolotapeItem("white", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_1D2 = ITEMS.register("holotape_green",
             () -> new ColoredHolotapeItem("green", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
-
+    public static final RegistryObject<Item> HOLO_2D2 = ITEMS.register("holotape_cyan",
+            () -> new ColoredHolotapeItem("cyan", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> HOLO_2D3 = ITEMS.register("holotape_red",
+            () -> new ColoredHolotapeItem("red", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> HOLO_3D3 = ITEMS.register("holotape_gold",
+            () -> new ColoredHolotapeItem("gold", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> HOLO_3D4 = ITEMS.register("holotape_orange",
+            () -> new ColoredHolotapeItem("orange", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> HOLO_3D = ITEMS.register("holotape_violet",
+            () -> new ColoredHolotapeItem("violet", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> TEST = ITEMS.register("test",
             () -> new TestItem(new Item.Properties()));

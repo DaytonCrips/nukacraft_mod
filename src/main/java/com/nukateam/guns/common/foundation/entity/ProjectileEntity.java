@@ -24,10 +24,13 @@ import com.nukateam.guns.common.network.message.S2CMessageBlood;
 import com.nukateam.guns.common.network.message.S2CMessageProjectileHitBlock;
 import com.nukateam.guns.common.network.message.S2CMessageProjectileHitEntity;
 import com.nukateam.guns.common.network.message.S2CMessageRemoveProjectile;
+import com.nukateam.nukacraft.common.foundation.blocks.blocks.ExplosiveBarrel;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -48,6 +51,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.WaterFluid;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.MinecraftForge;
@@ -363,6 +368,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = this.level.getBlockState(pos);
             Block block = state.getBlock();
+            FluidState fluid = state.getFluidState();
 
             if (Config.COMMON.gameplay.griefing.enableGlassBreaking.get() && state.is(ModTags.Blocks.FRAGILE)) {
                 float destroySpeed = state.getDestroySpeed(this.level, pos);
@@ -377,6 +383,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
             if (!state.getMaterial().isReplaceable()) {
                 this.remove(RemovalReason.KILLED);
             }
+
 
             if (block instanceof IDamageable) {
                 ((IDamageable) block).onBlockDamaged(this.level, state, pos, this, this.getDamage(), (int) Math.ceil(this.getDamage() / 2.0) + 1);
@@ -394,6 +401,11 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
 
             if (block instanceof BellBlock bell) {
                 bell.attemptToRing(this.level, pos, blockHitResult.getDirection());
+            }
+
+
+            if (block instanceof ExplosiveBarrel barrel) {
+                barrel.explosive(this.level, pos);
             }
 
             int fireStarterLevel = EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.FIRE_STARTER.get(), this.weapon);
