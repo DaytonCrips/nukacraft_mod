@@ -62,9 +62,9 @@ public class GuiAtlasBase extends GuiComponent {
     public static final int WIDTH = 255; //255
     public static final int HEIGHT = 145;
 
-    public static final int MAP_BORDER_WIDTH = 17;
+    public static final int MAP_BORDER_WIDTH = 6;
     public static final int MAP_BORDER_HEIGHT = 15;
-    public static final int MAP_WIDTH = WIDTH - MAP_BORDER_WIDTH * 2; //226
+    public static final int MAP_WIDTH = 220; //WIDTH - MAP_BORDER_WIDTH * 2; //226
     public static final int MAP_HEIGHT = 147;
 
     public static final int MARKER_SIZE = 32;
@@ -76,7 +76,7 @@ public class GuiAtlasBase extends GuiComponent {
 
     public static final float PLAYER_ROTATION_STEPS = 16;
 
-    private static final Rect PLAYER_MARKER_BOX = new Rect(0, 45, 0, -6);
+    private static final Rect PLAYER_MARKER_BOX = new Rect(-3, 28, -12, 8);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
     /** If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.*/
@@ -157,7 +157,6 @@ public class GuiAtlasBase extends GuiComponent {
     };
 
     // Buttons =================================================================
-
     protected final GuiCursor eraser = new GuiCursor();
     protected final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
     protected final GuiBookmarkButton btnExportPng;
@@ -166,6 +165,7 @@ public class GuiAtlasBase extends GuiComponent {
     protected final GuiBookmarkButton btnShowMarkers;
     protected final GuiPipboyButton btnExit;
     protected final GuiPipboyButton btnArchive;
+    protected final GuiPipboyButton btnMap;
     protected final GuiPipboyButton btnRadio;
     protected final GuiPositionButton btnPosition;
 
@@ -282,6 +282,7 @@ public class GuiAtlasBase extends GuiComponent {
         btnShowMarkers = new GuiBookmarkButton(0, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
         btnExit = new GuiPipboyButton(Textures.EXIT);
         btnArchive = new GuiPipboyButton(Textures.EXIT);
+        btnMap = new GuiPipboyButton(Textures.EXIT);
         btnRadio = new GuiPipboyButton(Textures.EXIT);
 
         btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
@@ -318,12 +319,23 @@ public class GuiAtlasBase extends GuiComponent {
 
         addChild(btnPosition    ).offsetGuiCoords(x + 225, y + 148);
         addChild(scaleBar       ).offsetGuiCoords(x + 121, y + 171);
-        addChild(btnMarker      ).offsetGuiCoords(x + 219, y + 14);
-        addChild(btnDelMarker   ).offsetGuiCoords(x + 219, y + 33);
-        addChild(btnShowMarkers ).offsetGuiCoords(x + 219, y + 52);
         addChild(btnExit        ).offsetGuiCoords(x + 18 , y + 176);
         addChild(btnArchive     ).offsetGuiCoords(x + 299, y + 21);
+        addChild(btnMap         ).offsetGuiCoords(x + 299, y + 44);
         addChild(btnRadio       ).offsetGuiCoords(x + 299, y + 67);
+
+//        addChild(btnMarker      ).offsetGuiCoords( x + 219, y + 14);
+//        addChild(btnDelMarker   ).offsetGuiCoords( x + 219, y + 33);
+//        addChild(btnShowMarkers ).offsetGuiCoords( x + 219, y + 52);
+
+        var navX = 0;
+        var navY = 5;
+        addChild(btnMarker      ).offsetGuiCoords(navX + x + 219, navY + y + 14);
+        addChild(btnDelMarker   ).offsetGuiCoords(navX + x + 219, navY + y + 33);
+        addChild(btnShowMarkers ).offsetGuiCoords(navX + x + 219, navY + y + 52);
+
+
+
         //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
         //addChild(testButton     ).offsetGuiCoords(280, 100);
 
@@ -730,6 +742,10 @@ public class GuiAtlasBase extends GuiComponent {
         if (MapCore.CONFIG.debugRender) printDebugInfo();
 
         super.renderBackground(poseStack);
+
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
+
         setPipboyShader();
         Textures.PIPBOY_SCREEN.draw(poseStack, getGuiX(), getGuiY());
 
@@ -745,8 +761,7 @@ public class GuiAtlasBase extends GuiComponent {
 
         renderTiles(poseStack, mapPos);
         // Overlay the frame so that edges of the map are smooth:
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        Textures.PIPBOY_FRAME.draw(poseStack, getGuiX(), getGuiY());
+
 
 //        renderMarkers(poseStack, markerPos, globalMarkersData);
 //        renderMarkers(poseStack, markerPos, localMarkersData);
@@ -1215,10 +1230,15 @@ public class GuiAtlasBase extends GuiComponent {
         setPipboyShader(state.is(PLACING_MARKER) ? 0.5f : 1);
         poseStack.pushPose();
 
-        poseStack.translate(getGuiX() + WIDTH / 2 + playerOffsetX, getGuiY() + HEIGHT / 2 + playerOffsetZ, 0);
-        float playerRotation = (float) Math.round(player.getYRot() / 360f * PLAYER_ROTATION_STEPS) / PLAYER_ROTATION_STEPS * 360f;
+        var canterX = getGuiX() + WIDTH / 2 + playerOffsetX;
+        var canterY = getGuiY() + HEIGHT / 2 + playerOffsetZ;
+        var iconCenterX = (float) (-PLAYER_ICON_WIDTH / 2 * iconScale);
+        var iconCenterY = (float) (-PLAYER_ICON_HEIGHT / 2 * iconScale);
+        var playerRotation = (float) Math.round(player.getYRot() / 360f * PLAYER_ROTATION_STEPS) / PLAYER_ROTATION_STEPS * 360f;
+
+        poseStack.translate(canterX, canterY, 0);
         poseStack.mulPose(Vector3f.ZP.rotationDegrees(180 + playerRotation));
-        poseStack.translate((float) (-PLAYER_ICON_WIDTH / 2 * iconScale), (float) (-PLAYER_ICON_HEIGHT / 2 * iconScale), 0f);
+        poseStack.translate(iconCenterX, iconCenterY, 0f);
 
         Textures.PLAYER.draw(poseStack, 0, 1, (int) Math.round(PLAYER_ICON_WIDTH * iconScale), (int) Math.round(PLAYER_ICON_HEIGHT * iconScale));
 

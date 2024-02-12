@@ -571,12 +571,14 @@
   "item.minecraft.potion.effect.deafening": "Potion of Deafening",
   "item.minecraft.lingering_potion.effect.blinding": "Lingering Potion of Blinding",
   "item.minecraft.lingering_potion.effect.deafening": "Lingering Potion of Deafening",
-  "itemGroup.nukacraft": "MrCrayfish's Gun Mod",
+  "itemGroup.nukacraft": "Guns",
+
   "death.attack.nukacraft.bullet.killed": "%1$s was taken down by %2$s",
   "death.attack.nukacraft.bullet.eliminated": "%1$s was eliminated by %2$s",
   "death.attack.nukacraft.bullet.executed": "%1$s was executed by %2$s",
   "death.attack.nukacraft.bullet.annihilated": "%1$s was annihilated by %2$s",
   "death.attack.nukacraft.bullet.decimated": "%1$s was decimated by %2$s",
+
   "info.nukacraft.damage": "Damage: %s",
   "info.nukacraft.ignore_ammo": "Infinite Ammo",
   "info.nukacraft.ammo": "Ammo: %s",
@@ -692,5 +694,7 @@
   "nukacraft.button.config.tooltip": "Config Options",
   "nukacraft.chat.open_curseforge_page": "Open CurseForge Page",
   "nukacraft.chat.install_configured": "Install %s to access config options",
-  "key.open_map": "Open map"
+  "key.open_map": "Open map",
+  "item.nukacraft.acid_bucket": "Acid Bucket",
+  "gui.nukacraft.marker.tomb": "Here lies %s"
 }

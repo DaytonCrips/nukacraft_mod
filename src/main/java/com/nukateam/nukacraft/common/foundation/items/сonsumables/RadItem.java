@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -30,12 +31,15 @@ public class RadItem extends Item {
 
     @Override @NotNull
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player && !level.isClientSide)
+        if (entity instanceof Player)//&& !level.isClientSide
             RadiationUtils.addRadiation(entity, radiation);
 
         if (!(entity instanceof Player player) || !player.isCreative()) {
             stack.shrink(1);
         }
+
+//        if (entity instanceof Player player)//&& !level.isClientSide
+//            RadiationUtils.setAddMaxHealth(player, -10);
 
         return super.finishUsingItem(stack, level, entity);
     }
@@ -54,5 +58,10 @@ public class RadItem extends Item {
         } else {
             list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append("§c+" + abs(radiation)));
         }
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 10;
     }
 }

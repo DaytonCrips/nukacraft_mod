@@ -7,6 +7,7 @@ import com.nukateam.guns.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.events.*;
+import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
 import com.nukateam.nukacraft.common.registery.ModAttributesClass;
@@ -30,9 +31,6 @@ import org.slf4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
-
-import static com.nukateam.map.impl.atlas.MapCore.initMapClient;
-import static com.nukateam.map.impl.atlas.MapCore.initMapCommon;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -72,6 +70,7 @@ public class NukaCraftMod {
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
         ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
+        ModFluids.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);

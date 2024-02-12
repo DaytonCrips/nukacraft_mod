@@ -12,4 +12,5 @@ public class ModScreensClass {
     public static void clientLoad(FMLClientSetupEvent event) {
         event.enqueueWork(GuiRegistry::register);
     }
+
 }

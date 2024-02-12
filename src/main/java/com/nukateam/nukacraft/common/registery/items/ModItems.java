@@ -4,6 +4,7 @@ import com.nukateam.guns.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.items.misc.*;
@@ -403,9 +404,11 @@ public class ModItems {
     public static final RegistryObject<Item> HOLO_3D = ITEMS.register("holotape_violet",
             () -> new ColoredHolotapeItem("violet", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
 
+    public static final RegistryObject<Item> ACID_BUCKET = ITEMS.register("acid_bucket",
+            () -> new BucketItem(ModFluids.ACID_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
+
     public static final RegistryObject<Item> TEST = ITEMS.register("test",
             () -> new TestItem(new Item.Properties()));
-
 
     //Power armor
     public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",
