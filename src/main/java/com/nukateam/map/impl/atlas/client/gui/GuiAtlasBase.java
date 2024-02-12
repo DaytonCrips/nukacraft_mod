@@ -99,7 +99,6 @@ public class GuiAtlasBase extends GuiComponent {
             btnShowMarkers.setSelected(false);
             btnShowMarkers.setTitle(new TranslatableComponent("gui.nukacraft.showMarkers"));
             btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
-//            btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
         }
 
         @Override
@@ -592,7 +591,7 @@ public class GuiAtlasBase extends GuiComponent {
         updateAtlasData();
     }
 
-//    @Override
+    //    @Override
     public void render2(PoseStack matrices, int mouseX, int mouseY, float par3) {
         long currentMillis = System.currentTimeMillis();
         long deltaMillis = currentMillis - lastUpdateMillis;
@@ -721,10 +720,10 @@ public class GuiAtlasBase extends GuiComponent {
             } else {
                 String texture_set = TileTextureMap.instance().getTextureSet(tile).name.toString();
                 drawTooltip(Arrays.asList(
-                                new TextComponent(coords),
-                                new TextComponent(chunks),
-                                new TextComponent("Tile: " + tile),
-                                new TextComponent("TSet: " + texture_set)), font);
+                        new TextComponent(coords),
+                        new TextComponent(chunks),
+                        new TextComponent("Tile: " + tile),
+                        new TextComponent("TSet: " + texture_set)), font);
             }
         }
 
