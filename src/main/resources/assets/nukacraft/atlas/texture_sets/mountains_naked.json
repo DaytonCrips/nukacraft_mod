@@ -3,8 +3,8 @@
   "data": {
     "textures": {
       "nukacraft:mountains": 2,
-      "nukacraft:mountains2": 2,
-      "nukacraft:mountains5": 1
+      "nukacraft:mountains": 2,
+      "nukacraft:mountains": 1
     },
     "stitch": {
       "nukacraft:mountains": "both",

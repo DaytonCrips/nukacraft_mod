@@ -2,8 +2,8 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:jungle": 1,
-      "nukacraft:jungle2": 1
+      "nukacraft:default_forest": 1,
+      "nukacraft:default_forest2": 1
     }
   }
 }

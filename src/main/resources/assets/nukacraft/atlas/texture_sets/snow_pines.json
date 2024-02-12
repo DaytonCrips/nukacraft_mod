@@ -2,9 +2,7 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:snow_pines": 1,
-      "nukacraft:snow_pines2": 1,
-      "nukacraft:snow_pines3": 1
+      "nukacraft:snow_pines": 1
     }
   }
 }

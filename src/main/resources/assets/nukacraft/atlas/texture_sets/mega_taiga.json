@@ -2,8 +2,8 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:mega_taiga": 2,
-      "nukacraft:mega_taiga2": 1
+      "nukacraft:default_forest": 2,
+      "nukacraft:default_hills2": 1
     }
   }
 }

@@ -2,9 +2,8 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:forest": 1,
-      "nukacraft:forest2": 1,
-      "nukacraft:forest3": 1
+      "nukacraft:default_forest": 1,
+      "nukacraft:default_forest2": 1
     }
   }
 }

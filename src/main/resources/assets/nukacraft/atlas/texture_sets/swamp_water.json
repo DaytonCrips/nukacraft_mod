@@ -3,8 +3,7 @@
   "data": {
     "textures": {
       "nukacraft:swamp": 3,
-      "nukacraft:swamp3": 1,
-      "nukacraft:swamp6": 1
+      "nukacraft:swamp2": 1
     },
     "stitch": {
       "nukacraft:swamp_hills": "both",

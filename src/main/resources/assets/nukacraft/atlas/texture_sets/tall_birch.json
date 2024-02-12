@@ -2,8 +2,8 @@
   "version": 1,
   "data": {
     "textures": {
-      "nukacraft:tall_birch": 1,
-      "nukacraft:tall_birch2": 1
+      "nukacraft:default_forest": 1,
+      "nukacraft:default_forest2": 1
     }
   }
 }
