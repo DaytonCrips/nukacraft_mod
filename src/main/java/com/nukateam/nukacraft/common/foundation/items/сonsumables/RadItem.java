@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +39,7 @@ public class RadItem extends Item {
         }
 
 //        if (entity instanceof Player player)//&& !level.isClientSide
-//            RadiationUtils.setAddMaxHealth(player, 10);
+//            RadiationUtils.setAddMaxHealth(player, -10);
 
         return super.finishUsingItem(stack, level, entity);
     }

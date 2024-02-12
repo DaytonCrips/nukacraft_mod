@@ -320,7 +320,7 @@ public class GuiAtlasBase extends GuiComponent {
         addChild(scaleBar       ).offsetGuiCoords(x + 121, y + 171);
         addChild(btnExit        ).offsetGuiCoords(x + 18 , y + 176);
         addChild(btnArchive     ).offsetGuiCoords(x + 299, y + 21);
-        addChild(btnMap         ).offsetGuiCoords(x + 299, y + 40);
+        addChild(btnMap         ).offsetGuiCoords(x + 299, y + 44);
         addChild(btnRadio       ).offsetGuiCoords(x + 299, y + 67);
 
 //        addChild(btnMarker      ).offsetGuiCoords( x + 219, y + 14);

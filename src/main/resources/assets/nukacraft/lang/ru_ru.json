@@ -497,8 +497,6 @@
   "skin.default" : "§7§oЧистая",
   "skin.rust" : "§7§oРжавая",
 
-
-
   "block.nukacraft.workbench": "Сборочный Верстак",
   "item.nukacraft.pistol": "Пистолет",
   "item.nukacraft.shotgun": "Дробовик",
@@ -529,23 +527,29 @@
   "item.minecraft.potion.effect.deafening": "Зелье оглушения",
   "item.minecraft.lingering_potion.effect.blinding": "Туманное зелье ослепления",
   "item.minecraft.lingering_potion.effect.deafening": "Туманное зелье оглушения",
-  "itemGroup.nukacraft": "MrCrayfish's Gun Mod",
+
+  "itemGroup.nukacraft": "Оружие",
+
   "death.attack.nukacraft.bullet.killed": "%1$s был(а) убит(а) %2$s",
   "death.attack.nukacraft.bullet.eliminated": "%1$s был(а) устранен(а) %2$s",
   "death.attack.nukacraft.bullet.executed": "%1$s был(а) казнен(а) %2$s",
   "death.attack.nukacraft.bullet.annihilated": "%1$s был(а) аннигилирован(а) %2$s",
   "death.attack.nukacraft.bullet.decimated": "%1$s был(а) уничтожен(а) %2$s",
+
   "info.nukacraft.damage": "Урон: %s",
   "info.nukacraft.ignore_ammo": "Бесконечные боеприпасы",
   "info.nukacraft.ammo": "Боеприпасов: %s/%s",
   "info.nukacraft.ammo_type": "Тип боеприпасов: %s",
   "info.nukacraft.attachment_help": "Нажмите %s в игре для изменения обвесов",
+
   "key.categories.nukacraft": "Nuka Craft Weapons",
   "key.nukacraft.reload": "Перезарядить",
   "key.nukacraft.unload": "Разрядить",
   "key.nukacraft.attachments": "Изменить обвесы",
+
   "effect.nukacraft.blinded": "Ослеплён",
   "effect.nukacraft.deafened": "Оглушён",
+
   "subtitle.nukacraft.stun.explosion": "Взрыв оглушающей гранаты",
   "subtitle.nukacraft.stun.ring": "Звон",
   "subtitle.nukacraft.fire": "Стрельба",
@@ -555,10 +559,12 @@
   "subtitle.nukacraft.grenade.pin": "Чека гранаты",
   "subtitle.nukacraft.attach": "Обвес прикреплён",
   "subtitle.nukacraft.cock": "Взведение оружия",
+
   "nukacraft.option_list.no_items": "Нет предметов",
   "nukacraft.options.adsSensitivity": "Чувствительность ADS",
   "nukacraft.options.adsSensitivity.format": "Чувствительность ADS: %s",
   "nukacraft.options.crosshair": "Перекрестие",
+
   "nukacraft.crosshair.arrow": "Стрелка",
   "nukacraft.crosshair.better_default": "Улучшенный по умолчанию",
   "nukacraft.crosshair.box": "Бокс",
@@ -573,6 +579,7 @@
   "nukacraft.crosshair.square": "Квадрат",
   "nukacraft.crosshair.t": "T",
   "nukacraft.crosshair.tech": "Tech",
+
   "gui.nukacraft.workbench.assemble": "Сбор",
   "gui.nukacraft.workbench.show_remaining": "Показать оставшееся",
   "gui.nukacraft.workbench.tab.weapons": "Оружие",
@@ -584,14 +591,21 @@
   "gui.nukacraft.workbench.tab.shotgun": "Дробовики",
   "gui.nukacraft.workbench.tab.rifle": "Винтовки",
   "gui.nukacraft.workbench.tab.melee": "Ближнее",
+
+  "gui.nukacraft.assemble": "Собрать",
+  "gui.nukacraft.show_remaining": "Показать оставшееся",
+  "gui.nukacraft.marker.tomb": "Здесь покоится %s",
+
   "container.nukacraft.workbench": "Сборочный Верстак",
   "container.nukacraft.attachments": "Изменить обвесы",
   "container.nukacraft.attachments.window_help": "Кликните, чтобы перемещать и вертеть",
+
   "slot.nukacraft.attachment.not_applicable": "§cНе применимо",
   "slot.nukacraft.attachment.scope": "Прицел",
   "slot.nukacraft.attachment.barrel": "Ствол",
   "slot.nukacraft.attachment.stock": "Ложа",
   "slot.nukacraft.attachment.under_barrel": "Подствольник",
+
   "enchantment.nukacraft.quick_hands": "Быстрые руки",
   "enchantment.nukacraft.trigger_finger": "Указательный палец",
   "enchantment.nukacraft.lightweight": "Облегчённый",
@@ -610,6 +624,7 @@
   "enchantment.nukacraft.accelerator.desc": "Увеличивает скорость выпущенных снарядов, заставляя их наносить больше урона",
   "enchantment.nukacraft.puncturing.desc": "Есть шанс, что пуля нанесет критический урон",
   "enchantment.nukacraft.fire_starter.desc": "Пули поджигают блоки и объекты при попадании",
+
   "perk.nukacraft.title": "Перки:",
   "perk.nukacraft.entry.positive": "+ %s",
   "perk.nukacraft.entry.negative": "- %s",
@@ -634,8 +649,7 @@
   "perk.nukacraft.ads_speed.negative": "Сниженная скорость ADS",
   "perk.nukacraft.rate.positive": "Повышенная скорострельность",
   "perk.nukacraft.rate.negative": "Пониженная скорострельность",
-  "gui.nukacraft.assemble": "Собрать",
-  "gui.nukacraft.show_remaining": "Показать оставшееся",
+
   "nukacraft.button.shoot": "Стрельба из оружия",
   "nukacraft.button.aim": "Aim Down Sight (ADS)",
   "nukacraft.button.reload": "Перезарядить / Разрядить",

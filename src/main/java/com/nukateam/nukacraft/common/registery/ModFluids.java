@@ -8,19 +8,19 @@ import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.*;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -31,11 +31,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
+import oshi.util.tuples.Pair;
 
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.*;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
+import static java.util.Map.*;
 
 @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
 public class ModFluids {
@@ -76,5 +78,19 @@ public class ModFluids {
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);
+    }
+
+//    private static final Map<FlowingFluid, Pair<Block, Block>> lavaInteractions = ofEntries(
+//            entry(ACID_FLUID.get(), new Pair<>(Blocks.TUFF, Blocks.CRYING_OBSIDIAN))
+//    );
+
+//    private static final ArrayList<Tuple<FlowingFluid, Block, Block>> lavaInteractions = new ArrayList<>;
+
+    @Nullable
+    public static Pair<Block, Block> getLavaInteraction(FluidState fluidState) {
+        var fluid = fluidState.getType();
+        if (fluid.isSame(ACID_FLUID.get()))
+            return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
+        return null;
     }
 }

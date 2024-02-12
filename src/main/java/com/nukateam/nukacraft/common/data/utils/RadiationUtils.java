@@ -50,7 +50,7 @@ public class RadiationUtils {
             }
         }
         else{
-            if (currentRad + radMod > maxHealth){
+            if (currentRad + radMod > maxHealth - 1){
                 radMod = Math.max(0, Math.min(radMod, currentHealth - 1));
             }
         }
@@ -58,10 +58,11 @@ public class RadiationUtils {
         modifyAttribute(radMod, radiationAtt);
         modifyAttribute(healthMod, healthAtt);
 
-        if (value > 0 & !(currentHealth <= 2)) {
-//            entity.hurt(DamageSource.GENERIC, 0.0f);
-        }
+        entity.setHealth(Math.min(entity.getMaxHealth(), entity.getHealth()));
 
+//        if (value > 0 & !(currentHealth <= 2)) {
+////            entity.hurt(DamageSource.GENERIC, 0.0f);
+//        }
     }
 
     private static void modifyAttribute(double value, AttributeInstance radiationAtt) {
@@ -83,6 +84,24 @@ public class RadiationUtils {
         player.getAttribute(Attributes.MAX_HEALTH)
                 .addPermanentModifier(new AttributeModifier("health", value, AttributeModifier.Operation.ADDITION));
     }
+
+    public static void setAddMaxHealth2(Player player, double value) {
+        var attribute = player.getAttribute(Attributes.MAX_HEALTH);
+                //.addPermanentModifier(new AttributeModifier("health", value, AttributeModifier.Operation.ADDITION));
+        if (attribute == null) return;
+
+        var currentValue = 0.0;
+
+        for (var mod: attribute.getModifiers()) {
+            if (mod.getName().equals("health")){
+                currentValue = mod.getAmount();
+                attribute.removeModifier(mod);
+            }
+        }
+
+        attribute.addPermanentModifier(new AttributeModifier("health", currentValue + value, AttributeModifier.Operation.ADDITION));
+    }
+
 }
 
 ///execute as @p run attribute @s minecraft:generic.max_health base set 100
