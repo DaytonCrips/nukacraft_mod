@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "data": {
+    "textures": {
+      "nukacraft:sand": 1,
+      "nukacraft:sand2": 1,
+      "nukacraft:sand_bushes": 1
+    }
+  }
+}
