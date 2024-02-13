@@ -11,6 +11,7 @@ import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;

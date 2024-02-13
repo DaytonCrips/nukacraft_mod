@@ -103,10 +103,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> BTILE = registerBlock("btile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ACID_DIRT = registerBlock("acid_dirt",
-            () -> new GrassBlock(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS)));
-    public static final RegistryObject<Block> ASH_STONE = registerBlock("ash_stone",
-            () -> new GrassBlock(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.STONE).strength(1.2f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> CYANTILE = registerBlock("cyantile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
@@ -145,26 +141,26 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(2f, 6.0f).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> GREENTILE = registerBlock("greentile",
+    public static final RegistryObject<Block> GREEN_TILE = registerBlock("greentile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> VAULTDINERTABLE = registerBlock("tablevt",
+    public static final RegistryObject<Block> VAULT_DINER_TABLE = registerBlock("tablevt",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.4f)));
-    public static final RegistryObject<Block> VAULTBLASTDOOR = registerBlock("vaultblastdoor",
+    public static final RegistryObject<Block> VAULT_BLASTDOOR = registerBlock("vaultblastdoor",
             () -> new BlastDoorBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(0.4f).lightLevel((p_50892_) -> {return 1;})));
-    public static final RegistryObject<Block> WRITTINGDESK1 = registerBlock("writtingdesk1",
+    public static final RegistryObject<Block> WRITTING_DESK1 = registerBlock("writtingdesk1",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(0.4f)));
-    public static final RegistryObject<Block> WRITTINGDESK2 = registerBlock("writtingdesk2",
+    public static final RegistryObject<Block> WRITTING_DESK2 = registerBlock("writtingdesk2",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(0.4f)));
-    public static final RegistryObject<Block> WRITTINGDESK3 = registerBlock("writtingdesk3",
+    public static final RegistryObject<Block> WRITTING_DESK3 = registerBlock("writtingdesk3",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(0.4f)));
-    public static final RegistryObject<Block> VAULTDINERCHAIR = registerBlock("dinnerchair",
+    public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
             () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.3f)));
     public static final RegistryObject<Block> IND_BUTTON = registerBlock("ind_button",
@@ -180,18 +176,18 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> SHELTERLAMP = registerBlock("shelter_lamp",
+    public static final RegistryObject<Block> SHELTER_LAMP = registerBlock("shelter_lamp",
             () -> new RedstoneLampBlock(BlockBehaviour.Properties.of(Material.METAL).lightLevel(litBlockEmission(15))
                     .strength(0.9f)));
 
-    public static final RegistryObject<Block> REDROCKETPANEL = registerBlock("redrocketpanel",
+    public static final RegistryObject<Block> REDROCKET_PANEL = registerBlock("redrocketpanel",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.2f).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> DANGERFLOOR = registerBlock("dangerfloor",
+    public static final RegistryObject<Block> DANGER_FLOOR = registerBlock("dangerfloor",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> VTLATTICE = registerBlock("vtlattice",
+    public static final RegistryObject<Block> VT_LATTICE = registerBlock("vtlattice",
             () -> new LatticeBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops().noOcclusion()));
 
@@ -504,19 +500,19 @@ public class ModBlocks {
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "top"));
 
-    public static final RegistryObject<Block> RUSTSUPPORTWALL = registerBlock("rustsupportwall",
+    public static final RegistryObject<Block> RUST_SUPPORT_WALL = registerBlock("rustsupportwall",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "wall"));
-    public static final RegistryObject<Block> RUSTSUPPORTWALLTOP = registerBlock("rustsupportwalltop",
+    public static final RegistryObject<Block> RUST_SUPPORTWALL_TOP = registerBlock("rustsupportwalltop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "walltop"));
-    public static final RegistryObject<Block> RUSTSUPPORTTOP = registerBlock("rustsupporttop",
+    public static final RegistryObject<Block> RUST_SUPPORT_TOP = registerBlock("rustsupporttop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "top"));
-    public static final RegistryObject<Block> SERVERBLOCK = registerBlock("comblock",
+    public static final RegistryObject<Block> SERVER_BLOCK = registerBlock("comblock",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.2f, 4.4f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> RADIOTERMINAL = registerBlock("radioterminal",
+    public static final RegistryObject<Block> RADIO_TERMINAL = registerBlock("radioterminal",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
 
@@ -524,7 +520,7 @@ public class ModBlocks {
             () -> new RadBarrelBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops(), 0.5f));
 
-    public static final RegistryObject<Block> EXPBARREL = registerBlock("expbarrel",
+    public static final RegistryObject<Block> EXPLOSIVE_BARREL = registerBlock("expbarrel",
             () -> new ExplosiveBarrel(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
 
