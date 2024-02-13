@@ -103,6 +103,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> BTILE = registerBlock("btile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> ACID_DIRT = registerBlock("acid_dirt",
+            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS)
+                    .strength(0.2f)));
+    public static final RegistryObject<Block> ASHSTONE = registerBlock("ash_stone",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.2f)));
     public static final RegistryObject<Block> CYANTILE = registerBlock("cyantile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
