@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "nukacraft:blocks/powerblock_top",
+    "side": "nukacraft:blocks/powerblock_side"
+  }
+}

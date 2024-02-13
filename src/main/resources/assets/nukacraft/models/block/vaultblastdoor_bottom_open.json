@@ -1,0 +1,32 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "nukacraft:blocks/vaultblastdoor",
+		"particle": "nukacraft:blocks/vaultblastdoor"
+	},
+	"elements": [
+		{
+			"name": "bone",
+			"from": [6.5, 0, 0],
+			"to": [9.5, 1, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [9.25, 4, 10, 4.5], "texture": "#0"},
+				"east": {"uv": [8.75, 8.25, 12.25, 8.5], "texture": "#0"},
+				"south": {"uv": [9.25, 3.5, 10, 4], "texture": "#0"},
+				"west": {"uv": [8.75, 8.75, 12.25, 9], "texture": "#0"},
+				"up": {"uv": [11.5, 1.75, 8, 1], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [11.5, 1.75, 8, 2.5], "rotation": 270, "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "frame",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

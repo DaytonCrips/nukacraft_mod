@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "nukacraft:blocks/moss_whitebricks",
+    "top": "nukacraft:blocks/moss_whitebricks",
+    "side": "nukacraft:blocks/moss_whitebricks"
+  }
+}
