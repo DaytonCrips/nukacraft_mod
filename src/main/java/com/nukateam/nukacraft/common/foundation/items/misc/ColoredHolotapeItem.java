@@ -1,8 +1,7 @@
-package com.nukateam.nukacraft.common.foundation.items.сonsumables;
+package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.misc.HolotapeItem;
-import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
+import com.nukateam.nukacraft.client.helpers.NbtColor;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
@@ -16,25 +15,32 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.COLOR;
+
 public class ColoredHolotapeItem extends HolotapeItem {
     public static final String SCREEN = "screen";
-    private String color;
+//    private final float red;
+//    private final float green;
+//    private final float blue;
+    private final NbtColor color;
 
-    public ColoredHolotapeItem(String color, Item.Properties pProperties) {
+    public ColoredHolotapeItem(NbtColor color, Item.Properties pProperties) {
         super(pProperties);
         this.color = color;
+//        this.red = red;
+//        this.green = green;
+//        this.blue = blue;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        var stack = pPlayer.getOffhandItem();
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand pUsedHand) {
+        var stack = PipBoyUtils.getPipboyStack(player);
         if (stack.getItem() instanceof PipBoyItem) {
-            if (!(stack.getOrCreateTag().getString(SCREEN).equals(color))) {
-                stack.getOrCreateTag().putString(SCREEN, color);
-            }
+            var pipBoyTag = stack.getOrCreateTag();
+            pipBoyTag.put(COLOR, color.serializeNBT());
         }
-        NukaCraftMod.LOGGER.debug("Tagged is " + stack.getOrCreateTag().getString(SCREEN));
-        return super.use(pLevel, pPlayer, pUsedHand);
+
+        return super.use(level, player, pUsedHand);
     }
 
 

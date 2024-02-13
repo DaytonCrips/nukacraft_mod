@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.data.utils.SlotUtils;
 import net.minecraft.client.model.ArmedModel;
 import net.minecraft.client.model.EntityModel;
@@ -33,7 +34,7 @@ public abstract class ItemInHandLayerMixin<T extends LivingEntity, M extends Ent
                         float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, CallbackInfo ci) {
 
         if (pLivingEntity instanceof Player player && SlotUtils.hasCuriosPipboy(player)) {
-            var stack = SlotUtils.getPipboyStack(player);
+            var stack = PipBoyUtils.getPipboyStack(player);
             this.renderArmWithItem(pLivingEntity, stack, ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND,
                     HumanoidArm.LEFT, pMatrixStack, pBuffer, pPackedLight);
         }

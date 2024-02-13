@@ -48,7 +48,7 @@ import java.text.*;
 import java.util.*;
 
 import static com.nukateam.map.impl.atlas.util.MathUtil.*;
-import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
 //    public static final int WIDTH = 327; //255

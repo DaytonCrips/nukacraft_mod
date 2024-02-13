@@ -10,7 +10,7 @@ import com.nukateam.nukacraft.common.events.*;
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
-import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributes;
 import com.nukateam.nukacraft.common.registery.ModEffect;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
@@ -58,7 +58,7 @@ public class NukaCraftMod {
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModGuns.register(MOD_EVENT_BUS);
-        ModAttributesClass.register(MOD_EVENT_BUS);
+        ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);
         ModMelee.register(MOD_EVENT_BUS);

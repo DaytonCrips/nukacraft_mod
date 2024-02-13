@@ -3,7 +3,7 @@ package com.nukateam.map.impl.atlas.client.gui;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.client.render.gui.pipboy.TextPipBoyButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -96,7 +96,7 @@ public class GuiAtlas extends GuiAtlasBase {
 
         homeButton.addListener(button -> {
             clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            archive_pages = round(PipboyPages.content.size(), 7) - 1;
             current_archive_page = 0;
 //            buttonMenu();
             renderArchiveNavigation();
@@ -108,7 +108,7 @@ public class GuiAtlas extends GuiAtlasBase {
         return new MainPipBoyButton(leftPos + -46, topPos + 58, 20, 20,
                 new TextComponent("✴"), e -> {
             clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            archive_pages = round(PipboyPages.content.size(), 7) - 1;
             current_archive_page = 0;
             //openMap();
         });
@@ -125,22 +125,22 @@ public class GuiAtlas extends GuiAtlasBase {
     }
 
     private void renderPage() {
-        page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
-        image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
-        cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
-        cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+        page_buffer = PipboyPages.content.get(current_archive).getPage(current_page).getLines();
+        image = PipboyPages.content.get(current_archive).getPage(current_page).getImage();
+        cords[0] = PipboyPages.content.get(current_archive).getPage(current_page).getXcord();
+        cords[1] = PipboyPages.content.get(current_archive).getPage(current_page).getYcord();
     }
 
     public void buttonMenu() {
         int xj = 0;
 
         if (current_archive_page == archive_pages) {
-            if (PipBoy.content.size() % 7 == 0) {
+            if (PipboyPages.content.size() % 7 == 0) {
                 xj = 7;
             } else {
-                xj = PipBoy.content.size() % 7;
+                xj = PipboyPages.content.size() % 7;
             }
-        } else if (PipBoy.content.size() >= 7) {
+        } else if (PipboyPages.content.size() >= 7) {
             xj = 7;
         }
 
@@ -158,19 +158,19 @@ public class GuiAtlas extends GuiAtlasBase {
         };
         image = new ResourceLocation("nukacraft:textures/screens/empty.png");
         for (int t = 0; t < xj; t++) {
-            page_buffer[t+3] = current_archive_page > 0 ? PipBoy.content.get(t+(current_archive_page*7)).getName() : PipBoy.content.get(t+(current_archive_page)).getName();
+            page_buffer[t+3] = current_archive_page > 0 ? PipboyPages.content.get(t+(current_archive_page*7)).getName() : PipboyPages.content.get(t+(current_archive_page)).getName();
             int finalT = current_archive_page > 0 ? t+(current_archive_page*7) : t;
             addRenderableWidget(new TextPipBoyButton(leftPos + -102, topPos + (-50 + (t * 13)),  205, 11,
                     new TextComponent(""), e -> {
                 menu = false;
                 clearWidgets();
                 renderNavigation();
-                page_buffer = PipBoy.content.get(finalT).getPage(0).getLines();
-                image = PipBoy.content.get(finalT).getPage(0).getImage();
-                cords[0] = PipBoy.content.get(finalT).getPage(0).getXcord();
-                cords[1] = PipBoy.content.get(finalT).getPage(0).getYcord();
+                page_buffer = PipboyPages.content.get(finalT).getPage(0).getLines();
+                image = PipboyPages.content.get(finalT).getPage(0).getImage();
+                cords[0] = PipboyPages.content.get(finalT).getPage(0).getXcord();
+                cords[1] = PipboyPages.content.get(finalT).getPage(0).getYcord();
                 current_archive = finalT;
-                page_count = PipBoy.content.get(finalT).getPageCount();
+                page_count = PipboyPages.content.get(finalT).getPageCount();
                 current_page = 0;
             }));
         }

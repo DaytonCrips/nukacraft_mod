@@ -1,7 +1,5 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.nukateam.guns.client.data.util.RenderUtil;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiComponent;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
@@ -14,7 +12,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import java.util.Collections;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 
 /**

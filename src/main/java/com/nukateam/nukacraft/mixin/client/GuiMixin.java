@@ -3,7 +3,7 @@ package com.nukateam.nukacraft.mixin.client;
 import com.nukateam.nukacraft.common.registery.HeartType;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
@@ -31,7 +31,7 @@ public abstract class GuiMixin extends GuiComponent {
     }
 
     private static double getPlayerRadiation(){
-        return Minecraft.getInstance().player.getAttributeValue(ModAttributesClass.RADIATION.get());
+        return Minecraft.getInstance().player.getAttributeValue(ModAttributes.RADIATION.get());
     }
 
     @Unique

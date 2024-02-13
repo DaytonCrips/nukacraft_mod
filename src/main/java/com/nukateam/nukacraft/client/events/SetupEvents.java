@@ -4,14 +4,13 @@ package com.nukateam.nukacraft.client.events;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
 import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
-import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
@@ -23,9 +22,7 @@ import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import static com.nukateam.map.impl.atlas.MapCore.*;
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
 import static com.nukateam.nukacraft.common.registery.ModParticles.*;
 
@@ -36,8 +33,7 @@ public class SetupEvents {
     public static void clientSetup(FMLClientSetupEvent event) {
         KeyBindings.register();
         ModSetup.renderTypeSetup();
-        PipBoy pipBoy = new PipBoy();
-        pipBoy.init();
+        PipboyPages.init(PipboyPages.content);
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLUID.get(), RenderType.translucent());

@@ -29,7 +29,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 @OnlyIn(Dist.CLIENT)
 public class OverlayRenderer extends GuiComponent {

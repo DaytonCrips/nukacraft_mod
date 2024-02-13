@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
@@ -23,7 +24,7 @@ public class TextPipBoyButton extends Button {
         Font font = minecraft.font;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, TEXTURES_LOC);
-        RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, this.alpha);
+        PipBoyUtils.setPipboyShader(this.alpha);
         int i = this.getYImage(this.isHoveredOrFocused());
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();

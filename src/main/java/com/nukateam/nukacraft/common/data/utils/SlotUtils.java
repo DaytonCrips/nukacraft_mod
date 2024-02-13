@@ -38,22 +38,14 @@ public class SlotUtils {
         return false;
     }
 
-    public static ItemStack getPipboyStack(Player player) {
-        var pipboy = new AtomicReference<>(ItemStack.EMPTY);
-        pipboy.set(ItemStack.EMPTY);
-
-        var offhand = player.getOffhandItem();
-        if(offhand.getItem() instanceof PipBoyItem){
-            pipboy.set(offhand);
-        }
-
+    public static ItemStack getCuriosPipboy(Player player){
+        var stack = ItemStack.EMPTY;
         if (NukaCraftMod.isCuriosLoaded()) {
             var bracelet = getBraceletStack(player);
             if(!bracelet.isEmpty())
-                pipboy.set(bracelet);
+                stack = bracelet;
         }
 
-        return pipboy.get();
+        return stack;
     }
-
 }

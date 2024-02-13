@@ -2,8 +2,8 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -26,14 +26,6 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     @Override protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {}
-
-    public static void setPipboyShader(){
-        RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, 1);
-    }
-
-    public static void setPipboyShader(float alpha){
-        RenderSystem.setShaderColor(PipBoy.red, PipBoy.green, PipBoy.blue, alpha);
-    }
 
     public void renderNavigationPage() {
         addRenderableWidget(getHomeButton());
@@ -77,7 +69,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
         return new MainPipBoyButton(leftPos - 80, topPos + 58, 20, 20,
                 new TextComponent("☵"), e -> {
             clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            archive_pages = round(PipboyPages.content.size(), 7) - 1;
             current_archive_page = 0;
             buttonMenu();
             renderArchiveNavigation();
@@ -88,7 +80,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
         return new MainPipBoyButton(leftPos - 46, topPos + 58, 20, 20,
                 new TextComponent("✴"), e -> {
             clearWidgets();
-            archive_pages = round(PipBoy.content.size(), 7) - 1;
+            archive_pages = round(PipboyPages.content.size(), 7) - 1;
             current_archive_page = 0;
             drawMap();
         });
@@ -106,17 +98,17 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
 
 
     private void renderPage() {
-        page_buffer = PipBoy.content.get(current_archive).getPage(current_page).getLines();
-        image = PipBoy.content.get(current_archive).getPage(current_page).getImage();
-        cords[0] = PipBoy.content.get(current_archive).getPage(current_page).getXcord();
-        cords[1] = PipBoy.content.get(current_archive).getPage(current_page).getYcord();
+        page_buffer = PipboyPages.content.get(current_archive).getPage(current_page).getLines();
+        image = PipboyPages.content.get(current_archive).getPage(current_page).getImage();
+        cords[0] = PipboyPages.content.get(current_archive).getPage(current_page).getXcord();
+        cords[1] = PipboyPages.content.get(current_archive).getPage(current_page).getYcord();
     }
 
     public void drawMap() {
 //        addRenderableWidget(new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
 //                new TextComponent("◀"), e -> {
 //            clearWidgets();
-//            archive_pages = round(PipBoy.content.size(), 7) - 1;
+//            archive_pages = round(PipBoyUtils.content.size(), 7) - 1;
 //            current_archive_page = 0;
 //            buttonMenu();
 //            renderArchiveNavigation();
@@ -143,11 +135,11 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
         int xj = 0;
 
         if (current_archive_page == archive_pages) {
-            if (PipBoy.content.size() % 7 == 0)
+            if (PipboyPages.content.size() % 7 == 0)
                 xj = 7;
             else
-                xj = PipBoy.content.size() % 7;
-        } else if (PipBoy.content.size() >= 7) {
+                xj = PipboyPages.content.size() % 7;
+        } else if (PipboyPages.content.size() >= 7) {
             xj = 7;
         }
 
@@ -165,19 +157,19 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
         };
         image = new ResourceLocation("nukacraft:textures/screens/empty.png");
         for (int t = 0; t < xj; t++) {
-            page_buffer[t+3] = current_archive_page > 0 ? PipBoy.content.get(t+(current_archive_page*7)).getName() : PipBoy.content.get(t+(current_archive_page)).getName();
+            page_buffer[t+3] = current_archive_page > 0 ? PipboyPages.content.get(t+(current_archive_page*7)).getName() : PipboyPages.content.get(t+(current_archive_page)).getName();
             int finalT = current_archive_page > 0 ? t+(current_archive_page*7) : t;
             addRenderableWidget(new TextPipBoyButton(leftPos + -102, topPos + (-50 + (t * 13)),  205, 11,
                     new TextComponent(""), e -> {
                 menu = false;
                 clearWidgets();
                 renderNavigationPage();
-                page_buffer = PipBoy.content.get(finalT).getPage(0).getLines();
-                image = PipBoy.content.get(finalT).getPage(0).getImage();
-                cords[0] = PipBoy.content.get(finalT).getPage(0).getXcord();
-                cords[1] = PipBoy.content.get(finalT).getPage(0).getYcord();
+                page_buffer = PipboyPages.content.get(finalT).getPage(0).getLines();
+                image = PipboyPages.content.get(finalT).getPage(0).getImage();
+                cords[0] = PipboyPages.content.get(finalT).getPage(0).getXcord();
+                cords[1] = PipboyPages.content.get(finalT).getPage(0).getYcord();
                 current_archive = finalT;
-                page_count = PipBoy.content.get(finalT).getPageCount();
+                page_count = PipboyPages.content.get(finalT).getPageCount();
                 current_page = 0;
             }));
         }

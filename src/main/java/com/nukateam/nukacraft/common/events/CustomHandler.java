@@ -1,19 +1,11 @@
 package com.nukateam.nukacraft.common.events;
 
-import com.nukateam.nukacraft.common.data.utils.FluidHelper;
-import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
-import com.nukateam.nukacraft.common.foundation.blocks.blocks.RadioactiveBlock;
-import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributes;
 import com.nukateam.nukacraft.common.registery.ModFluids;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -21,8 +13,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 import static com.nukateam.nukacraft.common.events.RadiationTracker.radiationTrackers;
@@ -33,7 +23,7 @@ public class CustomHandler {
     public static void onLivingDeath(LivingDeathEvent event){
         var entity = event.getEntity();
         if (entity instanceof Player player) {
-            var rad = player.getAttribute(ModAttributesClass.RADIATION.get());
+            var rad = player.getAttribute(ModAttributes.RADIATION.get());
             rad.setBaseValue(0);
 
             for (var mod: rad.getModifiers()) {

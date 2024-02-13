@@ -4,7 +4,7 @@ import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TranslatableComponent;
 import org.lwjgl.opengl.GL11;
@@ -26,7 +26,7 @@ public class GuiPositionButton extends GuiComponentButton {
             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
             int x = getGuiX(), y = getGuiY();
-            PipBoyScreenBase.setPipboyShader();
+            PipBoyUtils.setPipboyShader();
 //            if (isMouseOver) {
 //                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 //            } else {

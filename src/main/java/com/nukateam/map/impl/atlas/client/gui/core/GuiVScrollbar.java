@@ -2,7 +2,7 @@ package com.nukateam.map.impl.atlas.client.gui.core;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import static com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase.setPipboyShader;
+import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 public class GuiVScrollbar extends AGuiScrollbar {
 

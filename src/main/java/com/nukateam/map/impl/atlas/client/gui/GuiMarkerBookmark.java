@@ -5,9 +5,8 @@ import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreenBase;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
@@ -47,7 +46,7 @@ public class GuiMarkerBookmark extends GuiComponentButton {
 
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float partialTick) {
-        PipBoyScreenBase.setPipboyShader();
+        PipBoyUtils.setPipboyShader();
 
         // Render background:
         int u = colorIndex * WIDTH;

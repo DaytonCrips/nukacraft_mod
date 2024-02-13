@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.data.utils;
 
-import com.nukateam.nukacraft.common.registery.ModAttributesClass;
+import com.nukateam.nukacraft.common.registery.ModAttributes;
 import com.nukateam.nukacraft.common.registery.ModEffect;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -25,7 +25,7 @@ public class RadiationUtils {
 //    private final static Map<LivingEntity, Pair<UUID, UUID>> modifiers = new HashMap<>();
 
     private static void handleAddedRadiation(LivingEntity entity, double value) {
-        var radiationAtt = entity.getAttribute(ModAttributesClass.RADIATION.get());
+        var radiationAtt = entity.getAttribute(ModAttributes.RADIATION.get());
         var healthAtt =  entity.getAttribute(Attributes.MAX_HEALTH);
         var maxHealth = healthAtt.getBaseValue();
         var currentHealth = healthAtt.getValue();

@@ -28,12 +28,12 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Entity>> CHAIRENTITY =
             registerEntity("chairblockentity", Builder
                     .of(ChairBlockEntity::new, MobCategory.MISC)
-                    .sized(1.5f, 3f));
+                    .sized(0f, 0f));
 
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
             registerEntity("deathclaw", Builder
                     .of(Deathclaw::new, MobCategory.MONSTER)
-                    .sized(0.0F, 0.0F));
+                    .sized(1.5f, 3f));
 
     public static final RegistryObject<EntityType<MiniNukeEntity>> MININUKE = registerBasic("mini_nuke", MiniNukeEntity::new);
 

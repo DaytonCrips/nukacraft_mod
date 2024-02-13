@@ -2,10 +2,9 @@ package com.nukateam.nukacraft.common.foundation.items.misc;
 
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
-import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoy;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
 import com.nukateam.nukacraft.client.render.renderers.items.PipBoyRenderer;
-import com.nukateam.nukacraft.common.data.utils.SlotUtils;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -36,8 +35,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Consumer;
-
-import static com.nukateam.nukacraft.common.data.utils.PlayerUtils.*;
 
 public class PipBoyItem extends AtlasItem implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
@@ -94,8 +91,8 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
     }
 
     public static void openPipboyScreen(ServerPlayer player) {
-        if(!hasPipboy(player)) return;
-        PipBoy.start(SlotUtils.getPipboyStack(player), getPipboy(player).getSkin(), player);
+        if(!PipBoyUtils.hasPipboy(player)) return;
+//        PipBoyUtils.start(SlotUtils.getPipboyStack(player), getPipboy(player).getSkin(), player);
         PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
     }
 
@@ -116,11 +113,11 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        if (item.getOrCreateTag().getString(SCREEN).equals("")) {
-            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display.green")));
-        } else {
-            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display." + item.getOrCreateTag().getString(SCREEN))));
-        }
+//        if (item.getOrCreateTag().getString(COLOR).equals("")) {
+//            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display.green")));
+//        } else {
+//            list.add(new TranslatableComponent("pipboy.nukacraft.screencolor").append(new TranslatableComponent("color.display." + item.getOrCreateTag().getString(COLOR))));
+//        }
         list.add(new TranslatableComponent("pipboy.nukacraft.handselect"));
         list.add(new TranslatableComponent("pipboy.nukacraft.clicks"));
     }

@@ -1,14 +1,10 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.events.RadiationTracker;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModAttributesClass {
+public class ModAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTE = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation",
@@ -36,9 +32,9 @@ public class ModAttributesClass {
 
     @SubscribeEvent
     public static void addAttributes(EntityAttributeModificationEvent event) {
-        if (!event.has(EntityType.PLAYER, ModAttributesClass.RADIATION.get())) {
-            event.add(EntityType.PLAYER, ModAttributesClass.RADIATION.get());
+        if (!event.has(EntityType.PLAYER, ModAttributes.RADIATION.get())) {
+            event.add(EntityType.PLAYER, ModAttributes.RADIATION.get());
         }
-        event.add(EntityType.PLAYER, ModAttributesClass.RADIATION.get());
+        event.add(EntityType.PLAYER, ModAttributes.RADIATION.get());
     }
 }

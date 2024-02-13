@@ -19,6 +19,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static com.nukateam.nukacraft.common.data.constants.PipboyColors.*;
 import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_BLOCKS;
 import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_MATERIAL;
 //Здесь армяне в нарды играют
@@ -390,19 +391,19 @@ public class ModItems {
 //            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
 
     public static final RegistryObject<Item> HOLO_1CC = ITEMS.register("holotape_white",
-            () -> new ColoredHolotapeItem("white", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(WHITE, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_1D2 = ITEMS.register("holotape_green",
-            () -> new ColoredHolotapeItem("green", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(GREEN, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_2D2 = ITEMS.register("holotape_cyan",
-            () -> new ColoredHolotapeItem("cyan", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(CYAN, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_2D3 = ITEMS.register("holotape_red",
-            () -> new ColoredHolotapeItem("red", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(RED, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_3D3 = ITEMS.register("holotape_gold",
-            () -> new ColoredHolotapeItem("gold", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.EPIC)));
+            () -> new ColoredHolotapeItem(GOLD, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> HOLO_3D4 = ITEMS.register("holotape_orange",
-            () -> new ColoredHolotapeItem("orange", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(ORANGE, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> HOLO_3D = ITEMS.register("holotape_violet",
-            () -> new ColoredHolotapeItem("violet", new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+            () -> new ColoredHolotapeItem(VIOLET, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
 
     public static final RegistryObject<Item> ACID_BUCKET = ITEMS.register("acid_bucket",
             () -> new BucketItem(ModFluids.ACID_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
