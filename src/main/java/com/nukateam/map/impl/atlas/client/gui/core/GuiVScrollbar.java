@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 public class GuiVScrollbar extends AGuiScrollbar {
+    private boolean renderBar;
 
     public GuiVScrollbar(GuiViewport viewport) {
         super(viewport);
@@ -12,6 +13,8 @@ public class GuiVScrollbar extends AGuiScrollbar {
 
     @Override
     protected void drawAnchor(PoseStack matrices) {
+        if(!renderBar) return;
+
         // Draw top cap:
         setPipboyShader();
         texture.draw(matrices, getGuiX(), getGuiY() + anchorPos, textureWidth, capLength, 0, 0, textureWidth, capLength);
@@ -58,4 +61,8 @@ public class GuiVScrollbar extends AGuiScrollbar {
         setSize(textureWidth, getHeight());
     }
 
+    public GuiVScrollbar renderBar(boolean renderBar) {
+        this.renderBar = renderBar;
+        return this;
+    }
 }

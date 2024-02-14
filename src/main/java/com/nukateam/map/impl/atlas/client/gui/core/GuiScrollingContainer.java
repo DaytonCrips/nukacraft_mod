@@ -6,6 +6,8 @@ public class GuiScrollingContainer extends GuiComponent {
     private final GuiViewport viewport;
     private final GuiHScrollbar scrollbarHor;
     private final GuiVScrollbar scrollbarVer;
+    private boolean renderBar = true;
+    private boolean isVertical = false;
 
     public GuiScrollingContainer() {
         viewport = new GuiViewport();
@@ -17,6 +19,23 @@ public class GuiScrollingContainer extends GuiComponent {
         this.addChild(viewport);
         this.addChild(scrollbarHor);
         this.addChild(scrollbarVer);
+    }
+
+    @Override
+    protected void validateSize() {
+        super.validateSize();
+        scrollbarHor.updateContent();
+        scrollbarVer.updateContent();
+    }
+
+    @Override
+    public int getWidth() {
+        return super.getWidth() - (scrollbarVer.visible ? 0 : scrollbarVer.getWidth());
+    }
+
+    @Override
+    public int getHeight() {
+        return super.getHeight() - (scrollbarHor.visible ? 0 : scrollbarHor.getHeight());
     }
 
     /**
@@ -39,42 +58,45 @@ public class GuiScrollingContainer extends GuiComponent {
         viewport.removeAllContent();
     }
 
-    public void setViewportSize(int width, int height) {
+    public GuiScrollingContainer setViewportSize(int width, int height) {
         viewport.setSize(width, height);
-        if(isVertical)
-            viewport.setRelativeCoords(7, 0);
+        if(isVertical) {
+            if (renderBar)
+                viewport.setRelativeCoords(7, 0);
+            else viewport.setRelativeCoords(0, 0);
+        }
         scrollbarHor.setRelativeCoords(0, height);
         scrollbarHor.setSize(width, scrollbarHor.getHeight());
         scrollbarVer.setRelativeCoords(0, 0);
         scrollbarVer.setSize(scrollbarVer.getWidth(), height);
+        return this;
     }
 
-    @Override
-    protected void validateSize() {
-        super.validateSize();
-        scrollbarHor.updateContent();
-        scrollbarVer.updateContent();
+    public GuiScrollingContainer renderBar(boolean renderBar) {
+        this.renderBar = renderBar;
+        scrollbarVer.renderBar(renderBar);
+        return this;
     }
-
-    private boolean isVertical = false;
 
     /**
      * Mouse wheel will affect <b>horizontal</b> scrolling and not vertical.
      * This is the default behavior.
      */
-    public void setWheelScrollsHorizontally() {
+    public GuiScrollingContainer setWheelScrollsHorizontally() {
         isVertical = false;
         scrollbarHor.setUsesWheel(true);
         scrollbarVer.setUsesWheel(false);
+        return this;
     }
 
     /**
      * Mouse wheel will affect <b>vertical</b> scrolling and not horizontal.
      */
-    public void setWheelScrollsVertically() {
+    public GuiScrollingContainer setWheelScrollsVertically() {
         isVertical = true;
         scrollbarHor.setUsesWheel(false);
         scrollbarVer.setUsesWheel(true);
+        return this;
     }
 
     /**
@@ -85,15 +107,5 @@ public class GuiScrollingContainer extends GuiComponent {
     public void scrollTo(int x, int y) {
         scrollbarHor.setScrollPos(x);
         scrollbarVer.setScrollPos(y);
-    }
-
-    @Override
-    public int getWidth() {
-        return super.getWidth() - (scrollbarVer.visible ? 0 : scrollbarVer.getWidth());
-    }
-
-    @Override
-    public int getHeight() {
-        return super.getHeight() - (scrollbarHor.visible ? 0 : scrollbarHor.getHeight());
     }
 }
