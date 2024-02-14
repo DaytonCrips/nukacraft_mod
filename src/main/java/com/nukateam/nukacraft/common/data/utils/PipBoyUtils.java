@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.data.utils;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.nukateam.nukacraft.client.helpers.NbtColor;
-import com.nukateam.nukacraft.common.data.constants.PipboyPages;
+import com.nukateam.nukacraft.common.data.constants.Nbt;
 import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import com.nukateam.nukacraft.common.registery.ModAttributes;
 import net.minecraft.client.Minecraft;
@@ -15,9 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class PipBoyUtils {
-    public static final String COLOR = "color";
 
-    public static int fontColor = -6684775;
     public static ResourceLocation warning_image = new ResourceLocation("nukacraft:textures/screens/pipboy_screens/warning_pipboy.png");
     public static Integer[] warn_cords = new Integer[]{-8, -22};
 
@@ -43,8 +41,8 @@ public class PipBoyUtils {
         var pipboyTag = pipboyStack.getOrCreateTag();
         var color = new NbtColor();
 
-        if(!pipboyStack.isEmpty() && pipboyTag.contains(COLOR)){
-            color.deserializeNBT(pipboyTag.getCompound(COLOR));
+        if(!pipboyStack.isEmpty() && pipboyTag.contains(Nbt.COLOR)){
+            color.deserializeNBT(pipboyTag.getCompound(Nbt.COLOR));
             return color;
         }
 

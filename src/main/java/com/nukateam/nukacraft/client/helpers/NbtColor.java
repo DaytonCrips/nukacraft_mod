@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.client.helpers;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class NbtColor implements INBTSerializable<CompoundTag> {
@@ -35,13 +34,9 @@ public class NbtColor implements INBTSerializable<CompoundTag> {
     }
 
     public int getIntColor(){
-        return getIntFromColor(red, green, blue);
-    }
-
-    private static int getIntFromColor(float Red, float Green, float Blue){
-        int R = Math.round(255 * Red);
-        int G = Math.round(255 * Green);
-        int B = Math.round(255 * Blue);
+        int R = Math.round(255 * red);
+        int G = Math.round(255 * green);
+        int B = Math.round(255 * blue);
 
         R = (R << 16) & 0x00FF0000;
         G = (G << 8) & 0x0000FF00;

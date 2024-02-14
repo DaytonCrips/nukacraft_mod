@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.COLOR;
+import static com.nukateam.nukacraft.common.data.constants.Nbt.COLOR;
 
 public class ColoredHolotapeItem extends HolotapeItem {
     public static final String SCREEN = "screen";
