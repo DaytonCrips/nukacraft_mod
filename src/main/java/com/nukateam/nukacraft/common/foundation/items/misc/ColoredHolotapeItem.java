@@ -44,9 +44,9 @@ public class ColoredHolotapeItem extends HolotapeItem {
     }
 
 
-    @Override
-    public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(item, level, list, flag);
-        list.add(new TranslatableComponent("tooltip.nukacraft.holotape#" + color));
-    }
+//    @Override
+//    public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
+//        super.appendHoverText(item, level, list, flag);
+//        list.add(new TranslatableComponent("tooltip.nukacraft.holotape#" + color));
+//    }
 }

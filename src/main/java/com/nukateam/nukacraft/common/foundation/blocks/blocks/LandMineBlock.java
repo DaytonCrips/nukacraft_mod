@@ -22,6 +22,7 @@ import java.util.*;
 
 public class LandMineBlock extends BaseEntityBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    Random rand = new Random();
 //    private UUID owner;
 
     public LandMineBlock(Properties pProperties) {
@@ -34,8 +35,7 @@ public class LandMineBlock extends BaseEntityBlock {
         var blockEntity = pLevel.getBlockEntity(pPos);
         if (!pLevel.isClientSide && blockEntity instanceof OwnableBlockEntity ownable) {
             if (!(ownable.getOwner().equals(pEntity.getUUID().toString()))) {
-                pLevel.destroyBlock(pPos, false);
-                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+                explode(pLevel, pPos);
             }
         }
 
@@ -45,6 +45,21 @@ public class LandMineBlock extends BaseEntityBlock {
 //                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
 //            }
 //        }
+    }
+    public void explode(Level pLevel, BlockPos pPos) {
+        pLevel.destroyBlock(pPos, false);
+        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+    }
+    public void explodeRand(Level pLevel, BlockPos pPos) {
+        int i = rand.nextInt(99);
+//        if (i < 60) {
+//            if (!pLevel.isClientSide) {
+//                pLevel.destroyBlock(pPos, false);
+//                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+//            }
+//        }
+        pLevel.destroyBlock(pPos, false);
+        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
     }
 
     @Override

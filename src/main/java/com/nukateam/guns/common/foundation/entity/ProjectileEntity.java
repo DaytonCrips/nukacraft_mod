@@ -25,6 +25,7 @@ import com.nukateam.guns.common.network.message.S2CMessageProjectileHitBlock;
 import com.nukateam.guns.common.network.message.S2CMessageProjectileHitEntity;
 import com.nukateam.guns.common.network.message.S2CMessageRemoveProjectile;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.ExplosiveBarrel;
+import com.nukateam.nukacraft.common.foundation.blocks.blocks.LandMineBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
@@ -403,6 +404,9 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
                 bell.attemptToRing(this.level, pos, blockHitResult.getDirection());
             }
 
+//            if (block instanceof LandMineBlock mine) {
+//                mine.explodeRand(this.level, blockHitResult.getBlockPos());
+//            }
 
             if (block instanceof ExplosiveBarrel barrel) {
                 barrel.explosive(this.level, pos);
