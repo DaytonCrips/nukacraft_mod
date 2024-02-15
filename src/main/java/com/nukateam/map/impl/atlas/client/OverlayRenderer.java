@@ -44,19 +44,19 @@ public class OverlayRenderer extends GuiComponent {
 
     public void drawOverlay(PoseStack matrices, MultiBufferSource vertexConsumer, int light, ItemStack atlas) {
         // Overlay must close if Atlas GUI is opened
-        if (Minecraft.getInstance().screen instanceof GuiAtlas)
-            return;
-
-        if (Minecraft.getInstance().level == null || Minecraft.getInstance().player == null)
-            return;
-
-        this.player = Minecraft.getInstance().player;
-        this.world = Minecraft.getInstance().level;
-
-        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
-            int atlasID = AtlasItem.getAtlasID(atlas);
-            drawMinimap(matrices, atlasID, vertexConsumer, light);
-        }
+//        if (Minecraft.getInstance().screen instanceof GuiAtlas)
+//            return;
+//
+//        if (Minecraft.getInstance().level == null || Minecraft.getInstance().player == null)
+//            return;
+//
+//        this.player = Minecraft.getInstance().player;
+//        this.world = Minecraft.getInstance().level;
+//
+//        if (!atlas.isEmpty() && atlas.getItem() == AntiqueAtlasItems.ATLAS.get()) {
+//            int atlasID = AtlasItem.getAtlasID(atlas);
+//            drawMinimap(matrices, atlasID, vertexConsumer, light);
+//        }
     }
 
     private void drawMinimap(PoseStack matrices, int atlasID, MultiBufferSource buffer, int light) {

@@ -20,17 +20,17 @@ public class AntiqueAtlasItems {
 			RECIPES = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MapCore.ID);
 
 
-	public static final RegistryObject<Item> EMPTY_ATLAS = ITEMS.register("empty_antique_atlas",
-			() -> new ItemEmptyAtlas(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-	public static final RegistryObject<Item> ATLAS = ITEMS.register("antique_atlas",
-			() -> new AtlasItem(new Item.Properties().stacksTo(1)));
-
-	public static ItemStack getAtlasFromId(int atlasID) {
-		ItemStack atlas = new ItemStack(ATLAS.get());
-		atlas.getOrCreateTag().putInt("atlasID", atlasID);
-
-		return atlas;
-	}
+//	public static final RegistryObject<Item> EMPTY_ATLAS = ITEMS.register("empty_antique_atlas",
+//			() -> new ItemEmptyAtlas(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+//	public static final RegistryObject<Item> ATLAS = ITEMS.register("antique_atlas",
+//			() -> new AtlasItem(new Item.Properties().stacksTo(1)));
+//
+//	public static ItemStack getAtlasFromId(int atlasID) {
+//		ItemStack atlas = new ItemStack(ATLAS.get());
+//		atlas.getOrCreateTag().putInt("atlasID", atlasID);
+//
+//		return atlas;
+//	}
 
 	public static void register(IEventBus modEventBus) {
 		if (MapCore.CONFIG.itemNeeded) {

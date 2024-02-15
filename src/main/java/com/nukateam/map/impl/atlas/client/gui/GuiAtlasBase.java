@@ -72,7 +72,7 @@ public class GuiAtlasBase extends GuiComponent {
 
     private static final Pos2I BOOKMARKS_POS = new Pos2I(-3, 16);
     private static final Pos2I BOOKMARKS_CONTAINER_SIZE = new Pos2I(21, MAP_HEIGHT );
-    private static final Rect MARKER_BOUNDS = new Rect(11, 22, MAP_WIDTH + 2, MAP_HEIGHT + 12);
+    private static final Rect MARKER_BOUNDS = new Rect(11, 22, MAP_WIDTH, MAP_HEIGHT + 10);
     private static final Rect PLAYER_MARKER_BOX = new Rect(-3, 22, -12, 12);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 

@@ -15,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class PipBoyUtils {
-
     public static ResourceLocation warning_image = new ResourceLocation("nukacraft:textures/screens/pipboy_screens/warning_pipboy.png");
     public static Integer[] warn_cords = new Integer[]{-8, -22};
 
