@@ -408,6 +408,12 @@ public class ModItems {
     public static final RegistryObject<Item> ACID_BUCKET = ITEMS.register("acid_bucket",
             () -> new BucketItem(ModFluids.ACID_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
 
+    public static final RegistryObject<Item> DIRTY_WATER_BUCKET = ITEMS.register("dirty_water_bucket",
+            () -> new BucketItem(ModFluids.DIRTY_WATER_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
+
+    public static final RegistryObject<Item> POISONOUS_WATER_BUCKET = ITEMS.register("poisonous_water_bucket",
+            () -> new BucketItem(ModFluids.POISONOUS_WATER_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
+
     public static final RegistryObject<Item> TEST = ITEMS.register("test",
             () -> new TestItem(new Item.Properties()));
 
