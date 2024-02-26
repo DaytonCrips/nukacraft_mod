@@ -26,6 +26,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
+import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -71,7 +72,7 @@ public class GuiAtlasBase extends GuiComponent {
     public static final float PLAYER_ROTATION_STEPS = 16;
 
     private static final Pos2I BOOKMARKS_POS = new Pos2I(-3, 16);
-    private static final Pos2I BOOKMARKS_CONTAINER_SIZE = new Pos2I(21, MAP_HEIGHT );
+    private static final Pos2I BOOKMARKS_CONTAINER_SIZE = new Pos2I(21, MAP_HEIGHT);
     private static final Rect MARKER_BOUNDS = new Rect(11, 22, MAP_WIDTH, MAP_HEIGHT + 10);
     private static final Rect PLAYER_MARKER_BOX = new Rect(-3, 22, -12, 12);
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
@@ -528,7 +529,12 @@ public class GuiAtlasBase extends GuiComponent {
 
             setMapScale(newScale, (int) addOffsetX, (int) addOffsetY);
 
-            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BOOK_PAGE_TURN, 1.0F));
+            minecraft = Minecraft.getInstance();
+
+            if(wheelMove > 0)
+                minecraft.getSoundManager().play(SimpleSoundInstance.forUI(ModSounds.PIPBOY_UP.get(), 1.0F));
+            else
+                minecraft.getSoundManager().play(SimpleSoundInstance.forUI(ModSounds.PIPBOY_DOWN.get(), 1.0F));
 
             return true;
         }

@@ -2,12 +2,16 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 
 public class MainPipBoyButton extends Button {
@@ -15,6 +19,11 @@ public class MainPipBoyButton extends Button {
 
     public MainPipBoyButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress) {
         super(pX, pY, pWidth, pHeight, pMessage, pOnPress);
+    }
+
+    @Override
+    public void playDownSound(SoundManager pHandler) {
+        pHandler.play(SimpleSoundInstance.forUI(ModSounds.PIPBOY_TAB.get(), 1.0F, 1.0f));
     }
 
     @Override

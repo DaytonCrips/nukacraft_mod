@@ -38,11 +38,10 @@ public class MushroomCloudParticle extends Particle {
     }
 
     public void tick() {
-        boolean large = this.scale > 2.0F;
-        if(age > BALL_FOR / 2 + 5){
+        if(age > 0){
             if(!playedExplosion){
                 playedExplosion = true;
-                playSound(large ? LARGE_NUCLEAR_EXPLOSION.get() : NUCLEAR_EXPLOSION.get(), lifetime - 20, lifetime, 0.2F, false);
+                playSound(NUCLEAR_EXPLOSION.get(), lifetime - 20, lifetime, 0.2F, false);
             }
         }
         if (age < BALL_FOR) {

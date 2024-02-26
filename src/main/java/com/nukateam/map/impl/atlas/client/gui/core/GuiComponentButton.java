@@ -2,6 +2,7 @@ package com.nukateam.map.impl.atlas.client.gui.core;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 
@@ -15,7 +16,7 @@ public class GuiComponentButton extends GuiComponent {
     private final List<IButtonListener<?>> listeners = new ArrayList<>();
 
     private boolean enabled = true;
-    private SoundEvent clickSound = SoundEvents.UI_BUTTON_CLICK;
+    protected SoundEvent clickSound = SoundEvents.UI_BUTTON_CLICK;
 
     public void setEnabled(boolean value) {
         enabled = value;
@@ -46,14 +47,18 @@ public class GuiComponentButton extends GuiComponent {
         return super.mouseClicked(x, y, mouseButton);
     }
 
+    public void playDownSound() {
+        if (clickSound != null) {
+            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(clickSound, 1.0F));
+        }
+    }
+
     /**
      * Called when the user left-clicks on this component.
      */
     @SuppressWarnings("unchecked")
     void onClick() {
-        if (clickSound != null) {
-            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(clickSound, 1.0F));
-        }
+        playDownSound();
 
         for (IButtonListener listener : listeners) {
             listener.onClick(this);
