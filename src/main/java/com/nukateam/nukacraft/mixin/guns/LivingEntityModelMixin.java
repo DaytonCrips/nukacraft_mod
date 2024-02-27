@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.mixin.guns;
 
 
-import com.nukateam.guns.client.data.handler.AimingHandler;
-import com.nukateam.guns.common.foundation.item.GunItem;
+import com.nukateam.gunscore.client.data.handler.AimingHandler;
+import com.nukateam.gunscore.common.foundation.item.GunItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;

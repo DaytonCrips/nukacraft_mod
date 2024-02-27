@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.nukateam.guns.common.data.util.VoxelShapeHelper;
+import com.nukateam.gunscore.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

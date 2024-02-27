@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.mixin.guns;
 
-import com.nukateam.guns.Config;
-import com.nukateam.guns.common.foundation.entity.DamageSourceProjectile;
+import com.nukateam.gunscore.Config;
+import com.nukateam.gunscore.common.foundation.entity.DamageSourceProjectile;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;

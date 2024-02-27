@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.nukateam.guns.common.foundation.block.WorkbenchBlock;
+import com.nukateam.gunscore.common.foundation.block.WorkbenchBlock;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.*;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.PipeBlock;

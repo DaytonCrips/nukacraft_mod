@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.nukateam.guns.common.foundation.item.TestItem;
+import com.jetug.chassis_core.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;

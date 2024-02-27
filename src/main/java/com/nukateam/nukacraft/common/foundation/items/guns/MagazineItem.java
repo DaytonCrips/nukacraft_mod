@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.guns.common.foundation.item.UnderBarrelItem;
-import com.nukateam.guns.common.foundation.item.attachment.impl.UnderBarrel;
+import com.nukateam.gunscore.common.foundation.item.UnderBarrelItem;
+import com.nukateam.gunscore.common.foundation.item.attachment.impl.UnderBarrel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;

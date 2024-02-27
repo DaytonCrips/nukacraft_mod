@@ -1,5 +1,5 @@
 package com.nukateam.nukacraft.common.settings;
-import com.nukateam.guns.common.data.interfaces.IGunModifier;
+import com.nukateam.gunscore.common.data.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
 public class ExtraGunModifiers {
     public static final IGunModifier MAGAZINES = new IGunModifier() {};

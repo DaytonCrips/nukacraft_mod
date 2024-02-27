@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
-import com.nukateam.guns.common.base.NetworkGunManager;
+import com.nukateam.gunscore.common.base.NetworkGunManager;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;

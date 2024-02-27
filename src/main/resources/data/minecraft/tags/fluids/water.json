@@ -4,8 +4,8 @@
     "nukacraft:acid_flowing",
     "nukacraft:acid_fluid",
     "nukacraft:dirty_water_flowing",
-    "nukacraft:dirty_water_fluid",
+    "nukacraft:dirty_water_still",
     "nukacraft:poisonous_water_flowing",
-    "nukacraft:poisonous_water_fluid"
+    "nukacraft:poisonous_water_still"
   ]
 }

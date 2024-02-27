@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.nukateam.guns.common.foundation.enchantment.EnchantmentTypes;
+import com.nukateam.gunscore.common.foundation.enchantment.EnchantmentTypes;
 import com.nukateam.nukacraft.common.registery.items.ModGuns;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import com.nukateam.nukacraft.common.registery.items.PowerArmorItems;

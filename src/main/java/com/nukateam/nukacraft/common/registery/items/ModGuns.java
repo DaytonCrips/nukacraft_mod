@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.nukateam.guns.common.foundation.item.*;
-import com.nukateam.guns.common.foundation.item.attachment.impl.*;
+import com.nukateam.gunscore.common.foundation.item.*;
+import com.nukateam.gunscore.common.foundation.item.attachment.impl.*;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.helpers.*;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;

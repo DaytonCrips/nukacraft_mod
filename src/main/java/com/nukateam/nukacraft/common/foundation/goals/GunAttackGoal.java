@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
-import com.nukateam.guns.common.base.gun.Gun;
-import com.nukateam.guns.common.foundation.item.GunItem;
+import com.nukateam.gunscore.common.base.gun.Gun;
+import com.nukateam.gunscore.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;

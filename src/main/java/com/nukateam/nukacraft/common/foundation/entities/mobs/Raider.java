@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
-import com.nukateam.guns.client.data.handler.ShootingHandler;
-import com.nukateam.guns.common.foundation.item.GunItem;
+import com.nukateam.gunscore.client.data.handler.ShootingHandler;
+import com.nukateam.gunscore.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;

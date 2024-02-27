@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.nukateam.guns.common.foundation.block.RotatedObjectBlock;
+import com.nukateam.gunscore.common.foundation.block.RotatedObjectBlock;
 import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

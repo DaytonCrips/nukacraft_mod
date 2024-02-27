@@ -2,8 +2,8 @@ package com.nukateam.nukacraft;
 
 
 import com.mojang.logging.LogUtils;
-import com.nukateam.guns.GunMod;
-import com.nukateam.guns.common.base.utils.ProjectileManager;
+import com.nukateam.gunscore.GunMod;
+import com.nukateam.gunscore.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.events.*;
@@ -51,7 +51,7 @@ public class NukaCraftMod {
         MapCore.onInitialize();
         MapCore.initMapClient();
 
-        new GunMod().initGunMod(MOD_EVENT_BUS);
+//        new GunMod().initGunMod(MOD_EVENT_BUS);
 
         ModEffect.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
