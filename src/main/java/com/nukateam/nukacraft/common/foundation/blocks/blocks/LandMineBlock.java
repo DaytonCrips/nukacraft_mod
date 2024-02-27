@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.nukateam.gunscore.common.data.util.VoxelShapeHelper;
+import com.nukateam.example.common.data.interfaces.IExplosiveOnHit;
+import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -20,9 +21,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class LandMineBlock extends BaseEntityBlock {
+public class LandMineBlock extends BaseEntityBlock implements IExplosiveOnHit {
+    public static final int EXPLODE_CHANCE = 60;
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    Random rand = new Random();
+    private final Random random = new Random();
 //    private UUID owner;
 
     public LandMineBlock(Properties pProperties) {
@@ -46,20 +48,21 @@ public class LandMineBlock extends BaseEntityBlock {
 //            }
 //        }
     }
+
     public void explode(Level pLevel, BlockPos pPos) {
         pLevel.destroyBlock(pPos, false);
         pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
     }
-    public void explodeRand(Level pLevel, BlockPos pPos) {
-        int i = rand.nextInt(99);
-//        if (i < 60) {
-//            if (!pLevel.isClientSide) {
-//                pLevel.destroyBlock(pPos, false);
-//                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
-//            }
-//        }
-        pLevel.destroyBlock(pPos, false);
-        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+
+    @Override
+    public void explodeOnHit(Level level, BlockPos pos) {
+        int i = random.nextInt(99);
+        if (i < EXPLODE_CHANCE) {
+            if (!level.isClientSide) {
+                level.destroyBlock(pos, false);
+                level.explode(null, pos.getX(), pos.getY(), pos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+            }
+        }
     }
 
     @Override
@@ -69,7 +72,7 @@ public class LandMineBlock extends BaseEntityBlock {
         }
         List<VoxelShape> shapes = new ArrayList<>();
         shapes.add(box(5, 0, 5, 11, 1.0999999999999992, 11));
-        VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
+        var shape = VoxelShapeHelper.combineAll(shapes);
         SHAPES.put(pState, shape);
         return shape;
     }
