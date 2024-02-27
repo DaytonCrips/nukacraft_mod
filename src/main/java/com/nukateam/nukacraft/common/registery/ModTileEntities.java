@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
@@ -24,6 +25,9 @@ public class ModTileEntities {
 
     public static final RegistryObject<BlockEntityType<OwnableBlockEntity>> OWNABLE_BLOCK_ENTITY = register("ownable_tile_entity",
             OwnableBlockEntity::new, () -> new Block[]{ ModBlocks.LANDMINE.get() });
+
+    public static final RegistryObject<BlockEntityType<BasicStorageEntity>> STORAGE_ENTITY = register("storage",
+            BasicStorageEntity::new, () -> new Block[]{ ModBlocks.STORAGE.get() });
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factoryIn,
                                                                                        Supplier<Block[]> validBlocksSupplier) {

@@ -19,9 +19,6 @@ public class ModTileEntities {
     public static final RegistryObject<BlockEntityType<WorkbenchBlockEntity>> WORKBENCH = register("workbench",
             WorkbenchBlockEntity::new, () -> new Block[]{ ModBlocks.WORKBENCH.get() });
 
-    public static final RegistryObject<BlockEntityType<BasicStorageEntity>> STORAGE = register("storage",
-            BasicStorageEntity::new, () -> new Block[]{ ModBlocks.STORAGE1.get() });
-
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id,
                                                                                        BlockEntityType.BlockEntitySupplier<T> factoryIn,
                                                                                        Supplier<Block[]> validBlocksSupplier) {

@@ -10,16 +10,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.nukateam.nukacraft.client.ClientConfig.currentEntity;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.*;
 
 @Mixin(ItemInHandRenderer.class)
 public class ItemInHandRendererMixin {
 
-    @Inject(method = {"renderItem"}, at = @At(value = "HEAD"))
-    public void renderItem(LivingEntity livingEntity, ItemStack pItemStack, TransformType pTransformType,
-                           boolean pLeftHand, PoseStack pPoseStack, MultiBufferSource pBuffer,
-                           int pCombinedLight, CallbackInfo ci) {
-        currentEntity = livingEntity;
-    }
+//    @Inject(method = {"renderItem"}, at = @At(value = "HEAD"))
+//    public void renderItem(LivingEntity livingEntity, ItemStack pItemStack, TransformType pTransformType,
+//                           boolean pLeftHand, PoseStack pPoseStack, MultiBufferSource pBuffer,
+//                           int pCombinedLight, CallbackInfo ci) {
+//        currentEntity = livingEntity;
+//    }
 }

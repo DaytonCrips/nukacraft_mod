@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.mixin.common;
+package com.nukateam.nukacraft.mixin.guns;
 
 import com.nukateam.guns.Config;
 import com.nukateam.guns.common.foundation.entity.DamageSourceProjectile;

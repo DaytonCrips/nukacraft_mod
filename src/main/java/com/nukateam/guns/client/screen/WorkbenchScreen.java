@@ -10,6 +10,7 @@ import com.nukateam.guns.common.foundation.item.*;
 import com.nukateam.guns.common.foundation.item.attachment.IAttachment;
 import com.nukateam.guns.common.network.PacketHandler;
 import com.nukateam.guns.common.network.message.C2SMessageCraft;
+import com.nukateam.nukacraft.common.foundation.items.misc.IMeleeWeapon;
 import com.nukateam.nukacraft.common.registery.items.ModGuns;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.platform.Lighting;
@@ -92,7 +93,7 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
                 weapons.add(recipe);
             } else if (output.getItem() instanceof IAttachment) {
                 attachments.add(recipe);
-            } else if(output.getItem() instanceof SimpleMeleeWeapon){
+            } else if(output.getItem() instanceof IMeleeWeapon){
                 melee.add(recipe);
             } else if (this.isAmmo(output)) {
                 ammo.add(recipe);
@@ -136,11 +137,16 @@ public class WorkbenchScreen extends AbstractContainerScreen<WorkbenchContainer>
         }
 
         if (!melee.isEmpty()) {
-            this.tabs.add(new Tab(new ItemStack(ModMelee.COMBATKNIFE.get()), "melee", melee));
+            var item = melee.get(0).getItem().getItem();
+            var icon = new ItemStack(item);
+            this.tabs.add(new Tab(icon, "melee", melee));
         }
 
         if (!ammo.isEmpty()) {
-            this.tabs.add(new Tab(new ItemStack(ModGuns.ROUND10MM.get()), "ammo", ammo));
+            var item = ammo.get(0).getItem().getItem();
+            var icon = new ItemStack(item);
+//            this.tabs.add(new Tab(new ItemStack(ModGuns.ROUND10MM.get()), "ammo", ammo));
+            this.tabs.add(new Tab(icon, "ammo", ammo));
         }
 
         if (!misc.isEmpty()) {

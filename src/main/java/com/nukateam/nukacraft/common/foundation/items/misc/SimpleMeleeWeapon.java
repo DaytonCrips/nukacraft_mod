@@ -17,7 +17,7 @@ import net.minecraftforge.client.IItemRenderProperties;
 
 import java.util.function.Consumer;
 
-public class SimpleMeleeWeapon extends SwordItem implements GeoItem {
+public class SimpleMeleeWeapon extends SwordItem implements GeoItem, IMeleeWeapon {
     private final float attackDamage;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);

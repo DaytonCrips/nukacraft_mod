@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.blocks;
 
-import com.nukateam.guns.common.foundation.init.ModTileEntities;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.BasicStorageBlock;
+import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Vec3i;
@@ -78,7 +78,7 @@ public class BasicStorageEntity extends RandomizableContainerBlockEntity {
         this.items = pItems;
     }
     public BasicStorageEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModTileEntities.STORAGE.get(), pPos, pBlockState);
+        super(ModTileEntities.STORAGE_ENTITY.get(), pPos, pBlockState);
     }
     protected Component getDefaultName() {
         return new TranslatableComponent("container.nukacraft.storage");

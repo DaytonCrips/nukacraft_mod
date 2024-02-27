@@ -445,8 +445,7 @@ public class ModBlocks {
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-
-    public static final RegistryObject<Block> STORAGE1 = registerBlock("storage1",
+    public static final RegistryObject<Block> STORAGE = registerBlock("storage1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(1f), "SideHalf"));
 
