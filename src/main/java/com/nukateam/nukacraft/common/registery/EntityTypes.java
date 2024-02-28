@@ -2,10 +2,7 @@ package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.ChairBlockEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -24,6 +21,8 @@ import static net.minecraft.world.entity.EntityType.*;
 public class EntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, NukaCraftMod.MOD_ID);
+
+    public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY = registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
 
     public static final RegistryObject<EntityType<Entity>> CHAIRENTITY =
             registerEntity("chairblockentity", Builder

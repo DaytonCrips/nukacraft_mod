@@ -1,18 +1,15 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.gunscore.common.foundation.item.*;
-import com.nukateam.gunscore.common.foundation.item.attachment.impl.*;
 import com.nukateam.nukacraft.*;
-import com.nukateam.nukacraft.client.helpers.*;
+import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
-import com.nukateam.nukacraft.common.settings.ExtraGunModifiers;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.registries.*;
 
-public class ModGuns {
+public class ModWeapons {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///GUNS
@@ -50,7 +47,7 @@ public class ModGuns {
 
     public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
-    public static final RegistryObject<Item> BASEGRENADE = ITEMS.register("baseballgrenade", () -> new BaseGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
+    public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () -> new BaseGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS), 72000));
 
     //Rounds

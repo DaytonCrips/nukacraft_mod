@@ -7,7 +7,7 @@ import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.RidePowerArmorGoal;
-import com.nukateam.nukacraft.common.registery.items.ModGuns;
+import com.nukateam.nukacraft.common.registery.items.ModWeapons;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -82,11 +82,11 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     }
 
     private GunItem[] guns = new GunItem[]{
-            ModGuns.PISTOL10MM.get(),
-            ModGuns.PIPEREVOLVER.get(),
-            ModGuns.PIPE_PISTOL.get(),
-            ModGuns.SCOUT10MM.get(),
-            ModGuns.MINIGUN.get(),
+            ModWeapons.PISTOL10MM.get(),
+            ModWeapons.PIPEREVOLVER.get(),
+            ModWeapons.PIPE_PISTOL.get(),
+            ModWeapons.SCOUT10MM.get(),
+            ModWeapons.MINIGUN.get(),
     };
 
     @Nullable

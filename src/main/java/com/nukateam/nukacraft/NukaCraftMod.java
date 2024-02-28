@@ -2,7 +2,6 @@ package com.nukateam.nukacraft;
 
 
 import com.mojang.logging.LogUtils;
-import com.nukateam.gunscore.GunMod;
 import com.nukateam.gunscore.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
@@ -57,7 +56,7 @@ public class NukaCraftMod {
         ModItems.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
-        ModGuns.register(MOD_EVENT_BUS);
+        ModWeapons.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);
@@ -97,7 +96,7 @@ public class NukaCraftMod {
             ModSetup.flowerPotSetup();
             PacketHandler.register();
             AntiqueAtlasNetworking.register();
-            ProjectileManager.getInstance().registerFactory(ModGuns.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+            ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
         });
     }
 }

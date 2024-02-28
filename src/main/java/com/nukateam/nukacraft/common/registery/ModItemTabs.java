@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.nukateam.gunscore.common.foundation.enchantment.EnchantmentTypes;
-import com.nukateam.nukacraft.common.registery.items.ModGuns;
+import com.nukateam.nukacraft.common.registery.items.ModWeapons;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import com.nukateam.nukacraft.common.registery.items.PowerArmorItems;
 import net.minecraft.world.item.CreativeModeTab;
@@ -31,7 +30,7 @@ public class ModItemTabs {
     public static final CreativeModeTab NUKA_WEAPONS = new CreativeModeTab("nuka_equip") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModGuns.ROUND10MM.get());
+            return new ItemStack(ModWeapons.ROUND10MM.get());
         }
     };
 
