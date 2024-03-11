@@ -1,10 +1,10 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import com.nukateam.gunscore.client.data.enums.SpecialModels;
 import com.nukateam.gunscore.client.data.util.RenderUtil;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -14,24 +14,19 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class MiniNukeRenderer extends EntityRenderer<MiniNukeEntity> {
-    public MiniNukeRenderer(EntityRendererProvider.Context context)
-    {
+    public MiniNukeRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MiniNukeEntity entity)
-    {
+    public ResourceLocation getTextureLocation(MiniNukeEntity entity) {
         return null;
     }
 
     @Override
-    public void render(MiniNukeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light)
-    {
-        if(!entity.getProjectile().isVisible() || entity.tickCount <= 1)
-        {
+    public void render(MiniNukeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
+        if (!entity.getProjectile().isVisible() || entity.tickCount <= 1)
             return;
-        }
 
         poseStack.pushPose();
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180F));

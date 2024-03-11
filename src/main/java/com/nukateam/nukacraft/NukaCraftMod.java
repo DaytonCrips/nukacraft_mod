@@ -11,7 +11,7 @@ import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
 import com.nukateam.nukacraft.common.registery.ModAttributes;
 import com.nukateam.nukacraft.common.registery.ModEffect;
-import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.registery.ModStructures;
@@ -96,7 +96,12 @@ public class NukaCraftMod {
             ModSetup.flowerPotSetup();
             PacketHandler.register();
             AntiqueAtlasNetworking.register();
-            ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+            registerProjectileFactories();
         });
+    }
+
+    private static void registerProjectileFactories() {
+        ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(),
+                (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
     }
 }
