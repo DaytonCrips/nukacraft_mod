@@ -21,9 +21,9 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> PIPEREVOLVER = ITEMS.register("piperevolver", () -> new PistolGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> FATMAN = ITEMS.register("fatman", () -> new FatmanGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> MINIGUN = ITEMS.register("minigun", () -> new MinigunGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
-
-
     public static final RegistryObject<GunItem> POWDERGUN = ITEMS.register("powdergun", () -> new ShotGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+
+    public static final RegistryObject<GunItem> TESLA_RIFLE = ITEMS.register("tesla_rifle", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     ///MAGAZINES
    // public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(ModItemTabs.NUKA_WEAPONS)));
