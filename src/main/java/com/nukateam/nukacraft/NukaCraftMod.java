@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft;
 
-
 import com.mojang.logging.LogUtils;
 import com.nukateam.gunscore.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.MapCore;
@@ -18,8 +17,6 @@ import com.nukateam.nukacraft.common.registery.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
-import net.minecraft.data.worldgen.SurfaceRuleData;
-import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;

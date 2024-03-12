@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
-import com.nukateam.guns.common.base.NetworkGunManager;
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.world.effect.MobEffectInstance;
