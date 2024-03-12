@@ -10,7 +10,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
 
+import static com.nukateam.gunscore.common.foundation.entity.ProjectileEntity.createExplosion;
 import static com.nukateam.nukacraft.common.registery.items.ModWeapons.BASEBALL_GRENADE;
 
 
@@ -36,24 +38,8 @@ public class BaseballGrenadeEntity extends ThrowableGrenadeEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        this.prevRotation = this.rotation;
-        double speed = this.getDeltaMovement().length();
-        if (speed > 0.1) {
-            this.rotation += speed * 50;
-        }
-        if (this.level.isClientSide) {
-            this.level.addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY() + 0.25, this.getZ(), 0, 0, 0);
-        }
-    }
-
-    @Override
-    public void onDeath() {
-        GrenadeEntity.createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), true);
+    protected void onHit(HitResult result) {
+        createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), true);
+        this.remove(RemovalReason.KILLED);
     }
 }

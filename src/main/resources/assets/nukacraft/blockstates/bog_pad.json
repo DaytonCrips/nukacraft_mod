@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nukacraft:block/bog_pad"
+      },
+      {
+        "model": "nukacraft:block/bog_pad",
+        "y": 90
+      },
+      {
+        "model": "nukacraft:block/bog_pad",
+        "y": 180
+      },
+      {
+        "model": "nukacraft:block/bog_pad",
+        "y": 270
+      }
+    ]
+  }
+}

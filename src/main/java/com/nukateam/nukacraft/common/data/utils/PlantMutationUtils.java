@@ -34,7 +34,9 @@ public class PlantMutationUtils {
             entry(ModBlocks.CORALLEAF.get(), ModBlocks.PRISMLEAF.get()),
             entry(ModBlocks.BROC.get(), ModBlocks.INVERT.get()),
             entry(ModBlocks.GINSENG.get(), ModBlocks.NUKAROOT.get()),
-            entry(ModBlocks.HATTER.get(), ModBlocks.MEGAHATTER.get()),
+            entry(ModBlocks.HATTERFUNGI.get(), ModBlocks.MEGAHATTERFUNGI.get()),
+            entry(ModBlocks.GLOWRESINBLOCK.get(), ModBlocks.GLOWSAP.get()),
+            entry(ModBlocks.MEGASLOTHBLOCK.get(), ModBlocks.BBLIGHTMUSH.get()),
 
             entry(Blocks.MELON, ModBlocks.NUKAMELON.get()),
             entry(Blocks.WHEAT, ModBlocks.GIGAWHEAT.get()),

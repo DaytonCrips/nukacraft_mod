@@ -22,7 +22,8 @@ public class EntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITIES, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY = registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
+    public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY =
+            registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
 
     public static final RegistryObject<EntityType<Entity>> CHAIRENTITY =
             registerEntity("chairblockentity", Builder

@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:ultracite_rift6",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1487211562,
+
+
+    "spacing": 23,
+
+
+    "separation": 9,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

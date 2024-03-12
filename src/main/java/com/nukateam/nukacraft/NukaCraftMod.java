@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft;
 
-
 import com.mojang.logging.LogUtils;
 import com.nukateam.gunscore.common.base.utils.ProjectileManager;
 import com.nukateam.map.impl.atlas.MapCore;
@@ -11,7 +10,7 @@ import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
 import com.nukateam.nukacraft.common.registery.ModAttributes;
 import com.nukateam.nukacraft.common.registery.ModEffect;
-import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.registery.ModStructures;
@@ -70,6 +69,7 @@ public class NukaCraftMod {
         ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
+        ModTreeDecorator.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
@@ -96,7 +96,12 @@ public class NukaCraftMod {
             ModSetup.flowerPotSetup();
             PacketHandler.register();
             AntiqueAtlasNetworking.register();
-            ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+            registerProjectileFactories();
         });
+    }
+
+    private static void registerProjectileFactories() {
+        ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(),
+                (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
     }
 }

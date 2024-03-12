@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "nukacraft:items/power_armor/jetpack"
+    "layer0": "nukacraft:items/jetpack_t"
   }
 }

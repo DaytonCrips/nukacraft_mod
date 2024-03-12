@@ -4,7 +4,9 @@
     "nukacraft:ultracite_ore",
     "nukacraft:deepultracite_block",
     "nukacraft:btitan_ore",
-    "nukacraft:deepbtitan_block"
+    "nukacraft:deepbtitan_block",
+    "nukacraft:uranium_ore",
+    "nukacraft:deeruranium"
 
   ]
 }

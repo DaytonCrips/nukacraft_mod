@@ -2,8 +2,8 @@
   "type": "nukacraft:workbench",
   "materials": [
     {
-      "tag": "forge:ingots/iron",
-      "count": 90
+      "item": "nukacraft:pipepistol",
+      "count": 3
     }
   ],
   "result": {

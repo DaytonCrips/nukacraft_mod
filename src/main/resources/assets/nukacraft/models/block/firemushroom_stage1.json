@@ -1,0 +1,70 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/cross",
+	"texture_size": [64, 64],
+	"textures": {
+		"1": "nukacraft:blocks/firefungi",
+		"particle": "nukacraft:blocks/firefungi"
+	},
+	"elements": [
+		{
+			"from": [7.295, 0.02, 7.295],
+			"to": [8.705, 2.84, 8.705],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3.28, -3.28, -3.28]},
+			"faces": {
+				"north": {"uv": [7.25, 5.5, 7.5, 6.25], "texture": "#1"},
+				"east": {"uv": [6.5, 7.25, 6.75, 8], "texture": "#1"},
+				"south": {"uv": [6.75, 7.25, 7, 8], "texture": "#1"},
+				"west": {"uv": [0, 7.5, 0.25, 8.25], "texture": "#1"},
+				"up": {"uv": [4.5, 7.75, 4.25, 7.5], "texture": "#1"},
+				"down": {"uv": [7.75, 4.25, 7.5, 4.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5.885, 1.712, 5.885],
+			"to": [10.115, 2.699, 10.115],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.0705, -0.56575, 8]},
+			"faces": {
+				"north": {"uv": [6, 4.75, 7, 5], "texture": "#1"},
+				"east": {"uv": [6, 5, 7, 5.25], "texture": "#1"},
+				"south": {"uv": [6, 5.25, 7, 5.5], "texture": "#1"},
+				"west": {"uv": [5.75, 6, 6.75, 6.25], "texture": "#1"},
+				"up": {"uv": [4.5, 4.5, 3.5, 3.5], "texture": "#1"},
+				"down": {"uv": [1, 4, 0, 5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [7.013, 2.558, 6.872],
+			"to": [9.269, 3.968, 9.128],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.0705, -0.56575, 8]},
+			"faces": {
+				"north": {"uv": [4.5, 4.25, 5, 4.5], "texture": "#1"},
+				"east": {"uv": [7.5, 2.25, 8, 2.5], "texture": "#1"},
+				"south": {"uv": [7.5, 2.5, 8, 2.75], "texture": "#1"},
+				"west": {"uv": [7.5, 2.75, 8, 3], "texture": "#1"},
+				"up": {"uv": [5, 6.5, 4.5, 6], "texture": "#1"},
+				"down": {"uv": [1.5, 6.25, 1, 6.75], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5.5, 0.04, 5.5],
+			"to": [10.5, 0.04, 10.5],
+			"faces": {
+				"up": {"uv": [10.5, 2.5, 11.75, 3.75], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 7.25, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "stage1",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3]
+		}
+	]
+}
