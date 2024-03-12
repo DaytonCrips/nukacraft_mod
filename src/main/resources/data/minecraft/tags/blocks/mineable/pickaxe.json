@@ -47,6 +47,18 @@
     "nukacraft:supportwall",
     "nukacraft:supportwalltop",
     "nukacraft:supporttop",
-    "nukacraft:expbarrel"
+    "nukacraft:expbarrel",
+    "nukacraft:ultracite_tuff",
+    "nukacraft:ultracite_tuff_ore",
+    "nukacraft:ultracite_magma",
+    "nukacraft:rustsupportwall",
+    "nukacraft:rustsupportwalltop",
+    "nukacraft:rustsupporttop",
+    "nukacraft:ruststeel_bars",
+    "nukacraft:uranium_ore",
+    "nukacraft:deeruranium",
+    "nukacraft:rustedredsteel",
+    "nukacraft:rustedgreensteel",
+    "nukacraft:platedgreensteel"
   ]
 }

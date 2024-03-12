@@ -404,9 +404,9 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
                 bell.attemptToRing(this.level, pos, blockHitResult.getDirection());
             }
 
-//            if (block instanceof LandMineBlock mine) {
-//                mine.explodeRand(this.level, blockHitResult.getBlockPos());
-//            }
+            if (block instanceof LandMineBlock mine) {
+                mine.explodeRand(this.level, blockHitResult.getBlockPos());
+            }
 
             if (block instanceof ExplosiveBarrel barrel) {
                 barrel.explosive(this.level, pos);

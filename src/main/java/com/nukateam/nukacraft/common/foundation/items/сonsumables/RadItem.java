@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,10 +21,12 @@ import static java.lang.Math.abs;
 public class RadItem extends Item {
     protected final float radiation;
 
+
     public RadItem(float radiation, Item.Properties item) {
         super(item);
         this.radiation = radiation;
     }
+
 
     public boolean isIrradiated(){
         return radiation > 0;
@@ -31,15 +34,19 @@ public class RadItem extends Item {
 
     @Override @NotNull
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
-        if (entity instanceof Player)//&& !level.isClientSide
+        if (entity instanceof Player)
             RadiationUtils.addRadiation(entity, radiation);
 
-        if (!(entity instanceof Player player) || !player.isCreative()) {
-            stack.shrink(1);
-        }
+
+
+
+//        if (!(entity instanceof Player player) || !player.isCreative()) {
+//            stack.shrink(1);
+//        }
 
 //        if (entity instanceof Player player)//&& !level.isClientSide
 //            RadiationUtils.setAddMaxHealth(player, -10);
+
 
         return super.finishUsingItem(stack, level, entity);
     }

@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "nukacraft:blocks/ruststeel_bars",
-    "bars": "nukacraft:blocks/ruststeel_bars"
+    "particle": "nukacraft:blocks/rustshelter_bars",
+    "bars": "nukacraft:blocks/rustshelter_bars"
   },
   "elements": [
     {   "from": [ 8, 0, 7 ],

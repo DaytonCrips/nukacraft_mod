@@ -40,6 +40,11 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
+
+    public static final RegistryObject<Item> MEGASLOTHFUNGI = ITEMS.register("megasloth",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_FOOD)));
+    public static final RegistryObject<Item> BBLIGHT = ITEMS.register("bblight",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_FOOD)));
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> VIOPLEX = ITEMS.register("purple_reagent",
@@ -53,6 +58,10 @@ public class ModItems {
     public static final RegistryObject<Item> OIL = ITEMS.register("oil",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> FIBER = ITEMS.register("fiber",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> GLOWINGRES = ITEMS.register("resin_glow",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> GLOAMSAP = ITEMS.register("gloam_sap",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> OPTOFIBER = ITEMS.register("optofiber",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
@@ -94,10 +103,16 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> BTITANNUGG = ITEMS.register("btitannugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> URANRAW = ITEMS.register("raw_uran",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> SATURNITERAW = ITEMS.register("raw_saturnite",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> LEADNUGG = ITEMS.register("leadnugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> SILVERNUGG = ITEMS.register("silvernugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+    public static final RegistryObject<Item> BOGPAD_ITEM = ITEMS.register("bogpad_item",
+            () -> new WaterLilyBlockItem(ModBlocks.BOGPAD.get(), new Item.Properties().tab(NUKA_BLOCKS)));
     public static final RegistryObject<Item> STEELNUGG = ITEMS.register("steelnugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> CERAMIC = ITEMS.register("ceramic",
@@ -124,6 +139,21 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.QUANTUMLEAF_BUSH.get(), new Item.Properties().rarity(Rarity.RARE).tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> GAMMALEAF_ = ITEMS.register("gammaleaf_",
             () -> new ItemNameBlockItem(ModBlocks.GAMMALEAF_BUSH.get(), new Item.Properties().rarity(Rarity.EPIC).tab(NUKA_MATERIAL)));
+
+    public static final RegistryObject<Item> FIREFUNGI = ITEMS.register("firemushroom",
+            () -> new ItemNameBlockItem(ModBlocks.FIREMUSHROOM.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> GLOWMUSHROOM = ITEMS.register("glowfungus",
+            () -> new ItemNameBlockItem(ModBlocks.GLOWFUNGUS.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> GUTMUSHROOM = ITEMS.register("gutshroom",
+            () -> new ItemNameBlockItem(ModBlocks.GUTFUNGI.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> MEGAHATTER = ITEMS.register("megamorph_hatter",
+            () -> new ItemNameBlockItem(ModBlocks.MEGAHATTERFUNGI.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> HATTER = ITEMS.register("hatter",
+            () -> new ItemNameBlockItem(ModBlocks.HATTERFUNGI.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> MUTSHMUSHROOM = ITEMS.register("mutshootfungus",
+            () -> new ItemNameBlockItem(ModBlocks.MUTTSHOOTFUNGUS.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+    public static final RegistryObject<Item> BLASTCAPFUNGI = ITEMS.register("blastcap",
+            () -> new ItemNameBlockItem(ModBlocks.BLASTCAP.get(), new Item.Properties().tab(NUKA_BLOCKS)));
     public static final RegistryObject<Item> BLOODLEAF_ = ITEMS.register("nbloodleafi_",
             () -> new ItemNameBlockItem(ModBlocks.BLOODLEAF_BUSH.get(), new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> PRMT = ITEMS.register("pmt1",
@@ -245,6 +275,8 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.GIGAWHEAT.get(), (new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.RARE))));
     public static final RegistryObject<Item> ABRAXOCLEANER = ITEMS.register("abraxo_cleaner",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
+    public static final RegistryObject<Item> STEELBOWL = ITEMS.register("steelbowl",
+            () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));
     public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> PIEZODIVIDE = ITEMS.register("piezonucleic_divider",
@@ -276,7 +308,7 @@ public class ModItems {
 
     //FOOD
     public static final RegistryObject<Item> NUKACOLA = ITEMS.register("nukacola",
-            () -> new NukaColaItem(0.08f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
+            () -> new NukaColaItem( 0.08f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKACOLA)));
     public static final RegistryObject<Item> NUKAFRUTTI = ITEMS.register("nukafrutti",
             () -> new NukaColaItem( -0.09f, 10, new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NUKAFRUTTI)));
     public static final RegistryObject<Item> CRACKBERRY = ITEMS.register("crackberry",
@@ -357,13 +389,13 @@ public class ModItems {
                     new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.TEA)));
 
     public static final RegistryObject<Item> VEGSOUP = ITEMS.register("vegsoup",
-            () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.VEGSOUP)));
+            () -> new SteelBowlItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.VEGSOUP)));
     public static final RegistryObject<Item> TATOSALAD = ITEMS.register("tato_salad",
-            () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.TATOSALAD)));
+            () -> new SteelBowlItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.TATOSALAD)));
     public static final RegistryObject<Item> SITTSOUP = ITEMS.register("sittsoup",
-            () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTSOUP)));
+            () -> new SteelBowlItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTSOUP)));
     public static final RegistryObject<Item> SITTPUREE = ITEMS.register("sittpuree",
-            () -> new BowlFoodItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTPUREE)));
+            () -> new SteelBowlItem(new Item.Properties().tab(ModItemTabs.NUKA_FOOD).stacksTo(1).food(ModFoodTypes.SITTPUREE)));
 
     public static final RegistryObject<Item> FMSOUP = ITEMS.register("firemushsoup",
             () -> new SpecialSoupItem( 0.0f, () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 10 * 20),

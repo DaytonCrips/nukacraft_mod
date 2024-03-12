@@ -33,7 +33,7 @@ public class ExplosiveBarrel extends Block {
     @Override
     public void wasExploded(Level pLevel, BlockPos pPos, Explosion pExplosion) {
         if (!pLevel.isClientSide) {
-            pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(), 6.0f, Explosion.BlockInteraction.DESTROY);
+            pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(), 3.5f, Explosion.BlockInteraction.DESTROY);
         }
 
     }

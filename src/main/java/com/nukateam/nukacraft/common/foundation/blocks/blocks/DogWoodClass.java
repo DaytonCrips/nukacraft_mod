@@ -23,11 +23,19 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
+import java.util.Random;
 
 public class DogWoodClass extends RotatedPillarBlock {
+    Random rand = new Random();
     public DogWoodClass(Properties prop) {
         super(prop);
     }
+
+
+
+
+
+
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {

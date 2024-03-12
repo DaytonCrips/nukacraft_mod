@@ -29,6 +29,7 @@ public class LandMineBlock extends BaseEntityBlock {
         super(pProperties);
     }
 
+
     @Override
     public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
 
@@ -48,18 +49,16 @@ public class LandMineBlock extends BaseEntityBlock {
     }
     public void explode(Level pLevel, BlockPos pPos) {
         pLevel.destroyBlock(pPos, false);
-        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),2.0f, Explosion.BlockInteraction.NONE);
     }
     public void explodeRand(Level pLevel, BlockPos pPos) {
         int i = rand.nextInt(99);
-//        if (i < 60) {
-//            if (!pLevel.isClientSide) {
-//                pLevel.destroyBlock(pPos, false);
-//                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
-//            }
-//        }
-        pLevel.destroyBlock(pPos, false);
-        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+        if (i < 60) {
+            if (!pLevel.isClientSide) {
+                pLevel.destroyBlock(pPos, false);
+                pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),2.0f, Explosion.BlockInteraction.NONE);
+            }
+        }
     }
 
     @Override

@@ -16,6 +16,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.BLOODLEAF_BUSH.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.BBLOODLEAF_BUSH.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.GLOW_GRASS.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.POISONGRASS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.ASTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_ASTER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.RADASTER.get(), RenderType.cutout());
@@ -25,7 +26,6 @@ public class ModSetup {
         setRenderLayer(ModBlocks.REDLIGHT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.DEATH_FLOWER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.FIREMUSHROOM.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.POTTED_FIREMUSHROOM.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.BLASTCAP.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POTTED_BLASTCAP.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.ASHROSE.get(), RenderType.cutout());
@@ -53,10 +53,9 @@ public class ModSetup {
         setRenderLayer(ModBlocks.WILDTATO.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.CRANBERRY.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.STARBERRY.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.GUTSHROOM.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.POTTED_GUTSHROOM.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.BBLIGHT.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.POTTED_BBLIGHT.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.GUTFUNGI.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.DEWDROPHEAD.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.CRANBERRYLEAVES.get(), RenderType.cutoutMipped());
         setRenderLayer(ModBlocks.GOLD_CRANBERRY.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.GIGAWHEAT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.BRAINFUNGUS.get(), RenderType.cutout());
@@ -90,13 +89,26 @@ public class ModSetup {
         setRenderLayer(ModBlocks.DECAYDOOR.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.STEELBARS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.SHELTERBARS.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.HATTER.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.MEGAHATTER.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.HATTERFUNGI.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.MEGAHATTERFUNGI.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.FRIDGE.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.COOLER.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.VT_LATTICE.get(), RenderType.translucent());
         setRenderLayer(ModBlocks.BARREL.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.EXPLOSIVE_BARREL.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.POTTED_FIREMUSHROOM.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.POTTED_BLASTCAP.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.GLOWFUNGUS.get(), RenderType.translucent());
+        setRenderLayer(ModBlocks.POTTED_GLOWFUNGUS.get(), RenderType.translucent());
+        setRenderLayer(ModBlocks.MUTTSHOOTFUNGUS.get(), RenderType.translucent());
+        setRenderLayer(ModBlocks.POTTED_MUTTSHOOTFUNGUS.get(), RenderType.translucent());
+        setRenderLayer(ModBlocks.POTTED_HATTER.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.GLOWRESINBLOCK.get(), RenderType.translucent());
+        setRenderLayer(ModBlocks.DEWDROP_SAPLING.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.TOXICFERN.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.BOGPAD.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.RUSTSTEELBARS.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()
@@ -112,11 +124,15 @@ public class ModSetup {
         addPlant(ModBlocks.BOOMBLOSSOM.getId(), ModBlocks.POTTED_BOOMBLOSSOM);
         addPlant(ModBlocks.SOOTFLOWER.getId(), ModBlocks.POTTED_SOOTFLOWER);
         addPlant(ModBlocks.GEIGERBLOSSOM.getId(), ModBlocks.POTTED_GEIGERBLOSSOM);
-        addPlant(ModBlocks.GUTSHROOM.getId(), ModBlocks.POTTED_GUTSHROOM);
-        addPlant(ModBlocks.BBLIGHT.getId(), ModBlocks.POTTED_BBLIGHT);
+        addPlant(ModBlocks.GUTFUNGI.getId(), ModBlocks.POTTED_GUTSHROOM);
+        //addPlant(ModBlocks.BBLIGHT.getId(), ModBlocks.POTTED_BBLIGHT);
         addPlant(ModBlocks.MARYGOLD.getId(), ModBlocks.POTTED_MARYGOLD);
         addPlant(ModBlocks.BROC.getId(), ModBlocks.POTTED_BROC);
         addPlant(ModBlocks.INVERT.getId(), ModBlocks.POTTED_INVERT);
+        addPlant(ModBlocks.GLOWFUNGUS.getId(), ModBlocks.POTTED_GLOWFUNGUS);
+        addPlant(ModBlocks.MUTTSHOOTFUNGUS.getId(), ModBlocks.POTTED_MUTTSHOOTFUNGUS);
+        addPlant(ModBlocks.MEGAHATTERFUNGI.getId(), ModBlocks.POTTED_MEGAHATTERFUNGI);
+        addPlant(ModBlocks.HATTERFUNGI.getId(), ModBlocks.POTTED_HATTER);
     }
 
     static void addPlant(ResourceLocation resourceLocation, RegistryObject<Block> registryObject){
