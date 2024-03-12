@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 4,
-    "gripType": "nukacraft:one_handed",
+    "gripType": "gunscore:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 10,
     "reloadTime": 30,
@@ -14,10 +14,12 @@
   },
   "projectile": {
     "item": "nukacraft:round10mm",
+    "visible": true,
     "damage": 9.0,
     "size": 0.2,
-    "speed": 21.0,
-    "life": 10
+    "speed": 150,
+    "life": 7,
+    "type": "ballistic"
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",

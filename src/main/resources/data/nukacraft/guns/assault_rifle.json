@@ -2,7 +2,7 @@
   "general": {
     "auto": true,
     "rate": 3,
-    "gripType": "nukacraft:two_handed",
+    "gripType": "gunscore:two_handed",
     "maxAmmo": 40,
     "reloadTime": 20,
     "reloadAmount": 10,
@@ -11,18 +11,18 @@
     "spread": 4.0
   },
   "projectile": {
-    "item": "nukacraft:basic_bullet",
+    "item": "gunscore:basic_bullet",
     "damage": 6.5,
     "size": 0.2,
     "speed": 10.0,
     "life": 25
   },
   "sounds": {
-    "fire": "nukacraft:item.assault_rifle.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "cock": "nukacraft:item.assault_rifle.cock",
-    "silencedFire": "nukacraft:item.assault_rifle.silenced_fire",
-    "enchantedFire": "nukacraft:item.assault_rifle.enchanted_fire"
+    "fire": "gunscore:item.assault_rifle.fire",
+    "reload": "gunscore:item.pistol.reload",
+    "cock": "gunscore:item.assault_rifle.cock",
+    "silencedFire": "gunscore:item.assault_rifle.silenced_fire",
+    "enchantedFire": "gunscore:item.assault_rifle.enchanted_fire"
   },
   "display": {
     "flash": {

@@ -2,7 +2,7 @@
   "general": {
     "auto": true,
     "rate": 2,
-    "gripType": "nukacraft:mini_gun",
+    "gripType": "gunscore:mini_gun",
     "category": "heavy",
     "maxAmmo": 100,
     "reloadTime": 80,

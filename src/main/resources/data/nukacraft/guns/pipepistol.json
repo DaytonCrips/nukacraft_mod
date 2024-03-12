@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 4,
-    "gripType": "nukacraft:one_handed",
+    "gripType": "gunscore:one_handed",
     "maxAmmo": 5,
     "reloadTime": 20,
     "reloadAmount": 1,
