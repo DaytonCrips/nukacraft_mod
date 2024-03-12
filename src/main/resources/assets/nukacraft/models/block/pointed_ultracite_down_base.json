@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pointed_dripstone",
+  "textures": {
+    "cross": "nukacraft:blocks/pointed_ultracite_down_base"
+  }
+}

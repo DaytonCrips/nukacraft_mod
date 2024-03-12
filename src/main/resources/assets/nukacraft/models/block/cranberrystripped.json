@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "nukacraft:blocks/cranberrystripped_top",
+    "side": "nukacraft:blocks/cranberrystripped_side"
+  }
+}

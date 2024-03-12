@@ -35,7 +35,17 @@
     "nukacraft:shelter_bars",
     "nukacraft:supportwall",
     "nukacraft:supportwalltop",
-    "nukacraft:supporttop"
+    "nukacraft:supporttop",
+    "nukacraft:ultracite_tuff",
+    "nukacraft:ultracite_tuff_ore",
+    "nukacraft:ultracite_magma",
+    "nukacraft:rustsupportwall",
+    "nukacraft:rustsupportwalltop",
+    "nukacraft:rustsupporttop",
+    "nukacraft:ruststeel_bars",
+    "nukacraft:rustedredsteel",
+    "nukacraft:rustedgreensteel",
+    "nukacraft:platedgreensteel"
 
   ]
 }

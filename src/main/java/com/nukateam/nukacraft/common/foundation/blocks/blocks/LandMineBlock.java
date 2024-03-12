@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.nukateam.example.common.data.interfaces.IExplosiveOnHit;
-import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
+import com.nukateam.guns.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -51,7 +50,7 @@ public class LandMineBlock extends BaseEntityBlock implements IExplosiveOnHit {
 
     public void explode(Level pLevel, BlockPos pPos) {
         pLevel.destroyBlock(pPos, false);
-        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),2.0f, Explosion.BlockInteraction.NONE);
     }
 
     @Override

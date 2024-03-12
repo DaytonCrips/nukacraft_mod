@@ -18,6 +18,8 @@ import com.nukateam.nukacraft.common.registery.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
+import net.minecraft.data.worldgen.SurfaceRuleData;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
@@ -70,6 +72,7 @@ public class NukaCraftMod {
         ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
+        ModTreeDecorator.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);

@@ -26,7 +26,10 @@ public class ModOreFeatures {
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ALUMI_PLACE = FeatureUtils.register("ore_alumi_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ALUMI_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPALUMI.get().defaultBlockState())), 4));
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_LEAD_PLACE = FeatureUtils.register("ore_lead_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.LEAD_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPLEAD.get().defaultBlockState())), 7));
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_SILVER_PLACE = FeatureUtils.register("ore_silver_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSILVER.get().defaultBlockState())), 5));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_BTITAN_PLACE = FeatureUtils.register("ore_btitan_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 5));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_BTITAN_PLACE = FeatureUtils.register("ore_btitan_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 11));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ULTRACITE_PLACE = FeatureUtils.register("ore_ultracite_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ULTRACITE_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPULTRACITE.get().defaultBlockState())), 9));
+    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_URAN_PLACE = FeatureUtils.register("ore_uranium_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPURAN_ORE.get().defaultBlockState())), 8));
+
 
 
 
@@ -36,6 +39,9 @@ public class ModOreFeatures {
     public static final Holder<PlacedFeature> ORE_LEAD = PlacementUtils.register("ore_lead", ORE_LEAD_PLACE, commonOrePlacement(9, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45))));
     public static final Holder<PlacedFeature> ORE_SILVER = PlacementUtils.register("ore_silver", ORE_SILVER_PLACE, commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))));
     public static final Holder<PlacedFeature> ORE_BTITAN = PlacementUtils.register("ore_btitan", ORE_BTITAN_PLACE, commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
+    public static final Holder<PlacedFeature> ORE_ULTRACITE = PlacementUtils.register("ore_ultracite", ORE_ULTRACITE_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))));
+    public static final Holder<PlacedFeature> ORE_URAN = PlacementUtils.register("ore_uran", ORE_URAN_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
+
 
 
 

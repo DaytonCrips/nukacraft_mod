@@ -3,7 +3,7 @@
   "values": [
     "nukacraft:death_plant",
     "nukacraft:aster",
-    "nukacraft:firemushroom",
+    "nukacraft:firefungi",
     "nukacraft:ashrose",
     "nukacraft:feverblossom",
     "nukacraft:sootflower",
@@ -16,7 +16,7 @@
     "nukacraft:agave",
     "nukacraft:starberry",
     "nukacraft:brainfungus",
-    "nukacraft:glowfungus",
+    "nukacraft:glowfungi",
     "nukacraft:nukaroot",
     "nukacraft:coral_leaf",
     "nukacraft:ginseng",
@@ -41,7 +41,8 @@
     "minecraft:potatoes",
     "minecraft:beetroots",
     "minecraft:carrots",
-    "nukacraft:hatter",
-    "nukacraft:megamorph_hatter"
+    "nukacraft:hatterfungi",
+    "nukacraft:glowresinblock",
+    "nukacraft:megaslotmush"
   ]
 }
