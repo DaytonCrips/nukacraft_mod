@@ -9,7 +9,7 @@
     "reloadAmount": 10,
     "recoilAngle": 1.0,
     "alwaysSpread": true,
-    "spread": 7.0
+    "spread": 6.0
   },
   "projectile": {
     "item": "nukacraft:round5mm",

@@ -33,8 +33,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import static com.nukateam.gunscore.common.foundation.init.ModEntities.LASER_PROJECTILE;
-import static com.nukateam.gunscore.common.foundation.init.ModEntities.TESLA_PROJECTILE;
+import static com.nukateam.gunscore.common.foundation.init.Projectiles.*;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 

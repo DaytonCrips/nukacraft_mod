@@ -9,8 +9,8 @@
     "recoilKick": 1,
     "recoilAdsReduction": 0.6,
     "projectileAmount": 1,
-    "alwaysSpread": true,
-    "spread": 20.0
+    "alwaysSpread": false,
+    "spread": 2.0
   },
   "projectile": {
     "item": "nukacraft:fusion_cell",
