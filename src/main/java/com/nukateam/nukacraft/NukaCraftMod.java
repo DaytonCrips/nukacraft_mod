@@ -2,9 +2,12 @@ package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
 import com.nukateam.gunscore.common.base.utils.ProjectileManager;
+import com.nukateam.gunscore.common.foundation.entity.LaserProjectile;
+import com.nukateam.gunscore.common.foundation.entity.TeslaProjectile;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.events.*;
+import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
@@ -29,6 +32,9 @@ import org.slf4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
+
+import static com.nukateam.gunscore.common.foundation.init.ModEntities.LASER_PROJECTILE;
+import static com.nukateam.gunscore.common.foundation.init.ModEntities.TESLA_PROJECTILE;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -102,6 +108,15 @@ public class NukaCraftMod {
 
     private static void registerProjectileFactories() {
         ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(),
-                (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+                (level, entity, weapon, item, modifiedGun) ->
+                        new MiniNukeEntity(EntityTypes.MININUKE.get(), level, entity, weapon, item, modifiedGun));
+
+        ProjectileManager.getInstance().registerFactory(ModWeapons.FUSION_CELL.get(),
+                (level, entity, weapon, item, modifiedGun) -> {
+                    if(item instanceof TeslaGun)
+                       return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else
+                        return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                });
     }
 }

@@ -23,7 +23,7 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> MINIGUN = ITEMS.register("minigun", () -> new MinigunGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> POWDERGUN = ITEMS.register("powdergun", () -> new ShotGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
-    public static final RegistryObject<GunItem> TESLA_RIFLE = ITEMS.register("tesla_rifle", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<GunItem> TESLA_RIFLE = ITEMS.register("tesla_rifle", () -> new TeslaGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     ///MAGAZINES
    // public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(ModItemTabs.NUKA_WEAPONS)));
@@ -76,6 +76,9 @@ public class ModWeapons {
     public static final RegistryObject<Item> ROUND22 = ModItems.ITEMS.register("round22",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> MININUKE = ModItems.ITEMS.register("mini_nuke",
+            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+
+    public static final RegistryObject<Item> FUSION_CELL = ModItems.ITEMS.register("fusion_cell",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
