@@ -87,6 +87,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
             ModWeapons.PIPE_PISTOL.get(),
             ModWeapons.SCOUT10MM.get(),
             ModWeapons.MINIGUN.get(),
+            ModWeapons.LASER_PISTOL.get(),
     };
 
     @Nullable

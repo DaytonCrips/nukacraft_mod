@@ -16,8 +16,8 @@
     "item": "nukacraft:fusion_cell",
     "damage": 9.0,
     "size": 0.2,
-    "speed": 21.0,
-    "life": 10
+    "speed": 150,
+    "life": 6
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",

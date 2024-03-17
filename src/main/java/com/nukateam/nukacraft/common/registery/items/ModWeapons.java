@@ -24,6 +24,7 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> POWDERGUN = ITEMS.register("powdergun", () -> new ShotGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     public static final RegistryObject<GunItem> TESLA_RIFLE = ITEMS.register("tesla_rifle", () -> new TeslaGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<GunItem> LASER_RIFLE = ITEMS.register("laser_rifle", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> LASER_PISTOL = ITEMS.register("laser_pistol", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     ///MAGAZINES
