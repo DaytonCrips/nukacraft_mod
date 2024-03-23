@@ -1,0 +1,34 @@
+{
+  "general": {
+    "auto": true,
+    "rate": 2,
+    "gripType": "gunscore:mini_gun",
+    "maxAmmo": 40,
+    "reloadTime": 30,
+    "reloadAmount": 10,
+    "recoilAngle": 1.0,
+    "recoilKick": 0.25,
+    "spread": 4.0
+  },
+  "projectile": {
+    "item": "nukacraft:fusion_core",
+    "magazineMode" : true,
+    "damage": 6.5,
+    "size": 0.2,
+    "speed": 150,
+    "life": 3
+  },
+  "sounds": {
+    "fire": "nukacraft:item.assault_rifle.fire",
+    "reload": "nukacraft:item.pistol.reload",
+    "cock": "nukacraft:item.assault_rifle.cock",
+    "silencedFire": "nukacraft:item.assault_rifle.silenced_fire",
+    "enchantedFire": "nukacraft:item.assault_rifle.enchanted_fire"
+  },
+  "display": {
+    "flash": {
+      "yOffset": 3.6,
+      "zOffset": -6.41
+    }
+  }
+}

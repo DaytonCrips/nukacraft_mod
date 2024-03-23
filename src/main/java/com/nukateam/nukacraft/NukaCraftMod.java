@@ -2,9 +2,12 @@ package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
 import com.nukateam.gunscore.common.base.utils.ProjectileManager;
+import com.nukateam.gunscore.common.foundation.entity.LaserProjectile;
+import com.nukateam.gunscore.common.foundation.entity.TeslaProjectile;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
 import com.nukateam.nukacraft.common.events.*;
+import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.ContainerRegistry;
@@ -30,6 +33,8 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import static com.nukateam.gunscore.common.foundation.init.Projectiles.*;
+
 //Приходит улитка в бар, а там java классы в нарды играют...
 
 @Mod(NukaCraftMod.MOD_ID)
@@ -52,7 +57,7 @@ public class NukaCraftMod {
 //        new GunMod().initGunMod(MOD_EVENT_BUS);
 
         ModEffect.register(MOD_EVENT_BUS);
-        ModItems.register(MOD_EVENT_BUS);
+        EntityTypes.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModWeapons.register(MOD_EVENT_BUS);
@@ -61,7 +66,6 @@ public class NukaCraftMod {
         ModBiomes.register(MOD_EVENT_BUS);
         ModMelee.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
-        EntityTypes.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         SoundRegistry.REGISTER.register(MOD_EVENT_BUS);
@@ -70,6 +74,7 @@ public class NukaCraftMod {
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
         ModTreeDecorator.register(MOD_EVENT_BUS);
+        ModItems.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
@@ -102,6 +107,23 @@ public class NukaCraftMod {
 
     private static void registerProjectileFactories() {
         ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(),
-                (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
+                (level, entity, weapon, item, modifiedGun) ->
+                        new MiniNukeEntity(EntityTypes.MININUKE.get(), level, entity, weapon, item, modifiedGun));
+
+        ProjectileManager.getInstance().registerFactory(ModWeapons.FUSION_CELL.get(),
+                (level, entity, weapon, item, modifiedGun) -> {
+                    if(item instanceof TeslaGun)
+                       return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else
+                        return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                });
+
+        ProjectileManager.getInstance().registerFactory(ModWeapons.FUSION_CORE.get(),
+                (level, entity, weapon, item, modifiedGun) -> {
+                    if(item instanceof TeslaGun)
+                       return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else
+                        return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                });
     }
 }

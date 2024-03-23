@@ -1,18 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "01"
+    "00",
+    "00"
   ],
   "key": {
     "0": {
-      "item": "minecraft:slime_ball"
-    },
-    "1": {
-      "item": "minecraft:clay_ball"
+      "item": "nukacraft:scrap"
     }
   },
   "result": {
-    "item": "nukacraft:pmt1",
+    "item": "nukacraft:scrapmetall",
     "count": 1
   }
 }

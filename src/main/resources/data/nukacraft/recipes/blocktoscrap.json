@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:scrapmetall"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:scrap",
+    "count": 4
+  }
+}

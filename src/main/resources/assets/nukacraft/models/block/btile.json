@@ -3,10 +3,10 @@
   "textures": {
     "down": "nukacraft:blocks/downtile",
     "up": "nukacraft:blocks/btile_top",
-    "north": "nukacraft:blocks/rtile",
-    "east": "nukacraft:blocks/rtile",
-    "south": "nukacraft:blocks/rtile",
-    "west": "nukacraft:blocks/rtile",
-    "particle": "nukacraft:blocks/rtile"
+    "north": "nukacraft:blocks/black_tile",
+    "east": "nukacraft:blocks/black_tile_r",
+    "south": "nukacraft:blocks/black_tile",
+    "west": "nukacraft:blocks/black_tile_r",
+    "particle": "nukacraft:blocks/black_tile"
   }
 }

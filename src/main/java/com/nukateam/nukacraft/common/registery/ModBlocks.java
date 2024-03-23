@@ -110,9 +110,10 @@ public class ModBlocks {
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ASHWOOD = registerBlock("dwoodlog",
-            () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD)));
+            () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).strength(0.9F).sound(SoundType.WOOD)));
+
     public static final RegistryObject<Block> STRIPPED_ASHWOOD = registerBlock("strippeddwood",
-            () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD)));
+            () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).strength(0.9F).sound(SoundType.WOOD)));
 
 
     public static final RegistryObject<Block> CRANBERRYWOOD = registerBlock("cranberrywood",
@@ -159,8 +160,17 @@ public class ModBlocks {
     public static final RegistryObject<Block> ACID_DIRT = registerBlock("acid_dirt",
             () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS)
                     .strength(0.2f)));
+    public static final RegistryObject<Block> ASHDIRT = registerBlock("ashdirt",
+            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS)
+                    .strength(0.2f)));
+    public static final RegistryObject<Block> SCORCHED = registerBlock("scorched_earth",
+            () -> new ScorchedBlock(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRASS)
+                    .strength(0.5f)));
     public static final RegistryObject<Block> ASHSTONE = registerBlock("ash_stone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.2f)));
+    public static final RegistryObject<Block> ASHSMOKER = registerBlock("ash_smoker",
+            () -> new AshSmoker(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.2f)));
     public static final RegistryObject<Block> CYANTILE = registerBlock("cyantile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
@@ -260,12 +270,41 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> BROWNTILE = registerBlock("brown_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITETILE = registerBlock("white_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> ORANGETILE = registerBlock("orange_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> LBLUETILE = registerBlock("ligthblue_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> YELLOWTILE = registerBlock("yellow_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LIMETILE = registerBlock("lime_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> PINKTILE = registerBlock("pink_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DARKGRAYTILE = registerBlock("darkgray_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> GRAYTILE = registerBlock("gray_tile",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(1.1f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> VTARMOR = registerBlock("vtarmor",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(5.4f, 9.7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> BLACKSTEEL = registerBlock("blacksteel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
 
     public static final RegistryObject<Block> POWERBLOCK = registerBlock("powerblock",
             () -> new PowerBlock(BlockBehaviour.Properties.of(Material.METAL)
@@ -285,6 +324,18 @@ public class ModBlocks {
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> REDSTEEL = registerBlock("redsteel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SCRAPMETALL = registerBlock("scrapmetall",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(1.8f, 2.7f)));
+    public static final RegistryObject<Block> RUSTTIREBLOCK = registerBlock("rusttiresblock",
+            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(1.2f, 1.7f)));
+    public static final RegistryObject<Block> YELLOWSTEEL = registerBlock("yellow_steel",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> YELLOWSTEEL_COLUMN = registerBlock("yellow_steel_column",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> RUSTREDSTEEL = registerBlock("rustedredsteel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
@@ -307,6 +358,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> WHITESTEEL = registerBlock("whitesteel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WHITESTEELCOLUMN = registerBlock("whitesteel_column",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> BLUESTEEL = registerBlock("bluesteel",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> WHITESTEELSLAB = registerBlock("whitesteelslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
@@ -319,6 +376,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> CRANBERRY_GRASS = registerBlock("cranberrygrass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> ASHGRASS = registerBlock("ashgrass",
+            () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+    public static final RegistryObject<Block> HEAP_GRASS = registerBlock("heap_grass",
+            () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+    public static final RegistryObject<Block> RUSTY_BUSH = registerBlock("rusty_bush",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
     public static final RegistryObject<Block> POISONGRASS = registerBlock("poison_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
@@ -570,7 +631,16 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
-
+    public static final RegistryObject<Block> STOREDOOR = registerBlock("door_store",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryObject<Block> REDDOOR = registerBlock("door_red",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryObject<Block> GREENDOOR = registerBlock("door_green",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryObject<Block> WHITEDOOR = registerBlock("door_white",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+    public static final RegistryObject<Block> HARDDOOR = registerBlock("door_hardened",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion()));
     public static final RegistryObject<Block> SHELTERBARS = registerBlock("shelter_bars",

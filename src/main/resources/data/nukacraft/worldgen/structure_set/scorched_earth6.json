@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:scorched_earth6",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1487211991,
+
+
+    "spacing": 25,
+
+
+    "separation": 11,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

@@ -160,6 +160,10 @@ public class ModFeatures {
             FeatureUtils.register("blastcap_plant_features",
                     Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                             .add(ModBlocks.BLASTCAP.get().defaultBlockState(), 1)), 20));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> FIREFUNGI_PLANT =
+            FeatureUtils.register("firefungi_plant_features",
+                    Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                            .add(ModBlocks.FIREMUSHROOM.get().defaultBlockState(), 1)), 18));
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> INVERT_PLANT =
             FeatureUtils.register("invert_plant_features",
                     Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
@@ -175,6 +179,10 @@ public class ModFeatures {
             FeatureUtils.register("patch_xander",
             Feature.RANDOM_PATCH,
                     vegetationPatch(BlockStateProvider.simple(ModBlocks.ZANDER.get()), 1));
+//    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_RUSTY_BUSH =
+//            FeatureUtils.register("patch_rusty_bush",
+//                    Feature.RANDOM_PATCH,
+//                    vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 2));
 //    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_BBLIGHT = FeatureUtils.register("patch_bblight",
 //            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
 
@@ -206,17 +214,24 @@ public class ModFeatures {
             FeatureUtils.register("patch_poisongrass",
             Feature.RANDOM_PATCH,
                     vegetationPatch(BlockStateProvider.simple(ModBlocks.POISONGRASS.get()), 66));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_HEAP_GRASS =
+            FeatureUtils.register("patch_heapgrass",
+                    Feature.RANDOM_PATCH,
+                    vegetationPatch(BlockStateProvider.simple(ModBlocks.HEAP_GRASS.get()), 26));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_RUSTY_BUSH =
+            FeatureUtils.register("patch_rustybush",
+                    Feature.RANDOM_PATCH,
+                    vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 12));
 
-
-
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> STARBERRY_PLANT =
+            FeatureUtils.register("starberry_plant_features",
+                    Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                            .add(ModBlocks.STARBERRY.get().defaultBlockState(), 2)), 31));
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> CRANBERRY_PLANT =
             FeatureUtils.register("cranberry_plant_features",
                     Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                             .add(ModBlocks.CRANBERRY.get().defaultBlockState(), 3)), 40));
-    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> STARBERRY_PLANT =
-            FeatureUtils.register("starberry_plant_features",
-                    Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                            .add(ModBlocks.STARBERRY.get().defaultBlockState(), 1)), 50));
+
 
 
 
