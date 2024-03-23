@@ -84,18 +84,29 @@ public class PowerArmorFrame extends WearableChassis {
         }
     }
 
+    private int tickCounter = 0;
+
     @Override
     public void tick() {
         doSafe(super::tick);
 
-        if(!hasFusionCore()) return;
+        if (tickCounter >= 20) {
+            rareTick();
+            tickCounter = 0;
+        } else {
+            tickCounter++;
+        }
+    }
+
+    private void rareTick() {
+        if (isClientSide || !hasFusionCore()) return;
         var core = getFusionCore();
         var dmg = core.getMaxDamage() - core.getDamageValue();
-        if(dmg <= 0){
+        if (dmg <= 0) {
             setEquipment(FUSION_CORE, ItemStack.EMPTY);
         }
 
-        if(isWalking()){
+        if (isWalking()) {
             damageItem(core, 1);
         }
     }

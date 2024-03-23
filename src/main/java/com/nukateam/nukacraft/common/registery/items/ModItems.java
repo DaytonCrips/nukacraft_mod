@@ -20,8 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.nukateam.nukacraft.common.data.constants.PipboyColors.*;
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_BLOCKS;
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_MATERIAL;
+import static com.nukateam.nukacraft.common.registery.ModItemTabs.*;
 //Здесь армяне в нарды играют
 
 public class ModItems {
@@ -449,11 +448,7 @@ public class ModItems {
     public static final RegistryObject<Item> TEST = ITEMS.register("test",
             () -> new TestItem(new Item.Properties()));
 
-    //Power armor
-    public static final RegistryObject<Item> FUSION_CONE = ITEMS.register("fusion_core",
-            () -> new FusionCoreItem(new Item.Properties()
-                    .durability(100000)
-                    .tab(NUKA_MATERIAL)));
+
 
     //Spawn Eggs
     public static final RegistryObject<ForgeSpawnEggItem> RAIDER_SPAWN_EGG = ITEMS.register("raider_spawn_egg",

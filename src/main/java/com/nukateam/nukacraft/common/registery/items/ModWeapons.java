@@ -2,12 +2,15 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.gunscore.common.foundation.item.*;
 import com.nukateam.nukacraft.*;
+import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.*;
 import net.minecraftforge.registries.*;
+
+import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_WEAPONS;
 
 public class ModWeapons {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
@@ -21,6 +24,7 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> PIPEREVOLVER = ITEMS.register("piperevolver", () -> new PistolGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> FATMAN = ITEMS.register("fatman", () -> new FatmanGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> MINIGUN = ITEMS.register("minigun", () -> new MinigunGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<GunItem> GATLING_LASER = ITEMS.register("gatling_laser", () -> new MinigunGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> POWDERGUN = ITEMS.register("powdergun", () -> new ShotGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> SHOTGUN = ITEMS.register("shotgun", () -> new ShotGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
@@ -80,9 +84,13 @@ public class ModWeapons {
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> MININUKE = ModItems.ITEMS.register("mini_nuke",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
-
     public static final RegistryObject<Item> FUSION_CELL = ModItems.ITEMS.register("fusion_cell",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+
+    public static final RegistryObject<Item> FUSION_CORE = ITEMS.register("fusion_core",
+            () -> new FusionCoreItem(new Item.Properties()
+                    .durability(500)
+                    .tab(NUKA_WEAPONS)));
 
     public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
 }

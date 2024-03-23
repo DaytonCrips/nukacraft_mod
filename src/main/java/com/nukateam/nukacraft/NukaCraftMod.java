@@ -117,5 +117,13 @@ public class NukaCraftMod {
                     else
                         return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                 });
+
+        ProjectileManager.getInstance().registerFactory(ModWeapons.FUSION_CORE.get(),
+                (level, entity, weapon, item, modifiedGun) -> {
+                    if(item instanceof TeslaGun)
+                       return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else
+                        return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                });
     }
 }
