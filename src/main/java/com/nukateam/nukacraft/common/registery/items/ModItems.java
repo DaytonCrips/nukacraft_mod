@@ -11,6 +11,7 @@ import com.nukateam.nukacraft.common.foundation.items.misc.*;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -28,6 +29,8 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
+
+
     public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> DEATHCLAW = ITEMS.register("deathclaw",
@@ -421,6 +424,8 @@ public class ModItems {
             () -> new PipBoyItem("default", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
 //    public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",
 //            () -> new PipBoyItem("pimpboy", new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).stacksTo(1)));
+//public static final RegistryObject<Item> WEAPONDISPLAY = ITEMS.register("weapon_display_item",
+//        () -> new WeaponDisplayItem(EntityTypes.WEAPON_DISPLAY.get(), new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
 
     public static final RegistryObject<Item> HOLO_1CC = ITEMS.register("holotape_white",
             () -> new ColoredHolotapeItem(WHITE, new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.COMMON)));

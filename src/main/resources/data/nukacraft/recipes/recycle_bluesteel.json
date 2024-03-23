@@ -1,0 +1,10 @@
+{"type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 140,
+  "ingredient": {
+    "item": "nukacraft:bluesteel"
+  },
+  "result": {
+    "item": "nukacraft:steel",
+    "count": 4
+  }}

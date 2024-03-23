@@ -2,15 +2,13 @@ package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.ChairBlockEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEntity;
-import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,6 +33,14 @@ public class EntityTypes {
                     .of(Deathclaw::new, MobCategory.MONSTER)
                     .sized(1.5f, 3f));
 
+
+//    public static final RegistryObject<EntityType<WeaponDisplay>> WEAPON_DISPLAY =
+//            registerEntity("weapon_display_entity", Builder
+//                    .of(WeaponDisplay::new, MobCategory.MISC)
+//                    .sized(0.5F, 0.5F)
+//                    .clientTrackingRange(10)
+//                    .updateInterval(Integer.MAX_VALUE));
+
     public static final RegistryObject<EntityType<MiniNukeEntity>> MININUKE = registerBasic("mini_nuke", MiniNukeEntity::new);
 
     public static final RegistryObject<EntityType<PowerArmorFrame>> POWER_ARMOR_FRAME =
@@ -51,6 +57,8 @@ public class EntityTypes {
             registerEntity("radroach", Builder
                     .of(Radroach::new, MobCategory.CREATURE)
                     .sized(0.5f, 0.25f));
+
+
 
     public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
             registerEntity("brahmin", Builder

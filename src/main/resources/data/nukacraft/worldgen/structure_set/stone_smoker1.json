@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:stone_smoker1",
+      "weight": 2
+    }
+  ],
+  "placement": {
+
+    "salt": 1487112511,
+
+
+    "spacing": 14,
+
+
+    "separation": 6,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

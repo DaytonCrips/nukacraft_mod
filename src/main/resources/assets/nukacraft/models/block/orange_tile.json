@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "nukacraft:blocks/downtile",
+    "up": "nukacraft:blocks/orangetile_top",
+    "north": "nukacraft:blocks/orange_tile",
+    "east": "nukacraft:blocks/orange_tile_r",
+    "south": "nukacraft:blocks/orange_tile",
+    "west": "nukacraft:blocks/orange_tile_r",
+    "particle": "nukacraft:blocks/orange_tile"
+  }
+}

@@ -21,6 +21,13 @@ public class ModWastelandFeatures {
             Feature.FOREST_ROCK,
             new BlockStateConfiguration(ModBlocks.ASHSTONE.get().defaultBlockState()));
 
+    public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> DISK_ASHDIRT =
+            FeatureUtils.register("disk_ashdirt",
+                    Feature.DISK,
+                    new DiskConfiguration(ModBlocks.ASHDIRT.get().defaultBlockState(),
+                            UniformInt.of(2, 5), 4,
+                            List.of(Blocks.DIRT.defaultBlockState(),
+                                    Blocks.GRASS_BLOCK.defaultBlockState())));
 
     public static final Holder<ConfiguredFeature<LakeFeature.Configuration, ?>>
             LAKE_ACID = FeatureUtils.register("lake_acid",
