@@ -20,11 +20,15 @@ public class FogHandler {
     public static void onRenderFog(EntityViewRenderEvent.RenderFogEvent event) {
         Level world = event.getCamera().getEntity().level;
         BlockPos pos = event.getCamera().getBlockPosition();
-        boolean glowsea = world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:glow_sea"));
-        if (glowsea) {
+        if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:glow_sea"))) {
             RenderSystem.setShaderTexture(0,0);
             RenderSystem.setShaderFogStart(9f);
             RenderSystem.setShaderFogEnd(65f);
+        }
+        if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:ash_heap"))) {
+            RenderSystem.setShaderTexture(0,0);
+            RenderSystem.setShaderFogStart(12f);
+            RenderSystem.setShaderFogEnd(87f);
         }
     }
 }

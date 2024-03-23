@@ -90,6 +90,7 @@ public class ModBiomes {
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
 
 
+
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
                 .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
                 .build();
@@ -181,20 +182,36 @@ public class ModBiomes {
     private static Biome createAshHeap() {
         MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-10990522).waterColor(-9551310).waterFogColor(11648455)
-                .skyColor(-10990522).foliageColorOverride(-10465466).grassColorOverride(-11187642).ambientParticle(new AmbientParticleSettings(ParticleTypes.SMOKE, 0.0009f)).build();
+                .skyColor(-10990522).foliageColorOverride(-10465466).grassColorOverride(-11187642).ambientParticle(new AmbientParticleSettings(ParticleTypes.SMOKE, 0.0219f)).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 PlacementUtils.register("nukacraft:grass_ash", VegetationFeatures.PATCH_GRASS, List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 4),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
-//        BiomeDefaultFeatures.addDefaultCarversAndLakes(biomeGenerationSettings);
-//
-//
-//        //ModDefaultFeatures.addWastelandFlowerCommon(biomeGenerationSettings);
-//        BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
-
+        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, PlacementUtils.register("nukacraft:stump_ash_heap",
+                FeatureUtils.register("nukacraft:stump_ash_heap", Feature.TREE,
+                        new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.ASHWOOD.get().defaultBlockState()),
+                                new StraightTrunkPlacer(1, 1, 0), BlockStateProvider.simple(Blocks.AIR.defaultBlockState()),
+                                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1))
+                                .decorators(ImmutableList.of(new BBlightDecorator(0.2f))).ignoreVines()
+                                .build()),
+                List.of(CountPlacement.of(1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0),
+                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING), BiomeFilter.biome())));
 
         mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
         mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+
+
+        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                PlacementUtils.register("nukacraft:heap_grass", ModFeatures.PATCH_HEAP_GRASS, List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+        biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
+                PlacementUtils.register("nukacraft:rusty_bush_patch", ModFeatures.PATCH_RUSTY_BUSH, List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+
+        ModDefaultFeatures.addAshHeapDisks(biomeGenerationSettings);
+        ModDefaultFeatures.addAshHeapPlants(biomeGenerationSettings);
+        ModDefaultFeatures.addAshHeapOres(biomeGenerationSettings);
+
 
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)
                 .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())

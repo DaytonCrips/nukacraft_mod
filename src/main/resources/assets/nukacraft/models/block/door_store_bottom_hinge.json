@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_bottom_rh",
+  "textures": {
+    "bottom": "nukacraft:blocks/door_store_lower",
+    "top": "nukacraft:blocks/door_store_upper"
+  }
+}

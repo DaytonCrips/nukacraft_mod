@@ -109,6 +109,10 @@ public class ModSetup {
         setRenderLayer(ModBlocks.BOGPAD.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.RUSTSTEELBARS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.RUSTTIREBLOCK.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.STOREDOOR.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.HEAP_GRASS.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.RUSTY_BUSH.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()
@@ -125,7 +129,6 @@ public class ModSetup {
         addPlant(ModBlocks.SOOTFLOWER.getId(), ModBlocks.POTTED_SOOTFLOWER);
         addPlant(ModBlocks.GEIGERBLOSSOM.getId(), ModBlocks.POTTED_GEIGERBLOSSOM);
         addPlant(ModBlocks.GUTFUNGI.getId(), ModBlocks.POTTED_GUTSHROOM);
-        //addPlant(ModBlocks.BBLIGHT.getId(), ModBlocks.POTTED_BBLIGHT);
         addPlant(ModBlocks.MARYGOLD.getId(), ModBlocks.POTTED_MARYGOLD);
         addPlant(ModBlocks.BROC.getId(), ModBlocks.POTTED_BROC);
         addPlant(ModBlocks.INVERT.getId(), ModBlocks.POTTED_INVERT);

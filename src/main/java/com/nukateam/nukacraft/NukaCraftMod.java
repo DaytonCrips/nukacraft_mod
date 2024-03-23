@@ -57,7 +57,7 @@ public class NukaCraftMod {
 //        new GunMod().initGunMod(MOD_EVENT_BUS);
 
         ModEffect.register(MOD_EVENT_BUS);
-        ModItems.register(MOD_EVENT_BUS);
+        EntityTypes.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModWeapons.register(MOD_EVENT_BUS);
@@ -66,7 +66,6 @@ public class NukaCraftMod {
         ModBiomes.register(MOD_EVENT_BUS);
         ModMelee.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
-        EntityTypes.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         SoundRegistry.REGISTER.register(MOD_EVENT_BUS);
@@ -75,6 +74,7 @@ public class NukaCraftMod {
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
         ModTreeDecorator.register(MOD_EVENT_BUS);
+        ModItems.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);

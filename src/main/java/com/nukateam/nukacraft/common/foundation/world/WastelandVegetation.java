@@ -180,6 +180,15 @@ public class WastelandVegetation {
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome());
+
+    public static final Holder<PlacedFeature> PATCH_FIREFUNGI_PLACE =
+            PlacementUtils.register("patch_firefungi_plant_place",
+                    ModFeatures.FIREFUNGI_PLANT,
+                    RarityFilter.onAverageOnceEvery(21),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome());
+
     public static final Holder<PlacedFeature> PATCH_INVERT_PLANT_PLACE =
             PlacementUtils.register("patch_invert_plant_place",
                     ModFeatures.INVERT_PLANT,
@@ -204,6 +213,14 @@ public class WastelandVegetation {
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome());
 
+
+    public static final Holder<PlacedFeature> PATCH_STARBERRY =
+            PlacementUtils.register("patch_starberry",
+                    ModFeatures.STARBERRY_PLANT,
+                    RarityFilter.onAverageOnceEvery(21),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome());
     //
     public static final Holder<PlacedFeature> PATCH_GINS =
             PlacementUtils.register("patch_gins_common",
@@ -269,7 +286,13 @@ public class WastelandVegetation {
                 InSquarePlacement.spread(),
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome());
-
+    public static final Holder<PlacedFeature> PATCH_RUSTY_BUSH =
+            PlacementUtils.register("patch_rusty_bush",
+                    ModFeatures.PATCH_RUSTY_BUSH,
+                    RarityFilter.onAverageOnceEvery(25),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome());
 
 
 
