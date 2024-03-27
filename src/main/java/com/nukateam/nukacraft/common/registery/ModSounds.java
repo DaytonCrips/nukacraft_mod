@@ -17,6 +17,36 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_10MM_COCK = register("item.pistol10mm.cock");
     public static final RegistryObject<SoundEvent> ITEM_10MM_RELOAD = register("item.pistol10mm.reload");
 
+    public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_FIRE = register("item.laser_gatling.fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_ENCHANTED_FIRE = register("item.laser_rifle.enchanted_fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_SILENCED_FIRE = register("item.laser_rifle.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_COCK = register("item.laser_gatling.cock");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_RELOAD = register("item.laser_gatling.reload");
+
+
+    public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_FIRE = register("item.pump_shotgun.fire");
+    //public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_ENCHANTED_FIRE = register("item.pump_shotgun.enchanted_fire");
+    //public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_SILENCED_FIRE = register("item.pump_shotgun.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_COCK = register("item.pump_shotgun.cock");
+    public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_RELOAD = register("item.pump_shotgun.reload");
+
+    public static final RegistryObject<SoundEvent> ITEM_LASER_PISTOL_FIRE = register("item.laser_pistol.fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_ENCHANTED_FIRE = register("item.laser_rifle.enchanted_fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_SILENCED_FIRE = register("item.laser_rifle.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_PISTOL_COCK = register("item.laser_pistol.cock");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_PISTOL_RELOAD = register("item.laser_pistol.reload");
+
+    public static final RegistryObject<SoundEvent> ITEM_TESLA_RIFLE_FIRE = register("item.tesla_carbine.fire");
+    //public static final RegistryObject<SoundEvent> ITEM_TESLA_RIFLE_ENCHANTED_FIRE = register("item.tesla_carbine.enchanted_fire");
+    //public static final RegistryObject<SoundEvent> ITEM_TESLA_RIFLE_SILENCED_FIRE = register("item.tesla_carbine.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_TESLA_RIFLE_COCK = register("item.tesla_carbine.cock");
+    public static final RegistryObject<SoundEvent> ITEM_TESLA_RIFLE_RELOAD = register("item.tesla_carbine.reload");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_FIRE = register("item.laser_rifle.fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_ENCHANTED_FIRE = register("item.laser_rifle.enchanted_fire");
+    //public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_SILENCED_FIRE = register("item.laser_rifle.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_COCK = register("item.laser_rifle.cock");
+    public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_RELOAD = register("item.laser_rifle.reload");
+
     public static final RegistryObject<SoundEvent> ITEM_MINIGUN_FIRE = register("item.minigun.fire");
 
     public static final RegistryObject<SoundEvent> ITEM_38MM_FIRE = register("item.pistol38mm.fire");

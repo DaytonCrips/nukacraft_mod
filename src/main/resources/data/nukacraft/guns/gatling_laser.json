@@ -19,11 +19,11 @@
     "life": 3
   },
   "sounds": {
-    "fire": "nukacraft:item.assault_rifle.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "cock": "nukacraft:item.assault_rifle.cock",
-    "silencedFire": "nukacraft:item.assault_rifle.silenced_fire",
-    "enchantedFire": "nukacraft:item.assault_rifle.enchanted_fire"
+    "fire": "nukacraft:item.laser_gatling.fire",
+    "reload": "nukacraft:item.laser_gatling.reload",
+    "cock": "nukacraft:item.laser_gatling.cock",
+    "silencedFire": "nukacraft:item.laser_gatling.silenced_fire",
+    "enchantedFire": "nukacraft:item.laser_gatling.enchanted_fire"
   },
   "display": {
     "flash": {

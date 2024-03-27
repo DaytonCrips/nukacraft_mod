@@ -60,6 +60,35 @@
 
    "gui.pipboy.pipboy_up" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
    "gui.pipboy.pipboy_down" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
-   "gui.pipboy.pipboy_tab" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]}
+   "gui.pipboy.pipboy_tab" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
 
+   "item.tesla_carbine.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/tesla_carbine/fire" }]},
+   "item.tesla_carbine.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/tesla_carbine/silenced_fire" }]},
+   "item.tesla_carbine.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/tesla_carbine/enchanted_fire" }]},
+   "item.tesla_carbine.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/tesla_carbine/reload" }]},
+   "item.tesla_carbine.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/tesla_carbine/cock" }]},
+
+   "item.laser_rifle.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/laser_rifle/fire" }]},
+   "item.laser_rifle.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/laser_rifle/silenced_fire" }]},
+   "item.laser_rifle.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/laser_rifle/enchanted_fire" }]},
+   "item.laser_rifle.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/laser_rifle/reload" }]},
+   "item.laser_rifle.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/laser_rifle/cock" }]},
+
+   "item.laser_gatling.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/laser_gatling/fire" }]},
+   "item.laser_gatling.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/laser_gatling/silenced_fire" }]},
+   "item.laser_gatling.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/laser_gatling/enchanted_fire" }]},
+   "item.laser_gatling.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/laser_gatling/reload" }]},
+   "item.laser_gatling.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/laser_gatling/cock" }]},
+
+   "item.pump_shotgun.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/pump_shotgun/fire" }]},
+   "item.pump_shotgun.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/pump_shotgun/silenced_fire" }]},
+   "item.pump_shotgun.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/pump_shotgun/enchanted_fire" }]},
+   "item.pump_shotgun.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/pump_shotgun/reload" }]},
+   "item.pump_shotgun.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/pump_shotgun/cock" }]},
+
+   "item.laser_pistol.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/laser_pistol/fire" }]},
+   "item.laser_pistol.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/laser_pistol/silenced_fire" }]},
+   "item.laser_pistol.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/laser_pistol/enchanted_fire" }]},
+   "item.laser_pistol.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/laser_pistol/reload" }]},
+   "item.laser_pistol.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/laser_pistol/cock" }]}
 }

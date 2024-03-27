@@ -4,15 +4,15 @@
     "thirdperson_righthand": {
       "translation": [
         0,
-        -4.25,
-        -2
+        -0.6,
+        -1
       ]
     },
     "thirdperson_lefthand": {
       "translation": [
         0,
-        -4.25,
-        -2
+        -0.6,
+        -1
       ]
     },
     "firstperson_righthand": {
@@ -58,19 +58,19 @@
     },
     "gui": {
       "rotation": [
-        -146.77,
-        44.61,
-        162.47
+        0,
+        145,
+        0
       ],
       "translation": [
-        1.5,
-        -6.75,
+        0,
+        -4.2,
         0
       ],
       "scale": [
-        1.25390625,
-        1.25390625,
-        1.25390625
+        1.4,
+        1.4,
+        1.4
       ]
     },
     "head": {

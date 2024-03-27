@@ -21,11 +21,11 @@
     "life": 5
   },
   "sounds": {
-    "fire": "nukacraft:item.shotgun.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "cock": "nukacraft:item.shotgun.cock",
-    "silencedFire": "nukacraft:item.shotgun.silenced_fire",
-    "enchantedFire": "nukacraft:item.shotgun.enchanted_fire"
+    "fire": "nukacraft:item.pump_shotgun.fire",
+    "reload": "nukacraft:item.pump_shotgun.reload",
+    "cock": "nukacraft:item.pump_shotgun.cock",
+    "silencedFire": "nukacraft:item.pump_shotgun.silenced_fire",
+    "enchantedFire": "nukacraft:item.pump_shotgun.enchanted_fire"
   },
   "display": {
     "flash": {

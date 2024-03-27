@@ -20,11 +20,11 @@
     "life": 5
   },
   "sounds": {
-    "fire": "nukacraft:item.shotgun.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "cock": "nukacraft:item.shotgun.cock",
-    "silencedFire": "nukacraft:item.shotgun.silenced_fire",
-    "enchantedFire": "nukacraft:item.shotgun.enchanted_fire"
+    "fire": "nukacraft:item.tesla_carbine.fire",
+    "reload": "nukacraft:item.tesla_carbine.reload",
+    "cock": "nukacraft:item.tesla_carbine.cock",
+    "silencedFire": "nukacraft:item.tesla_carbine.silenced_fire",
+    "enchantedFire": "nukacraft:item.tesla_carbine.enchanted_fire"
   },
   "display": {
     "flash": {
