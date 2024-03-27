@@ -4,7 +4,7 @@
     "rate": 3,
     "gripType": "gunscore:two_handed",
     "maxAmmo": 40,
-    "reloadTime": 20,
+    "reloadTime": 40,
     "reloadAmount": 10,
     "recoilAngle": 3.0,
     "recoilKick": 0.25,
