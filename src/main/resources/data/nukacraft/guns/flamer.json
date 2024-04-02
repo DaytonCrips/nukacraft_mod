@@ -11,11 +11,12 @@
     "spread": 6.0
   },
   "projectile": {
-    "item": "ntgl:round5mm",
+    "item": "nukacraft:fuel",
+    "magazineMode" : true,
     "visible": true,
     "damage": 5.0,
     "size": 0.2,
-    "speed": 5.0,
+    "speed": 3.0,
     "life": 10
   },
   "sounds": {
