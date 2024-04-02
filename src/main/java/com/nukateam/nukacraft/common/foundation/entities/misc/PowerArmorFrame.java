@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;

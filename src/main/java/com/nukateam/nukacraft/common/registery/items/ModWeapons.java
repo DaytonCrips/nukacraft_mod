@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.nukateam.gunscore.common.foundation.item.*;
+import com.nukateam.ntgl.common.foundation.item.*;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
@@ -31,6 +31,7 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> TESLA_RIFLE = ITEMS.register("tesla_rifle", () -> new TeslaGun(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> LASER_RIFLE = ITEMS.register("laser_rifle", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<GunItem> LASER_PISTOL = ITEMS.register("laser_pistol", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<GunItem> FLAMER = ITEMS.register("flamer", () -> new GunItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
     ///MAGAZINES
    // public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(ModItemTabs.NUKA_WEAPONS)));
@@ -59,33 +60,35 @@ public class ModWeapons {
 
     //Rounds
     public static final RegistryObject<Item> ROUND10MM = ModItems.ITEMS.register("round10mm",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND38 = ModItems.ITEMS.register("round38",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> STEELBALLS = ModItems.ITEMS.register("steel_ball",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND45 = ModItems.ITEMS.register("round45",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND5MM = ModItems.ITEMS.register("round5mm",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND44 = ModItems.ITEMS.register("round44",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND50 = ModItems.ITEMS.register("round50",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND380 = ModItems.ITEMS.register("round380",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND556 = ModItems.ITEMS.register("round556",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> SHOTSHELL = ModItems.ITEMS.register("shotshell",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND127 = ModItems.ITEMS.register("round127",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> ROUND22 = ModItems.ITEMS.register("round22",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> MININUKE = ModItems.ITEMS.register("mini_nuke",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
     public static final RegistryObject<Item> FUSION_CELL = ModItems.ITEMS.register("fusion_cell",
-            () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+            () -> new AmmoItem(new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
+    public static final RegistryObject<Item> FUEL = ModItems.ITEMS.register("fuel",
+            () -> new AmmoItem(new Item.Properties().durability(1000).tab(ModItemTabs.NUKA_WEAPONS)));
 
     public static final RegistryObject<Item> FUSION_CORE = ITEMS.register("fusion_core",
             () -> new FusionCoreItem(new Item.Properties()

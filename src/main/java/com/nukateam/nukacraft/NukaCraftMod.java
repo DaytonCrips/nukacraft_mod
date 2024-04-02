@@ -1,11 +1,13 @@
 package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
-import com.nukateam.gunscore.common.base.utils.ProjectileManager;
-import com.nukateam.gunscore.common.foundation.entity.LaserProjectile;
-import com.nukateam.gunscore.common.foundation.entity.TeslaProjectile;
+import com.nukateam.ntgl.common.base.utils.ProjectileManager;
+import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
+import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
+import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
+import com.nukateam.ntgl.common.foundation.init.Projectiles;
 import com.nukateam.nukacraft.common.events.*;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.registery.ModFluids;
@@ -33,7 +35,8 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import static com.nukateam.gunscore.common.foundation.init.Projectiles.*;
+import static com.nukateam.example.common.registery.ModGuns.ROUND5MM;
+import static com.nukateam.ntgl.common.foundation.init.Projectiles.*;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -125,5 +128,9 @@ public class NukaCraftMod {
                     else
                         return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                 });
+
+        ProjectileManager.getInstance().registerFactory(ModWeapons.FUEL.get(),
+                (worldIn, entity, weapon, item, modifiedGun) ->
+                        new FlameProjectile(Projectiles.FLAME_PROJECTILE.get(), worldIn, entity, weapon, item, modifiedGun));
     }
 }

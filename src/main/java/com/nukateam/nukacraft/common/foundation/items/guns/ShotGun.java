@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 

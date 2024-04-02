@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 20,
-    "gripType": "gunscore:two_handed",
+    "gripType": "ntgl:two_handed",
     "maxAmmo": 1,
     "recoilAngle": 5.0,
     "recoilKick": 1.0,

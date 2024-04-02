@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.mixin.guns;
 
-import com.nukateam.gunscore.client.data.handler.AimingHandler;
-import com.nukateam.gunscore.client.data.handler.GunRenderingHandler;
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.client.data.handler.AimingHandler;
+import com.nukateam.ntgl.client.data.handler.GunRenderingHandler;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.nukateam.gunscore.common.data.util.GunModifierHelper.*;
+import static com.nukateam.ntgl.common.data.util.GunModifierHelper.*;
 
 /**
  * Author: MrCrayfish

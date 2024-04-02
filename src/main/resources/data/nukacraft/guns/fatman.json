@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 10,
-    "gripType": "gunscore:bazooka",
+    "gripType": "ntgl:bazooka",
     "category": "heavy",
     "maxAmmo": 1,
     "reloadTime": 60,

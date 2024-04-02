@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.client.models.items;
 
-import com.nukateam.gunscore.client.model.IGlowingModel;
+import com.nukateam.ntgl.client.model.IGlowingModel;
 import com.nukateam.nukacraft.common.foundation.items.misc.*;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
