@@ -1,5 +1,6 @@
+
 {
-  "type": "nukacraft:workbench",
+  "type": "ntgl:workbench",
   "materials": [
     {
       "tag": "forge:ingots/iron",

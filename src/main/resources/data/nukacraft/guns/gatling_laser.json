@@ -16,7 +16,7 @@
     "damage": 6.5,
     "size": 0.2,
     "speed": 150,
-    "life": 3
+    "life": 8
   },
   "sounds": {
     "fire": "nukacraft:item.laser_gatling.fire",
