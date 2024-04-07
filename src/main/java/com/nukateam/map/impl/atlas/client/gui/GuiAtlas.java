@@ -3,12 +3,11 @@ package com.nukateam.map.impl.atlas.client.gui;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.nukacraft.client.render.gui.pipboy.MainPipBoyButton;
-import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.client.render.gui.pipboy.TextPipBoyButton;
+import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
@@ -58,14 +57,14 @@ public class GuiAtlas extends GuiAtlasBase {
             }
         }));
         addRenderableWidget(getForwardButton(() -> {
-            if (current_page < page_count-1){
+            if (current_page < page_count - 1) {
                 current_page++;
                 renderPage();
             }
         }));
     }
 
-    public void renderArchiveNavigation(){
+    public void renderArchiveNavigation() {
         getHomeButton();
         addRenderableWidget(getMapButton());
         addRenderableWidget(getBackButton(() -> {
@@ -86,13 +85,13 @@ public class GuiAtlas extends GuiAtlasBase {
         }));
     }
 
-    private void getHomeButton(){
+    private void getHomeButton() {
 //        new MainPipBoyButton(leftPos + -80, topPos + 58, 20, 20,
-//                new TextComponent("☵"), e -> {
+//                Component.literal("☵"), e -> {
 //        });
 //
-        var homeButton = new GuiBookmarkButton(0,Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
-        addChild(homeButton).offsetGuiCoords( 80, height - 40);
+        var homeButton = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, Component.translatable("gui.nukacraft.addMarker"));
+        addChild(homeButton).offsetGuiCoords(80, height - 40);
 
         homeButton.addListener(button -> {
             clearWidgets();
@@ -104,9 +103,9 @@ public class GuiAtlas extends GuiAtlasBase {
 
     }
 
-    private MainPipBoyButton getMapButton(){
+    private MainPipBoyButton getMapButton() {
         return new MainPipBoyButton(leftPos + -46, topPos + 58, 20, 20,
-                new TextComponent("✴"), e -> {
+                Component.literal("✴"), e -> {
             clearWidgets();
             archive_pages = round(PipboyPages.content.size(), 7) - 1;
             current_archive_page = 0;
@@ -114,14 +113,14 @@ public class GuiAtlas extends GuiAtlasBase {
         });
     }
 
-    private MainPipBoyButton getBackButton(Runnable runnable){
+    private MainPipBoyButton getBackButton(Runnable runnable) {
         return new MainPipBoyButton(leftPos + -112, topPos + 58, 30, 20,
-                new TextComponent("◀"), e -> runnable.run());
+                Component.literal("◀"), e -> runnable.run());
     }
 
-    private MainPipBoyButton getForwardButton(Runnable runnable){
+    private MainPipBoyButton getForwardButton(Runnable runnable) {
         return new MainPipBoyButton(leftPos + -24, topPos + 58, 30, 20,
-                new TextComponent("▶"), e -> runnable.run());
+                Component.literal("▶"), e -> runnable.run());
     }
 
     private void renderPage() {
@@ -158,10 +157,10 @@ public class GuiAtlas extends GuiAtlasBase {
         };
         image = new ResourceLocation("nukacraft:textures/screens/empty.png");
         for (int t = 0; t < xj; t++) {
-            page_buffer[t+3] = current_archive_page > 0 ? PipboyPages.content.get(t+(current_archive_page*7)).getName() : PipboyPages.content.get(t+(current_archive_page)).getName();
-            int finalT = current_archive_page > 0 ? t+(current_archive_page*7) : t;
-            addRenderableWidget(new TextPipBoyButton(leftPos + -102, topPos + (-50 + (t * 13)),  205, 11,
-                    new TextComponent(""), e -> {
+            page_buffer[t + 3] = current_archive_page > 0 ? PipboyPages.content.get(t + (current_archive_page * 7)).getName() : PipboyPages.content.get(t + (current_archive_page)).getName();
+            int finalT = current_archive_page > 0 ? t + (current_archive_page * 7) : t;
+            addRenderableWidget(new TextPipBoyButton(leftPos + -102, topPos + (-50 + (t * 13)), 205, 11,
+                    Component.literal(""), e -> {
                 menu = false;
                 clearWidgets();
                 renderNavigation();

@@ -13,18 +13,18 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.EnumSet;
 
-import static net.minecraft.world.entity.ai.targeting.TargetingConditions.*;
+import static net.minecraft.world.entity.ai.targeting.TargetingConditions.forCombat;
 
 public class RidePowerArmorGoal extends Goal {
     private final Raider entity;
     private final LevelReader level;
-    private PowerArmorFrame target;
     private final double speedModifier;
     private final PathNavigation navigation;
-    private int timeToRecalcPath;
     private final float searchDistance;
-    private float oldWaterCost;
     protected TargetingConditions targetConditions;
+    private PowerArmorFrame target;
+    private int timeToRecalcPath;
+    private float oldWaterCost;
 
     public RidePowerArmorGoal(Raider entity, double speedModifier, float searchDistance) {
         this.entity = entity;
@@ -65,17 +65,17 @@ public class RidePowerArmorGoal extends Goal {
 
     public void tick() {
         this.target = entity.level.getNearestEntity(entity.level.getEntitiesOfClass(PowerArmorFrame.class,
-                getTargetSearchArea(searchDistance), (entity) -> true),
+                        getTargetSearchArea(searchDistance), (entity) -> true),
                 targetConditions, entity, entity.getX(), entity.getEyeY(), entity.getZ());
 
 //        var raiders = entity.level.getEntitiesOfClass(Raider.class, getTargetSearchArea(searchDistance),
 //                (entity) -> entity != this.entity && entity.armorTarget != null);
 
-        if(target == null || !target.hasEnergy() /*|| !raiders.isEmpty()*/) return;
+        if (target == null || !target.hasEnergy() /*|| !raiders.isEmpty()*/) return;
 
         entity.armorTarget = target;
 
-        entity.getLookControl().setLookAt(target, 10.0F, (float)entity.getMaxHeadXRot());
+        entity.getLookControl().setLookAt(target, 10.0F, (float) entity.getMaxHeadXRot());
 
         if (--timeToRecalcPath <= 0) {
             timeToRecalcPath = adjustedTickDelay(10);
@@ -84,7 +84,7 @@ public class RidePowerArmorGoal extends Goal {
             }
         }
 
-        if(entity.distanceTo(target) < 2) {
+        if (entity.distanceTo(target) < 2) {
             target.ride(entity);
             entity.armorTarget = null;
         }

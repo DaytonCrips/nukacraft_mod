@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -17,7 +16,7 @@ public class GlowbloodItem extends RadItem {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        list.add(new TranslatableComponent("effect.nukacraft.glowing"));
+        list.add(Component.translatable("effect.nukacraft.glowing"));
     }
 
     @Override

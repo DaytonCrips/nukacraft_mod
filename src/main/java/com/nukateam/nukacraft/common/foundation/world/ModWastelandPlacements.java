@@ -1,18 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.Holder;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.features.MiscOverworldFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.DiskConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
-
-import java.util.List;
 
 public class ModWastelandPlacements {
     public static final Holder<PlacedFeature> DISK_ASHSTONE =

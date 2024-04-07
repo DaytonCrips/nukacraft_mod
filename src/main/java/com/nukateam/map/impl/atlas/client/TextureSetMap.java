@@ -15,12 +15,15 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public class TextureSetMap {
     private static final TextureSetMap INSTANCE = new TextureSetMap();
+    public final Map<ResourceLocation, TextureSet> map = new HashMap<>();
 
     public static TextureSetMap instance() {
         return INSTANCE;
     }
 
-    public final Map<ResourceLocation, TextureSet> map = new HashMap<>();
+    static public boolean isRegistered(ResourceLocation name) {
+        return INSTANCE.map.containsKey(name);
+    }
 
     public void register(TextureSet set) {
         map.put(set.name, set);
@@ -28,9 +31,5 @@ public class TextureSetMap {
 
     public TextureSet getByName(ResourceLocation name) {
         return map.get(name);
-    }
-
-    static public boolean isRegistered(ResourceLocation name) {
-        return INSTANCE.map.containsKey(name);
     }
 }

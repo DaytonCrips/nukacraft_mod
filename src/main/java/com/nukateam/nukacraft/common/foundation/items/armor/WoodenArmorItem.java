@@ -37,7 +37,7 @@ public class WoodenArmorItem extends ArmorItem implements GeoItem {
             private WoodenArmorRenderer renderer;
 
             @Override
-            public  HumanoidModel<?> getArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            public HumanoidModel<?> getArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 if (renderer == null)
                     renderer = new WoodenArmorRenderer();
 

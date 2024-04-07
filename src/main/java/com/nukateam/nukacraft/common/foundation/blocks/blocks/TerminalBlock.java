@@ -91,8 +91,8 @@ public class TerminalBlock extends RotatedObjectBlock {
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if(!pLevel.isClientSide()) {
-            if(pEntity instanceof LivingEntity) {
+        if (!pLevel.isClientSide()) {
+            if (pEntity instanceof LivingEntity) {
                 LivingEntity entity = ((LivingEntity) pEntity);
                 entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200));
             }

@@ -35,7 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, LiquidBlockContainer, net.minecraftforge.common.IForgeShearable{
+public class PrismLeafBlock extends BushBlock implements BonemealableBlock, LiquidBlockContainer, net.minecraftforge.common.IForgeShearable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     public static final VoxelShape BUSHLING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     public static final VoxelShape GROWING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
@@ -51,6 +51,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
         return new ItemStack(ModItems.PRISM_LEAF.get());
     }
+
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return BUSHLING_SHAPE;
@@ -58,16 +59,18 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
             return state.getValue(AGE) < 3 ? GROWING_SHAPE : super.getShape(state, getter, pos, context);
         }
     }
+
     @Override
     public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getSource(false);
     }
+
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < 3;
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
-        BlockPos detect = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
+        BlockPos detect = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
         if (level.canSeeSky(detect)) {
             int i = state.getValue(AGE);
             if (i < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(5) == 0)) {
@@ -76,6 +79,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
             }
         }
     }
+
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState state2, LevelAccessor accessor, BlockPos pos, BlockPos pos2) {
         BlockState blockstate = super.updateShape(state, direction, state2, accessor, pos, pos2);
@@ -99,13 +103,14 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
             popResource(level, pos, new ItemStack(ModItems.PRISM_LEAF.get(), j + (flag ? 1 : 0)));
-            level.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.playSound((Player) null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(1)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             return super.use(state, level, pos, player, hand, result);
         }
     }
+
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(AGE);
     }
@@ -117,6 +122,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
     public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }
+
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
@@ -128,6 +134,7 @@ public class PrismLeafBlock   extends BushBlock implements BonemealableBlock, Li
         int i = Math.min(3, state.getValue(AGE) + 1);
         serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }
+
     @Override
     public boolean placeLiquid(LevelAccessor accessor, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;

@@ -12,6 +12,6 @@ public class PowerArmorUtils {
 
     @Nullable
     public static PowerArmorFrame getPowerArmor(Entity player) {
-        return player.getVehicle() instanceof PowerArmorFrame ? (PowerArmorFrame)player.getVehicle() : null;
+        return player.getVehicle() instanceof PowerArmorFrame ? (PowerArmorFrame) player.getVehicle() : null;
     }
 }

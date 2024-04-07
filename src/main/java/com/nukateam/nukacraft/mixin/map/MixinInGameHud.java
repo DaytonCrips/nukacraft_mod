@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.mixin.map;
 
-import com.nukateam.map.impl.atlas.client.gui.ExportProgressOverlay;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.gui.ExportProgressOverlay;
 import net.minecraft.client.gui.Gui;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

@@ -9,8 +9,8 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import static com.jetug.chassis_core.common.util.helpers.MathHelper.getFraction;
 import static com.nukateam.nukacraft.client.helpers.ExplosionUtils.*;
-import static com.jetug.chassis_core.common.util.helpers.MathHelper.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
@@ -19,7 +19,7 @@ public class ForgeEvents {
         var minecraft = Minecraft.getInstance();
         var player = minecraft.getCameraEntity();
         var nukes = getNukesAround();
-        if(player == null || nukes.isEmpty()) return;
+        if (player == null || nukes.isEmpty()) return;
         var nuke = nukes.get(0);
         var explosionType = nuke.getExplosionType();
         var tremorAmount = nuke.tremorFor > 0 ? explosionType.getTremorIntensity() : 0F;
@@ -39,13 +39,15 @@ public class ForgeEvents {
                         rng.nextFloat() * 0.2F * intensity,
                         rng.nextFloat() * 0.2F * intensity,
                         rng.nextFloat() * 0.5F * intensity);
-            } catch (Exception e) {e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static double scaleTremor(double tremor, ExplosionType explosionType){
+    public static double scaleTremor(double tremor, ExplosionType explosionType) {
         var distance = getDistanceToNearestExplosion();
-        if(distance == null) return 0;
+        if (distance == null) return 0;
         return tremor - tremor * getFraction(distance, explosionType.getTremorDistance());
     }
 }

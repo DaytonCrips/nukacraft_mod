@@ -36,7 +36,7 @@ public class PipboyPages {
 
     public static void init(List<Archive> content) {
         content.add(new Archive("archive.nukacraft.vaultboy.name")
-                .addPage(new ArchivePage( new String[]{
+                .addPage(new ArchivePage(new String[]{
                         "archivepage.nukacraft.vaultboy1.string_d1", //string1
                         "", //string2
                         "archivepage.nukacraft.vaultboy1.string_d2", //string3

@@ -31,18 +31,16 @@ import java.util.function.Consumer;
 
 public class MapCore {
     public static final String ID = "nukacraft";
-
-    public static Logger LOG = LogManager.getLogger(ID);
-
     public static final WorldScanner worldScanner = new WorldScanner();
     public static final TileDataHandler tileData = new TileDataHandler();
     public static final MarkersDataHandler markersData = new MarkersDataHandler();
-
     public static final GlobalTileDataHandler globalTileData = new GlobalTileDataHandler();
     public static final GlobalMarkersDataHandler globalMarkersData = new GlobalMarkersDataHandler();
-
-    public static AntiqueAtlasConfig CONFIG = new AntiqueAtlasConfig();
     public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
+    ////FORGE ONLY
+    public static final SimpleChannel MOD_CHANNEL = NetworkRegistry.newSimpleChannel(id("main"), () -> "1", "1"::equals, "1"::equals);
+    public static Logger LOG = LogManager.getLogger(ID);
+    public static AntiqueAtlasConfig CONFIG = new AntiqueAtlasConfig();
 
     public static ResourceLocation id(String... path) {
         return path[0].contains(":") ? new ResourceLocation(String.join(".", path)) : new ResourceLocation(ID, String.join(".", path));
@@ -93,9 +91,6 @@ public class MapCore {
         });
     }
 
-    ////FORGE ONLY
-    public static final SimpleChannel MOD_CHANNEL = NetworkRegistry.newSimpleChannel(id("main"), () -> "1", "1"::equals, "1"::equals);
-
     public static void initMapCommon() {
         onInitialize();
     }
@@ -103,7 +98,7 @@ public class MapCore {
     public static void initMapClient() {
         try {
             new AntiqueAtlasModClient().onInitializeClient();
+        } catch (Exception e) {
         }
-        catch (Exception e){}
     }
 }

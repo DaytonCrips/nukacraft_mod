@@ -1,8 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -36,7 +34,7 @@ public class StimpakItem extends Item {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        list.add(new TranslatableComponent("effect.nukacraft.health").append("§9+" + heal));
+        list.add(Component.translatable("effect.nukacraft.health").append("§9+" + heal));
 
     }
 

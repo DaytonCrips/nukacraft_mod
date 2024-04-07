@@ -1,30 +1,30 @@
 package com.nukateam.nukacraft.common.registery.items;
 
+import com.jetug.chassis_core.common.data.constants.ChassisPart;
+import com.jetug.chassis_core.common.foundation.item.ChassisItem;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import com.nukateam.nukacraft.common.foundation.items.frame.Jetpack;
-import com.jetug.chassis_core.common.data.constants.ChassisPart;
-import com.jetug.chassis_core.common.foundation.item.ChassisItem;
+import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_ARMOR;
 import static com.nukateam.nukacraft.common.foundation.materials.PowerArmorMaterials.*;
+import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_ARMOR;
 
 public class PowerArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<Item> FRAME_ITEM = ITEMS.register("frame_item",  () ->
-        new ChassisItem<>(new Item.Properties().tab(NUKA_ARMOR).fireResistant(), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
+    public static final RegistryObject<Item> FRAME_ITEM = ITEMS.register("frame_item", () ->
+            new ChassisItem<>(new Item.Properties().tab(NUKA_ARMOR).fireResistant(), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
     );
 
-    public static final RegistryObject<Item> JETPACK = ITEMS.register("jetpack",  () ->
-        new Jetpack(new Item.Properties().tab(NUKA_ARMOR).fireResistant())
+    public static final RegistryObject<Item> JETPACK = ITEMS.register("jetpack", () ->
+            new Jetpack(new Item.Properties().tab(NUKA_ARMOR).fireResistant())
     );
 
     //T45
@@ -179,5 +179,7 @@ public class PowerArmorItems {
     public static final RegistryObject<ArmorPart> EXC_LEFT_LEG = ITEMS.register("exc_left_leg", () ->
             new ArmorPart(EXCAVATOR, ChassisPart.LEFT_LEG_ARMOR));
 
-    public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
 }

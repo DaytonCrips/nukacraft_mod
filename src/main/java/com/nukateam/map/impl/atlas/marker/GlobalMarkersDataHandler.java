@@ -15,48 +15,51 @@ import net.minecraft.world.level.Level;
  * When connecting to a remote server, data has to be reset, see
  * {@link #onClientConnectedToServer(boolean)}
  * </p>
+ *
  * @author Hunternif
  */
 public class GlobalMarkersDataHandler {
-	private static final String DATA_KEY = "aAtlasGlobalMarkers";
+    private static final String DATA_KEY = "aAtlasGlobalMarkers";
 
-	private GlobalMarkersData data;
+    private GlobalMarkersData data;
 
-	public void onWorldLoad(MinecraftServer server, ServerLevel world) {
-		if (world.dimension() == Level.OVERWORLD) {
-			data = world.getDataStorage().computeIfAbsent(GlobalMarkersData::readNbt, () -> {
-				GlobalMarkersData data = new GlobalMarkersData();
-				data.setDirty();
-				return data;
-			}, DATA_KEY);
-		}
-	}
+    public void onWorldLoad(MinecraftServer server, ServerLevel world) {
+        if (world.dimension() == Level.OVERWORLD) {
+            data = world.getDataStorage().computeIfAbsent(GlobalMarkersData::readNbt, () -> {
+                GlobalMarkersData data = new GlobalMarkersData();
+                data.setDirty();
+                return data;
+            }, DATA_KEY);
+        }
+    }
 
-	/**
-	 * This method sets {@link #data} to null when the client connects to a
-	 * remote server. It is required in order that global markers data is not
-	 * transferred from a previous world the client visited.
-	 * <p>
-	 * Using a "connect" event instead of "disconnect" because according to a
-	 * form post, the latter event isn't actually fired on the client.
-	 * </p>
-	 */
-	public void onClientConnectedToServer(boolean isRemote) {
-		if (isRemote) { // make sure it's not an integrated server
-			data = null;
-		}
-	}
+    /**
+     * This method sets {@link #data} to null when the client connects to a
+     * remote server. It is required in order that global markers data is not
+     * transferred from a previous world the client visited.
+     * <p>
+     * Using a "connect" event instead of "disconnect" because according to a
+     * form post, the latter event isn't actually fired on the client.
+     * </p>
+     */
+    public void onClientConnectedToServer(boolean isRemote) {
+        if (isRemote) { // make sure it's not an integrated server
+            data = null;
+        }
+    }
 
-	public GlobalMarkersData getData() {
-		if (data == null) { // This will happen on the client
-			data = new GlobalMarkersData();
-		}
-		return data;
-	}
+    public GlobalMarkersData getData() {
+        if (data == null) { // This will happen on the client
+            data = new GlobalMarkersData();
+        }
+        return data;
+    }
 
-	/** Synchronizes global markers with the connecting client. */
-	public void onPlayerLogin(ServerPlayer player) {
-		data.syncOnPlayer(player);
-	}
+    /**
+     * Synchronizes global markers with the connecting client.
+     */
+    public void onPlayerLogin(ServerPlayer player) {
+        data.syncOnPlayer(player);
+    }
 
 }

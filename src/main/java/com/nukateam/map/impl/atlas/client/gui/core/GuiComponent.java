@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
@@ -22,14 +21,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @OnlyIn(Dist.CLIENT)
 public class GuiComponent extends Screen {
-    @FunctionalInterface
-    interface UiCall {
-        boolean call(GuiComponent c);
-    }
-
-    private GuiComponent parent = null;
     private final List<GuiComponent> children = new CopyOnWriteArrayList<>();
-
+    /**
+     * Wrapper for data used to draw hovering text at the end of rendering
+     * current frame. It is used by child components that wish to draw hovering
+     * text unobscured by their neighboring components.
+     */
+    private final HoveringTextInfo hoveringTextInfo = new HoveringTextInfo();
+    /**
+     * This flag is updated on every mouse event.
+     */
+    protected boolean isMouseOver = false;
     /**
      * The component's own size.
      */
@@ -40,6 +42,7 @@ public class GuiComponent extends Screen {
      */
     int contentWidth;
     int contentHeight;
+    private GuiComponent parent = null;
     /**
      * If true, content size will be validated on the next update.
      */
@@ -48,11 +51,6 @@ public class GuiComponent extends Screen {
      * If true, this GUI will not be rendered.
      */
     private boolean isClipped = false;
-    /**
-     * This flag is updated on every mouse event.
-     */
-    protected boolean isMouseOver = false;
-
     /**
      * If true, mouse actions will only affect this GUI and its children,
      * else they will only affect the in-game controller.
@@ -75,7 +73,7 @@ public class GuiComponent extends Screen {
 
     // TODO
     public GuiComponent() {
-        super(new TextComponent("component"));
+        super(Component.literal("component"));
     }
 
     /**
@@ -104,28 +102,6 @@ public class GuiComponent extends Screen {
             setGuiCoords(parent.getGuiX() + x, parent.getGuiY() + y);
         } else {
             setGuiCoords(x, y);
-        }
-    }
-
-    /**
-     * Set x coordinate relative to the parent's (or the screen, if none) left.
-     */
-    public final void setRelativeX(int x) {
-        if (parent != null) {
-            setGuiCoords(parent.getGuiX() + x, guiY);
-        } else {
-            setGuiCoords(x, guiY);
-        }
-    }
-
-    /**
-     * Set y coordinate relative to the parent's (or the screen, if none) top.
-     */
-    public final void setRelativeY(int y) {
-        if (parent != null) {
-            setGuiCoords(guiX, parent.getGuiY() + y);
-        } else {
-            setGuiCoords(guiX, y);
         }
     }
 
@@ -172,10 +148,32 @@ public class GuiComponent extends Screen {
     }
 
     /**
+     * Set x coordinate relative to the parent's (or the screen, if none) left.
+     */
+    public final void setRelativeX(int x) {
+        if (parent != null) {
+            setGuiCoords(parent.getGuiX() + x, guiY);
+        } else {
+            setGuiCoords(x, guiY);
+        }
+    }
+
+    /**
      * Y coordinate relative to the parent's top left corner.
      */
     int getRelativeY() {
         return parent == null ? guiY : (guiY - parent.guiY);
+    }
+
+    /**
+     * Set y coordinate relative to the parent's (or the screen, if none) top.
+     */
+    public final void setRelativeY(int y) {
+        if (parent != null) {
+            setGuiCoords(guiX, parent.getGuiY() + y);
+        } else {
+            setGuiCoords(guiX, y);
+        }
     }
 
     /**
@@ -601,24 +599,6 @@ public class GuiComponent extends Screen {
     }
 
     /**
-     * Wrapper for data used to draw hovering text at the end of rendering
-     * current frame. It is used by child components that wish to draw hovering
-     * text unobscured by their neighboring components.
-     */
-    private final HoveringTextInfo hoveringTextInfo = new HoveringTextInfo();
-
-    private static class HoveringTextInfo {
-        List<Component> lines;
-        double x, y;
-        Font font;
-        /**
-         * Whether to draw this hovering text during rendering current frame.
-         * This flag is reset to false after rendering finishes.
-         */
-        boolean shouldDraw = false;
-    }
-
-    /**
      * Remove itself from its parent component (if any), notifying it.
      */
     public void close() {
@@ -653,5 +633,21 @@ public class GuiComponent extends Screen {
 
     protected double getMouseY() {
         return Minecraft.getInstance().mouseHandler.ypos() * height / Minecraft.getInstance().getWindow().getHeight();
+    }
+
+    @FunctionalInterface
+    interface UiCall {
+        boolean call(GuiComponent c);
+    }
+
+    private static class HoveringTextInfo {
+        List<Component> lines;
+        double x, y;
+        Font font;
+        /**
+         * Whether to draw this hovering text during rendering current frame.
+         * This flag is reset to false after rendering finishes.
+         */
+        boolean shouldDraw = false;
     }
 }

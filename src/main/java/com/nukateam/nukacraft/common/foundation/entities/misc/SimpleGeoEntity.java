@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.nukateam.nukacraft.common.foundation.entities.misc.SimpleEntity;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
@@ -15,6 +14,12 @@ public class SimpleGeoEntity extends SimpleEntity implements GeoEntity {
         super(pEntityType, pLevel);
     }
 
-    @Override public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
-    @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return cache; }
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
 }

@@ -31,14 +31,13 @@ import java.util.*;
 public class ExportImageUtil {
     public static final int TILE_SIZE = 16;
     public static final int MARKER_SIZE = 32;
-    public static boolean isExporting = false;
-
-    private static Frame frame;
     private static final JFileChooser chooser = new JFileChooser();
-
-    private static ExportUpdateListener getListener() {
-        return ExportUpdateListener.INSTANCE;
-    }
+    /**
+     * Beware that the background texture doesn't follow the Autotile format.
+     */
+    private static final int BG_TILE_SIZE = 22;
+    public static boolean isExporting = false;
+    private static Frame frame;
 
     static {
         chooser.setDialogTitle(I18n.get("gui.nukacraft.exportImage"));
@@ -57,10 +56,9 @@ public class ExportImageUtil {
         });
     }
 
-    /**
-     * Beware that the background texture doesn't follow the Autotile format.
-     */
-    private static final int BG_TILE_SIZE = 22;
+    private static ExportUpdateListener getListener() {
+        return ExportUpdateListener.INSTANCE;
+    }
 
     /**
      * Opens a dialog and returns the file that was chosen, null if none or error.
@@ -71,7 +69,8 @@ public class ExportImageUtil {
         getListener().setProgressMax(-1);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
             Log.error(e, "Setting system Look&Feel for JFileChooser");
         }
 

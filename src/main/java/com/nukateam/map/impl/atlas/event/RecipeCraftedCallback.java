@@ -22,47 +22,47 @@ import java.util.function.Consumer;
  * - FAIL cancels further processing and does not send a packet to the server.
  */
 public interface RecipeCraftedCallback {
-	InteractionResult onCrafted(Player player, Level world, Recipe<?> recipe, ItemStack result, Container ingredients);
-	
-	public static void register(RecipeCraftedCallback consumer) {
-		MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>)event->consumer.onCrafted(event.getPlayer(), event.getLevel(), event.getRecipeUsed(), event.getCraftedStack(), event.getCraftSlots()));
-	}
-	/**
-	 * This Event also takes the CraftingResultSlot
-	 * @author Stereowalker
-	 *
-	 */
-	public class TheEvent extends PlayerEvent {//TODO: ItemCraftedEvent
-	    @Nonnull
-	    private final Level level; 
-	    private final Recipe<?> recipeUsed; 
-	    private final ItemStack craftedStack; 
-	    private final CraftingContainer craftSlots;
+    public static void register(RecipeCraftedCallback consumer) {
+        MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>) event -> consumer.onCrafted(event.getPlayer(), event.getLevel(), event.getRecipeUsed(), event.getCraftedStack(), event.getCraftSlots()));
+    }
 
-	    public TheEvent(Player player, Level level, Recipe<?> recipeUsed, ItemStack stack, CraftingContainer craftSlots) {
-	    	super(player);
-	    	this.level = level;
-	    	this.recipeUsed = recipeUsed;
-	    	this.craftedStack = stack;
-	    	this.craftSlots = craftSlots;
-	    }
+    InteractionResult onCrafted(Player player, Level world, Recipe<?> recipe, ItemStack result, Container ingredients);
 
-		@Nonnull
-	    public ItemStack getCraftedStack()
-	    {
-	        return this.craftedStack;
-	    }
-		
-		public Recipe<?> getRecipeUsed() {
-			return recipeUsed;
-		}
-		
-		public CraftingContainer getCraftSlots() {
-			return craftSlots;
-		}
-		
-		public Level getLevel() {
-			return level;
-		}
-	}
+    /**
+     * This Event also takes the CraftingResultSlot
+     *
+     * @author Stereowalker
+     */
+    public class TheEvent extends PlayerEvent {//TODO: ItemCraftedEvent
+        @Nonnull
+        private final Level level;
+        private final Recipe<?> recipeUsed;
+        private final ItemStack craftedStack;
+        private final CraftingContainer craftSlots;
+
+        public TheEvent(Player player, Level level, Recipe<?> recipeUsed, ItemStack stack, CraftingContainer craftSlots) {
+            super(player);
+            this.level = level;
+            this.recipeUsed = recipeUsed;
+            this.craftedStack = stack;
+            this.craftSlots = craftSlots;
+        }
+
+        @Nonnull
+        public ItemStack getCraftedStack() {
+            return this.craftedStack;
+        }
+
+        public Recipe<?> getRecipeUsed() {
+            return recipeUsed;
+        }
+
+        public CraftingContainer getCraftSlots() {
+            return craftSlots;
+        }
+
+        public Level getLevel() {
+            return level;
+        }
+    }
 }

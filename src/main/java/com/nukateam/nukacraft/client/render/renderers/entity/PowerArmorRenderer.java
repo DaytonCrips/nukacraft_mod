@@ -1,13 +1,13 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
-import com.nukateam.ntgl.client.data.handler.AimingHandler;
-import com.nukateam.nukacraft.client.models.PowerArmorModel;
-import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
-import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
+import com.nukateam.ntgl.client.data.handler.AimingHandler;
+import com.nukateam.nukacraft.client.models.PowerArmorModel;
+import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.cache.object.GeoBone;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -21,6 +21,41 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     public PowerArmorRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new PowerArmorModel());
         addRenderLayer(new RaiderHeadLayer<>(this));
+    }
+
+    public static Vector3f getRotations(GeoBone bone) {
+        return new Vector3f(
+                bone.getRotX(),
+                bone.getRotY(),
+                bone.getRotZ());
+    }
+
+    public static void setRotations(GeoBone bone, Vector3f vec) {
+        bone.setRotX(vec.x());
+        bone.setRotY(vec.y());
+        bone.setRotZ(vec.z());
+    }
+
+    public static void copyRotations(GeoBone dist, GeoBone source) {
+        dist.setRotX(source.getRotX());
+        dist.setRotY(source.getRotY());
+        dist.setRotZ(source.getRotZ());
+    }
+
+    private static void addRotation(GeoBone bone, int x, int y, int z) {
+        bone.setRotX(bone.getRotX() + x);
+        bone.setRotY(bone.getRotY() + y);
+        bone.setRotZ(bone.getRotZ() + z);
+    }
+
+    private static void setRotation(GeoBone bone, int rot) {
+        bone.setRotX(rot);
+        bone.setRotY(rot);
+        bone.setRotZ(rot);
+    }
+
+    private static void addRotationX(GeoBone bone, int x) {
+        bone.setRotX(bone.getRotX() + x);
     }
 
     @Override
@@ -49,7 +84,7 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 
         var heldItem = animatable.getMainHandItem();
 
-        if(animatable.passengerHaveGun()) {
+        if (animatable.passengerHaveGun()) {
             var gunItem = animatable.getPassengerGun();
 
             var gun = gunItem.getModifiedGun(heldItem);
@@ -86,41 +121,5 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 
         super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick,
                 packedLight, packedOverlay, red, green, blue, alpha);
-    }
-
-    public static Vector3f getRotations(GeoBone bone) {
-        return new Vector3f(
-                bone.getRotX(),
-                bone.getRotY(),
-                bone.getRotZ());
-    }
-
-    public static void setRotations(GeoBone bone, Vector3f vec) {
-        bone.setRotX(vec.x());
-        bone.setRotY(vec.y());
-        bone.setRotZ(vec.z());
-    }
-
-    public static void copyRotations(GeoBone dist, GeoBone source) {
-        dist.setRotX(source.getRotX());
-        dist.setRotY(source.getRotY());
-        dist.setRotZ(source.getRotZ());
-    }
-
-    private static void addRotation(GeoBone bone, int x, int y, int z) {
-        bone.setRotX(bone.getRotX() + x);
-        bone.setRotY(bone.getRotY() + y);
-        bone.setRotZ(bone.getRotZ() + z);
-    }
-
-    private static void setRotation(GeoBone bone, int rot) {
-        bone.setRotX(rot);
-        bone.setRotY(rot);
-        bone.setRotZ(rot);
-    }
-
-
-    private static void addRotationX(GeoBone bone, int x) {
-        bone.setRotX(bone.getRotX() + x);
     }
 }

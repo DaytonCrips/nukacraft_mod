@@ -1,11 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,17 +24,25 @@ public class RadItem extends Item {
         this.radiation = radiation;
     }
 
+    public static void showRadiation(List<Component> list, float radiation) {
+        if (radiation == 0) return;
 
-    public boolean isIrradiated(){
+        if (radiation < 0) {
+            list.add(Component.translatable("tooltip.nukacraft.irradiation").append("§a-" + abs(radiation)));
+        } else {
+            list.add(Component.translatable("tooltip.nukacraft.radiation").append("§c+" + abs(radiation)));
+        }
+    }
+
+    public boolean isIrradiated() {
         return radiation > 0;
     }
 
-    @Override @NotNull
+    @Override
+    @NotNull
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player)
             RadiationUtils.addRadiation(entity, radiation);
-
-
 
 
 //        if (!(entity instanceof Player player) || !player.isCreative()) {
@@ -55,16 +60,6 @@ public class RadItem extends Item {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
         showRadiation(list, radiation);
-    }
-
-    public static void showRadiation(List<Component> list, float radiation) {
-        if(radiation == 0) return;
-
-        if (radiation < 0) {
-            list.add(new TranslatableComponent("tooltip.nukacraft.irradiation").append("§a-" + abs(radiation)));
-        } else {
-            list.add(new TranslatableComponent("tooltip.nukacraft.radiation").append("§c+" + abs(radiation)));
-        }
     }
 
     @Override

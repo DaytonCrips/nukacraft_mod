@@ -4,9 +4,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class NbtColor implements INBTSerializable<CompoundTag> {
-    public float red   = 0.443f;
+    public float red = 0.443f;
     public float green = 0.749f;
-    public float blue  = 0.459f;
+    public float blue = 0.459f;
 
     public NbtColor(float red, float green, float blue) {
         this.red = red;
@@ -14,7 +14,8 @@ public class NbtColor implements INBTSerializable<CompoundTag> {
         this.blue = blue;
     }
 
-    public NbtColor() {}
+    public NbtColor() {
+    }
 
     @Override
     public CompoundTag serializeNBT() {
@@ -28,12 +29,12 @@ public class NbtColor implements INBTSerializable<CompoundTag> {
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
-        red   = nbt.getFloat("r");
+        red = nbt.getFloat("r");
         green = nbt.getFloat("g");
-        blue  = nbt.getFloat("b");
+        blue = nbt.getFloat("b");
     }
 
-    public int getIntColor(){
+    public int getIntColor() {
         int R = Math.round(255 * red);
         int G = Math.round(255 * green);
         int B = Math.round(255 * blue);

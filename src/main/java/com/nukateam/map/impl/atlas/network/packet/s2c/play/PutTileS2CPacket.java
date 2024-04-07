@@ -14,49 +14,50 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Puts biome tile into one atlas.
+ *
  * @author Hunternif
  * @author Haven King
  */
 public class PutTileS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "put");
+    public static final ResourceLocation ID = MapCore.id("packet", "s2c", "tile", "put");
 
-	int atlasID;
-	ResourceKey<Level> world;
-	int x, z;
-	ResourceLocation tile;
+    int atlasID;
+    ResourceKey<Level> world;
+    int x, z;
+    ResourceLocation tile;
 
-	public PutTileS2CPacket(int atlasID, ResourceKey<Level> world, int x, int z, ResourceLocation tile) {
+    public PutTileS2CPacket(int atlasID, ResourceKey<Level> world, int x, int z, ResourceLocation tile) {
 
-	}
+    }
 
-	public static void encode(final PutTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
-		packetBuffer.writeInt(msg.atlasID);
-		packetBuffer.writeResourceLocation(msg.world.location());
-		packetBuffer.writeVarInt(msg.x);
-		packetBuffer.writeVarInt(msg.z);
-		packetBuffer.writeResourceLocation(msg.tile);
-	}
+    public static void encode(final PutTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+        packetBuffer.writeInt(msg.atlasID);
+        packetBuffer.writeResourceLocation(msg.world.location());
+        packetBuffer.writeVarInt(msg.x);
+        packetBuffer.writeVarInt(msg.z);
+        packetBuffer.writeResourceLocation(msg.tile);
+    }
 
-	public static PutTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
-		int atlasID = packetBuffer.readVarInt();
-		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
-		int x = packetBuffer.readVarInt();
-		int z = packetBuffer.readVarInt();
-		ResourceLocation tile = packetBuffer.readResourceLocation();
+    public static PutTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+        int atlasID = packetBuffer.readVarInt();
+        ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
+        int x = packetBuffer.readVarInt();
+        int z = packetBuffer.readVarInt();
+        ResourceLocation tile = packetBuffer.readResourceLocation();
 
-		return new PutTileS2CPacket(atlasID, world, x, z, tile);
-	}
+        return new PutTileS2CPacket(atlasID, world, x, z, tile);
+    }
 
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public boolean handle(LocalPlayer player) {
-		AtlasData data = MapCore.tileData.getData(this.atlasID, player.getCommandSenderWorld());
-		data.setTile(this.world, this.x, this.z, this.tile);
-		return true;
-	}
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean handle(LocalPlayer player) {
+        AtlasData data = MapCore.tileData.getData(this.atlasID, player.getCommandSenderWorld());
+        data.setTile(this.world, this.x, this.z, this.tile);
+        return true;
+    }
 
-	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
+    @Override
+    public ResourceLocation getId() {
+        return ID;
+    }
 }

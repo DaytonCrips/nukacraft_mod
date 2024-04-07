@@ -8,8 +8,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-import static com.nukateam.nukacraft.common.registery.items.PowerArmorItems.FRAME_ITEM;
 import static com.jetug.chassis_core.common.util.helpers.EntityHelper.entityToItem;
+import static com.nukateam.nukacraft.common.registery.items.PowerArmorItems.FRAME_ITEM;
 import static net.minecraftforge.items.ItemHandlerHelper.giveItemToPlayer;
 
 @SuppressWarnings("ALL")
@@ -20,7 +20,8 @@ public class FramePickupPacket {
         this.entityId = entityId;
     }
 
-    public FramePickupPacket() {}
+    public FramePickupPacket() {
+    }
 
     public static void write(FramePickupPacket message, FriendlyByteBuf buffer) {
         buffer.writeInt(message.entityId);
@@ -33,11 +34,11 @@ public class FramePickupPacket {
 
     public static void handle(FramePickupPacket message, Supplier<NetworkEvent.Context> context) {
         boolean isClientSide = context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT;
-        if(!isClientSide){
+        if (!isClientSide) {
             var player = context.get().getSender();
             var entity = player.level.getEntity(message.entityId);
 
-            if(entity instanceof PowerArmorFrame frame){
+            if (entity instanceof PowerArmorFrame frame) {
                 player.stopRiding();
                 var stack = new ItemStack(FRAME_ITEM.get());
                 entityToItem(stack, frame);

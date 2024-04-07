@@ -115,8 +115,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.RUSTY_BUSH.get(), RenderType.cutout());
     }
 
-    public static void flowerPotSetup()
-    {
+    public static void flowerPotSetup() {
         addPlant(ModBlocks.ASTER.getId(), ModBlocks.POTTED_ASTER);
         addPlant(ModBlocks.RADASTER.getId(), ModBlocks.POTTED_RADASTER);
         addPlant(ModBlocks.DEATH_FLOWER.getId(), ModBlocks.POTTED_DEATH_FLOWER);
@@ -138,7 +137,7 @@ public class ModSetup {
         addPlant(ModBlocks.HATTERFUNGI.getId(), ModBlocks.POTTED_HATTER);
     }
 
-    static void addPlant(ResourceLocation resourceLocation, RegistryObject<Block> registryObject){
+    static void addPlant(ResourceLocation resourceLocation, RegistryObject<Block> registryObject) {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(resourceLocation, registryObject);
     }
 }

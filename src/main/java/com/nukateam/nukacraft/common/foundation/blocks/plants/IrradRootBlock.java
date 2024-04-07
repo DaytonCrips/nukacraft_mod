@@ -25,6 +25,7 @@ public class IrradRootBlock extends CropBlock {
     public IrradRootBlock(Properties pProperties) {
         super(pProperties);
     }
+
     public IntegerProperty getAgeProperty() {
         return AGE;
     }

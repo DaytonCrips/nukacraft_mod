@@ -1,17 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.registery.ModEffect;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffectUtil;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.Lazy;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +32,14 @@ public class RadXItem extends EffectRadItem {
 //
 //        for (var lazy: effects) {
 //            var effect = lazy.get();
-//            var mutablecomponent = new TranslatableComponent(effect.getDescriptionId());
+//            var mutablecomponent = Component.translatable(effect.getDescriptionId());
 //
 //            if (effect.getAmplifier() > 0) {
-//                mutablecomponent = new TranslatableComponent("potion.withAmplifier", mutablecomponent, new TranslatableComponent("potion.potency." + effect.getAmplifier()));
+//                mutablecomponent = Component.translatable("potion.withAmplifier", mutablecomponent, Component.translatable("potion.potency." + effect.getAmplifier()));
 //            }
 //
 //            if (effect.getDuration() > 20) {
-//                mutablecomponent = new TranslatableComponent("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(effect, 1));
+//                mutablecomponent = Component.translatable("potion.withDuration", mutablecomponent, MobEffectUtil.formatDuration(effect, 1));
 //            }
 //
 //            list.add(mutablecomponent.withStyle(effect.getEffect().getCategory().getTooltipFormatting()));

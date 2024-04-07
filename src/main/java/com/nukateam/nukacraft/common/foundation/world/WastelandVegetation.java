@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
 import net.minecraft.core.Holder;
-import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.placement.*;
 
@@ -250,16 +249,14 @@ public class WastelandVegetation {
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome());
-//
+    //
     public static final Holder<PlacedFeature> PATCH_AGAVE_RARE =
-        PlacementUtils.register("patch_agave_common",
-                ModFeatures.PATCH_AGAVE_BUSH,
-                RarityFilter.onAverageOnceEvery(10),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome());
-
-
+            PlacementUtils.register("patch_agave_common",
+                    ModFeatures.PATCH_AGAVE_BUSH,
+                    RarityFilter.onAverageOnceEvery(10),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome());
 
 
     public static final Holder<PlacedFeature> PATCH_SITTBEAN_BUSH =
@@ -277,15 +274,15 @@ public class WastelandVegetation {
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome());
-//
+    //
 //
     public static final Holder<PlacedFeature> PATCH_ZANDER =
-        PlacementUtils.register("patch_zander",
-                ModFeatures.PATCH_XANDER,
-                RarityFilter.onAverageOnceEvery(21),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome());
+            PlacementUtils.register("patch_zander",
+                    ModFeatures.PATCH_XANDER,
+                    RarityFilter.onAverageOnceEvery(21),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                    BiomeFilter.biome());
     public static final Holder<PlacedFeature> PATCH_RUSTY_BUSH =
             PlacementUtils.register("patch_rusty_bush",
                     ModFeatures.PATCH_RUSTY_BUSH,
@@ -293,8 +290,6 @@ public class WastelandVegetation {
                     InSquarePlacement.spread(),
                     PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome());
-
-
 
 
     public static List<PlacementModifier> worldSurfaceSquaredWithCount(int pCount) {

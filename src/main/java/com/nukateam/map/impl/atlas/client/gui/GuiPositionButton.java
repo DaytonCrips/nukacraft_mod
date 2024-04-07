@@ -1,12 +1,12 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.nukateam.map.impl.atlas.client.Textures;
-import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.Textures;
+import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Collections;
@@ -38,7 +38,7 @@ public class GuiPositionButton extends GuiComponentButton {
             RenderSystem.disableBlend();
 
             if (isMouseOver) {
-                drawTooltip(Collections.singletonList(new TranslatableComponent("gui.nukacraft.followPlayer")), Minecraft.getInstance().font);
+                drawTooltip(Collections.singletonList(Component.translatable("gui.nukacraft.followPlayer")), Minecraft.getInstance().font);
             }
         }
     }

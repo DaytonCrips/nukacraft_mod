@@ -1,8 +1,14 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
+import com.jetug.chassis_core.common.util.Pos2I;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import com.nukateam.map.api.client.AtlasClientAPI;
 import com.nukateam.map.impl.atlas.MapCore;
-import com.nukateam.map.impl.atlas.client.*;
+import com.nukateam.map.impl.atlas.client.Textures;
+import com.nukateam.map.impl.atlas.client.TileRenderIterator;
+import com.nukateam.map.impl.atlas.client.TileTextureMap;
 import com.nukateam.map.impl.atlas.client.gui.core.*;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiStates.IState;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiStates.SimpleState;
@@ -21,10 +27,6 @@ import com.nukateam.map.impl.atlas.util.ExportImageUtil;
 import com.nukateam.map.impl.atlas.util.Log;
 import com.nukateam.map.impl.atlas.util.MathUtil;
 import com.nukateam.map.impl.atlas.util.Rect;
-import com.jetug.chassis_core.common.util.Pos2I;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.client.KeyMapping;
@@ -32,7 +34,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,10 +47,14 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import java.io.File;
-import java.text.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
-import static com.nukateam.map.impl.atlas.util.MathUtil.*;
+import static com.nukateam.map.impl.atlas.util.MathUtil.roundToBase;
 import static com.nukateam.nukacraft.common.data.utils.PipBoyUtils.setPipboyShader;
 
 public class GuiAtlasBase extends GuiComponent {
@@ -79,25 +85,54 @@ public class GuiAtlasBase extends GuiComponent {
 
     private static final String[] ZOOM_NAMES = new String[]{"256", "128", "64", "32", "16", "8", "4", "2", "1", "1/2", "1/4", "1/8", "1/16", "1/32", "1/64", "1/128", "1/256"};
 
-    /** If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.*/
+    /**
+     * If the map scale goes below this value, the tiles will not scale down visually, but will instead span greater area.
+     */
     private static final double MIN_SCALE_THRESHOLD = 0.5;
-    private final long[] renderTimes = new long[30];
-    private int renderTimesIndex = 0;
+    /**
+     * Pause between after the arrow button is pressed and continuousnavigation starts, in ticks.
+     */
+    private static final int BUTTON_PAUSE = 8;
+    /**
+     * How much the map view is offset, in blocks, per click (or per tick).
+     */
+    private static final int navigateStep = 24;
 
     // States ==================================================================
+    /**
+     * Progress bar for exporting images.
+     */
+    protected final ProgressBarOverlay progressBar = new ProgressBarOverlay(100, 2);
+    protected final GuiCursor eraser = new GuiCursor();
+    protected final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
+    protected final GuiBookmarkButton btnExportPng;
+    protected final GuiBookmarkButton btnMarker;
+    protected final GuiBookmarkButton btnDelMarker;
 
+    // UI =================================================================
+    protected final GuiBookmarkButton btnShowMarkers;
+    protected final GuiPipboyButton btnExit;
+    protected final GuiPipboyButton btnArchive;
+    protected final GuiPipboyButton btnMap;
+    protected final GuiPipboyButton btnRadio;
+    protected final GuiScaleBar scaleBar = new GuiScaleBar();
+    protected final GuiPositionButton btnPosition;
+    protected final GuiScrollingContainer markers = new GuiScrollingContainer();
+    private final long[] renderTimes = new long[30];
     private final GuiStates state = new GuiStates();
-
-    /** If on, navigate the map normally.*/
+    /**
+     * If on, navigate the map normally.
+     */
     private final IState NORMAL = new SimpleState();
-
-    /** If on, all markers as well as the player icon are hidden.*/
+    /**
+     * If on, all markers as well as the player icon are hidden.
+     */
     private final IState HIDING_MARKERS = new IState() {
         @Override
         public void onEnterState() {
             // Set the button as not selected so that it can be clicked again:
             btnShowMarkers.setSelected(false);
-            btnShowMarkers.setTitle(new TranslatableComponent("gui.nukacraft.showMarkers"));
+            btnShowMarkers.setTitle(Component.translatable("gui.nukacraft.showMarkers"));
             btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
             btnShowMarkers.setIconTexture(Textures.ICON_SHOW_MARKERS);
         }
@@ -105,11 +140,10 @@ public class GuiAtlasBase extends GuiComponent {
         @Override
         public void onExitState() {
             btnShowMarkers.setSelected(false);
-            btnShowMarkers.setTitle(new TranslatableComponent("gui.nukacraft.hideMarkers"));
+            btnShowMarkers.setTitle(Component.translatable("gui.nukacraft.hideMarkers"));
             btnShowMarkers.setIconTexture(Textures.ICON_HIDE_MARKERS);
         }
     };
-
     /**
      * If on, a semi-transparent marker is attached to the cursor, and the
      * player's icon becomes semi-transparent as well.
@@ -125,8 +159,9 @@ public class GuiAtlasBase extends GuiComponent {
             btnMarker.setSelected(false);
         }
     };
-
-    /** If on, the closest marker will be deleted upon mouseclick.*/
+    /**
+     * If on, the closest marker will be deleted upon mouseclick.
+     */
     private final IState DELETING_MARKER = new IState() {
         @Override
         public void onEnterState() {
@@ -144,6 +179,7 @@ public class GuiAtlasBase extends GuiComponent {
     };
 
 
+    // Navigation ==============================================================
     private final IState EXPORTING_IMAGE = new IState() {
         @Override
         public void onEnterState() {
@@ -155,53 +191,25 @@ public class GuiAtlasBase extends GuiComponent {
             btnExportPng.setSelected(false);
         }
     };
-
-    // UI =================================================================
+    private final GuiMarkerFinalizer markerFinalizer = new GuiMarkerFinalizer();
     /**
-     * Progress bar for exporting images.
+     * Displayed where the marker is about to be placed when the Finalizer GUI is on.
      */
-    protected final ProgressBarOverlay progressBar = new ProgressBarOverlay(100, 2);
-
-    protected final GuiCursor eraser = new GuiCursor();
-    protected final GuiArrowButton btnUp, btnDown, btnLeft, btnRight;
-
-    protected final GuiBookmarkButton btnExportPng;
-    protected final GuiBookmarkButton btnMarker;
-    protected final GuiBookmarkButton btnDelMarker;
-    protected final GuiBookmarkButton btnShowMarkers;
-
-    protected final GuiPipboyButton btnExit;
-    protected final GuiPipboyButton btnArchive;
-    protected final GuiPipboyButton btnMap;
-    protected final GuiPipboyButton btnRadio;
-
-    protected final GuiScaleBar scaleBar = new GuiScaleBar();
-    protected final GuiPositionButton btnPosition;
-    protected final GuiScrollingContainer markers = new GuiScrollingContainer();
-
-
-    // Navigation ==============================================================
-
-    /** Pause between after the arrow button is pressed and continuousnavigation starts, in ticks.*/
-    private static final int BUTTON_PAUSE = 8;
-
-    /** How much the map view is offset, in blocks, per click (or per tick).*/
-    private static final int navigateStep = 24;
-
-    /** The button which is currently being pressed. Used for continuousnavigation using the arrow buttons. Also used to prevent immediatecanceling of placing marker.*/
+    private final GuiBlinkingMarker blinkingIcon = new GuiBlinkingMarker();
+    private final int zoomLevelOne = 8;
+    /**
+     * The button which is currently being pressed. Used for continuousnavigation using the arrow buttons. Also used to prevent immediatecanceling of placing marker.
+     */
     protected GuiComponentButton selectedButton = null;
-
     /**
      * Time in world ticks when the button was pressed. Used to create a pause
      * before continuous navigation using the arrow buttons.
      */
     protected long timeButtonPressed = 0;
-
     /**
      * Set to true when dragging the map view.
      */
     protected boolean isDragging = false;
-
     /**
      * Offset to the top left corner of the tile at (0, 0) from the center of
      * the map drawing area, in pixels.
@@ -215,18 +223,23 @@ public class GuiAtlasBase extends GuiComponent {
      * offset.
      */
     protected boolean followPlayer;
-
-
-    /** Pixel-to-block ratio.*/
-    private double mapScale;
-    /** The visual size of a tile in pixels.*/
-    private int tileHalfSize;
-    /*** The number of chunks a tile spans.*/
-    private int tile2ChunkScale;
+    protected Player player;
 
 
     // Markers =================================================================
-
+    protected ItemStack stack;
+    protected WorldData biomeData;
+    private int renderTimesIndex = 0;
+    /**
+     * Pixel-to-block ratio.
+     */
+    private double mapScale;
+    /**
+     * The visual size of a tile in pixels.
+     */
+    private int tileHalfSize;
+    /*** The number of chunks a tile spans.*/
+    private int tile2ChunkScale;
     /**
      * Local markers in the current dimension
      */
@@ -240,26 +253,13 @@ public class GuiAtlasBase extends GuiComponent {
      * be highlighted at the same time, only one of them will be deleted.
      */
     private Marker hoveredMarker;
-
-    private final GuiMarkerFinalizer markerFinalizer = new GuiMarkerFinalizer();
-    /**
-     * Displayed where the marker is about to be placed when the Finalizer GUI is on.
-     */
-    private final GuiBlinkingMarker blinkingIcon = new GuiBlinkingMarker();
-
     /**
      * Coordinate scale factor relative to the actual screen size.
      */
     private double screenScale;
-
-    protected Player player;
-    protected ItemStack stack;
-    protected WorldData biomeData;
-
     private long lastUpdateMillis = System.currentTimeMillis();
     private int scaleAlpha = 255;
     private int scaleClipIndex = 0;
-    private final int zoomLevelOne = 8;
     private int zoomLevel = zoomLevelOne;
 
     private Thread exportThread;
@@ -277,15 +277,15 @@ public class GuiAtlasBase extends GuiComponent {
         btnRight = GuiArrowButton.right();
         btnPosition = new GuiPositionButton();
         btnPosition.setEnabled(!followPlayer);
-        btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, new TranslatableComponent("gui.nukacraft.addMarker"));
-        btnDelMarker = new GuiBookmarkButton(0, Textures.ICON_DELETE_MARKER, new TranslatableComponent("gui.nukacraft.delMarker"));
-        btnShowMarkers = new GuiBookmarkButton(0, Textures.ICON_HIDE_MARKERS, new TranslatableComponent("gui.nukacraft.hideMarkers"));
+        btnMarker = new GuiBookmarkButton(0, Textures.ICON_ADD_MARKER, Component.translatable("gui.nukacraft.addMarker"));
+        btnDelMarker = new GuiBookmarkButton(0, Textures.ICON_DELETE_MARKER, Component.translatable("gui.nukacraft.delMarker"));
+        btnShowMarkers = new GuiBookmarkButton(0, Textures.ICON_HIDE_MARKERS, Component.translatable("gui.nukacraft.hideMarkers"));
         btnExit = new GuiPipboyButton(Textures.EXIT);
         btnArchive = new GuiPipboyButton(Textures.EXIT);
         btnMap = new GuiPipboyButton(Textures.EXIT);
         btnRadio = new GuiPipboyButton(Textures.EXIT);
 
-        btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, new TranslatableComponent("gui.nukacraft.exportImage")) {
+        btnExportPng = new GuiBookmarkButton(1, Textures.ICON_EXPORT, Component.translatable("gui.nukacraft.exportImage")) {
             @Override
             public boolean isEnabled() {
                 return !ExportImageUtil.isExporting;
@@ -304,11 +304,11 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
     private void setupButtons() {
-        btnUp.addListener       (this::onPositionChanged);
-        btnDown.addListener     (this::onPositionChanged);
-        btnLeft.addListener     (this::onPositionChanged);
-        btnRight.addListener    (this::onPositionChanged);
-        btnPosition.addListener (this::onPositionChanged);
+        btnUp.addListener(this::onPositionChanged);
+        btnDown.addListener(this::onPositionChanged);
+        btnLeft.addListener(this::onPositionChanged);
+        btnRight.addListener(this::onPositionChanged);
+        btnPosition.addListener(this::onPositionChanged);
 
 //        addChild(btnUp).offsetGuiCoords(148, 10);
 //        addChild(btnDown).offsetGuiCoords(148, 194);
@@ -318,12 +318,12 @@ public class GuiAtlasBase extends GuiComponent {
         var x = -11;
         var y = -2;
 
-        addChild(btnPosition    ).offsetGuiCoords(x + 225, y + 148);
-        addChild(scaleBar       ).offsetGuiCoords(x + 121, y + 171);
-        addChild(btnExit        ).offsetGuiCoords(x + 18 , y + 176);
-        addChild(btnArchive     ).offsetGuiCoords(x + 299, y + 21);
-        addChild(btnMap         ).offsetGuiCoords(x + 299, y + 44);
-        addChild(btnRadio       ).offsetGuiCoords(x + 299, y + 67);
+        addChild(btnPosition).offsetGuiCoords(x + 225, y + 148);
+        addChild(scaleBar).offsetGuiCoords(x + 121, y + 171);
+        addChild(btnExit).offsetGuiCoords(x + 18, y + 176);
+        addChild(btnArchive).offsetGuiCoords(x + 299, y + 21);
+        addChild(btnMap).offsetGuiCoords(x + 299, y + 44);
+        addChild(btnRadio).offsetGuiCoords(x + 299, y + 67);
 
 //        addChild(btnMarker      ).offsetGuiCoords( x + 219, y + 14);
 //        addChild(btnDelMarker   ).offsetGuiCoords( x + 219, y + 33);
@@ -331,10 +331,9 @@ public class GuiAtlasBase extends GuiComponent {
 
         var navX = 0;
         var navY = 5;
-        addChild(btnMarker      ).offsetGuiCoords(navX + x + 219, navY + y + 14);
-        addChild(btnDelMarker   ).offsetGuiCoords(navX + x + 219, navY + y + 33);
-        addChild(btnShowMarkers ).offsetGuiCoords(navX + x + 219, navY + y + 52);
-
+        addChild(btnMarker).offsetGuiCoords(navX + x + 219, navY + y + 14);
+        addChild(btnDelMarker).offsetGuiCoords(navX + x + 219, navY + y + 33);
+        addChild(btnShowMarkers).offsetGuiCoords(navX + x + 219, navY + y + 52);
 
 
         //addChild(btnExportPng   ).offsetGuiCoords(200, 75);
@@ -380,7 +379,7 @@ public class GuiAtlasBase extends GuiComponent {
         screenScale = Minecraft.getInstance().getWindow().getGuiScale();
         setCentered();
 
-        offsetGuiCoords(-12,-25);
+        offsetGuiCoords(-12, -25);
 
 //        offsetGuiCoords(-6, 16);
         updateBookmarkerList();
@@ -531,7 +530,7 @@ public class GuiAtlasBase extends GuiComponent {
 
             minecraft = Minecraft.getInstance();
 
-            if(wheelMove > 0)
+            if (wheelMove > 0)
                 minecraft.getSoundManager().play(SimpleSoundInstance.forUI(ModSounds.PIPBOY_UP.get(), 1.0F));
             else
                 minecraft.getSoundManager().play(SimpleSoundInstance.forUI(ModSounds.PIPBOY_DOWN.get(), 1.0F));
@@ -571,7 +570,7 @@ public class GuiAtlasBase extends GuiComponent {
         super.tick();
         if (player == null) return;
         if (followPlayer) {
-            setMapPosition((int)player.getX(), (int)player.getZ());
+            setMapPosition((int) player.getX(), (int) player.getZ());
         }
         if (player.getCommandSenderWorld().getGameTime() > timeButtonPressed + BUTTON_PAUSE) {
             navigateByButton(selectedButton);
@@ -707,9 +706,9 @@ public class GuiAtlasBase extends GuiComponent {
 
     public void updateBookmarkerList() {
         markers.removeAllContent();
-        markers.scrollTo(0,0);
+        markers.scrollTo(0, 0);
 
-        if(localMarkersData == null) return;
+        if (localMarkersData == null) return;
 
         int contentY = 0;
         for (var marker : localMarkersData.getAllMarkers()) {
@@ -721,12 +720,11 @@ public class GuiAtlasBase extends GuiComponent {
 //            bookmark.setRelativeX(20);
 
             bookmark.addListener(button -> {
-                if(state.is(NORMAL)) {
+                if (state.is(NORMAL)) {
                     setTargetPosition(marker.getX(), marker.getZ());
                     followPlayer = false;
                     btnPosition.setEnabled(true);
-                }
-                else if(state.is(DELETING_MARKER)) {
+                } else if (state.is(DELETING_MARKER)) {
                     AtlasClientAPI.getMarkerAPI().deleteMarker(player.getCommandSenderWorld(),
                             getAtlasID(), marker.getId());
                     player.getCommandSenderWorld().playSound(player, player.blockPosition(),
@@ -746,26 +744,26 @@ public class GuiAtlasBase extends GuiComponent {
     // threshold the tiles don't change when map position changes slightly.
     // The +-2 at the end provide margin so that tiles at the edges of
     // the page have their stitched texture correct.
-    protected Rect getMapPos(){
+    protected Rect getMapPos() {
         int mapStartX = roundToBase((int) Math.floor(-((double) MAP_WIDTH / 2d + mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
         int mapStartZ = roundToBase((int) Math.floor(-((double) MAP_HEIGHT / 2d + mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndX   = roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
-        int mapEndZ   = roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndX = roundToBase((int) Math.ceil(((double) MAP_WIDTH / 2d - mapOffsetX + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
+        int mapEndZ = roundToBase((int) Math.ceil(((double) MAP_HEIGHT / 2d - mapOffsetY + 2 * tileHalfSize) / mapScale / 16d), tile2ChunkScale);
 
         return new Rect(mapStartX, mapStartZ, mapEndX, mapEndZ);
     }
 
-    protected Rect getMarkerPos(Rect mapPos){
+    protected Rect getMarkerPos(Rect mapPos) {
         int markersStartX = roundToBase(mapPos.minX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
         int markersStartZ = roundToBase(mapPos.minY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP - 1;
-        int markersEndX   = roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
-        int markersEndZ   = roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersEndX = roundToBase(mapPos.maxX, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
+        int markersEndZ = roundToBase(mapPos.maxY, MarkersData.CHUNK_STEP) / MarkersData.CHUNK_STEP + 1;
 
         return new Rect(markersStartX, markersStartZ, markersEndX, markersEndZ);
     }
 
-    protected Pos2I getStartScreenPos(Rect mapPos){
-        var mapStartScreenX = getGuiX() + WIDTH  / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
+    protected Pos2I getStartScreenPos(Rect mapPos) {
+        var mapStartScreenX = getGuiX() + WIDTH / 2 + (int) ((mapPos.minX << 4) * mapScale) + mapOffsetX;
         var mapStartScreenY = getGuiY() + HEIGHT / 2 + (int) ((mapPos.minY << 4) * mapScale) + mapOffsetY;
         return new Pos2I(mapStartScreenX, mapStartScreenY);
     }
@@ -791,7 +789,6 @@ public class GuiAtlasBase extends GuiComponent {
             localMarkersData = null;
         }
     }
-
 
 
     /**
@@ -880,11 +877,11 @@ public class GuiAtlasBase extends GuiComponent {
     }
 
     private int getTargetPositionX() {
-        return (int)(-targetOffsetX * mapScale);
+        return (int) (-targetOffsetX * mapScale);
     }
 
     private int getTargetPositionY() {
-        return (int)(-targetOffsetY * mapScale);
+        return (int) (-targetOffsetY * mapScale);
     }
 
 
@@ -1025,14 +1022,14 @@ public class GuiAtlasBase extends GuiComponent {
             ResourceLocation tile = biomeData.getTile(pos.x, pos.z);
 
             if (tile == null) {
-                drawTooltip(Arrays.asList(new TextComponent(coords), new TextComponent(chunks)), font);
+                drawTooltip(Arrays.asList(Component.literal(coords), Component.literal(chunks)), font);
             } else {
                 String texture_set = TileTextureMap.instance().getTextureSet(tile).name.toString();
                 drawTooltip(Arrays.asList(
-                                new TextComponent(coords),
-                                new TextComponent(chunks),
-                                new TextComponent("Tile: " + tile),
-                                new TextComponent("TSet: " + texture_set)),
+                                Component.literal(coords),
+                                Component.literal(chunks),
+                                Component.literal("Tile: " + tile),
+                                Component.literal("TSet: " + texture_set)),
                         font);
             }
         }
@@ -1054,7 +1051,7 @@ public class GuiAtlasBase extends GuiComponent {
         poseStack.pushPose();
         poseStack.translate(startScreenPos.x, startScreenPos.y, 0);
 
-        for(var subtiles : tiles) {
+        for (var subtiles : tiles) {
             for (var subtile : subtiles) {
                 if (subtile == null || subtile.tile == null) continue;
                 var texture = TileTextureMap.instance().getTexture(subtile);
@@ -1238,10 +1235,10 @@ public class GuiAtlasBase extends GuiComponent {
             System.out.println("Rendering Marker: " + info.tex);
         }
 
-        if (markerX <= getGuiX() + MARKER_BOUNDS.minX|| // MAP_BORDER_WIDTH ||
-            markerX >= getGuiX() + MARKER_BOUNDS.maxX|| // MAP_WIDTH + MAP_BORDER_WIDTH ||
-            markerY <= getGuiY() + MARKER_BOUNDS.minY|| // MAP_BORDER_HEIGHT ||
-            markerY >= getGuiY() + MARKER_BOUNDS.maxY){ // MAP_HEIGHT + MAP_BORDER_HEIGHT) {
+        if (markerX <= getGuiX() + MARKER_BOUNDS.minX || // MAP_BORDER_WIDTH ||
+                markerX >= getGuiX() + MARKER_BOUNDS.maxX || // MAP_WIDTH + MAP_BORDER_WIDTH ||
+                markerY <= getGuiY() + MARKER_BOUNDS.minY || // MAP_BORDER_HEIGHT ||
+                markerY >= getGuiY() + MARKER_BOUNDS.maxY) { // MAP_HEIGHT + MAP_BORDER_HEIGHT) {
             setPipboyShader(0.5f);
 //            RenderSystem.setShaderColor(1, 1, 1, 0.5f);
             info.scale(0.8);
@@ -1250,8 +1247,8 @@ public class GuiAtlasBase extends GuiComponent {
 //        markerX = Mth.clamp(markerX, getGuiX() + MAP_BORDER_WIDTH,  getGuiX() + MAP_WIDTH + MAP_BORDER_WIDTH);
 //        markerY = Mth.clamp(markerY, getGuiY() + MAP_BORDER_HEIGHT,  getGuiY() + MAP_HEIGHT + MAP_BORDER_HEIGHT);
 
-        markerX = Mth.clamp(markerX, getGuiX() + MARKER_BOUNDS.minX,  getGuiX() + MARKER_BOUNDS.maxX);
-        markerY = Mth.clamp(markerY, getGuiY() + MARKER_BOUNDS.minY,  getGuiY() + MARKER_BOUNDS.maxY);
+        markerX = Mth.clamp(markerX, getGuiX() + MARKER_BOUNDS.minX, getGuiX() + MARKER_BOUNDS.maxX);
+        markerY = Mth.clamp(markerY, getGuiY() + MARKER_BOUNDS.minY, getGuiY() + MARKER_BOUNDS.maxY);
 
         info.tex.draw(poseStack, markerX + info.x, markerY + info.y, info.width, info.height);
 
@@ -1296,8 +1293,8 @@ public class GuiAtlasBase extends GuiComponent {
      * Update all text labels to current localization.
      */
     public void updateL18n() {
-        btnExportPng.setTitle(new TranslatableComponent("gui.nukacraft.exportImage"));
-        btnMarker.setTitle(new TranslatableComponent("gui.nukacraft.addMarker"));
+        btnExportPng.setTitle(Component.translatable("gui.nukacraft.exportImage"));
+        btnMarker.setTitle(Component.translatable("gui.nukacraft.addMarker"));
     }
 
     /**

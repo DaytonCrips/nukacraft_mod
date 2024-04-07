@@ -57,7 +57,7 @@ public class StructureStartMixin {
         }
 
         synchronized (this.pieceContainer.pieces()) {
-            if(this.pieceContainer.pieces().isEmpty()) return;
+            if (this.pieceContainer.pieces().isEmpty()) return;
             MinecraftForge.EVENT_BUS.post(new StructureAddedCallback.TheEvent((StructureStart) (Object) this, world));
         }
     }

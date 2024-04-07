@@ -18,29 +18,29 @@ public class PipBoyUtils {
     public static ResourceLocation warning_image = new ResourceLocation("nukacraft:textures/screens/pipboy_screens/warning_pipboy.png");
     public static Integer[] warn_cords = new Integer[]{-8, -22};
 
-    public static int getPlayerRads(Player player){
+    public static int getPlayerRads(Player player) {
         var radVal = player.getAttributeValue(ModAttributes.RADIATION.get());
         return Mth.ceil(radVal);
     }
 
-    public static void setPipboyShader(){
+    public static void setPipboyShader() {
         setPipboyShader(1);
     }
 
-    public static void setPipboyShader(float alpha){
+    public static void setPipboyShader(float alpha) {
         var mc = Minecraft.getInstance();
-        if(mc.player == null) return;
+        if (mc.player == null) return;
 
         var color = getPipboyColor(mc.player);
         RenderSystem.setShaderColor(color.red, color.green, color.blue, alpha);
     }
 
-    public static NbtColor getPipboyColor(@NotNull Player player){
+    public static NbtColor getPipboyColor(@NotNull Player player) {
         var pipboyStack = getPipboyStack(player);
         var pipboyTag = pipboyStack.getOrCreateTag();
         var color = new NbtColor();
 
-        if(!pipboyStack.isEmpty() && pipboyTag.contains(Nbt.COLOR)){
+        if (!pipboyStack.isEmpty() && pipboyTag.contains(Nbt.COLOR)) {
             color.deserializeNBT(pipboyTag.getCompound(Nbt.COLOR));
             return color;
         }
@@ -48,11 +48,11 @@ public class PipBoyUtils {
         return color;
     }
 
-    public static boolean hasPipboy(){
+    public static boolean hasPipboy() {
         return hasPipboy(Minecraft.getInstance().player);
     }
 
-    public static boolean hasPipboy(Player player){
+    public static boolean hasPipboy(Player player) {
         return getPipboyStack(player).getItem() instanceof PipBoyItem;
     }
 
@@ -61,18 +61,18 @@ public class PipBoyUtils {
         var offhand = player.getOffhandItem();
         var curiosPipboy = SlotUtils.getCuriosPipboy(player);
 
-        if(offhand.getItem() instanceof PipBoyItem)
+        if (offhand.getItem() instanceof PipBoyItem)
             pipboy = offhand;
 
-        if(curiosPipboy.getItem() instanceof PipBoyItem)
+        if (curiosPipboy.getItem() instanceof PipBoyItem)
             pipboy = curiosPipboy;
 
         return pipboy;
     }
 
-    public static ResourceLocation getPipboySkin(Player player){
+    public static ResourceLocation getPipboySkin(Player player) {
         var slot = getPipboyStack(player);
-        if(slot.getItem() instanceof PipBoyItem pipBoyItem){
+        if (slot.getItem() instanceof PipBoyItem pipBoyItem) {
             return nukaResource("textures/screens/" + pipBoyItem.getSkin() + "_pipboy.png");
         }
         return nukaResource("textures/screens/default_pipboy.png");

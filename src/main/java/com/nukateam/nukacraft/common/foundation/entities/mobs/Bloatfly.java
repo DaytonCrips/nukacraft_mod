@@ -45,6 +45,10 @@ public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
 //        this.setPathfindingMalus(BlockPathTypes.FENCE, -1.0F);
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FLYING_SPEED, 0.6F).add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.FOLLOW_RANGE, 48.0D);
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -55,10 +59,6 @@ public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Raider.class, false));
         this.goalSelector.addGoal(6, new FlyingGoal<>(this));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.FLYING_SPEED, 0.6F).add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.FOLLOW_RANGE, 48.0D);
     }
 
     protected PathNavigation createNavigation(Level pLevel) {
@@ -73,7 +73,8 @@ public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
         return false;
     }
 
-    protected void checkFallDamage(double pY, boolean pOnGround, BlockState pState, BlockPos pPos) {}
+    protected void checkFallDamage(double pY, boolean pOnGround, BlockState pState, BlockPos pPos) {
+    }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {

@@ -60,9 +60,10 @@ public class TileDetectorBase implements ITileDetector {
         try {
             var met = Biome.class.getDeclaredMethod("getBiomeCategory");
             met.setAccessible(true);
-            return (BiomeCategory)met.invoke(biome);
+            return (BiomeCategory) met.invoke(biome);
+        } catch (Exception ignored) {
+            return null;
         }
-        catch (Exception ignored) {return null;}
     }
 
     /**
@@ -74,7 +75,7 @@ public class TileDetectorBase implements ITileDetector {
         for (Biome biome : BuiltinRegistries.BIOME) {
 
             var biomeCategory = getCategory(biome);
-            if(biomeCategory == null) continue;
+            if (biomeCategory == null) continue;
 
             switch (biomeCategory) {
                 case BEACH -> beachBiomes.add(BuiltinRegistries.BIOME.getKey(biome));
@@ -82,16 +83,6 @@ public class TileDetectorBase implements ITileDetector {
                 case SWAMP -> swampBiomes.add(BuiltinRegistries.BIOME.getKey(biome));
             }
 
-        }
-    }
-
-    int priorityForBiome(ResourceLocation biome) {
-        if (waterBiomes.contains(biome)) {
-            return 4;
-        } else if (beachBiomes.contains(biome)) {
-            return 3;
-        } else {
-            return 1;
         }
     }
 
@@ -108,6 +99,16 @@ public class TileDetectorBase implements ITileDetector {
         var id = getBiomeIdentifier(world, biome);
         int occurrence = map.getOrDefault(id, 0) + weight;
         map.put(id, occurrence);
+    }
+
+    int priorityForBiome(ResourceLocation biome) {
+        if (waterBiomes.contains(biome)) {
+            return 4;
+        } else if (beachBiomes.contains(biome)) {
+            return 3;
+        } else {
+            return 1;
+        }
     }
 
     @Override
@@ -158,7 +159,7 @@ public class TileDetectorBase implements ITileDetector {
                     }
                 }
 
-                updateOccurrencesMap(biomeOccurrences, world, biome, priorityForBiome(getBiomeIdentifier(world,biome)));
+                updateOccurrencesMap(biomeOccurrences, world, biome, priorityForBiome(getBiomeIdentifier(world, biome)));
             }
         }
 

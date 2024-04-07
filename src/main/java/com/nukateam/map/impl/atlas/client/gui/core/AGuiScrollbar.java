@@ -1,12 +1,20 @@
 package com.nukateam.map.impl.atlas.client.gui.core;
 
-import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import org.lwjgl.opengl.GL11;
 
 
 public abstract class AGuiScrollbar extends GuiComponent {
+    /**
+     * In pixels.
+     */
+    private static int scrollStep = 18;
+    /**
+     * The attached viewport that this scrollbar scrolls.
+     */
+    final GuiViewport viewport;
     ITexture texture;
     int textureWidth;
     int textureHeight;
@@ -15,35 +23,7 @@ public abstract class AGuiScrollbar extends GuiComponent {
      */
     int capLength;
     int textureBodyLength;
-
-    /**
-     * In pixels.
-     */
-    private static int scrollStep = 18;
-
     boolean visible = false;
-    /**
-     * True if the anchor is being dragged
-     */
-    private boolean isDragged = false;
-    /**
-     * True if the left mouse button was held down last time drawScreen was called.
-     */
-    private boolean wasClicking = false;
-
-    private boolean usesWheel = true;
-
-    /**
-     * Size of the viewport / size of content.
-     */
-    private float contentRatio = 1;
-
-    /**
-     * Anchor position / available length.
-     */
-    private float scrollRatio = 0;
-
-
     int anchorPos = 0;
     int anchorSize;
     /**
@@ -54,11 +34,23 @@ public abstract class AGuiScrollbar extends GuiComponent {
      * How much the content of the viewport is displaced.
      */
     int scrollPos = 0;
-
     /**
-     * The attached viewport that this scrollbar scrolls.
+     * True if the anchor is being dragged
      */
-    final GuiViewport viewport;
+    private boolean isDragged = false;
+    /**
+     * True if the left mouse button was held down last time drawScreen was called.
+     */
+    private boolean wasClicking = false;
+    private boolean usesWheel = true;
+    /**
+     * Size of the viewport / size of content.
+     */
+    private float contentRatio = 1;
+    /**
+     * Anchor position / available length.
+     */
+    private float scrollRatio = 0;
 
     AGuiScrollbar(GuiViewport viewport) {
         this.viewport = viewport;

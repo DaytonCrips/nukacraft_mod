@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 import static com.nukateam.nukacraft.common.registery.ContainerRegistry.PIPBOY;
 
-public class PipBoyMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>>{
+public class PipBoyMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
     public final Level world;
     public final Player entity;
     private final Map<Integer, Slot> customSlots = new HashMap<>();

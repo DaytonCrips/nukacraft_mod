@@ -1,8 +1,8 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.nukateam.map.impl.atlas.util.ExportImageUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import com.nukateam.map.impl.atlas.util.ExportImageUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraftforge.api.distmarker.Dist;

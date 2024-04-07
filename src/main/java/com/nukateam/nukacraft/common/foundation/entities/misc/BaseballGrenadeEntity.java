@@ -1,11 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 import com.nukateam.ntgl.Config;
-import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableItemEntity;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;

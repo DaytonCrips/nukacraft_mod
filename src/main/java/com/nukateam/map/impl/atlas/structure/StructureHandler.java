@@ -1,9 +1,9 @@
 package com.nukateam.map.impl.atlas.structure;
 
-import com.nukateam.map.api.AtlasAPI;
-import com.nukateam.map.impl.atlas.util.MathUtil;
 import com.google.common.collect.HashMultimap;
 import com.mojang.datafixers.util.Either;
+import com.nukateam.map.api.AtlasAPI;
+import com.nukateam.map.impl.atlas.util.MathUtil;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -79,7 +79,7 @@ public class StructureHandler {
                 try {
                     var field = SinglePoolElement.class.getField("template");
                     field.setAccessible(true);
-                    var value = (Either<ResourceLocation, StructureTemplate>)field.get(singlePoolElement);
+                    var value = (Either<ResourceLocation, StructureTemplate>) field.get(singlePoolElement);
 
                     Optional<ResourceLocation> left = value.left();
 
@@ -90,13 +90,14 @@ public class StructureHandler {
                             ResourceLocation tile = entry.getValue().getA();
                             Setter setter = entry.getValue().getB();
                             if (path.contains(entry.getKey())) {
-                                for(ChunkPos pos : setter.matches(world, singlePoolElement, pool.getBoundingBox())) {
+                                for (ChunkPos pos : setter.matches(world, singlePoolElement, pool.getBoundingBox())) {
                                     put(world, pos.x, pos.z, tile);
                                 }
                             }
                         }
                     }
-                } catch (Exception ignored){}
+                } catch (Exception ignored) {
+                }
             }
         }
     }

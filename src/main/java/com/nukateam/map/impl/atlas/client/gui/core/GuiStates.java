@@ -7,6 +7,26 @@ package com.nukateam.map.impl.atlas.client.gui.core;
  * @author Hunternif
  */
 public class GuiStates {
+    private volatile IState currentState;
+
+    public IState current() {
+        return currentState;
+    }
+
+    public boolean is(IState state) {
+        return currentState == state;
+    }
+
+    public void switchTo(IState state) {
+        if (currentState != null) {
+            currentState.onExitState();
+        }
+        currentState = state;
+        if (state != null) {
+            state.onEnterState();
+        }
+    }
+
     /**
      * Meant to declare anonymous classes.
      */
@@ -26,26 +46,6 @@ public class GuiStates {
 
         @Override
         public void onExitState() {
-        }
-    }
-
-    private volatile IState currentState;
-
-    public IState current() {
-        return currentState;
-    }
-
-    public boolean is(IState state) {
-        return currentState == state;
-    }
-
-    public void switchTo(IState state) {
-        if (currentState != null) {
-            currentState.onExitState();
-        }
-        currentState = state;
-        if (state != null) {
-            state.onEnterState();
         }
     }
 }

@@ -5,8 +5,6 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.ticks.TickPriority;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,12 +19,12 @@ public class FogHandler {
         Level world = event.getCamera().getEntity().level;
         BlockPos pos = event.getCamera().getBlockPosition();
         if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:glow_sea"))) {
-            RenderSystem.setShaderTexture(0,0);
+            RenderSystem.setShaderTexture(0, 0);
             RenderSystem.setShaderFogStart(9f);
             RenderSystem.setShaderFogEnd(65f);
         }
         if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:ash_heap"))) {
-            RenderSystem.setShaderTexture(0,0);
+            RenderSystem.setShaderTexture(0, 0);
             RenderSystem.setShaderFogStart(12f);
             RenderSystem.setShaderFogEnd(87f);
         }

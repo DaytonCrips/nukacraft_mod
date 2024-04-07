@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,9 +28,11 @@ public class ResinBlock extends CocoaBlock {
     protected static final VoxelShape EAST_AABB = Block.box(13.9, 0.1, 0.09999999999999892, 15.9, 15.9, 15.9);
     protected static final VoxelShape SOUTH_AABB = Block.box(0.1, 0.1, 13.9, 15.9, 15.9, 15.9);
     protected static final VoxelShape NORTH_AABB = Block.box(0.1, 0.1, 0.1999999999999993, 15.9, 15.9, 2.1999999999999993);
+
     public ResinBlock(Properties pProperties) {
         super(pProperties);
     }
+
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         BlockState blockstate = pLevel.getBlockState(pPos.relative(pState.getValue(FACING)));
@@ -46,20 +47,22 @@ public class ResinBlock extends CocoaBlock {
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
             popResource(level, pos, new ItemStack(ModItems.GLOWINGRES.get(), j + (flag ? 1 : 0)));
-            level.playSound((Player)null, pos, SoundEvents.HONEY_BLOCK_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.playSound((Player) null, pos, SoundEvents.HONEY_BLOCK_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(0)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             return super.use(state, level, pos, player, hand, result);
         }
     }
+
     @Override
     public boolean isBonemealSuccess(Level pLevel, Random pRand, BlockPos pPos, BlockState pState) {
         return false;
     }
+
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         //int i = pState.getValue(AGE);
-        switch((Direction)pState.getValue(FACING)) {
+        switch ((Direction) pState.getValue(FACING)) {
             case SOUTH:
                 return SOUTH_AABB;
             case NORTH:

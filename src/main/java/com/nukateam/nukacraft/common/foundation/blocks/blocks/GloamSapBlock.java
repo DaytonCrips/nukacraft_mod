@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class GloamSapBlock extends ResinBlock{
+public class GloamSapBlock extends ResinBlock {
     public GloamSapBlock(Properties pProperties) {
         super(pProperties);
     }
@@ -26,7 +26,7 @@ public class GloamSapBlock extends ResinBlock{
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
             popResource(level, pos, new ItemStack(ModItems.GLOAMSAP.get(), j + (flag ? 1 : 0)));
-            level.playSound((Player)null, pos, SoundEvents.HONEY_BLOCK_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.playSound((Player) null, pos, SoundEvents.HONEY_BLOCK_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(0)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {

@@ -1,25 +1,14 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.nukateam.map.impl.atlas.client.Textures;
-import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.Textures;
+import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import org.lwjgl.opengl.GL11;
 
 public class GuiArrowButton extends GuiComponentButton {
     private static final int WIDTH = 12;
     private static final int HEIGHT = 12;
-
-    public enum ArrowDirection {
-        UP("Up"), DOWN("Down"), LEFT("Left"), RIGHT("Right");
-
-        public final String description;
-
-        ArrowDirection(String text) {
-            this.description = text;
-        }
-    }
-
     private final ArrowDirection direction;
 
     private GuiArrowButton(ArrowDirection direction) {
@@ -84,5 +73,15 @@ public class GuiArrowButton extends GuiComponentButton {
         Textures.BTN_ARROWS.draw(matrices, x, y, u, v, WIDTH, HEIGHT);
 
         RenderSystem.disableBlend();
+    }
+
+    public enum ArrowDirection {
+        UP("Up"), DOWN("Down"), LEFT("Left"), RIGHT("Right");
+
+        public final String description;
+
+        ArrowDirection(String text) {
+            this.description = text;
+        }
     }
 }

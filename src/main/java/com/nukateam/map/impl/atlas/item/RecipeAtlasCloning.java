@@ -81,7 +81,7 @@ public class RecipeAtlasCloning implements CraftingRecipe {
 //
 //            return newAtlas;
 //        } else {
-            return ItemStack.EMPTY;
+        return ItemStack.EMPTY;
 //        }
     }
 

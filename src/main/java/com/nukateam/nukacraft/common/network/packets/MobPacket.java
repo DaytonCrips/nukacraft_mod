@@ -18,7 +18,8 @@ public class MobPacket {
         this.isRunning = isRunning;
     }
 
-    public MobPacket() {}
+    public MobPacket() {
+    }
 
     public static void write(MobPacket message, FriendlyByteBuf buffer) {
         buffer.writeInt(message.entityId);
@@ -33,8 +34,9 @@ public class MobPacket {
 
     public static void handle(MobPacket message, Supplier<NetworkEvent.Context> context) {
         boolean isClientSide = context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT;
-        if(isClientSide){
-            ((Deathclaw)Minecraft.getInstance().level.getEntity(message.entityId)).setIsRunning(message.isRunning);
-        }else{}
+        if (isClientSide) {
+            ((Deathclaw) Minecraft.getInstance().level.getEntity(message.entityId)).setIsRunning(message.isRunning);
+        } else {
+        }
     }
 }

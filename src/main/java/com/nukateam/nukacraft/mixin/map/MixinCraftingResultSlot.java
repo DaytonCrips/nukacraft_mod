@@ -32,7 +32,7 @@ public class MixinCraftingResultSlot extends Slot {
     @Inject(at = @At("HEAD"), method = "checkTakeAchievements(Lnet/minecraft/world/item/ItemStack;)V")
     protected void onCrafted(ItemStack stack, final CallbackInfo info) {
         if (container instanceof RecipeHolder) {
-        	MinecraftForge.EVENT_BUS.post(new RecipeCraftedCallback.TheEvent(this.player, this.player.level, ((RecipeHolder) (container)).getRecipeUsed(), stack, craftSlots));
+            MinecraftForge.EVENT_BUS.post(new RecipeCraftedCallback.TheEvent(this.player, this.player.level, ((RecipeHolder) (container)).getRecipeUsed(), stack, craftSlots));
         }
     }
 }

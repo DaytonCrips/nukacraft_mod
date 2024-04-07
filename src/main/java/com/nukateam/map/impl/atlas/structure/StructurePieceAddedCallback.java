@@ -8,30 +8,30 @@ import net.minecraftforge.eventbus.api.Event;
 import java.util.function.Consumer;
 
 public interface StructurePieceAddedCallback {
-	/**
-	 * @author Stereowalker
-	 */
-	public static class TheEvent extends Event {
-		private final StructurePiece structurePiece;
-		private final ServerLevel world;
-		
-		public TheEvent(StructurePiece structurePiece, ServerLevel world) {
-			this.structurePiece = structurePiece;
-			this.world = world;
-		}
+    public static void register(StructurePieceAddedCallback consumer) {
+        MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>) event -> consumer.onStructurePieceAdded(event.getStructurePiece(), event.getWorld()));
+    }
 
-		public StructurePiece getStructurePiece() {
-			return structurePiece;
-		}
-		
-		public ServerLevel getWorld() {
-			return world;
-		}
-	}
+    void onStructurePieceAdded(StructurePiece structurePiece, ServerLevel world);
 
-	void onStructurePieceAdded(StructurePiece structurePiece, ServerLevel world);
-	
-	public static void register(StructurePieceAddedCallback consumer) {
-		MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>)event->consumer.onStructurePieceAdded(event.getStructurePiece(), event.getWorld()));
-	}
+    /**
+     * @author Stereowalker
+     */
+    public static class TheEvent extends Event {
+        private final StructurePiece structurePiece;
+        private final ServerLevel world;
+
+        public TheEvent(StructurePiece structurePiece, ServerLevel world) {
+            this.structurePiece = structurePiece;
+            this.world = world;
+        }
+
+        public StructurePiece getStructurePiece() {
+            return structurePiece;
+        }
+
+        public ServerLevel getWorld() {
+            return world;
+        }
+    }
 }

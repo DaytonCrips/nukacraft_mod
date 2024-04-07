@@ -21,6 +21,6 @@ public class MixinClientPlayNetworkHandler {
 
     @Inject(at = @At("RETURN"), method = "handleLogin")
     public void afterGameJoin(ClientboundLoginPacket packet, CallbackInfo info) {
-    	MinecraftForge.EVENT_BUS.post(new NewServerConnectionCallback.TheEvent(!minecraft.hasSingleplayerServer()));
+        MinecraftForge.EVENT_BUS.post(new NewServerConnectionCallback.TheEvent(!minecraft.hasSingleplayerServer()));
     }
 }

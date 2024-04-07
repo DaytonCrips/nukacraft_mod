@@ -10,10 +10,10 @@ class RenderedImageScanned implements RenderedImage {
 
     private final int width;
     private final int height;
-    private int bufY;
     private final BufferedImage scanBuffer;
     private final Consumer<Graphics2D> generator;
     private final IntConsumer rowListener;
+    private int bufY;
 
     public RenderedImageScanned(int width, int height, BufferedImage scanBuffer, Consumer<Graphics2D> generator, IntConsumer rowListener) {
         this.width = width;

@@ -15,11 +15,11 @@ public class WoodenArmorModel extends GeoModel<WoodenArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(WoodenArmorItem object) {
-        return nukaResource("textures/armor/"+ object.getSkin() +"_armor_texture.png");
+        return nukaResource("textures/armor/" + object.getSkin() + "_armor_texture.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(WoodenArmorItem animatable) {
-        return nukaResource( "animations/armor_default_animation.json");
+        return nukaResource("animations/armor_default_animation.json");
     }
 }

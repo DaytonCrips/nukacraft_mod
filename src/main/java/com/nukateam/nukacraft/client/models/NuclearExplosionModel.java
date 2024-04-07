@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.client.models;
 
 import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
-import mod.azure.azurelib.model.*;
+import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.*;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 

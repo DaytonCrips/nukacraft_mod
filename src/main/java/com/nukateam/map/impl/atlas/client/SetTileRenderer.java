@@ -1,8 +1,8 @@
 package com.nukateam.map.impl.atlas.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.client.texture.Texture;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;

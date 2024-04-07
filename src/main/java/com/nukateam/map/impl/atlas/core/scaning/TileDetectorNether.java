@@ -63,7 +63,7 @@ public class TileDetectorNether extends TileDetectorBase implements ITileDetecto
                     }
                 } else {
                     // In case there are custom biomes "modded in":
-                    updateOccurrencesMap(biomeOccurrences, world, biome, priorityForBiome(getBiomeIdentifier(world,biome)));
+                    updateOccurrencesMap(biomeOccurrences, world, biome, priorityForBiome(getBiomeIdentifier(world, biome)));
                 }
             }
         }

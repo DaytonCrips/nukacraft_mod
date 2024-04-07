@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.data.utils;
 
-public class ExplosionType{
+public class ExplosionType {
     private float size;
     private int duration;
     private int flashDuration;

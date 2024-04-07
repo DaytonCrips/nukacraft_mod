@@ -1,11 +1,11 @@
 package com.nukateam.map.impl.atlas.client;
 
-import com.nukateam.map.impl.atlas.MapCore;
-import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
-import com.nukateam.map.impl.atlas.util.Log;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.nukateam.map.impl.atlas.MapCore;
+import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
+import com.nukateam.map.impl.atlas.util.Log;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -121,13 +121,12 @@ public class TextureSetConfig implements IResourceReloadListener<Collection<Text
 
     @Override
     public CompletableFuture<Void> apply(Collection<TextureSet> sets, ResourceManager manager, ProfilerFiller profiler, Executor executor) {
-    	for (TextureSet set : sets) {
+        for (TextureSet set : sets) {
             try {
                 set.loadTextures();
                 textureSetMap.register(set);
                 Log.info("Loaded texture set %s with %d custom texture(s)", set.name, set.getTexturePaths().length);
-            }
-            catch (Throwable e) {
+            } catch (Throwable e) {
                 Log.error(e, "Failed to load the texture set `%s`:", set.name);
             }
 
@@ -142,7 +141,7 @@ public class TextureSetConfig implements IResourceReloadListener<Collection<Text
                 Log.info("Loaded water texture `%s` for shore texture `%s` texture", texture.waterName, texture.name);
             }
         }
-    	return CompletableFuture.runAsync(() -> {
+        return CompletableFuture.runAsync(() -> {
         });
     }
 

@@ -1,11 +1,11 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiComponentButton;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.nukateam.map.impl.atlas.marker.Marker;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -54,7 +54,7 @@ public class GuiMarkerBookmark extends GuiComponentButton {
         Textures.BOOKMARKS_LEFT.draw(matrices, getGuiX(), getGuiY(), u, v, WIDTH, HEIGHT);
 
         // Render the icon:
-        iconTexture.draw(matrices, getGuiX() - (isMouseOver ? 3 : 2), getGuiY()-3, 24,24);
+        iconTexture.draw(matrices, getGuiX() - (isMouseOver ? 3 : 2), getGuiY() - 3, 24, 24);
 
         if (isMouseOver && !getTitle().getString().isEmpty()) {
             drawTooltip(Collections.singletonList(getTitle()), Minecraft.getInstance().font);

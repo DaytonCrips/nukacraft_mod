@@ -18,7 +18,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-public class NukaRootBlock  extends BushBlock implements BonemealableBlock {
+public class NukaRootBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     public static final VoxelShape BUSHLING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     public static final VoxelShape GROWING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
@@ -51,11 +51,6 @@ public class NukaRootBlock  extends BushBlock implements BonemealableBlock {
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
         }
     }
-
-
-
-
-
 
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {

@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 public class GearDoorBlock extends BaseEntityBlock {
-    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 
     public GearDoorBlock(Properties pProperties) {
         super(pProperties);

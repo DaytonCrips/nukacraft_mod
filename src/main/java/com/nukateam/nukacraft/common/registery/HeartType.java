@@ -22,19 +22,6 @@ public enum HeartType {
         this.canBlink = pCanBlink;
     }
 
-    public int getX(boolean isHalf, boolean highlight) {
-        int x;
-        if (this == CONTAINER) {
-            x = highlight ? 1 : 0;
-        } else {
-            int halfX = isHalf ? 1 : 0;
-            int highlightX = this.canBlink && highlight ? 2 : 0;
-            x = halfX + highlightX;
-        }
-
-        return 16 + (this.index * 2 + x) * 9;
-    }
-
     public static HeartType forPlayer(Player pPlayer) {
         HeartType gui$hearttype;
         if (pPlayer.hasEffect(MobEffects.POISON)) {
@@ -48,5 +35,18 @@ public enum HeartType {
         }
 
         return gui$hearttype;
+    }
+
+    public int getX(boolean isHalf, boolean highlight) {
+        int x;
+        if (this == CONTAINER) {
+            x = highlight ? 1 : 0;
+        } else {
+            int halfX = isHalf ? 1 : 0;
+            int highlightX = this.canBlink && highlight ? 2 : 0;
+            x = halfX + highlightX;
+        }
+
+        return 16 + (this.index * 2 + x) * 9;
     }
 }

@@ -22,12 +22,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(HumanoidModel.class)
 public class LivingEntityModelMixin<T extends LivingEntity> {
+    private static void copyModelAngles(ModelPart source, ModelPart target) {
+        target.xRot = source.xRot;
+        target.yRot = source.yRot;
+        target.zRot = source.zRot;
+    }
+
     @SuppressWarnings({"ConstantConditions"})
     @Inject(method = "setupAnim*", at = @At(value = "TAIL"))
     private void setupAnimTail(T entity, float animationPos, float animationSpeed, float animationBob, float deltaHeadYaw, float headPitch, CallbackInfo ci) {
-        var model = (HumanoidModel<T>)(Object)this;
+        var model = (HumanoidModel<T>) (Object) this;
         setupForArm(entity, animationPos, model, InteractionHand.MAIN_HAND);
-        setupForArm(entity, animationPos, model, InteractionHand.OFF_HAND );
+        setupForArm(entity, animationPos, model, InteractionHand.OFF_HAND);
     }
 
     @Unique
@@ -41,7 +47,7 @@ public class LivingEntityModelMixin<T extends LivingEntity> {
                 model.leftArm.xRot = 0;
                 model.leftArm.yRot = 0;
                 model.leftArm.zRot = 0;
-                if(model instanceof PlayerModel<T> playerModel) {
+                if (model instanceof PlayerModel<T> playerModel) {
                     copyModelAngles(playerModel.rightArm, playerModel.rightSleeve);
                     copyModelAngles(playerModel.leftArm, playerModel.leftSleeve);
                 }
@@ -54,18 +60,11 @@ public class LivingEntityModelMixin<T extends LivingEntity> {
                     model.leftArm, model.head, interactionHand,
                     AimingHandler.get().getAimProgress(entity, Minecraft.getInstance().getFrameTime()));
 
-            if(model instanceof PlayerModel<T> playerModel) {
+            if (model instanceof PlayerModel<T> playerModel) {
                 copyModelAngles(playerModel.rightArm, playerModel.rightSleeve);
                 copyModelAngles(playerModel.leftArm, playerModel.leftSleeve);
             }
             copyModelAngles(model.head, model.hat);
         }
-    }
-
-
-    private static void copyModelAngles(ModelPart source, ModelPart target) {
-        target.xRot = source.xRot;
-        target.yRot = source.yRot;
-        target.zRot = source.zRot;
     }
 }

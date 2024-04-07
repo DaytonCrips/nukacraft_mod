@@ -16,36 +16,36 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public abstract class S2CPacket extends AntiqueAtlasPacket {
-	@SuppressWarnings("deprecation")
-	public void message(final Supplier<NetworkEvent.Context> contextSupplier) {
-		final NetworkEvent.Context context = contextSupplier.get();
-		if (shouldRun()) {
-			context.enqueueWork(() -> DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-				context.setPacketHandled(handle(Minecraft.getInstance().player));
-			}));
-		}
-	}
+    @SuppressWarnings("deprecation")
+    public void message(final Supplier<NetworkEvent.Context> contextSupplier) {
+        final NetworkEvent.Context context = contextSupplier.get();
+        if (shouldRun()) {
+            context.enqueueWork(() -> DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                context.setPacketHandled(handle(Minecraft.getInstance().player));
+            }));
+        }
+    }
 
-	public boolean shouldRun() {
-		return true;
-	}
+    public boolean shouldRun() {
+        return true;
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public abstract boolean handle(LocalPlayer player);
-	
-	public void send(ServerPlayer playerEntity) {
-		MapCore.MOD_CHANNEL.sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
-	}
+    @OnlyIn(Dist.CLIENT)
+    public abstract boolean handle(LocalPlayer player);
 
-	public void send(ServerLevel world) {
-		for (ServerPlayer playerEntity : world.players()) {
-			send(playerEntity);
-		}
-	}
+    public void send(ServerPlayer playerEntity) {
+        MapCore.MOD_CHANNEL.sendTo(this, playerEntity.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+    }
 
-	public void send(MinecraftServer server) {
-		for (ServerPlayer playerEntity : server.getPlayerList().getPlayers()) {
-			send(playerEntity);
-		}
-	}
+    public void send(ServerLevel world) {
+        for (ServerPlayer playerEntity : world.players()) {
+            send(playerEntity);
+        }
+    }
+
+    public void send(MinecraftServer server) {
+        for (ServerPlayer playerEntity : server.getPlayerList().getPlayers()) {
+            send(playerEntity);
+        }
+    }
 }

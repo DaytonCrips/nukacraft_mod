@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 public class MutantPlantBlock extends FlowerBlock {
 
 
-
     public MutantPlantBlock(MobEffect effect, int val, Properties prop) {
         super(effect, val, prop);
 

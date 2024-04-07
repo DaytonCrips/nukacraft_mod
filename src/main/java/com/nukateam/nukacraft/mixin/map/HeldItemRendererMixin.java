@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.mixin.map;
 
-import com.nukateam.map.impl.atlas.client.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import com.nukateam.map.impl.atlas.client.OverlayRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
@@ -28,6 +28,11 @@ public abstract class HeldItemRendererMixin {
 
     @Shadow
     private ItemStack offHandItem;
+    @Shadow
+    @Final
+    private Minecraft minecraft;
+    @Shadow
+    private ItemStack mainHandItem;
 
     @Shadow
     protected abstract void renderMapHand(PoseStack matrices, MultiBufferSource vertexConsumers, int light, HumanoidArm arm);
@@ -36,14 +41,7 @@ public abstract class HeldItemRendererMixin {
     protected abstract void renderPlayerArm(PoseStack matrices, MultiBufferSource vertexConsumers, int light, float equipProgress, float swingProgress, HumanoidArm arm);
 
     @Shadow
-    @Final
-    private Minecraft minecraft;
-
-    @Shadow
     protected abstract float calculateMapTilt(float tickDelta);
-
-    @Shadow
-    private ItemStack mainHandItem;
 
     @Inject(method = "renderArmWithItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void renderAtlas(AbstractClientPlayer player, float tickDelta, float pitch, InteractionHand hand, float swingProgress, ItemStack item, float equipProgress, PoseStack matrices, MultiBufferSource vertexConsumers, int light, CallbackInfo ci, boolean bl, HumanoidArm arm) {

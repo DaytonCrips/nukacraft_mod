@@ -2,8 +2,6 @@ package com.nukateam.nukacraft.common.foundation.blocks.fluids;
 
 import com.nukateam.nukacraft.common.registery.ModFluids;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

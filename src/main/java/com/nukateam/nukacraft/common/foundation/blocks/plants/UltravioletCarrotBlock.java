@@ -23,7 +23,6 @@ public class UltravioletCarrotBlock extends CropBlock {
     }
 
 
-
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_AGE[pState.getValue(this.getAgeProperty())];
     }

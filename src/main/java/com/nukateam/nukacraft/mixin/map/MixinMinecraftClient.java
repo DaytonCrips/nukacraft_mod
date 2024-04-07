@@ -14,9 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Minecraft.class)
 public class MixinMinecraftClient {
 
-    @Inject(method = "setLevel", at=@At("TAIL"))
-    void AntiqueAtlas_joinWorld(ClientLevel world, CallbackInfo info)
-    {
+    @Inject(method = "setLevel", at = @At("TAIL"))
+    void AntiqueAtlas_joinWorld(ClientLevel world, CallbackInfo info) {
         ClientProxy.assignCustomBiomeTextures(world);
     }
 }

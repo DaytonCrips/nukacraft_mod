@@ -66,8 +66,6 @@ public class GinsengBlock extends BushBlock implements BonemealableBlock {
     }
 
 
-
-
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(AGE);
     }

@@ -1,12 +1,14 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
-import com.nukateam.nukacraft.client.models.*;
-import com.mojang.blaze3d.vertex.*;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.nukateam.nukacraft.client.models.NuclearExplosionModel;
 import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
-import mod.azure.azurelib.cache.object.*;
+import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.core.object.Color;
-import mod.azure.azurelib.renderer.*;
-import net.minecraft.client.renderer.*;
+import mod.azure.azurelib.renderer.DynamicGeoEntityRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 
 public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearExplosionEffectEntity> {
@@ -26,7 +28,7 @@ public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearEx
 
     @Override
     public Color getRenderColor(NuclearExplosionEffectEntity getOpacity, float partialTick, int packedLight) {
-        return Color.ofRGBA(1,1,1, getOpacity.getOpacity());
+        return Color.ofRGBA(1, 1, 1, getOpacity.getOpacity());
     }
 
     @Override

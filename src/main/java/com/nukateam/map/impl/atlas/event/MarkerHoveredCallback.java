@@ -9,22 +9,22 @@ import java.util.function.Consumer;
 
 @FunctionalInterface
 public interface MarkerHoveredCallback {
-    public class TheEvent extends PlayerEvent {
-    	Marker marker;
-
-        public TheEvent (Player player, Marker marker) {
-        	super(player);
-        	this.marker = marker;
-        }
-        
-        public Marker getMarker() {
-    		return marker;
-    	}
+    public static void register(MarkerHoveredCallback consumer) {
+        MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>) event -> consumer.onHovered(event.getPlayer(), event.getMarker()));
     }
-    
+
     void onHovered(Player player, Marker marker);
-    
-	public static void register(MarkerHoveredCallback consumer) {
-		MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>)event->consumer.onHovered(event.getPlayer(), event.getMarker()));
-	}
+
+    public class TheEvent extends PlayerEvent {
+        Marker marker;
+
+        public TheEvent(Player player, Marker marker) {
+            super(player);
+            this.marker = marker;
+        }
+
+        public Marker getMarker() {
+            return marker;
+        }
+    }
 }

@@ -2,7 +2,7 @@ package com.nukateam.map.impl.atlas.core.watcher;
 
 import com.nukateam.map.api.AtlasAPI;
 import com.nukateam.map.impl.atlas.MapCore;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
@@ -16,7 +16,7 @@ public class DeathWatcher {
         if (MapCore.CONFIG.autoDeathMarker) {
             for (int atlasID : AtlasAPI.getPlayerAtlases(player)) {
                 AtlasAPI.getMarkerAPI().putMarker(player.getCommandSenderWorld(), true, atlasID, new ResourceLocation("nukacraft:tomb"),
-                        new TranslatableComponent("gui.nukacraft.marker.tomb", player.getName()),
+                        Component.translatable("gui.nukacraft.marker.tomb", player.getName()),
                         (int) player.getX(), (int) player.getZ());
             }
         }

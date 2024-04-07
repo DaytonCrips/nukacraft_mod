@@ -1,10 +1,11 @@
 package com.nukateam.map.impl.atlas.client.events;
 
-import net.minecraftforge.fml.event.lifecycle.*;
-import net.minecraftforge.api.distmarker.*;
-import net.minecraftforge.eventbus.api.*;
-import net.minecraftforge.fml.common.*;
-import com.nukateam.nukacraft.*;
+import com.nukateam.nukacraft.NukaCraftMod;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static com.nukateam.map.impl.atlas.MapCore.initMapClient;
 

@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.client.gui.core;
 
-import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.texture.ITexture;
 
 
 /**

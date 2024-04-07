@@ -1,41 +1,32 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.google.common.collect.ImmutableList;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.fluids.AcidFluidBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.fluids.RadWaterBlock;
 import com.nukateam.nukacraft.common.foundation.materials.BlockMaterials;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Tuple;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.material.*;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.apache.commons.lang3.mutable.Mutable;
-import org.apache.commons.lang3.mutable.MutableObject;
 import oshi.util.tuples.Pair;
 
 import javax.annotation.Nullable;
-import java.util.*;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
-import static java.util.Map.*;
 
 @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
 public class ModFluids {
@@ -43,30 +34,38 @@ public class ModFluids {
 //    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
 //    public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
 
-    public static final ResourceLocation ACID_STILL_RL   = nukaResource("fluid/acid_still"  );
-    public static final ResourceLocation ACID_FLOWING_RL = nukaResource("fluid/acid_flow"   );
+    public static final ResourceLocation ACID_STILL_RL = nukaResource("fluid/acid_still");
+    public static final ResourceLocation ACID_FLOWING_RL = nukaResource("fluid/acid_flow");
     public static final ResourceLocation ACID_OVERLAY_RL = nukaResource("fluid/acid_overlay");
 
-    public static final ResourceLocation POISONOUS_WATER_STILL_RL   = nukaResource("fluid/acid_still"  );
-    public static final ResourceLocation POISONOUS_WATER_FLOWING_RL = nukaResource("fluid/acid_flow"   );
+    public static final ResourceLocation POISONOUS_WATER_STILL_RL = nukaResource("fluid/acid_still");
+    public static final ResourceLocation POISONOUS_WATER_FLOWING_RL = nukaResource("fluid/acid_flow");
     public static final ResourceLocation POISONOUS_WATER_OVERLAY_RL = nukaResource("fluid/acid_overlay");
 
-    public static final ResourceLocation DIRTY_WATER_STILL_RL   = nukaResource("fluid/acid_still"  );
-    public static final ResourceLocation DIRTY_WATER_FLOWING_RL = nukaResource("fluid/acid_flow"   );
+    public static final ResourceLocation DIRTY_WATER_STILL_RL = nukaResource("fluid/acid_still");
+    public static final ResourceLocation DIRTY_WATER_FLOWING_RL = nukaResource("fluid/acid_flow");
     public static final ResourceLocation DIRTY_WATER_OVERLAY_RL = nukaResource("fluid/acid_overlay");
 
 //    public static final ResourceLocation WATER_STILL_RL   = nukaResource("block/creosote_still");
 //    public static final ResourceLocation WATER_FLOWING_RL = nukaResource("block/creosote_flow" );
 
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, NukaCraftMod.MOD_ID);
-
-    public static final RegistryObject<FlowingFluid> ACID_FLUID
+    public static final RegistryObject<LiquidBlock> ACID_BLOCK = ModBlocks.BLOCKS.register("acid",
+            () -> new AcidFluidBlock(BlockBehaviour.Properties.of(BlockMaterials.ACID_MATERIAL).noCollission().strength(100f).noDrops()));    public static final RegistryObject<FlowingFluid> ACID_FLUID
             = FLUIDS.register("acid_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.ACID_PROPERTIES));
 
-    public static final RegistryObject<FlowingFluid> ACID_FLOWING
+    public static void register(IEventBus eventBus) {
+        FLUIDS.register(eventBus);
+    }    public static final RegistryObject<FlowingFluid> ACID_FLOWING
             = FLUIDS.register("acid_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.ACID_PROPERTIES));
 
-    public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
+    @Nullable
+    public static Pair<Block, Block> getLavaInteraction(FluidState fluidState) {
+        var fluid = fluidState.getType();
+        if (fluid.isSame(ACID_FLUID.get()))
+            return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
+        return null;
+    }    public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
             = FLUIDS.register("dirty_water_still", () -> new ForgeFlowingFluid.Source(ModFluids.DIRTY_WATER_PROPERTIES));
 
     public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLOWING
@@ -79,8 +78,7 @@ public class ModFluids {
             = FLUIDS.register("poisonous_water_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.POISONOUS_WATER_PROPERTIES));
 
 
-    public static final RegistryObject<LiquidBlock> ACID_BLOCK = ModBlocks.BLOCKS.register("acid",
-            () -> new AcidFluidBlock(BlockBehaviour.Properties.of(BlockMaterials.ACID_MATERIAL).noCollission().strength(100f).noDrops()));
+
 
     public static final RegistryObject<LiquidBlock> DIRTY_WATER_BLOCK = ModBlocks.BLOCKS.register("dirty_water",
             () -> new RadWaterBlock(() -> ModFluids.DIRTY_WATER_FLUID.get(), BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100f).noDrops()));
@@ -99,7 +97,7 @@ public class ModFluids {
             .gaseous()
             .overlay(ACID_OVERLAY_RL)
 //            .color(0xA1E038FF)
-            )
+    )
             .slopeFindDistance(2).levelDecreasePerBlock(2)
             .block(() -> ModFluids.ACID_BLOCK.get()).bucket(() -> ModItems.ACID_BUCKET.get());
 
@@ -126,15 +124,7 @@ public class ModFluids {
             .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
 
 
-    public static void register(IEventBus eventBus) {
-        FLUIDS.register(eventBus);
-    }
 
-    @Nullable
-    public static Pair<Block, Block> getLavaInteraction(FluidState fluidState) {
-        var fluid = fluidState.getType();
-        if (fluid.isSame(ACID_FLUID.get()))
-            return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
-        return null;
-    }
+
+
 }

@@ -9,9 +9,12 @@ import java.util.function.Consumer;
 
 public interface ServerWorldEvents {
 
-	void onWorldLoad(MinecraftServer server, ServerLevel world);
-	
-	public static void register(ServerWorldEvents consumer) {
-		MinecraftForge.EVENT_BUS.addListener((Consumer<Load>)event->{if (event.getWorld() instanceof ServerLevel)consumer.onWorldLoad(((ServerLevel)event.getWorld()).getServer(), (ServerLevel)event.getWorld());});
-	}
+    public static void register(ServerWorldEvents consumer) {
+        MinecraftForge.EVENT_BUS.addListener((Consumer<Load>) event -> {
+            if (event.getWorld() instanceof ServerLevel)
+                consumer.onWorldLoad(((ServerLevel) event.getWorld()).getServer(), (ServerLevel) event.getWorld());
+        });
+    }
+
+    void onWorldLoad(MinecraftServer server, ServerLevel world);
 }

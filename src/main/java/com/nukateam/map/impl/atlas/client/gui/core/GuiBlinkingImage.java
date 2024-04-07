@@ -1,8 +1,8 @@
 package com.nukateam.map.impl.atlas.client.gui.core;
 
-import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -64,7 +64,7 @@ public class GuiBlinkingImage extends GuiComponent {
         drawImage(matrices);
 
         RenderSystem.disableBlend();
-        RenderSystem.setShaderColor(1,1,1,1);
+        RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 
     private void drawImage(PoseStack matrices) {

@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
-import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OpenGearBlock extends BaseEntityBlock {
-    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 
     public OpenGearBlock(Properties pProperties) {
         super(pProperties);
@@ -53,37 +53,37 @@ public class OpenGearBlock extends BaseEntityBlock {
         switch (baseState.getValue(FACING)) {
             case NORTH:
                 for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
-                    world.setBlock(new BlockPos(base_x-posBlocks, base_y, base_z), block, 3);
-                    world.setBlock(new BlockPos(base_x, base_y+ posBlocks, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x - posBlocks, base_y, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y + posBlocks, base_z), block, 3);
                     for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
-                        world.setBlock(new BlockPos(base_x-posBlocks, base_y+cordBlock, base_z), block, 3);
+                        world.setBlock(new BlockPos(base_x - posBlocks, base_y + cordBlock, base_z), block, 3);
                     }
                 }
                 break;
             case EAST:
                 for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
-                    world.setBlock(new BlockPos(base_x, base_y, base_z-posBlocks), block, 3);
-                    world.setBlock(new BlockPos(base_x, base_y+posBlocks, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y, base_z - posBlocks), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y + posBlocks, base_z), block, 3);
                     for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
-                        world.setBlock(new BlockPos(base_x, base_y+cordBlock, base_z-posBlocks), block, 3);
+                        world.setBlock(new BlockPos(base_x, base_y + cordBlock, base_z - posBlocks), block, 3);
                     }
                 }
                 break;
             case WEST:
                 for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
-                    world.setBlock(new BlockPos(base_x, base_y, base_z+posBlocks), block, 3);
-                    world.setBlock(new BlockPos(base_x, base_y+posBlocks, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y, base_z + posBlocks), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y + posBlocks, base_z), block, 3);
                     for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
-                        world.setBlock(new BlockPos(base_x, base_y+cordBlock, base_z+posBlocks), block, 3);
+                        world.setBlock(new BlockPos(base_x, base_y + cordBlock, base_z + posBlocks), block, 3);
                     }
                 }
                 break;
             case SOUTH:
                 for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
-                    world.setBlock(new BlockPos(base_x+posBlocks, base_y, base_z), block, 3);
-                    world.setBlock(new BlockPos(base_x, base_y+posBlocks, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x + posBlocks, base_y, base_z), block, 3);
+                    world.setBlock(new BlockPos(base_x, base_y + posBlocks, base_z), block, 3);
                     for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
-                        world.setBlock(new BlockPos(base_x+posBlocks, base_y+cordBlock, base_z), block, 3);
+                        world.setBlock(new BlockPos(base_x + posBlocks, base_y + cordBlock, base_z), block, 3);
                     }
                 }
         }
@@ -95,36 +95,36 @@ public class OpenGearBlock extends BaseEntityBlock {
         BlockState stairs = ModBlocks.HALFBARRIER.get().defaultBlockState();
         switch (baseState.getValue(FACING)) {
             case NORTH:
-                world.setBlock(new BlockPos(base_x-1, base_y+1, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x-2, base_y+1, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x-1, base_y+2, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x-2, base_y+2, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x-1, base_y, base_z), stairs, 3);
-                world.setBlock(new BlockPos(base_x-2, base_y, base_z), stairs, 3);
+                world.setBlock(new BlockPos(base_x - 1, base_y + 1, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x - 2, base_y + 1, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x - 1, base_y + 2, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x - 2, base_y + 2, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x - 1, base_y, base_z), stairs, 3);
+                world.setBlock(new BlockPos(base_x - 2, base_y, base_z), stairs, 3);
                 break;
             case SOUTH:
-                world.setBlock(new BlockPos(base_x+1, base_y+1, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x+2, base_y+1, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x+1, base_y+2, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x+2, base_y+2, base_z), air, 3);
-                world.setBlock(new BlockPos(base_x+1, base_y, base_z), stairs, 3);
-                world.setBlock(new BlockPos(base_x+2, base_y, base_z), stairs, 3);
+                world.setBlock(new BlockPos(base_x + 1, base_y + 1, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x + 2, base_y + 1, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x + 1, base_y + 2, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x + 2, base_y + 2, base_z), air, 3);
+                world.setBlock(new BlockPos(base_x + 1, base_y, base_z), stairs, 3);
+                world.setBlock(new BlockPos(base_x + 2, base_y, base_z), stairs, 3);
                 break;
             case WEST:
-                world.setBlock(new BlockPos(base_x, base_y+1, base_z+1), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+1, base_z+2), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+2, base_z+1), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+2, base_z+2), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y, base_z+1), stairs, 3);
-                world.setBlock(new BlockPos(base_x, base_y, base_z+2), stairs, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 1, base_z + 1), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 1, base_z + 2), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 2, base_z + 1), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 2, base_z + 2), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y, base_z + 1), stairs, 3);
+                world.setBlock(new BlockPos(base_x, base_y, base_z + 2), stairs, 3);
                 break;
             case EAST:
-                world.setBlock(new BlockPos(base_x, base_y+1, base_z-1), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+1, base_z-2), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+2, base_z-1), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y+2, base_z-2), air, 3);
-                world.setBlock(new BlockPos(base_x, base_y, base_z-1), stairs, 3);
-                world.setBlock(new BlockPos(base_x, base_y, base_z-2), stairs, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 1, base_z - 1), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 1, base_z - 2), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 2, base_z - 1), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y + 2, base_z - 2), air, 3);
+                world.setBlock(new BlockPos(base_x, base_y, base_z - 1), stairs, 3);
+                world.setBlock(new BlockPos(base_x, base_y, base_z - 2), stairs, 3);
                 break;
         }
     }
@@ -154,11 +154,13 @@ public class OpenGearBlock extends BaseEntityBlock {
         //filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
     }
+
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
         filledFrame(Blocks.AIR.defaultBlockState(), level, state, pos.getX(), pos.getY(), pos.getZ());
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
+
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (SHAPES.containsKey(pState)) {
@@ -183,25 +185,31 @@ public class OpenGearBlock extends BaseEntityBlock {
         SHAPES.put(pState, shape);
         return shape;
     }
+
     public BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
+
     public BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
+
     @Override
     public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return super.getOcclusionShape(pState, pLevel, pPos);
     }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
+
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
+
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.data.utils.PlantMutationUtils;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
@@ -13,6 +13,7 @@ public class NuclearMaterialItem extends Item {
     public NuclearMaterialItem(Properties prop) {
         super(prop);
     }
+
     @Override
     public InteractionResult useOn(UseOnContext context) {
         var player = context.getPlayer();

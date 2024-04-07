@@ -18,64 +18,64 @@ import java.util.Collection;
 import java.util.List;
 
 public class DimensionUpdateS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = MapCore.id("packet", "s2c", "dimension", "update");
+    public static final ResourceLocation ID = MapCore.id("packet", "s2c", "dimension", "update");
 
-	int atlasID;
-	ResourceKey<Level> world;
-	Collection<TileInfo> tiles;
+    int atlasID;
+    ResourceKey<Level> world;
+    Collection<TileInfo> tiles;
 
-	public DimensionUpdateS2CPacket(int atlasID, ResourceKey<Level> world, Collection<TileInfo> tiles) {
-		this.atlasID = atlasID;
-		this.world = world;
-		this.tiles = tiles;
-	}
+    public DimensionUpdateS2CPacket(int atlasID, ResourceKey<Level> world, Collection<TileInfo> tiles) {
+        this.atlasID = atlasID;
+        this.world = world;
+        this.tiles = tiles;
+    }
 
-	public static void encode(final DimensionUpdateS2CPacket msg, final FriendlyByteBuf packetBuffer) {
-		packetBuffer.writeVarInt(msg.atlasID);
-		packetBuffer.writeResourceLocation(msg.world.location());
-		packetBuffer.writeVarInt(msg.tiles.size());
+    public static void encode(final DimensionUpdateS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+        packetBuffer.writeVarInt(msg.atlasID);
+        packetBuffer.writeResourceLocation(msg.world.location());
+        packetBuffer.writeVarInt(msg.tiles.size());
 
-		for (TileInfo tile : msg.tiles) {
-			packetBuffer.writeVarInt(tile.x);
-			packetBuffer.writeVarInt(tile.z);
-			packetBuffer.writeResourceLocation(tile.id);
-		}
-	}
+        for (TileInfo tile : msg.tiles) {
+            packetBuffer.writeVarInt(tile.x);
+            packetBuffer.writeVarInt(tile.z);
+            packetBuffer.writeResourceLocation(tile.id);
+        }
+    }
 
-	public static DimensionUpdateS2CPacket decode(final FriendlyByteBuf packetBuffer) {
-		int atlasID = packetBuffer.readVarInt();
-		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
-		int tileCount = packetBuffer.readVarInt();
+    public static DimensionUpdateS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+        int atlasID = packetBuffer.readVarInt();
+        ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
+        int tileCount = packetBuffer.readVarInt();
 
-		List<TileInfo> tiles = new ArrayList<>();
-		for (int i = 0; i < tileCount; ++i) {
-			tiles.add(new TileInfo(
-					packetBuffer.readVarInt(),
-					packetBuffer.readVarInt(),
-					packetBuffer.readResourceLocation())
-					);
-		}
+        List<TileInfo> tiles = new ArrayList<>();
+        for (int i = 0; i < tileCount; ++i) {
+            tiles.add(new TileInfo(
+                    packetBuffer.readVarInt(),
+                    packetBuffer.readVarInt(),
+                    packetBuffer.readResourceLocation())
+            );
+        }
 
-		return new DimensionUpdateS2CPacket(atlasID, world, tiles);
-	}
+        return new DimensionUpdateS2CPacket(atlasID, world, tiles);
+    }
 
-	@Override
-	public boolean shouldRun() {
-		return this.world != null;
-	}
+    @Override
+    public boolean shouldRun() {
+        return this.world != null;
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public boolean handle(LocalPlayer player) {
-		AtlasData data = MapCore.tileData.getData(this.atlasID, player.level);
-		for (TileInfo info : this.tiles) {
-			data.getWorldData(this.world).setTile(info.x, info.z, info.id);
-		}
-		return true;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public boolean handle(LocalPlayer player) {
+        AtlasData data = MapCore.tileData.getData(this.atlasID, player.level);
+        for (TileInfo info : this.tiles) {
+            data.getWorldData(this.world).setTile(info.x, info.z, info.id);
+        }
+        return true;
+    }
 
-	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
+    @Override
+    public ResourceLocation getId() {
+        return ID;
+    }
 }

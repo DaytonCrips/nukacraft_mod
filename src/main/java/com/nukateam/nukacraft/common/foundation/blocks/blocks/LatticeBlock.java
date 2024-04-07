@@ -15,9 +15,11 @@ public class LatticeBlock extends SlabBlock {
     public VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pReader, BlockPos pPos) {
         return Shapes.empty();
     }
+
     public float getShadeBrightness(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return 1.0F;
     }
+
     public int getLightBlock(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return 1;
     }

@@ -14,7 +14,7 @@ public class ACMath {
     public static final Direction[] NOT_UP_DIRECTIONS = new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.DOWN};
     public static final float HALF_SQRT_3 = (float) (Math.sqrt(3.0D) / 2.0D);
 
-    public static final float QUARTER_PI = ((float)Math.PI / 4F);
+    public static final float QUARTER_PI = ((float) Math.PI / 4F);
 
     public static float smin(float a, float b, float k) {
         float h = Math.max(k - Math.abs(a - b), 0.0F) / k;

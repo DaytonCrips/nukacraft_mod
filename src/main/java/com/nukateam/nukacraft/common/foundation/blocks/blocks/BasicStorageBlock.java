@@ -17,7 +17,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BarrelBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -30,9 +29,10 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class BasicStorageBlock extends BarrelBlock {
-    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     private String model;
+
     public BasicStorageBlock(Properties pProperties, String model) {
         super(pProperties);
         this.model = model;
@@ -45,49 +45,52 @@ public class BasicStorageBlock extends BarrelBlock {
         } else {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof BasicStorageEntity) {
-                pPlayer.openMenu((BasicStorageEntity)blockentity);
+                pPlayer.openMenu((BasicStorageEntity) blockentity);
                 pPlayer.awardStat(Stats.OPEN_BARREL);
             }
 
             return InteractionResult.CONSUME;
         }
     }
+
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof Container) {
-                Containers.dropContents(pLevel, pPos, (Container)blockentity);
+                Containers.dropContents(pLevel, pPos, (Container) blockentity);
                 pLevel.updateNeighbourForOutputSignal(pPos, this);
             }
 
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
         }
     }
+
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);
         if (blockentity instanceof BasicStorageEntity) {
-            ((BasicStorageEntity)blockentity).recheckOpen();
+            ((BasicStorageEntity) blockentity).recheckOpen();
         }
 
     }
+
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new BasicStorageEntity(pPos, pState);
     }
+
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         if (pStack.hasCustomHoverName()) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof BasicStorageEntity) {
-                ((BasicStorageEntity)blockentity).setCustomName(pStack.getHoverName());
+                ((BasicStorageEntity) blockentity).setCustomName(pStack.getHoverName());
             }
         }
 
     }
-    private VoxelShape getShape(BlockState state)
-    {
+
+    private VoxelShape getShape(BlockState state) {
         Direction direction = state.getValue(FACING);
-        if(SHAPES.containsKey(state))
-        {
+        if (SHAPES.containsKey(state)) {
             return SHAPES.get(state);
         }
         List<VoxelShape> shapes = new ArrayList<>();
@@ -114,14 +117,14 @@ public class BasicStorageBlock extends BarrelBlock {
         SHAPES.put(state, shape);
         return shape;
     }
+
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         return this.getShape(state);
     }
+
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos) {
         return this.getShape(state);
     }
 

@@ -16,11 +16,11 @@ public class LeatherArmorModel extends GeoModel<LeatherArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(LeatherArmorItem leatherArmorItem) {
-        return nukaResource("textures/armor/"+ leatherArmorItem.getSkin() +"_leather_armor.png");
+        return nukaResource("textures/armor/" + leatherArmorItem.getSkin() + "_leather_armor.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(LeatherArmorItem leatherArmorItem) {
-        return nukaResource( "animations/armor_default_animation.json");
+        return nukaResource("animations/armor_default_animation.json");
     }
 }

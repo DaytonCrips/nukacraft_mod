@@ -22,7 +22,7 @@ public class OpenGearEntity extends BlockEntity implements GeoBlockEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "doorControl", 0, event ->
-                event.setAndContinue( RawAnimation.begin().thenPlayAndHold("open"))));
+                event.setAndContinue(RawAnimation.begin().thenPlayAndHold("open"))));
     }
 
     @Override

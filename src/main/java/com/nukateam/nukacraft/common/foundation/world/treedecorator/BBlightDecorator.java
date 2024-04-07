@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
 
-public class BBlightDecorator  extends TreeDecorator {
+public class BBlightDecorator extends TreeDecorator {
     public static final Codec<BBlightDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(BBlightDecorator::new, (thing) -> {
         return thing.probability;
     }).codec();
@@ -36,7 +36,7 @@ public class BBlightDecorator  extends TreeDecorator {
             p_161722_.stream().filter((p_69980_) -> {
                 return p_69980_.getY() - i <= 2;
             }).forEach((p_161728_) -> {
-                for(Direction direction : Direction.Plane.HORIZONTAL) {
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
                     if (rando.nextFloat() <= 0.25F) {
                         Direction direction1 = direction.getOpposite();
                         BlockPos blockpos = p_161728_.offset(direction1.getStepX(), 0, direction1.getStepZ());

@@ -18,10 +18,16 @@ package com.nukateam.nukacraft.common.data.utils;
  */
 
 public class ACSimplexNoise {  // Simplex noise in 2D, 3D and 4D
+    // Skewing and unskewing factors for 2, 3, and 4 dimensions
+    private static final double F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
+    private static final double G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+    private static final double F3 = 1.0 / 3.0;
+    private static final double G3 = 1.0 / 6.0;
+    private static final double F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
+    private static final double G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
     private static Grad grad3[] = {new Grad(1, 1, 0), new Grad(-1, 1, 0), new Grad(1, -1, 0), new Grad(-1, -1, 0),
             new Grad(1, 0, 1), new Grad(-1, 0, 1), new Grad(1, 0, -1), new Grad(-1, 0, -1),
             new Grad(0, 1, 1), new Grad(0, -1, 1), new Grad(0, 1, -1), new Grad(0, -1, -1)};
-
     private static Grad grad4[] = {new Grad(0, 1, 1, 1), new Grad(0, 1, 1, -1), new Grad(0, 1, -1, 1), new Grad(0, 1, -1, -1),
             new Grad(0, -1, 1, 1), new Grad(0, -1, 1, -1), new Grad(0, -1, -1, 1), new Grad(0, -1, -1, -1),
             new Grad(1, 0, 1, 1), new Grad(1, 0, 1, -1), new Grad(1, 0, -1, 1), new Grad(1, 0, -1, -1),
@@ -30,7 +36,6 @@ public class ACSimplexNoise {  // Simplex noise in 2D, 3D and 4D
             new Grad(-1, 1, 0, 1), new Grad(-1, 1, 0, -1), new Grad(-1, -1, 0, 1), new Grad(-1, -1, 0, -1),
             new Grad(1, 1, 1, 0), new Grad(1, 1, -1, 0), new Grad(1, -1, 1, 0), new Grad(1, -1, -1, 0),
             new Grad(-1, 1, 1, 0), new Grad(-1, 1, -1, 0), new Grad(-1, -1, 1, 0), new Grad(-1, -1, -1, 0)};
-
     private static short p[] = {151, 160, 137, 91, 90, 15,
             131, 13, 201, 95, 96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23,
             190, 6, 148, 247, 120, 234, 75, 0, 26, 197, 62, 94, 252, 219, 203, 117, 35, 11, 32, 57, 177, 33,
@@ -54,14 +59,6 @@ public class ACSimplexNoise {  // Simplex noise in 2D, 3D and 4D
             permMod12[i] = (short) (perm[i] % 12);
         }
     }
-
-    // Skewing and unskewing factors for 2, 3, and 4 dimensions
-    private static final double F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-    private static final double G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-    private static final double F3 = 1.0 / 3.0;
-    private static final double G3 = 1.0 / 6.0;
-    private static final double F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
-    private static final double G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
 
     // This method is a *lot* faster than using (int)Math.floor(x)
     private static int fastfloor(double x) {

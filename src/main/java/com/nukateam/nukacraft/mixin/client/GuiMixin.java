@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.mixin.client;
 
-import com.nukateam.nukacraft.common.registery.HeartType;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.nukacraft.common.registery.HeartType;
 import com.nukateam.nukacraft.common.registery.ModAttributes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -25,12 +25,7 @@ public abstract class GuiMixin extends GuiComponent {
     @Unique
     protected final Random random = new Random();
 
-    @Unique
-    private void renderHeart(PoseStack poseStack, HeartType heartType, int x, int y, int vOffset, boolean highlight, boolean p_168707_) {
-        this.blit(poseStack, x, y, heartType.getX(p_168707_, highlight), vOffset, 9, 9);
-    }
-
-    private static double getPlayerRadiation(){
+    private static double getPlayerRadiation() {
         return Minecraft.getInstance().player.getAttributeValue(ModAttributes.RADIATION.get());
     }
 
@@ -39,6 +34,11 @@ public abstract class GuiMixin extends GuiComponent {
         RenderSystem.setShaderTexture(0, RAD_HEART_ICON);
         blit(poseStack, heartPosX, heartPosY, isFull ? 0 : 9, 0, 9, 9, 18, 9);
         RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
+    }
+
+    @Unique
+    private void renderHeart(PoseStack poseStack, HeartType heartType, int x, int y, int vOffset, boolean highlight, boolean p_168707_) {
+        this.blit(poseStack, x, y, heartType.getX(p_168707_, highlight), vOffset, 9, 9);
     }
 
     @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)
@@ -51,9 +51,9 @@ public abstract class GuiMixin extends GuiComponent {
         var heartType = HeartType.forPlayer(player);
         int yOffset = 9 * (player.level.getLevelData().isHardcore() ? 5 : 0);
 
-        int rads = (int)getPlayerRadiation();
+        int rads = (int) getPlayerRadiation();
 
-        int baseMaxHealth = (int)player.getAttributeBaseValue(Attributes.MAX_HEALTH);
+        int baseMaxHealth = (int) player.getAttributeBaseValue(Attributes.MAX_HEALTH);
         int baseMaxHearts = Mth.ceil((double) baseMaxHealth / 2.0D);
 
 
@@ -62,7 +62,7 @@ public abstract class GuiMixin extends GuiComponent {
         int absorbHearts = Mth.ceil((double) absorb / 2.0D);
         int maxHalfHearts = maxHearts * 2;
 
-        if (radHearts + maxHearts > baseMaxHearts){
+        if (radHearts + maxHearts > baseMaxHearts) {
             radHearts = baseMaxHearts - maxHearts;
         }
 
@@ -91,7 +91,7 @@ public abstract class GuiMixin extends GuiComponent {
             var isHealthOdd = health != maxHearts * 2;
             var isLastHeartId = heartId == maxHearts - 1;
 
-            if(isHealthOdd && isLastHeartId && rads > 0){
+            if (isHealthOdd && isLastHeartId && rads > 0) {
                 renderRadHeart(poseStack, heartPosX, heartPosY, false);
             }
 

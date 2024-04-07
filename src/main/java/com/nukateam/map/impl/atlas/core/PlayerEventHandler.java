@@ -26,7 +26,7 @@ public class PlayerEventHandler {
 
     public static void onPlayerTick(Player player) {
         if (!MapCore.CONFIG.itemNeeded) {
-        	// TODO Can we move world scanning to the server in this case as well?
+            // TODO Can we move world scanning to the server in this case as well?
             AtlasData data = MapCore.tileData.getData(
                     player.getUUID().hashCode(), player.level);
 

@@ -5,7 +5,7 @@ import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.map.impl.atlas.mixinhooks.EntityHooksAA;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,19 +19,20 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Identifies when a player teleports in or out of the nether and puts a portal
  * marker in the atlases he is carrying.
+ *
  * @author Hunternif
  */
 public class NetherPortalWatcher {
-	/**
-	 * When a player teleports, he is removed from the source dimension, where
-	 * portal detection works well, and his ID is placed in this set.
-	 * Then the player is spawned in the destination dimension, where portal
-	 * detection doesn't work for some reason. But we can detect his arrival
-	 * by checking if this set contains the player's ID!
-	 */
-	private final Map<Integer, DimensionType> teleportingPlayersOrigin = new ConcurrentHashMap<>();
+    /**
+     * When a player teleports, he is removed from the source dimension, where
+     * portal detection works well, and his ID is placed in this set.
+     * Then the player is spawned in the destination dimension, where portal
+     * detection doesn't work for some reason. But we can detect his arrival
+     * by checking if this set contains the player's ID!
+     */
+    private final Map<Integer, DimensionType> teleportingPlayersOrigin = new ConcurrentHashMap<>();
 
-	// TODO FABRIC
+    // TODO FABRIC
 	/* @SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load event) {
 		if (!event.getWorld().G) {
@@ -83,58 +84,60 @@ public class NetherPortalWatcher {
 		}
 	} */
 
-	/** Put the Portal marker at the player's current coordinates into all
-	 * atlases that he is carrying, if the same marker is not already there. */
-	private void addPortalMarkerIfNone(Player player) {
-		if (!MapCore.CONFIG.autoNetherPortalMarkers || player.getCommandSenderWorld().isClientSide) {
-			return;
-		}
+    private static boolean isEntityInPortal(Entity entity) {
+        return ((EntityHooksAA) entity).antiqueAtlas_isInPortal();
+    }
 
-		// Due to switching dimensions this player entity's worldObj is lagging.
-		// We need the very specific dimension each time.
-		Level world = player.getCommandSenderWorld();
+    /**
+     * Put the Portal marker at the player's current coordinates into all
+     * atlases that he is carrying, if the same marker is not already there.
+     */
+    private void addPortalMarkerIfNone(Player player) {
+        if (!MapCore.CONFIG.autoNetherPortalMarkers || player.getCommandSenderWorld().isClientSide) {
+            return;
+        }
 
-		if (!MapCore.CONFIG.itemNeeded) {
-			addPortalMarkerIfNone(player, world, player.getUUID().hashCode());
-			return;
-		}
+        // Due to switching dimensions this player entity's worldObj is lagging.
+        // We need the very specific dimension each time.
+        Level world = player.getCommandSenderWorld();
 
-		for (ItemStack stack : player.getInventory().items) {
-			if (stack == null || !(stack.getItem() instanceof AtlasItem)) continue;
+        if (!MapCore.CONFIG.itemNeeded) {
+            addPortalMarkerIfNone(player, world, player.getUUID().hashCode());
+            return;
+        }
 
-			addPortalMarkerIfNone(player, world, AtlasItem.getAtlasID(stack));
-		}
-	}
+        for (ItemStack stack : player.getInventory().items) {
+            if (stack == null || !(stack.getItem() instanceof AtlasItem)) continue;
 
-	private void addPortalMarkerIfNone(Player player, Level world, int atlasID) {
-		MarkerType netherPortalType = MarkerType.REGISTRY.get(MapCore.id("nether_portal"));
-		if (netherPortalType == null) {
-			return;
-		}
+            addPortalMarkerIfNone(player, world, AtlasItem.getAtlasID(stack));
+        }
+    }
 
-		// Can't use entity.dimension here, because its value has already been updated!
-		DimensionMarkersData data = MapCore.markersData.getMarkersData(atlasID, world)
-				.getMarkersDataInWorld(world.dimension());
+    private void addPortalMarkerIfNone(Player player, Level world, int atlasID) {
+        MarkerType netherPortalType = MarkerType.REGISTRY.get(MapCore.id("nether_portal"));
+        if (netherPortalType == null) {
+            return;
+        }
 
-		int x = (int)player.getX();
-		int z = (int)player.getZ();
+        // Can't use entity.dimension here, because its value has already been updated!
+        DimensionMarkersData data = MapCore.markersData.getMarkersData(atlasID, world)
+                .getMarkersDataInWorld(world.dimension());
 
-		// Check if the marker already exists:
-		List<Marker> markers = data.getMarkersAtChunk((x >> 4) / MarkersData.CHUNK_STEP, (z >> 4) / MarkersData.CHUNK_STEP);
-		if (markers != null) {
-			for (Marker marker : markers) {
-				if (marker.getType().equals("nukacraft:nether_portal")) {
-					// Found the marker.
-					return;
-				}
-			}
-		}
+        int x = (int) player.getX();
+        int z = (int) player.getZ();
 
-		// Marker not found, place new one:
-		AtlasAPI.getMarkerAPI().putMarker(world, false, atlasID, MarkerType.REGISTRY.getKey(netherPortalType), new TranslatableComponent("gui.nukacraft.marker.netherPortal"), x, z);
-	}
+        // Check if the marker already exists:
+        List<Marker> markers = data.getMarkersAtChunk((x >> 4) / MarkersData.CHUNK_STEP, (z >> 4) / MarkersData.CHUNK_STEP);
+        if (markers != null) {
+            for (Marker marker : markers) {
+                if (marker.getType().equals("nukacraft:nether_portal")) {
+                    // Found the marker.
+                    return;
+                }
+            }
+        }
 
-	private static boolean isEntityInPortal(Entity entity) {
-		return ((EntityHooksAA) entity).antiqueAtlas_isInPortal();
-	}
+        // Marker not found, place new one:
+        AtlasAPI.getMarkerAPI().putMarker(world, false, atlasID, MarkerType.REGISTRY.getKey(netherPortalType), Component.translatable("gui.nukacraft.marker.netherPortal"), x, z);
+    }
 }

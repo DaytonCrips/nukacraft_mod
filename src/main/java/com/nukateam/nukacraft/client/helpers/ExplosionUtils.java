@@ -1,12 +1,12 @@
 package com.nukateam.nukacraft.client.helpers;
 
-import com.nukateam.nukacraft.common.data.utils.ExplosionType;
-import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.nukateam.nukacraft.common.data.utils.ExplosionType;
+import com.nukateam.nukacraft.common.foundation.entities.misc.NuclearExplosionEffectEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +24,7 @@ import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOS
 import static com.nukateam.nukacraft.common.registery.EntityTypes.NUCLEAR_EXPLOSION_EFFECT;
 
 public class ExplosionUtils {
-    public static final ResourceLocation BOMB_FLASH = nukaResource( "textures/misc/bomb_flash.png");
+    public static final ResourceLocation BOMB_FLASH = nukaResource("textures/misc/bomb_flash.png");
     public static final int EXPLOSION_SEARCH_DISTANCE = 45;
     public static int lastTremorTick = -1;
 
@@ -38,7 +38,7 @@ public class ExplosionUtils {
         });
     }
 
-    public static void createNuclearExplosion(Entity entity, ExplosionType type){
+    public static void createNuclearExplosion(Entity entity, ExplosionType type) {
         var level = entity.getLevel();
         var explosion = NUCLEAR_EXPLOSION.get().create(level);
         explosion.copyPosition(entity);
@@ -52,29 +52,29 @@ public class ExplosionUtils {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static ArrayList<NuclearExplosionEffectEntity> getNukesAround(){
+    public static ArrayList<NuclearExplosionEffectEntity> getNukesAround() {
         var minecraft = Minecraft.getInstance();
         var result = new ArrayList<NuclearExplosionEffectEntity>();
-        if(minecraft.player == null) return result;
+        if (minecraft.player == null) return result;
 
         var explosions = minecraft.level.getEntities(minecraft.player,
                 minecraft.player.getBoundingBox().inflate(EXPLOSION_SEARCH_DISTANCE),
                 (entity -> entity instanceof NuclearExplosionEffectEntity));
 
-        explosions.forEach((entity) -> result.add((NuclearExplosionEffectEntity)entity));
+        explosions.forEach((entity) -> result.add((NuclearExplosionEffectEntity) entity));
 
         return result;
     }
 
     @Nullable
     @OnlyIn(Dist.CLIENT)
-    public static Double getDistanceToNearestExplosion(){
+    public static Double getDistanceToNearestExplosion() {
         var nukes = getNukesAround();
-        if(nukes.isEmpty()) return null;
-        return min(nukes,(nuke) -> nuke.getDistanceToPlayer());
+        if (nukes.isEmpty()) return null;
+        return min(nukes, (nuke) -> nuke.getDistanceToPlayer());
     }
 
-    public static <T> Double min(List<T> list, Function<T, Double> comparator){
+    public static <T> Double min(List<T> list, Function<T, Double> comparator) {
         var min = comparator.apply(list.get(0));
 
         for (T t : list) {

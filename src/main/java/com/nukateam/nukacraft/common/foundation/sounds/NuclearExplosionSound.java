@@ -6,10 +6,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
 public class NuclearExplosionSound extends AbstractTickableSoundInstance implements UnlimitedPitch {
-    private int tickCount = 0;
     private final int duration;
     private final int fadesAt;
     private final float fadeInBy;
+    private int tickCount = 0;
 
     public NuclearExplosionSound(SoundEvent soundEvent, double x, double y, double z, int duration, int fadesAt, float fadeInBy, boolean looping) {
         super(soundEvent, SoundSource.NEUTRAL/*, SoundInstance.createUnseededRandom()*/);
@@ -26,15 +26,15 @@ public class NuclearExplosionSound extends AbstractTickableSoundInstance impleme
     }
 
     public void tick() {
-        if(tickCount < this.duration){
-            if(tickCount >= fadesAt){
+        if (tickCount < this.duration) {
+            if (tickCount >= fadesAt) {
                 float shrinkVolumeFor = 1F / Math.max(this.duration - fadesAt, 1F);
                 volume = Math.max(0, volume - shrinkVolumeFor);
-            }else if(volume < 1F){
+            } else if (volume < 1F) {
                 volume = Math.min(1F, volume + fadeInBy);
             }
             tickCount++;
-        }else{
+        } else {
             stop();
         }
     }

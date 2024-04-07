@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,6 +28,6 @@ public class BubbleAppleItem extends RadItem {
     @Override
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
-        list.add(new TranslatableComponent("tooltip.nukacraft.jumpboost").append("§9(0:05)"));
+        list.add(Component.translatable("tooltip.nukacraft.jumpboost").append("§9(0:05)"));
     }
 }

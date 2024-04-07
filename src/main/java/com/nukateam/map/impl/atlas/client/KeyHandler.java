@@ -1,8 +1,8 @@
 package com.nukateam.map.impl.atlas.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
-import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;

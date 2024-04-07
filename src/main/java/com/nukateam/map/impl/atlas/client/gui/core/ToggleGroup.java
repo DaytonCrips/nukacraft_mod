@@ -11,10 +11,8 @@ public class ToggleGroup<B extends GuiToggleButton> implements Iterable<B> {
     private final List<B> buttons = new ArrayList<>();
 
     private final List<ISelectListener<? extends B>> listeners = new ArrayList<>();
-
-    private B selectedButton = null;
-
     private final ClickListener clickListener;
+    private B selectedButton = null;
 
     public ToggleGroup() {
         clickListener = this.new ClickListener();

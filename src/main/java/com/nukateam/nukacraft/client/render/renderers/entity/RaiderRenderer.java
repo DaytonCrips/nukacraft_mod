@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+
 import static com.jetug.chassis_core.common.util.helpers.PlayerUtils.isWearingChassis;
 
 public class RaiderRenderer extends HumanoidMobRenderer<Raider, RaiderModel> {
@@ -20,7 +21,7 @@ public class RaiderRenderer extends HumanoidMobRenderer<Raider, RaiderModel> {
 
     @Override
     public boolean shouldRender(Raider pLivingEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
-        if(isWearingChassis(pLivingEntity))
+        if (isWearingChassis(pLivingEntity))
             return false;
         return super.shouldRender(pLivingEntity, pCamera, pCamX, pCamY, pCamZ);
     }

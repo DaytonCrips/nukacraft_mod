@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.events;
 
-import com.nukateam.ntgl.client.data.handler.AimingHandler;
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.RadioactiveBlock;
 import net.minecraft.core.BlockPos;
@@ -12,11 +11,11 @@ import java.util.Map;
 
 public class RadiationTracker {
     public static final int COUNTER = 10;
+    public static final Map<Player, RadiationTracker> radiationTrackers = new HashMap<>();
     public final Player player;
     private int counter = COUNTER;
-    public static final Map<Player, RadiationTracker> radiationTrackers = new HashMap<>();
 
-    public RadiationTracker(Player player){
+    public RadiationTracker(Player player) {
         this.player = player;
     }
 
@@ -24,11 +23,10 @@ public class RadiationTracker {
         if (event.phase != TickEvent.Phase.START)
             return;
 
-        if(counter <= 0) {
+        if (counter <= 0) {
             rareTick(event);
             counter = COUNTER;
-        }
-        else counter--;
+        } else counter--;
     }
 
     private void rareTick(TickEvent.PlayerTickEvent event) {
@@ -40,9 +38,9 @@ public class RadiationTracker {
 
         blocks.forEach((blockPos) -> {
             var block = level.getBlockState(blockPos).getBlock();
-            if(block instanceof RadioactiveBlock radioactiveBlock){
+            if (block instanceof RadioactiveBlock radioactiveBlock) {
                 RadiationUtils.addRadiation(player, radioactiveBlock.getRadiation());
             }
-        } );
+        });
     }
 }

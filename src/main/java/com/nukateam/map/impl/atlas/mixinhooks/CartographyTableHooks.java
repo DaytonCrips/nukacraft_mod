@@ -4,7 +4,6 @@ import com.nukateam.map.api.AtlasAPI;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.item.AtlasItem;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -33,13 +32,13 @@ public class CartographyTableHooks {
 
                     if (icon.getType() == MapDecoration.Type.RED_X) {
                         type = MapCore.id("red_x_small");
-                        label = new TranslatableComponent("gui.nukacraft.marker.treasure");
+                        label = Component.translatable("gui.nukacraft.marker.treasure");
                     } else if (icon.getType() == MapDecoration.Type.MONUMENT) {
                         type = MapCore.id("monument");
-                        label = new TranslatableComponent("gui.nukacraft.marker.monument");
+                        label = Component.translatable("gui.nukacraft.marker.monument");
                     } else if (icon.getType() == MapDecoration.Type.MANSION) {
                         type = MapCore.id("mansion");
-                        label = new TranslatableComponent("gui.nukacraft.marker.mansion");
+                        label = Component.translatable("gui.nukacraft.marker.mansion");
                     }
 
                     if (type != null) {

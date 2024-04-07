@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -47,7 +46,7 @@ public class RadNamedItem extends ItemNameBlockItem {
         showRadiation(list, radiation);
 
         if (item.getItem() == ModItems.CRACKBERRY.get()) {
-            list.add(new TranslatableComponent("tooltip.nukacraft.fire_res").append("§9(0:10)"));
+            list.add(Component.translatable("tooltip.nukacraft.fire_res").append("§9(0:10)"));
         }
     }
 }

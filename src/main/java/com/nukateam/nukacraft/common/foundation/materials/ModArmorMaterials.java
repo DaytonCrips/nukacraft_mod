@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
+
 public enum ModArmorMaterials implements ArmorMaterial {
     WOOD("wood", 3, new int[]{1, 3, 2, 1}, 0, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),

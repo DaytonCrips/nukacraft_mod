@@ -21,12 +21,15 @@ public class ArchivePage {
     public ResourceLocation getImage() {
         return image;
     }
-    public int getXcord () {
+
+    public int getXcord() {
         return x;
     }
-    public int getYcord () {
+
+    public int getYcord() {
         return y;
     }
+
     public String[] getLines() {
         return lines;
     }

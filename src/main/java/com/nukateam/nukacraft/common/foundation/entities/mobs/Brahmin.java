@@ -31,6 +31,11 @@ public class Brahmin extends Cow implements GeoEntity {
         super(pEntityType, pLevel);
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.2F);
+    }
+
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
@@ -41,11 +46,6 @@ public class Brahmin extends Cow implements GeoEntity {
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 15.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2F);
     }
 
     @Nullable
@@ -61,10 +61,9 @@ public class Brahmin extends Cow implements GeoEntity {
             controller.setAnimationSpeed(1);
             RawAnimation animation;
 
-            if(event.isMoving()){
+            if (event.isMoving()) {
                 animation = begin().thenLoop("walk");
-            }
-            else {
+            } else {
 //                animation = begin().thenLoop("idle");
                 return PlayState.STOP;
             }

@@ -2,15 +2,14 @@ package com.nukateam.nukacraft.common.foundation.entities.blocks;
 
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.ChairBlock;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,11 +33,11 @@ public class ChairBlockEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
-        if(!this.level.isClientSide) {
+        if (!this.level.isClientSide) {
             BlockState state = this.level.getBlockState(this.blockPosition());
             boolean remove = true;
-            if(state.getBlock() instanceof ChairBlock seatBlock) remove = !seatBlock.isChair(state);
-            if(this.getPassengers().isEmpty() || remove) {
+            if (state.getBlock() instanceof ChairBlock seatBlock) remove = !seatBlock.isChair(state);
+            if (this.getPassengers().isEmpty() || remove) {
                 this.remove(RemovalReason.DISCARDED);
                 this.level.updateNeighbourForOutputSignal(blockPosition(), this.level.getBlockState(blockPosition()).getBlock());
             }
@@ -46,23 +45,24 @@ public class ChairBlockEntity extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {}
+    protected void defineSynchedData() {
+    }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compound) {}
+    protected void readAdditionalSaveData(CompoundTag compound) {
+    }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compound) {}
+    protected void addAdditionalSaveData(CompoundTag compound) {
+    }
 
     @Override
-    public double getPassengersRidingOffset()
-    {
+    public double getPassengersRidingOffset() {
         return 0.0;
     }
 
     @Override
-    protected boolean canRide(Entity entity)
-    {
+    protected boolean canRide(Entity entity) {
         return true;
     }
 
@@ -86,7 +86,7 @@ public class ChairBlockEntity extends Entity {
 
         Direction original = this.getDirection();
         Direction[] offsets = {original, original.getClockWise(), original.getCounterClockWise(), original.getOpposite()};
-        for(Direction dir : offsets) {
+        for (Direction dir : offsets) {
             safeVec = DismountHelper.findSafeDismountLocation(entity.getType(), this.level, pos.relative(dir), false);
             if (safeVec != null) {
                 return safeVec.add(0, 0.25, 0);

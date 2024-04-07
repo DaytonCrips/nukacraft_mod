@@ -11,6 +11,7 @@ public class SmallExplosionParticle extends TextureSheetParticle {
     private float fadeR;
     private float fadeG;
     private float fadeB;
+
     protected SmallExplosionParticle(ClientLevel world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites, boolean shortLifespan, int color1) {
         super(world, x, y, z, xSpeed, ySpeed, zSpeed);
         this.xd = xSpeed;
@@ -25,7 +26,7 @@ public class SmallExplosionParticle extends TextureSheetParticle {
         this.setColor(Math.min(FastColor.ARGB32.red(color1) / 255F + randCol, 1), FastColor.ARGB32.green(color1) / 255F + randCol, FastColor.ARGB32.blue(color1) / 255F + randCol);
     }
 
-    public void setFadeColor(int i){
+    public void setFadeColor(int i) {
         hasFadeColor = true;
         this.fadeR = (float) ((i & 16711680) >> 16) / 255.0F;
         this.fadeG = (float) ((i & '\uff00') >> 8) / 255.0F;
@@ -40,11 +41,11 @@ public class SmallExplosionParticle extends TextureSheetParticle {
         if (this.age++ >= this.lifetime) {
             this.remove();
         } else {
-            if(hasFadeColor){
+            if (hasFadeColor) {
                 this.rCol += (fadeR - this.rCol) * 0.2F;
                 this.gCol += (fadeG - this.gCol) * 0.2F;
                 this.bCol += (fadeB - this.bCol) * 0.2F;
-            }else{
+            } else {
                 this.rCol = this.rCol * 0.95F;
                 this.gCol = this.gCol * 0.95F;
                 this.bCol = this.bCol * 0.95F;

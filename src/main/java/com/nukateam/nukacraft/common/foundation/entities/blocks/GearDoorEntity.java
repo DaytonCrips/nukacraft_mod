@@ -25,7 +25,7 @@ public class GearDoorEntity extends BlockEntity implements GeoBlockEntity {
         //controllerRegistrar.add(new AnimationController<>(this, "doorControl", 0, animateGear()));
         controllerRegistrar.add(new AnimationController<>(this, "doorControl", 0, event ->
         {
-            return event.setAndContinue( RawAnimation.begin().thenPlayAndHold("close"));
+            return event.setAndContinue(RawAnimation.begin().thenPlayAndHold("close"));
         }));
     }
 
@@ -34,7 +34,7 @@ public class GearDoorEntity extends BlockEntity implements GeoBlockEntity {
 //        GearDoorEntity.state = state;
 //    }
 
-//    public boolean getState() {
+    //    public boolean getState() {
 //        return state;
 //    }
 //    public void changeState() {

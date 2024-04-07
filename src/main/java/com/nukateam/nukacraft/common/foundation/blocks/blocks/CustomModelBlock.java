@@ -17,13 +17,13 @@ import java.util.Map;
 public class CustomModelBlock extends RotatedObjectBlock {
 
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+
     public CustomModelBlock(Properties properties) {
         super(properties);
     }
-    private VoxelShape getShape(BlockState state)
-    {
-        if(SHAPES.containsKey(state))
-        {
+
+    private VoxelShape getShape(BlockState state) {
+        if (SHAPES.containsKey(state)) {
             return SHAPES.get(state);
         }
         Direction direction = state.getValue(FACING);
@@ -35,14 +35,12 @@ public class CustomModelBlock extends RotatedObjectBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos) {
         return this.getShape(state);
     }
 }

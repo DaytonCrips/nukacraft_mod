@@ -12,6 +12,7 @@ public class WeaponDisplayItem extends HangingEntityItem {
     public WeaponDisplayItem(EntityType<? extends HangingEntity> pType, Properties pProperties) {
         super(pType, pProperties);
     }
+
     protected boolean mayPlace(Player pPlayer, Direction pDirection, ItemStack pItemStack, BlockPos pPos) {
         return !pPlayer.level.isOutsideBuildHeight(pPos) && pPlayer.mayUseItemAt(pPos, pDirection, pItemStack);
     }

@@ -1,11 +1,10 @@
 package com.nukateam.nukacraft.common.foundation.items.frame;
 
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
 import com.jetug.chassis_core.common.foundation.item.ChassisArmor;
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
+import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -26,9 +25,9 @@ public class ArmorPart extends ChassisArmor {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        var stack   = pPlayer.getItemInHand(pUsedHand);
+        var stack = pPlayer.getItemInHand(pUsedHand);
         StackUtils.setVariant(stack, "rust");
-        StackUtils.setAttachment(stack, "back","jetpack");
+        StackUtils.setAttachment(stack, "back", "jetpack");
 
         return super.use(pLevel, pPlayer, pUsedHand);
     }
@@ -37,6 +36,6 @@ public class ArmorPart extends ChassisArmor {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag isAdvanced) {
         super.appendHoverText(stack, level, list, isAdvanced);
         var variant = getVariant(stack);
-        list.add(new TranslatableComponent("skin." + variant));
+        list.add(Component.translatable("skin." + variant));
     }
 }

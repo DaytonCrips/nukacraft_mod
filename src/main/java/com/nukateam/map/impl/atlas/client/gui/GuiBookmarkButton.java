@@ -1,9 +1,9 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.map.impl.atlas.client.Textures;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiToggleButton;
 import com.nukateam.map.impl.atlas.client.texture.ITexture;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;

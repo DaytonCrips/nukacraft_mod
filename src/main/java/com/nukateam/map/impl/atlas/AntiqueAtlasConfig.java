@@ -1,6 +1,6 @@
 package com.nukateam.map.impl.atlas;
 
-import com.nukateam.map.impl.atlas.client.gui.*;
+import com.nukateam.map.impl.atlas.client.gui.GuiAtlas;
 
 public class AntiqueAtlasConfig {
     public boolean doSaveBrowsingPos = true;

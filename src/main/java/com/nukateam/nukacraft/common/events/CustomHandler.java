@@ -20,14 +20,14 @@ import static com.nukateam.nukacraft.common.events.RadiationTracker.radiationTra
 @Mod.EventBusSubscriber
 public class CustomHandler {
     @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event){
+    public static void onLivingDeath(LivingDeathEvent event) {
         var entity = event.getEntity();
         if (entity instanceof Player player) {
             var rad = player.getAttribute(ModAttributes.RADIATION.get());
             rad.setBaseValue(0);
 
-            for (var mod: rad.getModifiers()) {
-                if (mod.getName().equals("radiation")){
+            for (var mod : rad.getModifiers()) {
+                if (mod.getName().equals("radiation")) {
                     rad.removeModifier(mod);
                 }
             }
@@ -37,7 +37,7 @@ public class CustomHandler {
     @SubscribeEvent
     public static void onTick(TickEvent.PlayerTickEvent event) {
         radiationTrackers.values().forEach((val) -> {
-            if(val.player == event.player)
+            if (val.player == event.player)
                 val.onPlayerTick(event);
         });
     }
@@ -48,17 +48,16 @@ public class CustomHandler {
 //        if (fluidState.isSource() && FluidHelper.isLava(fluidState.getType()))
 //            return;
 
-        if(fluidState.isSource()){
+        if (fluidState.isSource()) {
             extracted(event, fluidState, (fluid) -> {
                 var lavaInteraction = ModFluids.getLavaInteraction(fluid);
-                if(lavaInteraction == null) return null;
+                if (lavaInteraction == null) return null;
                 return lavaInteraction.getA();
             });
-        }
-        else {
+        } else {
             extracted(event, fluidState, (fluid) -> {
                 var lavaInteraction = ModFluids.getLavaInteraction(fluid);
-                if(lavaInteraction == null) return null;
+                if (lavaInteraction == null) return null;
                 return lavaInteraction.getB();
             });
         }

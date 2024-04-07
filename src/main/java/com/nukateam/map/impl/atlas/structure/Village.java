@@ -2,13 +2,13 @@ package com.nukateam.map.impl.atlas.structure;
 
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.TileIdMap;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 
 public class Village {
     public static void registerMarkers() {
         if (MapCore.CONFIG.autoVillageMarkers) {
-            StructureHandler.registerMarker(StructureFeature.VILLAGE, MapCore.id("village"), new TranslatableComponent("gui.nukacraft.marker.village"));
+            StructureHandler.registerMarker(StructureFeature.VILLAGE, MapCore.id("village"), Component.translatable("gui.nukacraft.marker.village"));
         }
     }
 

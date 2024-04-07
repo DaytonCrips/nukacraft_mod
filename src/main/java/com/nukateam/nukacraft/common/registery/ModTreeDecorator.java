@@ -8,7 +8,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ModTreeDecorator{
+public class ModTreeDecorator {
 
     public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATORS = DeferredRegister.create(ForgeRegistries.TREE_DECORATOR_TYPES, NukaCraftMod.MOD_ID);
     public static final RegistryObject<TreeDecoratorType<?>> RESIN_TREE_DECORATOR = TREE_DECORATORS.register("resin_deco", () ->
@@ -24,7 +24,7 @@ public class ModTreeDecorator{
             new TreeDecoratorType<>(BBlightDecorator.CODEC));
 
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         TREE_DECORATORS.register(eventBus);
     }
 }

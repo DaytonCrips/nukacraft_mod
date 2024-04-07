@@ -1,13 +1,12 @@
 package com.nukateam.map.impl.atlas.item;
 
-import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
+import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.core.AtlasData;
 import com.nukateam.map.impl.atlas.core.TileInfo;
 import com.nukateam.map.impl.atlas.marker.MarkersData;
 import com.nukateam.map.impl.atlas.network.packet.s2c.play.DimensionUpdateS2CPacket;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -38,7 +37,7 @@ public class AtlasItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return new TranslatableComponent(this.getDescriptionId(), getAtlasID(stack));
+        return Component.translatable(this.getDescriptionId(), getAtlasID(stack));
     }
 
     @Override
@@ -91,8 +90,8 @@ public class AtlasItem extends Item {
         }
 
         if (!world.isClientSide) {
-        	// Updating map around player
-        	Collection<TileInfo> newTiles = MapCore.worldScanner.updateAtlasAroundPlayer(data, player);
+            // Updating map around player
+            Collection<TileInfo> newTiles = MapCore.worldScanner.updateAtlasAroundPlayer(data, player);
             if (!newTiles.isEmpty()) {
                 new DimensionUpdateS2CPacket(atlasId, player.getCommandSenderWorld().dimension(), newTiles).send((ServerLevel) world);
             }

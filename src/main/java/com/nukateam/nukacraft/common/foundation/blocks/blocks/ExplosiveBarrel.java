@@ -27,13 +27,13 @@ public class ExplosiveBarrel extends Block implements IExplosiveOnHit {
     @Override
     public void wasExploded(Level pLevel, BlockPos pPos, Explosion pExplosion) {
         if (!pLevel.isClientSide) {
-            pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(), 3.5f, Explosion.BlockInteraction.DESTROY);
+            pLevel.explode(null, pPos.getX(), pPos.getY(), pPos.getZ(), 3.5f, Explosion.BlockInteraction.DESTROY);
         }
     }
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-        if(!player.isCreative())
+        if (!player.isCreative())
             explode(level, pos);
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }

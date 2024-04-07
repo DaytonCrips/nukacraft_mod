@@ -17,16 +17,18 @@ public class KeyBindings {
     public static List<KeyMapping> getKeys() {
         List<KeyMapping> keys = new ArrayList<>();
 
-        for (Field field: KeyBindings.class.getFields()) try {
-            if (field.get(null) instanceof KeyMapping)
-                keys.add((KeyMapping)field.get(null));
-        } catch (IllegalAccessException ignored) {}
+        for (Field field : KeyBindings.class.getFields())
+            try {
+                if (field.get(null) instanceof KeyMapping)
+                    keys.add((KeyMapping) field.get(null));
+            } catch (IllegalAccessException ignored) {
+            }
 
         return keys;
     }
 
-    public static void register(){
-        for (KeyMapping key: getKeys())
+    public static void register() {
+        for (KeyMapping key : getKeys())
             ClientRegistry.registerKeyBinding(key);
     }
 }

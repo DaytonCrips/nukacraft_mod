@@ -7,6 +7,12 @@ import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationState;
 
 public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
+    public static void setRotations(CoreGeoBone bone, float rot) {
+        bone.setRotX(rot);
+        bone.setRotY(rot);
+        bone.setRotZ(rot);
+    }
+
     @Override
     public void setCustomAnimations(PowerArmorFrame animatable, long instanceId, AnimationState<PowerArmorFrame> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
@@ -16,19 +22,12 @@ public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
         if (animatable.hasPassenger() && animatable.getPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
             gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
                     .applyGeoModelRotation(animatable, animationProcessor);
-        }
-        else if (animatable.currentAnimation == null){
+        } else if (animatable.currentAnimation == null) {
             CoreGeoBone rightArm = animationProcessor.getBone("right_arm");
             CoreGeoBone leftArm = animationProcessor.getBone("left_arm");
 
             setRotations(rightArm, 0);
             setRotations(leftArm, 0);
         }
-    }
-
-    public static void setRotations(CoreGeoBone bone, float rot) {
-        bone.setRotX(rot);
-        bone.setRotY(rot);
-        bone.setRotZ(rot);
     }
 }

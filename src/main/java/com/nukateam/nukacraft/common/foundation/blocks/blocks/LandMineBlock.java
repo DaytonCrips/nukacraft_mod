@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
+import com.nukateam.example.common.data.interfaces.IExplosiveOnHit;
 import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import com.nukateam.example.common.data.interfaces.IExplosiveOnHit;
 
 import java.util.*;
 
@@ -43,7 +43,7 @@ public class LandMineBlock extends BaseEntityBlock implements IExplosiveOnHit {
 
     public void explode(Level pLevel, BlockPos pPos) {
         pLevel.destroyBlock(pPos, false);
-        pLevel.explode(null, pPos.getX(), pPos.getY(),pPos.getZ(),2.0f, Explosion.BlockInteraction.NONE);
+        pLevel.explode(null, pPos.getX(), pPos.getY(), pPos.getZ(), 2.0f, Explosion.BlockInteraction.NONE);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class LandMineBlock extends BaseEntityBlock implements IExplosiveOnHit {
         if (i < EXPLODE_CHANCE) {
             if (!level.isClientSide) {
                 level.destroyBlock(pos, false);
-                level.explode(null, pos.getX(), pos.getY(), pos.getZ(),6.0f, Explosion.BlockInteraction.NONE);
+                level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 6.0f, Explosion.BlockInteraction.NONE);
             }
         }
     }

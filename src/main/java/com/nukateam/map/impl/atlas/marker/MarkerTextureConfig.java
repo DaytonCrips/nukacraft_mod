@@ -1,10 +1,10 @@
 package com.nukateam.map.impl.atlas.marker;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;

@@ -14,11 +14,11 @@ public class MetalArmorModel extends GeoModel<MetalArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(MetalArmorItem metalArmorItem) {
-        return nukaResource("textures/armor/"+ metalArmorItem.getSkin() +"_metalarmor.png");
+        return nukaResource("textures/armor/" + metalArmorItem.getSkin() + "_metalarmor.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(MetalArmorItem metalArmorItem) {
-        return nukaResource( "animations/armor_default_animation.json");
+        return nukaResource("animations/armor_default_animation.json");
     }
 }

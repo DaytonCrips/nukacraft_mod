@@ -78,188 +78,14 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         this.registerDefaultState(this.stateDefinition.any().setValue(TIP_DIRECTION, Direction.UP).setValue(THICKNESS, DripstoneThickness.TIP).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(TIP_DIRECTION, THICKNESS, WATERLOGGED);
-    }
-
-    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return isValidPointedDripstonePlacement(pLevel, pPos, pState.getValue(TIP_DIRECTION));
-    }
-
-    /**
-     * Update the provided state given the provided neighbor direction and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific direction passed in.
-     */
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        if (pState.getValue(WATERLOGGED)) {
-            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
-        }
-
-        if (pDirection != Direction.UP && pDirection != Direction.DOWN) {
-            return pState;
-        } else {
-            Direction direction = pState.getValue(TIP_DIRECTION);
-            if (direction == Direction.DOWN && pLevel.getBlockTicks().hasScheduledTick(pCurrentPos, this)) {
-                return pState;
-            } else if (pDirection == direction.getOpposite() && !this.canSurvive(pState, pLevel, pCurrentPos)) {
-                if (direction == Direction.DOWN) {
-                    pLevel.scheduleTick(pCurrentPos, this, 2);
-                } else {
-                    pLevel.scheduleTick(pCurrentPos, this, 1);
-                }
-
-                return pState;
-            } else {
-                boolean flag = pState.getValue(THICKNESS) == DripstoneThickness.TIP_MERGE;
-                DripstoneThickness dripstonethickness = calculateDripstoneThickness(pLevel, pCurrentPos, direction, flag);
-                return pState.setValue(THICKNESS, dripstonethickness);
-            }
-        }
-    }
-
-    public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
-        BlockPos blockpos = pHit.getBlockPos();
-        if (!pLevel.isClientSide && pProjectile.mayInteract(pLevel, blockpos) && pProjectile instanceof ThrownTrident && pProjectile.getDeltaMovement().length() > 0.6D) {
-            pLevel.destroyBlock(blockpos, true);
-        }
-
-    }
-
-    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (pState.getValue(TIP_DIRECTION) == Direction.UP && pState.getValue(THICKNESS) == DripstoneThickness.TIP) {
-            pEntity.causeFallDamage(pFallDistance + 2.0F, 2.0F, DamageSource.STALAGMITE);
-        } else {
-            super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
-        }
-
-    }
-
-    /**
-     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles).
-     */
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
-        if (canDrip(pState)) {
-            float f = pRandom.nextFloat();
-            if (!(f > 0.12F)) {
-                getFluidAboveStalactite(pLevel, pPos, pState).filter((p_154031_) -> {
-                    return f < 0.02F || canFillCauldron(p_154031_);
-                }).ifPresent((p_154220_) -> {
-                    spawnDripParticle(pLevel, pPos, pState, p_154220_);
-                });
-            }
-        }
-    }
-
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
-        if (isStalagmite(pState) && !this.canSurvive(pState, pLevel, pPos)) {
-            pLevel.destroyBlock(pPos, true);
-        } else {
-            spawnFallingStalactite(pState, pLevel, pPos);
-        }
-
-    }
-
-    /**
-     * Performs a random tick on a block.
-     */
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
-        if (pRandom.nextFloat() < 0.011377778F && isStalactiteStartPos(pState, pLevel, pPos)) {
-            growStalactiteOrStalagmiteIfPossible(pState, pLevel, pPos, pRandom);
-        }
-
-    }
-
-
-    public PushReaction getPistonPushReaction(BlockState pState) {
-        return PushReaction.DESTROY;
-    }
-
-    @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        LevelAccessor levelaccessor = pContext.getLevel();
-        BlockPos blockpos = pContext.getClickedPos();
-        Direction direction = pContext.getNearestLookingVerticalDirection().getOpposite();
-        Direction direction1 = calculateTipDirection(levelaccessor, blockpos, direction);
-        if (direction1 == null) {
-            return null;
-        } else {
-            boolean flag = !pContext.isSecondaryUseActive();
-            DripstoneThickness dripstonethickness = calculateDripstoneThickness(levelaccessor, blockpos, direction1, flag);
-            return dripstonethickness == null ? null : this.defaultBlockState().setValue(TIP_DIRECTION, direction1).setValue(THICKNESS, dripstonethickness).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
-        }
-    }
-
-    public FluidState getFluidState(BlockState pState) {
-        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
-    }
-
-    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return Shapes.empty();
-    }
-
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        DripstoneThickness dripstonethickness = pState.getValue(THICKNESS);
-        VoxelShape voxelshape;
-        if (dripstonethickness == DripstoneThickness.TIP_MERGE) {
-            voxelshape = TIP_MERGE_SHAPE;
-        } else if (dripstonethickness == DripstoneThickness.TIP) {
-            if (pState.getValue(TIP_DIRECTION) == Direction.DOWN) {
-                voxelshape = TIP_SHAPE_DOWN;
-            } else {
-                voxelshape = TIP_SHAPE_UP;
-            }
-        } else if (dripstonethickness == DripstoneThickness.FRUSTUM) {
-            voxelshape = FRUSTUM_SHAPE;
-        } else if (dripstonethickness == DripstoneThickness.MIDDLE) {
-            voxelshape = MIDDLE_SHAPE;
-        } else {
-            voxelshape = BASE_SHAPE;
-        }
-
-        Vec3 vec3 = pState.getOffset(pLevel, pPos);
-        return voxelshape.move(vec3.x, 0.0D, vec3.z);
-    }
-
-    public boolean isCollisionShapeFullBlock(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return false;
-    }
-
-    /**
-     * Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
-     */
-    public BlockBehaviour.OffsetType getOffsetType() {
-        return BlockBehaviour.OffsetType.XZ;
-    }
-
-    public float getMaxHorizontalOffset() {
-        return 0.125F;
-    }
-
-    public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
-        if (!pFallingBlock.isSilent()) {
-            pLevel.levelEvent(1045, pPos, 0);
-        }
-
-    }
-
-    public DamageSource getFallDamageSource() {
-        return DamageSource.FALLING_STALACTITE;
-    }
-
-    public Predicate<Entity> getHurtsEntitySelector() {
-        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE);
-    }
-
     private static void spawnFallingStalactite(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
 
-        for(BlockState blockstate = pState; isStalactite(blockstate); blockstate = pLevel.getBlockState(blockpos$mutableblockpos)) {
+        for (BlockState blockstate = pState; isStalactite(blockstate); blockstate = pLevel.getBlockState(blockpos$mutableblockpos)) {
             FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(pLevel, blockpos$mutableblockpos, blockstate);
             if (isTip(blockstate, true)) {
                 int i = Math.max(1 + pPos.getY() - blockpos$mutableblockpos.getY(), 6);
-                float f = 1.0F * (float)i;
+                float f = 1.0F * (float) i;
                 fallingblockentity.setHurtsEntities(f, 40);
                 break;
             }
@@ -292,7 +118,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     private static void growStalagmiteBelow(ServerLevel pLevel, BlockPos pPos) {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
 
-        for(int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; ++i) {
             blockpos$mutableblockpos.move(Direction.DOWN);
             BlockState blockstate = pLevel.getBlockState(blockpos$mutableblockpos);
             if (!blockstate.getFluidState().isEmpty()) {
@@ -356,9 +182,9 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     private static void spawnDripParticle(Level pLevel, BlockPos pPos, BlockState pState, Fluid pFluid) {
         Vec3 vec3 = pState.getOffset(pLevel, pPos);
         double d0 = 0.0625D;
-        double d1 = (double)pPos.getX() + 0.5D + vec3.x;
-        double d2 = (double)((float)(pPos.getY() + 1) - 0.6875F) - 0.0625D;
-        double d3 = (double)pPos.getZ() + 0.5D + vec3.z;
+        double d1 = (double) pPos.getX() + 0.5D + vec3.x;
+        double d2 = (double) ((float) (pPos.getY() + 1) - 0.6875F) - 0.0625D;
+        double d3 = (double) pPos.getZ() + 0.5D + vec3.z;
         Fluid fluid = getDripFluid(pLevel, pFluid);
         ParticleOptions particleoptions = fluid.is(FluidTags.LAVA) ? ParticleTypes.DRIPPING_DRIPSTONE_LAVA : ParticleTypes.DRIPPING_DRIPSTONE_WATER;
         pLevel.addParticle(particleoptions, d1, d2, d3, 0.0D, 0.0D, 0.0D);
@@ -375,7 +201,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
             };
             return findBlockVertical(pLevel, pPos, direction.getAxisDirection(), bipredicate, (p_154168_) -> {
                 return isTip(p_154168_, pIsTipMerge);
-            }, pMaxIterations).orElse((BlockPos)null);
+            }, pMaxIterations).orElse((BlockPos) null);
         }
     }
 
@@ -469,31 +295,16 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         return isStalactite(pState) && !pLevel.getBlockState(pPos.above()).is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get());
     }
 
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        return false;
-    }
-
     private static boolean isPointedDripstoneWithDirection(BlockState pState, Direction pDir) {
         return pState.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && pState.getValue(TIP_DIRECTION) == pDir;
     }
-
-//    @Nullable
-//    private static BlockPos findFillableCauldronBelowStalactiteTip(Level pLevel, BlockPos pPos, Fluid pFluid) {
-//        Predicate<BlockState> predicate = (p_154162_) -> {
-//            return p_154162_.getBlock() instanceof AbstractCauldronBlock && ((AbstractCauldronBlock)p_154162_.getBlock()).canReceiveStalactiteDrip(pFluid);
-//        };
-//        BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> {
-//            return canDripThrough(pLevel, p_202034_, p_202035_);
-//        };
-//        return findBlockVertical(pLevel, pPos, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos)null);
-//    }
 
     @Nullable
     public static BlockPos findStalactiteTipAboveCauldron(Level pLevel, BlockPos pPos) {
         BiPredicate<BlockPos, BlockState> bipredicate = (p_202030_, p_202031_) -> {
             return canDripThrough(pLevel, p_202030_, p_202031_);
         };
-        return findBlockVertical(pLevel, pPos, Direction.UP.getAxisDirection(), bipredicate, PointedDripstoneBlock::canDrip, 11).orElse((BlockPos)null);
+        return findBlockVertical(pLevel, pPos, Direction.UP.getAxisDirection(), bipredicate, PointedDripstoneBlock::canDrip, 11).orElse((BlockPos) null);
     }
 
     public static Fluid getCauldronFillFluidType(Level pLevel, BlockPos pPos) {
@@ -526,7 +337,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         Direction direction = Direction.get(pAxis, Direction.Axis.Y);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
 
-        for(int i = 1; i < pMaxIterations; ++i) {
+        for (int i = 1; i < pMaxIterations; ++i) {
             blockpos$mutableblockpos.move(direction);
             BlockState blockstate = pLevel.getBlockState(blockpos$mutableblockpos);
             if (pStatePredicate.test(blockstate)) {
@@ -552,5 +363,193 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
             VoxelShape voxelshape = pState.getCollisionShape(pLevel, pPos);
             return !Shapes.joinIsNotEmpty(REQUIRED_SPACE_TO_DRIP_THROUGH_NON_SOLID_BLOCK, voxelshape, BooleanOp.AND);
         }
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(TIP_DIRECTION, THICKNESS, WATERLOGGED);
+    }
+
+    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+        return isValidPointedDripstonePlacement(pLevel, pPos, pState.getValue(TIP_DIRECTION));
+    }
+
+    /**
+     * Update the provided state given the provided neighbor direction and neighbor state, returning a new state.
+     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
+     * returns its solidified counterpart.
+     * Note that this method should ideally consider only the specific direction passed in.
+     */
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        if (pState.getValue(WATERLOGGED)) {
+            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+        }
+
+        if (pDirection != Direction.UP && pDirection != Direction.DOWN) {
+            return pState;
+        } else {
+            Direction direction = pState.getValue(TIP_DIRECTION);
+            if (direction == Direction.DOWN && pLevel.getBlockTicks().hasScheduledTick(pCurrentPos, this)) {
+                return pState;
+            } else if (pDirection == direction.getOpposite() && !this.canSurvive(pState, pLevel, pCurrentPos)) {
+                if (direction == Direction.DOWN) {
+                    pLevel.scheduleTick(pCurrentPos, this, 2);
+                } else {
+                    pLevel.scheduleTick(pCurrentPos, this, 1);
+                }
+
+                return pState;
+            } else {
+                boolean flag = pState.getValue(THICKNESS) == DripstoneThickness.TIP_MERGE;
+                DripstoneThickness dripstonethickness = calculateDripstoneThickness(pLevel, pCurrentPos, direction, flag);
+                return pState.setValue(THICKNESS, dripstonethickness);
+            }
+        }
+    }
+
+    public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
+        BlockPos blockpos = pHit.getBlockPos();
+        if (!pLevel.isClientSide && pProjectile.mayInteract(pLevel, blockpos) && pProjectile instanceof ThrownTrident && pProjectile.getDeltaMovement().length() > 0.6D) {
+            pLevel.destroyBlock(blockpos, true);
+        }
+
+    }
+
+    public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
+        if (pState.getValue(TIP_DIRECTION) == Direction.UP && pState.getValue(THICKNESS) == DripstoneThickness.TIP) {
+            pEntity.causeFallDamage(pFallDistance + 2.0F, 2.0F, DamageSource.STALAGMITE);
+        } else {
+            super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
+        }
+
+    }
+
+    /**
+     * Called periodically clientside on blocks near the player to show effects (like furnace fire particles).
+     */
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
+        if (canDrip(pState)) {
+            float f = pRandom.nextFloat();
+            if (!(f > 0.12F)) {
+                getFluidAboveStalactite(pLevel, pPos, pState).filter((p_154031_) -> {
+                    return f < 0.02F || canFillCauldron(p_154031_);
+                }).ifPresent((p_154220_) -> {
+                    spawnDripParticle(pLevel, pPos, pState, p_154220_);
+                });
+            }
+        }
+    }
+
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+        if (isStalagmite(pState) && !this.canSurvive(pState, pLevel, pPos)) {
+            pLevel.destroyBlock(pPos, true);
+        } else {
+            spawnFallingStalactite(pState, pLevel, pPos);
+        }
+
+    }
+
+    /**
+     * Performs a random tick on a block.
+     */
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+        if (pRandom.nextFloat() < 0.011377778F && isStalactiteStartPos(pState, pLevel, pPos)) {
+            growStalactiteOrStalagmiteIfPossible(pState, pLevel, pPos, pRandom);
+        }
+
+    }
+
+    public PushReaction getPistonPushReaction(BlockState pState) {
+        return PushReaction.DESTROY;
+    }
+
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        LevelAccessor levelaccessor = pContext.getLevel();
+        BlockPos blockpos = pContext.getClickedPos();
+        Direction direction = pContext.getNearestLookingVerticalDirection().getOpposite();
+        Direction direction1 = calculateTipDirection(levelaccessor, blockpos, direction);
+        if (direction1 == null) {
+            return null;
+        } else {
+            boolean flag = !pContext.isSecondaryUseActive();
+            DripstoneThickness dripstonethickness = calculateDripstoneThickness(levelaccessor, blockpos, direction1, flag);
+            return dripstonethickness == null ? null : this.defaultBlockState().setValue(TIP_DIRECTION, direction1).setValue(THICKNESS, dripstonethickness).setValue(WATERLOGGED, Boolean.valueOf(levelaccessor.getFluidState(blockpos).getType() == Fluids.WATER));
+        }
+    }
+
+    public FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+    }
+
+    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return Shapes.empty();
+    }
+
+//    @Nullable
+//    private static BlockPos findFillableCauldronBelowStalactiteTip(Level pLevel, BlockPos pPos, Fluid pFluid) {
+//        Predicate<BlockState> predicate = (p_154162_) -> {
+//            return p_154162_.getBlock() instanceof AbstractCauldronBlock && ((AbstractCauldronBlock)p_154162_.getBlock()).canReceiveStalactiteDrip(pFluid);
+//        };
+//        BiPredicate<BlockPos, BlockState> bipredicate = (p_202034_, p_202035_) -> {
+//            return canDripThrough(pLevel, p_202034_, p_202035_);
+//        };
+//        return findBlockVertical(pLevel, pPos, Direction.DOWN.getAxisDirection(), bipredicate, predicate, 11).orElse((BlockPos)null);
+//    }
+
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        DripstoneThickness dripstonethickness = pState.getValue(THICKNESS);
+        VoxelShape voxelshape;
+        if (dripstonethickness == DripstoneThickness.TIP_MERGE) {
+            voxelshape = TIP_MERGE_SHAPE;
+        } else if (dripstonethickness == DripstoneThickness.TIP) {
+            if (pState.getValue(TIP_DIRECTION) == Direction.DOWN) {
+                voxelshape = TIP_SHAPE_DOWN;
+            } else {
+                voxelshape = TIP_SHAPE_UP;
+            }
+        } else if (dripstonethickness == DripstoneThickness.FRUSTUM) {
+            voxelshape = FRUSTUM_SHAPE;
+        } else if (dripstonethickness == DripstoneThickness.MIDDLE) {
+            voxelshape = MIDDLE_SHAPE;
+        } else {
+            voxelshape = BASE_SHAPE;
+        }
+
+        Vec3 vec3 = pState.getOffset(pLevel, pPos);
+        return voxelshape.move(vec3.x, 0.0D, vec3.z);
+    }
+
+    public boolean isCollisionShapeFullBlock(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return false;
+    }
+
+    /**
+     * Get the OffsetType for this Block. Determines if the model is rendered slightly offset.
+     */
+    public BlockBehaviour.OffsetType getOffsetType() {
+        return BlockBehaviour.OffsetType.XZ;
+    }
+
+    public float getMaxHorizontalOffset() {
+        return 0.125F;
+    }
+
+    public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
+        if (!pFallingBlock.isSilent()) {
+            pLevel.levelEvent(1045, pPos, 0);
+        }
+
+    }
+
+    public DamageSource getFallDamageSource() {
+        return DamageSource.FALLING_STALACTITE;
+    }
+
+    public Predicate<Entity> getHurtsEntitySelector() {
+        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE);
+    }
+
+    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+        return false;
     }
 }

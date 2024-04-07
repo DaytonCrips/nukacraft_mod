@@ -38,11 +38,11 @@ public class SlotUtils {
         return false;
     }
 
-    public static ItemStack getCuriosPipboy(Player player){
+    public static ItemStack getCuriosPipboy(Player player) {
         var stack = ItemStack.EMPTY;
         if (NukaCraftMod.isCuriosLoaded()) {
             var bracelet = getBraceletStack(player);
-            if(!bracelet.isEmpty())
+            if (!bracelet.isEmpty())
                 stack = bracelet;
         }
 

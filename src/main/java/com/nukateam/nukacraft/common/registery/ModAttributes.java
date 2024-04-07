@@ -21,7 +21,7 @@ public class ModAttributes {
     public static final RegistryObject<Attribute> RADIATION = registryAttribute("radiation",
             () -> new RangedAttribute("nukacraft_radiation", 0, 0, 100).setSyncable(true));
 
-    private static <T extends Attribute>RegistryObject<T> registryAttribute(String name, Supplier<T> attribute) {
+    private static <T extends Attribute> RegistryObject<T> registryAttribute(String name, Supplier<T> attribute) {
         RegistryObject<T> toReturn = ATTRIBUTE.register(name, attribute);
         return toReturn;
     }

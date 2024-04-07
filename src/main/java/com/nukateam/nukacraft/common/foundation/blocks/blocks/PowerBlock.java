@@ -1,14 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.mojang.math.Vector3f;
-
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,6 +24,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class PowerBlock extends RotatedPillarBlock {
     public static final EnumProperty<RedstoneSide> REDSTONE_UP = EnumProperty.create("up", RedstoneSide.class);
@@ -36,11 +33,6 @@ public class PowerBlock extends RotatedPillarBlock {
     public static final EnumProperty<RedstoneSide> UP = REDSTONE_UP;
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     public static final EnumProperty<RedstoneSide> DOWN = REDSTONE_DOWN;
-    public static final EnumProperty<RedstoneSide> NORTH = BlockStateProperties.NORTH_REDSTONE;
-    public static final EnumProperty<RedstoneSide> EAST = BlockStateProperties.EAST_REDSTONE;
-    public static final EnumProperty<RedstoneSide> SOUTH = BlockStateProperties.SOUTH_REDSTONE;
-    public static final EnumProperty<RedstoneSide> WEST = BlockStateProperties.WEST_REDSTONE;
-    public static final IntegerProperty POWER = RedStoneWireBlock.POWER;
     public static final Map<Direction, EnumProperty<RedstoneSide>> FACING_PROPERTY_MAP = Maps.newEnumMap(ImmutableMap.<Direction, EnumProperty<RedstoneSide>>builder()
             .put(Direction.NORTH, NORTH)
             .put(Direction.EAST, EAST)
@@ -49,17 +41,73 @@ public class PowerBlock extends RotatedPillarBlock {
             .put(Direction.UP, UP)
             .put(Direction.DOWN, DOWN)
             .build());
+    public static final EnumProperty<RedstoneSide> NORTH = BlockStateProperties.NORTH_REDSTONE;
+    public static final EnumProperty<RedstoneSide> EAST = BlockStateProperties.EAST_REDSTONE;
+    public static final EnumProperty<RedstoneSide> SOUTH = BlockStateProperties.SOUTH_REDSTONE;
+    public static final EnumProperty<RedstoneSide> WEST = BlockStateProperties.WEST_REDSTONE;
+    public static final IntegerProperty POWER = RedStoneWireBlock.POWER;
     private static final Vector3f[] COLORS = new Vector3f[16];
+
+    static {
+        for (int i = 0; i <= 15; ++i) {
+            float f = (float) i / 15.0F;
+            float f1 = f * 0.6F + (f > 0.0F ? 0.4F : 0.3F);
+            float f2 = Mth.clamp(f * f * 0.7F - 0.5F, 0.0F, 1.0F);
+            float f3 = Mth.clamp(f * f * 0.6F - 0.7F, 0.0F, 1.0F);
+            COLORS[i] = new Vector3f(f1, f2, f3);
+        }
+    }
+
     private boolean shouldSignal = true;
 
-    public PowerBlock(Properties properties)
-    {
+
+    public PowerBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.Y).setValue(NORTH, RedstoneSide.NONE).setValue(EAST, RedstoneSide.NONE)
                 .setValue(SOUTH, RedstoneSide.NONE).setValue(WEST, RedstoneSide.NONE).setValue(UP, RedstoneSide.NONE)
                 .setValue(DOWN, RedstoneSide.NONE).setValue(POWER, Integer.valueOf(0)));
     }
 
+    public static BlockState rotatePillar(BlockState pState, Rotation pRotation) {
+        switch (pRotation) {
+            case COUNTERCLOCKWISE_90:
+            case CLOCKWISE_90:
+                switch ((Direction.Axis) pState.getValue(AXIS)) {
+                    case X:
+                        return pState.setValue(AXIS, Direction.Axis.Z);
+                    case Z:
+                        return pState.setValue(AXIS, Direction.Axis.X);
+                    default:
+                        return pState;
+                }
+            default:
+                return pState;
+        }
+    }
+
+    protected static boolean shouldConnectTo(BlockState blockState, BlockGetter world, BlockPos pos,
+                                             Direction side) {
+        if (blockState.is(ModBlocks.POWERBLOCK.get()))
+            return true;
+        return blockState.canRedstoneConnectTo(world, pos, side);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static int colorMultiplier(int power) {
+        Vector3f vector3f = COLORS[power];
+        return Mth.color(vector3f.x(), vector3f.y(), vector3f.z());
+    }
+
+    /**
+     * Get signal power of neighbor wire/pipe
+     * (It is public so patched wire code can call it)
+     *
+     * @param neighbor
+     * @return get wire/pipe signal power
+     */
+    public static int getLineSignalHook(BlockState neighbor) {
+        return neighbor.is(Blocks.REDSTONE_WIRE) || neighbor.is(ModBlocks.POWERBLOCK.get()) ? neighbor.getValue(POWER) : 0;
+    }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -80,22 +128,6 @@ public class PowerBlock extends RotatedPillarBlock {
         return stateIn.setValue(FACING_PROPERTY_MAP.get(facing), getSide(worldIn, currentPos, facing));
     }
 
-    public static BlockState rotatePillar(BlockState pState, Rotation pRotation) {
-        switch(pRotation) {
-            case COUNTERCLOCKWISE_90:
-            case CLOCKWISE_90:
-                switch((Direction.Axis)pState.getValue(AXIS)) {
-                    case X:
-                        return pState.setValue(AXIS, Direction.Axis.Z);
-                    case Z:
-                        return pState.setValue(AXIS, Direction.Axis.X);
-                    default:
-                        return pState;
-                }
-            default:
-                return pState;
-        }
-    }
     private RedstoneSide getSide(BlockGetter worldIn, BlockPos pos, Direction face) {
         BlockPos blockpos = pos.relative(face);
         BlockState blockstate = worldIn.getBlockState(blockpos);
@@ -204,22 +236,9 @@ public class PowerBlock extends RotatedPillarBlock {
         return shouldSignal ? blockState.getValue(POWER) : 0;
     }
 
-    protected static boolean shouldConnectTo(BlockState blockState, BlockGetter world, BlockPos pos,
-                                             Direction side) {
-        if (blockState.is(ModBlocks.POWERBLOCK.get()))
-            return true;
-        return blockState.canRedstoneConnectTo(world, pos, side);
-    }
-
     @Override
     public boolean isSignalSource(BlockState state) {
         return shouldSignal;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static int colorMultiplier(int power) {
-        Vector3f vector3f = COLORS[power];
-        return Mth.color(vector3f.x(), vector3f.y(), vector3f.z());
     }
 
     @Override
@@ -233,16 +252,6 @@ public class PowerBlock extends RotatedPillarBlock {
             Vector3f vec = COLORS[i];
             worldIn.addParticle(new DustParticleOptions(vec, 1.0F), d0, d1, d2, 0.0D, 0.0D, 0.0D);
         }
-    }
-
-    /**
-     * Get signal power of neighbor wire/pipe
-     * (It is public so patched wire code can call it)
-     * @param neighbor
-     * @return get wire/pipe signal power
-     */
-    public static int getLineSignalHook(BlockState neighbor) {
-        return neighbor.is(Blocks.REDSTONE_WIRE) || neighbor.is(ModBlocks.POWERBLOCK.get()) ? neighbor.getValue(POWER) : 0;
     }
 
     @Override
@@ -278,16 +287,6 @@ public class PowerBlock extends RotatedPillarBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, POWER, AXIS);
-    }
-
-    static {
-        for (int i = 0; i <= 15; ++i) {
-            float f = (float) i / 15.0F;
-            float f1 = f * 0.6F + (f > 0.0F ? 0.4F : 0.3F);
-            float f2 = Mth.clamp(f * f * 0.7F - 0.5F, 0.0F, 1.0F);
-            float f3 = Mth.clamp(f * f * 0.6F - 0.7F, 0.0F, 1.0F);
-            COLORS[i] = new Vector3f(f1, f2, f3);
-        }
     }
 
 

@@ -60,7 +60,7 @@ public class GuiScrollingContainer extends GuiComponent {
 
     public GuiScrollingContainer setViewportSize(int width, int height) {
         viewport.setSize(width, height);
-        if(isVertical) {
+        if (isVertical) {
             if (renderBar)
                 viewport.setRelativeCoords(7, 0);
             else viewport.setRelativeCoords(0, 0);

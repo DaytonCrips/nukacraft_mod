@@ -2,7 +2,6 @@ package com.nukateam.map.impl.atlas.client.gui.core;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 
@@ -14,16 +13,15 @@ import java.util.List;
  */
 public class GuiComponentButton extends GuiComponent {
     private final List<IButtonListener<?>> listeners = new ArrayList<>();
-
-    private boolean enabled = true;
     protected SoundEvent clickSound = SoundEvents.UI_BUTTON_CLICK;
-
-    public void setEnabled(boolean value) {
-        enabled = value;
-    }
+    private boolean enabled = true;
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setEnabled(boolean value) {
+        enabled = value;
     }
 
     public void setClickSound(SoundEvent clickSound) {

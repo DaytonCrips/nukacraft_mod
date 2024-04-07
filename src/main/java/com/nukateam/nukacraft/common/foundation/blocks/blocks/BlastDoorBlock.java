@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -31,15 +30,18 @@ public class BlastDoorBlock extends DoorBlock {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)).setValue(HINGE, DoorHingeSide.LEFT).setValue(POWERED, Boolean.valueOf(false)).setValue(HALF, DoubleBlockHalf.LOWER));
     }
+
     public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         Direction direction = pState.getValue(FACING);
         DoubleBlockHalf half = pState.getValue(HALF);
         boolean open = !pState.getValue(OPEN);
         boolean halfs = half.toString().equals("upper");
         return switch (direction) {
-            default -> halfs ? (open ? SOUTH_NORTH_AABB : SOUTH_NORTH_AABB_OPEN) : (open ? SOUTH_NORTH_AABB : EMPTY_AABB);
+            default ->
+                    halfs ? (open ? SOUTH_NORTH_AABB : SOUTH_NORTH_AABB_OPEN) : (open ? SOUTH_NORTH_AABB : EMPTY_AABB);
             case SOUTH -> halfs ? (open ? EAST_WEST_AABB : EAST_WEST_AABB_OPEN) : (open ? EAST_WEST_AABB : EMPTY_AABB);
-            case WEST -> halfs ? (open ? SOUTH_NORTH_AABB : SOUTH_NORTH_AABB_OPEN) : (open ? SOUTH_NORTH_AABB : EMPTY_AABB);
+            case WEST ->
+                    halfs ? (open ? SOUTH_NORTH_AABB : SOUTH_NORTH_AABB_OPEN) : (open ? SOUTH_NORTH_AABB : EMPTY_AABB);
             case NORTH -> halfs ? (open ? EAST_WEST_AABB : EAST_WEST_AABB_OPEN) : (open ? EAST_WEST_AABB : EMPTY_AABB);
         };
     }
@@ -53,6 +55,7 @@ public class BlastDoorBlock extends DoorBlock {
             pLevel.gameEvent(p_153166_, pOpen ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
         }
     }
+
     private int getCloseSound() {
         return 1011;
     }
@@ -63,8 +66,9 @@ public class BlastDoorBlock extends DoorBlock {
 
 
     private void playSound(Level pLevel, BlockPos pPos, boolean pIsOpening) {
-        pLevel.levelEvent((Player)null, pIsOpening ? this.getOpenSound() : this.getCloseSound(), pPos, 0);
+        pLevel.levelEvent((Player) null, pIsOpening ? this.getOpenSound() : this.getCloseSound(), pPos, 0);
     }
+
     @Override
     public boolean useShapeForLightOcclusion(BlockState state) {
         return true;

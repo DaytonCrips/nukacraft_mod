@@ -11,38 +11,38 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class AntiqueAtlasModClient {
 
-	private static GuiAtlas guiAtlas;
+    private static GuiAtlas guiAtlas;
 
-	public static GuiAtlas getAtlasGUI() {
-		if (guiAtlas == null) {
-			guiAtlas = new GuiAtlas();
-			guiAtlas.setMapScale(MapCore.CONFIG.defaultScale);
-		}
-		return guiAtlas;
-	}
+    public static GuiAtlas getAtlasGUI() {
+        if (guiAtlas == null) {
+            guiAtlas = new GuiAtlas();
+            guiAtlas.setMapScale(MapCore.CONFIG.defaultScale);
+        }
+        return guiAtlas;
+    }
 
-	public static void openAtlasGUI(ItemStack stack) {
-		if(stack.getItem() instanceof AtlasItem)
-			openAtlasGUI(getAtlasGUI().prepareToOpen(stack));
-	}
+    public static void openAtlasGUI(ItemStack stack) {
+        if (stack.getItem() instanceof AtlasItem)
+            openAtlasGUI(getAtlasGUI().prepareToOpen(stack));
+    }
 
-	public static void openAtlasGUI() {
-		openAtlasGUI(getAtlasGUI().prepareToOpen());
-	}
+    public static void openAtlasGUI() {
+        openAtlasGUI(getAtlasGUI().prepareToOpen());
+    }
 
-	private static void openAtlasGUI(GuiAtlas gui) {
-		Minecraft mc = Minecraft.getInstance();
+    private static void openAtlasGUI(GuiAtlas gui) {
+        Minecraft mc = Minecraft.getInstance();
 //		if (mc.screen == null) { // In-game screen
-			guiAtlas.updateL18n();
-			mc.setScreen(gui);
+        guiAtlas.updateL18n();
+        mc.setScreen(gui);
 //		}
-	}
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	public void onInitializeClient() {
-		var clientProxy = new ClientProxy();
-		clientProxy.initClient();
+    @OnlyIn(Dist.CLIENT)
+    public void onInitializeClient() {
+        var clientProxy = new ClientProxy();
+        clientProxy.initClient();
 
-		AntiqueAtlasNetworking.registerS2CListeners();
-	}
+        AntiqueAtlasNetworking.registerS2CListeners();
+    }
 }

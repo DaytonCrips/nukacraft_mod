@@ -13,7 +13,6 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import static com.nukateam.map.impl.atlas.core.scaning.TileDetectorBase.getCategory;
-import static net.minecraft.data.worldgen.placement.EndPlacements.CHORUS_PLANT;
 
 /**
  * Maps biome IDs (or pseudo IDs) to textures. <i>Not thread-safe!</i>
@@ -25,15 +24,14 @@ import static net.minecraft.data.worldgen.placement.EndPlacements.CHORUS_PLANT;
 @OnlyIn(Dist.CLIENT)
 public class TileTextureMap {
     private static final TileTextureMap INSTANCE = new TileTextureMap();
-
-    public static TileTextureMap instance() {
-        return INSTANCE;
-    }
-
     /**
      * This map stores the pseudo biome texture mappings, any biome with ID <0 is assumed to be a pseudo biome
      */
     private final Map<ResourceLocation, TextureSet> textureMap = new HashMap<>();
+
+    public static TileTextureMap instance() {
+        return INSTANCE;
+    }
 
     /**
      * Assign texture set to pseudo biome
@@ -66,12 +64,12 @@ public class TileTextureMap {
 //        var biomeTag = Minecraft.getInstance().level.getRegistryManager().get(Registry.BIOME_KEY).entryOf(biome);
 //
         var biomeCategory = getCategory(biome);
-        if(biomeCategory == null) return;
+        if (biomeCategory == null) return;
 
         var biomeName = biome.getRegistryName();
-        if(biomeName == null) return;
+        if (biomeName == null) return;
 
-        if(biomeName.getPath().equals("swamp_hills")){
+        if (biomeName.getPath().equals("swamp_hills")) {
             var i = 0;
         }
 
@@ -96,7 +94,6 @@ public class TileTextureMap {
 //
 //                var name = has_chorus_plant ? "end_island_plants" : "end_island";
 //                setTexture(id, TextureSetMap.instance().getByName(MapCore.id(name)));
-
 
 
                 var features = biome.getGenerationSettings().features();

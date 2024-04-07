@@ -14,45 +14,46 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Sent from server to client to remove a custom global tile.
+ *
  * @author Hunternif
  * @author Haven King
  */
 public class DeleteCustomGlobalTileS2CPacket extends S2CPacket {
-	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "tile", "delete");
+    public static final ResourceLocation ID = MapCore.id("packet", "c2s", "tile", "delete");
 
-	ResourceKey<Level> world;
-	int chunkX, chunkZ;
+    ResourceKey<Level> world;
+    int chunkX, chunkZ;
 
-	public DeleteCustomGlobalTileS2CPacket(ResourceKey<Level> world, int chunkX, int chunkZ) {
-		this.world = world;
-		this.chunkX = chunkX;
-		this.chunkZ = chunkZ;
-	}
+    public DeleteCustomGlobalTileS2CPacket(ResourceKey<Level> world, int chunkX, int chunkZ) {
+        this.world = world;
+        this.chunkX = chunkX;
+        this.chunkZ = chunkZ;
+    }
 
-	public static void encode(final DeleteCustomGlobalTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
-		packetBuffer.writeResourceLocation(msg.world.location());
-		packetBuffer.writeVarInt(msg.chunkX);
-		packetBuffer.writeVarInt(msg.chunkZ);
-	}
+    public static void encode(final DeleteCustomGlobalTileS2CPacket msg, final FriendlyByteBuf packetBuffer) {
+        packetBuffer.writeResourceLocation(msg.world.location());
+        packetBuffer.writeVarInt(msg.chunkX);
+        packetBuffer.writeVarInt(msg.chunkZ);
+    }
 
-	public static DeleteCustomGlobalTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
-		ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
-		int chunkX = packetBuffer.readVarInt();
-		int chunkZ = packetBuffer.readVarInt();
+    public static DeleteCustomGlobalTileS2CPacket decode(final FriendlyByteBuf packetBuffer) {
+        ResourceKey<Level> world = ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation());
+        int chunkX = packetBuffer.readVarInt();
+        int chunkZ = packetBuffer.readVarInt();
 
-		return new DeleteCustomGlobalTileS2CPacket(world, chunkX, chunkZ);
-	}
+        return new DeleteCustomGlobalTileS2CPacket(world, chunkX, chunkZ);
+    }
 
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public boolean handle(LocalPlayer player) {
-		TileDataStorage data = MapCore.globalTileData.getData(this.world);
-		data.removeTile(this.chunkX, this.chunkZ);
-		return true;
-	}
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public boolean handle(LocalPlayer player) {
+        TileDataStorage data = MapCore.globalTileData.getData(this.world);
+        data.removeTile(this.chunkX, this.chunkZ);
+        return true;
+    }
 
-	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
+    @Override
+    public ResourceLocation getId() {
+        return ID;
+    }
 }

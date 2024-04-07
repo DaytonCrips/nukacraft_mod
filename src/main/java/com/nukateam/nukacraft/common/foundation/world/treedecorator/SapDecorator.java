@@ -36,7 +36,7 @@ public class SapDecorator extends TreeDecorator {
             p_161722_.stream().filter((p_69980_) -> {
                 return p_69980_.getY() - i <= 2;
             }).forEach((p_161728_) -> {
-                for(Direction direction : Direction.Plane.HORIZONTAL) {
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
                     if (rando.nextFloat() <= 0.25F) {
                         Direction direction1 = direction.getOpposite();
                         BlockPos blockpos = p_161728_.offset(direction1.getStepX(), 0, direction1.getStepZ());

@@ -8,21 +8,21 @@ import java.util.function.Consumer;
 
 @FunctionalInterface
 public interface NewPlayerConnectionCallback {
-	public class TheEvent extends Event {
-	    private final ServerPlayer player;
-		
-		public TheEvent(ServerPlayer player) {
-			this.player = player;
-		}
-		
-		public ServerPlayer getPlayer() {
-			return player;
-		}
-	}
-	
-	void onNewConnection(ServerPlayer player);
-	
-	public static void register(NewPlayerConnectionCallback consumer) {
-		MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>)event->consumer.onNewConnection(event.getPlayer()));
-	}
+    public static void register(NewPlayerConnectionCallback consumer) {
+        MinecraftForge.EVENT_BUS.addListener((Consumer<TheEvent>) event -> consumer.onNewConnection(event.getPlayer()));
+    }
+
+    void onNewConnection(ServerPlayer player);
+
+    public class TheEvent extends Event {
+        private final ServerPlayer player;
+
+        public TheEvent(ServerPlayer player) {
+            this.player = player;
+        }
+
+        public ServerPlayer getPlayer() {
+            return player;
+        }
+    }
 }

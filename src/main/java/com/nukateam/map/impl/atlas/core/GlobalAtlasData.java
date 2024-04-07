@@ -11,12 +11,6 @@ public class GlobalAtlasData extends SavedData {
     public GlobalAtlasData() {
     }
 
-    public int getNextAtlasId() {
-        int id = nextId++;
-        setDirty();
-        return id;
-    }
-
     public static GlobalAtlasData readNbt(CompoundTag compound) {
         GlobalAtlasData data = new GlobalAtlasData();
         if (compound.contains(TAG_NEXT_ID, NbtType.NUMBER)) {
@@ -25,6 +19,12 @@ public class GlobalAtlasData extends SavedData {
             data.nextId = 1;
         }
         return data;
+    }
+
+    public int getNextAtlasId() {
+        int id = nextId++;
+        setDirty();
+        return id;
     }
 
     @Override

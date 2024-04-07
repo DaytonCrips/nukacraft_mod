@@ -1,19 +1,17 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.map.api.client.AtlasClientAPI;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiComponent;
 import com.nukateam.map.impl.atlas.client.gui.core.GuiScrollingContainer;
 import com.nukateam.map.impl.atlas.client.gui.core.ToggleGroup;
 import com.nukateam.map.impl.atlas.registry.MarkerType;
 import com.nukateam.map.impl.atlas.util.Log;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
@@ -31,26 +29,21 @@ import java.util.List;
  */
 @OnlyIn(Dist.CLIENT)
 public class GuiMarkerFinalizer extends GuiComponent {
+    private static final int BUTTON_WIDTH = 100;
+    private static final int BUTTON_SPACING = 4;
+    private static final int TYPE_SPACING = 1;
+    private static final int TYPE_BG_FRAME = 4;
+    private final List<IMarkerTypeSelectListener> markerListeners = new ArrayList<>();
+    MarkerType selectedType = MarkerType.REGISTRY.get(MarkerType.REGISTRY.getDefaultKey());
     private Level world;
     private int atlasID;
     private int markerX;
     private int markerZ;
-
-    MarkerType selectedType = MarkerType.REGISTRY.get(MarkerType.REGISTRY.getDefaultKey());
-
-    private static final int BUTTON_WIDTH = 100;
-    private static final int BUTTON_SPACING = 4;
-
-    private static final int TYPE_SPACING = 1;
-    private static final int TYPE_BG_FRAME = 4;
-
     private Button btnDone;
     private Button btnCancel;
     private EditBox textField;
     private GuiScrollingContainer scroller;
     private ToggleGroup<GuiMarkerInList> typeRadioGroup;
-
-    private final List<IMarkerTypeSelectListener> markerListeners = new ArrayList<>();
 
     GuiMarkerFinalizer() {
     }
@@ -79,8 +72,8 @@ public class GuiMarkerFinalizer extends GuiComponent {
     public void init() {
         super.init();
 
-        addRenderableWidget(btnDone = new Button(this.width / 2 - BUTTON_WIDTH - BUTTON_SPACING / 2, this.height / 2 + 40, BUTTON_WIDTH, 20, new TranslatableComponent("gui.done"), (button) -> {
-            AtlasClientAPI.getMarkerAPI().putMarker(world, true, atlasID, MarkerType.REGISTRY.getKey(selectedType), new TextComponent(textField.getValue()), markerX, markerZ);
+        addRenderableWidget(btnDone = new Button(this.width / 2 - BUTTON_WIDTH - BUTTON_SPACING / 2, this.height / 2 + 40, BUTTON_WIDTH, 20, Component.translatable("gui.done"), (button) -> {
+            AtlasClientAPI.getMarkerAPI().putMarker(world, true, atlasID, MarkerType.REGISTRY.getKey(selectedType), Component.literal(textField.getValue()), markerX, markerZ);
             Log.info("Put marker in Atlas #%d \"%s\" at (%d, %d)", atlasID, textField.getValue(), markerX, markerZ);
 
             LocalPlayer player = Minecraft.getInstance().player;
@@ -89,10 +82,10 @@ public class GuiMarkerFinalizer extends GuiComponent {
                     1F, 1F);
             close();
         }));
-        addRenderableWidget(btnCancel = new Button(this.width / 2 + BUTTON_SPACING / 2, this.height / 2 + 40, BUTTON_WIDTH, 20, new TranslatableComponent("gui.cancel"), (button) -> {
+        addRenderableWidget(btnCancel = new Button(this.width / 2 + BUTTON_SPACING / 2, this.height / 2 + 40, BUTTON_WIDTH, 20, Component.translatable("gui.cancel"), (button) -> {
             close();
         }));
-        textField = new EditBox(Minecraft.getInstance().font, (this.width - 200) / 2, this.height / 2 - 81, 200, 20, new TranslatableComponent("gui.nukacraft.marker.label"));
+        textField = new EditBox(Minecraft.getInstance().font, (this.width - 200) / 2, this.height / 2 - 81, 200, 20, Component.translatable("gui.nukacraft.marker.label"));
         textField.setEditable(true);
         textField.setValue("");
 
@@ -162,9 +155,9 @@ public class GuiMarkerFinalizer extends GuiComponent {
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(matrices);
-        drawCentered(matrices, new TranslatableComponent("gui.nukacraft.marker.label"), this.height / 2 - 97, 0xffffff, true);
+        drawCentered(matrices, Component.translatable("gui.nukacraft.marker.label"), this.height / 2 - 97, 0xffffff, true);
         textField.render(matrices, mouseX, mouseY, partialTick);
-        drawCentered(matrices, new TranslatableComponent("gui.nukacraft.marker.type"), this.height / 2 - 44, 0xffffff, true);
+        drawCentered(matrices, Component.translatable("gui.nukacraft.marker.type"), this.height / 2 - 44, 0xffffff, true);
 
         // Darker background for marker type selector
         fillGradient(matrices, scroller.getGuiX() - TYPE_BG_FRAME, scroller.getGuiY() - TYPE_BG_FRAME,

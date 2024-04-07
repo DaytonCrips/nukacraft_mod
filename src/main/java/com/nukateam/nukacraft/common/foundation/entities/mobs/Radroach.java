@@ -10,7 +10,7 @@ import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -22,13 +22,21 @@ import net.minecraft.world.level.Level;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Radroach extends Monster implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public Radroach(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.FOLLOW_RANGE, 20.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F)
+                .add(Attributes.ATTACK_DAMAGE, 1.0D)
+                .add(Attributes.ARMOR, 0.0D);
     }
 
     @Override
@@ -40,15 +48,6 @@ public class Radroach extends Monster implements GeoEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Raider.class, false));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 6.0D)
-                .add(Attributes.FOLLOW_RANGE, 20.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.23F)
-                .add(Attributes.ATTACK_DAMAGE, 1.0D)
-                .add(Attributes.ARMOR, 0.0D);
     }
 
     @Override
@@ -64,10 +63,9 @@ public class Radroach extends Monster implements GeoEntity {
             controller.setAnimationSpeed(1);
             RawAnimation animation;
 
-            if(event.isMoving()){
+            if (event.isMoving()) {
                 animation = begin().thenLoop("walk");
-            }
-            else {
+            } else {
                 return PlayState.STOP;
             }
 

@@ -27,10 +27,10 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
     public static final int LIFE_TIME = 20;
+    private static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(NuclearExplosionEntity.class, EntityDataSerializers.FLOAT);
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private boolean spawnedParticle = false;
     private Stack<BlockPos> destroyingChunks = new Stack<>();
-    private static final EntityDataAccessor<Float> SIZE = SynchedEntityData.defineId(NuclearExplosionEntity.class, EntityDataSerializers.FLOAT);
 
     public NuclearExplosionEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
@@ -39,6 +39,10 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
     public NuclearExplosionEntity(PlayMessages.SpawnEntity spawnEntity, Level level) {
         this(NUCLEAR_EXPLOSION.get(), level);
         this.setBoundingBox(this.makeBoundingBox());
+    }
+
+    private static BlockPos containing(double p_275310_, double p_275414_, double p_275737_) {
+        return new BlockPos(Mth.floor(p_275310_), Mth.floor(p_275414_), Mth.floor(p_275737_));
     }
 
     @Override
@@ -121,10 +125,6 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
 
     private boolean isDestroyable(BlockState state) {
         return state.getBlock().getExplosionResistance() < 1000;
-    }
-
-    private static BlockPos containing(double p_275310_, double p_275414_, double p_275737_) {
-        return new BlockPos(Mth.floor(p_275310_), Mth.floor(p_275414_), Mth.floor(p_275737_));
     }
 
     private float calculateDamage(float dist, float max) {

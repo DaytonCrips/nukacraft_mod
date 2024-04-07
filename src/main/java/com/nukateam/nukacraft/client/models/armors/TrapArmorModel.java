@@ -14,11 +14,11 @@ public class TrapArmorModel extends GeoModel<TrapperArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(TrapperArmorItem trapArmorItem) {
-        return nukaResource("textures/armor/"+ trapArmorItem.getSkin() +"_trap_armor.png");
+        return nukaResource("textures/armor/" + trapArmorItem.getSkin() + "_trap_armor.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(TrapperArmorItem trapArmorItem) {
-        return nukaResource( "animations/armor_default_animation.json");
+        return nukaResource("animations/armor_default_animation.json");
     }
 }

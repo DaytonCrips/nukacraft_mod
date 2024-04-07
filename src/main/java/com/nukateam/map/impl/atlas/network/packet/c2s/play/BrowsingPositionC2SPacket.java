@@ -17,64 +17,65 @@ import java.util.function.Supplier;
 
 /**
  * Packet used to save the last browsing position for a dimension in an atlas.
+ *
  * @author Hunternif
  * @author Haven King
  */
 public class BrowsingPositionC2SPacket extends C2SPacket {
-	public static final ResourceLocation ID = MapCore.id("packet", "c2s", "browsing_position");
+    public static final ResourceLocation ID = MapCore.id("packet", "c2s", "browsing_position");
 
-	int atlasID;
-	ResourceKey<Level> world;
-	int x;
-	int y;
-	double zoom;
-	
-	public BrowsingPositionC2SPacket(int atlasID, ResourceKey<Level> world, int x, int y, double zoom) {
-		this.atlasID = atlasID;
-		this.world = world;
-		this.x = x;
-		this.y = y;
-		this.zoom = zoom;
-	}
+    int atlasID;
+    ResourceKey<Level> world;
+    int x;
+    int y;
+    double zoom;
 
-	public static void encode(final BrowsingPositionC2SPacket msg, final FriendlyByteBuf packetBuffer) {
-		packetBuffer.writeVarInt(msg.atlasID);
-		packetBuffer.writeResourceLocation(msg.world.location());
-		packetBuffer.writeVarInt(msg.x);
-		packetBuffer.writeVarInt(msg.y);
-		packetBuffer.writeDouble(msg.zoom);
-	}
+    public BrowsingPositionC2SPacket(int atlasID, ResourceKey<Level> world, int x, int y, double zoom) {
+        this.atlasID = atlasID;
+        this.world = world;
+        this.x = x;
+        this.y = y;
+        this.zoom = zoom;
+    }
 
-	public static BrowsingPositionC2SPacket decode(final FriendlyByteBuf packetBuffer) {
-		return new BrowsingPositionC2SPacket(
-				packetBuffer.readVarInt(),
-				ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation()),
-				packetBuffer.readVarInt(),
-				packetBuffer.readVarInt(),
-				packetBuffer.readDouble());
-	}
+    public static void encode(final BrowsingPositionC2SPacket msg, final FriendlyByteBuf packetBuffer) {
+        packetBuffer.writeVarInt(msg.atlasID);
+        packetBuffer.writeResourceLocation(msg.world.location());
+        packetBuffer.writeVarInt(msg.x);
+        packetBuffer.writeVarInt(msg.y);
+        packetBuffer.writeDouble(msg.zoom);
+    }
 
-	public static void handle(final BrowsingPositionC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
-		final NetworkEvent.Context context = contextSupplier.get();
-		context.enqueueWork(() -> {
-			final ServerPlayer sender = context.getSender();
-			if (sender == null) {
-				return;
-			}
-			if (MapCore.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
-				Log.warn("Player %s attempted to put position marker into someone else's Atlas #%d",
-						sender.createCommandSourceStack().getTextName(), msg.atlasID);
-				return;
-			}
+    public static BrowsingPositionC2SPacket decode(final FriendlyByteBuf packetBuffer) {
+        return new BrowsingPositionC2SPacket(
+                packetBuffer.readVarInt(),
+                ResourceKey.create(Registry.DIMENSION_REGISTRY, packetBuffer.readResourceLocation()),
+                packetBuffer.readVarInt(),
+                packetBuffer.readVarInt(),
+                packetBuffer.readDouble());
+    }
 
-			MapCore.tileData.getData(msg.atlasID, sender.getCommandSenderWorld())
-					.getWorldData(msg.world).setBrowsingPosition(msg.x, msg.y, msg.zoom);
-		});
-		context.setPacketHandled(true);
-	}
+    public static void handle(final BrowsingPositionC2SPacket msg, final Supplier<NetworkEvent.Context> contextSupplier) {
+        final NetworkEvent.Context context = contextSupplier.get();
+        context.enqueueWork(() -> {
+            final ServerPlayer sender = context.getSender();
+            if (sender == null) {
+                return;
+            }
+            if (MapCore.CONFIG.itemNeeded && !AtlasAPI.getPlayerAtlases(sender).contains(msg.atlasID)) {
+                Log.warn("Player %s attempted to put position marker into someone else's Atlas #%d",
+                        sender.createCommandSourceStack().getTextName(), msg.atlasID);
+                return;
+            }
 
-	@Override
-	public ResourceLocation getId() {
-		return ID;
-	}
+            MapCore.tileData.getData(msg.atlasID, sender.getCommandSenderWorld())
+                    .getWorldData(msg.world).setBrowsingPosition(msg.x, msg.y, msg.zoom);
+        });
+        context.setPacketHandled(true);
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return ID;
+    }
 }

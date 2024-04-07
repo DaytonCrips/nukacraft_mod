@@ -13,27 +13,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VentTubeBlock extends CustomModelBlock{
+public class VentTubeBlock extends CustomModelBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+
     public VentTubeBlock(Properties properties) {
         super(properties);
     }
-    private VoxelShape getShape(BlockState state)
-    {
-        if(SHAPES.containsKey(state))
-        {
+
+    private VoxelShape getShape(BlockState state) {
+        if (SHAPES.containsKey(state)) {
             return SHAPES.get(state);
         }
         List<VoxelShape> shapes = new ArrayList<>();
         switch (state.getValue(FACING)) {
-            case NORTH ->
-                    shapes.add(box(3, 3, 0.1, 13, 13, 16));
-            case EAST ->
-                    shapes.add(box(0.05000000000000071, 3, 3.0500000000000007, 15.950000000000001, 13, 13.05));
-            case WEST ->
-                    shapes.add(box(0.05000000000000071, 3, 3.0500000000000007, 15.950000000000001, 13, 13.05));
-            default ->
-                    shapes.add(box(3, 3, 0.1, 13, 13, 16));
+            case NORTH -> shapes.add(box(3, 3, 0.1, 13, 13, 16));
+            case EAST -> shapes.add(box(0.05000000000000071, 3, 3.0500000000000007, 15.950000000000001, 13, 13.05));
+            case WEST -> shapes.add(box(0.05000000000000071, 3, 3.0500000000000007, 15.950000000000001, 13, 13.05));
+            default -> shapes.add(box(3, 3, 0.1, 13, 13, 16));
         }
         Direction direction = state.getValue(FACING);
         shapes.add(box(0.1, 0, 0.1, 15.9, 15.9, 15.9));
@@ -41,9 +37,9 @@ public class VentTubeBlock extends CustomModelBlock{
         SHAPES.put(state, shape);
         return shape;
     }
+
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         return this.getShape(state);
     }
 }

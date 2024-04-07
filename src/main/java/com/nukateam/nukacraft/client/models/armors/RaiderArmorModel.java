@@ -15,11 +15,11 @@ public class RaiderArmorModel extends GeoModel<RaiderArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(RaiderArmorItem raiderArmorItem) {
-        return nukaResource("textures/armor/"+ raiderArmorItem.getSkin() +"_raider_armor.png");
+        return nukaResource("textures/armor/" + raiderArmorItem.getSkin() + "_raider_armor.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(RaiderArmorItem raiderArmorItem) {
-        return nukaResource( "animations/armor_default_animation.json");
+        return nukaResource("animations/armor_default_animation.json");
     }
 }

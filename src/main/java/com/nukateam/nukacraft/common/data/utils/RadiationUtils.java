@@ -26,7 +26,7 @@ public class RadiationUtils {
 
     private static void handleAddedRadiation(LivingEntity entity, double value) {
         var radiationAtt = entity.getAttribute(ModAttributes.RADIATION.get());
-        var healthAtt =  entity.getAttribute(Attributes.MAX_HEALTH);
+        var healthAtt = entity.getAttribute(Attributes.MAX_HEALTH);
         var maxHealth = healthAtt.getBaseValue();
         var currentHealth = healthAtt.getValue();
         var currentRad = radiationAtt.getValue();
@@ -34,19 +34,18 @@ public class RadiationUtils {
         var healthMod = -value;
         var isRemovingRad = value < 0;
 
-        if(isRemovingRad){
+        if (isRemovingRad) {
             if (currentHealth + healthMod > maxHealth) {
                 healthMod = maxHealth - currentHealth;
             }
-            if(currentRad + radMod < 0){
+            if (currentRad + radMod < 0) {
                 radMod = -currentRad;
             }
-        }
-        else{
+        } else {
             if (currentHealth + healthMod > maxHealth - 1) {
                 healthMod = maxHealth - currentHealth - 1;
             }
-            if (currentRad + radMod > maxHealth - 1){
+            if (currentRad + radMod > maxHealth - 1) {
                 radMod = Math.max(0, Math.min(radMod, currentHealth - 1));
             }
         }
@@ -66,8 +65,8 @@ public class RadiationUtils {
 
         var currentValue = 0.0;
 
-        for (var mod: radiationAtt.getModifiers()) {
-            if (mod.getName().equals("radiation")){
+        for (var mod : radiationAtt.getModifiers()) {
+            if (mod.getName().equals("radiation")) {
                 currentValue = mod.getAmount();
                 radiationAtt.removeModifier(mod);
             }
@@ -75,8 +74,8 @@ public class RadiationUtils {
 
         var newValue = currentValue + value;
 
-        if(newValue < minBound) newValue = minBound;
-        if(newValue > maxBound) newValue = maxBound;
+        if (newValue < minBound) newValue = minBound;
+        if (newValue > maxBound) newValue = maxBound;
 
         radiationAtt.addPermanentModifier(new AttributeModifier("radiation", newValue, AttributeModifier.Operation.ADDITION));
     }
@@ -89,8 +88,8 @@ public class RadiationUtils {
 
         var currentValue = 0.0;
 
-        for (var mod: attribute.getModifiers()) {
-            if (mod.getName().equals("health")){
+        for (var mod : attribute.getModifiers()) {
+            if (mod.getName().equals("health")) {
                 currentValue = mod.getAmount();
                 attribute.removeModifier(mod);
             }

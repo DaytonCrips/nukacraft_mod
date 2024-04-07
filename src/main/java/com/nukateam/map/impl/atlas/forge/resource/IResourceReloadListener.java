@@ -10,38 +10,38 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 /**
- * @author Stereowalker
  * @param <T>
+ * @author Stereowalker
  */
 @SuppressWarnings("deprecation")
 
 public interface IResourceReloadListener<T> extends ResourceManagerReloadListener {
 
-	@Override
-	default void onResourceManagerReload(
-			ResourceManager resourceManager/* , Predicate<IResourceType> resourcePredicate */) {
-		
-	}
-	
-	@Override
-	default CompletableFuture<Void> reload(PreparationBarrier stage, ResourceManager resourceManager, ProfilerFiller preparationsProfiler, ProfilerFiller reloadProfiler, Executor backgroundExecutor, Executor gameExecutor) {
-		return load(resourceManager, preparationsProfiler, backgroundExecutor)
-				.thenCompose(stage::wait)
-				.thenAccept((value) -> {
-						apply(value, resourceManager, reloadProfiler, gameExecutor);
-				});
+    @Override
+    default void onResourceManagerReload(
+            ResourceManager resourceManager/* , Predicate<IResourceType> resourcePredicate */) {
 
-	}
+    }
 
-	CompletableFuture<T> load(ResourceManager resourceManager, ProfilerFiller profiler, Executor executor);
+    @Override
+    default CompletableFuture<Void> reload(PreparationBarrier stage, ResourceManager resourceManager, ProfilerFiller preparationsProfiler, ProfilerFiller reloadProfiler, Executor backgroundExecutor, Executor gameExecutor) {
+        return load(resourceManager, preparationsProfiler, backgroundExecutor)
+                .thenCompose(stage::wait)
+                .thenAccept((value) -> {
+                    apply(value, resourceManager, reloadProfiler, gameExecutor);
+                });
 
-	CompletableFuture<Void> apply (T value, ResourceManager resourceManager, ProfilerFiller profiler, Executor executor);
+    }
 
-	default ResourceLocation getForgeId() {
-		return null;
-	}
+    CompletableFuture<T> load(ResourceManager resourceManager, ProfilerFiller profiler, Executor executor);
 
-	default Collection<ResourceLocation> getForgeDependencies() {
-		return null;
-	}
+    CompletableFuture<Void> apply(T value, ResourceManager resourceManager, ProfilerFiller profiler, Executor executor);
+
+    default ResourceLocation getForgeId() {
+        return null;
+    }
+
+    default Collection<ResourceLocation> getForgeDependencies() {
+        return null;
+    }
 }

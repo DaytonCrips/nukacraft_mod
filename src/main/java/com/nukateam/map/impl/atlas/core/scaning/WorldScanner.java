@@ -93,8 +93,8 @@ public class WorldScanner {
             // If the chunk has been scanned previously, only re-scan it so often:
             if (oldTile != null && !rescanRequired)
                 return null;
-            
-            if(!world.getChunkSource().hasChunk(x,z))
+
+            if (!world.getChunkSource().hasChunk(x, z))
                 return null;
 
             // TODO FABRIC: forceChunkLoading crashes here

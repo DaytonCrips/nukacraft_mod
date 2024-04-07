@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.nukateam.nukacraft.common.registery.items.ModWeapons;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModWeapons;
 import com.nukateam.nukacraft.common.registery.items.PowerArmorItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

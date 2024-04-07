@@ -16,6 +16,7 @@ public class SpecialSoupItem extends EffectRadItem {
     public SpecialSoupItem(float radiation, Supplier<MobEffectInstance> effect, Properties properties) {
         super(radiation, effect, properties);
     }
+
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (entity instanceof Player) {
@@ -24,6 +25,7 @@ public class SpecialSoupItem extends EffectRadItem {
         }
         return super.finishUsingItem(stack, level, entity);
     }
+
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.EAT;

@@ -1,18 +1,15 @@
 package com.nukateam.map.impl.atlas.client;
 
+import com.google.gson.JsonParser;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.forge.resource.IResourceReloadListener;
 import com.nukateam.map.impl.atlas.util.Log;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Collections;
@@ -56,7 +53,7 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
                         try (
                                 var stream = resource.getInputStream();
                                 var reader = new InputStreamReader(stream)
-                        ){
+                        ) {
                             var object = PARSER.parse(reader).getAsJsonObject();
 
                             int version = object.getAsJsonPrimitive("version").getAsInt();
@@ -83,21 +80,21 @@ public class TileTextureConfig implements IResourceReloadListener<Map<ResourceLo
 
     @Override
     public CompletableFuture<Void> apply(Map<ResourceLocation, ResourceLocation> tileMap, ResourceManager manager, ProfilerFiller profiler, Executor executor) {
-    	for (var entry : tileMap.entrySet()) {
-	        var tile_id = entry.getKey();
-	        var texture_set = entry.getValue();
-	        var set = textureSetMap.getByName(entry.getValue());
+        for (var entry : tileMap.entrySet()) {
+            var tile_id = entry.getKey();
+            var texture_set = entry.getValue();
+            var set = textureSetMap.getByName(entry.getValue());
 
-	        if(set == null) {
-	            MapCore.LOG.error("Missing texture set `{}` for tile `{}`. Using default.", texture_set, tile_id);
+            if (set == null) {
+                MapCore.LOG.error("Missing texture set `{}` for tile `{}`. Using default.", texture_set, tile_id);
 
-	            set = tileTextureMap.getDefaultTexture();
+                set = tileTextureMap.getDefaultTexture();
             }
 
-	        tileTextureMap.setTexture(entry.getKey(), set);
+            tileTextureMap.setTexture(entry.getKey(), set);
             Log.info("Using texture set %s for tile %s", set.name, tile_id);
         }
-    	return CompletableFuture.runAsync(() -> {
+        return CompletableFuture.runAsync(() -> {
         });
     }
 

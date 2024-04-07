@@ -64,13 +64,13 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_45MM_COCK = register("item.pistol45mm.cock");
     public static final RegistryObject<SoundEvent> ITEM_45MM_RELOAD = register("item.pistol45mm.reload");
 
-    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION         = register("misc.nuke.mininuke_explosion");
-    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE  =  register("misc.nuke.nuclear_explosion_rumble" );
+    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION = register("misc.nuke.mininuke_explosion");
+    public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE = register("misc.nuke.nuclear_explosion_rumble");
     public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RINGING = register("misc.nuke.nuclear_explosion_ringing");
 
-    public static final RegistryObject<SoundEvent> PIPBOY_UP    = register("gui.pipboy.pipboy_up"   );
-    public static final RegistryObject<SoundEvent> PIPBOY_DOWN  = register("gui.pipboy.pipboy_down" );
-    public static final RegistryObject<SoundEvent> PIPBOY_TAB   = register("gui.pipboy.pipboy_tab"  );
+    public static final RegistryObject<SoundEvent> PIPBOY_UP = register("gui.pipboy.pipboy_up");
+    public static final RegistryObject<SoundEvent> PIPBOY_DOWN = register("gui.pipboy.pipboy_down");
+    public static final RegistryObject<SoundEvent> PIPBOY_TAB = register("gui.pipboy.pipboy_tab");
 
     public static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> new SoundEvent(new ResourceLocation(NukaCraftMod.MOD_ID, key)));

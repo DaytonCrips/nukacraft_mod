@@ -21,7 +21,7 @@ public class ItemRendererMixin {
     public void renderStatic(LivingEntity p_174243_, ItemStack pItemStack, ItemTransforms.TransformType pTransformType,
                              boolean pLeftHand, PoseStack pPoseStack, MultiBufferSource pBuffer, Level pLevel,
                              int pCombinedLight, int pCombinedOverlay, int p_174252_, CallbackInfo ci) {
-        if(pItemStack.getItem() instanceof GunItem){
+        if (pItemStack.getItem() instanceof GunItem) {
             Render.GUN_RENDERER.setEntity(p_174243_);
         }
     }

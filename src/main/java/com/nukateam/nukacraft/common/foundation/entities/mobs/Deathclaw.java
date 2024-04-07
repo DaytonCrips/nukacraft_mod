@@ -28,6 +28,13 @@ public class Deathclaw extends Monster implements GeoEntity {
     private final boolean isClientSide = level.isClientSide;
     private final boolean isServerSide = !level.isClientSide;
     private boolean isRunning = false;
+    private boolean startAttacking = false;
+    private String[] attackAnims = new String[]{
+            "attack_right",
+            "attack_left",
+            "attack_both"
+    };
+    private String attackAnimName;
 
     public Deathclaw(EntityType<? extends Monster> p_33002_, Level p_33003_) {
         super(p_33002_, p_33003_);
@@ -58,7 +65,7 @@ public class Deathclaw extends Monster implements GeoEntity {
     public void setTarget(@Nullable LivingEntity pTarget) {
         super.setTarget(pTarget);
 
-        if(isServerSide) {
+        if (isServerSide) {
             setIsRunning(pTarget != null);
             PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
         }
@@ -67,45 +74,6 @@ public class Deathclaw extends Monster implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
-    }
-
-    @Override
-    public void registerControllers(ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controllerName", 0, animateArms()));
-    }
-
-    public void setIsRunning(boolean isRunning){
-        this.isRunning = isRunning;
-        if (isRunning)
-            setSpeed(2f);
-        else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
-    }
-
-    @NotNull private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
-        return event -> {
-            var controller = event.getController();
-            controller.setAnimationSpeed(1);
-            RawAnimation animation;
-
-            if(attackAnim > 0){
-                if(!startAttacking){
-                    startAttacking = true;
-                    attackAnimName = attackAnims[random.nextInt(0,attackAnims.length)];
-                }
-
-                controller.setAnimationSpeed(2);
-                animation = begin().thenLoop(attackAnimName);
-
-            }
-            else if(event.isMoving()){
-                animation = isRunning ? begin().thenLoop("run") : begin().thenLoop("walk");
-            }
-            else {
-                animation = begin().thenLoop("idle");
-            }
-
-            return event.setAndContinue(animation);
-        };
     }
 
 //    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
@@ -133,15 +101,43 @@ public class Deathclaw extends Monster implements GeoEntity {
 //        return PlayState.CONTINUE;
 //    }
 
-    private boolean startAttacking = false;
+    @Override
+    public void registerControllers(ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controllerName", 0, animateArms()));
+    }
 
-    private String[] attackAnims = new String[]{
-            "attack_right",
-            "attack_left",
-            "attack_both"
-    };
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+        if (isRunning)
+            setSpeed(2f);
+        else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
+    }
 
-    private String attackAnimName;
+    @NotNull
+    private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation;
+
+            if (attackAnim > 0) {
+                if (!startAttacking) {
+                    startAttacking = true;
+                    attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
+                }
+
+                controller.setAnimationSpeed(2);
+                animation = begin().thenLoop(attackAnimName);
+
+            } else if (event.isMoving()) {
+                animation = isRunning ? begin().thenLoop("run") : begin().thenLoop("walk");
+            } else {
+                animation = begin().thenLoop("idle");
+            }
+
+            return event.setAndContinue(animation);
+        };
+    }
 //
 //    public static void setAnimation(AnimationController<?> controller, String name, ILoopType loopType){
 //        controller.setAnimation(new AnimationBuilder().addAnimation(name, loopType));

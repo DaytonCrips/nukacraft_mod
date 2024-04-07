@@ -10,6 +10,10 @@ public class GuiToggleButton extends GuiComponentButton {
 
     private ToggleGroup radioGroup;
 
+    protected boolean isSelected() {
+        return selected;
+    }
+
     /**
      * Sets the button selected state. If the button is part of a RadioGroup,
      * use the RadioGroup's setSelected method instead!
@@ -18,16 +22,12 @@ public class GuiToggleButton extends GuiComponentButton {
         this.selected = value;
     }
 
-    protected boolean isSelected() {
-        return selected;
+    public ToggleGroup getRadioGroup() {
+        return radioGroup;
     }
 
     void setRadioGroup(ToggleGroup radioGroup) {
         this.radioGroup = radioGroup;
-    }
-
-    public ToggleGroup getRadioGroup() {
-        return radioGroup;
     }
 
     @Override

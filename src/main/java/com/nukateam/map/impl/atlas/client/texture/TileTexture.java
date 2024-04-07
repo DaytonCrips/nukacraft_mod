@@ -1,7 +1,7 @@
 package com.nukateam.map.impl.atlas.client.texture;
 
-import com.nukateam.map.impl.atlas.client.SubTile;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.SubTile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

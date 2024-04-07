@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
-import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -23,14 +22,16 @@ import java.util.List;
 import java.util.Map;
 
 public class VaultSupportBlock extends Block {
-    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
     private String type;
+
     public VaultSupportBlock(Properties pProperties, String type) {
         super(pProperties);
         this.type = type;
         this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.SOUTH));
     }
+
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (SHAPES.containsKey(pState)) {
@@ -39,25 +40,19 @@ public class VaultSupportBlock extends Block {
         List<VoxelShape> shapes = new ArrayList<>();
         if (this.type.equals("wall")) {
             switch (pState.getValue(FACING)) {
-                case NORTH ->
-                        shapes.add(box(5.399999999999999, 0, 0, 10.599999999999987, 16, 4));
-                case EAST ->
-                        shapes.add(box(12, 0, 5.399999999999999, 16, 16, 10.599999999999987));
-                case WEST ->
-                        shapes.add(box(0, 0, 5.399999999999999, 4, 16, 10.599999999999987));
-                default ->
-                        shapes.add(box(5.399999999999999, 0, 12, 10.599999999999987, 16, 16));
+                case NORTH -> shapes.add(box(5.399999999999999, 0, 0, 10.599999999999987, 16, 4));
+                case EAST -> shapes.add(box(12, 0, 5.399999999999999, 16, 16, 10.599999999999987));
+                case WEST -> shapes.add(box(0, 0, 5.399999999999999, 4, 16, 10.599999999999987));
+                default -> shapes.add(box(5.399999999999999, 0, 12, 10.599999999999987, 16, 16));
             }
         } else if (this.type.equals("walltop")) {
             switch (pState.getValue(FACING)) {
-                case NORTH ->
-                        shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
+                case NORTH -> shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
                 case EAST ->
                         shapes.add(box(-2.6645352591003757e-15, 10.000000000000004, 5.400000000000002, 15.999999999999996, 15.999999999999993, 10.599999999999998));
                 case WEST ->
                         shapes.add(box(-2.6645352591003757e-15, 10.000000000000004, 5.400000000000002, 15.999999999999996, 15.999999999999993, 10.599999999999998));
-                default ->
-                        shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
+                default -> shapes.add(box(5.4, 10.000000000000004, 0, 10.599999999999994, 15.999999999999993, 16));
             }
         } else if (this.type.equals("top")) {
             switch (pState.getValue(FACING)) {
@@ -113,21 +108,26 @@ public class VaultSupportBlock extends Block {
         SHAPES.put(pState, shape);
         return shape;
     }
+
     public BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
+
     public BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
+
     @Override
     public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return super.getOcclusionShape(pState, pLevel, pPos);
     }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
+
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

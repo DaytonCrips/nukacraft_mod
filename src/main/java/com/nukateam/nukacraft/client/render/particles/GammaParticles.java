@@ -5,9 +5,10 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
 public class GammaParticles extends TextureSheetParticle {
     protected GammaParticles(ClientLevel level, double xCoord, double yCoord, double zCoord,
-                               SpriteSet spriteSet, double xd, double yd, double zd) {
+                             SpriteSet spriteSet, double xd, double yd, double zd) {
         super(level, xCoord, yCoord, zCoord, xd, yd, zd);
 
         this.friction = 0.8F;
@@ -30,7 +31,7 @@ public class GammaParticles extends TextureSheetParticle {
     }
 
     private void fadeOut() {
-        this.alpha = (-(1/(float)lifetime) * age + 1);
+        this.alpha = (-(1 / (float) lifetime) * age + 1);
     }
 
     @Override

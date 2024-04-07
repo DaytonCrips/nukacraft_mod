@@ -6,7 +6,6 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.StructureFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.JigsawConfiguration;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructureSets;
@@ -34,18 +33,6 @@ public class SkyStructures extends StructureFeature<JigsawConfiguration> {
     public SkyStructures() {
         // Create the pieces layout of the structure and give it to the game
         super(CODEC, SkyStructures::createPiecesGenerator, PostPlacementProcessor.NONE);
-    }
-
-    /**
-     *        : WARNING!!! DO NOT FORGET THIS METHOD!!!! :
-     * If you do not override step method, your structure WILL crash the biome as it is being parsed!
-     *
-     * Generation step for when to generate the structure. there are 10 stages you can pick from!
-     * This surface structure stage places the structure before plants and ores are generated.
-     */
-    @Override
-    public GenerationStep.Decoration step() {
-        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 
     /*
@@ -121,7 +108,7 @@ public class SkyStructures extends StructureFeature<JigsawConfiguration> {
          * https://github.com/TelepathicGrunt/RepurposedStructures/blob/1.18.2/src/main/java/com/telepathicgrunt/repurposedstructures/world/structures/pieces/PieceLimitedJigsawManager.java
          */
 
-        if(structurePiecesGenerator.isPresent()) {
+        if (structurePiecesGenerator.isPresent()) {
             // I use to debug and quickly find out if the structure is spawning or not and where it is.
             // This is returning the coordinates of the center starting piece.
             NukaCraftMod.LOGGER.info("Rundown House at {}", blockpos, Level.DEBUG);
@@ -129,5 +116,17 @@ public class SkyStructures extends StructureFeature<JigsawConfiguration> {
 
         // Return the pieces generator that is now set up so that the game runs it when it needs to create the layout of structure pieces.
         return structurePiecesGenerator;
+    }
+
+    /**
+     * : WARNING!!! DO NOT FORGET THIS METHOD!!!! :
+     * If you do not override step method, your structure WILL crash the biome as it is being parsed!
+     * <p>
+     * Generation step for when to generate the structure. there are 10 stages you can pick from!
+     * This surface structure stage places the structure before plants and ores are generated.
+     */
+    @Override
+    public GenerationStep.Decoration step() {
+        return GenerationStep.Decoration.SURFACE_STRUCTURES;
     }
 }

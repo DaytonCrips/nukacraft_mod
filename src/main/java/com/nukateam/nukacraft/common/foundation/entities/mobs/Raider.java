@@ -22,7 +22,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,7 +31,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.*;
+import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.getPowerArmor;
+import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.isWearingPowerArmor;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
@@ -38,10 +40,26 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
 
     public PowerArmorFrame armorTarget = null;
+    private GunItem[] guns = new GunItem[]{
+            ModWeapons.PISTOL10MM.get(),
+            ModWeapons.PIPEREVOLVER.get(),
+            ModWeapons.PIPE_PISTOL.get(),
+            ModWeapons.SCOUT10MM.get(),
+            ModWeapons.MINIGUN.get(),
+            ModWeapons.LASER_PISTOL.get(),
+    };
 
     public Raider(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setCanPickUpLoot(true);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.FOLLOW_RANGE, 40.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F)
+                .add(Attributes.ATTACK_DAMAGE, 2.0D)
+                .add(Attributes.ARMOR, 2.0D);
     }
 
     @Override
@@ -60,14 +78,6 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.FOLLOW_RANGE, 40.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.23F)
-                .add(Attributes.ATTACK_DAMAGE, 2.0D)
-                .add(Attributes.ARMOR, 2.0D);
-    }
-
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -77,18 +87,9 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     @Override
     public void rideTick() {
         super.rideTick();
-        if(isWearingPowerArmor(this) && !getPowerArmor(this).hasEnergy())
+        if (isWearingPowerArmor(this) && !getPowerArmor(this).hasEnergy())
             stopRiding();
     }
-
-    private GunItem[] guns = new GunItem[]{
-            ModWeapons.PISTOL10MM.get(),
-            ModWeapons.PIPEREVOLVER.get(),
-            ModWeapons.PIPE_PISTOL.get(),
-            ModWeapons.SCOUT10MM.get(),
-            ModWeapons.MINIGUN.get(),
-            ModWeapons.LASER_PISTOL.get(),
-    };
 
     @Nullable
     @Override
@@ -112,20 +113,20 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
         this.setTypeVariant(pCompound.getInt("Variant"));
     }
 
-    private void setTypeVariant(int pTypeVariant) {
-        this.entityData.set(DATA_ID_TYPE_VARIANT, pTypeVariant);
-    }
-
     public int getTypeVariant() {
         return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
-    private void setVariant(RaiderVariant variant) {
-        this.setTypeVariant(variant.getId() & 255);
+    private void setTypeVariant(int pTypeVariant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, pTypeVariant);
     }
 
     public RaiderVariant getVariant() {
         return RaiderVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private void setVariant(RaiderVariant variant) {
+        this.setTypeVariant(variant.getId() & 255);
     }
 
 //    @Override
@@ -135,7 +136,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
 
     @Override
     public boolean isInvisible() {
-        if(getVehicle() instanceof PowerArmorFrame)
+        if (getVehicle() instanceof PowerArmorFrame)
             return true;
         return super.isInvisible();
     }
@@ -147,7 +148,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
         ShootingHandler.get().fire(this, item);
     }
 
-    public ResourceLocation getTexture(){
-        return nukaResource("textures/entity/raider/raider_"+ getTypeVariant() +".png");
+    public ResourceLocation getTexture() {
+        return nukaResource("textures/entity/raider/raider_" + getTypeVariant() + ".png");
     }
 }

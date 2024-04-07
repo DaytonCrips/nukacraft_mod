@@ -2,8 +2,8 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.armor.*;
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
+import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -171,5 +171,8 @@ public class ModArmorItems {
     public static final RegistryObject<Item> TRAP_BOOTS = ITEMS.register("trapboots",
             () -> new TrapperArmorItem(ModArmorMaterials.TRAPPER, EquipmentSlot.FEET, "default",
                     new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
-    public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
+
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
 }

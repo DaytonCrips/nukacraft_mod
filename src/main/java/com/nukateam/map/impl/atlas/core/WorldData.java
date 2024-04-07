@@ -25,10 +25,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WorldData implements ITileStorage {
     public final AtlasData parent;
     public final ResourceKey<Level> world;
-
-    private int browsingX, browsingY;
-    private double browsingZoom = 0.5;
-
     /**
      * a map of chunks the player has seen. This map is thread-safe. CAREFUL!
      * Don't modify chunk coordinates that are already put in the map!
@@ -36,11 +32,12 @@ public class WorldData implements ITileStorage {
      * Key is a ChunkPos representing the gilegroup's position in units of TileGroup.CHUNK_STEP
      */
     private final Map<ChunkPos, TileGroup> tileGroups = new ConcurrentHashMap<>(2, 0.75f, 2);
-
     /**
      * Limits of explored area, in chunks.
      */
     private final Rect scope = new Rect();
+    private int browsingX, browsingY;
+    private double browsingZoom = 0.5;
 
     public WorldData(AtlasData parent, ResourceKey<Level> world) {
         this.parent = parent;

@@ -26,14 +26,14 @@ public class TileIdMap {
             TILE_VILLAGE_BUTCHERS_SHOP = MapCore.id("npc_village_butchers_shop"),
             TILE_VILLAGE_CHURCH = MapCore.id("npc_village_church"),
 
-            TILE_RAVINE = MapCore.id("ravine"),
+    TILE_RAVINE = MapCore.id("ravine"),
             SWAMP_WATER = MapCore.id("swamp_water"),
 
-            // Overworld stuff:
-            RUINED_PORTAL = MapCore.id("ruined_portal"),
+    // Overworld stuff:
+    RUINED_PORTAL = MapCore.id("ruined_portal"),
 
-            // Nether & Nether Fortress:
-            TILE_LAVA = MapCore.id("lava"),
+    // Nether & Nether Fortress:
+    TILE_LAVA = MapCore.id("lava"),
             TILE_LAVA_SHORE = MapCore.id("lava_shore"),
             NETHER_FORTRESS_BRIDGE_CROSSING = MapCore.id("nether_bridge"),
             NETHER_BRIDGE_X = MapCore.id("nether_bridge_x"),

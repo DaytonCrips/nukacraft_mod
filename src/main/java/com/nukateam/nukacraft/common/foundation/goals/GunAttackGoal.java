@@ -7,18 +7,20 @@ import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+
 import java.util.EnumSet;
 
 public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser> extends Goal {
     public static final UniformInt PATHFINDING_DELAY_RANGE = TimeUtil.rangeOfSeconds(1, 2);
     private final T mob;
-//    private GunAttackGoal.CrossbowState crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
+    //    private GunAttackGoal.CrossbowState crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
     private final double speedModifier;
     private final float attackRadiusSqr;
     private int seeTime;
     private int attackDelay;
     private int updatePathDelay;
+    private int reloadTimer = 0;
 
     public GunAttackGoal(T pMob, double pSpeedModifier, float pAttackRadius) {
         this.mob = pMob;
@@ -70,8 +72,6 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         return true;
     }
 
-    private int reloadTimer = 0;
-
     /**
      * Keep ticking a continuous task that has already been started
      */
@@ -89,7 +89,7 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         else --this.seeTime;
 
         var distance = this.mob.distanceToSqr(target);
-        var flag2 = (distance > (double)this.attackRadiusSqr || this.seeTime < 5) && this.attackDelay == 0;
+        var flag2 = (distance > (double) this.attackRadiusSqr || this.seeTime < 5) && this.attackDelay == 0;
         if (flag2) {
             --this.updatePathDelay;
             if (this.updatePathDelay <= 0) {
@@ -105,18 +105,15 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
 
         var gunStack = mob.getMainHandItem();
 
-        var gun = (GunItem)mob.getMainHandItem().getItem();
+        var gun = (GunItem) mob.getMainHandItem().getItem();
 
-        if(Gun.hasAmmo(mob.getMainHandItem())){
+        if (Gun.hasAmmo(mob.getMainHandItem())) {
             mob.performRangedAttack(target, 1);
-        }
-        else if(reloadTimer == -1){
+        } else if (reloadTimer == -1) {
             reloadTimer = gun.getGun().getGeneral().getReloadTime();
-        }
-        else if(reloadTimer > 0){
+        } else if (reloadTimer > 0) {
             reloadTimer = Math.max(reloadTimer - 1, 0);
-        }
-        else if(reloadTimer == 0){
+        } else if (reloadTimer == 0) {
             Gun.fillAmmo(gunStack);
             reloadTimer = -1;
         }

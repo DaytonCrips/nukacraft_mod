@@ -1,13 +1,13 @@
 package com.nukateam.map.impl.atlas.client.gui;
 
-import com.nukateam.map.impl.atlas.client.Textures;
-import com.nukateam.map.impl.atlas.client.gui.core.GuiComponent;
-import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.nukateam.map.impl.atlas.client.Textures;
+import com.nukateam.map.impl.atlas.client.gui.core.GuiComponent;
+import com.nukateam.map.impl.atlas.client.texture.ITexture;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 
 import java.util.Collections;
 import java.util.Map;
@@ -67,7 +67,7 @@ public class GuiScaleBar extends GuiComponent {
         texture.draw(matrices, getGuiX(), getGuiY());
 
         if (isMouseOver) {
-            drawTooltip(Collections.singletonList(new TranslatableComponent("gui.nukacraft.scalebar")), Minecraft.getInstance().font);
+            drawTooltip(Collections.singletonList(Component.translatable("gui.nukacraft.scalebar")), Minecraft.getInstance().font);
         }
     }
 }

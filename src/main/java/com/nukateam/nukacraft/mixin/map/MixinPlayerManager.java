@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinPlayerManager {
     @Inject(at = @At("TAIL"), method = "placeNewPlayer")
     private void afterPlayerConnect(Connection connection, ServerPlayer playerEntity, CallbackInfo info) {
-    	MinecraftForge.EVENT_BUS.post(new NewPlayerConnectionCallback.TheEvent(playerEntity));
+        MinecraftForge.EVENT_BUS.post(new NewPlayerConnectionCallback.TheEvent(playerEntity));
     }
 }

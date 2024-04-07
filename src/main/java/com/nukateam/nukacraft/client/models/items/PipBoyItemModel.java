@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.models.items;
 
 import com.nukateam.ntgl.client.model.IGlowingModel;
-import com.nukateam.nukacraft.common.foundation.items.misc.*;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
@@ -15,7 +15,7 @@ public class PipBoyItemModel extends GeoModel<PipBoyItem> implements IGlowingMod
 
     @Override
     public ResourceLocation getTextureResource(PipBoyItem pipBoyItem) {
-        return nukaResource("textures/items/pipboy/"+ pipBoyItem.getSkin() +"_pipboy.png");
+        return nukaResource("textures/items/pipboy/" + pipBoyItem.getSkin() + "_pipboy.png");
     }
 
     @Override
@@ -25,6 +25,6 @@ public class PipBoyItemModel extends GeoModel<PipBoyItem> implements IGlowingMod
 
     @Override
     public ResourceLocation getGlowingTextureResource(PipBoyItem animatable) {
-        return nukaResource("textures/items/pipboy/"+ animatable.getSkin() +"_pipboy_glowmask.png");
+        return nukaResource("textures/items/pipboy/" + animatable.getSkin() + "_pipboy_glowmask.png");
     }
 }

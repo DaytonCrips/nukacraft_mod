@@ -2,8 +2,8 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.ModTiers;
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
+import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,5 +26,7 @@ public class ModMelee {
             () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
                     new Item.Properties().tab(ModItemTabs.NUKA_WEAPONS)));
 
-    public static void register(IEventBus eventBus) { ITEMS.register(eventBus); }
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
 }

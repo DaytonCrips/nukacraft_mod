@@ -33,7 +33,7 @@ public class TileDataStorage extends SavedData {
 
     public TileDataStorage() {
     }
-    
+
     public static TileDataStorage readNbt(CompoundTag compound) {
         TileDataStorage data = new TileDataStorage();
 
