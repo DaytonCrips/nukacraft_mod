@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.armor;
+package com.nukateam.nukacraft.client.render.renderers.armor;
 
 import com.nukateam.nukacraft.client.models.armors.WoodenArmorModel;
 import com.nukateam.nukacraft.common.foundation.items.armor.WoodenArmorItem;

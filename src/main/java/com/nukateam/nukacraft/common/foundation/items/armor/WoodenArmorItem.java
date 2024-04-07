@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.armor;
 
-import com.nukateam.nukacraft.common.foundation.entities.armor.WoodenArmorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.armor.WoodenArmorRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;

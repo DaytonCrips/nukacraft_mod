@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.jetug.chassis_core.common.foundation.item.TestItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
@@ -449,11 +448,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> POISONOUS_WATER_BUCKET = ITEMS.register("poisonous_water_bucket",
             () -> new BucketItem(ModFluids.POISONOUS_WATER_FLUID, new Item.Properties().tab(NUKA_MATERIAL).stacksTo(1)));
-
-    public static final RegistryObject<Item> TEST = ITEMS.register("test",
-            () -> new TestItem(new Item.Properties()));
-
-
 
     //Spawn Eggs
     public static final RegistryObject<ForgeSpawnEggItem> RAIDER_SPAWN_EGG = ITEMS.register("raider_spawn_egg",
