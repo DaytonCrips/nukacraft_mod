@@ -14,6 +14,7 @@ import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
@@ -70,9 +71,10 @@ public class NukaCraftMod {
         ContainerRegistry.register(MOD_EVENT_BUS);
         SoundRegistry.REGISTER.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
-        ModPaintingList.PAINTING_TYPES.register(MOD_EVENT_BUS);
+        ModPaintings.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
+        ModFluidTypes.register(MOD_EVENT_BUS);
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
 

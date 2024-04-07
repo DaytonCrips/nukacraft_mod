@@ -66,7 +66,7 @@ public class EffectRadItem extends RadItem {
         }
 
         if (!list.isEmpty()) {
-            pTooltips.add(TextComponent.EMPTY);
+            pTooltips.add(Component.literal(""));
             pTooltips.add((Component.translatable("potion.whenDrank")).withStyle(ChatFormatting.DARK_PURPLE));
 
             for (var pair : list) {

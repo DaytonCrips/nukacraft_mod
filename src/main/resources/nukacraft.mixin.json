@@ -3,34 +3,13 @@
   "package": "com.nukateam.nukacraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "guns.EndPortalBlockMixin",
-    "guns.LivingEntityMixin",
-    "common.PathNavigationMixin",
-    "guns.SittingPhaseMixin",
-    "map.MixinCartographyTableScreenHandler",
-    "map.MixinCraftingResultSlot",
-    "map.MixinEntity",
-    "map.MixinPlayerEntity",
-    "map.MixinPlayerEntityDeath",
-    "map.MixinPlayerManager",
-    "map.structure.StructureStartMixin"
+    "common.PathNavigationMixin"
   ],
   "client": [
     "client.GameRendererMixin",
     "client.GuiMixin",
     "client.ItemInHandLayerMixin",
-    "client.ItemInHandRendererMixin",
-    "guns.ItemInHandLayerMixin",
-    "guns.ItemRendererMixin",
-    "guns.LevelRendererMixin",
-    "guns.LivingEntityModelMixin",
-    "guns.MinecraftMixin",
-    "guns.MinecraftStaticMixin",
-    "guns.MouseHandlerMixin",
-    "map.HeldItemRendererMixin",
-    "map.MixinClientPlayNetworkHandler",
-    "map.MixinInGameHud",
-    "map.MixinMinecraftClient"
+    "client.ItemInHandRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

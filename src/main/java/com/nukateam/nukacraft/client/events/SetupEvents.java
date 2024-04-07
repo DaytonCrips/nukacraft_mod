@@ -38,9 +38,9 @@ public class SetupEvents {
         ModSetup.renderTypeSetup();
         PipboyPages.init(PipboyPages.content);
 
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLUID.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLOWING.get(), RenderType.translucent());
+//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());
+//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLUID.get(), RenderType.translucent());
+//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLOWING.get(), RenderType.translucent());
     }
 
 //    @SubscribeEvent
