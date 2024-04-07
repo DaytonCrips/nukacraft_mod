@@ -2,7 +2,6 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -129,7 +128,7 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
 //        image = new ResourceLocation("nukacraft:textures/screens/empty.png");
 //
 //        Minecraft.getInstance().player.closeContainer();
-        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
+//        AntiqueAtlasModClient.openAtlasGUI(Minecraft.getInstance().player.getOffhandItem());
     }
 
     public void buttonMenu() {

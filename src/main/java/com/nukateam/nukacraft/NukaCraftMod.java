@@ -1,13 +1,19 @@
 package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
+import com.mrcrayfish.framework.api.client.FrameworkClientAPI;
 import com.nukateam.map.impl.atlas.MapCore;
 import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
+import com.nukateam.ntgl.client.ClientHandler;
+import com.nukateam.ntgl.client.MetaLoader;
+import com.nukateam.ntgl.client.data.handler.CrosshairHandler;
+import com.nukateam.ntgl.client.input.KeyBinds;
 import com.nukateam.ntgl.common.base.utils.ProjectileManager;
 import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
 import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
 import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
 import com.nukateam.ntgl.common.foundation.init.Projectiles;
+import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
@@ -17,8 +23,10 @@ import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -49,8 +57,8 @@ public class NukaCraftMod {
         //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 //        MOD_EVENT_BUS.addListener(this::setup);
 
-        MapCore.onInitialize();
-        MapCore.initMapClient();
+//        MapCore.onInitialize();
+//        MapCore.initMapClient();
 
 //        new GunMod().initGunMod(MOD_EVENT_BUS);
 
@@ -77,6 +85,10 @@ public class NukaCraftMod {
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            MOD_EVENT_BUS.addListener(KeyBindings::register);
+        });
 
         MinecraftForge.EVENT_BUS.register(RadiationTracker.class);
         MinecraftForge.EVENT_BUS.register(this);

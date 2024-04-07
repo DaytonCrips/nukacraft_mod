@@ -5,7 +5,7 @@ import com.nukateam.nukacraft.common.data.utils.ExplosionType;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -15,7 +15,7 @@ import static com.nukateam.nukacraft.client.helpers.ExplosionUtils.*;
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ForgeEvents {
     @SubscribeEvent
-    public static void computeCameraAngles(EntityViewRenderEvent.CameraSetup event) {
+    public static void computeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
         var minecraft = Minecraft.getInstance();
         var player = minecraft.getCameraEntity();
         var nukes = getNukesAround();
@@ -27,7 +27,7 @@ public class ForgeEvents {
         if (tremorAmount > 0) {
             if (lastTremorTick != player.tickCount)
                 lastTremorTick = player.tickCount;
-            var intensity = scaleTremor(tremorAmount, explosionType) * minecraft.options.screenEffectScale;
+            var intensity = scaleTremor(tremorAmount, explosionType) * minecraft.options.screenEffectScale().get();
             intensity *= nuke.getTremorIntensity();
             var camera = event.getCamera();
             var rng = player.level.random;

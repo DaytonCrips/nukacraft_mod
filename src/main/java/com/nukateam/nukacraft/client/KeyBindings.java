@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import org.lwjgl.glfw.GLFW;
 
 import java.lang.reflect.Field;
@@ -27,8 +27,8 @@ public class KeyBindings {
         return keys;
     }
 
-    public static void register() {
+    public static void register(RegisterKeyMappingsEvent event) {
         for (KeyMapping key : getKeys())
-            ClientRegistry.registerKeyBinding(key);
+            event.register(key);
     }
 }
