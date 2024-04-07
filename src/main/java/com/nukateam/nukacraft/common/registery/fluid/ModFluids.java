@@ -1,9 +1,10 @@
-package com.nukateam.nukacraft.common.registery;
+package com.nukateam.nukacraft.common.registery.fluid;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.fluids.AcidFluidBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.fluids.RadWaterBlock;
 import com.nukateam.nukacraft.common.foundation.materials.BlockMaterials;
+import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -51,12 +51,19 @@ public class ModFluids {
 
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, NukaCraftMod.MOD_ID);
     public static final RegistryObject<LiquidBlock> ACID_BLOCK = ModBlocks.BLOCKS.register("acid",
-            () -> new AcidFluidBlock(BlockBehaviour.Properties.of(BlockMaterials.ACID_MATERIAL).noCollission().strength(100f).noDrops()));    public static final RegistryObject<FlowingFluid> ACID_FLUID
+            () -> new AcidFluidBlock(BlockBehaviour
+                    .Properties.of(BlockMaterials.ACID_MATERIAL)
+                    .noCollission()
+                    .strength(100f)));
+
+    public static final RegistryObject<FlowingFluid> ACID_FLUID
             = FLUIDS.register("acid_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.ACID_PROPERTIES));
 
     public static void register(IEventBus eventBus) {
         FLUIDS.register(eventBus);
-    }    public static final RegistryObject<FlowingFluid> ACID_FLOWING
+    }
+
+    public static final RegistryObject<FlowingFluid> ACID_FLOWING
             = FLUIDS.register("acid_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.ACID_PROPERTIES));
 
     @Nullable
@@ -65,7 +72,9 @@ public class ModFluids {
         if (fluid.isSame(ACID_FLUID.get()))
             return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
         return null;
-    }    public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
+    }
+
+    public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
             = FLUIDS.register("dirty_water_still", () -> new ForgeFlowingFluid.Source(ModFluids.DIRTY_WATER_PROPERTIES));
 
     public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLOWING
@@ -76,8 +85,6 @@ public class ModFluids {
 
     public static final RegistryObject<FlowingFluid> POISONOUS_WATER_FLOWING
             = FLUIDS.register("poisonous_water_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.POISONOUS_WATER_PROPERTIES));
-
-
 
 
     public static final RegistryObject<LiquidBlock> DIRTY_WATER_BLOCK = ModBlocks.BLOCKS.register("dirty_water",
@@ -122,9 +129,6 @@ public class ModFluids {
             .canMultiply()
             .slopeFindDistance(2).levelDecreasePerBlock(2)
             .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
-
-
-
 
 
 }

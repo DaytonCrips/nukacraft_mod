@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.fluids;
 
-import com.nukateam.nukacraft.common.registery.ModFluids;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

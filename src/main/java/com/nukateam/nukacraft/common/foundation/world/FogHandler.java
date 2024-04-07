@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -15,15 +15,17 @@ public class FogHandler {
 
 
     @SubscribeEvent
-    public static void onRenderFog(EntityViewRenderEvent.RenderFogEvent event) {
-        Level world = event.getCamera().getEntity().level;
-        BlockPos pos = event.getCamera().getBlockPosition();
-        if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:glow_sea"))) {
+    public static void onRenderFog(ViewportEvent.RenderFog event) {
+        var world = event.getCamera().getEntity().level;
+        var pos = event.getCamera().getBlockPosition();
+
+        if (world.getBiome(pos).is(ResourceLocation.tryParse(NukaCraftMod.MOD_ID + ":glow_sea"))) {
             RenderSystem.setShaderTexture(0, 0);
             RenderSystem.setShaderFogStart(9f);
             RenderSystem.setShaderFogEnd(65f);
         }
-        if (world.getBiome(pos).is(ResourceLocation.tryParse("nukacraft:ash_heap"))) {
+
+        if (world.getBiome(pos).is(ResourceLocation.tryParse(NukaCraftMod.MOD_ID + ":ash_heap"))) {
             RenderSystem.setShaderTexture(0, 0);
             RenderSystem.setShaderFogStart(12f);
             RenderSystem.setShaderFogEnd(87f);

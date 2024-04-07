@@ -13,7 +13,7 @@ import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
-import com.nukateam.nukacraft.common.registery.ModFluids;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -50,7 +51,7 @@ public class SetupEvents {
 //    }
 
     @SubscribeEvent
-    public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
+    public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
         var particleEngine = Minecraft.getInstance().particleEngine;
         particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
         particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());

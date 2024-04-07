@@ -1,13 +1,6 @@
 package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
-import com.mrcrayfish.framework.api.client.FrameworkClientAPI;
-import com.nukateam.map.impl.atlas.MapCore;
-import com.nukateam.map.impl.atlas.network.AntiqueAtlasNetworking;
-import com.nukateam.ntgl.client.ClientHandler;
-import com.nukateam.ntgl.client.MetaLoader;
-import com.nukateam.ntgl.client.data.handler.CrosshairHandler;
-import com.nukateam.ntgl.client.input.KeyBinds;
 import com.nukateam.ntgl.common.base.utils.ProjectileManager;
 import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
 import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
@@ -21,6 +14,7 @@ import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
 import net.minecraftforge.api.distmarker.Dist;
@@ -136,7 +130,7 @@ public class NukaCraftMod {
             ModBiomeGeneration.generateBiomes();
             ModSetup.flowerPotSetup();
             PacketHandler.register();
-            AntiqueAtlasNetworking.register();
+//            AntiqueAtlasNetworking.register();
             registerProjectileFactories();
         });
     }

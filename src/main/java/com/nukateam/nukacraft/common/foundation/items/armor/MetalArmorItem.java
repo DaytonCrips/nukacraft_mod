@@ -14,7 +14,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -32,21 +33,19 @@ public class MetalArmorItem extends ArmorItem implements GeoItem {
     }
 
     @Override
-    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(new IItemRenderProperties() {
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
             private MetalArmorRenderer renderer;
 
             @Override
-            public HumanoidModel<?> getArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 if (renderer == null)
-                    renderer = new MetalArmorRenderer();
-
+                    return new MetalArmorRenderer();
                 renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
-                return renderer;
+                return this.renderer;
             }
         });
     }
-
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

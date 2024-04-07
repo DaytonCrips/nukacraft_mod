@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.events;
 
 import com.nukateam.nukacraft.common.registery.ModAttributes;
-import com.nukateam.nukacraft.common.registery.ModFluids;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -64,7 +64,7 @@ public class CustomHandler {
     }
 
     private static void extracted(BlockEvent.FluidPlaceBlockEvent event, FluidState fluidState, Function<FluidState, Block> function) {
-        var world = event.getWorld();
+        var world = event.getLevel();
         var pos = event.getPos();
 
         for (var direction : Direction.values()) {

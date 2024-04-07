@@ -2,7 +2,6 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.map.impl.atlas.AntiqueAtlasModClient;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;

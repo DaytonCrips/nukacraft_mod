@@ -1,7 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
-import com.nukateam.map.impl.atlas.MapCore;
-import com.nukateam.map.impl.atlas.item.AtlasItem;
 import com.nukateam.nukacraft.client.render.renderers.items.PipBoyRenderer;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
@@ -23,18 +21,19 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public class PipBoyItem extends AtlasItem implements GeoItem {
+public class PipBoyItem extends Item implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
     public static final String SCREEN = "screen";
 
@@ -57,7 +56,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
     }
 
     public static void openPipboyScreen(ServerPlayer serverPlayer, BlockPos blockPos) {
-        NetworkHooks.openGui(serverPlayer, new MenuProvider() {
+        NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
             @Override
             public Component getDisplayName() {
                 return Component.literal("Sadzxc");
@@ -84,17 +83,17 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
         var stack = player.getItemInHand(usedHand);
         var stackTag = stack.getOrCreateTag();
 
-        if (!level.isClientSide && !stackTag.contains(ATLAS_ID)) {
-            var atlasID = MapCore.getGlobalAtlasData(level).getNextAtlasId();
-            stackTag.putInt(ATLAS_ID, atlasID);
-
-            var atlasData = MapCore.tileData.getData(atlasID, level);
-            atlasData.getWorldData(player.getCommandSenderWorld().dimension()).setBrowsingPositionTo(player);
-            atlasData.setDirty();
-
-            var markersData = MapCore.markersData.getMarkersData(atlasID, level);
-            markersData.setDirty();
-        }
+//        if (!level.isClientSide && !stackTag.contains(ATLAS_ID)) {
+//            var atlasID = MapCore.getGlobalAtlasData(level).getNextAtlasId();
+//            stackTag.putInt(ATLAS_ID, atlasID);
+//
+//            var atlasData = MapCore.tileData.getData(atlasID, level);
+//            atlasData.getWorldData(player.getCommandSenderWorld().dimension()).setBrowsingPositionTo(player);
+//            atlasData.setDirty();
+//
+//            var markersData = MapCore.markersData.getMarkersData(atlasID, level);
+//            markersData.setDirty();
+//        }
         if ((stackTag.getString(SCREEN)).equals("")) {
             stackTag.putString(SCREEN, "green");
         }
@@ -121,9 +120,7 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-
-    }
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
@@ -131,15 +128,14 @@ public class PipBoyItem extends AtlasItem implements GeoItem {
     }
 
     @Override
-    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(new IItemRenderProperties() {
-            private PipBoyRenderer renderer;
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private PipBoyRenderer renderer = null;
 
             @Override
-            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
-                if (this.renderer == null) {
-                    renderer = new PipBoyRenderer();
-                }
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (renderer == null)
+                    return new PipBoyRenderer();
                 return this.renderer;
             }
         });

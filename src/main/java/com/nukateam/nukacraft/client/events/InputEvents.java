@@ -17,7 +17,7 @@ import static com.nukateam.nukacraft.common.network.PacketHandler.sendToServer;
 public class InputEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent()
-    public static void onKeyInput(InputEvent.KeyInputEvent event) {
+    public static void onKeyInput(InputEvent.Key event) {
         var options = Minecraft.getInstance().options;
 
         if (event.getAction() == GLFW.GLFW_PRESS) {

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.ModFluids;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.valueproviders.UniformInt;

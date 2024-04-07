@@ -8,7 +8,7 @@ import com.nukateam.nukacraft.common.foundation.items.misc.VioletReagent;
 import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.ModFluids;
+import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
