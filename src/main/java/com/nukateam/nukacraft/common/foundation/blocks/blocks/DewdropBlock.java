@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -48,7 +49,7 @@ public class DewdropBlock extends CocoaBlock {
 //        }
 //    }
 
-    public void animateTick(BlockState p_154704_, Level p_154705_, BlockPos p_154706_, Random p_154707_) {
+    public void animateTick(BlockState p_154704_, Level p_154705_, BlockPos p_154706_, RandomSource p_154707_) {
         int i = p_154706_.getX();
         int j = p_154706_.getY();
         int k = p_154706_.getZ();
@@ -69,7 +70,7 @@ public class DewdropBlock extends CocoaBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level pLevel, Random pRand, BlockPos pPos, BlockState pState) {
+    public boolean isBonemealSuccess(Level pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
         return true;
     }
 

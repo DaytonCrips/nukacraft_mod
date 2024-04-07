@@ -35,7 +35,6 @@ public class SetupEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        KeyBindings.register();
         ModSetup.renderTypeSetup();
         PipboyPages.init(PipboyPages.content);
 

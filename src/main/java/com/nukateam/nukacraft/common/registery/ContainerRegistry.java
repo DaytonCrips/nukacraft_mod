@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ContainerRegistry {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister
-            .create(ForgeRegistries.CONTAINERS, NukaCraftMod.MOD_ID);
+            .create(ForgeRegistries.MENU_TYPES, NukaCraftMod.MOD_ID);
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return CONTAINERS.register(name, () -> IForgeMenuType.create(factory));

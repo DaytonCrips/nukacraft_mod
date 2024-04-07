@@ -20,7 +20,7 @@ import static net.minecraft.world.entity.EntityType.Builder;
 
 public class EntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
-            = DeferredRegister.create(ForgeRegistries.ENTITIES, NukaCraftMod.MOD_ID);
+            = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY =
             registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);

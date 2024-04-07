@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class GinsengBlock extends BushBlock implements BonemealableBlock {
+public class GinsengBlock extends BaseBushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     public static final VoxelShape BUSHLING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     public static final VoxelShape GROWING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
@@ -57,13 +57,7 @@ public class GinsengBlock extends BushBlock implements BonemealableBlock {
     }
 
 
-    @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
-        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            PlantMutationUtils.mutationSuccess(state, pos, level);
-        }
-        super.setPlacedBy(level, pos, state, entity, stack);
-    }
+
 
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {

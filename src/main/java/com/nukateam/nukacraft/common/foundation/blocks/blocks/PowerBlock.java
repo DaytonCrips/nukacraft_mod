@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,6 +34,12 @@ public class PowerBlock extends RotatedPillarBlock {
     public static final EnumProperty<RedstoneSide> UP = REDSTONE_UP;
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     public static final EnumProperty<RedstoneSide> DOWN = REDSTONE_DOWN;
+
+    public static final EnumProperty<RedstoneSide> NORTH = BlockStateProperties.NORTH_REDSTONE;
+    public static final EnumProperty<RedstoneSide> EAST = BlockStateProperties.EAST_REDSTONE;
+    public static final EnumProperty<RedstoneSide> SOUTH = BlockStateProperties.SOUTH_REDSTONE;
+    public static final EnumProperty<RedstoneSide> WEST = BlockStateProperties.WEST_REDSTONE;
+
     public static final Map<Direction, EnumProperty<RedstoneSide>> FACING_PROPERTY_MAP = Maps.newEnumMap(ImmutableMap.<Direction, EnumProperty<RedstoneSide>>builder()
             .put(Direction.NORTH, NORTH)
             .put(Direction.EAST, EAST)
@@ -41,10 +48,7 @@ public class PowerBlock extends RotatedPillarBlock {
             .put(Direction.UP, UP)
             .put(Direction.DOWN, DOWN)
             .build());
-    public static final EnumProperty<RedstoneSide> NORTH = BlockStateProperties.NORTH_REDSTONE;
-    public static final EnumProperty<RedstoneSide> EAST = BlockStateProperties.EAST_REDSTONE;
-    public static final EnumProperty<RedstoneSide> SOUTH = BlockStateProperties.SOUTH_REDSTONE;
-    public static final EnumProperty<RedstoneSide> WEST = BlockStateProperties.WEST_REDSTONE;
+
     public static final IntegerProperty POWER = RedStoneWireBlock.POWER;
     private static final Vector3f[] COLORS = new Vector3f[16];
 
@@ -243,7 +247,7 @@ public class PowerBlock extends RotatedPillarBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         int i = stateIn.getValue(POWER);
         if (i != 0) {
             double d0 = (double) pos.getX() + 0.5D + ((double) rand.nextFloat() - 0.5D) * 0.8D;

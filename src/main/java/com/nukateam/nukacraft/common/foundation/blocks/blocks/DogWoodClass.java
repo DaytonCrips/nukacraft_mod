@@ -26,8 +26,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class DogWoodClass extends RotatedPillarBlock {
-    Random rand = new Random();
-
     public DogWoodClass(Properties prop) {
         super(prop);
     }

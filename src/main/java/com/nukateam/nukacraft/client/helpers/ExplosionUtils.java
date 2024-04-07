@@ -30,7 +30,7 @@ public class ExplosionUtils {
 
     @OnlyIn(Dist.CLIENT)
     public static void preScreenRender(float partialTick) {
-        float screenEffectIntensity = Minecraft.getInstance().options.screenEffectScale;
+        var screenEffectIntensity = Minecraft.getInstance().options.screenEffectScale().get();
 
         getNukesAround().forEach((nuke) -> {
             float nukeFlashAmount = getNukeFlashAmount(nuke, partialTick);
@@ -91,7 +91,7 @@ public class ExplosionUtils {
     }
 
     @OnlyIn(Dist.CLIENT)
-    private static void createFlash(float screenEffectIntensity, float nukeFlashAmount) {
+    private static void createFlash(double screenEffectIntensity, float nukeFlashAmount) {
         if (nukeFlashAmount > 0) {
             int screenWidth = Minecraft.getInstance().getWindow().getGuiScaledWidth();
             int screenHeight = Minecraft.getInstance().getWindow().getGuiScaledHeight();
@@ -100,7 +100,7 @@ public class ExplosionUtils {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, nukeFlashAmount * screenEffectIntensity);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, nukeFlashAmount * (float)screenEffectIntensity);
             RenderSystem.setShaderTexture(0, BOMB_FLASH);
             Tesselator tesselator = Tesselator.getInstance();
             BufferBuilder bufferbuilder = tesselator.getBuilder();

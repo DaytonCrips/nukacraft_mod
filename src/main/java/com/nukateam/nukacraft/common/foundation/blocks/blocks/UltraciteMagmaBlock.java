@@ -3,13 +3,12 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 import com.nukateam.nukacraft.common.data.utils.ModDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
 
 public class UltraciteMagmaBlock extends Block {
     public UltraciteMagmaBlock(Properties pProperties) {
@@ -25,7 +24,7 @@ public class UltraciteMagmaBlock extends Block {
     }
 
     @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
         int i = pPos.getX();
         int j = pPos.getY();
         int k = pPos.getZ();

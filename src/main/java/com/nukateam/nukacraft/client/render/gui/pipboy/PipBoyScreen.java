@@ -36,7 +36,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
         var minecraft = Minecraft.getInstance();
         var pipboy = PipBoyUtils.getPipboyStack(minecraft.player);
         minecraft.player.closeContainer();
-        AntiqueAtlasModClient.openAtlasGUI(pipboy);
+//        AntiqueAtlasModClient.openAtlasGUI(pipboy);
     }
 
     public static void openArchive() {

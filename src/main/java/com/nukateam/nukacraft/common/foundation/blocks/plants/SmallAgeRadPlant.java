@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +32,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-public class SmallAgeRadPlant extends BushBlock implements BonemealableBlock {
+import static com.nukateam.nukacraft.common.data.utils.BiomeUtils.isInGlowSea;
+import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
+
+public class SmallAgeRadPlant extends BaseBushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     public static final VoxelShape BUSHLING_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
     public static final VoxelShape GROWING_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
@@ -62,14 +66,18 @@ public class SmallAgeRadPlant extends BushBlock implements BonemealableBlock {
         return state.getValue(AGE) < 3;
     }
 
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
-        var isMutablePlant = state.getBlock().defaultBlockState().is(BlockTags.create(new ResourceLocation("nukacraft:mutable_plants")));
-        var isRadBiome = new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName());
-        int r = rand.nextInt(99);
-        int i = state.getValue(AGE);
-        if (i < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(5) == 0)) {
-            if (isRadBiome) {
-                if (isMutablePlant && r < 20) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        var isMutablePlant = state
+                .getBlock()
+                .defaultBlockState()
+                .is(BlockTags.create(nukaResource("mutable_plants")));
+
+        var chance = rand.nextFloat();
+        var age = state.getValue(AGE);
+
+        if (age < 3 && level.getRawBrightness(pos.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(5) == 0)) {
+            if (isInGlowSea(level, pos, state)) {
+                if (isMutablePlant && chance < 0.2) {
                     PlantMutationUtils.mutationSuccess(state, pos, level);
                 } else {
                     level.setBlock(pos, state.setValue(AGE, Integer.valueOf(i + 1)), 2);
@@ -82,17 +90,6 @@ public class SmallAgeRadPlant extends BushBlock implements BonemealableBlock {
 
         }
     }
-
-
-//    @Override
-//    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
-//
-//        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-//            PlantMutationUtils.mutationSuccess(state, pos, level);
-//        }
-//        super.setPlacedBy(level, pos, state, entity, stack);
-//    }
-
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         int i = state.getValue(AGE);
@@ -121,7 +118,6 @@ public class SmallAgeRadPlant extends BushBlock implements BonemealableBlock {
     public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
         return true;
     }
-
 
     public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
         int i = Math.min(3, state.getValue(AGE) + 1);

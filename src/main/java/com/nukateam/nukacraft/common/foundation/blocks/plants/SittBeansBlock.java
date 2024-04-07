@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class SittBeansBlock extends BushBlock implements BonemealableBlock {
+public class SittBeansBlock extends BaseBushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static final VoxelShape BUSHLING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     public static final VoxelShape GROWING_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
@@ -39,13 +39,7 @@ public class SittBeansBlock extends BushBlock implements BonemealableBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
 
-    @Override
-    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack) {
-        if (new ResourceLocation("nukacraft:glow_sea").equals(level.getBiome(pos).value().getRegistryName())) {
-            PlantMutationUtils.mutationSuccess(state, pos, level);
-        }
-        super.setPlacedBy(level, pos, state, entity, stack);
-    }
+
 
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state) {
         return new ItemStack(ModItems.SITTBEAN.get());

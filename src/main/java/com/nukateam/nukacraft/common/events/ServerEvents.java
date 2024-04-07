@@ -11,8 +11,8 @@ import static com.nukateam.nukacraft.common.events.RadiationTracker.radiationTra
 public class ServerEvents {
     @SubscribeEvent
     public static void onPlayerTick(PlayerEvent.PlayerLoggedInEvent event) {
-        var server = event.getPlayer().getServer();
-        var player = event.getPlayer();
+        var server = event.getEntity().getServer();
+        var player = event.getEntity();
         if (server != null) {
             server.execute(() -> radiationTrackers.put(player, new RadiationTracker(player)));
         }
@@ -20,9 +20,9 @@ public class ServerEvents {
 
     @SubscribeEvent
     public static void onPlayerTick(PlayerEvent.PlayerLoggedOutEvent event) {
-        var server = event.getPlayer().getServer();
+        var server = event.getEntity().getServer();
         if (server != null) {
-            server.execute(() -> radiationTrackers.remove(event.getPlayer()));
+            server.execute(() -> radiationTrackers.remove(event.getEntity()));
         }
     }
 

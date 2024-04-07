@@ -22,7 +22,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class MegaSlothBlock extends CocoaBlock {
-
     protected static final VoxelShape WEST_AABB = Block.box(0.09999999999999964, 0.1, 0.09999999999999892, 2.0999999999999996, 15.9, 15.9);
     protected static final VoxelShape EAST_AABB = Block.box(13.9, 0.1, 0.09999999999999892, 15.9, 15.9, 15.9);
     protected static final VoxelShape SOUTH_AABB = Block.box(0.1, 0.1, 13.9, 15.9, 15.9, 15.9);

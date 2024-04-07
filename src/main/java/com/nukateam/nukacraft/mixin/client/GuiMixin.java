@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ import static com.nukateam.nukacraft.common.data.constants.Textures.RAD_HEART_IC
 @Mixin(Gui.class)
 public abstract class GuiMixin extends GuiComponent {
     @Unique
-    protected final Random random = new Random();
+    protected final RandomSource random = RandomSource.create();
 
     private static double getPlayerRadiation() {
         return Minecraft.getInstance().player.getAttributeValue(ModAttributes.RADIATION.get());

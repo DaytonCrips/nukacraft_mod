@@ -7,13 +7,14 @@ import mod.azure.azurelib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 
 public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoModel<T> {
     public static ResourceLocation getChassisResource(Entity animatable, String path, String extension) {
-        var name = ResourceHelper.getResourceName(animatable.getType().getRegistryName());
-        var modId = animatable.getType().getRegistryName().getNamespace();
+        var name = ResourceHelper.getResourceName(ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()));
+        var modId = ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()).getNamespace();
 
         return new ResourceLocation(modId, path + name + extension);
     }

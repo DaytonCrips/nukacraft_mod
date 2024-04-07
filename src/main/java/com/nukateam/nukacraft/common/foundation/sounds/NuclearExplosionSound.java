@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.foundation.sounds;
 
 import com.nukateam.nukacraft.common.data.interfaces.UnlimitedPitch;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
@@ -12,7 +13,7 @@ public class NuclearExplosionSound extends AbstractTickableSoundInstance impleme
     private int tickCount = 0;
 
     public NuclearExplosionSound(SoundEvent soundEvent, double x, double y, double z, int duration, int fadesAt, float fadeInBy, boolean looping) {
-        super(soundEvent, SoundSource.NEUTRAL/*, SoundInstance.createUnseededRandom()*/);
+        super(soundEvent, SoundSource.NEUTRAL, SoundInstance.createUnseededRandom());
         this.attenuation = Attenuation.LINEAR;
         this.looping = looping;
         this.x = x;

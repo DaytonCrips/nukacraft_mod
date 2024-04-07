@@ -8,6 +8,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
@@ -96,7 +97,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     @VisibleForTesting
-    public static void growStalactiteOrStalagmiteIfPossible(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+    public static void growStalactiteOrStalagmiteIfPossible(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         BlockState blockstate = pLevel.getBlockState(pPos.above(1));
         BlockState blockstate1 = pLevel.getBlockState(pPos.above(2));
         if (canGrow(blockstate, blockstate1)) {
@@ -426,7 +427,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     /**
      * Called periodically clientside on blocks near the player to show effects (like furnace fire particles).
      */
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
         if (canDrip(pState)) {
             float f = pRandom.nextFloat();
             if (!(f > 0.12F)) {
@@ -439,7 +440,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         }
     }
 
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (isStalagmite(pState) && !this.canSurvive(pState, pLevel, pPos)) {
             pLevel.destroyBlock(pPos, true);
         } else {
@@ -451,7 +452,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     /**
      * Performs a random tick on a block.
      */
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (pRandom.nextFloat() < 0.011377778F && isStalactiteStartPos(pState, pLevel, pPos)) {
             growStalactiteOrStalagmiteIfPossible(pState, pLevel, pPos, pRandom);
         }

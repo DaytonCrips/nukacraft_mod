@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 import java.util.HashMap;
@@ -26,6 +27,11 @@ public class PipBoyMenu extends AbstractContainerMenu implements Supplier<Map<In
         super(PIPBOY.get(), id);
         this.entity = inv.player;
         this.world = inv.player.level;
+    }
+
+    @Override
+    public ItemStack quickMoveStack(Player pPlayer, int pIndex) {
+        return null;
     }
 
     @Override

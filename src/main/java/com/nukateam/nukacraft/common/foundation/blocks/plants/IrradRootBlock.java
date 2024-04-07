@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.common.foundation.blocks.plants;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -39,7 +40,7 @@ public class IrradRootBlock extends CropBlock {
     }
 
 
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRandom) {
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (pRandom.nextInt(3) != 0) {
             super.randomTick(pState, pLevel, pPos, pRandom);
         }
