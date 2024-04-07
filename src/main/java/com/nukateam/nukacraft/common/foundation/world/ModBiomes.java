@@ -50,7 +50,7 @@ public class ModBiomes {
             ModBiomes::createCranberryBog);
 
     private static Biome createPoisonValley() {
-        MobSpawnSettings.Builder mobspawnsettings$builder = new MobSpawnSettings.Builder();
+        MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder().fogColor(-5399162).waterColor(-9547964).waterFogColor(11648455)
                 .skyColor(-7964315).foliageColorOverride(1783388).grassColorOverride(-861768).build();
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
@@ -79,15 +79,21 @@ public class ModBiomes {
 
         ModDefaultFeatures.addPoisonValleyPlants(biomeGenerationSettings);
 
-        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
-        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
-        mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
+        builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
+        builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
+        builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
         BiomeDefaultFeatures.addSurfaceFreezing(biomeGenerationSettings);
 
 
-        return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.RAIN).biomeCategory(Biome.BiomeCategory.NONE).temperature(0.5f)
-                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
+        return new Biome.BiomeBuilder()
+                .precipitation(Biome.Precipitation.RAIN)
+//                .biomeCategory(Biome.BiomeCategory.NONE)
+                .temperature(0.5f)
+                .downfall(0.5f)
+                .specialEffects(effects)
+                .mobSpawnSettings(builder.build())
+                .generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 
@@ -124,7 +130,7 @@ public class ModBiomes {
         BiomeDefaultFeatures.addSwampClayDisk(biomeGenerationSettings);
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_SWAMP);
         return (new Biome.BiomeBuilder()).precipitation(Biome.Precipitation.RAIN)
-                .biomeCategory(Biome.BiomeCategory.SWAMP)
+//                .biomeCategory(Biome.BiomeCategory.SWAMP)
                 .temperature(0.8F)
                 .downfall(0.9F)
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -167,8 +173,12 @@ public class ModBiomes {
         ModDefaultFeatures.addGlowSeaPlants(biomeGenerationSettings);
         ModDefaultFeatures.addGlowSeaOres(biomeGenerationSettings);
 
-        return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.5f)
-                .downfall(0.9f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
+        return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE)
+//                .biomeCategory(Biome.BiomeCategory.DESERT)
+                .temperature(1.5f)
+                .downfall(0.9f).specialEffects(effects)
+                .mobSpawnSettings(mobspawnsettings$builder.build())
+                .generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 
@@ -207,8 +217,12 @@ public class ModBiomes {
         ModDefaultFeatures.addAshHeapOres(biomeGenerationSettings);
 
 
-        return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)
-                .downfall(0.5f).specialEffects(effects).mobSpawnSettings(mobspawnsettings$builder.build()).generationSettings(biomeGenerationSettings.build())
+        return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE)
+//                .biomeCategory(Biome.BiomeCategory.DESERT)
+                .temperature(1.2f)
+                .downfall(0.5f).specialEffects(effects)
+                .mobSpawnSettings(mobspawnsettings$builder.build())
+                .generationSettings(biomeGenerationSettings.build())
                 .build();
     }
 

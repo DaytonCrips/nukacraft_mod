@@ -36,7 +36,7 @@ public class ModBlocks {
             () -> new TerminalBlock(Block.Properties.of(Material.METAL).strength(1.5F)));
 
     public static final RegistryObject<Block> ALUMI_ORE = registerBlock("aluminium_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> LANDMINE = registerBlock(ModItemTabs.NUKA_WEAPONS, "fragmine",
@@ -48,37 +48,12 @@ public class ModBlocks {
             () -> new OpenGearBlock(BlockBehaviour.Properties.of(Material.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
     public static final RegistryObject<Block> HALFBARRIER = registerBlockWithoutItem("half_barrier",
-            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+            () -> new HalfBarrier(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F)/*.noDrops()*/.noOcclusion()));
     public static final RegistryObject<Block> FILLERBARRIER = registerBlockWithoutItem("filler_barrier",
-            () -> new Block(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F).noDrops().noOcclusion()));
+            () -> new Block(BlockBehaviour.Properties.of(Material.BARRIER).strength(-1f).explosionResistance(3600000.8F)/*.noDrops()*/.noOcclusion()));
     public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
-
-    public static final RegistryObject<Block> LEAD_ORE = registerBlock("lead_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(0.8f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> URAN_ORE = registerBlock("uranium_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2.8f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> SATURNITE_ORE = registerBlock("saturnite_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2.8f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEEPURAN_ORE = registerBlock("deeruranium",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.0f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEEPSATURNITE_ORE = registerBlock("deepslate_saturnite",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.0f).requiresCorrectToolForDrops()));
-//    public static final RegistryObject<Block> RAD_DIRT = registerBlock("rad_dirt",
-//            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRAVEL)
-//                    .strength(0.2f)));
-
-    public static final RegistryObject<Block> ULTRACITE_TUFF_ORE = registerBlock("ultracite_tuff_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.8F, 3.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
-                        return 7;
-                    })));
 
     public static final RegistryObject<Block> ULTRACITE_TUFF = registerBlock("ultracite_tuff",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
@@ -112,9 +87,6 @@ public class ModBlocks {
     //    public static final RegistryObject<Block> DEWDROPHEAD_PLANT = registerBlock("dewdrop_plant",
 //            () -> new DewdropBlock(BlockBehaviour.Properties.of(Material.LEAVES).sound(SoundType.GRASS)
 //                    .instabreak().noCollission()));
-    public static final RegistryObject<Block> DEEPLEAD = registerBlock("deeplead_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> ASHWOOD = registerBlock("dwoodlog",
             () -> new DogWoodClass(BlockBehaviour.Properties.of(Material.WOOD).strength(0.9F).sound(SoundType.WOOD)));
@@ -128,37 +100,68 @@ public class ModBlocks {
 //    public static final RegistryObject<Block> STRIPPED_CRANBERRY = registerBlock("cranberrystripped",
 //            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(0.9F).sound(SoundType.WOOD)));
 
-    public static final RegistryObject<Block> SILVER_ORE = registerBlock("silver_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2.1F, 3.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEP_LEAD_ORE = registerBlock("deeplead_block",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> QUARTS_ORE = registerBlock("quarts_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2.6F, 4.0F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEEPQUARTS_ORE = registerBlock("deepquarts_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.1F, 4.5F).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> DEEPSILVER = registerBlock("deepsilver_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.9F, 4.6F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ULTRACITE_ORE = registerBlock("ultracite_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(2.9F, 3.8F).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
-                        return 7;
-                    })));
-
-    public static final RegistryObject<Block> DEEPULTRACITE = registerBlock("deepultracite_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+    public static final RegistryObject<Block> LEAD_ORE = registerBlock("lead_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(0.8f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> URAN_ORE = registerBlock("uranium_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.8f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> SATURNITE_ORE = registerBlock("saturnite_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.8f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEP_URAN_ORE = registerBlock("deeruranium",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.0f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEP_SATURNITE_ORE = registerBlock("deepslate_saturnite",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.0f).requiresCorrectToolForDrops()));
+    //    public static final RegistryObject<Block> RAD_DIRT = registerBlock("rad_dirt",
+//            () -> new Block(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.GRAVEL)
+//                    .strength(0.2f)));
+    public static final RegistryObject<Block> ULTRACITE_TUFF_ORE = registerBlock("ultracite_tuff_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(3.8F, 3.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
                         return 7;
                     })));
 
+    public static final RegistryObject<Block> SILVER_ORE = registerBlock("silver_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.1F, 3.0F).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> QUARTS_ORE = registerBlock("quarts_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.6F, 4.0F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEPQUARTS_ORE = registerBlock("deepquarts_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.1F, 4.5F).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> DEEPSILVER = registerBlock("deepsilver_block",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.9F, 4.6F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> ULTRACITE_ORE = registerBlock("ultracite_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(2.9F, 3.8F).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
+                        return 7;
+                    })));
     public static final RegistryObject<Block> BTITAN_ORE = registerBlock("btitan_ore",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.2F, 4.1F).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> DEEPBTITAN = registerBlock("deepbtitan_block",
-            () -> new OreBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4.7F, 4.5F).requiresCorrectToolForDrops()));
+
+
+
+    public static final RegistryObject<Block> DEEPULTRACITE = registerBlock("deepultracite_block",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(3.8F, 3.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
+                        return 7;
+                    })));
+
     public static final RegistryObject<Block> SLITILE = registerBlock("slitile",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));

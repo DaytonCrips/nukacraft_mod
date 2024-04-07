@@ -114,8 +114,10 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> SILVERNUGG = ITEMS.register("silvernugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
+
     public static final RegistryObject<Item> BOGPAD_ITEM = ITEMS.register("bogpad_item",
-            () -> new WaterLilyBlockItem(ModBlocks.BOGPAD.get(), new Item.Properties().tab(NUKA_BLOCKS)));
+            () -> new ItemNameBlockItem(ModBlocks.GAMMALEAF_BUSH.get(), new Item.Properties().rarity(Rarity.EPIC).tab(NUKA_MATERIAL)));
+
     public static final RegistryObject<Item> STEELNUGG = ITEMS.register("steelnugget",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> CERAMIC = ITEMS.register("ceramic",

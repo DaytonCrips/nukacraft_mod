@@ -80,14 +80,13 @@ public class SmallAgeRadPlant extends BaseBushBlock implements BonemealableBlock
                 if (isMutablePlant && chance < 0.2) {
                     PlantMutationUtils.mutationSuccess(state, pos, level);
                 } else {
-                    level.setBlock(pos, state.setValue(AGE, Integer.valueOf(i + 1)), 2);
+                    level.setBlock(pos, state.setValue(AGE, Integer.valueOf(age + 1)), 2);
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
                 }
             } else {
-                level.setBlock(pos, state.setValue(AGE, Integer.valueOf(i + 1)), 2);
+                level.setBlock(pos, state.setValue(AGE, Integer.valueOf(age + 1)), 2);
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, pos, state);
             }
-
         }
     }
 
