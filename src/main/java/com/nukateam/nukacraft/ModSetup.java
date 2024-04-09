@@ -109,10 +109,14 @@ public class ModSetup {
         setRenderLayer(ModBlocks.BOGPAD.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.RUSTSTEELBARS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get(), RenderType.cutout());
-        setRenderLayer(ModBlocks.RUSTTIREBLOCK.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.RUSTTIREBLOCK.get(), RenderType.translucent());
         setRenderLayer(ModBlocks.STOREDOOR.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.HEAP_GRASS.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.RUSTY_BUSH.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.CRYOCAPSULE.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.CRYOCAPSULEACT.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.OPENCRYOCAPSULE.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.CAGEDOOR.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()

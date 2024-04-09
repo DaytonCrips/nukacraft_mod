@@ -232,6 +232,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
             () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.3f)));
+    public static final RegistryObject<Block> TECHCHAIR = registerBlock("techchair",
+            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(0.3f)));
+
+    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
+            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
+                    .strength(0.3f).noOcclusion()));
+    public static final RegistryObject<Block> GOLDTOILET = registerBlock("goldtoilet",
+            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
+                    .strength(0.3f).noOcclusion()));
     public static final RegistryObject<Block> IND_BUTTON = registerBlock("ind_button",
             () -> new LeverBlock(BlockBehaviour.Properties.of(Material.DECORATION)
                     .strength(0.1f)));
@@ -328,9 +338,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> SCRAPMETALL = registerBlock("scrapmetall",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(1.8f, 2.7f)));
+
     public static final RegistryObject<Block> RUSTTIREBLOCK = registerBlock("rusttiresblock",
-            () -> new Block(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
-                    .strength(1.2f, 1.7f)));
+            () -> new GlassBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL)
+                    .strength(1.2f, 1.7f).noOcclusion()));
     public static final RegistryObject<Block> YELLOWSTEEL = registerBlock("yellow_steel",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
@@ -541,6 +552,14 @@ public class ModBlocks {
                     .strength(1.0f).lightLevel((p_50892_) -> {return 4;})));
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
+    public static final RegistryObject<Block> CRYOCAPSULEACT = registerBlock("cryocapsuleact",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+
+    public static final RegistryObject<Block> OPENCRYOCAPSULE = registerBlock("opencryocapsule",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+    public static final RegistryObject<Block> CRYOCAPSULE = registerBlock("cryocapsule",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
             () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> POTTED_MARYGOLD = registerBlockWithoutItem("potted_marygold",
@@ -627,6 +646,9 @@ public class ModBlocks {
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
+
+    public static final RegistryObject<Block> CAGEDOOR = registerBlock("door_cage",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
 
     public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",

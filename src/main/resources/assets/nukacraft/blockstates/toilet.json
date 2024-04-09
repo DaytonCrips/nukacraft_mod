@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/toilet" },
+    "facing=east": { "model": "nukacraft:block/toilet", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/toilet", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/toilet", "y": 270 }
+  }
+}

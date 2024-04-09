@@ -1,7 +1,7 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "nukacraft:block/ash_stone",
+    "down": "nukacraft:blocks/ash_stone",
     "up": "nukacraft:blocks/ash_smoker",
     "north": "nukacraft:blocks/ash_stone",
     "east": "nukacraft:blocks/ash_stone",
