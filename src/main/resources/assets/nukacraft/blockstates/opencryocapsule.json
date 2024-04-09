@@ -1,0 +1,37 @@
+
+{
+  "variants": {
+    "facing=east,half=lower":{
+      "model":  "nukacraft:block/cryocapsule_down_open",
+      "y": 270
+    },
+    "facing=north,half=lower": {
+      "model":  "nukacraft:block/cryocapsule_down_open",
+      "y": 180
+    },
+    "facing=south,half=lower":{
+      "model":  "nukacraft:block/cryocapsule_down_open"
+    },
+    "facing=west,half=lower":{
+      "model":  "nukacraft:block/cryocapsule_down_open",
+      "y": 90
+    },
+
+
+    "facing=east,half=upper":{
+      "model":  "nukacraft:block/cryocapsule_up_open",
+      "y": 270
+    },
+    "facing=north,half=upper": {
+      "model":  "nukacraft:block/cryocapsule_up_open",
+      "y": 180
+    },
+    "facing=south,half=upper":{
+      "model":  "nukacraft:block/cryocapsule_up_open"
+    },
+    "facing=west,half=upper":{
+      "model":  "nukacraft:block/cryocapsule_up_open",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/techchair" },
+    "facing=east": { "model": "nukacraft:block/techchair", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/techchair", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/techchair", "y": 270 }
+  }
+}
