@@ -1,10 +1,10 @@
 package com.nukateam.nukacraft.mixin.guns;
 
-import com.nukateam.gunscore.Config;
-import com.nukateam.gunscore.client.data.handler.AimingHandler;
-import com.nukateam.gunscore.common.base.gun.Gun;
-import com.nukateam.gunscore.common.foundation.init.ModSyncedDataKeys;
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.Config;
+import com.nukateam.ntgl.client.data.handler.AimingHandler;
+import com.nukateam.ntgl.common.base.gun.Gun;
+import com.nukateam.ntgl.common.foundation.init.ModSyncedDataKeys;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;

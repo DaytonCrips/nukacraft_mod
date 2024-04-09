@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.gunscore.common.foundation.entity.ThrowableGrenadeEntity;
-import com.nukateam.gunscore.common.foundation.init.ModSounds;
-import com.nukateam.gunscore.common.foundation.item.GrenadeItem;
+import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
+import com.nukateam.ntgl.common.foundation.init.ModSounds;
+import com.nukateam.ntgl.common.foundation.item.GrenadeItem;
 import com.nukateam.nukacraft.common.foundation.entities.misc.BaseballGrenadeEntity;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraft.sounds.SoundSource;

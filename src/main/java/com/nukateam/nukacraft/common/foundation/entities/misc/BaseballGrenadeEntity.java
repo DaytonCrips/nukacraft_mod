@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.nukateam.gunscore.Config;
-import com.nukateam.gunscore.common.foundation.entity.GrenadeEntity;
-import com.nukateam.gunscore.common.foundation.entity.ThrowableGrenadeEntity;
-import com.nukateam.gunscore.common.foundation.entity.ThrowableItemEntity;
+import com.nukateam.ntgl.Config;
+import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
+import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
+import com.nukateam.ntgl.common.foundation.entity.ThrowableItemEntity;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
-import static com.nukateam.gunscore.common.foundation.entity.ProjectileEntity.createExplosion;
+import static com.nukateam.ntgl.common.foundation.entity.ProjectileEntity.createExplosion;
 import static com.nukateam.nukacraft.common.registery.items.ModWeapons.BASEBALL_GRENADE;
 
 

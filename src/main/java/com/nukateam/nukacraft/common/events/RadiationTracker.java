@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.events;
 
-import com.nukateam.gunscore.client.data.handler.AimingHandler;
+import com.nukateam.ntgl.client.data.handler.AimingHandler;
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.RadioactiveBlock;
 import net.minecraft.core.BlockPos;

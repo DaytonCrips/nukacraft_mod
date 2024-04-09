@@ -1,8 +1,8 @@
 package com.nukateam.nukacraft.mixin.guns;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.nukateam.gunscore.client.render.Render;
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.client.render.Render;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.ItemRenderer;

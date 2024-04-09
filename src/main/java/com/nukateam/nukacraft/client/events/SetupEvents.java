@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.events;
 
 
-import com.nukateam.gunscore.client.render.entity.ThrowableGrenadeRenderer;
+import com.nukateam.ntgl.client.render.entity.ThrowableGrenadeRenderer;
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;

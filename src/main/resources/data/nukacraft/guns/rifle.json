@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 8,
-    "gripType": "gunscore:two_handed",
+    "gripType": "ntgl:two_handed",
     "maxAmmo": 10,
     "reloadTime": 20,
     "reloadAmount": 2,

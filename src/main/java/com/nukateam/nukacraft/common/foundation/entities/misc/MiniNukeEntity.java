@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
 
-import com.nukateam.gunscore.common.base.gun.Gun;
-import com.nukateam.gunscore.common.foundation.entity.ProjectileEntity;
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.base.gun.Gun;
+import com.nukateam.ntgl.common.foundation.entity.ProjectileEntity;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.settings.ExplosionTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

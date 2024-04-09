@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.mixin.guns;
 
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.models;
 
 import com.jetug.chassis_core.client.model.ChassisModel;
-import com.nukateam.gunscore.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import mod.azure.azurelib.core.animatable.model.CoreGeoBone;
 import mod.azure.azurelib.core.animation.AnimationState;

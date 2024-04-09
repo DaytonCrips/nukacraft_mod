@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import com.nukateam.gunscore.common.base.NetworkGunManager;
+import com.nukateam.ntgl.common.base.NetworkGunManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;

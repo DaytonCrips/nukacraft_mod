@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 4,
-    "gripType": "gunscore:one_handed",
+    "gripType": "ntgl:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 10,
     "reloadTime": 30,

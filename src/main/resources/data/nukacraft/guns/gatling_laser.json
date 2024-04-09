@@ -2,7 +2,7 @@
   "general": {
     "auto": true,
     "rate": 2,
-    "gripType": "gunscore:mini_gun",
+    "gripType": "ntgl:mini_gun",
     "maxAmmo": 40,
     "reloadTime": 30,
     "reloadAmount": 10,
@@ -16,7 +16,7 @@
     "damage": 6.5,
     "size": 0.2,
     "speed": 150,
-    "life": 3
+    "life": 8
   },
   "sounds": {
     "fire": "nukacraft:item.laser_gatling.fire",
