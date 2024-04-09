@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.foundation.world.ModDimension.FALLOUT_WASTELAND;
+import static com.nukateam.nukacraft.common.registery.ModDimension.FALLOUT_WASTELAND;
 
 public class TerminalBlock extends RotatedObjectBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();

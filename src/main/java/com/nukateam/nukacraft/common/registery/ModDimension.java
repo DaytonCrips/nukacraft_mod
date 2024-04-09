@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.world;
+package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.core.Registry;
@@ -14,8 +14,7 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 public class ModDimension {
     public static final ResourceLocation WASTELAND_RESOURCE = nukaResource("fallout_wasteland");
 
-    public static final ResourceKey<Level> FALLOUT_WASTELAND = ResourceKey.create(Registry.DIMENSION_REGISTRY,
-            WASTELAND_RESOURCE);
+    public static final ResourceKey<Level> FALLOUT_WASTELAND = ResourceKey.create(Registry.DIMENSION_REGISTRY, WASTELAND_RESOURCE);
 
     public static final ResourceKey<DimensionType> FALLOUT_WASTELAND_TYPE =
             ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY, WASTELAND_RESOURCE);
