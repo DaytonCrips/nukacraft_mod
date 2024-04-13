@@ -1,21 +1,18 @@
 package com.nukateam.nukacraft.common.foundation.items.armor;
 
 import com.nukateam.example.common.data.interfaces.IResourceProvider;
-import com.nukateam.example.common.data.utils.ResourceUtils;
 import com.nukateam.nukacraft.client.render.renderers.armor.ArmorRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,11 +34,7 @@ public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvide
 
     @Override
     public String getNamespace() {
-        return getRegistryName().getNamespace();
-    }
-
-    private ResourceLocation getRegistryName(){
-        return ForgeRegistries.ITEMS.getKey(this);
+        return ForgeRegistries.ITEMS.getKey(this).getNamespace();
     }
 
     @Override
@@ -50,9 +43,12 @@ public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvide
             private ArmorRenderer renderer;
 
             @Override
-            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity,
+                                                                   ItemStack itemStack,
+                                                                   EquipmentSlot equipmentSlot,
+                                                                   HumanoidModel<?> original) {
                 if (renderer == null)
-                    return new ArmorRenderer();
+                    renderer = new ArmorRenderer();
                 renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
                 return this.renderer;
             }

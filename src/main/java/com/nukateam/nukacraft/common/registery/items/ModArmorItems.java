@@ -20,27 +20,23 @@ import java.util.List;
 public class ModArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    public static final HashMap<EquipmentSlot, RegistryObject<Item>> WOODEN_SET = registerArmorSet("wooden", ModArmorMaterials.METAL);
-//    public static final HashMap<EquipmentSlot, RegistryObject<Item>> LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.METAL);
-//    public static final HashMap<EquipmentSlot, RegistryObject<Item>> RAIDER_SET = registerArmorSet("raider", ModArmorMaterials.METAL);
-//    public static final HashMap<EquipmentSlot, RegistryObject<Item>> METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
-//    public static final HashMap<EquipmentSlot, RegistryObject<Item>> TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.METAL);
+    public static final HashMap<EquipmentSlot, RegistryObject<Item>> WOODEN_SET = registerArmorSet("wooden", ModArmorMaterials.WOOD);
+    public static final HashMap<EquipmentSlot, RegistryObject<Item>> LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.HARDLEATHER);
+    public static final HashMap<EquipmentSlot, RegistryObject<Item>> RAIDER_SET = registerArmorSet("raiders", ModArmorMaterials.RAIDER);
+    public static final HashMap<EquipmentSlot, RegistryObject<Item>> METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
+    public static final HashMap<EquipmentSlot, RegistryObject<Item>> TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
 
-
-
     private static HashMap<EquipmentSlot, RegistryObject<Item>> registerArmorSet(String name, ArmorMaterial material){
+        var armorSet = new HashMap<EquipmentSlot, RegistryObject<Item>>();
         var armorSlots = List.of(
                 Pair.of(EquipmentSlot.HEAD , "helmet"),
                 Pair.of(EquipmentSlot.CHEST, "chest"),
                 Pair.of(EquipmentSlot.LEGS , "leggins"),
-                Pair.of(EquipmentSlot.FEET , "boots")
-        );
-
-        var armorSet = new HashMap<EquipmentSlot, RegistryObject<Item>>();
+                Pair.of(EquipmentSlot.FEET , "boots"));
 
         for (var slot: armorSlots) {
             var item = registerArmor(name + "_" + slot.second, name, material, slot.first);
