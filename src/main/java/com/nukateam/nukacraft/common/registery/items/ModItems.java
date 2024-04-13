@@ -290,13 +290,13 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> ULTRDIVIDER = ITEMS.register("ultracite_divider",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
-    public static final RegistryObject<Item> ULTRSHEAT = ITEMS.register("ultracite_sheat",
+    public static final RegistryObject<Item> ULTRSHEAT = ITEMS.register("ultracite_shell",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> WHITEBRICK = ITEMS.register("whitebrick",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
     public static final RegistryObject<Item> SILICATE = ITEMS.register("silicate",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL)));
-    public static final RegistryObject<Item> QUARZSHEAT = ITEMS.register("quartz_sheat",
+    public static final RegistryObject<Item> QUARZS_SHELL = ITEMS.register("quartz_shell",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> QUARZPIECE = ITEMS.register("quartz_piece",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
@@ -306,7 +306,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ELEDIVIDE = ITEMS.register("electrite_divider",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> ELESHEAT = ITEMS.register("electrite_sheat",
+    public static final RegistryObject<Item> ELESHEAT = ITEMS.register("electrite_shell",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> GILLEAD = ITEMS.register("gilded_lead",
             () -> new Item(new Item.Properties().tab(NUKA_MATERIAL).rarity(Rarity.UNCOMMON)));
