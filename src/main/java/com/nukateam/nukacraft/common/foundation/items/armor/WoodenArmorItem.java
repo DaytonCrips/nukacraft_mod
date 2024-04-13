@@ -9,6 +9,7 @@ import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
@@ -27,12 +28,14 @@ public class WoodenArmorItem extends ArmorItem implements GeoItem {
         this.skin = skin;
     }
 
+
     public String getSkin() {
         return skin;
     }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+
         consumer.accept(new IClientItemExtensions() {
             private WoodenArmorRenderer renderer;
 

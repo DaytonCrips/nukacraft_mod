@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/crop",
+  "render_type": "cutout",
   "textures": {
     "crop": "nukacraft:blocks/gigawheat_stage7"
   }

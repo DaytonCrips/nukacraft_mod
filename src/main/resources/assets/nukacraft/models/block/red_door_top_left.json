@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "textures": {
+    "bottom": "nukacraft:blocks/door_red_lower",
+    "top": "nukacraft:blocks/door_red_upper"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "parent": "block/door_bottom",
-  "textures": {
-    "bottom": "nukacraft:blocks/rustdoor_d",
-    "top": "nukacraft:blocks/rustdoor_t"
-  }
-}

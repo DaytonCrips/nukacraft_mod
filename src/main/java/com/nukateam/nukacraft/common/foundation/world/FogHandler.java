@@ -19,7 +19,7 @@ public class FogHandler {
         var world = event.getCamera().getEntity().level;
         var pos = event.getCamera().getBlockPosition();
 
-        if (world.getBiome(pos).is(ResourceLocation.tryParse(NukaCraftMod.MOD_ID + ":glow_sea"))) {
+        if (world.getBiome(pos).is(ResourceLocation.tryParse(NukaCraftMod.MOD_ID + ":poison_valley"))) {
             RenderSystem.setShaderTexture(0, 0);
             RenderSystem.setShaderFogStart(9f);
             RenderSystem.setShaderFogEnd(65f);

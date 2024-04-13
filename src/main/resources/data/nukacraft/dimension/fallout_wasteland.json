@@ -1,5 +1,5 @@
 {
-  "type": "nukacraft:fallout_wasteland",
+  "type": "nukacraft:fallout_wasteland_type",
   "generator": {
     "type": "minecraft:noise",
     "seed": 243671543,

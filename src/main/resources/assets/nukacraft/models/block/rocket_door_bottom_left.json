@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "cutout",
+  "textures": {
+    "bottom": "nukacraft:blocks/rreddoor_d",
+    "top": "nukacraft:blocks/rreddoor_t"
+  }
+}

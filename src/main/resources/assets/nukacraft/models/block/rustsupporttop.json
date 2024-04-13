@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"parent": "nukacraft:block/rustsupportwall",
 	"texture_size": [64, 64],
 	"textures": {

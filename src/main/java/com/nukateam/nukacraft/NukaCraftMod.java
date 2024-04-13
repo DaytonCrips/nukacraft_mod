@@ -12,12 +12,15 @@ import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
+import com.nukateam.nukacraft.common.foundation.world.ModStructures;
+import com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -77,6 +80,8 @@ public class NukaCraftMod {
         ModFluidTypes.register(MOD_EVENT_BUS);
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
+        WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
+        WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
@@ -91,6 +96,12 @@ public class NukaCraftMod {
 
         curiosLoaded = ModList.get().isLoaded("curios");
     }
+
+
+    public static ResourceLocation resourceLocation(String r) {
+        return new ResourceLocation(MOD_ID, r);
+    }
+
 
     public static boolean isCuriosLoaded() {
         return curiosLoaded;

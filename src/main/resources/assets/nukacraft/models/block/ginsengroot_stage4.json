@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/crop",
+  "render_type": "cutout",
   "textures": {
     "cross": "nukacraft:blocks/ginsengroot_stage4"
   }

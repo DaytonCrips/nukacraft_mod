@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
+import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.placement.*;

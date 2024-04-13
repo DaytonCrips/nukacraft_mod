@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "nukacraft:blocks/decaydoor_d",
+    "top": "nukacraft:blocks/decaydoor_t"
+  }
+}

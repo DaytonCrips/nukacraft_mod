@@ -1,5 +1,6 @@
 {
   "ambientocclusion": false,
+  "render_type": "cutout",
   "textures": {
     "particle": "nukacraft:blocks/shelter_bars",
     "edge": "nukacraft:blocks/shelter_bars"

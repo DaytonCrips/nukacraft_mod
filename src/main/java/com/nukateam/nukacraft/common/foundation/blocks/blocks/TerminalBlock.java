@@ -25,7 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.foundation.world.ModDimension.FALLOUT_WASTELAND;
+import static com.nukateam.nukacraft.common.foundation.world.WastelandDimensions.fallout_wasteland;
+
 
 public class TerminalBlock extends RotatedObjectBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
@@ -71,13 +72,13 @@ public class TerminalBlock extends RotatedObjectBlock {
                 MinecraftServer server = pLevel.getServer();
 
                 if (server != null) {
-                    if (pLevel.dimension() == FALLOUT_WASTELAND) {
+                    if (pLevel.dimension() == fallout_wasteland) {
                         ServerLevel overWorld = server.getLevel(Level.OVERWORLD);
                         if (overWorld != null) {
                             pPlayer.changeDimension(overWorld, new WastelandTeleporter(pPos, false));
                         }
                     } else {
-                        ServerLevel kjDim = server.getLevel(FALLOUT_WASTELAND);
+                        ServerLevel kjDim = server.getLevel(fallout_wasteland);
                         if (kjDim != null) {
                             pPlayer.changeDimension(kjDim, new WastelandTeleporter(pPos, true));
                         }
