@@ -210,7 +210,7 @@ public class ModBiomes {
 
         ModDefaultFeatures.addAshHeapDisks(biomeGenerationSettings);
         ModDefaultFeatures.addAshHeapPlants(biomeGenerationSettings);
-        ModDefaultFeatures.addAshHeapOres(biomeGenerationSettings);
+        //ModDefaultFeatures.addAshHeapOres(biomeGenerationSettings);
 
 
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.NONE).biomeCategory(Biome.BiomeCategory.DESERT).temperature(1.2f)
