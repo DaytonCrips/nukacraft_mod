@@ -4,7 +4,7 @@ license="GPL3"
 
 [[mods]]
 modId="nukacraft"
-version="0.1.1s"
+version="${file.jarVersion}"
 displayName="Nuka Craft"
 updateJSONURL=""
 displayURL=""
@@ -26,15 +26,15 @@ versionRange="[1.18.2,1.19)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.nukacraft]]
-modId="framework"
-mandatory=true
-versionRange="[0.4.2,)"
-ordering="NONE"
-side="BOTH"
-[[dependencies.nukacraft]]
 modId="chassis_core"
 mandatory=true
 versionRange="[2.2.0,)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.nukacraft]]
+modId="ntgl"
+mandatory=true
+versionRange="[1.1.0,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.nukacraft]]
