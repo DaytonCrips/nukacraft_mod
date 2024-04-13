@@ -8,7 +8,6 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
