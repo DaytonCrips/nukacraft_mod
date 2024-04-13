@@ -23,7 +23,7 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Radroach extends Monster implements GeoEntity {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
-            SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
+            SynchedEntityData.defineId(Radroach.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public Radroach(EntityType<? extends Monster> pEntityType, Level pLevel) {
