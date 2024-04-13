@@ -21,8 +21,8 @@
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",
-    "reload": "nukacraft:item.pistol10mm.reload",
-    "cock": "nukacraft:item.pistol10mm.cock",
+    "reload": "nukacraft:item.pistol45mm.reload",
+    "cock": "nukacraft:item.pistol45mm.reload",
     "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
     "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
   },

@@ -17,6 +17,15 @@
    "item.pistol45mm.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/pistol45mm/reload" }]},
    "item.pistol45mm.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/pistol45mm/cock" }]},
 
+   "item.bpowder.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/bpowder/fire" }]},
+   "item.bpowder.silenced_fire":         { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/bpowder/silenced_fire" }]},
+   "item.bpowder.enchanted_fire":        { "subtitle": "subtitle.nukacraft.fire.enchanted", "sounds": [{ "name": "nukacraft:item/bpowder/fire" }]},
+   "item.bpowder.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/bpowder/reload" }]},
+   "item.bpowder.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/bpowder/cock" }]},
+
+   "item.handmade.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/handmade/reload" }]},
+   "item.handmade.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/handmade/cock" }]},
+
    "item.fatman.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/fatman/reload" }]},
    "item.fatman.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/fatman/fire" }]},
    "item.minigun.fire":                 { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/minigun/fire" }]},

@@ -544,6 +544,14 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.5": {
+					"effect": "reload"
+				},
+				"1.5": {
+					"effect": "cock"
+				}
 			}
 		},
 		"shot": {
