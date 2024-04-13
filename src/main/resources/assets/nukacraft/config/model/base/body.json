@@ -1,6 +1,6 @@
 {
   "part": "body",
-  "model": "nukacraft:geo/armor/",
+  "model": "nukacraft:geo/power_armor/",
   "texture": {
     "default": "nukacraft:textures/power_armor/"
   },

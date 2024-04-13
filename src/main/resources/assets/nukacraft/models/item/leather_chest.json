@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "nukacraft:items/armor/traphelmet"
+    "layer0": "nukacraft:items/armor/leather_body"
   }
 }
