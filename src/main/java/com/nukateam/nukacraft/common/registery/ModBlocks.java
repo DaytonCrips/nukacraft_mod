@@ -245,6 +245,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
             () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.3f)));
+
+    public static final RegistryObject<Block> GOLD_TOILET = registerBlock("goldtoilet",
+            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
+                    .strength(0.4f)));
+    public static final RegistryObject<Block> TOILET = registerBlock("toilet",
+            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.ICE_SOLID)
+                    .strength(0.3f)));
     public static final RegistryObject<Block> IND_BUTTON = registerBlock("ind_button",
             () -> new LeverBlock(BlockBehaviour.Properties.of(Material.DECORATION)
                     .strength(0.1f)));
@@ -648,6 +655,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
+
+    public static final RegistryObject<Block> CAGEDOOR = registerBlock("door_cage",
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
+
 
     public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
