@@ -562,6 +562,19 @@ public class ModBlocks {
                     .strength(1.0f).lightLevel((p_50892_) -> {
                         return 4;
                     })));
+
+
+    public static final RegistryObject<Block> CRYOCAPSULEACT = registerBlock("cryocapsuleact",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+
+    public static final RegistryObject<Block> OPENCRYOCAPSULE = registerBlock("opencryocapsule",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+    public static final RegistryObject<Block> CRYOCAPSULE = registerBlock("cryocapsule",
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+
+
+
+
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.of(Material.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
