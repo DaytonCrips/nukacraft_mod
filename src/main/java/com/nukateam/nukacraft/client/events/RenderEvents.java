@@ -18,7 +18,7 @@ public class RenderEvents {
 //
 //        try {
 //            var method = ItemInHandLayer.class.getDeclaredMethod("renderArmWithItem",
-//                    LivingEntity.class, ItemStack.class, ItemTransforms.TransformType.class,
+//                    LivingEntity.class, ItemStack.class, ItemDisplayContext.class,
 //                    HumanoidArm.class, PoseStack.class, MultiBufferSource.class, int.class);
 //
 //            method.setAccessible(true);
@@ -26,7 +26,7 @@ public class RenderEvents {
 //            method.invoke(itemRenderer,
 //                    player,
 //                    stack,
-//                    ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND,
+//                    ItemDisplayContext.THIRD_PERSON_LEFT_HAND,
 //                    HumanoidArm.LEFT,
 //                    event.getPoseStack(),
 //                    event.getMultiBufferSource(),
@@ -37,7 +37,7 @@ public class RenderEvents {
 //        Minecraft.getInstance().getItemInHandRenderer().renderItem(
 //                player,
 //                stack,
-//                ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND,
+//                ItemDisplayContext.THIRD_PERSON_LEFT_HAND,
 //                true,
 //                event.getPoseStack(),
 //                event.getMultiBufferSource(),

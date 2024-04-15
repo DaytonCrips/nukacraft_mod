@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,7 +26,7 @@ public abstract class ItemInHandLayerMixin<T extends LivingEntity, M extends Ent
 
     @Shadow
     protected abstract void renderArmWithItem(LivingEntity pLivingEntity, ItemStack pItemStack,
-                                              ItemTransforms.TransformType pTransformType, HumanoidArm pArm,
+                                              ItemDisplayContext pTransformType, HumanoidArm pArm,
                                               PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight);
 
     //    @Inject(method = RENDER, at = @At(value = "INVOKE", target = RENDER_TARGET, ordinal = 0))
@@ -36,7 +37,7 @@ public abstract class ItemInHandLayerMixin<T extends LivingEntity, M extends Ent
 
         if (pLivingEntity instanceof Player player && SlotUtils.hasCuriosPipboy(player)) {
             var stack = PipBoyUtils.getPipboyStack(player);
-            this.renderArmWithItem(pLivingEntity, stack, ItemTransforms.TransformType.THIRD_PERSON_LEFT_HAND,
+            this.renderArmWithItem(pLivingEntity, stack, ItemDisplayContext.THIRD_PERSON_LEFT_HAND,
                     HumanoidArm.LEFT, pMatrixStack, pBuffer, pPackedLight);
         }
     }

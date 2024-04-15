@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery.fluid;
 
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.joml.Vector3f;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 

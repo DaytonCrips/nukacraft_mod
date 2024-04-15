@@ -3,7 +3,7 @@ package com.nukateam.nukacraft.client.render.renderers.entity;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.nukateam.ntgl.client.data.handler.AimingHandler;
 import com.nukateam.nukacraft.client.models.PowerArmorModel;
 import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.InteractionHand;
+import org.joml.Vector3f;
 
 public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 //    public GunItem gunItem;
