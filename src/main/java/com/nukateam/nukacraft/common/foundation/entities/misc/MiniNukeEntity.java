@@ -35,7 +35,7 @@ public class MiniNukeEntity extends ProjectileEntity {
             }
             if (this.level.random.nextInt(2) == 0) {
                 this.level.addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
-                //this.level.addParticle(ParticleTypes.FLAME, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
+                this.level.addParticle(ParticleTypes.FLAME, true, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             }
         }
     }

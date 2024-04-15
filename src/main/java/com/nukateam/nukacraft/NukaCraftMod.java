@@ -109,9 +109,7 @@ public class NukaCraftMod {
     }
 
     private static void registerProjectileFactories() {
-        ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(),
-                (level, entity, weapon, item, modifiedGun) ->
-                        new MiniNukeEntity(EntityTypes.MININUKE.get(), level, entity, weapon, item, modifiedGun));
+        ProjectileManager.getInstance().registerFactory(ModWeapons.MININUKE.get(), (worldIn, entity, weapon, item, modifiedGun) -> new MiniNukeEntity(EntityTypes.MININUKE.get(), worldIn, entity, weapon, item, modifiedGun));
 
         ProjectileManager.getInstance().registerFactory(ModWeapons.FUSION_CELL.get(),
                 (level, entity, weapon, item, modifiedGun) -> {
