@@ -58,11 +58,20 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_FATMAN_FIRE = register("item.fatman.fire");
     public static final RegistryObject<SoundEvent> ITEM_FATMAN_RELOAD = register("item.fatman.reload");
 
+    public static final RegistryObject<SoundEvent> ITEM_HANDMADE_COCK = register("item.handmade.cock");
+    public static final RegistryObject<SoundEvent> ITEM_HANDMADE_RELOAD = register("item.handmade.reload");
+
     public static final RegistryObject<SoundEvent> ITEM_45MM_FIRE = register("item.pistol45mm.fire");
     public static final RegistryObject<SoundEvent> ITEM_45MM_ENCHANTED_FIRE = register("item.pistol45mm.enchanted_fire");
     public static final RegistryObject<SoundEvent> ITEM_45MM_SILENCED_FIRE = register("item.pistol45mm.silenced_fire");
     public static final RegistryObject<SoundEvent> ITEM_45MM_COCK = register("item.pistol45mm.cock");
     public static final RegistryObject<SoundEvent> ITEM_45MM_RELOAD = register("item.pistol45mm.reload");
+
+    public static final RegistryObject<SoundEvent> ITEM_BPOWDER_FIRE = register("item.bpowder.fire");
+    public static final RegistryObject<SoundEvent> ITEM_BPOWDER_ENCHANTED_FIRE = register("item.bpowder.enchanted_fire");
+    public static final RegistryObject<SoundEvent> ITEM_BPOWDER_SILENCED_FIRE = register("item.bpowder.silenced_fire");
+    public static final RegistryObject<SoundEvent> ITEM_BPOWDER_COCK = register("item.bpowder.cock");
+    public static final RegistryObject<SoundEvent> ITEM_BPOWDER_RELOAD = register("item.bpowder.reload");
 
     public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION         = register("misc.nuke.mininuke_explosion");
     public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE  =  register("misc.nuke.nuclear_explosion_rumble" );
