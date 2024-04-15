@@ -60,7 +60,8 @@ public class ModBiomes {
         ModDefaultFeatures.addGrassPoison(biomeGenerationSettings);
         ModDefaultFeatures.addGrassToxic(biomeGenerationSettings);
         ModDefaultFeatures.addGrassAsh(biomeGenerationSettings);
-        BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+
+        ModDefaultFeatures.addPoisonValleyOres(biomeGenerationSettings);
 
         ModDefaultFeatures.addAshStone(biomeGenerationSettings);
         ModDefaultFeatures.addAcidLake(biomeGenerationSettings);
@@ -106,7 +107,8 @@ public class ModBiomes {
             ModDefaultFeatures.addGrassAsh(biomeGenerationSettings);
             ModDefaultFeatures.addGrassCranberry(biomeGenerationSettings);
             biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_SWAMP);
-            BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+
+            ModDefaultFeatures.addCranberryBogOres(biomeGenerationSettings);
 
             BiomeDefaultFeatures.addFossilDecoration(biomeGenerationSettings);
             BiomeDefaultFeatures.addSwampClayDisk(biomeGenerationSettings);
@@ -149,7 +151,8 @@ public class ModBiomes {
 
         ModDefaultFeatures.addGrassAsh(biomeGenerationSettings);
         ModDefaultFeatures.addGlowGrass(biomeGenerationSettings);
-        BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+        ModDefaultFeatures.addGlowSeaOres(biomeGenerationSettings);
+
 
         ModDefaultFeatures.addStumpGlow(biomeGenerationSettings);
 
@@ -184,7 +187,8 @@ public class ModBiomes {
         ModDefaultFeatures.addGrassAsh(biomeGenerationSettings);
         ModDefaultFeatures.addHeapGrass(biomeGenerationSettings);
         ModDefaultFeatures.addRustyBush(biomeGenerationSettings);
-        BiomeDefaultFeatures.addDefaultOres(biomeGenerationSettings);
+        ModDefaultFeatures.addAshHeapOres(biomeGenerationSettings);
+
 
         ModDefaultFeatures.addAshHeapDisks(biomeGenerationSettings);
 
