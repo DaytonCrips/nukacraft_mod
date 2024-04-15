@@ -129,7 +129,7 @@
 		},
 		"reload": {
 			"loop": true,
-			"animation_length": 1.91667,
+			"animation_length": 1.9167,
 			"bones": {
 				"left_arm": {
 					"rotation": {
@@ -281,6 +281,11 @@
 							"vector": [0, 0, 0]
 						}
 					}
+				}
+			},
+			"sound_effects": {
+				"0.4167": {
+					"effect": "reload"
 				}
 			}
 		},

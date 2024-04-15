@@ -20,8 +20,9 @@
     "life": 7
   },
   "sounds": {
-    "fire": "nukacraft:item.flamer.fire",
-    "reload": "nukacraft:item.flamer.reload",
-    "cock": "nukacraft:item.flamer.cock"
+    "fire": "nukacraft:item.handmade_flamer.fire",
+    "reload": "nukacraft:item.handmade_flamer.reload",
+    "cock": "nukacraft:item.handmade_flamer.cock",
+    "enchantedFire": "nukacraft:item.handmade_flamer.fire"
   }
 }

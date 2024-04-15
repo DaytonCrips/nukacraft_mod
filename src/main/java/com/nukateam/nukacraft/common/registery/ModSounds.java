@@ -23,6 +23,14 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_COCK = register("item.laser_gatling.cock");
     public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_RELOAD = register("item.laser_gatling.reload");
 
+    public static final RegistryObject<SoundEvent> ITEM_HANDMADE_FLAMER_FIRE = register("item.handmade_flamer.fire");
+    public static final RegistryObject<SoundEvent> ITEM_HANDMADE_FLAMER_RELOAD = register("item.handmade_flamer.reload");
+    public static final RegistryObject<SoundEvent> ITEM_HANDMADE_FLAMER_COCK = register("item.handmade_flamer.cock");
+    public static final RegistryObject<SoundEvent> ITEM_FLAMER_FIRE = register("item.flamer.fire");
+    public static final RegistryObject<SoundEvent> ITEM_FLAMER_RELOAD = register("item.flamer.reload");
+
+    public static final RegistryObject<SoundEvent> ITEM_MINIGUN_COCK = register("item.minigun.cock");
+    public static final RegistryObject<SoundEvent> ITEM_MINIGUN_RELOAD = register("item.minigun.reload");
 
     public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_FIRE = register("item.pump_shotgun.fire");
     //public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_ENCHANTED_FIRE = register("item.pump_shotgun.enchanted_fire");
