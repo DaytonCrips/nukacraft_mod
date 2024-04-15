@@ -35,7 +35,7 @@ public class RadNamedItem extends ItemNameBlockItem {
 
             if (stack.getItem() == ModFood.CRACKBERRY.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
-            if (stack.getItem() == ModItems.XANDER_ROOT.get())
+            if (stack.getItem() == ModFood.XANDER_ROOT.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
         }
         return super.finishUsingItem(stack, level, entity);

@@ -124,6 +124,21 @@ public class ModFood {
             () -> new SpecialSoupItem(0.0f, () -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 10 * 20), new Item.Properties().stacksTo(1).food(ModFoodTypes.FMPUREE)));
 //
 
+    public static final RegistryObject<Item> DATURAN_ROOT = ITEMS.register("daturan_root",
+            () -> new RadNamedItem(0.2f, ModBlocks.DATURAN.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> AGAVE = ITEMS.register("agave_fruit",
+            () -> new RadNamedItem(0f, ModBlocks.AGAVE.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> NEOAGAVE = ITEMS.register("neoagave_fruit",
+            () -> new RadNamedItem(-0.2f, ModBlocks.NEOAGAVE.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> PUNGA = ITEMS.register("punga_fruit",
+            () -> new RadNamedItem(0.0f, ModBlocks.PUNGA.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> XANDER_ROOT = ITEMS.register("xander_root",
+            () -> new RadNamedItem(0f, ModBlocks.ZANDER.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> NUKAROOT = ITEMS.register("nukaroot",
+            () -> new RadNamedItem(-0.2f, ModBlocks.NUKAROOT.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+    public static final RegistryObject<Item> GINSENG_ROOT = ITEMS.register("ginsengroot",
+            () -> new RadNamedItem(0f, ModBlocks.GINSENG.get(), new Item.Properties().food(ModFoodTypes.NASTY)));
+
     //////////MEDICINE ITEMS
     public static final RegistryObject<Item> STIMPAK = ITEMS.register("stimpak",
             () -> new StimpakItem(5, new Item.Properties().food(ModFoodTypes.MED)));

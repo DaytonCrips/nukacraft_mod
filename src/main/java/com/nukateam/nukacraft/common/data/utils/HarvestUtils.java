@@ -15,8 +15,8 @@ import static java.util.Map.entry;
 public class HarvestUtils {
 
     private static final Map<Block, Item> harvestlist = Map.ofEntries(
-            entry(ModBlocks.AGAVE.get()             , ModItems.AGAVE.get()),
-            entry(ModBlocks.NEOAGAVE.get()          , ModItems.NEOAGAVE.get()),
+            entry(ModBlocks.AGAVE.get()             , ModFood.AGAVE.get()),
+            entry(ModBlocks.NEOAGAVE.get()          , ModFood.NEOAGAVE.get()),
             entry(ModBlocks.BBLOODLEAF_BUSH.get()   , ModItems.BBLOODLEAF.get()),
             entry(ModBlocks.BLOODLEAF_BUSH.get()    , ModItems.BLOODLEAF.get()),
             entry(ModBlocks.QUANTUMLEAF_BUSH.get()  , ModItems.QUANTLEAF.get()),

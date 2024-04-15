@@ -155,20 +155,6 @@ public class ModItems {
             () -> new RadNamedItem(0.5f, ModBlocks.MINDFUNGUS.get(), new Item.Properties()));
     public static final RegistryObject<Item> ASHDUST = ITEMS.register("ashdust",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> DATURAN_ROOT = ITEMS.register("daturan_root",
-            () -> new RadNamedItem(0.2f, ModBlocks.DATURAN.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> AGAVE = ITEMS.register("agave_fruit",
-            () -> new RadNamedItem(0f, ModBlocks.AGAVE.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> NEOAGAVE = ITEMS.register("neoagave_fruit",
-            () -> new RadNamedItem(-0.2f, ModBlocks.NEOAGAVE.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> PUNGA = ITEMS.register("punga_fruit",
-            () -> new RadNamedItem(0.0f, ModBlocks.PUNGA.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> XANDER_ROOT = ITEMS.register("xander_root",
-            () -> new RadNamedItem(0f, ModBlocks.ZANDER.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> NUKAROOT = ITEMS.register("nukaroot",
-            () -> new RadNamedItem(-0.2f, ModBlocks.NUKAROOT.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
-    public static final RegistryObject<Item> GINSENG_ROOT = ITEMS.register("ginsengroot",
-            () -> new RadNamedItem(0f, ModBlocks.GINSENG.get(), new Item.Properties().tab(ModItemTabs.NUKA_FOOD).food(ModFoodTypes.NASTY)));
     public static final RegistryObject<Item> CORAL_LEAF = ITEMS.register("coral_leaf",
             () -> new RadNamedItem(0f, ModBlocks.CORALLEAF.get(), new Item.Properties()));
     public static final RegistryObject<Item> PRISM_LEAF = ITEMS.register("prism_leafs",
