@@ -30,6 +30,11 @@ public class ResinDecorator extends TreeDecorator {
         return ModTreeDecorator.RESIN_TREE_DECORATOR.get();
     }
 
+
+
+
+
+
     public void place(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> state, Random rando, List<BlockPos> p_161722_, List<BlockPos> p_161723_) {
         if (!(rando.nextFloat() >= this.probability)) {
             int i = p_161722_.get(0).getY();
