@@ -1,6 +1,8 @@
 package com.nukateam.nukacraft.common.foundation.world.treedecorator;
 
 import com.mojang.serialization.Codec;
+import com.nukateam.nukacraft.common.foundation.blocks.blocks.ResinBlock;
+import com.nukateam.nukacraft.common.foundation.blocks.plants.BBlightMushroom;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.ModTreeDecorator;
 import net.minecraft.core.BlockPos;
@@ -34,19 +36,18 @@ public class ResinDecorator extends TreeDecorator {
 
 
 
-
-    public void place(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> state, Random rando, List<BlockPos> p_161722_, List<BlockPos> p_161723_) {
-        if (!(rando.nextFloat() >= this.probability)) {
-            int i = p_161722_.get(0).getY();
-            p_161722_.stream().filter((p_69980_) -> {
+    public void place(LevelSimulatedReader pLevel, BiConsumer<BlockPos, BlockState> pBlockSetter, Random pRandom, List<BlockPos> pLogPositions, List<BlockPos> pLeafPositions) {
+        if (!(pRandom.nextFloat() >= this.probability)) {
+            int i = pLogPositions.get(0).getY();
+            pLogPositions.stream().filter((p_69980_) -> {
                 return p_69980_.getY() - i <= 2;
             }).forEach((p_161728_) -> {
                 for(Direction direction : Direction.Plane.HORIZONTAL) {
-                    if (rando.nextFloat() <= 0.25F) {
+                    if (pRandom.nextFloat() <= 0.25F) {
                         Direction direction1 = direction.getOpposite();
                         BlockPos blockpos = p_161728_.offset(direction1.getStepX(), 0, direction1.getStepZ());
-                        if (Feature.isAir(world, blockpos)) {
-                            state.accept(blockpos, ModBlocks.GLOWRESINBLOCK.get().defaultBlockState());
+                        if (Feature.isAir(pLevel, blockpos)) {
+                            pBlockSetter.accept(blockpos, ModBlocks.GLOWRESINBLOCK.get().defaultBlockState().setValue(ResinBlock.AGE, Integer.valueOf(pRandom.nextInt(3))).setValue(ResinBlock.FACING, direction));
                         }
                     }
                 }
