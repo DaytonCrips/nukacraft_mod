@@ -20,8 +20,8 @@
     "life": 10
   },
   "sounds": {
-    "fire": "ntgl:item.minigun.fire",
-    "reload": "ntgl:item.pistol.reload",
-    "enchantedFire": "ntgl:item.minigun.fire"
+    "fire": "nukacraft:item.flamer.fire",
+    "reload": "nukacraft:item.flamer.reload",
+    "enchantedFire": "ntgl:item.flamer.fire"
   }
 }
