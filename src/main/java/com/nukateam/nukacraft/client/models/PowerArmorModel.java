@@ -19,7 +19,7 @@ public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
         var animationProcessor = getAnimationProcessor();
 //        var data = (EntityModelData)animationState.getExtraData().get(DataTickets.ENTITY);
 
-        if (animatable.hasPassenger() && animatable.getPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
+        if (animatable.hasPassenger() && animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
             gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
                     .applyGeoModelRotation(animatable, animationProcessor);
         } else if (animatable.currentAnimation == null) {

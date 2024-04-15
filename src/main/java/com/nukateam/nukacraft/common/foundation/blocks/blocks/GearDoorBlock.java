@@ -83,18 +83,18 @@ public class GearDoorBlock extends BaseEntityBlock {
         List<VoxelShape> shapes = new ArrayList<>();
         switch (pState.getValue(FACING)) {
             case NORTH:
-                shapes.add(box(-48.0, 0.0, 0.0, 16.0, 64.0, 16.0));
+                shapes.add(box(-48, 0, 0, 16, 64, 16));
                 break;
             case EAST:
-                shapes.add(box(0.0, 0.0, -48.0, 16.0, 64.0, 16.0));
+                shapes.add(box(0, 0, -48, 16, 64, 16));
                 break;
             case WEST:
-                shapes.add(box(0.0, 0.0, 0.0, 16.0, 64.0, 64.0));
+                shapes.add(box(0, 0, 0, 16, 64, 64));
                 break;
             default:
-                shapes.add(box(0.0, 0.0, 0.0, 64.0, 64.0, 16.0));
+                shapes.add(box(0, 0, 0, 64, 64, 16));
         }
-        //shapes.add(box(-48.0, 0.0, 0.0, 16.0, 64.0, 16.0));
+        //shapes.add(box(-48, 0, 0, 16, 64, 16));
         VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
         SHAPES.put(pState, shape);
         return shape;
@@ -135,37 +135,37 @@ public class GearDoorBlock extends BaseEntityBlock {
     protected void filledFrame(BlockState block, Level world, BlockState baseState, int x, int y, int z) {
         switch (baseState.getValue(FACING)) {
             case NORTH:
-                for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
+                for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
                     world.setBlock(new BlockPos(x - posBlocks, y, z), block, 3);
                     world.setBlock(new BlockPos(x, y + posBlocks, z), block, 3);
-                    for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
+                    for (var cordBlock = 1; cordBlock < 4; cordBlock++) {
                         world.setBlock(new BlockPos(x - posBlocks, y + cordBlock, z), block, 3);
                     }
                 }
                 break;
             case EAST:
-                for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
+                for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
                     world.setBlock(new BlockPos(x, y, z - posBlocks), block, 3);
                     world.setBlock(new BlockPos(x, y + posBlocks, z), block, 3);
-                    for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
+                    for (var cordBlock = 1; cordBlock < 4; cordBlock++) {
                         world.setBlock(new BlockPos(x, y + cordBlock, z - posBlocks), block, 3);
                     }
                 }
                 break;
             case WEST:
-                for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
+                for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
                     world.setBlock(new BlockPos(x, y, z + posBlocks), block, 3);
                     world.setBlock(new BlockPos(x, y + posBlocks, z), block, 3);
-                    for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
+                    for (var cordBlock = 1; cordBlock < 4; cordBlock++) {
                         world.setBlock(new BlockPos(x, y + cordBlock, z + posBlocks), block, 3);
                     }
                 }
                 break;
             case SOUTH:
-                for (double posBlocks = 1.0; posBlocks < 4.0; posBlocks++) {
+                for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
                     world.setBlock(new BlockPos(x + posBlocks, y, z), block, 3);
                     world.setBlock(new BlockPos(x, y + posBlocks, z), block, 3);
-                    for (double cordBlock = 1.0; cordBlock < 4.0; cordBlock++) {
+                    for (var cordBlock = 1; cordBlock < 4; cordBlock++) {
                         world.setBlock(new BlockPos(x + posBlocks, y + cordBlock, z), block, 3);
                     }
                 }

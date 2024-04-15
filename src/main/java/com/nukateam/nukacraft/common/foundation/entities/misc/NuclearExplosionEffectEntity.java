@@ -6,6 +6,7 @@ import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -83,14 +84,18 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
     public BlockPos getBlockPos() {
         var pos = position();
         pos = pos.subtract(0, 1, 0);
+        var posI = new Vec3i((int)pos.x, (int)pos.y, (int)pos.z);
+        return new BlockPos(posI);
+    }
 
-        return new BlockPos(pos);
+    private Vec3i toVec3I(Vec3 vec){
+        return new Vec3i((int)vec.x, (int)vec.y, (int)vec.z);
     }
 
     public Vec3 getExplosionPos() {
         var pos = position();
 
-        while (level.isEmptyBlock(new BlockPos(pos)) && pos.y >= WORLD_MIN_Y)
+        while (level().isEmptyBlock(new BlockPos(toVec3I(pos))) && pos.y >= WORLD_MIN_Y)
             pos = pos.subtract(0, 1, 0);
 
         return pos;
@@ -100,7 +105,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
     public void tick() {
         super.tick();
 
-        if (initialized && level.isEmptyBlock(getBlockPos()))
+        if (initialized && level().isEmptyBlock(getBlockPos()))
             setPos(getExplosionPos());
 
         if (tickCount > lifeTime) this.remove(RemovalReason.DISCARDED);

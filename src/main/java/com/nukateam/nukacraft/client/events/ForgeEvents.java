@@ -30,7 +30,7 @@ public class ForgeEvents {
             var intensity = scaleTremor(tremorAmount, explosionType) * minecraft.options.screenEffectScale().get();
             intensity *= nuke.getTremorIntensity();
             var camera = event.getCamera();
-            var rng = playerlevel().random;
+            var rng = player.level().random;
 
             try {
                 var move = Camera.class.getDeclaredMethod("move", double.class, double.class, double.class);

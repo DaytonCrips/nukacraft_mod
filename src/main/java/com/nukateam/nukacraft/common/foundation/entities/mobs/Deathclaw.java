@@ -25,8 +25,8 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Deathclaw extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final boolean isClientSide = level.isClientSide;
-    private final boolean isServerSide = !level.isClientSide;
+    private final boolean isClientSide = level().isClientSide;
+    private final boolean isServerSide = !level().isClientSide;
     private boolean isRunning = false;
     private boolean startAttacking = false;
     private String[] attackAnims = new String[]{

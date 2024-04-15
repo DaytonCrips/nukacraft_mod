@@ -4,12 +4,11 @@ import com.mojang.serialization.DataResult;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.biome.OverworldBiomeBuilder;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -21,8 +20,8 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.OptionalLong;
 
 public class WastelandDimensionsSettings {
-    public static final DeferredRegister<NoiseGeneratorSettings> NOISE_GENERATORS = DeferredRegister.create(Registry.NOISE_GENERATOR_SETTINGS_REGISTRY, NukaCraftMod.MOD_ID);
-    public static final DeferredRegister<DimensionType> DIMENSION_TYPES = DeferredRegister.create(Registry.DIMENSION_TYPE_REGISTRY, NukaCraftMod.MOD_ID);
+    public static final DeferredRegister<NoiseGeneratorSettings> NOISE_GENERATORS = DeferredRegister.create(Registries.NOISE_SETTINGS, NukaCraftMod.MOD_ID);
+    public static final DeferredRegister<DimensionType> DIMENSION_TYPES = DeferredRegister.create(Registries.DIMENSION_TYPE, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<NoiseGeneratorSettings> WASTELAND_NOISE_GEN = NOISE_GENERATORS.register("fallout_wasteland_noise", WastelandDimensionsSettings::fallout);
     public static final RegistryObject<DimensionType> WASTELAND_DIM_TYPE = DIMENSION_TYPES.register("fallout_wasteland_type", WastelandDimensionsSettings::falloutType);
@@ -34,7 +33,7 @@ public class WastelandDimensionsSettings {
         return new NoiseGeneratorSettings(WASTELAND_NOISE_SETTINGS,
                 Blocks.GRASS_BLOCK.defaultBlockState(),
                 ModFluids.DIRTY_WATER_BLOCK.get().defaultBlockState(),
-                WastelandNoiseRouterData.fallout(BuiltinRegistries.DENSITY_FUNCTION, false, false),
+                WastelandNoiseRouterData.fallout(BuiltInRegistries.DENSITY_FUNCTION_TYPE, false, false),
                 WastelandSurfaceRule.fallout(),
                 (new WastelandBiomeBuilder()).spawnTarget(),
                 64,
@@ -84,6 +83,6 @@ public class WastelandDimensionsSettings {
 
 
     public static void register(ResourceKey<NoiseGeneratorSettings> p_198263_, NoiseGeneratorSettings p_198264_) {
-        BuiltinRegistries.register(BuiltinRegistries.NOISE_GENERATOR_SETTINGS, p_198263_.location(), p_198264_);
+        BuiltInRegistries.register(BuiltInRegistries.NOISE_GENERATOR_SETTINGS, p_198263_.location(), p_198264_);
     }
 }

@@ -100,7 +100,7 @@ public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
 
     @Override
     public boolean isFlying() {
-        return !this.onGround;
+        return !this.onGround();
     }
 
     @Nullable

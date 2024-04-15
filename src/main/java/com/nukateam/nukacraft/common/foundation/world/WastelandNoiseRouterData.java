@@ -1,14 +1,19 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
+import com.mojang.serialization.Codec;
+import net.minecraft.client.gui.screens.worldselection.WorldCreationContext;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.levelgen.DensityFunction;
-import net.minecraft.world.level.levelgen.DensityFunctions;
-import net.minecraft.world.level.levelgen.NoiseRouter;
-import net.minecraft.world.level.levelgen.Noises;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.biome.FixedBiomeSource;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 
 public class WastelandNoiseRouterData {
@@ -47,7 +52,7 @@ public class WastelandNoiseRouterData {
     }
 
     private static ResourceKey<DensityFunction> createKey(String p_209537_) {
-        return ResourceKey.create(Registry.DENSITY_FUNCTION_REGISTRY, new ResourceLocation(p_209537_));
+        return ResourceKey.create(Registries.DENSITY_FUNCTION, new ResourceLocation(p_209537_));
     }
 
     private static DensityFunction underground(Registry<DensityFunction> p_224472_, DensityFunction p_224473_) {
@@ -70,24 +75,24 @@ public class WastelandNoiseRouterData {
     }
 
 
-    public static NoiseRouter fallout(Registry<DensityFunction> p_224486_, boolean p_224487_, boolean p_224488_) {
+    public static NoiseRouter fallout(Registry<Codec<? extends DensityFunction>> registry, boolean p_224487_, boolean p_224488_) {
         DensityFunction densityfunction = DensityFunctions.noise(getNoise(Noises.AQUIFER_BARRIER), 0.5D);
         DensityFunction densityfunction1 = DensityFunctions.noise(getNoise(Noises.AQUIFER_FLUID_LEVEL_FLOODEDNESS), 0.67D);
         DensityFunction densityfunction2 = DensityFunctions.noise(getNoise(Noises.AQUIFER_FLUID_LEVEL_SPREAD), 0.7142857142857143D);
         DensityFunction densityfunction3 = DensityFunctions.noise(getNoise(Noises.AQUIFER_LAVA));
-        DensityFunction densityfunction4 = getFunction(p_224486_, SHIFT_X);
-        DensityFunction densityfunction5 = getFunction(p_224486_, SHIFT_Z);
+        DensityFunction densityfunction4 = getFunction(registry, SHIFT_X);
+        DensityFunction densityfunction5 = getFunction(registry, SHIFT_Z);
         DensityFunction densityfunction6 = DensityFunctions.shiftedNoise2d(densityfunction4, densityfunction5, 0.25D, getNoise(p_224487_ ? Noises.TEMPERATURE_LARGE : Noises.TEMPERATURE));
         DensityFunction densityfunction7 = DensityFunctions.shiftedNoise2d(densityfunction4, densityfunction5, 0.25D, getNoise(p_224487_ ? Noises.VEGETATION_LARGE : Noises.VEGETATION));
-        DensityFunction densityfunction8 = getFunction(p_224486_, p_224487_ ? FACTOR_LARGE : FACTOR);
-        DensityFunction densityfunction9 = getFunction(p_224486_, p_224487_ ? DEPTH_LARGE : DEPTH);
+        DensityFunction densityfunction8 = getFunction(registry, p_224487_ ? FACTOR_LARGE : FACTOR);
+        DensityFunction densityfunction9 = getFunction(registry, p_224487_ ? DEPTH_LARGE : DEPTH);
         DensityFunction densityfunction10 = noiseGradientDensity(DensityFunctions.cache2d(densityfunction8), densityfunction9);
-        DensityFunction densityfunction11 = getFunction(p_224486_, p_224487_ ? SLOPED_CHEESE_LARGE : (p_224488_ ? SLOPED_CHEESE_AMPLIFIED : SLOPED_CHEESE));
-        DensityFunction densityfunction12 = DensityFunctions.min(densityfunction11, DensityFunctions.mul(DensityFunctions.constant(5.0D), getFunction(p_224486_, ENTRANCES)));
-        DensityFunction densityfunction13 = DensityFunctions.rangeChoice(densityfunction11, -1000000.0D, 1.5625D, densityfunction12, underground(p_224486_, densityfunction11));
-        DensityFunction densityfunction14 = DensityFunctions.min(postProcess(slideOverworld(p_224488_, densityfunction13)), getFunction(p_224486_, NOODLE));
-        DensityFunction densityfunction15 = getFunction(p_224486_, Y);
-        return new NoiseRouter(densityfunction, densityfunction1, densityfunction2, densityfunction3, densityfunction6, densityfunction7, getFunction(p_224486_, p_224487_ ? CONTINENTS_LARGE : CONTINENTS), getFunction(p_224486_, p_224487_ ? EROSION_LARGE : EROSION), densityfunction9, getFunction(p_224486_, RIDGES), slideOverworld(p_224488_, DensityFunctions.add(densityfunction10, DensityFunctions.constant(-0.703125D)).clamp(-64.0D, 64.0D)), densityfunction14, DensityFunctions.constant(0.0F), DensityFunctions.constant(0.0F), DensityFunctions.constant(0.0F));
+        DensityFunction densityfunction11 = getFunction(registry, p_224487_ ? SLOPED_CHEESE_LARGE : (p_224488_ ? SLOPED_CHEESE_AMPLIFIED : SLOPED_CHEESE));
+        DensityFunction densityfunction12 = DensityFunctions.min(densityfunction11, DensityFunctions.mul(DensityFunctions.constant(5.0D), getFunction(registry, ENTRANCES)));
+        DensityFunction densityfunction13 = DensityFunctions.rangeChoice(densityfunction11, -1000000.0D, 1.5625D, densityfunction12, underground(registry, densityfunction11));
+        DensityFunction densityfunction14 = DensityFunctions.min(postProcess(slideOverworld(p_224488_, densityfunction13)), getFunction(registry, NOODLE));
+        DensityFunction densityfunction15 = getFunction(registry, Y);
+        return new NoiseRouter(densityfunction, densityfunction1, densityfunction2, densityfunction3, densityfunction6, densityfunction7, getFunction(registry, p_224487_ ? CONTINENTS_LARGE : CONTINENTS), getFunction(registry, p_224487_ ? EROSION_LARGE : EROSION), densityfunction9, getFunction(registry, RIDGES), slideOverworld(p_224488_, DensityFunctions.add(densityfunction10, DensityFunctions.constant(-0.703125D)).clamp(-64.0D, 64.0D)), densityfunction14, DensityFunctions.constant(0.0F), DensityFunctions.constant(0.0F), DensityFunctions.constant(0.0F));
     }
     private static DensityFunction slideOverworld(boolean p_224490_, DensityFunction p_224491_) {
         return slide(p_224491_, -64, 384, p_224490_ ? 16 : 80, p_224490_ ? 0 : 64, -0.078125D, 0, 24, p_224490_ ? 0.4D : 0.1171875D);
@@ -108,8 +113,21 @@ public class WastelandNoiseRouterData {
         return DensityFunctions.lerp(densityfunction2, p_224452_, $$9);
     }
 
+
+    private static WorldCreationContext.DimensionsUpdater fixedBiomeConfigurator(Holder<Biome> pBiome) {
+        return (sas, dod) -> {
+            var registry = sas.registryOrThrow(Registries.NOISE_SETTINGS);
+            var holder = registry.getHolderOrThrow(NoiseGeneratorSettings.OVERWORLD);
+            var biomesource = new FixedBiomeSource(pBiome);
+            var chunkgenerator = new NoiseBasedChunkGenerator(biomesource, holder);
+            return dod.replaceOverworldGenerator(sas, chunkgenerator);
+        };
+    }
+
     private static Holder<NormalNoise.NoiseParameters> getNoise(ResourceKey<NormalNoise.NoiseParameters> p_209543_) {
-        return BuiltinRegistries.NOISE.getHolderOrThrow(p_209543_);
+
+
+        return BuiltInRegistries.NOISE.getHolderOrThrow(p_209543_);
     }
 
     private static DensityFunction getFunction(Registry<DensityFunction> p_224465_, ResourceKey<DensityFunction> p_224466_) {
