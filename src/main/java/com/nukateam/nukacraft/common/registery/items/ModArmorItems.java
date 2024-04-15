@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.common.registery.items;
 import com.ibm.icu.impl.Pair;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.armor.*;
+import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
 import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -26,6 +27,9 @@ public class ModArmorItems {
     public static final HashMap<EquipmentSlot, RegistryObject<Item>> METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
     public static final HashMap<EquipmentSlot, RegistryObject<Item>> TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
 
+    public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",
+            () -> new PipBoyItem("default", new Item.Properties().stacksTo(1)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
@@ -48,6 +52,6 @@ public class ModArmorItems {
 
     private static RegistryObject<Item> registerArmor(String registryName, String name, ArmorMaterial material, EquipmentSlot slot){
         return ITEMS.register(registryName, () -> new GeoArmorItem(material, slot, name,
-                        new Item.Properties().tab(ModItemTabs.NUKA_ARMOR)));
+                        new Item.Properties()));
     }
 }

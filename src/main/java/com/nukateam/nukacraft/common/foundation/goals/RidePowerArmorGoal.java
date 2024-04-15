@@ -28,7 +28,7 @@ public class RidePowerArmorGoal extends Goal {
 
     public RidePowerArmorGoal(Raider entity, double speedModifier, float searchDistance) {
         this.entity = entity;
-        this.level = entity.level;
+        this.level = entity.level();
         this.speedModifier = speedModifier;
         this.navigation = entity.getNavigation();
         this.searchDistance = searchDistance;
@@ -64,7 +64,7 @@ public class RidePowerArmorGoal extends Goal {
     }
 
     public void tick() {
-        this.target = entity.level.getNearestEntity(entity.level.getEntitiesOfClass(PowerArmorFrame.class,
+        this.target = entity.level().getNearestEntity(entity.level().getEntitiesOfClass(PowerArmorFrame.class,
                         getTargetSearchArea(searchDistance), (entity) -> true),
                 targetConditions, entity, entity.getX(), entity.getEyeY(), entity.getZ());
 

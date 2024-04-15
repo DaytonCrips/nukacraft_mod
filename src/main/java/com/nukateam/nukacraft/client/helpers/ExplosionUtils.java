@@ -39,7 +39,7 @@ public class ExplosionUtils {
     }
 
     public static void createNuclearExplosion(Entity entity, ExplosionType type) {
-        var level = entity.getLevel();
+        var level = entity.level();
         var explosion = NUCLEAR_EXPLOSION.get().create(level);
         explosion.copyPosition(entity);
         explosion.setSize(type.size());

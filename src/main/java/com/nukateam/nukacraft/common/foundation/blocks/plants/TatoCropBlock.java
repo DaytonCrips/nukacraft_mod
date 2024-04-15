@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
-import com.nukateam.nukacraft.common.registery.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModFood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -19,7 +19,7 @@ public class TatoCropBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModItems.WILDTATO.get();
+        return ModFood.WILDTATO.get();
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

@@ -1,14 +1,8 @@
 package com.nukateam.nukacraft.common.registery.fluid;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.blocks.fluids.AcidFluidBlock;
-import com.nukateam.nukacraft.common.foundation.blocks.fluids.RadWaterBlock;
-import com.nukateam.nukacraft.common.foundation.materials.BlockMaterials;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -16,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,7 +19,6 @@ import oshi.util.tuples.Pair;
 
 import javax.annotation.Nullable;
 
-import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes.*;
 
 @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
@@ -73,8 +65,8 @@ public class ModFluids {
 
     public static final ForgeFlowingFluid.Properties POISONOUS_WATER_PROPERTIES =
             new ForgeFlowingFluid.Properties(POISONOUS_WATER_FLUID_TYPE, POISONOUS_WATER_FLUID, POISONOUS_WATER_FLOWING)
-            .slopeFindDistance(2).levelDecreasePerBlock(2)
-            .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
+                    .slopeFindDistance(2).levelDecreasePerBlock(2)
+                    .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
 
 
     @Nullable

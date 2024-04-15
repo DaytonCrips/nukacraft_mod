@@ -32,7 +32,7 @@ public class RadiationTracker {
     private void rareTick(TickEvent.PlayerTickEvent event) {
         if (event.player != player) return;
 
-        var level = event.player.level;
+        var level = event.player.level();
         var bounding = player.getBoundingBox().inflate(10);
         var blocks = BlockPos.betweenClosedStream(bounding);
 

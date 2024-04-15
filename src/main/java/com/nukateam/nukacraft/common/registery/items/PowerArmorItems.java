@@ -14,17 +14,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.nukateam.nukacraft.common.foundation.materials.PowerArmorMaterials.*;
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_ARMOR;
 
 public class PowerArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     public static final RegistryObject<Item> FRAME_ITEM = ITEMS.register("frame_item", () ->
-            new ChassisItem<>(new Item.Properties().tab(NUKA_ARMOR).fireResistant(), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
+            new ChassisItem<>(new Item.Properties().fireResistant(), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
     );
 
     public static final RegistryObject<Item> JETPACK = ITEMS.register("jetpack", () ->
-            new Jetpack(new Item.Properties().tab(NUKA_ARMOR).fireResistant())
+            new Jetpack(new Item.Properties().fireResistant())
     );
 
     //T45

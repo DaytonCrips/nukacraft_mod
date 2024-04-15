@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModFood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -44,7 +44,7 @@ public class BBlightMushroom extends CocoaBlock {
             return InteractionResult.PASS;
         } else if (i > 1) {
             int j = 1 + level.random.nextInt(2);
-            popResource(level, pos, new ItemStack(ModItems.BBLIGHT.get(), j + (flag ? 1 : 0)));
+            popResource(level, pos, new ItemStack(ModFood.BBLIGHT.get(), j + (flag ? 1 : 0)));
             level.playSound((Player) null, pos, SoundEvents.HONEY_BLOCK_HIT, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
             level.setBlock(pos, state.setValue(AGE, Integer.valueOf(0)), 2);
             return InteractionResult.sidedSuccess(level.isClientSide);

@@ -13,13 +13,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
+import static com.nukateam.nukacraft.common.registery.items.ModArmorItems.PIP_BOY_D;
+
 public class LockableStorage extends BasicStorageBlock {
     public LockableStorage(Properties pProperties, String model) {
         super(pProperties, model);
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
+        if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
             if (pLevel.isClientSide) {
                 return InteractionResult.SUCCESS;
             } else {

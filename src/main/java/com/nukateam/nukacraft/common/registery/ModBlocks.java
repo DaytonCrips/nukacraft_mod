@@ -5,6 +5,7 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.PipeBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.*;
 import com.nukateam.nukacraft.common.foundation.blocks.plants.*;
+import com.nukateam.nukacraft.common.registery.items.ModBlockItems;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
@@ -37,7 +38,7 @@ public class ModBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.6F, 1.9F).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> LANDMINE = registerBlock(ModItemTabs.NUKA_WEAPONS, "fragmine",
+    public static final RegistryObject<Block> LANDMINE = registerBlock("fragmine",
             () -> new LandMineBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.6F, 1.9F)));
     public static final RegistryObject<Block> GEARDOOR = registerBlockWithoutItem("geardoor",
@@ -735,10 +736,9 @@ public class ModBlocks {
             () -> new PipeBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(1.1f, 4.1f).requiresCorrectToolForDrops()));
 
-    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
-    }
-
+//    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
+//        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+//    }
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -753,13 +753,8 @@ public class ModBlocks {
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn, ModItemTabs.NUKA_BLOCKS);
-        return toReturn;
-    }
+        ModBlockItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
 
-    private static <T extends Block> RegistryObject<T> registerBlock(CreativeModeTab tab, String name, Supplier<T> block) {
-        RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
 

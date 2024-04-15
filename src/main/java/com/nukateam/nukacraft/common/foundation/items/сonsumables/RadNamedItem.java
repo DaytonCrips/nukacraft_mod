@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
+import com.nukateam.nukacraft.common.registery.items.ModFood;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -32,7 +33,7 @@ public class RadNamedItem extends ItemNameBlockItem {
         if (entity instanceof Player && !level.isClientSide) {
             RadiationUtils.addRadiation(entity, this.radiation);
 
-            if (stack.getItem() == ModItems.CRACKBERRY.get())
+            if (stack.getItem() == ModFood.CRACKBERRY.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 200, 0, false, false));
             if (stack.getItem() == ModItems.XANDER_ROOT.get())
                 entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0, false, false));
@@ -45,7 +46,7 @@ public class RadNamedItem extends ItemNameBlockItem {
         super.appendHoverText(item, level, list, flag);
         showRadiation(list, radiation);
 
-        if (item.getItem() == ModItems.CRACKBERRY.get()) {
+        if (item.getItem() == ModFood.CRACKBERRY.get()) {
             list.add(Component.translatable("tooltip.nukacraft.fire_res").append("§9(0:10)"));
         }
     }

@@ -630,5 +630,6 @@
 
 
   "skin.default" : "§7§oDefault",
-  "skin.rust" : "§7§oRusty"
+  "skin.rust" : "§7§oRusty",
+  "itemGroup.power_armor": "NukaCraft: Power Armor"
 }

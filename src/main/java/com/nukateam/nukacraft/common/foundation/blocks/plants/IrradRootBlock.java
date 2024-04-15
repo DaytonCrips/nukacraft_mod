@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
-import com.nukateam.nukacraft.common.registery.items.ModItems;
+import com.nukateam.nukacraft.common.registery.items.ModFood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -15,8 +15,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 public class IrradRootBlock extends CropBlock {
     public static final int MAX_AGE = 3;
@@ -36,7 +34,7 @@ public class IrradRootBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModItems.IRRADSEED.get();
+        return ModFood.IRRADSEED.get();
     }
 
 

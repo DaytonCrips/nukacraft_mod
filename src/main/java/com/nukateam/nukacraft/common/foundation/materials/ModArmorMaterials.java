@@ -1,15 +1,19 @@
 package com.nukateam.nukacraft.common.foundation.materials;
 
+import com.ibm.icu.impl.Pair;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
@@ -23,6 +27,13 @@ public enum ModArmorMaterials implements ArmorMaterial {
             0.2F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
     TRAPPER("trapper", 4, new int[]{4, 5, 5, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.1F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get()));
+
+    public static final Map<ArmorItem.Type, Integer> TYPE_ID = Map.of(
+            ArmorItem.Type.HELMET, 0,
+            ArmorItem.Type.CHESTPLATE, 1,
+            ArmorItem.Type.LEGGINGS, 2,
+            ArmorItem.Type.BOOTS, 3
+    );
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
@@ -46,12 +57,14 @@ public enum ModArmorMaterials implements ArmorMaterial {
         this.repairIngredient = new LazyLoadedValue<>(p_40481_);
     }
 
-    public int getDurabilityForSlot(EquipmentSlot pSlot) {
-        return HEALTH_PER_SLOT[pSlot.getIndex()] * this.durabilityMultiplier;
+    @Override
+    public int getDurabilityForType(ArmorItem.Type pType) {
+        return HEALTH_PER_SLOT[TYPE_ID.get(pType)] * this.durabilityMultiplier;
     }
 
-    public int getDefenseForSlot(EquipmentSlot pSlot) {
-        return this.slotProtections[pSlot.getIndex()];
+    @Override
+    public int getDefenseForType(ArmorItem.Type pType) {
+        return this.slotProtections[TYPE_ID.get(pType)];
     }
 
     public int getEnchantmentValue() {

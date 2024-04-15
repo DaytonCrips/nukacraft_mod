@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,9 +17,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,7 +34,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class PungaBlock extends BaseBushBlock implements BonemealableBlock, LiquidBlockContainer, net.minecraftforge.common.IForgeShearable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
@@ -70,7 +70,7 @@ public class PungaBlock extends BaseBushBlock implements BonemealableBlock, Liqu
         return state.getValue(AGE) < 5;
     }
 
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         BlockPos detect = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
         if (level.canSeeSky(detect)) {
             int i = state.getValue(AGE);
@@ -116,11 +116,11 @@ public class PungaBlock extends BaseBushBlock implements BonemealableBlock, Liqu
         stateBuilder.add(AGE);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
+    public boolean isValidBonemealTarget(LevelReader getter, BlockPos pos, BlockState state, boolean pIsClient) {
         return state.getValue(AGE) < 5;
     }
 
-    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
         return true;
     }
 
@@ -131,7 +131,7 @@ public class PungaBlock extends BaseBushBlock implements BonemealableBlock, Liqu
     }
 
 
-    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         int i = Math.min(3, state.getValue(AGE) + 1);
         serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }

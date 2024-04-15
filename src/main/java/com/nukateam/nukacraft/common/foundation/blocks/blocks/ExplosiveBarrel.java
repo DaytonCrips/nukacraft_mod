@@ -27,7 +27,7 @@ public class ExplosiveBarrel extends Block implements IExplosiveOnHit {
     @Override
     public void wasExploded(Level pLevel, BlockPos pPos, Explosion pExplosion) {
         if (!pLevel.isClientSide) {
-            pLevel.explode(null, pPos.getX(), pPos.getY(), pPos.getZ(), 3.5f, Explosion.BlockInteraction.DESTROY);
+            pLevel.explode(null, pPos.getX(), pPos.getY(), pPos.getZ(), 3.5f, Level.ExplosionInteraction.BLOCK);
         }
     }
 
@@ -58,7 +58,7 @@ public class ExplosiveBarrel extends Block implements IExplosiveOnHit {
         if (i < EXPLODE_CHANCE) {
             if (!level.isClientSide) {
                 level.destroyBlock(pos, false);
-                level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 6.0f, Explosion.BlockInteraction.DESTROY);
+                level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 6.0f, Level.ExplosionInteraction.BLOCK);
             }
         }
     }

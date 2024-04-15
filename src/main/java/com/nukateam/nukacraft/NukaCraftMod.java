@@ -68,7 +68,8 @@ public class NukaCraftMod {
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModBiomes.register(MOD_EVENT_BUS);
-        ModMelee.register(MOD_EVENT_BUS);
+        ModFood.register(MOD_EVENT_BUS);
+        ModBlockItems.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
@@ -80,6 +81,7 @@ public class NukaCraftMod {
         ModFluidTypes.register(MOD_EVENT_BUS);
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
+        ModItemTabs.register(MOD_EVENT_BUS);
         WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
         WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
 

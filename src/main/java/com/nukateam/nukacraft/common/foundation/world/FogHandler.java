@@ -16,7 +16,7 @@ public class FogHandler {
 
     @SubscribeEvent
     public static void onRenderFog(ViewportEvent.RenderFog event) {
-        var world = event.getCamera().getEntity().level;
+        var world = event.getCamera().getEntity().level();
         var pos = event.getCamera().getBlockPosition();
 
         if (world.getBiome(pos).is(ResourceLocation.tryParse(NukaCraftMod.MOD_ID + ":poison_valley"))) {

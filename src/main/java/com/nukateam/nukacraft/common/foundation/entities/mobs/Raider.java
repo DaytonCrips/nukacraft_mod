@@ -42,7 +42,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     public PowerArmorFrame armorTarget = null;
     private GunItem[] guns = new GunItem[]{
             ModWeapons.PISTOL10MM.get(),
-            ModWeapons.PIPEREVOLVER.get(),
+            ModWeapons.PIPE_REVOLVER.get(),
             ModWeapons.PIPE_PISTOL.get(),
             ModWeapons.SCOUT10MM.get(),
             ModWeapons.MINIGUN.get(),
@@ -143,7 +143,7 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        var s = level.isClientSide;
+        var s = level().isClientSide;
         var item = getMainHandItem();
         ShootingHandler.get().fire(this, item);
     }

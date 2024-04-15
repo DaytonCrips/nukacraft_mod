@@ -20,7 +20,7 @@ import static com.jetug.chassis_core.common.foundation.item.StackUtils.getVarian
 
 public class ArmorPart extends ChassisArmor {
     public ArmorPart(ChassisArmorMaterial material, String part) {
-        super(new Item.Properties().tab(ModItemTabs.NUKA_ARMOR).fireResistant(), material, part);
+        super(new Item.Properties().fireResistant(), material, part);
     }
 
     @Override

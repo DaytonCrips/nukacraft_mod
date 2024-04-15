@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.blocks.plants;
 import com.nukateam.nukacraft.common.data.utils.HarvestUtils;
 import com.nukateam.nukacraft.common.data.utils.PlantMutationUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,10 +15,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -110,15 +109,15 @@ public class SmallAgeRadPlant extends BaseBushBlock implements BonemealableBlock
         stateBuilder.add(AGE);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter getter, BlockPos pos, BlockState state, boolean val) {
+    public boolean isValidBonemealTarget(LevelReader getter, BlockPos pos, BlockState state, boolean pIsClient) {
         return state.getValue(AGE) < 3;
     }
 
-    public boolean isBonemealSuccess(Level level, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
         return true;
     }
 
-    public void performBonemeal(ServerLevel serverLevel, Random random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel serverLevel, RandomSource random, BlockPos pos, BlockState state) {
         int i = Math.min(3, state.getValue(AGE) + 1);
         serverLevel.setBlock(pos, state.setValue(AGE, Integer.valueOf(i)), 2);
     }

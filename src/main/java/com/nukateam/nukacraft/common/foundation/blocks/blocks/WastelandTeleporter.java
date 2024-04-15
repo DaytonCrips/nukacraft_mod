@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.util.ITeleporter;
 
@@ -22,7 +23,7 @@ public class WastelandTeleporter implements ITeleporter {
     public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destinationWorld,
                               float yaw, Function<Boolean, Entity> repositionEntity) {
         entity = repositionEntity.apply(false);
-        double y = 61;
+        int y = 61;
 
         if (!insideDimension) {
             y = thisPos.getY();
@@ -31,9 +32,9 @@ public class WastelandTeleporter implements ITeleporter {
         BlockPos destinationPos = new BlockPos(thisPos.getX(), y, thisPos.getZ());
 
         int tries = 0;
-        while ((destinationWorld.getBlockState(destinationPos).getMaterial() != Material.AIR) &&
+        while ((!destinationWorld.getBlockState(destinationPos).isAir()) &&
                 !destinationWorld.getBlockState(destinationPos).canBeReplaced(Fluids.WATER) &&
-                destinationWorld.getBlockState(destinationPos.above()).getMaterial() != Material.AIR &&
+                !destinationWorld.getBlockState(destinationPos.above()).isAir() &&
                 !destinationWorld.getBlockState(destinationPos.above()).canBeReplaced(Fluids.WATER) && tries < 25) {
             destinationPos = destinationPos.above(2);
             tries++;

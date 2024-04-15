@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.nukateam.nukacraft.common.registery.items.ModArmorItems.PIP_BOY_D;
+
 public class GearDoorBlock extends BaseEntityBlock {
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
@@ -50,7 +52,7 @@ public class GearDoorBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockState newstate = ModBlocks.OPENGEAR.get().defaultBlockState();
-        if (pPlayer.getOffhandItem().getItem() == ModItems.PIP_BOY_D.get()) {
+        if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
             filledEraser(pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
             for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
                 Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
