@@ -19,7 +19,7 @@ public class AcidFluidBlock extends LiquidBlock {
     @Override
     public void entityInside(BlockState pState, Level level, BlockPos pPos, Entity entity) {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
-            living.hurt(DamageSource.GENERIC, 1);
+            living.hurt(level.damageSources().generic(), 1);
         }
     }
 

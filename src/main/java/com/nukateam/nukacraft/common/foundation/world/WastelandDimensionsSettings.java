@@ -65,11 +65,11 @@ public class WastelandDimensionsSettings {
 
     private static DataResult<NoiseSettings> guardY(NoiseSettings p_158721_) {
         if (p_158721_.minY() + p_158721_.height() > DimensionType.MAX_Y + 1) {
-            return DataResult.error("min_y + height cannot be higher than: " + (DimensionType.MAX_Y + 1));
+            return DataResult.error(() -> "min_y + height cannot be higher than: " + (DimensionType.MAX_Y + 1));
         } else if (p_158721_.height() % 16 != 0) {
-            return DataResult.error("height has to be a multiple of 16");
+            return DataResult.error(() -> "height has to be a multiple of 16");
         } else {
-            return p_158721_.minY() % 16 != 0 ? DataResult.error("min_y has to be a multiple of 16") : DataResult.success(p_158721_);
+            return p_158721_.minY() % 16 != 0 ? DataResult.error(() -> "min_y has to be a multiple of 16") : DataResult.success(p_158721_);
         }
     }
 
@@ -82,7 +82,7 @@ public class WastelandDimensionsSettings {
     }
 
 
-    public static void register(ResourceKey<NoiseGeneratorSettings> p_198263_, NoiseGeneratorSettings p_198264_) {
-        BuiltInRegistries.register(BuiltInRegistries.NOISE_GENERATOR_SETTINGS, p_198263_.location(), p_198264_);
-    }
+//    public static void register(ResourceKey<NoiseGeneratorSettings> p_198263_, NoiseGeneratorSettings p_198264_) {
+//        BuiltInRegistries.register(Registries.NOISE_SETTINGS, p_198263_.location(), p_198264_);
+//    }
 }

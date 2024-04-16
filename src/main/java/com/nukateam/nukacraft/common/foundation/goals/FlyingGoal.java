@@ -10,6 +10,8 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
+import static com.nukateam.nukacraft.common.data.utils.VectorUtils.toVec3I;
+
 public class FlyingGoal<T extends PathfinderMob> extends Goal {
     private final T mob;
 
@@ -39,7 +41,7 @@ public class FlyingGoal<T extends PathfinderMob> extends Goal {
     public void start() {
         var vec3 = this.findPos();
         if (vec3 != null) {
-            mob.getNavigation().moveTo(mob.getNavigation().createPath(new BlockPos(vec3), 1), 1.0D);
+            mob.getNavigation().moveTo(mob.getNavigation().createPath(new BlockPos(toVec3I(vec3)), 1), 1.0D);
         }
     }
 

@@ -93,22 +93,17 @@ public class ModBiomes {
         mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
         BiomeGenerationSettings.Builder biomeGenerationSettings = new BiomeGenerationSettings.Builder();
 
-
         ModDefaultFeatures.addDewdropTrees(biomeGenerationSettings);
 
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 PlacementUtils.register("nukacraft:grass_ash", VegetationFeatures.PATCH_GRASS, List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 4),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
-
-
         biomeGenerationSettings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 PlacementUtils.register("nukacraft:crangrass", ModFeatures.PATCH_CRANGRASS, List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
                         InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
 
         ModDefaultFeatures.addCranBerryBogPlants(biomeGenerationSettings);
-
-
 
         BiomeDefaultFeatures.addFossilDecoration(biomeGenerationSettings);
         BiomeDefaultFeatures.addSwampClayDisk(biomeGenerationSettings);
@@ -148,10 +143,6 @@ public class ModBiomes {
         mobspawnsettings$builder.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityTypes.DEATHCLAW.get(), 2, 1, 1));
         mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
         mobspawnsettings$builder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
-
-
-
-
 
         ModDefaultFeatures.addGlowSeaPlants(biomeGenerationSettings);
 

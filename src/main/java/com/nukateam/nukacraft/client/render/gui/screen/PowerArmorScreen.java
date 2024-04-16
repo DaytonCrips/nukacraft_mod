@@ -6,6 +6,8 @@ import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.network.packets.FramePickupPacket;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,6 +29,9 @@ public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
         super.init();
         this.addButton(new IconButton(leftPos + 133, topPos + 49, 88, 166, GUI_DONE, POWER_ARMOR_GUI) {
             @Override
+            protected void updateWidgetNarration(NarrationElementOutput pNarrationElementOutput) {}
+
+            @Override
             public void onPress() {
                 if (referenceMob != null)
                     PacketHandler.sendToServer(new FramePickupPacket(referenceMob.getId()));
@@ -35,9 +40,15 @@ public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
     }
 
     @Override
-    protected void renderEntity(WearableChassis powerArmor) {
+    protected void renderEntity(GuiGraphics graphics, WearableChassis powerArmor) {
         float scale = 1.0F / Math.max(1.0E-4F, powerArmor.getScale());
-        InventoryScreen.renderEntityInInventory(this.leftPos + 32, this.topPos + 73, (int) (scale * 23.0F),
-                (float) (this.leftPos + 51) - this.mousePosX, (float) (this.topPos + 75 - 50) - this.mousePosY, powerArmor);
+        InventoryScreen.renderEntityInInventoryFollowsMouse(
+                graphics,
+                this.leftPos + 32,
+                this.topPos + 73,
+                (int) (scale * 23.0F),
+                (float) (this.leftPos + 51) - this.mousePosX,
+                (float) (this.topPos + 75 - 50) - this.mousePosY,
+                powerArmor);
     }
 }

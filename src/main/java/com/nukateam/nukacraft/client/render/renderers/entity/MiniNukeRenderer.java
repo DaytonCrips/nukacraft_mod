@@ -13,6 +13,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class MiniNukeRenderer extends EntityRenderer<MiniNukeEntity> {
     public MiniNukeRenderer(EntityRendererProvider.Context context) {
@@ -34,9 +37,12 @@ public class MiniNukeRenderer extends EntityRenderer<MiniNukeEntity> {
         poseStack.mulPose(Axis.YP.rotationDegrees(entityYaw));
         poseStack.mulPose(Axis.XP.rotationDegrees(entity.getXRot() - 90));
         Minecraft.getInstance().getItemRenderer()
-                .renderStatic(entity.getItem(), ItemDisplayContext.NONE, 15728880, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0);
+                .renderStatic(entity.getItem(), ItemDisplayContext.NONE, 15728880,
+                        OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, Minecraft.getInstance().level, 0);
+
         poseStack.translate(0, -1, 0);
-        RenderUtil.renderModel(SpecialModels.FLAME.getModel(), entity.getItem(), poseStack, renderTypeBuffer, 15728880, OverlayTexture.NO_OVERLAY);
+        RenderUtil.renderModel(SpecialModels.FLAME.getModel(), entity.getItem(), poseStack,
+                renderTypeBuffer, 15728880, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
     }
 }

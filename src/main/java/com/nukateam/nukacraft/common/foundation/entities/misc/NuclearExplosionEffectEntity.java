@@ -14,6 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.jetug.chassis_core.common.util.helpers.MathHelper.getFraction;
+import static com.nukateam.nukacraft.common.data.utils.VectorUtils.toVec3I;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
@@ -86,10 +87,6 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
         pos = pos.subtract(0, 1, 0);
         var posI = new Vec3i((int)pos.x, (int)pos.y, (int)pos.z);
         return new BlockPos(posI);
-    }
-
-    public static Vec3i toVec3I(Vec3 vec){
-        return new Vec3i((int)vec.x, (int)vec.y, (int)vec.z);
     }
 
     public Vec3 getExplosionPos() {
