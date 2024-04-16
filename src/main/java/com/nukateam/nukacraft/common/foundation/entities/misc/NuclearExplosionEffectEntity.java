@@ -88,7 +88,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
         return new BlockPos(posI);
     }
 
-    private Vec3i toVec3I(Vec3 vec){
+    public static Vec3i toVec3I(Vec3 vec){
         return new Vec3i((int)vec.x, (int)vec.y, (int)vec.z);
     }
 

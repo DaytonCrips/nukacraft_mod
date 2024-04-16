@@ -16,7 +16,8 @@ public class RaiderRenderer extends HumanoidMobRenderer<Raider, RaiderModel> {
         super(context, new RaiderModel(context.bakeLayer(ModelLayers.ZOMBIE)), 0.5f);
         this.addLayer(new HumanoidArmorLayer<>(this,
                 new RaiderModel(context.bakeLayer(ModelLayers.ZOMBIE_INNER_ARMOR)),
-                new RaiderModel(context.bakeLayer(ModelLayers.ZOMBIE_OUTER_ARMOR))));
+                new RaiderModel(context.bakeLayer(ModelLayers.ZOMBIE_OUTER_ARMOR)),
+                context.getModelManager()));
     }
 
     @Override

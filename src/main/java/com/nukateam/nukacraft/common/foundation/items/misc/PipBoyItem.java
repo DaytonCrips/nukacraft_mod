@@ -5,6 +5,7 @@ import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
 import io.netty.buffer.Unpooled;
 import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.animatable.client.RenderProvider;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
@@ -32,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class PipBoyItem extends Item implements GeoItem {
     public static final String ATLAS_ID = "atlasID";
@@ -127,17 +129,24 @@ public class PipBoyItem extends Item implements GeoItem {
         return cache;
     }
 
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
+
     @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
             private PipBoyRenderer renderer = null;
 
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 if (renderer == null)
-                    return new PipBoyRenderer();
+                    renderer = new PipBoyRenderer();
                 return this.renderer;
             }
         });
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
     }
 }

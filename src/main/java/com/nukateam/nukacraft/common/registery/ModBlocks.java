@@ -227,20 +227,23 @@ public class ModBlocks {
     public static final RegistryObject<Block> VAULT_DINER_TABLE = registerBlock("tablevt",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(0.4f)));
+
     public static final RegistryObject<Block> VAULT_BLASTDOOR = registerBlock("vaultblastdoor",
             () -> new BlastDoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
-                    .strength(0.4f).lightLevel((p_50892_) -> {
-                        return 1;
-                    })));
+                    .strength(0.4f).lightLevel((p_50892_) -> 1)));
+
     public static final RegistryObject<Block> WRITTING_DESK1 = registerBlock("writtingdesk1",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(0.4f)));
+
     public static final RegistryObject<Block> WRITTING_DESK2 = registerBlock("writtingdesk2",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(0.4f)));
+
     public static final RegistryObject<Block> WRITTING_DESK3 = registerBlock("writtingdesk3",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(0.4f)));
+
     public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(0.3f)));
@@ -248,18 +251,23 @@ public class ModBlocks {
     public static final RegistryObject<Block> GOLD_TOILET = registerBlock("goldtoilet",
             () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
                     .strength(0.4f)));
+
     public static final RegistryObject<Block> TOILET = registerBlock("toilet",
             () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
                     .strength(0.3f)));
+
     public static final RegistryObject<Block> IND_BUTTON = registerBlock("ind_button",
             () -> new LeverBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE)
                     .strength(0.1f)));
+
     public static final RegistryObject<Block> MAGTILE = registerBlock("magtile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> PRPLTILE = registerBlock("prpltile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> REDTILE = registerBlock("redtile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
@@ -268,401 +276,548 @@ public class ModBlocks {
             () -> new RedstoneLampBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).lightLevel(litBlockEmission(15))
                     .strength(0.9f)));
 
+
     public static final RegistryObject<Block> REDROCKET_PANEL = registerBlock("redrocketpanel",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.2f).requiresCorrectToolForDrops()));
 
+
     public static final RegistryObject<Block> DANGER_FLOOR = registerBlock("dangerfloor",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> VT_LATTICE = registerBlock("vtlattice",
             () -> new LatticeBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops().noOcclusion()));
 
+
     public static final RegistryObject<Block> CRKBRICK_PIPE = registerBlock("crkbrick_pipe",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2, 6).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> CRKBRICK_VENT = registerBlock("crkbrick_vent",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2, 6).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> VTTILE = registerBlock("vttile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
 
+
     public static final RegistryObject<Block> BROWNTILE = registerBlock("brown_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> WHITETILE = registerBlock("white_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> ORANGETILE = registerBlock("orange_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
 
+
     public static final RegistryObject<Block> LBLUETILE = registerBlock("ligthblue_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> YELLOWTILE = registerBlock("yellow_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> LIMETILE = registerBlock("lime_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> PINKTILE = registerBlock("pink_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> DARKGRAYTILE = registerBlock("darkgray_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GRAYTILE = registerBlock("gray_tile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> VTARMOR = registerBlock("vtarmor",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(5.4f, 9.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> BLACKSTEEL = registerBlock("blacksteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> BLACKSTEEL_STAIRS = registerBlock("blacksteel_stairs",
             () -> new StairBlock(ModBlocks.BLACKSTEEL.get().defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> POWERBLOCK = registerBlock("powerblock",
             () -> new PowerBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> STEELFLOOR = registerBlock("shelterfloor",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> BLACKSTEEL2 = registerBlock("blacksteel2",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> BLACKSTEELSLAB = registerBlock("blacksteelslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> REDSTEEL = registerBlock("redsteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> SCRAPMETALL = registerBlock("scrapmetall",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(1.8f, 2.7f)));
+
     public static final RegistryObject<Block> RUSTTIREBLOCK = registerBlock("rusttiresblock",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(1.2f, 1.7f)));
+
     public static final RegistryObject<Block> YELLOWSTEEL = registerBlock("yellow_steel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> YELLOWSTEEL_COLUMN = registerBlock("yellow_steel_column",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> RUSTREDSTEEL = registerBlock("rustedredsteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> RUSTEDGREENSTEEL = registerBlock("rustedgreensteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> PLATEDGREENSTEEL = registerBlock("platedgreensteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> REDSTEELSLAB = registerBlock("redsteelslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GREENSTEEL = registerBlock("greensteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> GREENSTEELSLAB = registerBlock("greensteelslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> WHITESTEEL = registerBlock("whitesteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> WHITESTEELCOLUMN = registerBlock("whitesteel_column",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> BLUESTEEL = registerBlock("bluesteel",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> WHITESTEELSLAB = registerBlock("whitesteelslab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> NUKAMELON = registerBlock("nukamelon",
             () -> new MelonBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.0F).sound(SoundType.WOOD)));
+
     public static final RegistryObject<Block> THISTLE = registerBlock("thistle",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> CRANBERRY_GRASS = registerBlock("cranberrygrass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> ASHGRASS = registerBlock("ashgrass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> HEAP_GRASS = registerBlock("heap_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> RUSTY_BUSH = registerBlock("rusty_bush",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POISONGRASS = registerBlock("poison_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> GLOW_GRASS = registerBlock("glow_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> DEAD_PLANT = registerBlock("death_plant",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> DEATH_FLOWER = registerBlock("death_flower",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_DEATH_FLOWER = registerBlockWithoutItem("potted_death_flower",
             () -> new FlowerPotBlock(null, ModBlocks.DEATH_FLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> TATO = registerBlockWithoutItem("tato_plant",
             () -> new TatoCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
+
     public static final RegistryObject<Block> IRRADROOT = registerBlockWithoutItem("irrad_beetroots",
             () -> new IrradRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
+
     public static final RegistryObject<Block> UFCARROT = registerBlockWithoutItem("ufcarrots",
             () -> new UltravioletCarrotBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
+
     public static final RegistryObject<Block> ASTER = registerBlock("aster",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_ASTER = registerBlockWithoutItem("potted_aster",
             () -> new FlowerPotBlock(null, ModBlocks.ASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> BROC = registerBlock("brocflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_BROC = registerBlockWithoutItem("potted_broc",
             () -> new FlowerPotBlock(null, ModBlocks.BROC,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> INVERT = registerBlock("invertflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_INVERT = registerBlockWithoutItem("potted_invert",
             () -> new FlowerPotBlock(null, ModBlocks.INVERT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> RADASTER = registerBlock("radaster",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_RADASTER = registerBlockWithoutItem("potted_radaster",
             () -> new FlowerPotBlock(null, ModBlocks.RADASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> FIREMUSHROOM = registerBlockWithoutItem("firefungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_FIREMUSHROOM = registerBlockWithoutItem("potted_firemushroom",
             () -> new FlowerPotBlock(null, ModBlocks.FIREMUSHROOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> BLASTCAP = registerBlockWithoutItem("blastcapfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_BLASTCAP = registerBlockWithoutItem("potted_blastcap",
             () -> new FlowerPotBlock(null, ModBlocks.BLASTCAP,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> ASHROSE = registerBlock("ashrose",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_ASHROSE = registerBlockWithoutItem("potted_ashrose",
             () -> new FlowerPotBlock(null, ModBlocks.ASHROSE,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> RADROSE = registerBlock("rad_rose",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_RADROSE = registerBlockWithoutItem("potted_rad_rose",
             () -> new FlowerPotBlock(null, ModBlocks.RADROSE,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> FEVERBLOSSOM = registerBlock("feverblossom",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_FEVERBLOSSOM = registerBlockWithoutItem("potted_feverblossom",
             () -> new FlowerPotBlock(null, ModBlocks.FEVERBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> BOOMBLOSSOM = registerBlock("boomblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_BOOMBLOSSOM = registerBlockWithoutItem("potted_boomblossom",
             () -> new FlowerPotBlock(null, ModBlocks.BOOMBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> SOOTFLOWER = registerBlock("sootflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_SOOTFLOWER = registerBlockWithoutItem("potted_sootflower",
             () -> new FlowerPotBlock(null, ModBlocks.SOOTFLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> GEIGERBLOSSOM = registerBlock("geigerblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_GEIGERBLOSSOM = registerBlockWithoutItem("potted_geigerblossom",
             () -> new FlowerPotBlock(null, ModBlocks.GEIGERBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> BLOODLEAF_BUSH = registerBlockWithoutItem("bloodleaf",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> BBLOODLEAF_BUSH = registerBlockWithoutItem("bbloodleaf",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> QUANTUMLEAF_BUSH = registerBlockWithoutItem("qbloodleaf",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> GAMMALEAF_BUSH = registerBlockWithoutItem("gbloodleaf",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> CRACKBERRY_BUSH = registerBlockWithoutItem("crackberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> BOMBBERRY_BUSH = registerBlockWithoutItem("bombberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> MUTTFRUIT_BUSH = registerBlockWithoutItem("muttfruit",
             () -> new MuttFruitBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> FUSFRUIT_BUSH = registerBlockWithoutItem("fusionfruit",
             () -> new FusFruitBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> SITTBEAN_BUSH = registerBlockWithoutItem("sittbean",
             () -> new SittBeansBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> NEUTRON_BUSH = registerBlockWithoutItem("neutronpod",
             () -> new NeutronRodBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> WILDTATO = registerBlockWithoutItem("wildtato",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> CRANBERRY = registerBlockWithoutItem("cranberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> GOLD_CRANBERRY = registerBlockWithoutItem("gold_cranberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> STARBERRY = registerBlockWithoutItem("starberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> GUTFUNGI = registerBlockWithoutItem("gutfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_GUTSHROOM = registerBlockWithoutItem("potted_gutshroom",
             () -> new FlowerPotBlock(null, ModBlocks.GUTFUNGI,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     //    public static final RegistryObject<Block> BBLIGHT = registerBlock("bblight",
 //            () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
 //    public static final RegistryObject<Block> POTTED_BBLIGHT = registerBlockWithoutItem("potted_bblight",
 //            () -> new FlowerPotBlock(null, ModBlocks.BBLIGHT,
 //                    BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> GIGAWHEAT = registerBlockWithoutItem("gigawheat",
             () -> new CropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).randomTicks().sound(SoundType.CROP).noCollission().instabreak()));
+
     public static final RegistryObject<Block> BRAINFUNGUS = registerBlockWithoutItem("brainfungus",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> MINDFUNGUS = registerBlockWithoutItem("mindfungus",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {
                 return 5;
+
             })));
+
     public static final RegistryObject<Block> GLOWFUNGUS = registerBlockWithoutItem("glowfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {
                 return 4;
+
             })));
+
     public static final RegistryObject<Block> POTTED_GLOWFUNGUS = registerBlockWithoutItem("potted_glowfungi",
             () -> new FlowerPotBlock(null, ModBlocks.GLOWFUNGUS,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> MUTTSHOOTFUNGUS = registerBlockWithoutItem("mutshootfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {
                 return 9;
+
             })));
+
     public static final RegistryObject<Block> POTTED_MUTTSHOOTFUNGUS = registerBlockWithoutItem("potted_mutshootfungi",
             () -> new FlowerPotBlock(null, ModBlocks.MUTTSHOOTFUNGUS,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
 
+
     public static final RegistryObject<Block> MEGAHATTERFUNGI = registerBlockWithoutItem("megamorph_hatterfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_MEGAHATTERFUNGI = registerBlockWithoutItem("potted_megamorph",
             () -> new FlowerPotBlock(null, ModBlocks.MEGAHATTERFUNGI,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> POTTED_HATTER = registerBlockWithoutItem("potted_hatter",
             () -> new FlowerPotBlock(null, ModBlocks.MEGAHATTERFUNGI,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
+
     public static final RegistryObject<Block> HATTERFUNGI = registerBlockWithoutItem("hatterfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> REDLIGHT = registerBlock("redlight",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(1.0f).lightLevel((p_50892_) -> {
                         return 4;
+
                     })));
 
 
+
     public static final RegistryObject<Block> CRYOCAPSULEACT = registerBlock("cryocapsuleact",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
+})));
+
 
     public static final RegistryObject<Block> OPENCRYOCAPSULE = registerBlock("opencryocapsule",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
+})));
+
     public static final RegistryObject<Block> CRYOCAPSULE = registerBlock("cryocapsule",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;})));
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
+})));
+
 
 
 
 
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
             () -> new DoublePlantBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> MARYGOLD = registerBlock("marygold",
             () -> new FlowerBlock(MobEffects.BLINDNESS, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> POTTED_MARYGOLD = registerBlockWithoutItem("potted_marygold",
             () -> new FlowerPotBlock(null, ModBlocks.MARYGOLD,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
+
     public static final RegistryObject<Block> DATURAN = registerBlockWithoutItem("root_daturan",
             () -> new DaturanBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> AGAVE = registerBlockWithoutItem("agave",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> PUNGA = registerBlockWithoutItem("punga",
             () -> new PungaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> NEOAGAVE = registerBlockWithoutItem("neoagave",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> GLOWRESINBLOCK = registerBlockWithoutItem("glowresinblock",
             () -> new ResinBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).sound(SoundType.WOOD).instabreak().lightLevel((p_50892_) -> {
                 return 2;
+
             })));
+
 
     public static final RegistryObject<Block> MEGASLOTHBLOCK = registerBlockWithoutItem("megaslotmush",
             () -> new MegaSlothBlock(BlockBehaviour.Properties.of().sound(SoundType.MOSS).mapColor(MapColor.GRASS).instabreak()));
+
     public static final RegistryObject<Block> BBLIGHTMUSH = registerBlockWithoutItem("bblightmush",
             () -> new BBlightMushroom(BlockBehaviour.Properties.of().mapColor(MapColor.GRASS).sound(SoundType.MOSS).instabreak()));
+
     public static final RegistryObject<Block> GLOWSAP = registerBlockWithoutItem("glowsap",
             () -> new GloamSapBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).sound(SoundType.WOOD).instabreak().lightLevel((p_50892_) -> {
                 return 4;
+
             })));
+
     public static final RegistryObject<Block> GINSENG = registerBlockWithoutItem("ginseng",
             () -> new GinsengBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> NUKAROOT = registerBlockWithoutItem("nukaroot",
             () -> new NukaRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> CORALLEAF = registerBlockWithoutItem("coral_leaf",
             () -> new CoralLeafBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> PRISMLEAF = registerBlockWithoutItem("prism_leaf",
             () -> new PrismLeafBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
 
 
     public static final RegistryObject<Block> DEAD_PUNGA = registerBlock("dead_punga",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> DEAD_DATURAN = registerBlock("dead_daturan",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> DEAD_CORALLEAF = registerBlock("dead_coralleaf",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
     public static final RegistryObject<Block> ZANDER = registerBlockWithoutItem("zander",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
+
 
     public static final RegistryObject<Block> STORAGE = registerBlock("storage1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(1f), "SideHalf"));
 
+
     public static final RegistryObject<Block> FRIDGE = registerBlock("fridge",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
+
     public static final RegistryObject<Block> VENT = registerBlock("vent_tube",
             () -> new VentTubeBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f)));
+
     public static final RegistryObject<Block> COOLER = registerBlock("cooler",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
+
 
     public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
 
+
     public static final RegistryObject<Block> VTCRATE2 = registerBlock("vtcrate2",
             () -> new LockableStorage(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
+
 
     public static final RegistryObject<Block> WOODCRATE = registerBlock("woodcrate",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(1f)));
 
 
+
     public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
                     .strength(1.4F).sound(SoundType.GLASS)));
+
 
     public static final RegistryObject<Block> STEELBARS = registerBlock("steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
+
     public static final RegistryObject<Block> RUSTSTEELBARS = registerBlock("ruststeel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
+
 
     public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
             () -> new DoorBlock(
@@ -675,66 +830,87 @@ public class ModBlocks {
                             .noOcclusion(), BlockSetType.OAK)
     );
 
+
     public static final RegistryObject<Block> CAGEDOOR = registerBlock("door_cage",
             () -> new DoorBlock(BlockBehaviour.Properties.of()
                     .sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
 
+
     public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> STOREDOOR = registerBlock("door_store",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> REDDOOR = registerBlock("door_red",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> GREENDOOR = registerBlock("door_green",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> WHITEDOOR = registerBlock("door_white",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> HARDDOOR = registerBlock("door_hardened",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
+
     public static final RegistryObject<Block> SHELTERBARS = registerBlock("shelter_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> SUPPORTWALL = registerBlock("supportwall",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "wall"));
+
     public static final RegistryObject<Block> SUPPORTWALLTOP = registerBlock("supportwalltop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "walltop"));
+
     public static final RegistryObject<Block> SUPPORTTOP = registerBlock("supporttop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "top"));
 
+
     public static final RegistryObject<Block> RUST_SUPPORT_WALL = registerBlock("rustsupportwall",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "wall"));
+
     public static final RegistryObject<Block> RUST_SUPPORTWALL_TOP = registerBlock("rustsupportwalltop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "walltop"));
+
     public static final RegistryObject<Block> RUST_SUPPORT_TOP = registerBlock("rustsupporttop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "top"));
+
     public static final RegistryObject<Block> SERVER_BLOCK = registerBlock("comblock",
             () -> new CarvedPumpkinBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.2f, 4.4f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> RADIO_TERMINAL = registerBlock("radioterminal",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
+
 
     public static final RegistryObject<Block> BARREL = registerBlock("barrel",
             () -> new RadBarrelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops(), 0.5f));
 
+
     public static final RegistryObject<Block> EXPLOSIVE_BARREL = registerBlock("expbarrel",
             () -> new ExplosiveBarrel(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
 
+
     public static final RegistryObject<Block> RUSTYPIPE = registerBlock("rusty_pipe",
             () -> new PipeBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(1.1f, 4.1f).requiresCorrectToolForDrops()));
+
 
 //    private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
 //        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));

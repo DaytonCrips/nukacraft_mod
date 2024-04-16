@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.nukateam.nukacraft.common.data.utils.ModDamageSource;
+import com.nukateam.nukacraft.common.registery.ModDamageTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -17,7 +17,7 @@ public class UltraciteMagmaBlock extends Block {
 
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         if (pEntity instanceof LivingEntity) {
-            pEntity.hurt(ModDamageSource.ULTRACITE_STEP, 4.0F);
+            pEntity.hurt(ModDamageTypes.Sources.UltraciteDamageSource.source(pLevel.registryAccess()), 4.0F);
         }
 
         super.stepOn(pLevel, pPos, pState, pEntity);

@@ -86,7 +86,7 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
                 var vec3 = entity.position().subtract(this.position()).add(0, 0.3, 0).normalize();
                 entity.setDeltaMovement(vec3.scale(damage * 0.1F * flingStrength));
                 if (damage > 0) {
-                    entity.hurt(DamageSource.IN_FIRE., damage);
+                    entity.hurt(this.damageSources().inFire(), damage);
                 }
                 //entity.addEffect(new MobEffectInstance(IRRADIATED.get(), 48000, getSize() <= 1.5F ? 1 : 2, false, false, true));
             }

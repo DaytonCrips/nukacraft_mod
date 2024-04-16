@@ -39,39 +39,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
+
+import static net.minecraft.core.BlockPos.*;
 
 public class PointedUltraciteCrystall extends Block implements Fallable, SimpleWaterloggedBlock {
     public static final DirectionProperty TIP_DIRECTION = BlockStateProperties.VERTICAL_DIRECTION;
     public static final EnumProperty<DripstoneThickness> THICKNESS = BlockStateProperties.DRIPSTONE_THICKNESS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    private static final int MAX_SEARCH_LENGTH_WHEN_CHECKING_DRIP_TYPE = 11;
-    private static final int DELAY_BEFORE_FALLING = 2;
-    private static final float DRIP_PROBABILITY_PER_ANIMATE_TICK = 0.02F;
-    private static final float DRIP_PROBABILITY_PER_ANIMATE_TICK_IF_UNDER_LIQUID_SOURCE = 0.12F;
-    private static final int MAX_SEARCH_LENGTH_BETWEEN_STALACTITE_TIP_AND_CAULDRON = 11;
-    private static final float WATER_CAULDRON_FILL_PROBABILITY_PER_RANDOM_TICK = 0.17578125F;
-    private static final float LAVA_CAULDRON_FILL_PROBABILITY_PER_RANDOM_TICK = 0.05859375F;
-    private static final double MIN_TRIDENT_VELOCITY_TO_BREAK_DRIPSTONE = 0.6D;
-    private static final float STALACTITE_DAMAGE_PER_FALL_DISTANCE_AND_SIZE = 1.0F;
-    private static final int STALACTITE_MAX_DAMAGE = 40;
-    private static final int MAX_STALACTITE_HEIGHT_FOR_DAMAGE_CALCULATION = 6;
-    private static final float STALAGMITE_FALL_DISTANCE_OFFSET = 2.0F;
-    private static final int STALAGMITE_FALL_DAMAGE_MODIFIER = 2;
-    private static final float AVERAGE_DAYS_PER_GROWTH = 5.0F;
-    private static final float GROWTH_PROBABILITY_PER_RANDOM_TICK = 0.011377778F;
-    private static final int MAX_GROWTH_LENGTH = 7;
-    private static final int MAX_STALAGMITE_SEARCH_RANGE_WHEN_GROWING = 10;
-    private static final float STALACTITE_DRIP_START_PIXEL = 0.6875F;
     private static final VoxelShape TIP_MERGE_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 16.0D, 11.0D);
     private static final VoxelShape TIP_SHAPE_UP = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 11.0D, 11.0D);
     private static final VoxelShape TIP_SHAPE_DOWN = Block.box(5.0D, 5.0D, 5.0D, 11.0D, 16.0D, 11.0D);
     private static final VoxelShape FRUSTUM_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     private static final VoxelShape MIDDLE_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
     private static final VoxelShape BASE_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    private static final float MAX_HORIZONTAL_OFFSET = 0.125F;
     private static final VoxelShape REQUIRED_SPACE_TO_DRIP_THROUGH_NON_SOLID_BLOCK = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 
     public PointedUltraciteCrystall(BlockBehaviour.Properties pProperties) {
@@ -80,7 +62,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     private static void spawnFallingStalactite(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
+        MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
 
         for (BlockState blockstate = pState; isStalactite(blockstate); blockstate = pLevel.getBlockState(blockpos$mutableblockpos)) {
             FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(pLevel, blockpos$mutableblockpos, blockstate);
@@ -98,12 +80,12 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
 
     @VisibleForTesting
     public static void growStalactiteOrStalagmiteIfPossible(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        BlockState blockstate = pLevel.getBlockState(pPos.above(1));
-        BlockState blockstate1 = pLevel.getBlockState(pPos.above(2));
+        var blockstate = pLevel.getBlockState(pPos.above(1));
+        var blockstate1 = pLevel.getBlockState(pPos.above(2));
         if (canGrow(blockstate, blockstate1)) {
-            BlockPos blockpos = findTip(pState, pLevel, pPos, 7, false);
+            var blockpos = findTip(pState, pLevel, pPos, 7, false);
             if (blockpos != null) {
-                BlockState blockstate2 = pLevel.getBlockState(blockpos);
+                var blockstate2 = pLevel.getBlockState(blockpos);
                 if (canDrip(blockstate2) && canTipGrow(blockstate2, pLevel, blockpos)) {
                     if (pRandom.nextBoolean()) {
                         grow(pLevel, blockpos, Direction.DOWN);
@@ -117,7 +99,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     private static void growStalagmiteBelow(ServerLevel pLevel, BlockPos pPos) {
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
+        var blockpos$mutableblockpos = pPos.mutable();
 
         for (int i = 0; i < 10; ++i) {
             blockpos$mutableblockpos.move(Direction.DOWN);
@@ -160,18 +142,19 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     private static void createMergedTips(BlockState pState, LevelAccessor pLevel, BlockPos pPos) {
-        BlockPos blockpos;
-        BlockPos blockpos1;
+        BlockPos abovePos;
+        BlockPos belowPos;
+
         if (pState.getValue(TIP_DIRECTION) == Direction.UP) {
-            blockpos1 = pPos;
-            blockpos = pPos.above();
+            belowPos = pPos;
+            abovePos = pPos.above();
         } else {
-            blockpos = pPos;
-            blockpos1 = pPos.below();
+            abovePos = pPos;
+            belowPos = pPos.below();
         }
 
-        createDripstone(pLevel, blockpos, Direction.DOWN, DripstoneThickness.TIP_MERGE);
-        createDripstone(pLevel, blockpos1, Direction.UP, DripstoneThickness.TIP_MERGE);
+        createDripstone(pLevel, abovePos, Direction.DOWN, DripstoneThickness.TIP_MERGE);
+        createDripstone(pLevel, belowPos, Direction.UP, DripstoneThickness.TIP_MERGE);
     }
 
     public static void spawnDripParticle(Level pLevel, BlockPos pPos, BlockState pState) {
@@ -197,12 +180,11 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
             return pPos;
         } else {
             Direction direction = pState.getValue(TIP_DIRECTION);
-            BiPredicate<BlockPos, BlockState> bipredicate = (p_202023_, p_202024_) -> {
-                return p_202024_.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && p_202024_.getValue(TIP_DIRECTION) == direction;
-            };
-            return findBlockVertical(pLevel, pPos, direction.getAxisDirection(), bipredicate, (p_154168_) -> {
-                return isTip(p_154168_, pIsTipMerge);
-            }, pMaxIterations).orElse((BlockPos) null);
+            BiPredicate<BlockPos, BlockState> bipredicate = (p_202023_, p_202024_) ->
+                    p_202024_.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && p_202024_.getValue(TIP_DIRECTION) == direction;
+
+            return findBlockVertical(pLevel, pPos, direction.getAxisDirection(), bipredicate, (p_154168_) ->
+                    isTip(p_154168_, pIsTipMerge), pMaxIterations).orElse(null);
         }
     }
 
@@ -212,10 +194,7 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         if (isValidPointedDripstonePlacement(pLevel, pPos, pDir)) {
             direction = pDir;
         } else {
-            if (!isValidPointedDripstonePlacement(pLevel, pPos, pDir.getOpposite())) {
-                return null;
-            }
-
+            if (!isValidPointedDripstonePlacement(pLevel, pPos, pDir.getOpposite())) return null;
             direction = pDir.getOpposite();
         }
 
@@ -223,16 +202,17 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     private static DripstoneThickness calculateDripstoneThickness(LevelReader pLevel, BlockPos pPos, Direction pDir, boolean pIsTipMerge) {
-        Direction direction = pDir.getOpposite();
-        BlockState blockstate = pLevel.getBlockState(pPos.relative(pDir));
+        var direction = pDir.getOpposite();
+        var blockstate = pLevel.getBlockState(pPos.relative(pDir));
+
         if (isPointedDripstoneWithDirection(blockstate, direction)) {
             return !pIsTipMerge && blockstate.getValue(THICKNESS) != DripstoneThickness.TIP_MERGE ? DripstoneThickness.TIP : DripstoneThickness.TIP_MERGE;
         } else if (!isPointedDripstoneWithDirection(blockstate, pDir)) {
             return DripstoneThickness.TIP;
         } else {
-            DripstoneThickness dripstonethickness = blockstate.getValue(THICKNESS);
+            var dripstonethickness = blockstate.getValue(THICKNESS);
             if (dripstonethickness != DripstoneThickness.TIP && dripstonethickness != DripstoneThickness.TIP_MERGE) {
-                BlockState blockstate1 = pLevel.getBlockState(pPos.relative(direction));
+                var blockstate1 = pLevel.getBlockState(pPos.relative(direction));
                 return !isPointedDripstoneWithDirection(blockstate1, pDir) ? DripstoneThickness.BASE : DripstoneThickness.MIDDLE;
             } else {
                 return DripstoneThickness.FRUSTUM;
@@ -257,12 +237,11 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
 
     private static Optional<BlockPos> findRootBlock(Level pLevel, BlockPos pPos, BlockState pState, int pMaxIterations) {
         Direction direction = pState.getValue(TIP_DIRECTION);
-        BiPredicate<BlockPos, BlockState> bipredicate = (p_202015_, p_202016_) -> {
-            return p_202016_.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && p_202016_.getValue(TIP_DIRECTION) == direction;
-        };
-        return findBlockVertical(pLevel, pPos, direction.getOpposite().getAxisDirection(), bipredicate, (p_154245_) -> {
-            return !p_154245_.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get());
-        }, pMaxIterations);
+        BiPredicate<BlockPos, BlockState> bipredicate = (pos1, pos2) ->
+                pos2.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && pos2.getValue(TIP_DIRECTION) == direction;
+
+        return findBlockVertical(pLevel, pPos, direction.getOpposite().getAxisDirection(), bipredicate, (pos) ->
+                !pos.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()), pMaxIterations);
     }
 
     private static boolean isValidPointedDripstonePlacement(LevelReader pLevel, BlockPos pPos, Direction pDir) {
@@ -300,22 +279,10 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
         return pState.is(ModBlocks.POINTED_ULTRACITE_CRYSTALL.get()) && pState.getValue(TIP_DIRECTION) == pDir;
     }
 
-    @Nullable
-    public static BlockPos findStalactiteTipAboveCauldron(Level pLevel, BlockPos pPos) {
-        BiPredicate<BlockPos, BlockState> bipredicate = (p_202030_, p_202031_) -> {
-            return canDripThrough(pLevel, p_202030_, p_202031_);
-        };
-        return findBlockVertical(pLevel, pPos, Direction.UP.getAxisDirection(), bipredicate, PointedDripstoneBlock::canDrip, 11).orElse((BlockPos) null);
-    }
-
-    public static Fluid getCauldronFillFluidType(Level pLevel, BlockPos pPos) {
-        return getFluidAboveStalactite(pLevel, pPos, pLevel.getBlockState(pPos)).filter(PointedUltraciteCrystall::canFillCauldron).orElse(Fluids.EMPTY);
-    }
 
     private static Optional<Fluid> getFluidAboveStalactite(Level pLevel, BlockPos pPos, BlockState pState) {
-        return !isStalactite(pState) ? Optional.empty() : findRootBlock(pLevel, pPos, pState, 11).map((p_202027_) -> {
-            return pLevel.getFluidState(p_202027_.above()).getType();
-        });
+        return !isStalactite(pState) ? Optional.empty() : findRootBlock(pLevel, pPos, pState, 11).map((p_202027_) ->
+                pLevel.getFluidState(p_202027_.above()).getType());
     }
 
     private static boolean canFillCauldron(Fluid p_154159_) {
@@ -327,16 +294,15 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     private static Fluid getDripFluid(Level pLevel, Fluid pFluid) {
-        if (pFluid.isSame(Fluids.EMPTY)) {
-            return pLevel.dimensionType().ultraWarm() ? Fluids.LAVA : Fluids.WATER;
-        } else {
+        if (!pFluid.isSame(Fluids.EMPTY))
             return pFluid;
-        }
+        else
+            return pLevel.dimensionType().ultraWarm() ? Fluids.LAVA : Fluids.WATER;
     }
 
     private static Optional<BlockPos> findBlockVertical(LevelAccessor pLevel, BlockPos pPos, Direction.AxisDirection pAxis, BiPredicate<BlockPos, BlockState> pPositionalStatePredicate, Predicate<BlockState> pStatePredicate, int pMaxIterations) {
         Direction direction = Direction.get(pAxis, Direction.Axis.Y);
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
+        MutableBlockPos blockpos$mutableblockpos = pPos.mutable();
 
         for (int i = 1; i < pMaxIterations; ++i) {
             blockpos$mutableblockpos.move(direction);
@@ -345,7 +311,8 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
                 return Optional.of(blockpos$mutableblockpos.immutable());
             }
 
-            if (pLevel.isOutsideBuildHeight(blockpos$mutableblockpos.getY()) || !pPositionalStatePredicate.test(blockpos$mutableblockpos, blockstate)) {
+            if (pLevel.isOutsideBuildHeight(blockpos$mutableblockpos.getY()) ||
+                    !pPositionalStatePredicate.test(blockpos$mutableblockpos, blockstate)) {
                 return Optional.empty();
             }
         }
@@ -416,12 +383,9 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
     }
 
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (pState.getValue(TIP_DIRECTION) == Direction.UP && pState.getValue(THICKNESS) == DripstoneThickness.TIP) {
-            pEntity.causeFallDamage(pFallDistance + 2.0F, 2.0F, DamageSource.STALAGMITE);
-        } else {
-            super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
-        }
-
+        if (pState.getValue(TIP_DIRECTION) == Direction.UP && pState.getValue(THICKNESS) == DripstoneThickness.TIP)
+            pEntity.causeFallDamage(pFallDistance + 2.0F, 2.0F, pLevel.damageSources().stalagmite());
+        else super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
     }
 
     /**
@@ -540,14 +504,6 @@ public class PointedUltraciteCrystall extends Block implements Fallable, SimpleW
             pLevel.levelEvent(1045, pPos, 0);
         }
 
-    }
-
-    public DamageSource getFallDamageSource() {
-        return DamageSource.FALLING_STALACTITE;
-    }
-
-    public Predicate<Entity> getHurtsEntitySelector() {
-        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.LIVING_ENTITY_STILL_ALIVE);
     }
 
     public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {

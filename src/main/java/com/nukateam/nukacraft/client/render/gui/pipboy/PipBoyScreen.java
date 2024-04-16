@@ -7,8 +7,10 @@ import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
 import com.nukateam.nukacraft.common.network.PacketSender;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -18,6 +20,7 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     private static final ResourceLocation PIPBOY_FRAME = nukaResource("textures/screens/pipboy_template.png");
     private static final ResourceLocation PIPBOY_SCREEN = nukaResource("textures/screens/pipboy_screen.png");
+    public static final ResourceLocation RAD_MARKER = nukaResource("textures/screens/rad_marker.png");
     public static String[] page_buffer = PAGE_BUFFER;
     public static Integer[] cords = new Integer[]{0, 0};
     private static boolean menu = true;
@@ -72,40 +75,33 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
             case RADIO -> renderRadio();
         }
 
-        minecraft.keyboardHandler.setSendRepeatsToGui(true);
+//        minecraft.keyboardHandler.setSendRepeatsToGui(true);
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(poseStack);
-        super.render(poseStack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(poseStack, mouseX, mouseY);
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(graphics);
+        super.render(graphics, mouseX, mouseY, partialTicks);
+        this.renderTooltip(graphics, mouseX, mouseY);
     }
 
     @Override
-    protected void renderBg(PoseStack poseStack, float partialTicks, int gx, int gy) {
+    protected void renderBg(GuiGraphics graphics, float pPartialTick, int pMouseX, int pMouseY) {
         PipBoyUtils.setPipboyShader();
 
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderTexture(0, PIPBOY_FRAME);
-        blit(poseStack, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
-
-        RenderSystem.setShaderTexture(0, PIPBOY_SCREEN); //Pip Boy Skin
-        blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
+        graphics.blit(PIPBOY_FRAME, leftPos, topPos, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
+        graphics.blit(PIPBOY_SCREEN, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
 
         if (!(image == null)) {
-            RenderSystem.setShaderTexture(0, image); //Pip Boy Skin
-            blit(poseStack, leftPos + cords[0], topPos + cords[1], 0, 0, 106, 65, 106, 65);
+            graphics.blit(image, leftPos + cords[0], topPos + cords[1], 0, 0, 106, 65, 106, 65);
         }
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        RenderSystem.setShaderTexture(0, pipboy); //Pip Boy Skin
-        blit(poseStack, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
-
-        RenderSystem.setShaderTexture(0, nukaResource("textures/screens/rad_marker.png")); //Radiation Marker
+        graphics.blit(pipboy, leftPos + -163, topPos + -113, 0, 0, 327, 207, 327, 207);
         var radX = leftPos + 91 + PipBoyUtils.getPlayerRads(minecraft.player) * 3;
-        blit(poseStack, radX, topPos + 72, 0, 0, 3, 4, 3, 4);
+        graphics.blit(RAD_MARKER, radX, topPos + 72, 0, 0, 3, 4, 3, 4);
     }
 
     public void warningPipboy() {
@@ -131,29 +127,26 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
+    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         for (int i = 0; i < 10; i++) {
             var text = Component.translatable(page_buffer[i]);
             var fontColor = PipBoyUtils.getPipboyColor(minecraft.player).getIntColor();
-            font.draw(poseStack, text, -150, -87 + (i * 13), fontColor);
+
+            graphics.drawString(this.font, text, -150, -87 + (i * 13), fontColor, false);
+
         }
 
-        //font.draw(poseStack, Component.translatable("pipboy.nukacraft.data"), 79, -91, -1);
-        //font.draw(poseStack, Component.translatable("pipboy.nukacraft.map"), 79, -68, -1);
-        //font.draw(poseStack, Component.translatable("pipboy.nukacraft.radio"), 79, -45, -1);
-        //font.draw(poseStack, Component.translatable("pipboy.nukacraft.rad"), 83, 52, -1);
-
-        if (menu)
-            font.draw(poseStack, Component.translatable("   [" + current_archive_page + "/" + archive_pages + "]"), -25, 64, -1);
-        else
-            font.draw(poseStack, Component.translatable("   [" + current_page + "/" + (page_count - 1) + "]"), -25, 64, -1);
+        MutableComponent text;
+        if (menu) text = Component.translatable("   [" + current_archive_page + "/" + archive_pages + "]");
+        else text = Component.translatable("   [" + current_page + "/" + (page_count - 1) + "]");
+        graphics.drawString(this.font, text, -25, 64, -1, false);
 
     }
 
     @Override
     public void onClose() {
         super.onClose();
-        Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
+//        Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
         menu = true;
     }
 

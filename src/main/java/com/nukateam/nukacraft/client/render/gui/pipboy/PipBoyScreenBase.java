@@ -4,6 +4,7 @@ package com.nukateam.nukacraft.client.render.gui.pipboy;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +25,8 @@ public class PipBoyScreenBase<T extends AbstractContainerMenu> extends AbstractC
     }
 
     @Override
-    protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
+    protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
+
     }
 
     public void renderNavigationPage() {

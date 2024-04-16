@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.common.foundation.container;
 import com.jetug.chassis_core.common.foundation.container.menu.EntityMenu;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +16,7 @@ public class PowerArmorStationMenu extends EntityMenu {
     public static final int SIZE = 10;
     private static final int INVENTORY_POS_Y = 105;
 
-    public PowerArmorStationMenu(int i, Inventory playerInventory) {
+    public PowerArmorStationMenu(int i, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(i, new SimpleContainer(SIZE), playerInventory, null);
     }
 

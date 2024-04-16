@@ -19,6 +19,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -79,8 +80,8 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     @Override
-    public void positionRider(Entity entity) {
-        super.positionRider(entity);
+    public void positionRider(Entity entity, Entity.MoveFunction pCallback) {
+        super.positionRider(entity, pCallback);
 
         if (entity instanceof Raider) {
             entity.setPos(this.position());
@@ -209,13 +210,13 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public boolean passengerHaveGun() {
-        return hasPassenger() && getPassenger().getMainHandItem().getItem() instanceof GunItem;
+        return hasPassenger() && getControllingPassenger().getMainHandItem().getItem() instanceof GunItem;
     }
 
     @Nullable
     public GunItem getPassengerGun() {
         if (passengerHaveGun())
-            return (GunItem) getPassenger().getMainHandItem().getItem();
+            return (GunItem) getControllingPassenger().getMainHandItem().getItem();
         return null;
     }
 

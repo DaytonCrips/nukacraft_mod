@@ -7,6 +7,7 @@ import com.nukateam.example.common.data.utils.ResourceUtils;
 import com.nukateam.nukacraft.client.render.renderers.items.PipBoyRenderer;
 import com.nukateam.nukacraft.client.render.renderers.items.SimpleMeleeRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.animatable.client.RenderProvider;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class SimpleMeleeWeapon extends SwordItem implements GeoItem, IMeleeWeapon {
     private final float attackDamage;
@@ -50,17 +52,24 @@ public class SimpleMeleeWeapon extends SwordItem implements GeoItem, IMeleeWeapo
         return cache;
     }
 
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
+
     @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
             private SimpleMeleeRenderer renderer = null;
 
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 if (renderer == null)
-                    return new SimpleMeleeRenderer();
+                    renderer = new SimpleMeleeRenderer();
                 return this.renderer;
             }
         });
+    }
+
+    @Override
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
     }
 }

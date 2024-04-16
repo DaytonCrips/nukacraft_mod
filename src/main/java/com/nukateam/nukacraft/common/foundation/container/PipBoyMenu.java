@@ -26,7 +26,7 @@ public class PipBoyMenu extends AbstractContainerMenu implements Supplier<Map<In
     public PipBoyMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         super(PIPBOY.get(), id);
         this.entity = inv.player;
-        this.world = inv.player.level;
+        this.world = inv.player.level();
     }
 
     @Override
