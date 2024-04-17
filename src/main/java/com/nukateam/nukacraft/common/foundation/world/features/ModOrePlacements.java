@@ -35,62 +35,43 @@ public class ModOrePlacements {
    public static final ResourceKey<PlacedFeature> ORE_BLACK_TITAN = registerKey("ore_btitan"   );
    public static final ResourceKey<PlacedFeature> ORE_URAN      = registerKey("ore_uran"     );
    public static final ResourceKey<PlacedFeature> ORE_ULTRACITE = registerKey("ore_ultracite");
-
    public static final ResourceKey<PlacedFeature> ORE_ALUMI     = registerKey("ore_alumi"    );
-
-
-
-
-
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-        context.register(TREES_ASH_HEAP, new PlacedFeature(
-                        features.getOrThrow(
-                                ModConfiguredFeatures.ASH_HEAP_TREE),
-                        VegetationPlacements.treePlacement(
-                                PlacementUtils.countExtra(1, 0.1F, 1),
-                                Blocks.BIRCH_SAPLING)
-                )
-        );
-
-        context.register(ORE_LEAD,  new PlacedFeature(
-                features.getOrThrow(ORE_LEAD_PLACE,
-                        commonOrePlacement(9, HeightRangePlacement.uniform(VerticalAnchor.bottom(),
-                                VerticalAnchor.absolute(45)))
-                ))
-         );
-
-        PlacementUtils.register(
-                context,
-                ORE_LEAD,
-                commonOrePlacement(9,
-                        HeightRangePlacement.uniform(VerticalAnchor.bottom(),
-                        VerticalAnchor.absolute(45)))
-        );
-
-        context.register(ORE_LEAD, new PlacedFeature(
-                features.getOrThrow(OreFeatures.ORE_LEAD_PLACE),
+        context.register(ORE_LEAD, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_LEAD_PLACE),
                 commonOrePlacement(9, HeightRangePlacement.uniform(VerticalAnchor.bottom(),
                                 VerticalAnchor.absolute(45))))
         );
 
-        public static final Holder<PlacedFeature> ORE_LEAD = PlacementUtils.register("ore_lead", ORE_LEAD_PLACE, commonOrePlacement(9, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45))));
-        public static final Holder<PlacedFeature> ORE_SILVER = PlacementUtils.register("ore_silver", ORE_SILVER_PLACE, commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))));
-        public static final Holder<PlacedFeature> ORE_BLACK_TITAN = PlacementUtils.register("ore_btitan", ORE_BTITAN_PLACE, commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
-        public static final Holder<PlacedFeature> ORE_URAN = PlacementUtils.register("ore_uran", ORE_URAN_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
-        public static final Holder<PlacedFeature> ORE_ULTRACITE = PlacementUtils.register("ore_ultracite", ORE_ULTRACITE_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))));
-        public static final Holder<PlacedFeature> ORE_ALUMI = PlacementUtils.register("ore_alumi", ORE_ALUMI_PLACE, commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
+        context.register(ORE_SILVER        , new PlacedFeature(features.getOrThrow(OreFeatures.ORE_SILVER_PLACE),
+                commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))))
+        );
 
+        context.register(ORE_BLACK_TITAN   , new PlacedFeature(features.getOrThrow(OreFeatures.ORE_BTITAN_PLACE),
+                        commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))))
+        );
+
+        context.register(ORE_URAN          , new PlacedFeature(features.getOrThrow(OreFeatures.ORE_URAN_PLACE),
+                        commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))))
+        );
+
+        context.register(ORE_ULTRACITE     , new PlacedFeature(features.getOrThrow(OreFeatures.ORE_ULTRACITE_PLACE),
+                        commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))))
+        );
+
+        context.register(ORE_ALUMI         , new PlacedFeature(features.getOrThrow(OreFeatures.ORE_ALUMI_PLACE),
+                        commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))))
+        );
     }
 
-    public static ResourceKey<PlacedFeature> registerKey(String name) {
+    private static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, nukaResource(name));
     }
 
-    public static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier p_195345_) {
+    private static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier p_195345_) {
         return List.of(CountPlacement.of(count), InSquarePlacement.spread(), p_195345_, BiomeFilter.biome());
     }
 

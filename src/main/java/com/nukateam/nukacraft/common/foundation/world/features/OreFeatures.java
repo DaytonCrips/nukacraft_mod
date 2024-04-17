@@ -26,8 +26,6 @@ import java.util.List;
 import static com.nukateam.nukacraft.common.registery.ModBlocks.ACID_DIRT;
 
 public class OreFeatures {
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, NukaCraftMod.MOD_ID);
-
     public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
@@ -37,7 +35,6 @@ public class OreFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BTITAN_PLACE       = FeatureUtils.createKey("ore_btitan_place");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ULTRACITE_PLACE    = FeatureUtils.createKey("ore_ultracite_place");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_URAN_PLACE         = FeatureUtils.createKey("ore_uranium_place");
-
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
         FeatureUtils.register(pContext, ORE_ALUMI_PLACE, Feature.ORE, new OreConfiguration(
@@ -66,13 +63,4 @@ public class OreFeatures {
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_URAN_ORE.get().defaultBlockState())), 8));
     }
-
-    public static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier modifier) {
-        return List.of(p_195347_, InSquarePlacement.spread(), modifier, BiomeFilter.biome());
-    }
-
-    public static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
-        return orePlacement(CountPlacement.of(p_195344_), p_195345_);
-    }
-
 }

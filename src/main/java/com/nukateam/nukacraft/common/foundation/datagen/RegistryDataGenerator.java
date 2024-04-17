@@ -2,6 +2,11 @@ package com.nukateam.nukacraft.common.foundation.datagen;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.world.ModWastelandPlacements;
+import com.nukateam.nukacraft.common.foundation.world.WastelandVegetation;
+import com.nukateam.nukacraft.common.foundation.world.features.ModConfiguredFeatures;
+import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
+import com.nukateam.nukacraft.common.foundation.world.features.ModOrePlacements;
+import com.nukateam.nukacraft.common.foundation.world.features.OreFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -14,28 +19,13 @@ import java.util.concurrent.CompletableFuture;
 public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-			.add(Registries.PLACED_FEATURE, ModWastelandPlacements::bootstrap);
-
-
-//			.add(Registries.CONFIGURED_FEATURE, TFConfiguredFeatures::bootstrap)
-//			.add(Registries.PLACED_FEATURE, TFPlacedFeatures::bootstrap)
-//			.add(TFRegistries.Keys.STRUCTURE_SPELEOTHEM_SETTINGS, StructureSpeleothemConfigs::bootstrap)
-//			.add(Registries.STRUCTURE, TFStructures::bootstrap)
-//			.add(Registries.STRUCTURE_SET, TFStructureSets::bootstrap)
-//			.add(Registries.CONFIGURED_CARVER, TFCaveCarvers::bootstrap)
-//			.add(Registries.DENSITY_FUNCTION, TFDensityFunctions::bootstrap)
-//			.add(Registries.NOISE_SETTINGS, TFDimensionData::bootstrapNoise)
-//			.add(TFRegistries.Keys.BIOME_STACK, BiomeLayerStack::bootstrap)
-//			.add(TFRegistries.Keys.BIOME_TERRAIN_DATA, BiomeLayerStack::bootstrapData)
-//			.add(Registries.DIMENSION_TYPE, TFDimensionData::bootstrapType)
-//			.add(Registries.LEVEL_STEM, TFDimensionData::bootstrapStem)
-//			.add(Registries.BIOME, TFBiomes::bootstrap)
-//			.add(TFRegistries.Keys.WOOD_PALETTES, WoodPalettes::bootstrap)
-//			.add(Registries.DAMAGE_TYPE, TFDamageTypes::bootstrap)
-//			.add(Registries.TRIM_MATERIAL, TFTrimMaterials::bootstrap)
-//			.add(TFRegistries.Keys.RESTRICTIONS, Restrictions::bootstrap)
-//			.add(TFRegistries.Keys.MAGIC_PAINTINGS, MagicPaintingVariants::bootstrap)
-//			.add(TFRegistries.Keys.CHUNK_BLANKET_PROCESSORS, ChunkBlanketProcessors::bootstrap);
+			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
+			.add(Registries.CONFIGURED_FEATURE, OreFeatures::bootstrap)
+			.add(Registries.CONFIGURED_FEATURE, ModFeatures::bootstrap)
+			.add(Registries.PLACED_FEATURE, ModWastelandPlacements::bootstrap)
+			.add(Registries.PLACED_FEATURE, WastelandVegetation::bootstrap)
+			.add(Registries.PLACED_FEATURE, ModOrePlacements::bootstrap)
+			;
 
 	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
 		super(output, provider, BUILDER, Set.of("minecraft", NukaCraftMod.MOD_ID));
