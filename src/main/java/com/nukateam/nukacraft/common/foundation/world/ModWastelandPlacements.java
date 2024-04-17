@@ -27,51 +27,43 @@ public class ModWastelandPlacements {
 //                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
 //                            Blocks.BIRCH_SAPLING));
 
+    public static final ResourceKey<PlacedFeature> TREES_ASH_HEAP = registerKey("trees_ash_heap");
+    public static final ResourceKey<PlacedFeature> TREES_GLOW = registerKey("trees_glow");
+    public static final ResourceKey<PlacedFeature> TREES_DEWDROP = registerKey("trees_dewdrop");
     public static final ResourceKey<PlacedFeature> TREES_ASH = registerKey("trees_ash");
 
+//    public static final Holder<PlacedFeature> TREES_GLOW =
+//            PlacementUtils.register("trees_glow",
+//                    ModTrees.TREE_GLOW,
+//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
+//                            Blocks.BIRCH_SAPLING));
+//
+//    public static final Holder<PlacedFeature> TREES_DEWDROP =
+//            PlacementUtils.register("trees_dewdrop",
+//                    ModTrees.TREE_DEWDROP,
+//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
+//                            Blocks.BIRCH_SAPLING));
+//
+//    public static final Holder<PlacedFeature> TREES_ASH_HEAP =
+//            PlacementUtils.register("trees_ash_heap",
+//                    ModTrees.TREE_ASH_HEAP,
+//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
+//                            Blocks.BIRCH_SAPLING));
 
-    public static final Holder<PlacedFeature> TREES_GLOW =
-            PlacementUtils.register("trees_glow",
-                    ModTrees.TREE_GLOW,
-                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-                            Blocks.BIRCH_SAPLING));
-
-    public static final Holder<PlacedFeature> TREES_DEWDROP =
-            PlacementUtils.register("trees_dewdrop",
-                    ModTrees.TREE_DEWDROP,
-                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-                            Blocks.BIRCH_SAPLING));
-
-    public static final Holder<PlacedFeature> TREES_ASH_HEAP =
-            PlacementUtils.register("trees_ash_heap",
-                    ModTrees.TREE_ASH_HEAP,
-                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-                            Blocks.BIRCH_SAPLING));
-
-    public static final Holder<PlacedFeature> DISK_ASHSTONE =
-            PlacementUtils.register("disk_ashston",
-                    ModFeatures.DISK_ASHSTONE,
-                    CountPlacement.of(1),
-                    InSquarePlacement.spread(),
-                    PlacementUtils.HEIGHTMAP,
-                    BiomeFilter.biome());
-
-    public static final Holder<PlacedFeature> DISK_ASHDIRT =
-            PlacementUtils.register("disk_ashdirt",
-                    ModFeatures.DISK_ASHDIRT,
-                    CountPlacement.of(3),
-                    InSquarePlacement.spread(),
-                    PlacementUtils.HEIGHTMAP,
-                    BiomeFilter.biome());
+    public static final ResourceKey<PlacedFeature> DISK_ASHSTONE = registerKey("disk_ashston");
 
 
-    public static final Holder<PlacedFeature> LAKE_ACID_SURFACE =
-            PlacementUtils.register("lake_acid_surface",
-                    ModFeatures.LAKE_ACID,
-                    RarityFilter.onAverageOnceEvery(50),
-                    InSquarePlacement.spread(),
-                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+//    public static final Holder<PlacedFeature> DISK_ASHSTONE =
+//            PlacementUtils.register("disk_ashston",
+//                    ModFeatures.DISK_ASHSTONE,
+//                    CountPlacement.of(1),
+//                    InSquarePlacement.spread(),
+//                    PlacementUtils.HEIGHTMAP,
+//                    BiomeFilter.biome());
 
+    public static final ResourceKey<PlacedFeature> DISK_ASHDIRT = registerKey("disk_ashdirt");
+
+    public static final ResourceKey<PlacedFeature> LAKE_ACID_SURFACE = registerKey("lake_acid_surface");
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, nukaResource(name));
@@ -81,44 +73,67 @@ public class ModWastelandPlacements {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-
-        context.register(TREES_ASH, new PlacedFeature(
-                features.getOrThrow(ModConfiguredFeatures.ASH_HEAP_TREE),
-                List.of(PlacementUtils.countExtra(1, 0.1F, 1),
-                InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(6),
-                PlacementUtils.filteredByBlockSurvival(Blocks.BIRCH_SAPLING), BiomeFilter.biome())
-            )
+        context.register(TREES_ASH_HEAP, new PlacedFeature(
+                features.getOrThrow(
+                        ModConfiguredFeatures.ASH_HEAP_TREE),
+                        VegetationPlacements.treePlacement(
+                                PlacementUtils.countExtra(1, 0.1F, 1),
+                                Blocks.BIRCH_SAPLING)
+                )
         );
 
         context.register(TREES_ASH, new PlacedFeature(
                 features.getOrThrow(
-                        ModConfiguredFeatures.ASH_HEAP_TREE),
-                        treeCheckArea(
+                        ModConfiguredFeatures.ASH_TREE),
+                        VegetationPlacements.treePlacement(
                                 PlacementUtils.countExtra(1, 0.1F, 1),
-                                Blocks.BIRCH_SAPLING.defaultBlockState())
+                                Blocks.BIRCH_SAPLING)
                 )
         );
 
+        context.register(TREES_GLOW, new PlacedFeature(
+                features.getOrThrow(ModConfiguredFeatures.GLOW_TREE),
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(1, 0.1F, 1),
+                        Blocks.BIRCH_SAPLING))
+        );
 
-        context.register(PLACED_MANGROVE_TREE,
-                new PlacedFeature(
-                        features.getOrThrow(TFConfiguredFeatures.MANGROVE_TREE),
-                        List.of(PlacementUtils.countExtra(3, 0.1F, 1),
-                        InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(6),
-                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, AvoidLandmarkModifier.checkSurface(),
-                        PlacementUtils.filteredByBlockSurvival(TFBlocks.MANGROVE_SAPLING.get()), BiomeFilter.biome())
+        context.register(TREES_DEWDROP, new PlacedFeature(
+                features.getOrThrow(ModConfiguredFeatures.TREE_DEWDROP),
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(1, 0.1F, 1),
+                        Blocks.BIRCH_SAPLING))
+        );
+
+        context.register(DISK_ASHSTONE, new PlacedFeature(
+                features.getOrThrow(ModFeatures.DISK_ASHSTONE),
+                ImmutableList.of(
+                        CountPlacement.of(1),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome())
                 )
         );
 
+        context.register(DISK_ASHDIRT, new PlacedFeature(
+                features.getOrThrow(ModFeatures.DISK_ASHDIRT),
+                ImmutableList.of(
+                        CountPlacement.of(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome()
+                )
+            )
+        );
 
-    }
-
-    private static List<PlacementModifier> treeCheckArea(PlacementModifier count, BlockState sapling) {
-        return ImmutableList.of(count,
-                InSquarePlacement.spread(),
-                SurfaceWaterDepthFilter.forMaxDepth(0),
-                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, AvoidLandmarkModifier.checkSurface(),
-                PlacementUtils.filteredByBlockSurvival(sapling.getBlock()),
-                BiomeFilter.biome());
+        context.register(LAKE_ACID_SURFACE, new PlacedFeature(
+                features.getOrThrow(ModFeatures.LAKE_ACID),
+                ImmutableList.of(
+                        RarityFilter.onAverageOnceEvery(50),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome()
+                ))
+        );
     }
 }
