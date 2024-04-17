@@ -31,25 +31,6 @@ public class ModWastelandPlacements {
     public static final ResourceKey<PlacedFeature> TREES_GLOW = registerKey("trees_glow");
     public static final ResourceKey<PlacedFeature> TREES_DEWDROP = registerKey("trees_dewdrop");
     public static final ResourceKey<PlacedFeature> TREES_ASH = registerKey("trees_ash");
-
-//    public static final Holder<PlacedFeature> TREES_GLOW =
-//            PlacementUtils.register("trees_glow",
-//                    ModTrees.TREE_GLOW,
-//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-//                            Blocks.BIRCH_SAPLING));
-//
-//    public static final Holder<PlacedFeature> TREES_DEWDROP =
-//            PlacementUtils.register("trees_dewdrop",
-//                    ModTrees.TREE_DEWDROP,
-//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-//                            Blocks.BIRCH_SAPLING));
-//
-//    public static final Holder<PlacedFeature> TREES_ASH_HEAP =
-//            PlacementUtils.register("trees_ash_heap",
-//                    ModTrees.TREE_ASH_HEAP,
-//                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-//                            Blocks.BIRCH_SAPLING));
-
     public static final ResourceKey<PlacedFeature> DISK_ASHSTONE = registerKey("disk_ashston");
 
 

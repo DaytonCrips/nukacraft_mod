@@ -36,11 +36,11 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COPPER);
     }
     public static void ultraciteOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_ULTRACITE);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_ULTRACITE);
     }
 
     public static void uranOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_URAN);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_URAN);
     }
 
     public static void ironOre(BiomeGenerationSettings.Builder builder) {
@@ -49,16 +49,17 @@ public class ModDefaultFeatures {
     }
 
     public static void leadOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_LEAD);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_LEAD);
     }
 
     public static void silverOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_SILVER);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_SILVER);
     }
 
-    public static void btitanOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_BTITAN);
+    public static void blackTitanOre(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_BLACK_TITAN);
     }
+
     public static void addPoisonValleyOres(BiomeGenerationSettings.Builder builder) {
         //  alumiOre(builder);
         //copperOre(builder);
@@ -93,16 +94,16 @@ public class ModDefaultFeatures {
 //
 //
 //    public static void addWastelandCopper(BiomeGenerationSettings.Builder builder) {
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COPPER);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_COPPER);
 //    }
 //    public static void addWastelandCoal(BiomeGenerationSettings.Builder builder) {
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_UPPER);
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_COAL_UPPER);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_COAL_LOWER);
 //    }
 //
 //    public static void addWastelandIron(BiomeGenerationSettings.Builder builder) {
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_IRON_SMALL);
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_IRON_UPPER);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_IRON_SMALL);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_IRON_UPPER);
 //    }
 //    public static void addWastelandLead(BiomeGenerationSettings.Builder builder) {
 //        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_LEAD);
@@ -111,7 +112,7 @@ public class ModDefaultFeatures {
 //        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_SILVER);
 //    }
 //    public static void addWastelandBTitan(BiomeGenerationSettings.Builder builder) {
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_BTITAN);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_BLACK_TITAN);
 //    }
 //    public static void addWastelandUltracite(BiomeGenerationSettings.Builder builder) {
 //        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOreFeatures.ORE_ULTRACITE);

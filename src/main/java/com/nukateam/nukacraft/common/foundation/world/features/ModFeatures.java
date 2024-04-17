@@ -5,8 +5,6 @@ import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -14,7 +12,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -29,13 +26,11 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.nukateam.nukacraft.common.registery.ModBlocks.ACID_DIRT;
 import static com.nukateam.nukacraft.common.registery.ModBlocks.ASHSTONE;
@@ -45,7 +40,7 @@ public class ModFeatures {
 //        RegistryObject<Feature<?>> d = FEATURES.register("big_mushgloom", () -> new BigMushgloomFeature(HugeMushroomFeatureConfiguration.CODEC));
 //    }
 
-//    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, NukaCraftMod.MOD_ID);
+    //    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, NukaCraftMod.MOD_ID);
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, NukaCraftMod.MOD_ID);
 
 //    public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> BIG_MUSHGLOOM =
@@ -53,10 +48,6 @@ public class ModFeatures {
 
 
     public static final RegistryObject<VineFeature> VINE = FEATURES.register("vine", () -> new VineFeature(VineFeatureConfiguration.CODEC));
-
-
-
-
 
 
 //    public static final RegistryObject<Feature<?>> DISK_ASHSTONE = FeatureUtils.register("disk_ashstone",
@@ -80,7 +71,7 @@ public class ModFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHSTONE = FeatureUtils.createKey("disk_ashstone");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHDIRT = FeatureUtils.createKey("disk_ashdirt");
-    
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_ACID = FeatureUtils.createKey("lake_acid");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BOGPAD =
@@ -209,7 +200,7 @@ public class ModFeatures {
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SITTBEANS =
-            FeatureUtils.createKey("patch_sittbeans"));
+            FeatureUtils.createKey("patch_sittbeans");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ASHGRASS =
@@ -230,8 +221,8 @@ public class ModFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRANBERRY_PLANT =
             FeatureUtils.createKey("cranberry_plant_features");
-    
-    
+
+
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
         FeatureUtils.register(pContext, DISK_ASHSTONE, Feature.FOREST_ROCK, new BlockStateConfiguration(ASHSTONE.get().defaultBlockState()));
         FeatureUtils.register(pContext, DISK_ASHDIRT, Feature.DISK, new DiskConfiguration(
@@ -246,158 +237,158 @@ public class ModFeatures {
                 4));
 
 
-         FeatureUtils.register(pContext, LAKE_ACID, Feature.LAKE,
+        FeatureUtils.register(pContext, LAKE_ACID, Feature.LAKE,
                 new LakeFeature.Configuration(BlockStateProvider.simple(ModFluids.ACID_FLUID.get().defaultFluidState().createLegacyBlock()),
                         BlockStateProvider.simple(ACID_DIRT.get().defaultBlockState())));
 
 
-         FeatureUtils.register(pContext, PATCH_BOGPAD,
-                        Feature.RANDOM_PATCH,
-                        new RandomPatchConfiguration(12, 8, 5,
-                                PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BOGPAD.get())))));
+        FeatureUtils.register(pContext, PATCH_BOGPAD,
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(12, 8, 5,
+                        PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BOGPAD.get())))));
 
-         FeatureUtils.register(pContext, ASTER_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.ASTER.get().defaultBlockState(), 1)), 30));
+        FeatureUtils.register(pContext, ASTER_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.ASTER.get().defaultBlockState(), 1)), 30));
 
-         FeatureUtils.register(pContext, DEWDROP_SAPLING_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.DEWDROP_SAPLING.get().defaultBlockState(), 2)), 25));
+        FeatureUtils.register(pContext, DEWDROP_SAPLING_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.DEWDROP_SAPLING.get().defaultBlockState(), 2)), 25));
 
-         FeatureUtils.register(pContext, TOXIC_FERN_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.TOXICFERN.get().defaultBlockState(), 1)), 15));
+        FeatureUtils.register(pContext, TOXIC_FERN_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.TOXICFERN.get().defaultBlockState(), 1)), 15));
 
-         FeatureUtils.register(pContext, BROC_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.BROC.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, BROC_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.BROC.get().defaultBlockState(), 1)), 20));
 
-         FeatureUtils.register(pContext, THISTLE_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.THISTLE.get().defaultBlockState(), 3)
-                                .add(ModBlocks.ASHGRASS.get().defaultBlockState(), 7)), 20));
+        FeatureUtils.register(pContext, THISTLE_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.THISTLE.get().defaultBlockState(), 3)
+                        .add(ModBlocks.ASHGRASS.get().defaultBlockState(), 7)), 20));
 
-         FeatureUtils.register(pContext, DEAD_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.DEAD_PLANT.get().defaultBlockState(), 1)), 50));
+        FeatureUtils.register(pContext, DEAD_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.DEAD_PLANT.get().defaultBlockState(), 1)), 50));
 
-         FeatureUtils.register(pContext, SOOTFLOWER_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.SOOTFLOWER.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, SOOTFLOWER_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.SOOTFLOWER.get().defaultBlockState(), 1)), 20));
 
-         FeatureUtils.register(pContext, HOLLYHOCK_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.HOLLYHOCK.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, HOLLYHOCK_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.HOLLYHOCK.get().defaultBlockState(), 1)), 20));
 
-         FeatureUtils.register(pContext, FEVERBLOSSOM_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.FEVERBLOSSOM.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, FEVERBLOSSOM_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.FEVERBLOSSOM.get().defaultBlockState(), 1)), 20));
 
-         FeatureUtils.register(pContext, CRACKBERRY_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.CRACKBERRY_BUSH.get().defaultBlockState(), 1)), 15));
+        FeatureUtils.register(pContext, CRACKBERRY_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.CRACKBERRY_BUSH.get().defaultBlockState(), 1)), 15));
 
-         FeatureUtils.register(pContext, MUTTFRUIT_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.MUTTFRUIT_BUSH.get().defaultBlockState(), 1)), 10));
-
-
-         FeatureUtils.register(pContext, BRAINFUNGUS_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.BRAINFUNGUS.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, MUTTFRUIT_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.MUTTFRUIT_BUSH.get().defaultBlockState(), 1)), 10));
 
 
-         FeatureUtils.register(pContext, GLOWFUNGUS_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.GLOWFUNGUS.get().defaultBlockState(), 3)), 10));
-
-         FeatureUtils.register(pContext, GUTFUNGI_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.GUTFUNGI.get().defaultBlockState(), 1)), 10));
-
-         FeatureUtils.register(pContext, BOMBBERRY_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.BOMBBERRY_BUSH.get().defaultBlockState(), 1)), 10));
+        FeatureUtils.register(pContext, BRAINFUNGUS_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.BRAINFUNGUS.get().defaultBlockState(), 1)), 20));
 
 
-         FeatureUtils.register(pContext, FUSFRUIT_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.FUSFRUIT_BUSH.get().defaultBlockState(), 1)), 8));
+        FeatureUtils.register(pContext, GLOWFUNGUS_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.GLOWFUNGUS.get().defaultBlockState(), 3)), 10));
+
+        FeatureUtils.register(pContext, GUTFUNGI_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.GUTFUNGI.get().defaultBlockState(), 1)), 10));
+
+        FeatureUtils.register(pContext, BOMBBERRY_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.BOMBBERRY_BUSH.get().defaultBlockState(), 1)), 10));
 
 
-         FeatureUtils.register(pContext, MEGAMORH_MUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.MEGAHATTERFUNGI.get().defaultBlockState(), 1)), 12));
-
-         FeatureUtils.register(pContext, QUANTUMLEAF_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.QUANTUMLEAF_BUSH.get().defaultBlockState(), 1)), 10));
-
-         FeatureUtils.register(pContext, NEUTRON_BUSH_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.NEUTRON_BUSH.get().defaultBlockState(), 1)), 10));
-
-         FeatureUtils.register(pContext, MINDFUNGUS_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.MINDFUNGUS.get().defaultBlockState(), 1)), 10));
+        FeatureUtils.register(pContext, FUSFRUIT_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.FUSFRUIT_BUSH.get().defaultBlockState(), 1)), 8));
 
 
-         FeatureUtils.register(pContext, PATCH_DEAD_DATURAN,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_DATURAN.get()), 2));
+        FeatureUtils.register(pContext, MEGAMORH_MUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.MEGAHATTERFUNGI.get().defaultBlockState(), 1)), 12));
 
-         FeatureUtils.register(pContext, PATCH_DEAD_PUNGA,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_PUNGA.get()), 2));
+        FeatureUtils.register(pContext, QUANTUMLEAF_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.QUANTUMLEAF_BUSH.get().defaultBlockState(), 1)), 10));
 
+        FeatureUtils.register(pContext, NEUTRON_BUSH_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.NEUTRON_BUSH.get().defaultBlockState(), 1)), 10));
 
-         FeatureUtils.register(pContext, PATCH_DEAD_CORAL,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_CORALLEAF.get()), 1));
-
-         FeatureUtils.register(pContext, PATCH_AGAVE_BUSH,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.AGAVE.get()), 1));
-
-         FeatureUtils.register(pContext, PATCH_GINS_BUSH,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.GINSENG.get()), 1));
+        FeatureUtils.register(pContext, MINDFUNGUS_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.MINDFUNGUS.get().defaultBlockState(), 1)), 10));
 
 
-         FeatureUtils.register(pContext, PATCH_BLOODLEAF,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.BLOODLEAF_BUSH.get()), 1));
+        FeatureUtils.register(pContext, PATCH_DEAD_DATURAN,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_DATURAN.get()), 2));
+
+        FeatureUtils.register(pContext, PATCH_DEAD_PUNGA,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_PUNGA.get()), 2));
 
 
-         FeatureUtils.register(pContext, RADASTER_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.RADASTER.get().defaultBlockState(), 1)), 30));
+        FeatureUtils.register(pContext, PATCH_DEAD_CORAL,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.DEAD_CORALLEAF.get()), 1));
 
-         FeatureUtils.register(pContext, RADROSE_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.RADROSE.get().defaultBlockState(), 1)), 20));
+        FeatureUtils.register(pContext, PATCH_AGAVE_BUSH,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.AGAVE.get()), 1));
 
-         FeatureUtils.register(pContext, BLASTCAP_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.BLASTCAP.get().defaultBlockState(), 1)), 20));
-
-         FeatureUtils.register(pContext, FIREFUNGI_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.FIREMUSHROOM.get().defaultBlockState(), 1)), 18));
-
-         FeatureUtils.register(pContext, INVERT_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.INVERT.get().defaultBlockState(), 1)), 10));
-
-         FeatureUtils.register(pContext, BOOMBLOSSOM_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.BOOMBLOSSOM.get().defaultBlockState(), 1)), 30));
+        FeatureUtils.register(pContext, PATCH_GINS_BUSH,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.GINSENG.get()), 1));
 
 
-         FeatureUtils.register(pContext, PATCH_XANDER,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.ZANDER.get()), 1));
+        FeatureUtils.register(pContext, PATCH_BLOODLEAF,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.BLOODLEAF_BUSH.get()), 1));
+
+
+        FeatureUtils.register(pContext, RADASTER_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.RADASTER.get().defaultBlockState(), 1)), 30));
+
+        FeatureUtils.register(pContext, RADROSE_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.RADROSE.get().defaultBlockState(), 1)), 20));
+
+        FeatureUtils.register(pContext, BLASTCAP_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.BLASTCAP.get().defaultBlockState(), 1)), 20));
+
+        FeatureUtils.register(pContext, FIREFUNGI_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.FIREMUSHROOM.get().defaultBlockState(), 1)), 18));
+
+        FeatureUtils.register(pContext, INVERT_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.INVERT.get().defaultBlockState(), 1)), 10));
+
+        FeatureUtils.register(pContext, BOOMBLOSSOM_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.BOOMBLOSSOM.get().defaultBlockState(), 1)), 30));
+
+
+        FeatureUtils.register(pContext, PATCH_XANDER,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.ZANDER.get()), 1));
 
 //     FeatureUtils.register(pContext, PATCH_RUSTY_BUSH =
 //            FeatureUtils.register(,
@@ -408,44 +399,44 @@ public class ModFeatures {
 //            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
 
 
-         FeatureUtils.register(pContext, PATCH_GLOWGRASS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.GLOW_GRASS.get()), 36));
+        FeatureUtils.register(pContext, PATCH_GLOWGRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.GLOW_GRASS.get()), 36));
 
-         FeatureUtils.register(pContext, PATCH_CRANGRASS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.CRANBERRY_GRASS.get()), 19));
-
-
-         FeatureUtils.register(pContext, PATCH_SITTBEANS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.SITTBEAN_BUSH.get()), 1));
+        FeatureUtils.register(pContext, PATCH_CRANGRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.CRANBERRY_GRASS.get()), 19));
 
 
-         FeatureUtils.register(pContext, PATCH_ASHGRASS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.ASHGRASS.get()), 32));
-
-         FeatureUtils.register(pContext, PATCH_POISONGRASS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.POISONGRASS.get()), 66));
-
-         FeatureUtils.register(pContext, PATCH_HEAP_GRASS,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.HEAP_GRASS.get()), 26));
-
-         FeatureUtils.register(pContext, PATCH_RUSTY_BUSH,
-                        Feature.RANDOM_PATCH,
-                        vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 12));
+        FeatureUtils.register(pContext, PATCH_SITTBEANS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.SITTBEAN_BUSH.get()), 1));
 
 
-         FeatureUtils.register(pContext, STARBERRY_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.STARBERRY.get().defaultBlockState(), 2)), 31));
+        FeatureUtils.register(pContext, PATCH_ASHGRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.ASHGRASS.get()), 32));
 
-         FeatureUtils.register(pContext, CRANBERRY_PLANT,
-                        Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
-                                .add(ModBlocks.CRANBERRY.get().defaultBlockState(), 3)), 40));
+        FeatureUtils.register(pContext, PATCH_POISONGRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.POISONGRASS.get()), 66));
+
+        FeatureUtils.register(pContext, PATCH_HEAP_GRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.HEAP_GRASS.get()), 26));
+
+        FeatureUtils.register(pContext, PATCH_RUSTY_BUSH,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 12));
+
+
+        FeatureUtils.register(pContext, STARBERRY_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.STARBERRY.get().defaultBlockState(), 2)), 31));
+
+        FeatureUtils.register(pContext, CRANBERRY_PLANT,
+                Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ModBlocks.CRANBERRY.get().defaultBlockState(), 3)), 40));
 
     }
 
@@ -453,32 +444,4 @@ public class ModFeatures {
         return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(p_195203_)));
     }
-
-
-    public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-    public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-
-
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ALUMI_PLACE = FeatureUtils.register("ore_alumi_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ALUMI_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPALUMI.get().defaultBlockState())), 4));
-    public static final Holder<PlacedFeature> ORE_ALUMI = PlacementUtils.register("ore_alumi", ORE_ALUMI_PLACE, commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_LEAD_PLACE = FeatureUtils.register("ore_lead_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.LEAD_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_LEAD_ORE.get().defaultBlockState())), 7));
-    public static final Holder<PlacedFeature> ORE_LEAD = PlacementUtils.register("ore_lead", ORE_LEAD_PLACE, commonOrePlacement(9, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(45))));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_SILVER_PLACE = FeatureUtils.register("ore_silver_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSILVER.get().defaultBlockState())), 5));
-    public static final Holder<PlacedFeature> ORE_SILVER = PlacementUtils.register("ore_silver", ORE_SILVER_PLACE, commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_BTITAN_PLACE = FeatureUtils.register("ore_btitan_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 11));
-    public static final Holder<PlacedFeature> ORE_BTITAN = PlacementUtils.register("ore_btitan", ORE_BTITAN_PLACE, commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_ULTRACITE_PLACE = FeatureUtils.register("ore_ultracite_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ULTRACITE_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPULTRACITE.get().defaultBlockState())), 9));
-    public static final Holder<PlacedFeature> ORE_ULTRACITE = PlacementUtils.register("ore_ultracite", ORE_ULTRACITE_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))));
-    public static final Holder<ConfiguredFeature<OreConfiguration, ?>> ORE_URAN_PLACE = FeatureUtils.register("ore_uranium_place", Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()), OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_URAN_ORE.get().defaultBlockState())), 8));
-    public static final Holder<PlacedFeature> ORE_URAN = PlacementUtils.register("ore_uran", ORE_URAN_PLACE, commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))));
-
-
-    public static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier modifier) {
-        return List.of(p_195347_, InSquarePlacement.spread(), modifier, BiomeFilter.biome());
-    }
-
-    public static List<PlacementModifier> commonOrePlacement(int p_195344_, PlacementModifier p_195345_) {
-        return orePlacement(CountPlacement.of(p_195344_), p_195345_);
-    }
-
 }
