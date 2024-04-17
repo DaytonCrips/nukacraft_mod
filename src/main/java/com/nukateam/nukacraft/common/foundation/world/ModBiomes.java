@@ -1,25 +1,16 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.google.common.collect.ImmutableList;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.world.features.ModDefaultFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
-import com.nukateam.nukacraft.common.foundation.world.treedecorator.*;
-import com.nukateam.nukacraft.common.foundation.world.trees.ModTreeFeatures;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
-import com.nukateam.nukacraft.common.registery.ModBlocks;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.AquaticPlacements;
-import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -1,23 +1,17 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
 import com.google.common.collect.ImmutableList;
-import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.world.features.ModConfiguredFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
-import com.nukateam.nukacraft.common.foundation.world.trees.ModTreeFeatures;
-import net.minecraft.core.Direction;
+import com.nukateam.nukacraft.common.foundation.world.trees.ModTrees;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
@@ -29,7 +23,7 @@ public class ModWastelandPlacements {
 
 //    public static final Holder<PlacedFeature> TREES_ASH =
 //            PlacementUtils.register("trees_ash",
-//                    ModTreeFeatures.TREE_ASH,
+//                    ModTrees.TREE_ASH,
 //                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
 //                            Blocks.BIRCH_SAPLING));
 
@@ -38,19 +32,19 @@ public class ModWastelandPlacements {
 
     public static final Holder<PlacedFeature> TREES_GLOW =
             PlacementUtils.register("trees_glow",
-                    ModTreeFeatures.TREE_GLOW,
+                    ModTrees.TREE_GLOW,
                     VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
                             Blocks.BIRCH_SAPLING));
 
     public static final Holder<PlacedFeature> TREES_DEWDROP =
             PlacementUtils.register("trees_dewdrop",
-                    ModTreeFeatures.TREE_DEWDROP,
+                    ModTrees.TREE_DEWDROP,
                     VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
                             Blocks.BIRCH_SAPLING));
 
     public static final Holder<PlacedFeature> TREES_ASH_HEAP =
             PlacementUtils.register("trees_ash_heap",
-                    ModTreeFeatures.TREE_ASH_HEAP,
+                    ModTrees.TREE_ASH_HEAP,
                     VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
                             Blocks.BIRCH_SAPLING));
 
@@ -87,14 +81,24 @@ public class ModWastelandPlacements {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
+
         context.register(TREES_ASH, new PlacedFeature(
-                features.getOrThrow(ModTreeFeatures.TREE_ASH_HEAP),
+                features.getOrThrow(ModConfiguredFeatures.ASH_HEAP_TREE),
                 List.of(PlacementUtils.countExtra(1, 0.1F, 1),
                 InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(6),
-                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, AvoidLandmarkModifier.checkSurface(),
-                PlacementUtils.filteredByBlockSurvival(TFBlocks.MANGROVE_SAPLING.get()), BiomeFilter.biome())
+                PlacementUtils.filteredByBlockSurvival(Blocks.BIRCH_SAPLING), BiomeFilter.biome())
             )
         );
+
+        context.register(TREES_ASH, new PlacedFeature(
+                features.getOrThrow(
+                        ModConfiguredFeatures.ASH_HEAP_TREE),
+                        treeCheckArea(
+                                PlacementUtils.countExtra(1, 0.1F, 1),
+                                Blocks.BIRCH_SAPLING.defaultBlockState())
+                )
+        );
+
 
         context.register(PLACED_MANGROVE_TREE,
                 new PlacedFeature(
@@ -109,10 +113,12 @@ public class ModWastelandPlacements {
 
     }
 
-    public static final Holder<PlacedFeature> TREES_ASH1 =
-            PlacementUtils.register("trees_ash",
-                    ModTreeFeatures.TREE_ASH,
-                    VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1),
-                            Blocks.BIRCH_SAPLING));
-
+    private static List<PlacementModifier> treeCheckArea(PlacementModifier count, BlockState sapling) {
+        return ImmutableList.of(count,
+                InSquarePlacement.spread(),
+                SurfaceWaterDepthFilter.forMaxDepth(0),
+                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, AvoidLandmarkModifier.checkSurface(),
+                PlacementUtils.filteredByBlockSurvival(sapling.getBlock()),
+                BiomeFilter.biome());
+    }
 }
