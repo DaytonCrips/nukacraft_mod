@@ -229,18 +229,26 @@ public class ModBlocks {
     public static final RegistryObject<Block> WRITTING_DESK3 = registerBlock("writtingdesk3",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.WOOD)
                     .strength(0.4f)));
+//    public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
+//            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
+//                    .strength(0.3f)));
+
     public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
-            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(0.3f)));
+            () -> new ModuleChairBlock(ModBlocks.HALFBARRIER.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
     public static final RegistryObject<Block> TECHCHAIR = registerBlock("techchair",
-            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of(Material.METAL)
                     .strength(0.3f)));
 
+    public static final RegistryObject<Block> ARMY_THEATRE_CHAIR = registerBlock("army_theatre_chair",
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(0.4f).lightLevel((p_50892_) -> {return 1;})));
+
     public static final RegistryObject<Block> TOILET = registerBlock("toilet",
-            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
                     .strength(0.3f).noOcclusion()));
     public static final RegistryObject<Block> GOLDTOILET = registerBlock("goldtoilet",
-            () -> new ChairBlock(BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of(Material.BUILDABLE_GLASS)
                     .strength(0.3f).noOcclusion()));
     public static final RegistryObject<Block> IND_BUTTON = registerBlock("ind_button",
             () -> new LeverBlock(BlockBehaviour.Properties.of(Material.DECORATION)

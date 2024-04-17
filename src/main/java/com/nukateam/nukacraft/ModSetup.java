@@ -122,6 +122,7 @@ public class ModSetup {
         setRenderLayer(ModBlocks.CRYOCAPSULEACT.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.OPENCRYOCAPSULE.get(), RenderType.cutout());
         setRenderLayer(ModBlocks.CAGEDOOR.get(), RenderType.cutout());
+        setRenderLayer(ModBlocks.ARMY_THEATRE_CHAIR.get(), RenderType.cutout());
     }
 
     public static void flowerPotSetup()
