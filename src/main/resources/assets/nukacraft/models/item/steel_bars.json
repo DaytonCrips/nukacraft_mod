@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/steel_bars"
+    "layer0": "nukacraft:block/steel_bars"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/deepslate_saturnite"
+    "all": "nukacraft:block/deepslate_saturnite"
   }
 }

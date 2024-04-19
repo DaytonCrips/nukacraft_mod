@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "nukacraft:blocks/resin",
-		"particle": "nukacraft:blocks/resin"
+		"0": "nukacraft:block/resin",
+		"particle": "nukacraft:block/resin"
 	},
 	"elements": [
 		{

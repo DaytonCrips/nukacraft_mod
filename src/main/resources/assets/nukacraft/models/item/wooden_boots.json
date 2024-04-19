@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/armor/wooden_boots"
+    "layer0": "nukacraft:item/armor/wooden_boots"
   }
 }

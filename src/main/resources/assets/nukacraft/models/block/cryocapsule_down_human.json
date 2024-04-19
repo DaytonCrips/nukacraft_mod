@@ -3,8 +3,8 @@
 	"render_type": "cutout",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "nukacraft:blocks/cryocapsule",
-		"particle": "nukacraft:blocks/cryocapsule"
+		"0": "nukacraft:block/cryocapsule",
+		"particle": "nukacraft:block/cryocapsule"
 	},
 	"elements": [
 		{

@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "nukacraft:blocks/gloamsap",
-		"particle": "nukacraft:blocks/gloamsap"
+		"0": "nukacraft:block/gloamsap",
+		"particle": "nukacraft:block/gloamsap"
 	},
 	"elements": [
 		{

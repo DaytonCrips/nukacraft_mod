@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "nukacraft:blocks/megaslothfungi",
-		"particle": "nukacraft:blocks/megaslothfungi"
+		"0": "nukacraft:block/megaslothfungi",
+		"particle": "nukacraft:block/megaslothfungi"
 	},
 	"elements": [
 		{

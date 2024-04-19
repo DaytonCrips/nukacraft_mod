@@ -2,6 +2,6 @@
   "parent": "minecraft:block/pointed_dripstone",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/pointed_ultracite_down_base"
+    "cross": "nukacraft:block/pointed_ultracite_down_base"
   }
 }

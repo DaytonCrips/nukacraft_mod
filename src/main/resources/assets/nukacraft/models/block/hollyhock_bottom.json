@@ -2,6 +2,6 @@
   "parent": "minecraft:block/tinted_cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/hollyhock_bottom"
+    "cross": "nukacraft:block/hollyhock_bottom"
   }
 }

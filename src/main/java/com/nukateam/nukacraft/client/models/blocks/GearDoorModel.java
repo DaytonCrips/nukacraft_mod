@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 public class GearDoorModel extends GeoModel<GearDoorEntity> {
 
     private static final ResourceLocation model = new ResourceLocation("nukacraft", "geo/blocks/vtdoor.geo.json");
-    private static final ResourceLocation texture = new ResourceLocation("nukacraft", "textures/blocks/vtdoor.png");
+    private static final ResourceLocation texture = new ResourceLocation("nukacraft", "textures/block/vtdoor.png");
     private static final ResourceLocation animation = new ResourceLocation("nukacraft", "animations/blocks/vtdoor.animation.json");
 
     @Override

@@ -1,8 +1,8 @@
 {
 	"credit": "Model by MrCrayfish (https://twitter.com/MrCraayfish) using Blockbench",
 	"textures": {
-		"1": "nukacraft:items/shell",
-		"particle": "nukacraft:items/shell"
+		"1": "nukacraft:item/shell",
+		"particle": "nukacraft:item/shell"
 	},
 	"elements": [
 		{

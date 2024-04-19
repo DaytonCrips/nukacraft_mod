@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/vtprop2",
   "ambientocclusion": false,
   "textures": {
-    "0": "nukacraft:blocks/vtprop",
-    "particle": "nukacraft:blocks/vtprop"
+    "0": "nukacraft:block/vtprop",
+    "particle": "nukacraft:block/vtprop"
   },
   "elements": [
     {

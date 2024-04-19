@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/megamorph_hatter"
+    "layer0": "nukacraft:block/megamorph_hatter"
   }
 }

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "nukacraft:blocks/vaultdinertable",
-		"particle": "nukacraft:blocks/vaultdinertable"
+		"0": "nukacraft:block/vaultdinertable",
+		"particle": "nukacraft:block/vaultdinertable"
 	},
 	"elements": [
 		{

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "nukacraft:items/baseball_grenade",
-		"particle": "nukacraft:items/baseball_grenade"
+		"1": "nukacraft:item/baseball_grenade",
+		"particle": "nukacraft:item/baseball_grenade"
 	},
 	"elements": [
 		{

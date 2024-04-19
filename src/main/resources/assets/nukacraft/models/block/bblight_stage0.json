@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "nukacraft:blocks/bblight",
-		"particle": "nukacraft:blocks/bblight"
+		"0": "nukacraft:block/bblight",
+		"particle": "nukacraft:block/bblight"
 	},
 	"elements": [
 		{

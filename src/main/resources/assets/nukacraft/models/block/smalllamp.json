@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/smalllamp",
   "texture_size": [32, 32],
   "textures": {
-    "0": "nukacraft:blocks/smalllamp",
-    "particle": "nukacraft:blocks/smalllamp"
+    "0": "nukacraft:block/smalllamp",
+    "particle": "nukacraft:block/smalllamp"
   },
   "elements": [
     {

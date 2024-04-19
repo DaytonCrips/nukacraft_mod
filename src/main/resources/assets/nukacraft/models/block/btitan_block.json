@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/btitan_block"
+    "all": "nukacraft:block/btitan_block"
   }
 }

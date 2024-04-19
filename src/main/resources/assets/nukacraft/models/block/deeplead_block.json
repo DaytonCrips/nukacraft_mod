@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/deeplead_block"
+    "all": "nukacraft:block/deeplead_block"
   }
 }

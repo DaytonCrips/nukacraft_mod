@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column_horizontal",
   "textures": {
-    "end": "nukacraft:blocks/cranberrywood_top",
-    "side": "nukacraft:blocks/cranberrywood"
+    "end": "nukacraft:block/cranberrywood_top",
+    "side": "nukacraft:block/cranberrywood"
   }
 }

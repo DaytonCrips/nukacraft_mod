@@ -2,8 +2,8 @@
 	"credit": "Model by MrCrayfish (https://twitter.com/MrCrayfish) using Blockbench",
 	"parent": "nukacraft:item/grenade",
 	"textures": {
-		"1": "nukacraft:items/stun_grenade",
-		"particle": "nukacraft:items/stun_grenade"
+		"1": "nukacraft:item/stun_grenade",
+		"particle": "nukacraft:item/stun_grenade"
 	},
 	"elements": [
 		{

@@ -2,6 +2,6 @@
   "parent": "block/cube_all",
   "render_type": "cutout",
   "textures": {
-    "all": "nukacraft:blocks/rusttiresblock"
+    "all": "nukacraft:block/rusttiresblock"
   }
 }

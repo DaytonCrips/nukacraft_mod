@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "nukacraft:blocks/vaultpillar_t",
-    "side": "nukacraft:blocks/vaultpillar"
+    "end": "nukacraft:block/vaultpillar_t",
+    "side": "nukacraft:block/vaultpillar"
   }
 }

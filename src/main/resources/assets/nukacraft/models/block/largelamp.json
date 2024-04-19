@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/largelamp",
   "texture_size": [32, 32],
   "textures": {
-    "0": "nukacraft:blocks/largelamp",
-    "particle": "nukacraft:blocks/largelamp"
+    "0": "nukacraft:block/largelamp",
+    "particle": "nukacraft:block/largelamp"
   },
   "elements": [
     {

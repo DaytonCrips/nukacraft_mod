@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/rad_dirt"
+    "all": "nukacraft:block/rad_dirt"
   }
 }

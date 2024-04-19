@@ -3,9 +3,9 @@
   "render_type": "cutout",
   "parent": "block/block",
   "textures": {
-    "0": "nukacraft:blocks/toxic_fern",
-    "1": "nukacraft:blocks/toxic_fern_base",
-    "particle": "nukacraft:blocks/toxic_fern"
+    "0": "nukacraft:block/toxic_fern",
+    "1": "nukacraft:block/toxic_fern_base",
+    "particle": "nukacraft:block/toxic_fern"
   },
   "elements": [
     {

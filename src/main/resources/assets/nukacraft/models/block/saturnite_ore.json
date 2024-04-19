@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/saturnite_ore"
+    "all": "nukacraft:block/saturnite_ore"
   }
 }

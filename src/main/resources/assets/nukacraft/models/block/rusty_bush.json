@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/rusty_bush"
+    "cross": "nukacraft:block/rusty_bush"
   }
 }

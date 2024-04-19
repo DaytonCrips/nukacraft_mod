@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"render_type": "cutout",
 	"textures": {
-		"0": "nukacraft:blocks/ind_button",
-		"particle": "nukacraft:blocks/ind_button"
+		"0": "nukacraft:block/ind_button",
+		"particle": "nukacraft:block/ind_button"
 	},
 	"elements": [
 		{

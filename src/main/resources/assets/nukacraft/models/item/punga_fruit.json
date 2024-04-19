@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/punga_fruit"
+    "layer0": "nukacraft:item/punga_fruit"
   }
 }

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [8, 8],
 	"textures": {
-		"0": "nukacraft:items/tier2magazine",
-		"particle": "nukacraft:items/tier2magazine"
+		"0": "nukacraft:item/tier2magazine",
+		"particle": "nukacraft:item/tier2magazine"
 	},
 	"elements": [
 		{

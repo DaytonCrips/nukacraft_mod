@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/moss_whitebricks"
+    "all": "nukacraft:block/moss_whitebricks"
   }
 }

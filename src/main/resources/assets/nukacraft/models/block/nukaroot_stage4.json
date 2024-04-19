@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/nukaroot_stage4"
+    "cross": "nukacraft:block/nukaroot_stage4"
   }
 }

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/crop",
   "render_type": "cutout",
   "textures": {
-    "crop": "nukacraft:blocks/tato_stage1"
+    "crop": "nukacraft:block/tato_stage1"
   }
 }

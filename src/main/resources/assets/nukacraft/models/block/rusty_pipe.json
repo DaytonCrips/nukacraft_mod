@@ -4,8 +4,8 @@
 	"render_type": "solid",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "nukacraft:blocks/rustypipe",
-		"particle": "nukacraft:blocks/rustypipe"
+		"0": "nukacraft:block/rustypipe",
+		"particle": "nukacraft:block/rustypipe"
 	},
 	"elements": [
 		{

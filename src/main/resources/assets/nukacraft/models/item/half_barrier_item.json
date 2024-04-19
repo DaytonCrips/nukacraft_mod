@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/half_barrier"
+    "layer0": "nukacraft:item/half_barrier"
   }
 }

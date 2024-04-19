@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/electrite_divider"
+    "layer0": "nukacraft:item/electrite_divider"
   }
 }

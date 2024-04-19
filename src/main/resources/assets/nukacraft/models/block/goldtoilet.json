@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "nukacraft:blocks/goldtoilet",
-    "particle": "nukacraft:blocks/goldtoilet"
+    "0": "nukacraft:block/goldtoilet",
+    "particle": "nukacraft:block/goldtoilet"
   },
   "elements": [
     {

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"1": "nukacraft:blocks/vtcrate1",
-		"particle": "nukacraft:blocks/vtcrate1"
+		"1": "nukacraft:block/vtcrate1",
+		"particle": "nukacraft:block/vtcrate1"
 	},
 	"elements": [
 		{

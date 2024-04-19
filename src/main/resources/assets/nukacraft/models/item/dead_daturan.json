@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/dead_daturan"
+    "layer0": "nukacraft:block/dead_daturan"
   }
 }

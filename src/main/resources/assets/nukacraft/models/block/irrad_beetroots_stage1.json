@@ -2,6 +2,6 @@
   "parent": "minecraft:block/crop",
   "render_type": "cutout",
   "textures": {
-    "crop": "nukacraft:blocks/irrad_beetroots_stage1"
+    "crop": "nukacraft:block/irrad_beetroots_stage1"
   }
 }

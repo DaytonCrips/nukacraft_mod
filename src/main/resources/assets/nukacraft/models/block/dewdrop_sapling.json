@@ -3,8 +3,8 @@
 	"render_type": "cutout",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "nukacraft:blocks/dewdrop",
-		"particle": "nukacraft:blocks/dewdrop"
+		"1": "nukacraft:block/dewdrop",
+		"particle": "nukacraft:block/dewdrop"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/deepultracite_block"
+    "all": "nukacraft:block/deepultracite_block"
   }
 }

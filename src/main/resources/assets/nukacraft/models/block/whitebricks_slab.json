@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "nukacraft:blocks/whitebricks",
-    "top": "nukacraft:blocks/whitebricks",
-    "side": "nukacraft:blocks/whitebricks"
+    "bottom": "nukacraft:block/whitebricks",
+    "top": "nukacraft:block/whitebricks",
+    "side": "nukacraft:block/whitebricks"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/silvernugget"
+    "layer0": "nukacraft:item/silvernugget"
   }
 }

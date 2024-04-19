@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/shelter_bars"
+    "layer0": "nukacraft:block/shelter_bars"
   }
 }

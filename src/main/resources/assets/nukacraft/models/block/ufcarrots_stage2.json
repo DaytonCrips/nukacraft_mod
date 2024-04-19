@@ -2,6 +2,6 @@
   "parent": "minecraft:block/crop",
   "render_type": "cutout",
   "textures": {
-    "crop": "nukacraft:blocks/ufcarrots_stage2"
+    "crop": "nukacraft:block/ufcarrots_stage2"
   }
 }

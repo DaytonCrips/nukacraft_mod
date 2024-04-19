@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "nukacraft:blocks/blacksteel",
-    "side": "nukacraft:blocks/blacksteel2"
+    "end": "nukacraft:block/blacksteel",
+    "side": "nukacraft:block/blacksteel2"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "nukacraft:blocks/nukamelon_top",
-    "side": "nukacraft:blocks/nukamelon_side"
+    "end": "nukacraft:block/nukamelon_top",
+    "side": "nukacraft:block/nukamelon_side"
   }
 }

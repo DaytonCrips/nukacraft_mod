@@ -1,7 +1,7 @@
 {
-    "parent": "item/generated",
+    "parent": "minecraft:item/generated",
     "textures": {
-        "layer0": "nukacraft:items/empty_antique_atlas"
+        "layer0": "nukacraft:item/empty_antique_atlas"
     },
     "display": {
         "thirdperson": {

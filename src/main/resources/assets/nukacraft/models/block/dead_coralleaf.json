@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/dead_coralleaf"
+    "cross": "nukacraft:block/dead_coralleaf"
   }
 }

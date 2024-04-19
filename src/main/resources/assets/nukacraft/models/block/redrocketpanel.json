@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "nukacraft:blocks/redrocket_top",
-    "up": "nukacraft:blocks/redrocket_top",
-    "north": "nukacraft:blocks/redrocket_side",
-    "east": "nukacraft:blocks/redrocket_side",
-    "south": "nukacraft:blocks/redrocket_side",
-    "west": "nukacraft:blocks/redrocket_side",
-    "particle": "nukacraft:blocks/redrocket_top"
+    "down": "nukacraft:block/redrocket_top",
+    "up": "nukacraft:block/redrocket_top",
+    "north": "nukacraft:block/redrocket_side",
+    "east": "nukacraft:block/redrocket_side",
+    "south": "nukacraft:block/redrocket_side",
+    "west": "nukacraft:block/redrocket_side",
+    "particle": "nukacraft:block/redrocket_top"
   }
 }

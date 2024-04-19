@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "nukacraft:blocks/fragmine",
-		"particle": "nukacraft:blocks/fragmine"
+		"0": "nukacraft:block/fragmine",
+		"particle": "nukacraft:block/fragmine"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/pointed_ultracite_up_tip"
+    "layer0": "nukacraft:block/pointed_ultracite_up_tip"
   }
 }

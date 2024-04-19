@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/ginsengroot_stage5"
+    "cross": "nukacraft:block/ginsengroot_stage5"
   }
 }

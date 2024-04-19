@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "nukacraft:blocks/radioterminal",
-		"particle": "nukacraft:blocks/radioterminal"
+		"1": "nukacraft:block/radioterminal",
+		"particle": "nukacraft:block/radioterminal"
 	},
 	"elements": [
 		{

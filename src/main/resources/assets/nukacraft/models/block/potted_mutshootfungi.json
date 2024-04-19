@@ -3,8 +3,8 @@
   "render_type": "cutout",
   "texture_size": [32, 32],
   "textures": {
-    "1": "nukacraft:blocks/mutshootfungi",
-    "particle": "nukacraft:blocks/mutshootfungi"
+    "1": "nukacraft:block/mutshootfungi",
+    "particle": "nukacraft:block/mutshootfungi"
   },
   "elements": [
     {

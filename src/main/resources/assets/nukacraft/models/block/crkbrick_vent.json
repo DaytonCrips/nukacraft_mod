@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "nukacraft:blocks/crkbrick_r",
-    "front": "nukacraft:blocks/crkbrick_vent",
-    "side": "nukacraft:blocks/crkbrick_t"
+    "top": "nukacraft:block/crkbrick_r",
+    "front": "nukacraft:block/crkbrick_vent",
+    "side": "nukacraft:block/crkbrick_t"
   }
 }

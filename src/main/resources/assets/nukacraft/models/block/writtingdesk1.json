@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "nukacraft:blocks/table",
-		"particle": "nukacraft:blocks/table"
+		"0": "nukacraft:block/table",
+		"particle": "nukacraft:block/table"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/deepbtitan_block"
+    "all": "nukacraft:block/deepbtitan_block"
   }
 }

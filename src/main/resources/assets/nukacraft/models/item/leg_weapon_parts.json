@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/leg_weapon_parts"
+    "layer0": "nukacraft:item/leg_weapon_parts"
   }
 }

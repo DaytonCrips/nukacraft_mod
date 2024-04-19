@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/green_holotape"
+    "layer0": "nukacraft:item/green_holotape"
   }
 }

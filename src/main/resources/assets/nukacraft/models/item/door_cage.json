@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/door_cage"
+    "layer0": "nukacraft:item/door_cage"
   }
 }

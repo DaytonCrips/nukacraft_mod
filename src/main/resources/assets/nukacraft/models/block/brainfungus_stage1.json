@@ -3,8 +3,8 @@
   "render_type": "cutout",
   "texture_size": [32, 32],
   "textures": {
-    "0": "nukacraft:blocks/brainfungus",
-    "particle": "nukacraft:blocks/brainfungus"
+    "0": "nukacraft:block/brainfungus",
+    "particle": "nukacraft:block/brainfungus"
   },
   "elements": [
     {

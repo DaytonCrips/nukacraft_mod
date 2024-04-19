@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.registery.world.ModDimensions.WASTELAND_DIMENSION;
+import static com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings.WASTELAND_DIMENSION;
 
 
 public class TerminalBlock extends RotatedObjectBlock {

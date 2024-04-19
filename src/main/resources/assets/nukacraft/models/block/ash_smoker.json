@@ -2,11 +2,11 @@
   "parent": "block/cube",
   "textures": {
     "down": "nukacraft:block/ash_stone",
-    "up": "nukacraft:blocks/ash_smoker",
-    "north": "nukacraft:blocks/ash_stone",
-    "east": "nukacraft:blocks/ash_stone",
-    "south": "nukacraft:blocks/ash_stone",
-    "west": "nukacraft:blocks/ash_stone",
-    "particle": "nukacraft:blocks/ash_stone"
+    "up": "nukacraft:block/ash_smoker",
+    "north": "nukacraft:block/ash_stone",
+    "east": "nukacraft:block/ash_stone",
+    "south": "nukacraft:block/ash_stone",
+    "west": "nukacraft:block/ash_stone",
+    "particle": "nukacraft:block/ash_stone"
   }
 }

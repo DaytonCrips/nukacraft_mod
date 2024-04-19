@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "nukacraft:blocks/downtile",
-    "up": "nukacraft:blocks/graytile_top",
-    "north": "nukacraft:blocks/gray_tile",
-    "east": "nukacraft:blocks/gray_tile",
-    "south": "nukacraft:blocks/gray_tile",
-    "west": "nukacraft:blocks/gray_tile",
-    "particle": "nukacraft:blocks/gray_tile"
+    "down": "nukacraft:block/downtile",
+    "up": "nukacraft:block/graytile_top",
+    "north": "nukacraft:block/gray_tile",
+    "east": "nukacraft:block/gray_tile",
+    "south": "nukacraft:block/gray_tile",
+    "west": "nukacraft:block/gray_tile",
+    "particle": "nukacraft:block/gray_tile"
   }
 }

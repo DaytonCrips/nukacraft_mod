@@ -15,7 +15,7 @@ public class PipBoyItemModel extends GeoModel<PipBoyItem> implements IGlowingMod
 
     @Override
     public ResourceLocation getTextureResource(PipBoyItem pipBoyItem) {
-        return nukaResource("textures/items/pipboy/" + pipBoyItem.getSkin() + "_pipboy.png");
+        return nukaResource("textures/item/pipboy/" + pipBoyItem.getSkin() + "_pipboy.png");
     }
 
     @Override

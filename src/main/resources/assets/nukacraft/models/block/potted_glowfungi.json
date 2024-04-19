@@ -3,8 +3,8 @@
   "render_type": "cutout",
   "texture_size": [32, 32],
   "textures": {
-    "1": "nukacraft:blocks/glowfungi",
-    "particle": "nukacraft:blocks/glowfungi"
+    "1": "nukacraft:block/glowfungi",
+    "particle": "nukacraft:block/glowfungi"
   },
   "elements": [
     {

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "nukacraft:blocks/mutshootfungus"
+    "crop": "nukacraft:block/mutshootfungus"
   }
 }

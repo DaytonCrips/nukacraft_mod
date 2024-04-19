@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/steelfence",
   "texture_size": [32, 32],
   "textures": {
-    "2": "nukacraft:blocks/steelfence",
-    "particle": "nukacraft:blocks/steelfence"
+    "2": "nukacraft:block/steelfence",
+    "particle": "nukacraft:block/steelfence"
   },
   "elements": [
     {

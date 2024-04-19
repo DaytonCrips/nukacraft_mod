@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/door_bottom_right_open",
   "textures": {
-    "bottom": "nukacraft:blocks/door_green_lower",
-    "top": "nukacraft:blocks/door_green_upper"
+    "bottom": "nukacraft:block/door_green_lower",
+    "top": "nukacraft:block/door_green_upper"
   }
 }

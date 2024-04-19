@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/power_armor/t60/t60_lhand"
+    "layer0": "nukacraft:item/power_armor/t60/t60_lhand"
   }
 }

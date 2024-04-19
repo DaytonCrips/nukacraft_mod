@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/largelamp",
   "texture_size": [64, 64],
   "textures": {
-    "0": "nukacraft:blocks/glowwood",
-    "particle": "nukacraft:blocks/glowwood"
+    "0": "nukacraft:block/glowwood",
+    "particle": "nukacraft:block/glowwood"
   },
   "elements": [
     {

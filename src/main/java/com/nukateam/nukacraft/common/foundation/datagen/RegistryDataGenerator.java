@@ -21,14 +21,14 @@ import java.util.concurrent.CompletableFuture;
 public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 
 	public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
-			.add(Registries.CONFIGURED_FEATURE, OreFeatures::bootstrap)
-			.add(Registries.CONFIGURED_FEATURE, ModFeatures::bootstrap)
-			.add(Registries.PLACED_FEATURE, ModWastelandPlacements::bootstrap)
-			.add(Registries.PLACED_FEATURE, WastelandVegetation::bootstrap)
-			.add(Registries.PLACED_FEATURE, ModOrePlacements::bootstrap)
-			.add(Registries.BIOME, ModBiomes::bootstrap)
-			.add(Registries.DIMENSION_TYPE, WastelandDimensionsSettings::bootstrapType)
+//			.add(Registries.BIOME, ModBiomes::bootstrap)
+//			.add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
+//			.add(Registries.CONFIGURED_FEATURE, OreFeatures::bootstrap)
+//			.add(Registries.CONFIGURED_FEATURE, ModFeatures::bootstrap)
+//			.add(Registries.DIMENSION_TYPE, WastelandDimensionsSettings::bootstrapType)
+//			.add(Registries.PLACED_FEATURE, ModWastelandPlacements::bootstrap)
+//			.add(Registries.PLACED_FEATURE, WastelandVegetation::bootstrap)
+//			.add(Registries.PLACED_FEATURE, ModOrePlacements::bootstrap)
 //			.add(Registries.NOISE_SETTINGS, WastelandDimensionsSettings::bootstrapNoise)
 			;
 

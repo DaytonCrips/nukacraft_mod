@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/bombberrybush2"
+    "cross": "nukacraft:block/bombberrybush2"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/ash_tea"
+    "layer0": "nukacraft:item/ash_tea"
   }
 }

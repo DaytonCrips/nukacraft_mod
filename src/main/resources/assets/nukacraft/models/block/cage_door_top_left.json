@@ -2,7 +2,7 @@
   "parent": "minecraft:block/door_top_right_open",
   "render_type": "cutout",
   "textures": {
-    "bottom": "nukacraft:blocks/door_cage_lower",
-    "top": "nukacraft:blocks/door_cage_upper"
+    "bottom": "nukacraft:block/door_cage_lower",
+    "top": "nukacraft:block/door_cage_upper"
   }
 }

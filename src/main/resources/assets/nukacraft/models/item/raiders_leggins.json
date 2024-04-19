@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/armor/raiders_leggins"
+    "layer0": "nukacraft:item/armor/raiders_leggins"
   }
 }

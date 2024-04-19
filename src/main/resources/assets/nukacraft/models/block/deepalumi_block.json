@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/deepalumi_block"
+    "all": "nukacraft:block/deepalumi_block"
   }
 }

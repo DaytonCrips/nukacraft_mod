@@ -141,7 +141,7 @@ public class NukaCraftMod {
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ModBiomeGeneration.generateBiomes();
+//            ModBiomeGeneration.generateBiomes();
             ModSetup.flowerPotSetup();
             PacketHandler.register();
 //            AntiqueAtlasNetworking.register();

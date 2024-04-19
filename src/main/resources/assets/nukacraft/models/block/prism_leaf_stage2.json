@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/prism_leaf_stage2"
+    "cross": "nukacraft:block/prism_leaf_stage2"
   }
 }

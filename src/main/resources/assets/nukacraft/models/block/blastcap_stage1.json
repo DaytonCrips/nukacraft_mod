@@ -4,8 +4,8 @@
 	"render_type": "cutout",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "nukacraft:blocks/blastcap",
-		"particle": "nukacraft:blocks/blastcap"
+		"1": "nukacraft:block/blastcap",
+		"particle": "nukacraft:block/blastcap"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/redsteel"
+    "all": "nukacraft:block/redsteel"
   }
 }

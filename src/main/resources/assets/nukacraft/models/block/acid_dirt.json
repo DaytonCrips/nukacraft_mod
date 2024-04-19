@@ -2,11 +2,11 @@
   "parent": "block/cube",
   "textures": {
     "down": "minecraft:block/dirt",
-    "up": "nukacraft:blocks/acid_grass_top",
-    "north": "nukacraft:blocks/acid_grass_side",
-    "east": "nukacraft:blocks/acid_grass_side",
-    "south": "nukacraft:blocks/acid_grass_side",
-    "west": "nukacraft:blocks/acid_grass_side",
+    "up": "nukacraft:block/acid_grass_top",
+    "north": "nukacraft:block/acid_grass_side",
+    "east": "nukacraft:block/acid_grass_side",
+    "south": "nukacraft:block/acid_grass_side",
+    "west": "nukacraft:block/acid_grass_side",
     "particle": "minecraft:block/dirt"
   }
 }

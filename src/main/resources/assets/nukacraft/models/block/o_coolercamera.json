@@ -3,8 +3,8 @@
 	"render_type": "cutout",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "nukacraft:blocks/fridgecamera",
-		"particle": "nukacraft:blocks/fridgecamera"
+		"1": "nukacraft:block/fridgecamera",
+		"particle": "nukacraft:block/fridgecamera"
 	},
 	"elements": [
 		{

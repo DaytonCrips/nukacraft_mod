@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/coral_leaf_stage0"
+    "cross": "nukacraft:block/coral_leaf_stage0"
   }
 }

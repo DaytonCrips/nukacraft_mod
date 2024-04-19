@@ -4,8 +4,8 @@
 	"parent": "nukacraft:block/rustsupportwall",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "nukacraft:blocks/rustsheltersupport_d",
-		"particle": "nukacraft:blocks/rustsheltersupport_d"
+		"0": "nukacraft:block/rustsheltersupport_d",
+		"particle": "nukacraft:block/rustsheltersupport_d"
 	},
 	"elements": [
 		{

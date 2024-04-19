@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "nukacraft:blocks/vaultblastdoor",
-		"particle": "nukacraft:blocks/vaultblastdoor"
+		"0": "nukacraft:block/vaultblastdoor",
+		"particle": "nukacraft:block/vaultblastdoor"
 	},
 	"elements": [
 		{

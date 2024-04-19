@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column_horizontal",
   "textures": {
-    "end": "nukacraft:blocks/dwoodlog_top",
-    "side": "nukacraft:blocks/dwoodlog"
+    "end": "nukacraft:block/dwoodlog_top",
+    "side": "nukacraft:block/dwoodlog"
   }
 }

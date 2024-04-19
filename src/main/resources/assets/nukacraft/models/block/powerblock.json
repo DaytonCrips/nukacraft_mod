@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "nukacraft:blocks/powerblock_top",
-    "side": "nukacraft:blocks/powerblock_side"
+    "end": "nukacraft:block/powerblock_top",
+    "side": "nukacraft:block/powerblock_side"
   }
 }

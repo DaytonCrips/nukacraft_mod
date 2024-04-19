@@ -3,8 +3,8 @@
   "parent": "nukacraft:block/vent3",
   "ambientocclusion": false,
   "textures": {
-    "0": "nukacraft:blocks/vent",
-    "particle": "nukacraft:blocks/vent"
+    "0": "nukacraft:block/vent",
+    "particle": "nukacraft:block/vent"
   },
   "elements": [
     {

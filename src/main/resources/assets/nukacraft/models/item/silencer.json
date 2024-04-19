@@ -1,8 +1,8 @@
 {
 	"credit": "Model by MrCrayfish (https://twitter.com/MrCraayfish) using Blockbench",
 	"textures": {
-		"1": "nukacraft:items/silencer",
-		"particle": "nukacraft:items/silencer"
+		"1": "nukacraft:item/silencer",
+		"particle": "nukacraft:item/silencer"
 	},
 	"elements": [
 		{

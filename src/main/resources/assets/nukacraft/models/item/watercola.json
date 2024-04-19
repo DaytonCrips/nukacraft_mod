@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/watercola"
+    "layer0": "nukacraft:item/watercola"
   }
 }

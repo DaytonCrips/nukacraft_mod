@@ -3,8 +3,8 @@
   "render_type": "cutout",
   "texture_size": [64, 64],
   "textures": {
-    "0": "nukacraft:blocks/bloodleaf0",
-    "particle": "nukacraft:blocks/bloodleaf0"
+    "0": "nukacraft:block/bloodleaf0",
+    "particle": "nukacraft:block/bloodleaf0"
   },
   "elements": [
     {

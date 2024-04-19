@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/wildtato3"
+    "cross": "nukacraft:block/wildtato3"
   }
 }

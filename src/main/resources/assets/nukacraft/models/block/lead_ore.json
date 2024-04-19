@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/lead_ore"
+    "all": "nukacraft:block/lead_ore"
   }
 }

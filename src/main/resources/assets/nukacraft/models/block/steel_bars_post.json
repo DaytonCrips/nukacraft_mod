@@ -2,8 +2,8 @@
   "ambientocclusion": false,
   "render_type": "cutout",
   "textures": {
-    "particle": "nukacraft:blocks/steel_bars",
-    "bars": "nukacraft:blocks/steel_bars"
+    "particle": "nukacraft:block/steel_bars",
+    "bars": "nukacraft:block/steel_bars"
   },
   "elements": [
     {   "from": [ 8, 0, 7 ],

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:blocks/hollyhock_top"
+    "layer0": "nukacraft:block/hollyhock_top"
   }
 }

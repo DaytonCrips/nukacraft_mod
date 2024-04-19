@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/crkbrick_r"
+    "all": "nukacraft:block/crkbrick_r"
   }
 }

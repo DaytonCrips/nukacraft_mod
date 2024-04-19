@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:blocks/uranium_ore"
+    "all": "nukacraft:block/uranium_ore"
   }
 }

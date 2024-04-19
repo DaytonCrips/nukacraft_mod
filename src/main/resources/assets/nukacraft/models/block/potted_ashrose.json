@@ -2,6 +2,6 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "cutout",
   "textures": {
-    "plant": "nukacraft:blocks/ashrose"
+    "plant": "nukacraft:block/ashrose"
   }
 }

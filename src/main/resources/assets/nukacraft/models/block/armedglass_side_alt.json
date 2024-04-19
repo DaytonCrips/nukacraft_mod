@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/template_glass_pane_side_alt",
   "textures": {
-    "pane": "nukacraft:blocks/armedglass",
-    "edge": "nukacraft:blocks/armedglass_top"
+    "pane": "nukacraft:block/armedglass",
+    "edge": "nukacraft:block/armedglass_top"
   }
 }

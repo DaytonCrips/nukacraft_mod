@@ -3,6 +3,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "cutout",
   "textures": {
-    "cross": "nukacraft:blocks/neoagave_stage1"
+    "cross": "nukacraft:block/neoagave_stage1"
   }
 }

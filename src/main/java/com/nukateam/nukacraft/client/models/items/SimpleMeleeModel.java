@@ -17,7 +17,7 @@ public class SimpleMeleeModel extends GeoModel<SimpleMeleeWeapon> {
 
     @Override
     public ResourceLocation getTextureResource(SimpleMeleeWeapon weapon) {
-        return nukaResource("textures/items/melee/" + weapon.getName() + ".png");
+        return nukaResource("textures/item/melee/" + weapon.getName() + ".png");
     }
 
     @Override

@@ -3,8 +3,8 @@
 	"render_type": "cutout",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "nukacraft:blocks/hatterfungi",
-		"particle": "nukacraft:blocks/hatterfungi"
+		"1": "nukacraft:block/hatterfungi",
+		"particle": "nukacraft:block/hatterfungi"
 	},
 	"elements": [
 		{

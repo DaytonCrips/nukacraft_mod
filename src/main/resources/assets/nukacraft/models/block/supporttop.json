@@ -3,8 +3,8 @@
 	"parent": "nukacraft:block/supportwall",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "nukacraft:blocks/sheltersupport_d",
-		"particle": "nukacraft:blocks/sheltersupport_d"
+		"0": "nukacraft:block/sheltersupport_d",
+		"particle": "nukacraft:block/sheltersupport_d"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:items/power_armor/x02/x02_torso"
+    "layer0": "nukacraft:item/power_armor/x02/x02_torso"
   }
 }

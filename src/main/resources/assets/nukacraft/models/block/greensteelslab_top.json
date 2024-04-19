@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "bottom": "nukacraft:blocks/greensteel",
-    "top": "nukacraft:blocks/greensteel",
-    "side": "nukacraft:blocks/greensteel"
+    "bottom": "nukacraft:block/greensteel",
+    "top": "nukacraft:block/greensteel",
+    "side": "nukacraft:block/greensteel"
   }
 }
