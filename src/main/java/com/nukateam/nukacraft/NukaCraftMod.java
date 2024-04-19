@@ -82,8 +82,8 @@ public class NukaCraftMod {
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
         ModItemTabs.register(MOD_EVENT_BUS);
-        WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
-        WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
+//        WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
+//        WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
 
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
@@ -136,8 +136,8 @@ public class NukaCraftMod {
     }
 
     private void onEnqueueIMC(InterModEnqueueEvent event) {
-        if (!curiosLoaded) return;
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
+//        if (!curiosLoaded) return;
+//        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {

@@ -215,7 +215,6 @@ public class ModFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_RUSTY_BUSH =
             FeatureUtils.createKey("patch_rustybush");
 
-
     public static final ResourceKey<ConfiguredFeature<?, ?>> STARBERRY_PLANT =
             FeatureUtils.createKey("starberry_plant_features");
 

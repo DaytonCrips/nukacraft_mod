@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class ModBiomeGeneration {
     public static void generateBiomes() {
-        addBiome(ModBiomes.POISON_VALLEY.get());
-        addBiome(ModBiomes.GLOW_SEA.get());
-        addBiome(ModBiomes.ASH_HEAP.get());
-        addBiome(ModBiomes.CRANBERRY_BOG.get());
+//        addBiome(ModBiomes.POISON_VALLEY.get());
+//        addBiome(ModBiomes.GLOW_SEA.get());
+//        addBiome(ModBiomes.ASH_HEAP.get());
+//        addBiome(ModBiomes.CRANBERRY_BOG.get());
     }
 
     private static void addBiome(Biome biome) {

@@ -7,11 +7,13 @@ import com.nukateam.nukacraft.common.foundation.world.trees.ModTrees;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
@@ -33,6 +35,18 @@ public class ModWastelandPlacements {
     public static final ResourceKey<PlacedFeature> TREES_ASH = registerKey("trees_ash");
     public static final ResourceKey<PlacedFeature> DISK_ASHSTONE = registerKey("disk_ashston");
 
+    public static final ResourceKey<PlacedFeature> ASH_GRASSS = registerKey("ashgrasss");
+    public static final ResourceKey<PlacedFeature> POISON_GRASS = registerKey("poisongrass");
+
+    public static final ResourceKey<PlacedFeature> CRANBERRY_GRASS = registerKey("crangrass");
+    public static final ResourceKey<PlacedFeature> GRASS_ASH = registerKey("grass_ash");
+    public static final ResourceKey<PlacedFeature> GLOW_GRASS = registerKey("glowgrass");
+
+    public static final ResourceKey<PlacedFeature> HEAP_GRASS = registerKey("heap_grass");
+    public static final ResourceKey<PlacedFeature> RUSTY_BUSH = registerKey("rusty_bush_patch");
+
+
+
 
 //    public static final Holder<PlacedFeature> DISK_ASHSTONE =
 //            PlacementUtils.register("disk_ashston",
@@ -53,6 +67,48 @@ public class ModWastelandPlacements {
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
+
+        context.register(HEAP_GRASS, new PlacedFeature(features.getOrThrow( ModFeatures.PATCH_HEAP_GRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(RUSTY_BUSH, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_RUSTY_BUSH),
+                List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(GLOW_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_GLOWGRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.8D, 3, 3),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(GRASS_ASH, new PlacedFeature(features.getOrThrow(VegetationFeatures.PATCH_GRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 4),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(CRANBERRY_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_CRANGRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(ASH_GRASSS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_ASHGRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.3D, 2, 1),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(POISON_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_POISONGRASS),
+                List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
 
         context.register(TREES_ASH_HEAP, new PlacedFeature(
                 features.getOrThrow(

@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.foundation.world.WastelandDimensions.WASTELAND;
+import static com.nukateam.nukacraft.common.registery.world.ModDimensions.WASTELAND_DIMENSION;
 
 
 public class TerminalBlock extends RotatedObjectBlock {
@@ -72,13 +72,13 @@ public class TerminalBlock extends RotatedObjectBlock {
                 MinecraftServer server = pLevel.getServer();
 
                 if (server != null) {
-                    if (pLevel.dimension() == WASTELAND) {
+                    if (pLevel.dimension() == WASTELAND_DIMENSION) {
                         ServerLevel overWorld = server.getLevel(Level.OVERWORLD);
                         if (overWorld != null) {
                             pPlayer.changeDimension(overWorld, new WastelandTeleporter(pPos, false));
                         }
                     } else {
-                        ServerLevel kjDim = server.getLevel(WASTELAND);
+                        ServerLevel kjDim = server.getLevel(WASTELAND_DIMENSION);
                         if (kjDim != null) {
                             pPlayer.changeDimension(kjDim, new WastelandTeleporter(pPos, true));
                         }

@@ -1,7 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.datagen;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.foundation.world.ModWastelandPlacements;
+import com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings;
 import com.nukateam.nukacraft.common.foundation.world.WastelandVegetation;
 import com.nukateam.nukacraft.common.foundation.world.features.ModConfiguredFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
@@ -25,6 +27,9 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.PLACED_FEATURE, ModWastelandPlacements::bootstrap)
 			.add(Registries.PLACED_FEATURE, WastelandVegetation::bootstrap)
 			.add(Registries.PLACED_FEATURE, ModOrePlacements::bootstrap)
+			.add(Registries.BIOME, ModBiomes::bootstrap)
+			.add(Registries.DIMENSION_TYPE, WastelandDimensionsSettings::bootstrapType)
+			.add(Registries.NOISE_SETTINGS, WastelandDimensionsSettings::bootstrapNoise)
 			;
 
 	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {

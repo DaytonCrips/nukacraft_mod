@@ -1,39 +1,59 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
 import com.mojang.serialization.DataResult;
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
-import net.minecraft.core.Registry;
+import com.nukateam.nukacraft.common.registery.world.ModDimensions;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.NoiseSettings;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.*;
 
+import java.util.List;
 import java.util.OptionalLong;
 
-public class WastelandDimensionsSettings {
-    public static final DeferredRegister<NoiseGeneratorSettings> NOISE_GENERATORS = DeferredRegister.create(Registries.NOISE_SETTINGS, NukaCraftMod.MOD_ID);
-    public static final DeferredRegister<DimensionType> DIMENSION_TYPES = DeferredRegister.create(Registries.DIMENSION_TYPE, NukaCraftMod.MOD_ID);
+import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
-    public static final RegistryObject<NoiseGeneratorSettings> WASTELAND_NOISE_GEN = NOISE_GENERATORS.register("fallout_wasteland_noise", WastelandDimensionsSettings::fallout);
-    public static final RegistryObject<DimensionType> WASTELAND_DIM_TYPE = DIMENSION_TYPES.register("fallout_wasteland_type", WastelandDimensionsSettings::falloutType);
+public class WastelandDimensionsSettings {
+//    public static final DeferredRegister<NoiseGeneratorSettings> NOISE_GENERATORS = DeferredRegister.create(Registries.NOISE_SETTINGS, NukaCraftMod.MOD_ID);
+//    public static final DeferredRegister<DimensionType> DIMENSION_TYPES = DeferredRegister.create(Registries.DIMENSION_TYPE, NukaCraftMod.MOD_ID);
+
+//    public static final RegistryObject<NoiseGeneratorSettings> WASTELAND_NOISE_GEN = NOISE_GENERATORS.register("fallout_wasteland_noise", WastelandDimensionsSettings::falloutNoise);
+//    public static final RegistryObject<DimensionType> WASTELAND_DIM_TYPE = DIMENSION_TYPES.register("fallout_wasteland_type", WastelandDimensionsSettings::falloutDimensionType);
 
 
     static final NoiseSettings WASTELAND_NOISE_SETTINGS = create(-64, 384, 1, 2);
 
-    public static NoiseGeneratorSettings fallout() {
+    public static final ResourceKey<NoiseGeneratorSettings> WASTELAND_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, nukaResource("fallout_wasteland_noise"));
+    public static final ResourceKey<DimensionType> WASTELAND_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, nukaResource("fallout_wasteland_type"));
+
+    public static final ResourceKey<LevelStem> WASTELAND_LEVEL_STEM =  ResourceKey.create(Registries.LEVEL_STEM, ModDimensions.WASTELAND);
+
+    public static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> context) {
+        context.register(WASTELAND_NOISE_GEN, falloutNoise(context));
+    }
+
+    public static void bootstrapType(BootstapContext<DimensionType> context) {
+        context.register(WASTELAND_DIM_TYPE, falloutDimensionType());
+    }
+
+    public static NoiseGeneratorSettings falloutNoise(BootstapContext<NoiseGeneratorSettings> context) {
+        var falloutNoise = WastelandNoiseRouterData.falloutNoise(
+                context.lookup(Registries.DENSITY_FUNCTION),
+                context.lookup(Registries.NOISE),
+                false, false);
+
         return new NoiseGeneratorSettings(WASTELAND_NOISE_SETTINGS,
                 Blocks.GRASS_BLOCK.defaultBlockState(),
                 ModFluids.DIRTY_WATER_BLOCK.get().defaultBlockState(),
-                WastelandNoiseRouterData.fallout(BuiltInRegistries.DENSITY_FUNCTION_TYPE, false, false),
+                falloutNoise,
                 WastelandSurfaceRule.fallout(),
                 (new WastelandBiomeBuilder()).spawnTarget(),
                 64,
@@ -43,7 +63,50 @@ public class WastelandDimensionsSettings {
                 false);
     }
 
-    private static DimensionType falloutType() {
+
+    public static NoiseGeneratorSettings makeNoiseSettings(BootstapContext<NoiseGeneratorSettings> context) {
+        HolderGetter<DensityFunction> densityFunctions = context.lookup(Registries.DENSITY_FUNCTION);
+
+        NoiseSettings tfNoise = NoiseSettings.create(
+                -32, //TODO Deliberate over this. For now it'll be -32
+                256,
+                2,
+                2
+        );
+
+        return new NoiseGeneratorSettings(
+                tfNoise,
+                Blocks.STONE.defaultBlockState(),
+                skylight ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState(),
+                new NoiseRouter(
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        finalDensity,
+                        finalDensity,
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero(),
+                        DensityFunctions.zero()
+                ),
+                TFSurfaceRules.tfSurface(),
+                List.of(),
+                TFDimensionData.SEALEVEL,
+                false,
+                false,
+                false,
+                false
+        );
+    }
+
+
+    private static DimensionType falloutDimensionType() {
         return new DimensionType(
                 OptionalLong.empty(),
                 true, //skylight
