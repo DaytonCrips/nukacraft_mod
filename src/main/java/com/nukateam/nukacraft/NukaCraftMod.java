@@ -67,13 +67,12 @@ public class NukaCraftMod {
         ModWeapons.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
-        ModBiomes.register(MOD_EVENT_BUS);
+//        ModBiomes.register(MOD_EVENT_BUS);
         ModFood.register(MOD_EVENT_BUS);
         ModBlockItems.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
-        SoundRegistry.REGISTER.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
         ModPaintings.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
@@ -136,8 +135,8 @@ public class NukaCraftMod {
     }
 
     private void onEnqueueIMC(InterModEnqueueEvent event) {
-//        if (!curiosLoaded) return;
-//        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
+        if (!curiosLoaded) return;
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {

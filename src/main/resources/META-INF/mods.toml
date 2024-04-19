@@ -16,31 +16,31 @@ description="NukaCraft - This is a global mod that will bring some nuclear dust 
 [[dependencies.nukacraft]]
 modId="forge"
 mandatory=true
-versionRange="[43.2.0,)"
+versionRange="[46, 48)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.nukacraft]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19,1.20)"
+versionRange="[1.20, 1.20.2)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.nukacraft]]
 modId="azurelib"
 mandatory=true
-versionRange="[1.0.23,)"
+versionRange="[2.0.20,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.nukacraft]]
 modId="chassis_core"
 mandatory=true
-versionRange="[1.19.2-2.2.0,)"
+versionRange="[1.20.1-2.2.0,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.nukacraft]]
 modId="ntgl"
 mandatory=true
-versionRange="[1.19.2-1.0.0,)"
+versionRange="[1.20.1-1.0.0,)"
 ordering="AFTER"
 side="BOTH"
 

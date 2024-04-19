@@ -32,15 +32,11 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 
 public class ModBiomes {
-    public static final DeferredRegister<Biome> BIOMES =
-            DeferredRegister.create(ForgeRegistries.BIOMES, NukaCraftMod.MOD_ID);
+//    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, NukaCraftMod.MOD_ID);
 
     public static final ResourceKey<Biome> POISON_VALLEY = createKey("poison_valley");
-
     public static final ResourceKey<Biome> GLOW_SEA = createKey("glow_sea");
-
     public static final ResourceKey<Biome> ASH_HEAP = createKey("ash_heap");
-
     public static final ResourceKey<Biome> CRANBERRY_BOG = createKey("cranberry_bog");
 
     public static void bootstrap(BootstapContext<Biome> context) {
@@ -180,10 +176,9 @@ public class ModBiomes {
                 .build();
     }
 
-
-    public static void register(IEventBus eventBus) {
-        BIOMES.register(eventBus);
-    }
+//    public static void register(IEventBus eventBus) {
+//        BIOMES.register(eventBus);
+//    }
 
     private static ResourceKey<Biome> createKey(String name) {
         return ResourceKey.create(Registries.BIOME, nukaResource(name));

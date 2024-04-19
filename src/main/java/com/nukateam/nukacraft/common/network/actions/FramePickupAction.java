@@ -28,7 +28,7 @@ public class FramePickupAction extends Action<FramePickupAction> {
     @Override
     public void doServerAction(FramePickupAction message, Supplier<NetworkEvent.Context> context, int entityId) {
         var player = context.get().getSender();
-        var entity = player.level.getEntity(entityId);
+        var entity = player.level().getEntity(entityId);
 
         if (entity instanceof PowerArmorFrame frame) {
             player.stopRiding();

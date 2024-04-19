@@ -31,10 +31,11 @@ public class WastelandDimensionsSettings {
 
     static final NoiseSettings WASTELAND_NOISE_SETTINGS = create(-64, 384, 1, 2);
 
-    public static final ResourceKey<NoiseGeneratorSettings> WASTELAND_NOISE_GEN = ResourceKey.create(Registries.NOISE_SETTINGS, nukaResource("fallout_wasteland_noise"));
+    public static final ResourceKey<NoiseGeneratorSettings> WASTELAND_NOISE_GEN =
+            ResourceKey.create(Registries.NOISE_SETTINGS, nukaResource("fallout_wasteland_noise"));
     public static final ResourceKey<DimensionType> WASTELAND_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, nukaResource("fallout_wasteland_type"));
 
-    public static final ResourceKey<LevelStem> WASTELAND_LEVEL_STEM =  ResourceKey.create(Registries.LEVEL_STEM, ModDimensions.WASTELAND);
+//    public static final ResourceKey<LevelStem> WASTELAND_LEVEL_STEM =  ResourceKey.create(Registries.LEVEL_STEM, ModDimensions.WASTELAND);
 
     public static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> context) {
         context.register(WASTELAND_NOISE_GEN, falloutNoise(context));
@@ -62,49 +63,6 @@ public class WastelandDimensionsSettings {
                 false,
                 false);
     }
-
-
-    public static NoiseGeneratorSettings makeNoiseSettings(BootstapContext<NoiseGeneratorSettings> context) {
-        HolderGetter<DensityFunction> densityFunctions = context.lookup(Registries.DENSITY_FUNCTION);
-
-        NoiseSettings tfNoise = NoiseSettings.create(
-                -32, //TODO Deliberate over this. For now it'll be -32
-                256,
-                2,
-                2
-        );
-
-        return new NoiseGeneratorSettings(
-                tfNoise,
-                Blocks.STONE.defaultBlockState(),
-                skylight ? Blocks.AIR.defaultBlockState() : Blocks.WATER.defaultBlockState(),
-                new NoiseRouter(
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        finalDensity,
-                        finalDensity,
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero(),
-                        DensityFunctions.zero()
-                ),
-                TFSurfaceRules.tfSurface(),
-                List.of(),
-                TFDimensionData.SEALEVEL,
-                false,
-                false,
-                false,
-                false
-        );
-    }
-
 
     private static DimensionType falloutDimensionType() {
         return new DimensionType(

@@ -122,18 +122,7 @@ public class WastelandNoiseRouterData {
         DensityFunction densityFunction2 = DensityFunctions.yClampedGradient(p_224445_ + p_224450_, p_224445_ + p_224451_, 0.0D, 1.0D);
         return DensityFunctions.lerp(densityFunction2, p_224452_, $$9);
     }
-
-
-    private static WorldCreationContext.DimensionsUpdater fixedBiomeConfigurator(Holder<Biome> pBiome) {
-        return (sas, dod) -> {
-            var registry = sas.registryOrThrow(Registries.NOISE_SETTINGS);
-            var holder = registry.getHolderOrThrow(NoiseGeneratorSettings.OVERWORLD);
-            var biomesource = new FixedBiomeSource(pBiome);
-            var chunkgenerator = new NoiseBasedChunkGenerator(biomesource, holder);
-            return dod.replaceOverworldGenerator(sas, chunkgenerator);
-        };
-    }
-
+    
     private static DensityFunction getFunction(HolderGetter<DensityFunction> pDensityFunctions, ResourceKey<DensityFunction> pKey) {
         return new DensityFunctions.HolderHolder(pDensityFunctions.getOrThrow(pKey));
     }

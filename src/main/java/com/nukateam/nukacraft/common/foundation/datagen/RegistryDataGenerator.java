@@ -29,7 +29,7 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
 			.add(Registries.PLACED_FEATURE, ModOrePlacements::bootstrap)
 			.add(Registries.BIOME, ModBiomes::bootstrap)
 			.add(Registries.DIMENSION_TYPE, WastelandDimensionsSettings::bootstrapType)
-			.add(Registries.NOISE_SETTINGS, WastelandDimensionsSettings::bootstrapNoise)
+//			.add(Registries.NOISE_SETTINGS, WastelandDimensionsSettings::bootstrapNoise)
 			;
 
 	public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {

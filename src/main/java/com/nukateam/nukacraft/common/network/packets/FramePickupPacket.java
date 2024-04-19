@@ -36,7 +36,7 @@ public class FramePickupPacket {
         boolean isClientSide = context.get().getDirection().getReceptionSide() == LogicalSide.CLIENT;
         if (!isClientSide) {
             var player = context.get().getSender();
-            var entity = player.level.getEntity(message.entityId);
+            var entity = player.level().getEntity(message.entityId);
 
             if (entity instanceof PowerArmorFrame frame) {
                 player.stopRiding();

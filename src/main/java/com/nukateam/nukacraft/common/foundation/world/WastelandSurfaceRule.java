@@ -36,7 +36,7 @@ public class WastelandSurfaceRule {
 
         SurfaceRules.RuleSource surface = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), TOFU_TERRAIN_ZUNDA), WASTELAND_TERRAIN);
 
-        SurfaceRules.RuleSource overworldLike = SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.POISON_VALLEY.getKey()), SurfaceRules.sequence(
+        SurfaceRules.RuleSource overworldLike = SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.POISON_VALLEY), SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, surface),
                 SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, WASTELAND_TERRAIN)
         ));

@@ -13,36 +13,21 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.util.InclusiveRange;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
-
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent event) {
-		var generator = event.getGenerator();
-		var output = event.getGenerator().getPackOutput();
-		var provider = event.getLookupProvider();
-		var helper = event.getExistingFileHelper();
-
-		//registry-based tags
-		var datapackProvider = new RegistryDataGenerator(output, provider);
-		CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
-		generator.addProvider(event.includeServer(), datapackProvider);
-//		generator.addProvider(event.includeServer(), new BiomeTagGenerator(output, lookupProvider, helper));
-//		generator.addProvider(event.includeServer(), new CustomTagGenerator.DimensionTypeTagGenerator(output, lookupProvider, helper));
-//		generator.addProvider(event.includeServer(), new CustomTagGenerator.WoodPaletteTagGenerator(output, lookupProvider, helper));
-//		generator.addProvider(event.includeServer(), new DamageTypeTagGenerator(output, lookupProvider, helper));
-//		generator.addProvider(event.includeServer(), new StructureTagGenerator(output, lookupProvider, helper));
-
-		//pack.mcmeta
-		generator.addProvider(true, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
-				Component.literal("Resources for NukaCraft"),
-				DetectedVersion.BUILT_IN.getPackVersion(PackType.SERVER_DATA))));
+		DataGenerator generator = event.getGenerator();
+		PackOutput packOutput = generator.getPackOutput();
+		generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, event.getLookupProvider()));
 	}
 }
