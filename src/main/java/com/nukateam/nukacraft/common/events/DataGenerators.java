@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
-	@SubscribeEvent
-	public static void gatherData(GatherDataEvent event) {
-		DataGenerator generator = event.getGenerator();
-		PackOutput packOutput = generator.getPackOutput();
-		generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, event.getLookupProvider()));
-	}
-}
+//@Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+//public class DataGenerators {
+//	@SubscribeEvent
+//	public static void gatherData(GatherDataEvent event) {
+//		var generator = event.getGenerator();
+//		var packOutput = generator.getPackOutput();
+//		generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, event.getLookupProvider()));
+//	}
+//}

@@ -1,43 +1,34 @@
-package com.nukateam.nukacraft.common.foundation.world.features;
+package com.nukateam.nukacraft.common.foundation.world.features.configured;
 
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
-import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
-import static com.nukateam.nukacraft.common.registery.ModBlocks.ACID_DIRT;
+import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class OreFeatures {
     public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ALUMI_PLACE        = FeatureUtils.createKey("ore_alumi_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_LEAD_PLACE         = FeatureUtils.createKey("ore_lead_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SILVER_PLACE       = FeatureUtils.createKey("ore_silver_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BTITAN_PLACE       = FeatureUtils.createKey("ore_btitan_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ULTRACITE_PLACE    = FeatureUtils.createKey("ore_ultracite_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_URAN_PLACE         = FeatureUtils.createKey("ore_uranium_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ALUMINIUM_PLACE    = registerKey("ore_aluminium_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_LEAD_PLACE         = registerKey("ore_lead_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SILVER_PLACE       = registerKey("ore_silver_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLACK_TITAN_PLACE  = registerKey("ore_black_titan_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ULTRACITE_PLACE    = registerKey("ore_ultracite_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_URAN_PLACE         = registerKey("ore_uranium_place");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
-        FeatureUtils.register(pContext, ORE_ALUMI_PLACE, Feature.ORE, new OreConfiguration(
+        FeatureUtils.register(pContext, ORE_ALUMINIUM_PLACE, Feature.ORE, new OreConfiguration(
                 List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES,
                                 ModBlocks.ALUMI_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES,
@@ -51,7 +42,7 @@ public class OreFeatures {
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.SILVER_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSILVER.get().defaultBlockState())), 5));
 
-        FeatureUtils.register(pContext, ORE_BTITAN_PLACE    ,
+        FeatureUtils.register(pContext, ORE_BLACK_TITAN_PLACE,
                 Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 11));
 
@@ -62,5 +53,9 @@ public class OreFeatures {
         FeatureUtils.register(pContext, ORE_URAN_PLACE      , Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_URAN_ORE.get().defaultBlockState())), 8));
+    }
+
+    private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, nukaResource(name));
     }
 }

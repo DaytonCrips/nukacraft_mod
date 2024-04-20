@@ -1,20 +1,17 @@
-package com.nukateam.nukacraft.common.foundation.world.features;
+package com.nukateam.nukacraft.common.foundation.world.features.configured;
 
-import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -23,203 +20,163 @@ import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
-import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 
+import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 import static com.nukateam.nukacraft.common.registery.ModBlocks.ACID_DIRT;
 import static com.nukateam.nukacraft.common.registery.ModBlocks.ASHSTONE;
 
 public class ModFeatures {
-//    private void s(){
-//        RegistryObject<Feature<?>> d = FEATURES.register("big_mushgloom", () -> new BigMushgloomFeature(HugeMushroomFeatureConfiguration.CODEC));
-//    }
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHSTONE = registerKey("disk_ashstone");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHDIRT = registerKey("disk_ashdirt");
 
-    //    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, NukaCraftMod.MOD_ID);
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, NukaCraftMod.MOD_ID);
-
-//    public static final RegistryObject<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> BIG_MUSHGLOOM =
-//            FEATURES.register("big_mushgloom", () -> new BigMushgloomFeature(HugeMushroomFeatureConfiguration.CODEC));
-
-
-    public static final RegistryObject<VineFeature> VINE = FEATURES.register("vine", () -> new VineFeature(VineFeatureConfiguration.CODEC));
-
-
-//    public static final RegistryObject<Feature<?>> DISK_ASHSTONE = FeatureUtils.register("disk_ashstone",
-//            Feature.FOREST_ROCK,
-//            new BlockStateConfiguration(ASHSTONE.get().defaultBlockState()));
-
-
-//    public static final Holder<ConfiguredFeature<DiskConfiguration, ?>> DISK_ASHDIRT =
-//            FeatureUtils.register("disk_ashdirt",
-//                    Feature.DISK,
-//                    new DiskConfiguration(
-//                            new RuleBasedBlockStateProvider(
-//                                    BlockStateProvider.simple(Blocks.MUD),
-//                                    List.of(new RuleBasedBlockStateProvider
-//                                            .Rule(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.AIR),
-//                                            BlockStateProvider.simple(ModBlocks.ASHDIRT.get())))
-//                            ),
-//                            BlockPredicate.matchesBlocks(Blocks.DIRT, Blocks.GRASS_BLOCK),
-//                            UniformInt.of(2, 5),
-//                            4));
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHSTONE = FeatureUtils.createKey("disk_ashstone");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHDIRT = FeatureUtils.createKey("disk_ashdirt");
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_ACID = FeatureUtils.createKey("lake_acid");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_ACID = registerKey("lake_acid");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BOGPAD =
-            FeatureUtils.createKey("patch_bogpad");
+            registerKey("patch_bogpad");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ASTER_PLANT =
-            FeatureUtils.createKey("aster_plant_features");
+            registerKey("aster_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEWDROP_SAPLING_PLANT =
-            FeatureUtils.createKey("dewdrop_sapling_features");
+            registerKey("dewdrop_sapling_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> TOXIC_FERN_PLANT =
-            FeatureUtils.createKey("toxic_fern_features");
+            registerKey("toxic_fern_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BROC_PLANT =
-            FeatureUtils.createKey("broc_plant_features");
+            registerKey("broc_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> THISTLE_PLANT =
-            FeatureUtils.createKey("thistle_plant_features");
+            registerKey("thistle_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_PLANT =
-            FeatureUtils.createKey("dead_plant_features");
+            registerKey("dead_plant_features");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SOOTFLOWER_PLANT =
-            FeatureUtils.createKey("sootflower_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SOOT_FLOWER_PLANT =
+            registerKey("soot_flower_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> HOLLYHOCK_PLANT =
-            FeatureUtils.createKey("hollyhock_plant_features");
+            registerKey("hollyhock_plant_features");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FEVERBLOSSOM_PLANT =
-            FeatureUtils.createKey("feverblossom_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FEVER_BLOSSOM_PLANT =
+            registerKey("fever_blossom_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRACKBERRY_BUSH_PLANT =
-            FeatureUtils.createKey("crackberry_plant_features");
+            registerKey("crackberry_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> MUTTFRUIT_BUSH_PLANT =
-            FeatureUtils.createKey("muttfruit_plant_features");
+            registerKey("muttfruit_plant_features");
 
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BRAINFUNGUS_PLANT =
-            FeatureUtils.createKey("brainfungus_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BRAIN_FUNGUS_PLANT =
+            registerKey("brain_fungus_plant_features");
 
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWFUNGUS_PLANT =
-            FeatureUtils.createKey("glowfungus_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GLOW_FUNGUS_PLANT =
+            registerKey("glow_fungus_plant_features");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GUTFUNGI_PLANT =
-            FeatureUtils.createKey("gutfungus_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GUT_FUNGI_PLANT =
+            registerKey("gut_fungus_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BOMBBERRY_BUSH_PLANT =
-            FeatureUtils.createKey("bomberry_plant_features");
+            registerKey("bomberry_plant_features");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> FUSFRUIT_BUSH_PLANT =
-            FeatureUtils.createKey("fusfruit_plant_features");
+            registerKey("fusfruit_plant_features");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> MEGAMORH_MUSH_PLANT =
-            FeatureUtils.createKey("megamorph_mush_features");
+            registerKey("megamorph_mush_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> QUANTUMLEAF_BUSH_PLANT =
-            FeatureUtils.createKey("quantleaf_plant_features");
+            registerKey("quantleaf_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> NEUTRON_BUSH_PLANT =
-            FeatureUtils.createKey("neutron_plant_features");
+            registerKey("neutron_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> MINDFUNGUS_PLANT =
-            FeatureUtils.createKey("mindfungus_plant_features");
+            registerKey("mindfungus_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_DEAD_DATURAN =
-            FeatureUtils.createKey("deaddaturan_plant_features");
+            registerKey("deaddaturan_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_DEAD_PUNGA =
-            FeatureUtils.createKey("deadpunga_plant_features");
+            registerKey("deadpunga_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_DEAD_CORAL =
-            FeatureUtils.createKey("deadcoral_plant_features");
+            registerKey("deadcoral_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_AGAVE_BUSH =
-            FeatureUtils.createKey("agave_plant_features");
+            registerKey("agave_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_GINS_BUSH =
-            FeatureUtils.createKey("gins_plant_features");
+            registerKey("gins_plant_features");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BLOODLEAF =
-            FeatureUtils.createKey("bloodleaf_plant_features");
+            registerKey("bloodleaf_plant_features");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> RADASTER_PLANT =
-            FeatureUtils.createKey("radaster_plant_features");
+            registerKey("radaster_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> RADROSE_PLANT =
-            FeatureUtils.createKey("radrose_plant_features");
+            registerKey("radrose_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLASTCAP_PLANT =
-            FeatureUtils.createKey("blastcap_plant_features");
+            registerKey("blastcap_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> FIREFUNGI_PLANT =
-            FeatureUtils.createKey("firefungi_plant_features");
+            registerKey("firefungi_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> INVERT_PLANT =
-            FeatureUtils.createKey("invert_plant_features");
+            registerKey("invert_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BOOMBLOSSOM_PLANT =
-            FeatureUtils.createKey("boomblossom_plant_features");
+            registerKey("boomblossom_plant_features");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_XANDER =
-            FeatureUtils.createKey("patch_xander");
+            registerKey("patch_xander");
 
 //    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_RUSTY_BUSH =
-//            FeatureUtils.createKey("patch_rusty_bush",
+//            registerKey("patch_rusty_bush",
 //                    Feature.RANDOM_PATCH,
 //                    vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 2));
 
-//    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BBLIGHT = FeatureUtils.createKey("patch_bblight",
+//    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BBLIGHT = registerKey("patch_bblight",
 //            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
 
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_GLOWGRASS =
-            FeatureUtils.createKey("patch_glowgrass");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_GLOW_GRASS =
+            registerKey("patch_glow_grass");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRANGRASS =
-            FeatureUtils.createKey("patch_crangrass");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRANBERRY_GRASS =
+            registerKey("patch_cranberry_grass");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SLIT_BEANS =
+            registerKey("patch_slit_beans");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SITTBEANS =
-            FeatureUtils.createKey("patch_sittbeans");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ASH_GRASS =
+            registerKey("patch_ash_grass");
 
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ASHGRASS =
-            FeatureUtils.createKey("patch_ashgrass");
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_POISONGRASS =
-            FeatureUtils.createKey("patch_poisongrass");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_POISON_GRASS =
+            registerKey("patch_poison_grass");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HEAP_GRASS =
-            FeatureUtils.createKey("patch_heapgrass");
+            registerKey("patch_heap_grass");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_RUSTY_BUSH =
-            FeatureUtils.createKey("patch_rustybush");
+            registerKey("patch_rustybush");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> STARBERRY_PLANT =
-            FeatureUtils.createKey("starberry_plant_features");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_BERRY_PLANT =
+            registerKey("starberry_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRANBERRY_PLANT =
-            FeatureUtils.createKey("cranberry_plant_features");
+            registerKey("cranberry_plant_features");
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
@@ -272,7 +229,7 @@ public class ModFeatures {
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.DEAD_PLANT.get().defaultBlockState(), 1)), 50));
 
-        FeatureUtils.register(pContext, SOOTFLOWER_PLANT,
+        FeatureUtils.register(pContext, SOOT_FLOWER_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.SOOTFLOWER.get().defaultBlockState(), 1)), 20));
 
@@ -280,7 +237,7 @@ public class ModFeatures {
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.HOLLYHOCK.get().defaultBlockState(), 1)), 20));
 
-        FeatureUtils.register(pContext, FEVERBLOSSOM_PLANT,
+        FeatureUtils.register(pContext, FEVER_BLOSSOM_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.FEVERBLOSSOM.get().defaultBlockState(), 1)), 20));
 
@@ -293,16 +250,16 @@ public class ModFeatures {
                         .add(ModBlocks.MUTTFRUIT_BUSH.get().defaultBlockState(), 1)), 10));
 
 
-        FeatureUtils.register(pContext, BRAINFUNGUS_PLANT,
+        FeatureUtils.register(pContext, BRAIN_FUNGUS_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.BRAINFUNGUS.get().defaultBlockState(), 1)), 20));
 
 
-        FeatureUtils.register(pContext, GLOWFUNGUS_PLANT,
+        FeatureUtils.register(pContext, GLOW_FUNGUS_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.GLOWFUNGUS.get().defaultBlockState(), 3)), 10));
 
-        FeatureUtils.register(pContext, GUTFUNGI_PLANT,
+        FeatureUtils.register(pContext, GUT_FUNGI_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.GUTFUNGI.get().defaultBlockState(), 1)), 10));
 
@@ -398,25 +355,25 @@ public class ModFeatures {
 //            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
 
 
-        FeatureUtils.register(pContext, PATCH_GLOWGRASS,
+        FeatureUtils.register(pContext, PATCH_GLOW_GRASS,
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.GLOW_GRASS.get()), 36));
 
-        FeatureUtils.register(pContext, PATCH_CRANGRASS,
+        FeatureUtils.register(pContext, PATCH_CRANBERRY_GRASS,
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.CRANBERRY_GRASS.get()), 19));
 
 
-        FeatureUtils.register(pContext, PATCH_SITTBEANS,
+        FeatureUtils.register(pContext, PATCH_SLIT_BEANS,
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.SITTBEAN_BUSH.get()), 1));
 
 
-        FeatureUtils.register(pContext, PATCH_ASHGRASS,
+        FeatureUtils.register(pContext, PATCH_ASH_GRASS,
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.ASHGRASS.get()), 32));
 
-        FeatureUtils.register(pContext, PATCH_POISONGRASS,
+        FeatureUtils.register(pContext, PATCH_POISON_GRASS,
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.POISONGRASS.get()), 66));
 
@@ -429,7 +386,7 @@ public class ModFeatures {
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 12));
 
 
-        FeatureUtils.register(pContext, STARBERRY_PLANT,
+        FeatureUtils.register(pContext, STARLIGHT_BERRY_PLANT,
                 Feature.FLOWER, vegetationPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                         .add(ModBlocks.STARBERRY.get().defaultBlockState(), 2)), 31));
 
@@ -442,5 +399,9 @@ public class ModFeatures {
     private static RandomPatchConfiguration vegetationPatch(BlockStateProvider p_195203_, int p_195204_) {
         return FeatureUtils.simpleRandomPatchConfiguration(p_195204_, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                 new SimpleBlockConfiguration(p_195203_)));
+    }
+
+    private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, nukaResource(name));
     }
 }

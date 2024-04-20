@@ -1,8 +1,9 @@
-package com.nukateam.nukacraft.common.foundation.world;
+package com.nukateam.nukacraft.common.foundation.world.features.placed;
 
-import com.nukateam.nukacraft.common.foundation.world.features.ModFeatures;
+import com.nukateam.nukacraft.common.foundation.world.features.configured.ModFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -11,49 +12,55 @@ import java.util.List;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
-public class WastelandVegetation {
+public class ModVegetationPlacements {
     public static final ResourceKey<PlacedFeature> PATCH_DEWDROP_SAPLING_PLACE = registerKey("patch_dewdrop_sapling_place");
-    public static final ResourceKey<PlacedFeature> PATCH_BOGPAD = registerKey("patch_bogpad");
+    public static final ResourceKey<PlacedFeature> PATCH_BOGPAD_PLACE = registerKey("patch_bogpad_place");
     public static final ResourceKey<PlacedFeature> PATCH_TOXIC_FERN_PLACE = registerKey("patch_toxic_fern_place");
     public static final ResourceKey<PlacedFeature> PATCH_FUSION_FRUIT_PLACE = registerKey("patch_fusion_fruit_place");
-    public static final ResourceKey<PlacedFeature> PATCH_MEGAHATTER_PLACE = registerKey("patch_megahatter_place");
+    public static final ResourceKey<PlacedFeature> PATCH_MEGA_HATTER_PLACE = registerKey("patch_mega_hatter_place");
     public static final ResourceKey<PlacedFeature> PATCH_ASTER_PLANT_PLACE = registerKey("patch_aster_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_BROC_PLANT_PLACE = registerKey("patch_broc_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_THISTLE_PLANT_PLACE = registerKey("patch_thistle_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_DEAD_PLANT_PLACE = registerKey("patch_dead_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_SOOTFLOWER_PLANT_PLACE = registerKey("patch_sootflower_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_SOOT_FLOWER_PLANT_PLACE = registerKey("patch_soot_flower_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_HOLLYHOCK_PLANT_PLACE = registerKey("patch_hollyhock_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_FEVERBLOSSOM_PLANT_PLACE = registerKey("patch_feverblossom_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_FEVER_BLOSSOM_PLANT_PLACE = registerKey("patch_fever_blossom_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_CRACKBERRY_BUSH_PLACE = registerKey("patch_crackberry_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_MUTTFRUIT_BUSH_PLACE = registerKey("patch_muttfruit_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_BRAINFUNGUS_PLACE = registerKey("patch_brainfungus_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_GLOWFUNGUS_PLACE = registerKey("patch_glowfungus_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_GUTFUNGI_PLACE = registerKey("patch_gutfungus_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_BOMBBERRY_BUSH_PLACE = registerKey("patch_bomberry_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_QUANTUMLEAF_BUSH_PLACE = registerKey("patch_quantleaf_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_BRAIN_FUNGUS_PLACE = registerKey("patch_brain_fungus_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_GLOW_FUNGUS_PLACE = registerKey("patch_glow_fungus_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_GUT_FUNGI_PLACE = registerKey("patch_gut_fungus_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_BOMB_BERRY_BUSH_PLACE = registerKey("patch_bomb_berry_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_QUANTUM_LEAF_BUSH_PLACE = registerKey("patch_quantum_leaf_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_NEUTRON_BUSH_PLACE = registerKey("patch_neutron_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_MINDFUNGUS_PLACE = registerKey("patch_mindfungus_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_MIND_FUNGUS_PLACE = registerKey("patch_mind_fungus_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_RADASTER_PLANT_PLACE = registerKey("patch_radaster_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_RADROSE_PLANT_PLACE = registerKey("patch_radrose_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_BLASTCAP_PLACE = registerKey("patch_blastcap_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_FIREFUNGI_PLACE = registerKey("patch_firefungi_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_BLAST_CAP_PLACE = registerKey("patch_blast_cap_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_FIRE_FUNGI_PLACE = registerKey("patch_fire_fungi_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_INVERT_PLANT_PLACE = registerKey("patch_invert_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_BOOMBLOSSOM_PLANT_PLACE = registerKey("patch_boomblossom_plant_place");
-    public static final ResourceKey<PlacedFeature> PATCH_CRANBERRY = registerKey("patch_cranberry");
-    public static final ResourceKey<PlacedFeature> PATCH_STARBERRY = registerKey("patch_starberry");
+    public static final ResourceKey<PlacedFeature> PATCH_BOOM_BLOSSOM_PLANT_PLACE = registerKey("patch_boom_blossom_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_CRANBERRY_PLACE = registerKey("patch_cranberry_place");
+    public static final ResourceKey<PlacedFeature> PATCH_STARLIGHT_BERRY = registerKey("patch_starlight_berry");
     //
     public static final ResourceKey<PlacedFeature> PATCH_GINS = registerKey("patch_gins_common");
-    public static final ResourceKey<PlacedFeature> PATCH_DATURANS = registerKey("patch_daturan_common");
+    public static final ResourceKey<PlacedFeature> PATCH_DATURANA = registerKey("patch_daturana_common");
     public static final ResourceKey<PlacedFeature> PATCH_PUNGA = registerKey("patch_punga_common");
-    public static final ResourceKey<PlacedFeature> PATCH_CORALL = registerKey("patch_coral_common");
+    public static final ResourceKey<PlacedFeature> PATCH_CORAL = registerKey("patch_coral_common");
     //
     public static final ResourceKey<PlacedFeature> PATCH_AGAVE_RARE = registerKey("patch_agave_common");
-    public static final ResourceKey<PlacedFeature> PATCH_SITTBEAN_BUSH = registerKey("patch_sittbean_bush");
-    public static final ResourceKey<PlacedFeature> PATCH_BLOODLEAF = registerKey("patch_bloodleaf_common");
+    public static final ResourceKey<PlacedFeature> PATCH_SLIT_BEAN_BUSH = registerKey("patch_slit_bean_bush");
+    public static final ResourceKey<PlacedFeature> PATCH_BLOOD_LEAF = registerKey("patch_blood_leaf_common");
     //
-//
     public static final ResourceKey<PlacedFeature> PATCH_ZANDER = registerKey("patch_zander");
     public static final ResourceKey<PlacedFeature> PATCH_RUSTY_BUSH = registerKey("patch_rusty_bush");
+    public static final ResourceKey<PlacedFeature> ASH_GRASS = registerKey("ash_grass");
+    public static final ResourceKey<PlacedFeature> POISON_GRASS = registerKey("poison_grass");
+    public static final ResourceKey<PlacedFeature> CRANBERRY_GRASS = registerKey("cranberry_grass");
+    public static final ResourceKey<PlacedFeature> GRASS_ASH = registerKey("grass_ash");
+    public static final ResourceKey<PlacedFeature> GLOW_GRASS = registerKey("glow_grass");
+    public static final ResourceKey<PlacedFeature> HEAP_GRASS = registerKey("heap_grass");
+    public static final ResourceKey<PlacedFeature> RUSTY_BUSH = registerKey("rusty_bush_patch");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -66,7 +73,7 @@ public class WastelandVegetation {
                         BiomeFilter.biome())
         ));
 
-        context.register(PATCH_BOGPAD, new PlacedFeature(features.getOrThrow(
+        context.register(PATCH_BOGPAD_PLACE, new PlacedFeature(features.getOrThrow(
                         ModFeatures.PATCH_BOGPAD), worldSurfaceSquaredWithCount(5)));
 
         context.register(PATCH_TOXIC_FERN_PLACE,
@@ -85,7 +92,7 @@ public class WastelandVegetation {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_MEGAHATTER_PLACE,
+        context.register(PATCH_MEGA_HATTER_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.MEGAMORH_MUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(3),
@@ -121,9 +128,9 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_SOOTFLOWER_PLANT_PLACE,
+        context.register(PATCH_SOOT_FLOWER_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.SOOTFLOWER_PLANT), List.of(
+                        ModFeatures.SOOT_FLOWER_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -135,9 +142,9 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_FEVERBLOSSOM_PLANT_PLACE,
+        context.register(PATCH_FEVER_BLOSSOM_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.FEVERBLOSSOM_PLANT), List.of(
+                        ModFeatures.FEVER_BLOSSOM_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(26),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -156,36 +163,36 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_BRAINFUNGUS_PLACE,
+        context.register(PATCH_BRAIN_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BRAINFUNGUS_PLANT), List.of(
+                        ModFeatures.BRAIN_FUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(22),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_GLOWFUNGUS_PLACE,
+        context.register(PATCH_GLOW_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.GLOWFUNGUS_PLANT), List.of(
+                        ModFeatures.GLOW_FUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_GUTFUNGI_PLACE,
+        context.register(PATCH_GUT_FUNGI_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.GUTFUNGI_PLANT), List.of(
+                        ModFeatures.GUT_FUNGI_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(18),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_BOMBBERRY_BUSH_PLACE,
+        context.register(PATCH_BOMB_BERRY_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.BOMBBERRY_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(16),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_QUANTUMLEAF_BUSH_PLACE,
+        context.register(PATCH_QUANTUM_LEAF_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.QUANTUMLEAF_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
@@ -200,7 +207,7 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_MINDFUNGUS_PLACE,
+        context.register(PATCH_MIND_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.MINDFUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(17),
@@ -223,7 +230,7 @@ public class WastelandVegetation {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_BLASTCAP_PLACE,
+        context.register(PATCH_BLAST_CAP_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.BLASTCAP_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(23),
@@ -231,7 +238,7 @@ public class WastelandVegetation {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_FIREFUNGI_PLACE,
+        context.register(PATCH_FIRE_FUNGI_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.FIREFUNGI_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
@@ -247,7 +254,7 @@ public class WastelandVegetation {
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_BOOMBLOSSOM_PLANT_PLACE,
+        context.register(PATCH_BOOM_BLOSSOM_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.BOOMBLOSSOM_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
@@ -256,7 +263,7 @@ public class WastelandVegetation {
                         BiomeFilter.biome())));
 
 
-        context.register(PATCH_CRANBERRY,
+        context.register(PATCH_CRANBERRY_PLACE,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.CRANBERRY_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(22),
@@ -265,9 +272,9 @@ public class WastelandVegetation {
                         BiomeFilter.biome())));
 
 
-        context.register(PATCH_STARBERRY,
+        context.register(PATCH_STARLIGHT_BERRY,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.STARBERRY_PLANT), List.of(
+                        ModFeatures.STARLIGHT_BERRY_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -280,7 +287,7 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_DATURANS,
+        context.register(PATCH_DATURANA,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.PATCH_DEAD_DATURAN), List.of(
                         RarityFilter.onAverageOnceEvery(16),
@@ -294,7 +301,7 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
-        context.register(PATCH_CORALL,
+        context.register(PATCH_CORAL,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.PATCH_DEAD_CORAL), List.of(
                         RarityFilter.onAverageOnceEvery(6),
@@ -311,15 +318,15 @@ public class WastelandVegetation {
                         BiomeFilter.biome())));
 
 
-        context.register(PATCH_SITTBEAN_BUSH,
+        context.register(PATCH_SLIT_BEAN_BUSH,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_SITTBEANS), List.of(
+                        ModFeatures.PATCH_SLIT_BEANS), List.of(
                         RarityFilter.onAverageOnceEvery(17),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(PATCH_BLOODLEAF,
+        context.register(PATCH_BLOOD_LEAF,
                 new PlacedFeature(features.getOrThrow(
                         ModFeatures.PATCH_BLOODLEAF), List.of(
                         RarityFilter.onAverageOnceEvery(9),
@@ -343,6 +350,48 @@ public class WastelandVegetation {
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
+
+        context.register(HEAP_GRASS, new PlacedFeature(features.getOrThrow( ModFeatures.PATCH_HEAP_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(RUSTY_BUSH, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_RUSTY_BUSH),
+                        List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(GLOW_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_GLOW_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.8D, 3, 3),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(GRASS_ASH, new PlacedFeature(features.getOrThrow(VegetationFeatures.PATCH_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 4),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(CRANBERRY_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_CRANBERRY_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(ASH_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_ASH_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.3D, 2, 1),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(POISON_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_POISON_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
     }
 
     public static List<PlacementModifier> worldSurfaceSquaredWithCount(int pCount) {

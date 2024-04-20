@@ -30,13 +30,14 @@ public class WastelandDimensionsSettings {
     public static final ResourceLocation WASTELAND = nukaResource("fallout_wasteland");
 
     public static final ResourceKey<Level> WASTELAND_DIMENSION = ResourceKey.create(Registries.DIMENSION, WASTELAND);
+    public static final ResourceKey<DimensionType> WASTELAND_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, WASTELAND);
+
 
     static final NoiseSettings WASTELAND_NOISE_SETTINGS = create(-64, 384, 1, 2);
 
     public static final ResourceKey<NoiseGeneratorSettings> WASTELAND_NOISE_GEN =
             ResourceKey.create(Registries.NOISE_SETTINGS, nukaResource("fallout_wasteland_noise"));
 
-    public static final ResourceKey<DimensionType> WASTELAND_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, nukaResource("fallout_wasteland"));
 
 //    public static final ResourceKey<LevelStem> WASTELAND_LEVEL_STEM =  ResourceKey.create(Registries.LEVEL_STEM, ModDimensions.WASTELAND);
 

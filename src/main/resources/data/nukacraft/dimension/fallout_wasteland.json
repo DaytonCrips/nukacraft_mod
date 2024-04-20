@@ -1,5 +1,5 @@
 {
-  "type": "nukacraft:fallout_wasteland_type",
+  "type": "nukacraft:fallout_wasteland",
   "generator": {
     "type": "minecraft:noise",
     "settings": "minecraft:overworld",
@@ -7,45 +7,9 @@
       "type": "minecraft:multi_noise",
       "biomes": [
         {
-          "biome": "nukacraft:poison_valley",
+          "biome": "minecraft:jungle",
           "parameters": {
-            "temperature": 0.2,
-            "humidity": 0,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
-            "offset": 0
-          }
-        },
-        {
-          "biome": "nukacraft:ash_heap",
-          "parameters": {
-            "temperature": 0.4,
-            "humidity": 0,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
-            "offset": 0
-          }
-        },
-        {
-          "biome": "nukacraft:cranberry_bog",
-          "parameters": {
-            "temperature": 0.1,
-            "humidity": -0.3,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
-            "offset": 0
-          }
-        },
-        {
-          "biome": "nukacraft:glow_sea",
-          "parameters": {
-            "temperature": 0,
+            "temperature": -0.5,
             "humidity": -0.5,
             "continentalness": 0,
             "erosion": 0,

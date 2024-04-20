@@ -8,6 +8,7 @@ import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
 import com.nukateam.ntgl.common.foundation.init.Projectiles;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
+import com.nukateam.nukacraft.common.foundation.datagen.RegistryDataGenerator;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
@@ -20,9 +21,13 @@ import com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
 import mod.azure.azurelib.AzureLib;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
@@ -87,6 +92,7 @@ public class NukaCraftMod {
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
+        MOD_EVENT_BUS.addListener(this::generateData);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             MOD_EVENT_BUS.addListener(KeyBindings::register);
@@ -98,11 +104,11 @@ public class NukaCraftMod {
         curiosLoaded = ModList.get().isLoaded("curios");
     }
 
-
-    public static ResourceLocation resourceLocation(String r) {
-        return new ResourceLocation(MOD_ID, r);
+    private void generateData(GatherDataEvent event) {
+        var generator = event.getGenerator();
+        var packOutput = generator.getPackOutput();
+        generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, event.getLookupProvider()));
     }
-
 
     public static boolean isCuriosLoaded() {
         return curiosLoaded;
