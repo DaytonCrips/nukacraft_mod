@@ -1,38 +1,23 @@
 package com.nukateam.nukacraft.common.foundation.world.features.configured;
 
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.LakeFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 
-import java.util.List;
-
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
-import static com.nukateam.nukacraft.common.registery.ModBlocks.ACID_DIRT;
-import static com.nukateam.nukacraft.common.registery.ModBlocks.ASHSTONE;
 
-public class ModFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHSTONE = registerKey("disk_ashstone");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DISK_ASHDIRT = registerKey("disk_ashdirt");
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_ACID = registerKey("lake_acid");
-
+public class ModVegetationFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BOGPAD =
             registerKey("patch_bogpad");
 
@@ -180,24 +165,6 @@ public class ModFeatures {
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
-        FeatureUtils.register(pContext, DISK_ASHSTONE, Feature.FOREST_ROCK, new BlockStateConfiguration(ASHSTONE.get().defaultBlockState()));
-        FeatureUtils.register(pContext, DISK_ASHDIRT, Feature.DISK, new DiskConfiguration(
-                new RuleBasedBlockStateProvider(
-                        BlockStateProvider.simple(Blocks.MUD),
-                        List.of(new RuleBasedBlockStateProvider
-                                .Rule(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.AIR),
-                                BlockStateProvider.simple(ModBlocks.ASHDIRT.get())))
-                ),
-                BlockPredicate.matchesBlocks(Blocks.DIRT, Blocks.GRASS_BLOCK),
-                UniformInt.of(2, 5),
-                4));
-
-
-        FeatureUtils.register(pContext, LAKE_ACID, Feature.LAKE,
-                new LakeFeature.Configuration(BlockStateProvider.simple(ModFluids.ACID_FLUID.get().defaultFluidState().createLegacyBlock()),
-                        BlockStateProvider.simple(ACID_DIRT.get().defaultBlockState())));
-
-
         FeatureUtils.register(pContext, PATCH_BOGPAD,
                 Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(12, 8, 5,

@@ -20,12 +20,12 @@ public class OreFeatures {
     public static final RuleTest STONE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
     public static final RuleTest DEEPSLATE_ORE_REPLACEABLES = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ALUMINIUM_PLACE    = registerKey("ore_aluminium_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_LEAD_PLACE         = registerKey("ore_lead_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SILVER_PLACE       = registerKey("ore_silver_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLACK_TITAN_PLACE  = registerKey("ore_black_titan_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ULTRACITE_PLACE    = registerKey("ore_ultracite_place");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_URAN_PLACE         = registerKey("ore_uranium_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ALUMINIUM_PLACE = registerKey("ore_aluminium_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_LEAD_PLACE = registerKey("ore_lead_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_SILVER_PLACE = registerKey("ore_silver_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLACK_TITAN_PLACE = registerKey("ore_black_titan_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_ULTRACITE_PLACE = registerKey("ore_ultracite_place");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_URAN_PLACE = registerKey("ore_uranium_place");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> pContext) {
         FeatureUtils.register(pContext, ORE_ALUMINIUM_PLACE, Feature.ORE, new OreConfiguration(
@@ -34,11 +34,11 @@ public class OreFeatures {
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES,
                                 ModBlocks.DEEPALUMI.get().defaultBlockState())), 4));
 
-        FeatureUtils.register(pContext, ORE_LEAD_PLACE      , Feature.ORE,
+        FeatureUtils.register(pContext, ORE_LEAD_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.LEAD_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_LEAD_ORE.get().defaultBlockState())), 7));
 
-        FeatureUtils.register(pContext, ORE_SILVER_PLACE    , Feature.ORE,
+        FeatureUtils.register(pContext, ORE_SILVER_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.SILVER_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSILVER.get().defaultBlockState())), 5));
 
@@ -46,11 +46,11 @@ public class OreFeatures {
                 Feature.ORE, new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.BTITAN_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPBTITAN.get().defaultBlockState())), 11));
 
-        FeatureUtils.register(pContext, ORE_ULTRACITE_PLACE , Feature.ORE,
+        FeatureUtils.register(pContext, ORE_ULTRACITE_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ULTRACITE_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPULTRACITE.get().defaultBlockState())), 9));
 
-        FeatureUtils.register(pContext, ORE_URAN_PLACE      , Feature.ORE,
+        FeatureUtils.register(pContext, ORE_URAN_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()),
                         OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_URAN_ORE.get().defaultBlockState())), 8));
     }

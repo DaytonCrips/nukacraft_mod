@@ -17,20 +17,20 @@ public class ContainerRegistry {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister
             .create(ForgeRegistries.MENU_TYPES, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<MenuType<PowerArmorMenu>> POWER_CHASSIS_MENU
+    public static void register(IEventBus eventBus) {
+        CONTAINERS.register(eventBus);
+    }    public static final RegistryObject<MenuType<PowerArmorMenu>> POWER_CHASSIS_MENU
             = registerMenuType("power_armor_menu", PowerArmorMenu::new);
 
-    public static final RegistryObject<MenuType<PowerArmorStationMenu>> ARMOR_STATION_MENU
+    private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
+        return CONTAINERS.register(name, () -> IForgeMenuType.create(factory));
+    }    public static final RegistryObject<MenuType<PowerArmorStationMenu>> ARMOR_STATION_MENU
             = registerMenuType("power_armor_station_menu", PowerArmorStationMenu::new);
 
     public static final RegistryObject<MenuType<PipBoyMenu>> PIPBOY
             = registerMenuType("pipboy", PipBoyMenu::new);
 
-    public static void register(IEventBus eventBus) {
-        CONTAINERS.register(eventBus);
-    }
 
-    private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
-        return CONTAINERS.register(name, () -> IForgeMenuType.create(factory));
-    }
+
+
 }

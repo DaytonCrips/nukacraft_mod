@@ -25,10 +25,18 @@ import static com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes.*;
 public class ModFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<FlowingFluid> ACID_FLUID
+    @Nullable
+    public static Pair<Block, Block> getLavaInteraction(FluidState fluidState) {
+        var fluid = fluidState.getType();
+        if (fluid.isSame(ACID_FLUID.get()))
+            return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
+        return null;
+    }    public static final RegistryObject<FlowingFluid> ACID_FLUID
             = FLUIDS.register("acid_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.ACID_PROPERTIES));
 
-    public static final RegistryObject<FlowingFluid> ACID_FLOWING
+    public static void register(IEventBus eventBus) {
+        FLUIDS.register(eventBus);
+    }    public static final RegistryObject<FlowingFluid> ACID_FLOWING
             = FLUIDS.register("acid_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.ACID_PROPERTIES));
 
     public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
@@ -69,16 +77,8 @@ public class ModFluids {
                     .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
 
 
-    @Nullable
-    public static Pair<Block, Block> getLavaInteraction(FluidState fluidState) {
-        var fluid = fluidState.getType();
-        if (fluid.isSame(ACID_FLUID.get()))
-            return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
-        return null;
-    }
 
 
-    public static void register(IEventBus eventBus) {
-        FLUIDS.register(eventBus);
-    }
+
+
 }

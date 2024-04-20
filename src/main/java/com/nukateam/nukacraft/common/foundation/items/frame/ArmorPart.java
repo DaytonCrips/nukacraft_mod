@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.items.frame;
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
 import com.jetug.chassis_core.common.foundation.item.ChassisArmor;
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;

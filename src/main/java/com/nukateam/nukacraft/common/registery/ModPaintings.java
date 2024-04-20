@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

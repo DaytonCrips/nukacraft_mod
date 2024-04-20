@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
@@ -18,9 +17,9 @@ import static com.nukateam.nukacraft.common.data.constants.PipboyPages.PAGE_BUFF
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
+    public static final ResourceLocation RAD_MARKER = nukaResource("textures/screens/rad_marker.png");
     private static final ResourceLocation PIPBOY_FRAME = nukaResource("textures/screens/pipboy_template.png");
     private static final ResourceLocation PIPBOY_SCREEN = nukaResource("textures/screens/pipboy_screen.png");
-    public static final ResourceLocation RAD_MARKER = nukaResource("textures/screens/rad_marker.png");
     public static String[] page_buffer = PAGE_BUFFER;
     public static Integer[] cords = new Integer[]{0, 0};
     private static boolean menu = true;
@@ -29,6 +28,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     private static int page_count, current_page, current_archive, archive_pages, current_archive_page;
     private static ResourceLocation pipboy;
     private final Minecraft minecraft = Minecraft.getInstance();
+
     public PipBoyScreen(PipBoyMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.imageWidth = 0;

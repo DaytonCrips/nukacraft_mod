@@ -2,7 +2,6 @@ package com.nukateam.nukacraft.common.foundation.items.сonsumables;
 
 import com.nukateam.nukacraft.common.data.utils.RadiationUtils;
 import com.nukateam.nukacraft.common.registery.items.ModFood;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

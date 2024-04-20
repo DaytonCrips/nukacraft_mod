@@ -1,11 +1,8 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.client.helpers.ModTiers;
-import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
 import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.Foods;
@@ -16,8 +13,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_MATERIAL;
-
 public class ModFood {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
@@ -26,7 +21,7 @@ public class ModFood {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BBLIGHT = ITEMS.register("bblight",
             () -> new Item(new Item.Properties()));
-    
+
     public static final RegistryObject<Item> NUKACOLA = ITEMS.register("nukacola",
             () -> new NukaColaItem(0.08f, 10, new Item.Properties().food(ModFoodTypes.NUKACOLA)));
     public static final RegistryObject<Item> NUKAFRUTTI = ITEMS.register("nukafrutti",

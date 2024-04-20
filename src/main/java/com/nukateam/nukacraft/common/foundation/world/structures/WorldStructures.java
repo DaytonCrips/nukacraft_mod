@@ -2,7 +2,6 @@ package com.nukateam.nukacraft.common.foundation.world.structures;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
-
 
 import java.util.Optional;
 
@@ -38,13 +36,12 @@ public class WorldStructures extends Structure {
     private final int maxDistanceFromCenter;
 
     public WorldStructures(Structure.StructureSettings config,
-                         Holder<StructureTemplatePool> startPool,
-                         Optional<ResourceLocation> startJigsawName,
-                         int size,
-                         HeightProvider startHeight,
-                         Optional<Heightmap.Types> projectStartToHeightmap,
-                         int maxDistanceFromCenter)
-    {
+                           Holder<StructureTemplatePool> startPool,
+                           Optional<ResourceLocation> startJigsawName,
+                           int size,
+                           HeightProvider startHeight,
+                           Optional<Heightmap.Types> projectStartToHeightmap,
+                           int maxDistanceFromCenter) {
         super(config);
         this.startPool = startPool;
         this.startJigsawName = startJigsawName;

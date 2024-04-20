@@ -8,7 +8,6 @@ import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
@@ -61,7 +60,8 @@ public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvide
 
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    }
 
     @Override
     public void createRenderer(Consumer<Object> consumer) {

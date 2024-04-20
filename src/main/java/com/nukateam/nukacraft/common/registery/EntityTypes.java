@@ -81,6 +81,16 @@ public class EntityTypes {
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
         NukaCraftMod.LOGGER.debug("ENTITY REGISTERED");
         return ENTITY_TYPES.register(entityName, () -> builder.build(new ResourceLocation(NukaCraftMod.MOD_ID, entityName).toString()));
+    }
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
+        return ENTITY_TYPES.register(id, () -> Builder.of(function::apply, MobCategory.MISC)
+                .sized(0.25F, 0.25F)
+                .setTrackingRange(100)
+                .setUpdateInterval(1)
+                //.noSummon()
+                .fireImmune()
+                .setShouldReceiveVelocityUpdates(true).build(id));
     }    public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION
             = ENTITY_TYPES.register("nuclear_explosion", () -> (EntityType) EntityType.Builder
             .of(NuclearExplosionEntity::new, MobCategory.MISC)
@@ -92,19 +102,11 @@ public class EntityTypes {
             .clientTrackingRange(20)
             .build("nuclear_explosion"));
 
-    private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
-        return ENTITY_TYPES.register(id, () -> Builder.of(function::apply, MobCategory.MISC)
-                .sized(0.25F, 0.25F)
-                .setTrackingRange(100)
-                .setUpdateInterval(1)
-                //.noSummon()
-                .fireImmune()
-                .setShouldReceiveVelocityUpdates(true).build(id));
-    }
-
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
+
+
 
 
 }

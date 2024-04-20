@@ -1,0 +1,75 @@
+{
+  "carvers": {},
+  "downfall": 0.9,
+  "effects": {
+    "fog_color": -10990522,
+    "foliage_color": -6797754,
+    "grass_color": -7714230,
+    "sky_color": -3024201,
+    "water_color": -11386816,
+    "water_fog_color": -11590620
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower"
+    ],
+    [],
+    [],
+    [
+      "minecraft:disk_clay"
+    ],
+    [],
+    [],
+    [
+      "nukacraft:trees_dewdrop",
+      "nukacraft:patch_toxic_fern_place",
+      "nukacraft:patch_dewdrop_sapling_place",
+      "nukacraft:patch_dead_plant_place",
+      "nukacraft:patch_gut_fungus_plant_place",
+      "nukacraft:patch_cranberry_place",
+      "nukacraft:patch_bogpad_place",
+      "nukacraft:cranberry_grass",
+      "minecraft:seagrass_swamp",
+      "minecraft:patch_sugar_cane_swamp",
+      "minecraft:patch_grass_normal",
+      "minecraft:patch_dead_bush",
+      "minecraft:patch_waterlily"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "nukacraft:radroach",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "nukacraft:bloatfly",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "nukacraft:brahmin",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

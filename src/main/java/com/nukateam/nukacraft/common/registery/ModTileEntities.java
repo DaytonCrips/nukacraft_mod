@@ -20,7 +20,9 @@ public class ModTileEntities {
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String id, BlockEntityType.BlockEntitySupplier<T> factoryIn,
                                                                                        Supplier<Block[]> validBlocksSupplier) {
         return REGISTER.register(id, () -> BlockEntityType.Builder.of(factoryIn, validBlocksSupplier.get()).build(null));
-    }    public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR_ENTITY = register("geardoor_tile_entity",
+    }
+
+    public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR_ENTITY = register("geardoor_tile_entity",
             GearDoorEntity::new, () -> new Block[]{ModBlocks.GEARDOOR.get()});
 
     public static final RegistryObject<BlockEntityType<OpenGearEntity>> OPENGEAR_ENTITY = register("opengear_tile_entity",

@@ -4,8 +4,10 @@ import com.nukateam.nukacraft.common.foundation.world.features.placed.BiomePlace
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModOrePlacements;
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModTreePlacements;
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModVegetationPlacements;
+import net.minecraft.data.worldgen.placement.AquaticPlacements;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
@@ -39,6 +41,7 @@ public class ModDefaultFeatures {
     public static void alumiOre(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COPPER);
     }
+
     public static void ultraciteOre(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_ULTRACITE);
     }
@@ -143,11 +146,16 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_DEAD_PLANT_PLACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_GUT_FUNGI_PLACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_CRANBERRY_PLACE);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.data.worldgen.placement.VegetationPlacements.PATCH_SUGAR_CANE_SWAMP);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.data.worldgen.placement.VegetationPlacements.PATCH_GRASS_NORMAL);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.data.worldgen.placement.VegetationPlacements.PATCH_DEAD_BUSH);
-        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, net.minecraft.data.worldgen.placement.VegetationPlacements.PATCH_WATERLILY);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_BOGPAD_PLACE);
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.CRANBERRY_GRASS);
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_SWAMP);
+
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_SUGAR_CANE_SWAMP);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_GRASS_NORMAL);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_DEAD_BUSH);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_WATERLILY);
     }
 
     public static void addGlowSeaPlants(BiomeGenerationSettings.Builder builder) {

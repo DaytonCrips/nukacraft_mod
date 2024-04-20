@@ -11,8 +11,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.lang.reflect.Field;
-
 public class ModItemTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NukaCraftMod.MOD_ID);
@@ -22,28 +20,28 @@ public class ModItemTabs {
                     .title(Component.translatable("itemGroup.nuka_material"))
                     .displayItems((params, output) -> registerItems(output, ModItems.ITEMS))
                     .build());
-    
+
 
     public static final RegistryObject<CreativeModeTab> NUKA_BLOCKS = CREATIVE_MODE_TABS.register("nuka_blocks",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ADVMAG.get()))
                     .title(Component.translatable("itemGroup.nuka_blocks"))
                     .displayItems((params, output) -> registerItems(output, ModBlockItems.ITEMS))
-                    .build());    
+                    .build());
 
     public static final RegistryObject<CreativeModeTab> NUKA_FOOD = CREATIVE_MODE_TABS.register("nuka_foods",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ADVMAG.get()))
                     .title(Component.translatable("itemGroup.nuka_foods"))
                     .displayItems((params, output) -> registerItems(output, ModFood.ITEMS))
                     .build());
-    
-    
+
+
     public static final RegistryObject<CreativeModeTab> NUKA_WEAPONS = CREATIVE_MODE_TABS.register("nuka_equip",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ADVMAG.get()))
                     .title(Component.translatable("itemGroup.nuka_equip"))
                     .displayItems((params, output) -> registerItems(output, ModFood.ITEMS))
                     .build());
-    
-    
+
+
     public static final RegistryObject<CreativeModeTab> NUKA_ARMOR = CREATIVE_MODE_TABS.register("nuka_armor",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.ADVMAG.get()))
                     .title(Component.translatable("itemGroup.nuka_armor"))
@@ -56,9 +54,9 @@ public class ModItemTabs {
                     .displayItems((params, output) -> registerItems(output, PowerArmorItems.ITEMS))
                     .build());
 
-    
-    private static void registerItems(CreativeModeTab.Output output,  DeferredRegister<Item> register) {
-        for(var entry: register.getEntries()){
+
+    private static void registerItems(CreativeModeTab.Output output, DeferredRegister<Item> register) {
+        for (var entry : register.getEntries()) {
             output.accept(entry.get());
         }
     }
@@ -67,7 +65,7 @@ public class ModItemTabs {
         var fields = modItemsClass.getFields();
 
         try {
-            for (var field: fields) {
+            for (var field : fields) {
                 var obj = field.get(null);
                 if (obj instanceof RegistryObject<?>) {
                     var item = (RegistryObject<Item>) obj;

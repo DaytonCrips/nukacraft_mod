@@ -1,0 +1,65 @@
+{
+  "carvers": {},
+  "downfall": 0.9,
+  "effects": {
+    "fog_color": 16766566,
+    "foliage_color": 9076070,
+    "grass_color": 9076070,
+    "sky_color": 16246715,
+    "water_color": 3882546,
+    "water_fog_color": 2308637
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "nukacraft:grass_ash",
+      "nukacraft:glow_grass",
+      "nukacraft:trees_glow",
+      "nukacraft:patch_bomb_berry_plant_place",
+      "nukacraft:patch_radrose_plant_place",
+      "nukacraft:patch_fusion_fruit_place",
+      "nukacraft:patch_mega_hatter_place"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "nukacraft:radroach",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "nukacraft:bloatfly",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "nukacraft:deathclaw",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 2
+      }
+    ],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 1.5
+}

@@ -29,7 +29,8 @@ public class PowerArmorScreen extends ChassisScreen<PowerArmorMenu> {
         super.init();
         this.addButton(new IconButton(leftPos + 133, topPos + 49, 88, 166, GUI_DONE, POWER_ARMOR_GUI) {
             @Override
-            protected void updateWidgetNarration(NarrationElementOutput pNarrationElementOutput) {}
+            protected void updateWidgetNarration(NarrationElementOutput pNarrationElementOutput) {
+            }
 
             @Override
             public void onPress() {

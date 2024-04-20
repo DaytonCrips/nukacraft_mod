@@ -3,16 +3,11 @@ package com.nukateam.nukacraft.common.registery.items;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.misc.ColoredHolotapeItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.NuclearMaterialItem;
-import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.VioletReagent;
-import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
+import com.nukateam.nukacraft.common.foundation.items.сonsumables.RadNamedItem;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
-import com.nukateam.nukacraft.common.registery.ModItemTabs;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,8 +16,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.nukateam.nukacraft.common.data.constants.PipboyColors.*;
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_BLOCKS;
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_MATERIAL;
 //Здесь армяне в нарды играют
 
 public class ModItems {

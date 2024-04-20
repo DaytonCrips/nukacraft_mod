@@ -1,0 +1,70 @@
+{
+  "carvers": {},
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": -10990522,
+    "foliage_color": -10465466,
+    "grass_color": -11187642,
+    "particle": {
+      "options": {
+        "type": "minecraft:smoke"
+      },
+      "probability": 0.0219
+    },
+    "sky_color": -10990522,
+    "water_color": -9551310,
+    "water_fog_color": 11648455
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:disk_clay"
+    ],
+    [],
+    [],
+    [
+      "nukacraft:grass_ash",
+      "nukacraft:trees_ash_heap",
+      "nukacraft:heap_grass",
+      "nukacraft:rusty_bush_patch",
+      "nukacraft:disk_ashdirt_place",
+      "nukacraft:patch_zander",
+      "nukacraft:patch_crackberry_plant_place",
+      "nukacraft:patch_soot_flower_plant_place",
+      "nukacraft:patch_fire_fungi_plant_place",
+      "nukacraft:patch_glow_fungus_plant_place",
+      "nukacraft:patch_starlight_berry"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "nukacraft:radroach",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "nukacraft:bloatfly",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 1
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 1.2
+}

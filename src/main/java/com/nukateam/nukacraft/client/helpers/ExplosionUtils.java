@@ -100,7 +100,7 @@ public class ExplosionUtils {
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, nukeFlashAmount * (float)screenEffectIntensity);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, nukeFlashAmount * (float) screenEffectIntensity);
             RenderSystem.setShaderTexture(0, BOMB_FLASH);
             Tesselator tesselator = Tesselator.getInstance();
             BufferBuilder bufferbuilder = tesselator.getBuilder();

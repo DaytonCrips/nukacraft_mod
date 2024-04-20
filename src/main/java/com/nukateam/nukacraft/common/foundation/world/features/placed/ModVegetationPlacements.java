@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world.features.placed;
 
-import com.nukateam.nukacraft.common.foundation.world.features.configured.ModFeatures;
+import com.nukateam.nukacraft.common.foundation.world.features.configured.ModVegetationFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
@@ -66,7 +66,7 @@ public class ModVegetationPlacements {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-        context.register(PATCH_DEWDROP_SAPLING_PLACE, new PlacedFeature(features.getOrThrow(ModFeatures.DEWDROP_SAPLING_PLANT),
+        context.register(PATCH_DEWDROP_SAPLING_PLACE, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.DEWDROP_SAPLING_PLANT),
                 List.of(RarityFilter.onAverageOnceEvery(4),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -74,11 +74,11 @@ public class ModVegetationPlacements {
         ));
 
         context.register(PATCH_BOGPAD_PLACE, new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_BOGPAD), worldSurfaceSquaredWithCount(5)));
+                ModVegetationFeatures.PATCH_BOGPAD), worldSurfaceSquaredWithCount(5)));
 
         context.register(PATCH_TOXIC_FERN_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.TOXIC_FERN_PLANT), List.of(
+                        ModVegetationFeatures.TOXIC_FERN_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(2),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -86,7 +86,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_FUSION_FRUIT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.FUSFRUIT_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.FUSFRUIT_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(2),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -94,7 +94,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_MEGA_HATTER_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.MEGAMORH_MUSH_PLANT), List.of(
+                        ModVegetationFeatures.MEGAMORH_MUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(3),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -102,84 +102,84 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_ASTER_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.ASTER_PLANT), List.of(
+                        ModVegetationFeatures.ASTER_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(3),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_BROC_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BROC_PLANT), List.of(
+                        ModVegetationFeatures.BROC_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(4),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_THISTLE_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.THISTLE_PLANT), List.of(
+                        ModVegetationFeatures.THISTLE_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(35),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_DEAD_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.DEAD_PLANT), List.of(
+                        ModVegetationFeatures.DEAD_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(22),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_SOOT_FLOWER_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.SOOT_FLOWER_PLANT), List.of(
+                        ModVegetationFeatures.SOOT_FLOWER_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_HOLLYHOCK_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.HOLLYHOCK_PLANT), List.of(
+                        ModVegetationFeatures.HOLLYHOCK_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(17),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_FEVER_BLOSSOM_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.FEVER_BLOSSOM_PLANT), List.of(
+                        ModVegetationFeatures.FEVER_BLOSSOM_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(26),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_CRACKBERRY_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.CRACKBERRY_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.CRACKBERRY_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(31),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_MUTTFRUIT_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.MUTTFRUIT_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.MUTTFRUIT_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_BRAIN_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BRAIN_FUNGUS_PLANT), List.of(
+                        ModVegetationFeatures.BRAIN_FUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(22),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_GLOW_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.GLOW_FUNGUS_PLANT), List.of(
+                        ModVegetationFeatures.GLOW_FUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_GUT_FUNGI_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.GUT_FUNGI_PLANT), List.of(
+                        ModVegetationFeatures.GUT_FUNGI_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(18),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -187,14 +187,14 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_BOMB_BERRY_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BOMBBERRY_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.BOMBBERRY_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(16),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_QUANTUM_LEAF_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.QUANTUMLEAF_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.QUANTUMLEAF_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -202,21 +202,21 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_NEUTRON_BUSH_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.NEUTRON_BUSH_PLANT), List.of(
+                        ModVegetationFeatures.NEUTRON_BUSH_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(23),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_MIND_FUNGUS_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.MINDFUNGUS_PLANT), List.of(
+                        ModVegetationFeatures.MINDFUNGUS_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(17),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_RADASTER_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.RADASTER_PLANT), List.of(
+                        ModVegetationFeatures.RADASTER_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(28),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -224,7 +224,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_RADROSE_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.RADROSE_PLANT), List.of(
+                        ModVegetationFeatures.RADROSE_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(32),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -232,7 +232,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_BLAST_CAP_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BLASTCAP_PLANT), List.of(
+                        ModVegetationFeatures.BLASTCAP_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(23),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -240,7 +240,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_FIRE_FUNGI_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.FIREFUNGI_PLANT), List.of(
+                        ModVegetationFeatures.FIREFUNGI_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -248,7 +248,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_INVERT_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.INVERT_PLANT), List.of(
+                        ModVegetationFeatures.INVERT_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -256,7 +256,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_BOOM_BLOSSOM_PLANT_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.BOOMBLOSSOM_PLANT), List.of(
+                        ModVegetationFeatures.BOOMBLOSSOM_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -265,7 +265,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_CRANBERRY_PLACE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.CRANBERRY_PLANT), List.of(
+                        ModVegetationFeatures.CRANBERRY_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(22),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -274,7 +274,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_STARLIGHT_BERRY,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.STARLIGHT_BERRY_PLANT), List.of(
+                        ModVegetationFeatures.STARLIGHT_BERRY_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -282,28 +282,28 @@ public class ModVegetationPlacements {
         //
         context.register(PATCH_GINS,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_GINS_BUSH), List.of(
+                        ModVegetationFeatures.PATCH_GINS_BUSH), List.of(
                         RarityFilter.onAverageOnceEvery(19),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_DATURANA,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_DEAD_DATURAN), List.of(
+                        ModVegetationFeatures.PATCH_DEAD_DATURAN), List.of(
                         RarityFilter.onAverageOnceEvery(16),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_PUNGA,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_DEAD_PUNGA), List.of(
+                        ModVegetationFeatures.PATCH_DEAD_PUNGA), List.of(
                         RarityFilter.onAverageOnceEvery(10),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
         context.register(PATCH_CORAL,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_DEAD_CORAL), List.of(
+                        ModVegetationFeatures.PATCH_DEAD_CORAL), List.of(
                         RarityFilter.onAverageOnceEvery(6),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -311,7 +311,7 @@ public class ModVegetationPlacements {
         //
         context.register(PATCH_AGAVE_RARE,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_AGAVE_BUSH), List.of(
+                        ModVegetationFeatures.PATCH_AGAVE_BUSH), List.of(
                         RarityFilter.onAverageOnceEvery(10),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -320,7 +320,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_SLIT_BEAN_BUSH,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_SLIT_BEANS), List.of(
+                        ModVegetationFeatures.PATCH_SLIT_BEANS), List.of(
                         RarityFilter.onAverageOnceEvery(17),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -328,7 +328,7 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_BLOOD_LEAF,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_BLOODLEAF), List.of(
+                        ModVegetationFeatures.PATCH_BLOODLEAF), List.of(
                         RarityFilter.onAverageOnceEvery(9),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -337,7 +337,7 @@ public class ModVegetationPlacements {
 //
         context.register(PATCH_ZANDER,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_XANDER), List.of(
+                        ModVegetationFeatures.PATCH_XANDER), List.of(
                         RarityFilter.onAverageOnceEvery(21),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
@@ -345,25 +345,25 @@ public class ModVegetationPlacements {
 
         context.register(PATCH_RUSTY_BUSH,
                 new PlacedFeature(features.getOrThrow(
-                        ModFeatures.PATCH_RUSTY_BUSH), List.of(
+                        ModVegetationFeatures.PATCH_RUSTY_BUSH), List.of(
                         RarityFilter.onAverageOnceEvery(25),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
 
-        context.register(HEAP_GRASS, new PlacedFeature(features.getOrThrow( ModFeatures.PATCH_HEAP_GRASS),
+        context.register(HEAP_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_HEAP_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
         );
 
-        context.register(RUSTY_BUSH, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_RUSTY_BUSH),
+        context.register(RUSTY_BUSH, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_RUSTY_BUSH),
                         List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
         );
 
-        context.register(GLOW_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_GLOW_GRASS),
+        context.register(GLOW_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_GLOW_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.8D, 3, 3),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
@@ -375,19 +375,19 @@ public class ModVegetationPlacements {
                 )
         );
 
-        context.register(CRANBERRY_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_CRANBERRY_GRASS),
+        context.register(CRANBERRY_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_CRANBERRY_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
         );
 
-        context.register(ASH_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_ASH_GRASS),
+        context.register(ASH_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_ASH_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.3D, 2, 1),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
         );
 
-        context.register(POISON_GRASS, new PlacedFeature(features.getOrThrow(ModFeatures.PATCH_POISON_GRASS),
+        context.register(POISON_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_POISON_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.4D, 2, 2),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )

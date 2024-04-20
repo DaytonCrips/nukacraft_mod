@@ -37,19 +37,19 @@ public class SapDecorator extends TreeDecorator {
         RandomSource $$1 = pContext.random();
         if (!($$1.nextFloat() >= this.probability)) {
             List<BlockPos> $$2 = pContext.logs();
-            int $$3 = ((BlockPos)$$2.get(0)).getY();
+            int $$3 = ((BlockPos) $$2.get(0)).getY();
             $$2.stream().filter((p_69980_) -> {
                 return p_69980_.getY() - $$3 <= 2;
             }).forEach((p_226026_) -> {
                 Iterator var3 = Direction.Plane.HORIZONTAL.iterator();
 
-                while(var3.hasNext()) {
-                    Direction $$32 = (Direction)var3.next();
+                while (var3.hasNext()) {
+                    Direction $$32 = (Direction) var3.next();
                     if ($$1.nextFloat() <= 0.25F) {
                         Direction $$4 = $$32.getOpposite();
                         BlockPos $$5 = p_226026_.offset($$4.getStepX(), 0, $$4.getStepZ());
                         if (pContext.isAir($$5)) {
-                            pContext.setBlock($$5, (BlockState)((BlockState) ModBlocks.GLOWSAP.get().defaultBlockState().setValue(GloamSapBlock.AGE, $$1.nextInt(3))).setValue(GloamSapBlock.FACING, $$32));
+                            pContext.setBlock($$5, (BlockState) ((BlockState) ModBlocks.GLOWSAP.get().defaultBlockState().setValue(GloamSapBlock.AGE, $$1.nextInt(3))).setValue(GloamSapBlock.FACING, $$32));
                         }
                     }
                 }

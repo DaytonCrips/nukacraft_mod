@@ -9,6 +9,13 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 public class StaticArmorModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> implements IGlowingModel<T> {
+    public static ResourceLocation getResource(IResourceProvider gunItem, String path, String extension) {
+        var name = gunItem.getName();
+        var modId = gunItem.getNamespace();
+
+        return new ResourceLocation(modId, path + name + extension);
+    }
+
     @Override
     public ResourceLocation getModelResource(T gunItem) {
         return getResource(gunItem, "geo/armor/", ".geo.json");
@@ -32,12 +39,5 @@ public class StaticArmorModel<T extends IResourceProvider & GeoAnimatable> exten
     @Override
     public RenderType getRenderType(T animatable, ResourceLocation texture) {
         return RenderType.entityTranslucent(getTextureResource(animatable));
-    }
-
-    public static ResourceLocation getResource(IResourceProvider gunItem, String path, String extension){
-        var name = gunItem.getName();
-        var modId = gunItem.getNamespace();
-
-        return new ResourceLocation(modId, path + name + extension);
     }
 }

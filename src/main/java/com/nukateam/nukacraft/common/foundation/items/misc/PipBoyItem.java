@@ -27,7 +27,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,6 +40,7 @@ public class PipBoyItem extends Item implements GeoItem {
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final String skin;
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
     public PipBoyItem(String skin, Properties pProperties) {
         super(pProperties);
@@ -122,14 +122,13 @@ public class PipBoyItem extends Item implements GeoItem {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-
-    private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
     @Override
     public void createRenderer(Consumer<Object> consumer) {

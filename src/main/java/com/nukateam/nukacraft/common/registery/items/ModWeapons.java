@@ -16,8 +16,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.nukateam.nukacraft.common.registery.ModItemTabs.NUKA_WEAPONS;
-
 public class ModWeapons {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
@@ -98,7 +96,7 @@ public class ModWeapons {
     public static final RegistryObject<Item> FUEL = ModItems.ITEMS.register("fuel",
             () -> new AmmoItem(new Item.Properties()
                     .durability(1000)
-                    ));
+            ));
 
     public static final RegistryObject<Item> FUSION_CORE = ITEMS.register("fusion_core",
             () -> new FusionCoreItem(new Item.Properties().durability(500)));

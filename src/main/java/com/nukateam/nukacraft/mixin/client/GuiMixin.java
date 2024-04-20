@@ -1,7 +1,5 @@
 package com.nukateam.nukacraft.mixin.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.nukateam.nukacraft.common.registery.HeartType;
 import com.nukateam.nukacraft.common.registery.ModAttributes;
 import net.minecraft.client.Minecraft;
@@ -9,7 +7,6 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,13 +15,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Random;
-
 import static com.nukateam.ntgl.client.data.handler.GunRenderingHandler.GUI_ICONS_LOCATION;
 import static com.nukateam.nukacraft.common.data.constants.Textures.RAD_HEART_ICON;
 
 @Mixin(Gui.class)
-public abstract class GuiMixin{
+public abstract class GuiMixin {
     @Unique
     protected final RandomSource random = RandomSource.create();
 

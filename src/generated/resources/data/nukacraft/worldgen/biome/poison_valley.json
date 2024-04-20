@@ -1,0 +1,49 @@
+{
+  "carvers": {},
+  "downfall": 0.5,
+  "effects": {
+    "fog_color": -5399162,
+    "foliage_color": 1783388,
+    "grass_color": -861768,
+    "sky_color": -7964315,
+    "water_color": -9547964,
+    "water_fog_color": 11648455
+  },
+  "features": [
+    [],
+    [
+      "nukacraft:lake_acid_surface_place"
+    ],
+    [
+      "nukacraft:disk_ashston_place"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "nukacraft:ash_grass",
+      "nukacraft:poison_grass",
+      "nukacraft:trees_ash",
+      "nukacraft:patch_broc_plant_place",
+      "nukacraft:patch_aster_plant_place",
+      "nukacraft:patch_thistle_plant_place",
+      "nukacraft:patch_dead_plant_place"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.5
+}

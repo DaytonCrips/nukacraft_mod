@@ -1,23 +1,17 @@
 package com.nukateam.nukacraft.common.foundation.world.features;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 public class VineFeature extends Feature<VineFeatureConfiguration> {
     public VineFeature(Codec<VineFeatureConfiguration> pCodec) {
@@ -28,9 +22,9 @@ public class VineFeature extends Feature<VineFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<VineFeatureConfiguration> pContext) {
         WorldGenLevel level = pContext.level();
         BlockPos origin = pContext.origin();
-        if(level.isEmptyBlock(origin)) {
+        if (level.isEmptyBlock(origin)) {
             BlockState state = level.getBlockState(origin.above());
-            if(state.is(pContext.config().tag())) {
+            if (state.is(pContext.config().tag())) {
                 this.placeVines(pContext, level, pContext.random(), origin);
                 return true;
             }
@@ -42,14 +36,14 @@ public class VineFeature extends Feature<VineFeatureConfiguration> {
     private void placeVines(FeaturePlaceContext<VineFeatureConfiguration> context, LevelAccessor level, RandomSource random, BlockPos pos) {
         BlockPos.MutableBlockPos blockPos = new BlockPos.MutableBlockPos();
 
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             blockPos.setWithOffset(pos, random.nextInt(8) - random.nextInt(8), random.nextInt(2) - random.nextInt(7), random.nextInt(8) - random.nextInt(8));
-            if(level.isEmptyBlock(blockPos)) {
+            if (level.isEmptyBlock(blockPos)) {
                 BlockState state = level.getBlockState(blockPos.above());
-                if(state.is(context.config().tag())) {
+                if (state.is(context.config().tag())) {
                     int length = context.config().height().sample(random);
-                    if(random.nextFloat() < context.config().doubleChance()) length *= 2;
-                    if(random.nextFloat() < context.config().reducedChance()) length = 1;
+                    if (random.nextFloat() < context.config().doubleChance()) length *= 2;
+                    if (random.nextFloat() < context.config().reducedChance()) length = 1;
 
                     placeVinesColumn(context, level, random, blockPos, length);
                 }
@@ -58,9 +52,9 @@ public class VineFeature extends Feature<VineFeatureConfiguration> {
     }
 
     private void placeVinesColumn(FeaturePlaceContext<VineFeatureConfiguration> context, LevelAccessor level, RandomSource random, BlockPos.MutableBlockPos pos, int length) {
-        for(int i = 0; i <= length; i++) {
-            if(level.isEmptyBlock(pos) && !(level.getBlockState(pos).getBlock() instanceof LeavesBlock)) {
-                if(i == length || !level.isEmptyBlock(pos.below())) {
+        for (int i = 0; i <= length; i++) {
+            if (level.isEmptyBlock(pos) && !(level.getBlockState(pos).getBlock() instanceof LeavesBlock)) {
+                if (i == length || !level.isEmptyBlock(pos.below())) {
                     level.setBlock(pos, context.config().vine().setValue(GrowingPlantHeadBlock.AGE, Mth.nextInt(random, 17, 25)), 3);
                     break;
                 }

@@ -6,10 +6,8 @@ import com.nukateam.nukacraft.common.foundation.blocks.blocks.PipeBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.*;
 import com.nukateam.nukacraft.common.foundation.blocks.plants.*;
 import com.nukateam.nukacraft.common.registery.items.ModBlockItems;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -152,7 +150,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPBTITAN = registerBlock("deepbtitan_block",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.7F, 4.5F).requiresCorrectToolForDrops()));
-
 
 
     public static final RegistryObject<Block> DEEPULTRACITE = registerBlock("deepultracite_block",
@@ -656,7 +653,6 @@ public class ModBlocks {
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
 
-
     public static final RegistryObject<Block> MEGAHATTERFUNGI = registerBlockWithoutItem("megamorph_hatterfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
@@ -679,22 +675,21 @@ public class ModBlocks {
                     })));
 
 
-
     public static final RegistryObject<Block> CRYOCAPSULEACT = registerBlock("cryocapsuleact",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
-})));
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {
+                return 1;
+            })));
 
 
     public static final RegistryObject<Block> OPENCRYOCAPSULE = registerBlock("opencryocapsule",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
-})));
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {
+                return 1;
+            })));
 
     public static final RegistryObject<Block> CRYOCAPSULE = registerBlock("cryocapsule",
-            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {return 1;
-})));
-
-
-
+            () -> new CryoCapsuleBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).sound(SoundType.METAL).strength(2.0f).lightLevel((p_50892_) -> {
+                return 1;
+            })));
 
 
     public static final RegistryObject<Block> HOLLYHOCK = registerBlock("hollyhock",
@@ -752,7 +747,6 @@ public class ModBlocks {
             () -> new PrismLeafBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
 
-
     public static final RegistryObject<Block> DEAD_PUNGA = registerBlock("dead_punga",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -803,7 +797,6 @@ public class ModBlocks {
                     .strength(1f)));
 
 
-
     public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
                     .strength(1.4F).sound(SoundType.GLASS)));
@@ -835,7 +828,6 @@ public class ModBlocks {
             () -> new DoorBlock(BlockBehaviour.Properties.of()
                     .sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
-
 
 
     public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
