@@ -31,12 +31,12 @@ public class ModFluids {
         if (fluid.isSame(ACID_FLUID.get()))
             return new Pair<>(Blocks.CRYING_OBSIDIAN, Blocks.TUFF);
         return null;
-    }    public static final RegistryObject<FlowingFluid> ACID_FLUID
+    }
+
+    public static final RegistryObject<FlowingFluid> ACID_FLUID
             = FLUIDS.register("acid_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.ACID_PROPERTIES));
 
-    public static void register(IEventBus eventBus) {
-        FLUIDS.register(eventBus);
-    }    public static final RegistryObject<FlowingFluid> ACID_FLOWING
+    public static final RegistryObject<FlowingFluid> ACID_FLOWING
             = FLUIDS.register("acid_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.ACID_PROPERTIES));
 
     public static final RegistryObject<FlowingFluid> DIRTY_WATER_FLUID
@@ -51,6 +51,8 @@ public class ModFluids {
     public static final RegistryObject<FlowingFluid> POISONOUS_WATER_FLOWING
             = FLUIDS.register("poisonous_water_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.POISONOUS_WATER_PROPERTIES));
 
+
+    //BLOCKS
     public static final RegistryObject<LiquidBlock> ACID_BLOCK = ModBlocks.BLOCKS.register("acid",
             () -> new LiquidBlock(ModFluids.POISONOUS_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
@@ -60,6 +62,8 @@ public class ModFluids {
     public static final RegistryObject<LiquidBlock> POISONOUS_WATER_BLOCK = ModBlocks.BLOCKS.register("poisonous_water",
             () -> new LiquidBlock(ModFluids.POISONOUS_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
+
+    //PROPERTIES
     public static final ForgeFlowingFluid.Properties ACID_PROPERTIES =
             new ForgeFlowingFluid.Properties(ACID_FLUID_TYPE, ACID_FLUID, ACID_FLOWING)
                     .slopeFindDistance(2)
@@ -77,8 +81,7 @@ public class ModFluids {
                     .block(() -> ModFluids.POISONOUS_WATER_BLOCK.get()).bucket(() -> ModItems.POISONOUS_WATER_BUCKET.get());
 
 
-
-
-
-
+    public static void register(IEventBus eventBus) {
+        FLUIDS.register(eventBus);
+    }
 }

@@ -60,7 +60,7 @@ public class ModFluidTypes {
                                                       ResourceLocation overlay,
                                                       FluidType.Properties properties) {
         return FLUID_TYPES.register(name, () -> new BaseFluidType(
-                ACID_STILL_RL, ACID_FLOWING_RL, ACID_OVERLAY_RL,
+                still, flowing, overlay,
                 0xA1E038D0,
                 new Vector3f(224f / 255f, 56f / 255f, 208f / 255f),
                 properties));
