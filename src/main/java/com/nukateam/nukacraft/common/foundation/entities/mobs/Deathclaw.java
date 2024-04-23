@@ -1,12 +1,11 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
-import com.nukateam.nukacraft.common.network.PacketHandler;
-import com.nukateam.nukacraft.common.network.packets.MobPacket;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
+import net.minecraft.network.syncher.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -22,12 +21,14 @@ import org.jetbrains.annotations.Nullable;
 
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Deathclaw extends Monster implements GeoEntity {
+    public static final EntityDataAccessor<Boolean> IS_RUNNING = defineId(Deathclaw.class, EntityDataSerializers.BOOLEAN);
+
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final boolean isClientSide = level().isClientSide;
     private final boolean isServerSide = !level().isClientSide;
-    private boolean isRunning = false;
+
     private boolean startAttacking = false;
     private String[] attackAnims = new String[]{
             "attack_right",
@@ -36,8 +37,9 @@ public class Deathclaw extends Monster implements GeoEntity {
     };
     private String attackAnimName;
 
-    public Deathclaw(EntityType<? extends Monster> p_33002_, Level p_33003_) {
-        super(p_33002_, p_33003_);
+    public Deathclaw(EntityType<? extends Monster> entityType, Level level) {
+        super(entityType, level);
+        getEntityData().set(IS_RUNNING, true);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -62,12 +64,17 @@ public class Deathclaw extends Monster implements GeoEntity {
     }
 
     @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(IS_RUNNING, true);
+    }
+
+    @Override
     public void setTarget(@Nullable LivingEntity pTarget) {
         super.setTarget(pTarget);
 
         if (isServerSide) {
             setIsRunning(pTarget != null);
-            PacketHandler.sendToAllPlayers(new MobPacket(getId(), isRunning));
         }
     }
 
@@ -107,7 +114,8 @@ public class Deathclaw extends Monster implements GeoEntity {
     }
 
     public void setIsRunning(boolean isRunning) {
-        this.isRunning = isRunning;
+        getEntityData().set(IS_RUNNING, isRunning);
+
         if (isRunning)
             setSpeed(2f);
         else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
@@ -130,6 +138,7 @@ public class Deathclaw extends Monster implements GeoEntity {
                 animation = begin().thenLoop(attackAnimName);
 
             } else if (event.isMoving()) {
+                var isRunning = getEntityData().get(IS_RUNNING);
                 animation = isRunning ? begin().thenLoop("run") : begin().thenLoop("walk");
             } else {
                 animation = begin().thenLoop("idle");

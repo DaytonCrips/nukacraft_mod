@@ -1,8 +1,6 @@
 package com.nukateam.nukacraft.common.network;
 
-import com.nukateam.nukacraft.common.network.packets.FramePickupPacket;
-import com.nukateam.nukacraft.common.network.packets.MobPacket;
-import com.nukateam.nukacraft.common.network.packets.PipboyScreenPacket;
+import com.nukateam.nukacraft.common.network.packets.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.util.FakePlayer;
@@ -26,7 +24,6 @@ public class PacketHandler {
     private static int disc = 0;
 
     public static void register() {
-        HANDLER.registerMessage(disc++, MobPacket.class, MobPacket::write, MobPacket::read, MobPacket::handle);
         HANDLER.registerMessage(disc++, FramePickupPacket.class, FramePickupPacket::write, FramePickupPacket::read, FramePickupPacket::handle);
         HANDLER.registerMessage(disc++, PipboyScreenPacket.class, PipboyScreenPacket::write, PipboyScreenPacket::read, PipboyScreenPacket::handle);
     }

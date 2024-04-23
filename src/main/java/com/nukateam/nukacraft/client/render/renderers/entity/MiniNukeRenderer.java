@@ -25,20 +25,23 @@ public class MiniNukeRenderer extends EntityRenderer<MiniNukeEntity> {
 
     @Override
     public void render(MiniNukeEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource renderTypeBuffer, int light) {
-        if (!entity.getProjectile().isVisible() || entity.tickCount <= 1)
+        if (!entity.isVisible() || entity.tickCount <= 1)
             return;
 
         poseStack.pushPose();
         poseStack.mulPose(Axis.YP.rotationDegrees(180F));
         poseStack.mulPose(Axis.YP.rotationDegrees(entityYaw));
         poseStack.mulPose(Axis.XP.rotationDegrees(entity.getXRot() - 90));
+
+        var item = entity.getItem();
+
         Minecraft.getInstance().getItemRenderer()
-                .renderStatic(entity.getItem(), ItemDisplayContext.NONE, 15728880,
+                .renderStatic(item, ItemDisplayContext.NONE, 15728880,
                         OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, Minecraft.getInstance().level, 0);
 
         poseStack.translate(0, -1, 0);
-        RenderUtil.renderModel(SpecialModels.FLAME.getModel(), entity.getItem(), poseStack,
-                renderTypeBuffer, 15728880, OverlayTexture.NO_OVERLAY);
+//        RenderUtil.renderModel(SpecialModels.FLAME.getModel(), entity.getItem(), poseStack,
+//                renderTypeBuffer, 15728880, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
     }
 }

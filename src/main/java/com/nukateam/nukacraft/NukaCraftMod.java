@@ -2,44 +2,29 @@ package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
 import com.nukateam.ntgl.common.base.utils.ProjectileManager;
-import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
-import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
-import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
+import com.nukateam.ntgl.common.foundation.entity.*;
 import com.nukateam.ntgl.common.foundation.init.Projectiles;
 import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
 import com.nukateam.nukacraft.common.foundation.datagen.RegistryDataGenerator;
-import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
-import com.nukateam.nukacraft.common.foundation.world.ModBiomeGeneration;
-import com.nukateam.nukacraft.common.foundation.world.ModBiomes;
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
-import com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
-import mod.azure.azurelib.AzureLib;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.InterModComms;
-import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.*;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotTypeMessage;
-import top.theillusivec4.curios.api.SlotTypePreset;
+import top.theillusivec4.curios.api.*;
 
 import static com.nukateam.ntgl.common.foundation.init.Projectiles.LASER_PROJECTILE;
 import static com.nukateam.ntgl.common.foundation.init.Projectiles.TESLA_PROJECTILE;
@@ -55,7 +40,7 @@ public class NukaCraftMod {
     private static boolean curiosLoaded = false;
 
     public NukaCraftMod() {
-        AzureLib.initialize();
+//        AzureLib.initialize();
 
         //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 //        MOD_EVENT_BUS.addListener(this::setup);
