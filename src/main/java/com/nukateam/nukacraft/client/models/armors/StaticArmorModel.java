@@ -15,7 +15,7 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 public class StaticArmorModel<T extends IResourceProvider & GeoAnimatable> extends GeoModel<T> implements IGlowingModel<T> {
     @Override
     public ResourceLocation getModelResource(T gunItem) {
-        return getResource(gunItem, "geo/cloths/", ".geo.json");
+        return getResource(gunItem, "geo/armor/", ".geo.json");
     }
 
     @Override
