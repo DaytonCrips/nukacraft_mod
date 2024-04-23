@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
     WOOD("wood", 3, new int[]{1, 3, 2, 1}, 0, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),
-    HARDLEATHER("leather", 3, new int[]{2, 3, 3, 2}, 2, SoundEvents.ARMOR_EQUIP_TURTLE,
+    HARD_LEATHER("leather", 3, new int[]{2, 3, 3, 2}, 2, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(ModItems.LEATHERHARD.get())),
     RAIDER("raider", 3, new int[]{2, 4, 3, 3}, 5, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(ModItems.SCRAP.get())),

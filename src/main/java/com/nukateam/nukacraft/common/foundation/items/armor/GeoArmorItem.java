@@ -1,12 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.items.armor;
 
-import com.nukateam.nukacraft.client.render.renderers.armor.RaiderArmorRenderer;
+import com.nukateam.nukacraft.client.render.renderers.armor.ArmorRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
-import mod.azure.azurelib.constant.DataTickets;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
-import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,28 +15,37 @@ import net.minecraftforge.client.IItemRenderProperties;
 
 import java.util.function.Consumer;
 
-public class RaiderArmorItem extends ArmorItem implements GeoItem {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final String skin;
+import com.nukateam.example.common.data.interfaces.IResourceProvider;
 
-    public RaiderArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, String skin, Properties builder) {
+
+public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvider {
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final String name;
+
+    public GeoArmorItem(ArmorMaterial materialIn, EquipmentSlot slot, String skin, Properties builder) {
         super(materialIn, slot, builder);
-        this.skin = skin;
+        this.name = skin;
     }
 
-    public String getSkin() {
-        return skin;
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getNamespace() {
+        return getRegistryName().getNamespace();
     }
 
     @Override
     public void initializeClient(Consumer<IItemRenderProperties> consumer) {
         consumer.accept(new IItemRenderProperties() {
-            private RaiderArmorRenderer renderer;
+            private ArmorRenderer renderer;
 
             @Override
             public HumanoidModel<?> getArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
                 if (renderer == null)
-                    renderer = new RaiderArmorRenderer();
+                    renderer = new ArmorRenderer();
 
                 renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
                 return renderer;
@@ -54,13 +60,6 @@ public class RaiderArmorItem extends ArmorItem implements GeoItem {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controllerName", 0, event ->
-        {
-            var stack = event.getData(DataTickets.ITEMSTACK);
-            var s = stack;
-            return event.setAndContinue(RawAnimation.begin().thenLoop("idle"));
-        }
-        ));
-    }
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
+
 }

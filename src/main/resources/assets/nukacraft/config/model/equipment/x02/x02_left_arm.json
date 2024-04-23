@@ -1,6 +1,6 @@
 {
   "part": "left_arm",
-  "model": "nukacraft:geo/armor/x02.geo.json",
+  "model": "nukacraft:geo/power_armor/x02.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/x02.png",
     "rust": "nukacraft:textures/power_armor/x02_rust.png"
