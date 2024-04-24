@@ -1,8 +1,8 @@
 {
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "nukacraft:guns/fatman/mini_nuke",
-		"particle": "nukacraft:guns/fatman/mini_nuke"
+		"0": "nukacraft:item/ammo/mini_nuke",
+		"particle": "nukacraft:item/ammo/mini_nuke"
 	},
 	"elements": [
 		{

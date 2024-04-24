@@ -8,12 +8,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
 public class AcidFluidBlock extends LiquidBlock {
-    public AcidFluidBlock(Properties pProperties) {
-        super(() -> ModFluids.ACID_FLUID.get(), pProperties);
+    public AcidFluidBlock(RegistryObject<FlowingFluid> flowingFluid, BlockBehaviour.Properties properties) {
+        super(flowingFluid, properties);
     }
 
     @Override

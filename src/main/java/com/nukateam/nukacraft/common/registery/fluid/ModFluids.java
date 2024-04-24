@@ -1,6 +1,8 @@
 package com.nukateam.nukacraft.common.registery.fluid;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.foundation.blocks.fluids.AcidFluidBlock;
+import com.nukateam.nukacraft.common.foundation.blocks.fluids.RadWaterBlock;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.world.level.block.Block;
@@ -54,13 +56,13 @@ public class ModFluids {
 
     //BLOCKS
     public static final RegistryObject<LiquidBlock> ACID_BLOCK = ModBlocks.BLOCKS.register("acid",
-            () -> new LiquidBlock(ModFluids.POISONOUS_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
+            () -> new AcidFluidBlock(ModFluids.ACID_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
     public static final RegistryObject<LiquidBlock> DIRTY_WATER_BLOCK = ModBlocks.BLOCKS.register("dirty_water",
-            () -> new LiquidBlock(ModFluids.DIRTY_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
+            () -> new RadWaterBlock(ModFluids.DIRTY_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
     public static final RegistryObject<LiquidBlock> POISONOUS_WATER_BLOCK = ModBlocks.BLOCKS.register("poisonous_water",
-            () -> new LiquidBlock(ModFluids.POISONOUS_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
+            () -> new RadWaterBlock(ModFluids.POISONOUS_WATER_FLUID, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
 
     //PROPERTIES
