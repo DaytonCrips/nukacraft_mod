@@ -1,7 +1,9 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.annotation.Generate;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -32,6 +34,10 @@ public class ModBlockItems {
 
     public static final RegistryObject<Item> BLASTCAPFUNGI = ITEMS.register("blastcap",
             () -> new ItemNameBlockItem(ModBlocks.BLASTCAP.get(), new Item.Properties()));
+
+    @Generate
+    public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vaultdoor",
+            () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

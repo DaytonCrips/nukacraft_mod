@@ -45,10 +45,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
     private ModelFile getModelFile(String path){
         return getExistingFile(new ResourceLocation(path));
     }
-
-    private void spawnEggModel(RegistryObject<Item> egg) {
-        withExistingParent(egg.getId().getPath(), new ResourceLocation("item/template_spawn_egg"));
-    }
+//
+//    private void spawnEggModel(RegistryObject<Item> egg) {
+//        withExistingParent(egg.getId().getPath(), new ResourceLocation("item"));
+//    }
 
     public void blockModel(RegistryObject<? extends Block> block) {
         withExistingParent(block.getId().getPath(), modLoc("block/" + block.getId().getPath()));
@@ -64,6 +64,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
 
     public ItemModelBuilder itemModel(RegistryObject<?> item, ModelFile modelFile) {
         return getBuilder(item.getId().getPath()).parent(modelFile).texture("layer0", "item/" + item.getId().getPath());
+    }
+
+    public ItemModelBuilder spawnEggModel(RegistryObject<?> item, ModelFile modelFile) {
+        return getBuilder(item.getId().getPath()).parent(modelFile);
     }
 
     public void itemModelWithSuffix(RegistryObject<?> item, ModelFile modelFile, String suffix) {
