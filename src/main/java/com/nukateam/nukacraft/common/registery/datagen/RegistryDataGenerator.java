@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.datagen;
+package com.nukateam.nukacraft.common.registery.datagen;
 
 import com.nukateam.nukacraft.*;
 import com.nukateam.nukacraft.common.foundation.world.features.*;

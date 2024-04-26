@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.annotation.Generate;
 import com.nukateam.nukacraft.common.foundation.items.misc.ColoredHolotapeItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.NuclearMaterialItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.VioletReagent;
@@ -22,8 +23,6 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
-
-
     public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DEATHCLAW = ITEMS.register("deathclaw",
@@ -37,14 +36,14 @@ public class ModItems {
     public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
             () -> new Item(new Item.Properties()));
 
-
+    @Generate
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> VIOPLEX = ITEMS.register("purple_reagent",
+    public static final RegistryObject<Item> PURPLE_REAGENT = ITEMS.register("purple_reagent",
             () -> new VioletReagent(new Item.Properties().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ADHESIVE = ITEMS.register("adhesive",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> ANTISEPT = ITEMS.register("antisept",
+    public static final RegistryObject<Item> ANTISEPTIC = ITEMS.register("antisept",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer",
             () -> new BoneMealItem(new Item.Properties()));
@@ -52,7 +51,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> FIBER = ITEMS.register("fiber",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> GLOWINGRES = ITEMS.register("resin_glow",
+    public static final RegistryObject<Item> GLOWING_RESIN = ITEMS.register("resin_glow",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GLOAMSAP = ITEMS.register("gloam_sap",
             () -> new Item(new Item.Properties()));
@@ -74,11 +73,11 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RUBBER = ITEMS.register("rubber",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> ALUMINGOT = ITEMS.register("alumi_ingot",
+    public static final RegistryObject<Item> ALUMINIUM_INGOT = ITEMS.register("alumi_ingot",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> BTITANING = ITEMS.register("btitan",
+    public static final RegistryObject<Item> BLACK_TITAN = ITEMS.register("btitan",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> VAULTDOOR = ITEMS.register("vaultdoor",
+    public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vaultdoor",
             () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties()));
     //    public static final RegistryObject<Item> HALFBARRIER = ITEMS.register("half_barrier_item",
 //            () -> new BlockItem(ModBlocks.HALFBARRIER.get(), new Item.Properties().tab(NUKA_BLOCKS)));
@@ -96,25 +95,25 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BTITANNUGG = ITEMS.register("btitannugget",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> URANRAW = ITEMS.register("raw_uran",
+    public static final RegistryObject<Item> RAW_URANIUM = ITEMS.register("raw_uran",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SATURNITERAW = ITEMS.register("raw_saturnite",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> LEADNUGG = ITEMS.register("leadnugget",
+    public static final RegistryObject<Item> LEAD_NUGGET = ITEMS.register("leadnugget",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> SILVERNUGG = ITEMS.register("silvernugget",
+    public static final RegistryObject<Item> SILVER_NUGGET = ITEMS.register("silvernugget",
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> BOGPAD_ITEM = ITEMS.register("bogpad_item",
             () -> new ItemNameBlockItem(ModBlocks.GAMMALEAF_BUSH.get(), new Item.Properties().rarity(Rarity.EPIC)));
 
-    public static final RegistryObject<Item> STEELNUGG = ITEMS.register("steelnugget",
+    public static final RegistryObject<Item> STEEL_NUGGET = ITEMS.register("steelnugget",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CERAMIC = ITEMS.register("ceramic",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ELECTRONUM = ITEMS.register("electronum",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> GLOWMASS = ITEMS.register("glowmass",
+    public static final RegistryObject<Item> GLOW_MASS = ITEMS.register("glowmass",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LEATHERHARD = ITEMS.register("leatherhard",
             () -> new Item(new Item.Properties()));
