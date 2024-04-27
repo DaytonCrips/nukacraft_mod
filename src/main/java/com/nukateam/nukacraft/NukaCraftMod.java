@@ -85,7 +85,6 @@ public class NukaCraftMod {
 //        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
-        MOD_EVENT_BUS.addListener(this::generateData);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             MOD_EVENT_BUS.addListener(KeyBindings::register);
@@ -97,15 +96,7 @@ public class NukaCraftMod {
         curiosLoaded = ModList.get().isLoaded("curios");
     }
 
-    private void generateData(GatherDataEvent event) {
-        var generator = event.getGenerator();
-        var packOutput = generator.getPackOutput();
-        var fileHelper = event.getExistingFileHelper();
 
-        generator.addProvider(event.includeServer(), new RegistryDataGenerator(packOutput, event.getLookupProvider()));
-        generator.addProvider(event.includeClient(), new ItemModelProvider(packOutput, fileHelper));
-
-    }
 
     public static boolean isCuriosLoaded() {
         return curiosLoaded;

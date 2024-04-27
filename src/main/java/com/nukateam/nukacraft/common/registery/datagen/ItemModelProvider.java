@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery.datagen;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.data.annotation.Generate;
+import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +11,8 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+
+import static com.nukateam.nukacraft.common.data.enums.ResourceType.ITEM;
 
 public class ItemModelProvider extends net.minecraftforge.client.model.generators.ItemModelProvider {
     public ItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -28,12 +30,21 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         try {
             for (var field : fields) {
                 var obj = field.get(null);
-                if (obj instanceof RegistryObject<?>) {
 
-                    if(field.isAnnotationPresent(Generate.class)){
-                        var item = (RegistryObject<Item>) obj;
-                        var annotation = field.getAnnotation(Generate.class);
-                        itemModel(item, getModelFile(annotation.parent().getPath()));
+                if (!(obj instanceof RegistryObject<?>)) continue;
+
+                if(field.isAnnotationPresent(DataGen.class)){
+                    var annotation = field.getAnnotation(DataGen.class);
+
+                    switch (annotation.type()) {
+                        case ITEM -> {
+                            var item = (RegistryObject<Item>) obj;
+                            genItems(item, annotation);
+                        }
+                        case BLOCK -> {
+                            var block = (RegistryObject<Block>) obj;
+                            blockModel(block);
+                        }
                     }
                 }
             }
@@ -42,10 +53,19 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         }
     }
 
+    private void genItems(RegistryObject<Item> item, DataGen annotation) {
+        var modelFile = getModelFile(annotation.parent().getPath());
+
+        switch (annotation.parent()){
+            case SPAWN_EGG -> spawnEggModel(item, modelFile);
+            default -> itemModel(item, modelFile);
+        }
+    }
+
     private ModelFile getModelFile(String path){
         return getExistingFile(new ResourceLocation(path));
     }
-//
+
 //    private void spawnEggModel(RegistryObject<Item> egg) {
 //        withExistingParent(egg.getId().getPath(), new ResourceLocation("item"));
 //    }

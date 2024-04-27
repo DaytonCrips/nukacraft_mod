@@ -2,6 +2,8 @@ package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.ntgl.common.foundation.block.WorkbenchBlock;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.annotation.DataGen;
+import com.nukateam.nukacraft.common.data.enums.ResourceType;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.PipeBlock;
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.*;
 import com.nukateam.nukacraft.common.foundation.blocks.plants.*;
@@ -44,6 +46,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> OPENGEAR = registerBlockWithoutItem("opengear",
             () -> new OpenGearBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
+
     public static final RegistryObject<Block> HALFBARRIER = registerBlockWithoutItem("half_barrier",
             () -> new HalfBarrier(BlockBehaviour.Properties.copy(Blocks.BARRIER).strength(-1f).explosionResistance(3600000.8F)/*.noDrops()*/.noOcclusion()));
     public static final RegistryObject<Block> FILLERBARRIER = registerBlockWithoutItem("filler_barrier",
@@ -52,6 +55,7 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ULTRACITE_TUFF = registerBlock("ultracite_tuff",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.8f).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
@@ -745,7 +749,6 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> PRISMLEAF = registerBlockWithoutItem("prism_leaf",
             () -> new PrismLeafBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
-
 
     public static final RegistryObject<Block> DEAD_PUNGA = registerBlock("dead_punga",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,

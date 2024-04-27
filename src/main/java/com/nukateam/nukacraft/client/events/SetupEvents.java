@@ -31,19 +31,8 @@ public class SetupEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        ModSetup.renderTypeSetup();
         PipboyPages.init(PipboyPages.content);
-
-//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());
-//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLUID.get(), RenderType.translucent());
-//        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_FLOWING.get(), RenderType.translucent());
     }
-
-//    @SubscribeEvent
-//    public static void clientSetup(final FMLClientSetupEvent event) {
-//
-//        //ClientConfig.setup();
-//    }
 
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {

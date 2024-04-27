@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.data.annotation.Generate;
+import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -35,7 +35,7 @@ public class ModBlockItems {
     public static final RegistryObject<Item> BLASTCAPFUNGI = ITEMS.register("blastcap",
             () -> new ItemNameBlockItem(ModBlocks.BLASTCAP.get(), new Item.Properties()));
 
-    @Generate
+    @DataGen
     public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vaultdoor",
             () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties()));
 
