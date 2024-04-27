@@ -9,11 +9,11 @@ public enum ItemParent {
 
     private final String path;
 
-    ItemParent(String path){
+    ItemParent(String path) {
         this.path = path;
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 }

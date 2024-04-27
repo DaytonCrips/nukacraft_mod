@@ -2,16 +2,15 @@ package com.nukateam.nukacraft.common.data.enums;
 
 public enum ResourceType {
     ITEM("item"),
-    BLOCK("block")
-    ;
+    BLOCK("block");
 
     private final String path;
 
-    ResourceType(String path){
+    ResourceType(String path) {
         this.path = path;
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 }

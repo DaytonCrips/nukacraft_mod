@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
-	@SubscribeEvent
-	public static void gatherData(GatherDataEvent event) {
+    @SubscribeEvent
+    public static void gatherData(GatherDataEvent event) {
         var generator = event.getGenerator();
         var packOutput = generator.getPackOutput();
         var fileHelper = event.getExistingFileHelper();

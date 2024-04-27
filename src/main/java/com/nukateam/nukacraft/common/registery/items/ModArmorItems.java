@@ -2,6 +2,8 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.ibm.icu.impl.Pair;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.annotation.DataGen;
+import com.nukateam.nukacraft.common.data.utils.ArmorStorage;
 import com.nukateam.nukacraft.common.foundation.items.armor.GeoArmorItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
 import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
@@ -19,11 +21,16 @@ import java.util.List;
 public class ModArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    public static final HashMap<ArmorItem.Type, RegistryObject<Item>> WOODEN_SET = registerArmorSet("wooden", ModArmorMaterials.WOOD);
-    public static final HashMap<ArmorItem.Type, RegistryObject<Item>> LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.HARDLEATHER);
-    public static final HashMap<ArmorItem.Type, RegistryObject<Item>> RAIDER_SET = registerArmorSet("raiders", ModArmorMaterials.RAIDER);
-    public static final HashMap<ArmorItem.Type, RegistryObject<Item>> METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
-    public static final HashMap<ArmorItem.Type, RegistryObject<Item>> TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
+    @DataGen(path = "armor")
+    public static final ArmorStorage WOODEN_SET = registerArmorSet("wooden", ModArmorMaterials.WOOD);
+    @DataGen(path = "armor")
+    public static final ArmorStorage LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.HARDLEATHER);
+    @DataGen(path = "armor")
+    public static final ArmorStorage RAIDER_SET = registerArmorSet("raiders", ModArmorMaterials.RAIDER);
+    @DataGen(path = "armor")
+    public static final ArmorStorage METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
+    @DataGen(path = "armor")
+    public static final ArmorStorage TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
 
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",
             () -> new PipBoyItem("default", new Item.Properties().stacksTo(1)));
@@ -32,8 +39,8 @@ public class ModArmorItems {
         ITEMS.register(eventBus);
     }
 
-    private static HashMap<ArmorItem.Type, RegistryObject<Item>> registerArmorSet(String name, ArmorMaterial material) {
-        var armorSet = new HashMap<ArmorItem.Type, RegistryObject<Item>>();
+    private static ArmorStorage registerArmorSet(String name, ArmorMaterial material) {
+        var armorSet = new ArmorStorage();
         var armorSlots = List.of(
                 Pair.of(ArmorItem.Type.HELMET, "helmet"),
                 Pair.of(ArmorItem.Type.CHESTPLATE, "chest"),

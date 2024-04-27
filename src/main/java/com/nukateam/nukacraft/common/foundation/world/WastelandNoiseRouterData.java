@@ -1,22 +1,15 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.mojang.serialization.Codec;
-import net.minecraft.client.gui.screens.worldselection.WorldCreationContext;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
-
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.FixedBiomeSource;
-import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import net.minecraft.world.level.levelgen.DensityFunction;
+import net.minecraft.world.level.levelgen.DensityFunctions;
+import net.minecraft.world.level.levelgen.NoiseRouter;
+import net.minecraft.world.level.levelgen.Noises;
 
-import static net.minecraft.world.level.levelgen.synth.NormalNoise.*;
+import static net.minecraft.world.level.levelgen.synth.NormalNoise.NoiseParameters;
 
 public class WastelandNoiseRouterData {
     public static final ResourceKey<DensityFunction> Y = createKey("y");
@@ -122,7 +115,7 @@ public class WastelandNoiseRouterData {
         DensityFunction densityFunction2 = DensityFunctions.yClampedGradient(p_224445_ + p_224450_, p_224445_ + p_224451_, 0.0D, 1.0D);
         return DensityFunctions.lerp(densityFunction2, p_224452_, $$9);
     }
-    
+
     private static DensityFunction getFunction(HolderGetter<DensityFunction> pDensityFunctions, ResourceKey<DensityFunction> pKey) {
         return new DensityFunctions.HolderHolder(pDensityFunctions.getOrThrow(pKey));
     }

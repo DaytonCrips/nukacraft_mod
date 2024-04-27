@@ -1,14 +1,11 @@
 package com.nukateam.nukacraft;
 
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.registries.RegistryObject;
-
-import static net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer;
 
 public class ModSetup {
     public static void flowerPotSetup() {

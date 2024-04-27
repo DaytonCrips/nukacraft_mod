@@ -1,14 +1,17 @@
 package com.nukateam.nukacraft.common.registery;
 
-import com.nukateam.nukacraft.*;
+import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.items.*;
-import net.minecraft.core.registries.*;
-import net.minecraft.network.chat.*;
-import net.minecraft.world.item.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.*;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
-import static net.minecraft.world.item.ArmorItem.Type.*;
+import static net.minecraft.world.item.ArmorItem.Type.HELMET;
 
 public class ModItemTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -48,7 +51,7 @@ public class ModItemTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> POWER_ARMOR = CREATIVE_MODE_TABS.register("power_armor",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PowerArmorItems.T45_HELMET.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PowerArmorItems.T60_HELMET.get()))
                     .title(Component.translatable("itemGroup.power_armor"))
                     .displayItems((params, output) -> registerItems(output, PowerArmorItems.ITEMS))
                     .build());

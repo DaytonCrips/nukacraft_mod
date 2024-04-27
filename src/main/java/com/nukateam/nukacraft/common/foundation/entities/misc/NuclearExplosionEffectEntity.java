@@ -85,7 +85,7 @@ public class NuclearExplosionEffectEntity extends SimpleGeoEntity {
     public BlockPos getBlockPos() {
         var pos = position();
         pos = pos.subtract(0, 1, 0);
-        var posI = new Vec3i((int)pos.x, (int)pos.y, (int)pos.z);
+        var posI = new Vec3i((int) pos.x, (int) pos.y, (int) pos.z);
         return new BlockPos(posI);
     }
 

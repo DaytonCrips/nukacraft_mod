@@ -13,14 +13,11 @@ import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
-import com.nukateam.nukacraft.common.registery.datagen.ItemModelProvider;
-import com.nukateam.nukacraft.common.registery.datagen.RegistryDataGenerator;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluidTypes;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
 import com.nukateam.nukacraft.common.registery.items.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
@@ -95,7 +92,6 @@ public class NukaCraftMod {
 
         curiosLoaded = ModList.get().isLoaded("curios");
     }
-
 
 
     public static boolean isCuriosLoaded() {

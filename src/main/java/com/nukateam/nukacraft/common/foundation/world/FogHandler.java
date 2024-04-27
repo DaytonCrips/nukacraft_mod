@@ -2,9 +2,7 @@ package com.nukateam.nukacraft.common.foundation.world;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.nukateam.nukacraft.NukaCraftMod;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

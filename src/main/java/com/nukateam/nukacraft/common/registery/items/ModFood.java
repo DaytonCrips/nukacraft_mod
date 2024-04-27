@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.items.сonsumables.*;
+import com.nukateam.nukacraft.common.foundation.items.consumables.*;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

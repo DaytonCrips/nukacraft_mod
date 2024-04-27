@@ -3,10 +3,10 @@ package com.nukateam.nukacraft.common.registery.items;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.data.enums.ItemParent;
+import com.nukateam.nukacraft.common.foundation.items.consumables.RadNamedItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.ColoredHolotapeItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.NuclearMaterialItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.VioletReagent;
-import com.nukateam.nukacraft.common.foundation.items.сonsumables.RadNamedItem;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import com.nukateam.nukacraft.common.registery.fluid.ModFluids;
@@ -395,7 +395,7 @@ public class ModItems {
     public static final RegistryObject<Item> BRAINFUNGUS = ITEMS.register("brainfungus",
             () -> new RadNamedItem(0.2f, ModBlocks.BRAINFUNGUS.get(), new Item.Properties()));
 
-    @DataGen
+//    @DataGen
     public static final RegistryObject<Item> MINDFUNGUS = ITEMS.register("mindfungus",
             () -> new RadNamedItem(0.5f, ModBlocks.MINDFUNGUS.get(), new Item.Properties()));
 
