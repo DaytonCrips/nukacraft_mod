@@ -100,7 +100,7 @@ public class ModItems {
     public static final RegistryObject<Item> ALUMINIUM_INGOT = ITEMS.register("alumi_ingot",
             () -> new Item(new Item.Properties()));
     @DataGen
-    public static final RegistryObject<Item> BLACK_TITAN = ITEMS.register("btitan",
+    public static final RegistryObject<Item> BLACK_TITAN = ITEMS.register("black_titan",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> LEADING = ITEMS.register("lead",
@@ -118,7 +118,7 @@ public class ModItems {
     public static final RegistryObject<Item> ALUMINUGG = ITEMS.register("aluminugget",
             () -> new Item(new Item.Properties()));
     @DataGen
-    public static final RegistryObject<Item> BTITANNUGG = ITEMS.register("btitannugget",
+    public static final RegistryObject<Item> BTITANNUGG = ITEMS.register("black_titan_nugget",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> RAW_URANIUM = ITEMS.register("raw_uran",
@@ -201,7 +201,7 @@ public class ModItems {
     public static final RegistryObject<Item> RAWALUMI = ITEMS.register("raw_alumi",
             () -> new Item(new Item.Properties()));
     @DataGen
-    public static final RegistryObject<Item> RAWBTITAN = ITEMS.register("raw_btitan",
+    public static final RegistryObject<Item> RAWBTITAN = ITEMS.register("raw_black_titan",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> RAWLEAD = ITEMS.register("raw_lead",

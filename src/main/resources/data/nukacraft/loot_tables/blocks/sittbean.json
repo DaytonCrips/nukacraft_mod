@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:sittbean"
+          "name": "nukacraft:silt_bean"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "nukacraft:sittbean",
+          "block": "nukacraft:silt_bean",
           "properties": {
             "age": "3"
           }
@@ -42,13 +42,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:sittbean"
+          "name": "nukacraft:silt_bean"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "nukacraft:sittbean",
+          "block": "nukacraft:silt_bean",
           "properties": {
             "age": "2"
           }

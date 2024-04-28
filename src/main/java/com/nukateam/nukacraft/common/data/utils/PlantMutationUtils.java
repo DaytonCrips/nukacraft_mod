@@ -26,7 +26,7 @@ public class PlantMutationUtils {
             entry(ModBlocks.BBLOODLEAF_BUSH.get(), ModBlocks.GAMMALEAF_BUSH.get()),
             entry(ModBlocks.CRACKBERRY_BUSH.get(), ModBlocks.BOMBBERRY_BUSH.get()),
             entry(ModBlocks.MUTTFRUIT_BUSH.get(), ModBlocks.FUSFRUIT_BUSH.get()),
-            entry(ModBlocks.SITTBEAN_BUSH.get(), ModBlocks.NEUTRON_BUSH.get()),
+            entry(ModBlocks.SILT_BEAN_BUSH.get(), ModBlocks.NEUTRON_BUSH.get()),
             entry(ModBlocks.CRANBERRY.get(), ModBlocks.GOLD_CRANBERRY.get()),
             entry(ModBlocks.BRAINFUNGUS.get(), ModBlocks.MINDFUNGUS.get()),
             entry(ModBlocks.GLOWFUNGUS.get(), ModBlocks.MUTTSHOOTFUNGUS.get()),

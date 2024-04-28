@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "nukacraft:block/btitan_ore"
+    "all": "nukacraft:block/black_titan_block"
   }
 }

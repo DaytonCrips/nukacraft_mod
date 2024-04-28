@@ -175,18 +175,18 @@ public class ModBlocks {
                         return 7;
                     })));
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> BTITAN_ORE = registerBlock("btitan_ore",
+    public static final RegistryObject<Block> BTITAN_ORE = registerBlock("black_titan_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.2F, 4.1F).requiresCorrectToolForDrops()));
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEPBTITAN = registerBlock("deepbtitan_block",
+    public static final RegistryObject<Block> DEEPBTITAN = registerBlock("deep_black_titan_block",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.7F, 4.5F).requiresCorrectToolForDrops()));
 
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEPULTRACITE = registerBlock("deepultracite_block",
+    public static final RegistryObject<Block> DEEP_ULTRACITE = registerBlock("deep_ultracite_block",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(3.8F, 3.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {
                         return 7;
@@ -732,7 +732,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> FUSFRUIT_BUSH = registerBlockWithoutItem("fusionfruit",
             () -> new FusFruitBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    public static final RegistryObject<Block> SITTBEAN_BUSH = registerBlockWithoutItem("sittbean",
+    public static final RegistryObject<Block> SILT_BEAN_BUSH = registerBlockWithoutItem("silt_bean",
             () -> new SittBeansBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
     public static final RegistryObject<Block> NEUTRON_BUSH = registerBlockWithoutItem("neutronpod",
@@ -953,14 +953,14 @@ public class ModBlocks {
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
 
-//    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> RUSTY_STEEL_BARS = registerBlock("ruststeel_bars",
+//    @DataGen
+    public static final RegistryObject<Block> RUSTY_STEEL_BARS = registerBlock("rusty_steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
 
-//    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
+//    @DataGen
+    public static final RegistryObject<Block> RUSTY_DOOR = registerBlock("rustdoor",
             () -> new DoorBlock(
                     BlockBehaviour.Properties.of()
                             .sound(SoundType.METAL)
@@ -971,14 +971,14 @@ public class ModBlocks {
                             .noOcclusion(), BlockSetType.OAK)
     );
 
-
+//    @DataGen
     public static final RegistryObject<Block> CAGEDOOR = registerBlock("door_cage",
             () -> new DoorBlock(BlockBehaviour.Properties.of()
                     .sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
-
-    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decaydoor",
+//    @DataGen
+    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decay_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
 
     public static final RegistryObject<Block> STOREDOOR = registerBlock("door_store",

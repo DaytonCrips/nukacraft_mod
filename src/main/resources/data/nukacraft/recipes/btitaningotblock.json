@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "nukacraft:btitan_block"
+      "item": "nukacraft:black_titan_block"
     }
   ],
   "result": {
-    "item": "nukacraft:btitan",
+    "item": "nukacraft:black_titan",
     "count": 9
   }
 }

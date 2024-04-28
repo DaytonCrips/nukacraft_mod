@@ -34,7 +34,7 @@ public class IrradRootBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModFood.IRRADSEED.get();
+        return ModFood.IRRADIATED_BEETROOT_SEED.get();
     }
 
 

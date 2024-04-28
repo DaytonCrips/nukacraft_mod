@@ -133,7 +133,7 @@ public class ModVegetationFeatures {
 //                    vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 2));
 
 //    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_BBLIGHT = registerKey("patch_bblight",
-//            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
+//            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BRIGHT_BLIGHT.get()), 1));
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_GLOW_GRASS =
@@ -319,7 +319,7 @@ public class ModVegetationFeatures {
 //                    vegetationPatch(BlockStateProvider.simple(ModBlocks.RUSTY_BUSH.get()), 2));
 
 //     FeatureUtils.register(pContext, PATCH_BBLIGHT = FeatureUtils.register(,
-//            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BBLIGHT.get()), 1));
+//            Feature.RANDOM_PATCH, vegetationPatch(BlockStateProvider.simple(ModBlocks.BRIGHT_BLIGHT.get()), 1));
 
 
         FeatureUtils.register(pContext, PATCH_GLOW_GRASS,
@@ -333,7 +333,7 @@ public class ModVegetationFeatures {
 
         FeatureUtils.register(pContext, PATCH_SLIT_BEANS,
                 Feature.RANDOM_PATCH,
-                vegetationPatch(BlockStateProvider.simple(ModBlocks.SITTBEAN_BUSH.get()), 1));
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.SILT_BEAN_BUSH.get()), 1));
 
 
         FeatureUtils.register(pContext, PATCH_ASH_GRASS,
