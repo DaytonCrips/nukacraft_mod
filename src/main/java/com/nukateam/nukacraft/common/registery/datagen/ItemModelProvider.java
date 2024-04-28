@@ -17,6 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 public class ItemModelProvider extends net.minecraftforge.client.model.generators.ItemModelProvider {
     public ItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, NukaCraftMod.MOD_ID, exFileHelper);
@@ -47,7 +48,8 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
                             case ITEM -> genItems((RegistryObject<Item>) obj, annotation);
                             case BLOCK -> blockModel((RegistryObject<Block>) obj);
                         }
-                    } else if (obj instanceof ArmorStorage storage) {
+                    } else if (obj instanceof HashMap<?,?>) {
+                        var storage = (HashMap<?, RegistryObject<Item>>) obj;
                         for (var item : storage.values()){
                             genItems(item, annotation);
                         }
@@ -95,8 +97,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
 
         var texture = "item/";
 
-        if(!dataGen.path().isEmpty()) texture += dataGen.path() + "/";
-        if(dataGen.ownDir()) texture += path + "/";
+        if(!dataGen.path().isEmpty())
+            texture += dataGen.path() + "/";
+        if(dataGen.ownDir())
+            texture += path.split("_")[0] + "/";
 
         return getBuilder(path).parent(modelFile).texture("layer0", texture + item.getId().getPath());
     }

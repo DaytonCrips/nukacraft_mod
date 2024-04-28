@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.enums.PowerArmorPart;
 import com.nukateam.nukacraft.common.registery.items.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -51,7 +52,7 @@ public class ModItemTabs {
                     .build());
 
     public static final RegistryObject<CreativeModeTab> POWER_ARMOR = CREATIVE_MODE_TABS.register("power_armor",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PowerArmorItems.T60_HELMET.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(PowerArmorItems.T45_SET.get(PowerArmorPart.HELMET).get()))
                     .title(Component.translatable("itemGroup.power_armor"))
                     .displayItems((params, output) -> registerItems(output, PowerArmorItems.ITEMS))
                     .build());

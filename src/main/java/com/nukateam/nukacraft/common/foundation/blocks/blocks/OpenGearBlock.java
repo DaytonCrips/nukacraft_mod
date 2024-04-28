@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -133,7 +132,7 @@ public class OpenGearBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
+        BlockState newstate = ModBlocks.GEAR_DOOR.get().defaultBlockState();
         if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
             for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
                 Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
