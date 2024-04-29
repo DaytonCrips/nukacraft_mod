@@ -581,11 +581,11 @@ public class ModBlocks {
             () -> new TatoCropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
 
 //    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> IRRADROOT = registerBlockWithoutItem("irrad_beetroots",
+    public static final RegistryObject<Block> IRRADROOT = registerBlockWithoutItem("irradiated_beetroots",
             () -> new IrradRootBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
 
 //    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> UFCARROT = registerBlockWithoutItem("ufcarrots",
+    public static final RegistryObject<Block> UFCARROT = registerBlockWithoutItem("ultraviolet_carrots",
             () -> new UltravioletCarrotBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
 
 //    @DataGen(type = ResourceType.BLOCK)
@@ -735,10 +735,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> SILT_BEAN_BUSH = registerBlockWithoutItem("silt_bean",
             () -> new SittBeansBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    public static final RegistryObject<Block> NEUTRON_BUSH = registerBlockWithoutItem("neutronpod",
+    public static final RegistryObject<Block> NEUTRON_BUSH = registerBlockWithoutItem("neutron_rod",
             () -> new NeutronRodBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    public static final RegistryObject<Block> WILDTATO = registerBlockWithoutItem("wildtato",
+    public static final RegistryObject<Block> WILDTATO = registerBlockWithoutItem("wild_tato",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
     public static final RegistryObject<Block> CRANBERRY = registerBlockWithoutItem("cranberry",
@@ -747,7 +747,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> GOLD_CRANBERRY = registerBlockWithoutItem("gold_cranberry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    public static final RegistryObject<Block> STARBERRY = registerBlockWithoutItem("starberry",
+    public static final RegistryObject<Block> STARBERRY = registerBlockWithoutItem("starlight_berry",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
     public static final RegistryObject<Block> GUTFUNGI = registerBlockWithoutItem("gutfungi",
@@ -959,8 +959,8 @@ public class ModBlocks {
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
 
-//    @DataGen
-    public static final RegistryObject<Block> RUSTY_DOOR = registerBlock("rustdoor",
+    @DataGen
+    public static final RegistryObject<Block> RUSTY_DOOR = registerBlock("rusty_door",
             () -> new DoorBlock(
                     BlockBehaviour.Properties.of()
                             .sound(SoundType.METAL)
@@ -971,32 +971,33 @@ public class ModBlocks {
                             .noOcclusion(), BlockSetType.OAK)
     );
 
-//    @DataGen
-    public static final RegistryObject<Block> CAGEDOOR = registerBlock("door_cage",
+    @DataGen
+    public static final RegistryObject<Block> CAGE_DOOR = registerBlock("door_cage",
             () -> new DoorBlock(BlockBehaviour.Properties.of()
                     .sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
-//    @DataGen
-    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decay_door",
+    @DataGen
+    public static final RegistryObject<Block> DECAY_DOOR = registerBlock("decay_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
 
-    public static final RegistryObject<Block> STOREDOOR = registerBlock("door_store",
+    @DataGen
+    public static final RegistryObject<Block> STORE_DOOR = registerBlock("door_store",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
-    public static final RegistryObject<Block> REDDOOR = registerBlock("door_red",
+    @DataGen
+    public static final RegistryObject<Block> RED_DOOR = registerBlock("door_red",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
+    @DataGen
     public static final RegistryObject<Block> GREENDOOR = registerBlock("door_green",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
-    public static final RegistryObject<Block> WHITEDOOR = registerBlock("door_white",
+    @DataGen
+    public static final RegistryObject<Block> WHITE_DOOR = registerBlock("door_white",
+            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+    @DataGen
+    public static final RegistryObject<Block> HARD_DOOR = registerBlock("door_hardened",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
 
-    public static final RegistryObject<Block> HARDDOOR = registerBlock("door_hardened",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
-    public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
+    public static final RegistryObject<Block> RRED_DOOR = registerBlock("red_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
 //    @DataGen(type = ResourceType.BLOCK)

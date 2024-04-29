@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:glowfungus",
+          "name": "nukacraft:glowing_fungus",
           "weight": 1,
           "functions": [
             {

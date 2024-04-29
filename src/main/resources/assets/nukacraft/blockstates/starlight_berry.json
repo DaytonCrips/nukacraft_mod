@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/starlight_berry0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/starlight_berry1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/starlight_berry2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/starlight_berry3"
+    }
+  }
+}

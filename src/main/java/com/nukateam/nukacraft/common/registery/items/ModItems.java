@@ -149,7 +149,7 @@ public class ModItems {
     public static final RegistryObject<Item> LEATHERHARD = ITEMS.register("leatherhard",
             () -> new Item(new Item.Properties()));
     @DataGen
-    public static final RegistryObject<Item> DCLEATHER = ITEMS.register("dcleather",
+    public static final RegistryObject<Item> DCLEATHER = ITEMS.register("deathclaw_leather",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> BBLOODLEAF = ITEMS.register("bbloodleaf",
@@ -305,7 +305,7 @@ public class ModItems {
     public static final RegistryObject<Item> ABRAXOCLEANER = ITEMS.register("abraxo_cleaner",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     @DataGen
-    public static final RegistryObject<Item> STEELBOWL = ITEMS.register("steelbowl",
+    public static final RegistryObject<Item> STEELBOWL = ITEMS.register("steel_bowl",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     @DataGen
     public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",

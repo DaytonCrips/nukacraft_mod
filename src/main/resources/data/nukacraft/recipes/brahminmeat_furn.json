@@ -3,7 +3,7 @@
   "experience": 1,
   "cookingtime": 125,
   "ingredient": {
-    "item": "nukacraft:raw_brahminmeat"
+    "item": "nukacraft:raw_brahmin_meat"
   },
-  "result": "nukacraft:c_brahminmeat"
+  "result": "nukacraft:cooked_brahmin_meat"
 }

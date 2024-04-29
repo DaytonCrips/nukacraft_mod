@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/neutron_rod0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/neutron_rod1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/neutron_rod2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/neutron_rod3"
+    },
+    "age=4": {
+      "model": "nukacraft:block/neutron_rod4"
+    },
+    "age=5": {
+      "model": "nukacraft:block/neutron_rod5"
+    },
+    "age=6": {
+      "model": "nukacraft:block/neutron_rod6"
+    },
+    "age=7": {
+      "model": "nukacraft:block/neutron_rod7"
+    }
+  }
+}

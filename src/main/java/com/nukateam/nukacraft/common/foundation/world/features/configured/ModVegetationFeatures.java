@@ -158,7 +158,7 @@ public class ModVegetationFeatures {
             registerKey("patch_rustybush");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> STARLIGHT_BERRY_PLANT =
-            registerKey("starberry_plant_features");
+            registerKey("starlight_berry_plant_features");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRANBERRY_PLANT =
             registerKey("cranberry_plant_features");

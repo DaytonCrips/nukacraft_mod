@@ -25,13 +25,13 @@ public class ModWeapons {
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -2,
                     new Item.Properties()));
-    public static final RegistryObject<Item> COMBAT_KNIFE = ITEMS.register("combatknife",
+    public static final RegistryObject<Item> COMBAT_KNIFE = ITEMS.register("combat_knife",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -1,
                     new Item.Properties()));
-    public static final RegistryObject<Item> COSMIC_KNIFE = ITEMS.register("cosmicknife",
+    public static final RegistryObject<Item> COSMIC_KNIFE = ITEMS.register("cosmic_knife",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 0, 0,
                     new Item.Properties()));
-    public static final RegistryObject<Item> COMBAT_PIPE = ITEMS.register("combatpipe",
+    public static final RegistryObject<Item> COMBAT_PIPE = ITEMS.register("combat_pipe",
             () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
                     new Item.Properties()));
 

@@ -11,7 +11,7 @@ public class ModPaintings {
     public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS =
             DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<PaintingVariant> NUKACOLA = PAINTING_VARIANTS.register("nukacola",
+    public static final RegistryObject<PaintingVariant> NUKACOLA = PAINTING_VARIANTS.register("nuka_cola",
             () -> new PaintingVariant(16, 32));
 
     public static final RegistryObject<PaintingVariant> QUANTCOLA = PAINTING_VARIANTS.register("quantcola",

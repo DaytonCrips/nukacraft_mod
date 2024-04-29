@@ -17,7 +17,7 @@ public class ModBlockItems {
     public static final RegistryObject<Item> FIREFUNGI = ITEMS.register("firemushroom",
             () -> new ItemNameBlockItem(ModBlocks.FIREMUSHROOM.get(), new Item.Properties()));
 
-    public static final RegistryObject<Item> GLOWMUSHROOM = ITEMS.register("glowfungus",
+    public static final RegistryObject<Item> GLOWMUSHROOM = ITEMS.register("glowing_fungus",
             () -> new ItemNameBlockItem(ModBlocks.GLOWFUNGUS.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> GUTMUSHROOM = ITEMS.register("gutshroom",

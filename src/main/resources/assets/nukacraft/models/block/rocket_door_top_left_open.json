@@ -2,7 +2,7 @@
   "parent": "minecraft:block/door_top_left_open",
   "render_type": "cutout",
   "textures": {
-    "bottom": "nukacraft:block/rreddoor_d",
-    "top": "nukacraft:block/rreddoor_t"
+    "bottom": "nukacraft:block/red_door_d",
+    "top": "nukacraft:block/red_door_t"
   }
 }

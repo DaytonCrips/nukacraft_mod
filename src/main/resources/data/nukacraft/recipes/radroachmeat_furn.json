@@ -3,7 +3,7 @@
   "experience": 1,
   "cookingtime": 85,
   "ingredient": {
-    "item": "nukacraft:raw_radroachmeat"
+    "item": "nukacraft:raw_radroach_meat"
   },
-  "result": "nukacraft:c_radroachmeat"
+  "result": "nukacraft:cooked_radroach_meat"
 }
