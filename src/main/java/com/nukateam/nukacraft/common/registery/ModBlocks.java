@@ -996,7 +996,7 @@ public class ModBlocks {
     @DataGen
     public static final RegistryObject<Block> HARD_DOOR = registerBlock("door_hardened",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
+    @DataGen
     public static final RegistryObject<Block> RRED_DOOR = registerBlock("red_door",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
@@ -1006,12 +1006,12 @@ public class ModBlocks {
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops()));
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> SUPPORTWALL = registerBlock("supportwall",
+    public static final RegistryObject<Block> SUPPORTWALL = registerBlock("support_wall",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "wall"));
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> SUPPORTWALLTOP = registerBlock("supportwalltop",
+    public static final RegistryObject<Block> SUPPORTWALLTOP = registerBlock("support_walltop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "walltop"));
 
@@ -1022,12 +1022,12 @@ public class ModBlocks {
 
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> RUST_SUPPORT_WALL = registerBlock("rustsupportwall",
+    public static final RegistryObject<Block> RUST_SUPPORT_WALL = registerBlock("rustsupport_wall",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "wall"));
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> RUST_SUPPORTWALL_TOP = registerBlock("rustsupportwalltop",
+    public static final RegistryObject<Block> RUST_SUPPORTWALL_TOP = registerBlock("rustsupport_walltop",
             () -> new VaultSupportBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops(), "walltop"));
 

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:supportwall",
+          "name": "nukacraft:rustsupport_walltop",
           "weight": 1,
           "functions": [
             {

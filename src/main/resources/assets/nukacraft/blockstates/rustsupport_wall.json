@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/rustsupport_wall" },
+    "facing=east": { "model": "nukacraft:block/rustsupport_wall", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/rustsupport_wall", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/rustsupport_wall", "y": 270 }
+  }
+}

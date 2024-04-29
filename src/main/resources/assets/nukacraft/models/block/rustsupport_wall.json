@@ -1,10 +1,11 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "nukacraft:block/supportwall",
+	"render_type": "cutout",
+	"parent": "nukacraft:block/rustsupport_wall",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "nukacraft:block/sheltersupport_d",
-		"particle": "nukacraft:block/sheltersupport_d"
+		"1": "nukacraft:block/rustsheltersupport_d",
+		"particle": "nukacraft:block/rustsheltersupport_d"
 	},
 	"elements": [
 		{
