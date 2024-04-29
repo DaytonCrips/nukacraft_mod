@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.data.utils;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.nukateam.ntgl.common.data.util.StackUtils;
 import com.nukateam.nukacraft.client.helpers.NbtColor;
 import com.nukateam.nukacraft.common.data.constants.Nbt;
 import com.nukateam.nukacraft.common.foundation.items.misc.PipBoyItem;
