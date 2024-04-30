@@ -987,10 +987,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
     @DataGen
-    public static final RegistryObject<Block> DECAY_DOOR = registerBlock("decay_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
-
-    @DataGen
     public static final RegistryObject<Block> STORE_DOOR = registerBlock("door_store",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
     @DataGen

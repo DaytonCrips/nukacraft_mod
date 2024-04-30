@@ -22,7 +22,7 @@ public class ModBlockItems {
     public static final RegistryObject<Item> GLOWMUSHROOM = ITEMS.register("glowing_fungus",
             () -> new ItemNameBlockItem(ModBlocks.GLOWFUNGUS.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen
     public static final RegistryObject<Item> GUTMUSHROOM = ITEMS.register("gutshroom",
             () -> new ItemNameBlockItem(ModBlocks.GUTFUNGI.get(), new Item.Properties()));
 

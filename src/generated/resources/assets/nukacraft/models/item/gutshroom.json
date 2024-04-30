@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:block/gutshroom"
+    "layer0": "nukacraft:item/gutshroom"
   }
 }
