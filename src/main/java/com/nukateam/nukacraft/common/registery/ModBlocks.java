@@ -280,8 +280,8 @@ public class ModBlocks {
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(0.4f)));
 
-//    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> VAULT_BLASTDOOR = registerBlock("vaultblastdoor",
+    @DataGen()
+    public static final RegistryObject<Block> VAULT_BLASTDOOR = registerBlock("vault_blast_door",
             () -> new BlastDoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(0.4f).lightLevel((p_50892_) -> 1)));
 
@@ -763,6 +763,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> BRAINFUNGUS = registerBlockWithoutItem("brainfungus",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
+    @DataGen
     public static final RegistryObject<Block> MINDFUNGUS = registerBlockWithoutItem("mindfungus",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak().lightLevel((p_50892_) -> {
                 return 5;
