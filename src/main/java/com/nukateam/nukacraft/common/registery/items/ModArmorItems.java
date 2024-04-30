@@ -21,15 +21,15 @@ import java.util.List;
 public class ModArmorItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    @DataGen(path = "armor")
+    @DataGen(path = "item/armor")
     public static final ArmorStorage WOODEN_SET = registerArmorSet("wooden", ModArmorMaterials.WOOD);
-    @DataGen(path = "armor")
+    @DataGen(path = "item/armor")
     public static final ArmorStorage LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.HARDLEATHER);
-    @DataGen(path = "armor")
+    @DataGen(path = "item/armor")
     public static final ArmorStorage RAIDER_SET = registerArmorSet("raiders", ModArmorMaterials.RAIDER);
-    @DataGen(path = "armor")
+    @DataGen(path = "item/armor")
     public static final ArmorStorage METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
-    @DataGen(path = "armor")
+    @DataGen(path = "item/armor")
     public static final ArmorStorage TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
 
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",

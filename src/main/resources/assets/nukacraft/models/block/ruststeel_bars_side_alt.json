@@ -2,9 +2,9 @@
   "ambientocclusion": false,
   "render_type": "cutout",
   "textures": {
-    "particle": "nukacraft:block/rustshelter_bars",
-    "bars": "nukacraft:block/rustshelter_bars",
-    "edge": "nukacraft:block/rustshelter_bars"
+    "particle": "nukacraft:block/rusty_steel_bars",
+    "bars": "nukacraft:block/rusty_steel_bars",
+    "edge": "nukacraft:block/rusty_steel_bars"
   },
   "elements": [
     {   "from": [ 8, 0, 8 ],

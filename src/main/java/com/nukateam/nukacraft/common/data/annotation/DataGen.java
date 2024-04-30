@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
 public @interface DataGen {
     ItemParent parent() default ItemParent.GENERATED;
     ResourceType type() default ResourceType.ITEM;
-    String path() default "";
+    String path() default "item";
     boolean ownDir() default false;
 }

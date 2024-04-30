@@ -40,21 +40,21 @@ public class PowerArmorItems {
             new Jetpack(new Item.Properties().fireResistant())
     );
 
-    @DataGen(path = "power_armor/t45")
+    @DataGen(path = "item/power_armor/t45")
     public static final PowerArmorStorage T45_SET = registerArmorSet("t45", T45);
-    @DataGen(path = "power_armor/t51")
+    @DataGen(path = "item/power_armor/t51")
     public static final PowerArmorStorage T51_SET = registerArmorSet("t51", T51);
-    @DataGen(path = "power_armor/t60")
+    @DataGen(path = "item/power_armor/t60")
     public static final PowerArmorStorage T60_SET = registerArmorSet("t60", T60);
-    @DataGen(path = "power_armor/x01")
+    @DataGen(path = "item/power_armor/x01")
     public static final PowerArmorStorage X01_SET = registerArmorSet("x01", X01);
-    @DataGen(path = "power_armor/x02")
+    @DataGen(path = "item/power_armor/x02")
     public static final PowerArmorStorage X02_SET = registerArmorSet("x02", X02);
-    @DataGen(path = "power_armor/x02_cryo")
+    @DataGen(path = "item/power_armor/x02_cryo")
     public static final PowerArmorStorage X02_CRYO_SET = registerArmorSet("x02_cryo", X02_CRYO);
-    @DataGen(path = "power_armor/raider")
+    @DataGen(path = "item/power_armor/raider")
     public static final PowerArmorStorage RAIDER_SET = registerArmorSet("raider", RAIDER);
-    @DataGen(path = "power_armor/excavator")
+    @DataGen(path = "item/power_armor/excavator")
     public static final PowerArmorStorage EXCAVATOR_SET = registerArmorSet("excavator", EXCAVATOR);
 
     private static RegistryObject<Item> registerArmor(String name, String slot, ChassisArmorMaterial material) {

@@ -31,6 +31,7 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         generate(ModFood.class);
         generate(ModArmorItems.class);
         generate(PowerArmorItems.class);
+        generate(ModBlockItems.class);
     }
 
     private void generate(Class<?> modItemsClass) {
@@ -98,7 +99,7 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         var texture = "item/";
 
         if(!dataGen.path().isEmpty())
-            texture += dataGen.path() + "/";
+            texture = dataGen.path() + "/";
         if(dataGen.ownDir())
             texture += path.split("_")[0] + "/";
 
