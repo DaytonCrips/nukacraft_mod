@@ -91,7 +91,7 @@ public class ModFood {
     public static final RegistryObject<Item> BLAMCO = ITEMS.register("blamco",
             () -> new RadFoodItem(0.3f, new Item.Properties().food(ModFoodTypes.MCCHESSE)));
     @DataGen
-    public static final RegistryObject<Item> RAW_DEADCLAW_MEAT = ITEMS.register("raw_deadclaw_meat",
+    public static final RegistryObject<Item> raw_deathclaw_meat = ITEMS.register("raw_deathclaw_meat",
             () -> new RadFoodItem(0.3f, new Item.Properties().food(ModFoodTypes.DEATHMEAT)));
     @DataGen
     public static final RegistryObject<Item> RAW_RADROACH_MEAT = ITEMS.register("raw_radroach_meat",
@@ -100,7 +100,7 @@ public class ModFood {
     public static final RegistryObject<Item> COOKED_RADROACH_MEAT = ITEMS.register("cooked_radroach_meat",
             () -> new RadFoodItem(0.1f, new Item.Properties().food(ModFoodTypes.CROACHMEAT)));
     @DataGen
-    public static final RegistryObject<Item> COOKED_DEADCLAW_MEAT = ITEMS.register("cooked_deadclaw_meat",
+    public static final RegistryObject<Item> COOKED_DEATH_CLAW_MEAT = ITEMS.register("cooked_deathclaw_meat",
             () -> new RadFoodItem(0.1f, new Item.Properties().food(ModFoodTypes.CDEATHMEAT)));
     @DataGen
     public static final RegistryObject<Item> RAW_BRAHMIN_MEAT = ITEMS.register("raw_brahmin_meat",
