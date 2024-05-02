@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "nukacraft:deepalumi_block",
-    "nukacraft:deeplead_block",
-    "nukacraft:deepquarts_ore",
+    "nukacraft:deep_aluminium_block",
+    "nukacraft:deep_lead_block",
+    "nukacraft:deep_quarts_ore",
     "nukacraft:deepsilver_block",
-    "nukacraft:deepultracite_block",
+    "nukacraft:deep_ultracite_block",
     "nukacraft:deep_black_titan_block"
   ]
 }

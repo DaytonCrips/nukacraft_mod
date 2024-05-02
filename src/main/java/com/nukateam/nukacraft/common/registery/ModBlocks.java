@@ -59,7 +59,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> FILLERBARRIER = registerBlockWithoutItem("filler_barrier",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.BARRIER).strength(-1f).explosionResistance(3600000.8F)/*.noDrops()*/.noOcclusion()));
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
+    public static final RegistryObject<Block> DEEPALUMI = registerBlock("deep_aluminium_block",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
     
@@ -121,7 +121,7 @@ public class ModBlocks {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.9F).sound(SoundType.WOOD)));
 
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEP_LEAD_ORE = registerBlock("deeplead_block",
+    public static final RegistryObject<Block> DEEP_LEAD_ORE = registerBlock("deep_lead_block",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(3.4F, 2.2F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
 
@@ -138,7 +138,7 @@ public class ModBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2.8f).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEP_URAN_ORE = registerBlock("deeruranium",
+    public static final RegistryObject<Block> DEEP_URAN_ORE = registerBlock("deep_uranium",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(3.0f).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)
@@ -163,7 +163,7 @@ public class ModBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2.6F, 4.0F).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEPQUARTS_ORE = registerBlock("deepquarts_ore",
+    public static final RegistryObject<Block> DEEPQUARTS_ORE = registerBlock("deep_quarts_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(3.1F, 4.5F).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)

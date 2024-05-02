@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "nukacraft:deeplead_block"
+          "Name": "nukacraft:deep_lead_block"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

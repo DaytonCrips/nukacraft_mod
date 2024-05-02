@@ -3,7 +3,7 @@
   "experience": 2,
   "cookingtime": 165,
   "ingredient": {
-    "item": "nukacraft:deepalumi_block"
+    "item": "nukacraft:deep_aluminium_block"
   },
   "result": "nukacraft:raw_alumi"
 }

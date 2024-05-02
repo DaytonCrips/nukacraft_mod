@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "nukacraft:deepalumi_block"
+          "Name": "nukacraft:deep_aluminium_block"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
