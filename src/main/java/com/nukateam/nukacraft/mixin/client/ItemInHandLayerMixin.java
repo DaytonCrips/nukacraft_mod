@@ -20,16 +20,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemInHandLayer.class)
 public abstract class ItemInHandLayerMixin<T extends LivingEntity, M extends EntityModel<T> & ArmedModel> {
-    private static final String RENDER = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V";
-    private static final String RENDER_TARGET = "Lnet/minecraft/client/renderer/entity/layers/ItemInHandLayer;renderArmWithItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/block/model/ItemTransforms$TransformType;Lnet/minecraft/world/entity/HumanoidArm;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V";
-
     @Shadow
     protected abstract void renderArmWithItem(LivingEntity pLivingEntity, ItemStack pItemStack,
                                               ItemTransforms.TransformType pTransformType, HumanoidArm pArm,
                                               PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight);
 
     //    @Inject(method = RENDER, at = @At(value = "INVOKE", target = RENDER_TARGET, ordinal = 0))
-    @Inject(method = RENDER, at = @At(value = "HEAD"))
+    @Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V",
+            at = @At(value = "HEAD"))
     private void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, T pLivingEntity,
                         float pLimbSwing, float pLimbSwingAmount, float pPartialTicks,
                         float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, CallbackInfo ci) {

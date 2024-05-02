@@ -42,7 +42,7 @@ public abstract class GuiMixin extends GuiComponent {
         this.blit(poseStack, x, y, heartType.getX(p_168707_, highlight), vOffset, 9, 9);
     }
 
-    @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "renderHearts(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V", at = @At("HEAD"), cancellable = true)
     protected void renderHearts(PoseStack poseStack, Player player,
                                 int x, int y, int height,
                                 int regen, float healthMax,

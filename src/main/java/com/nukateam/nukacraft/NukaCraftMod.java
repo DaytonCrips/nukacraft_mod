@@ -50,8 +50,7 @@ public class NukaCraftMod {
     private static boolean curiosLoaded = false;
 
     public NukaCraftMod() {
-        AzureLib.initialize();
-
+//        AzureLib.initialize();
         //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 //        MOD_EVENT_BUS.addListener(this::setup);
 

@@ -21,7 +21,7 @@ public abstract class PathNavigationMixin {
     @Shadow
     protected Mob mob;
 
-    @Inject(method = "tick", at = @At(value = "HEAD"))
+    @Inject(method = "tick()V", at = @At(value = "HEAD"))
     public void tick(CallbackInfo ci) {
         if (this.path != null && !this.path.isDone() && isWearingPowerArmor(mob)) {
             var nextPos = this.path.getNextEntityPos(this.mob);

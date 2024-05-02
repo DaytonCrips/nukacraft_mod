@@ -16,7 +16,7 @@ public abstract class GameRendererMixin {
     @Shadow
     private float darkenWorldAmount;
 
-    @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;tick()V"}, at = @At(value = "TAIL"))
+    @Inject(method = {"tick()V"}, at = @At(value = "TAIL"))
     public void ac_tick(CallbackInfo ci) {
         var nukes = getNukesAround();
         if (nukes.isEmpty()) return;
@@ -24,7 +24,7 @@ public abstract class GameRendererMixin {
             darkenWorldAmount = Math.min(darkenWorldAmount + 0.3F, 1.0F);
     }
 
-    @Inject(method = {"Lnet/minecraft/client/renderer/GameRenderer;render(FJZ)V"}, at = @At(value = "INVOKE",
+    @Inject(method = {"render(FJZ)V"}, at = @At(value = "INVOKE",
             target = "Lcom/mojang/blaze3d/platform/Lighting;setupFor3DItems()V", shift = At.Shift.AFTER))
     public void ac_render(float partialTick, long nanos, boolean idk, CallbackInfo ci) {
         preScreenRender(partialTick);
