@@ -34,7 +34,6 @@ public class MiniNukeRenderer extends EntityRenderer<MiniNukeEntity> {
         poseStack.mulPose(Vector3f.XP.rotationDegrees(entity.getXRot() - 90));
         Minecraft.getInstance().getItemRenderer().renderStatic(entity.getItem(), ItemTransforms.TransformType.NONE, 15728880, OverlayTexture.NO_OVERLAY, poseStack, renderTypeBuffer, 0);
         poseStack.translate(0, -1, 0);
-        RenderUtil.renderModel(SpecialModels.FLAME.getModel(), entity.getItem(), poseStack, renderTypeBuffer, 15728880, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
     }
 }
