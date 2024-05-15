@@ -1,17 +1,28 @@
 package com.nukateam.nukacraft.common.registery.items;
 
+import com.ibm.icu.impl.Pair;
 import com.jetug.chassis_core.common.data.constants.ChassisPart;
+import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
 import com.jetug.chassis_core.common.foundation.item.ChassisItem;
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.data.enums.PowerArmorPart;
+import com.nukateam.nukacraft.common.data.utils.ArmorStorage;
+import com.nukateam.nukacraft.common.data.utils.PowerArmorStorage;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.items.armor.GeoArmorItem;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import com.nukateam.nukacraft.common.foundation.items.frame.Jetpack;
+import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.List;
 
 import static com.nukateam.nukacraft.common.foundation.materials.PowerArmorMaterials.*;
 
@@ -26,24 +37,28 @@ public class PowerArmorItems {
             new Jetpack(new Item.Properties().fireResistant())
     );
 
+    public static final PowerArmorStorage T45_SET = registerArmorSet("t45", T45);
+
     //T45
-    public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->
-            new ArmorPart(T45, ChassisPart.HELMET));
-
-    public static final RegistryObject<ArmorPart> T45_BODY = ITEMS.register("t45_body", () ->
-            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
-
-    public static final RegistryObject<ArmorPart> T45_RIGHT_ARM = ITEMS.register("t45_right_arm", () ->
-            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
-
-    public static final RegistryObject<ArmorPart> T45_LEFT_ARM = ITEMS.register("t45_left_arm", () ->
-            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
-
-    public static final RegistryObject<ArmorPart> T45_RIGHT_LEG = ITEMS.register("t45_right_leg", () ->
-            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
-
-    public static final RegistryObject<ArmorPart> T45_LEFT_LEG = ITEMS.register("t45_left_leg", () ->
-            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+//    public static final RegistryObject<Item> T45_HELMET = ITEMS.register("t45_helmet", () ->
+//            new ArmorPart(T45, ChassisPart.HELMET));
+//
+//    public static final RegistryObject<ArmorPart> T45_BODY = ITEMS.register("t45_body", () ->
+//            new ArmorPart(T45, ChassisPart.BODY_ARMOR));
+//
+//    public static final RegistryObject<ArmorPart> T45_RIGHT_ARM = ITEMS.register("t45_right_arm", () ->
+//            new ArmorPart(T45, ChassisPart.RIGHT_ARM_ARMOR));
+//
+//    public static final RegistryObject<ArmorPart> T45_LEFT_ARM = ITEMS.register("t45_left_arm", () ->
+//            new ArmorPart(T45, ChassisPart.LEFT_ARM_ARMOR));
+//
+//    public static final RegistryObject<ArmorPart> T45_RIGHT_LEG = ITEMS.register("t45_right_leg", () ->
+//            new ArmorPart(T45, ChassisPart.RIGHT_LEG_ARMOR));
+//
+//    public static final RegistryObject<ArmorPart> T45_LEFT_LEG = ITEMS.register("t45_left_leg", () ->
+//            new ArmorPart(T45, ChassisPart.LEFT_LEG_ARMOR));
+//
+//
 
     //T51
     public static final RegistryObject<Item> T51_HELMET = ITEMS.register("t51_helmet", () ->
@@ -177,6 +192,29 @@ public class PowerArmorItems {
 
     public static final RegistryObject<ArmorPart> EXC_LEFT_LEG = ITEMS.register("exc_left_leg", () ->
             new ArmorPart(EXCAVATOR, ChassisPart.LEFT_LEG_ARMOR));
+
+    private static RegistryObject<Item> registerArmor(String name, String slot, ChassisArmorMaterial material) {
+        return ITEMS.register(name, () -> new ArmorPart(material, slot));
+    }
+
+    private static PowerArmorStorage registerArmorSet(String name, ChassisArmorMaterial material) {
+        var armorSet = new PowerArmorStorage();
+        var armorSlots = List.of(
+                Pair.of(PowerArmorPart.HELMET   , ChassisPart.HELMET          ),
+                Pair.of(PowerArmorPart.BODY     , ChassisPart.BODY_ARMOR      ),
+                Pair.of(PowerArmorPart.RIGHT_ARM, ChassisPart.RIGHT_ARM_ARMOR ),
+                Pair.of(PowerArmorPart.LEFT_ARM , ChassisPart.LEFT_ARM_ARMOR  ),
+                Pair.of(PowerArmorPart.RIGHT_LEG, ChassisPart.RIGHT_LEG_ARMOR ),
+                Pair.of(PowerArmorPart.LEFT_LEG , ChassisPart.LEFT_LEG_ARMOR  )
+        );
+
+        for (var slot : armorSlots) {
+            var item = registerArmor(name + "_" + slot.first.getName(), slot.second, material);
+            armorSet.put(slot.first, item);
+        }
+
+        return armorSet;
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

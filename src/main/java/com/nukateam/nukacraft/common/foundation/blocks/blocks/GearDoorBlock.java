@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
