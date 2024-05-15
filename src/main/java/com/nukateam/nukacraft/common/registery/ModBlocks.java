@@ -82,7 +82,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> CRANBERRYLEAVES = registerBlock("cranberryleaves",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noOcclusion().sound(SoundType.GRASS)
                     .instabreak()));
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> DEWDROPHEAD = registerBlock("dewdrop",
             () -> new DewdropBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS)
                     .instabreak().noCollission()));
@@ -588,7 +588,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> UFCARROT = registerBlockWithoutItem("ufcarrots",
             () -> new UltravioletCarrotBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).noCollission().instabreak()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ASTER = registerBlock("aster",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
@@ -598,17 +598,17 @@ public class ModBlocks {
             () -> new FlowerPotBlock(null, ModBlocks.ASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> BROC = registerBlock("brocflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POTTED_BROC = registerBlockWithoutItem("potted_broc",
             () -> new FlowerPotBlock(null, ModBlocks.BROC,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> INVERT = registerBlock("invertflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
@@ -618,26 +618,26 @@ public class ModBlocks {
             () -> new FlowerPotBlock(null, ModBlocks.INVERT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> RADASTER = registerBlock("radaster",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POTTED_RADASTER = registerBlockWithoutItem("potted_radaster",
             () -> new FlowerPotBlock(null, ModBlocks.RADASTER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> FIREMUSHROOM = registerBlockWithoutItem("firefungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POTTED_FIREMUSHROOM = registerBlockWithoutItem("potted_firemushroom",
             () -> new FlowerPotBlock(null, ModBlocks.FIREMUSHROOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> BLASTCAP = registerBlockWithoutItem("blastcapfungi",
             () -> new SmallAgeRadPlant(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
@@ -676,27 +676,27 @@ public class ModBlocks {
             () -> new FlowerPotBlock(null, ModBlocks.FEVERBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> BOOMBLOSSOM = registerBlock("boomblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POTTED_BOOMBLOSSOM = registerBlockWithoutItem("potted_boomblossom",
             () -> new FlowerPotBlock(null, ModBlocks.BOOMBLOSSOM,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SOOTFLOWER = registerBlock("sootflower",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
 //
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POTTED_SOOTFLOWER = registerBlockWithoutItem("potted_sootflower",
             () -> new FlowerPotBlock(null, ModBlocks.SOOTFLOWER,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION)));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> GEIGERBLOSSOM = registerBlock("geigerblossom",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).noCollission().instabreak()));
@@ -942,25 +942,25 @@ public class ModBlocks {
                     .strength(1f)));
 
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ARMEDGLASS = registerBlock("armedglass",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
                     .strength(1.4F).sound(SoundType.GLASS)));
 
 
-    @DataGen(path = "block")
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> STEEL_BARS = registerBlock("steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
 
-    @DataGen(path = "block")
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> RUSTY_STEEL_BARS = registerBlock("ruststeel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.4f, 6.7f).requiresCorrectToolForDrops()));
 
 
-    @DataGen(path = "block")
+    @DataGen
     public static final RegistryObject<Block> RUSTDOOR = registerBlock("rustdoor",
             () -> new DoorBlock(
                     BlockBehaviour.Properties.of()
@@ -1002,7 +1002,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RREDDOOR = registerBlock("rreddoor",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(1.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
-    @DataGen(path = "block")
+//    @DataGen()
     public static final RegistryObject<Block> SHELTERBARS = registerBlock("shelter_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 5.7f).requiresCorrectToolForDrops()));

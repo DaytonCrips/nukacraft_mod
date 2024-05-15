@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.registery.items;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
+import com.nukateam.nukacraft.common.data.enums.ResourceType;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -14,27 +15,27 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlockItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> FIREFUNGI = ITEMS.register("firemushroom",
             () -> new ItemNameBlockItem(ModBlocks.FIREMUSHROOM.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> GLOWMUSHROOM = ITEMS.register("glowfungus",
             () -> new ItemNameBlockItem(ModBlocks.GLOWFUNGUS.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> GUTMUSHROOM = ITEMS.register("gutshroom",
             () -> new ItemNameBlockItem(ModBlocks.GUTFUNGI.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> MEGAHATTER = ITEMS.register("megamorph_hatter",
             () -> new ItemNameBlockItem(ModBlocks.MEGAHATTERFUNGI.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> HATTER = ITEMS.register("hatter",
             () -> new ItemNameBlockItem(ModBlocks.HATTERFUNGI.get(), new Item.Properties()));
 
-    @DataGen(path = "block")
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Item> MUTSHMUSHROOM = ITEMS.register("mutshootfungus",
             () -> new ItemNameBlockItem(ModBlocks.MUTTSHOOTFUNGUS.get(), new Item.Properties()));
 
