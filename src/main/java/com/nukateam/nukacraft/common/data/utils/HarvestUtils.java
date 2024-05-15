@@ -20,7 +20,7 @@ public class HarvestUtils {
             entry(ModBlocks.BBLOODLEAF_BUSH.get(), ModItems.BBLOODLEAF.get()),
             entry(ModBlocks.BLOODLEAF_BUSH.get(), ModItems.BLOODLEAF.get()),
             entry(ModBlocks.QUANTUMLEAF_BUSH.get(), ModItems.QUANTLEAF.get()),
-            entry(ModBlocks.GAMMALEAF_BUSH.get(), ModItems.GAMMALEAF.get()),
+            entry(ModBlocks.GAMMALEAF_BUSH.get(), ModItems.GAMMA_LEAF.get()),
             entry(ModBlocks.BLASTCAP.get(), BLASTCAPFUNGI.get()),
             entry(ModBlocks.FIREMUSHROOM.get(), FIREFUNGI.get()),
             entry(ModBlocks.BOMBBERRY_BUSH.get(), ModFood.BOMBBERRY.get()),

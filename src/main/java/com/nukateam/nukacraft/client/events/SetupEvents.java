@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.client.events;
 
-
 import com.nukateam.ntgl.client.render.entity.ThrowableGrenadeRenderer;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
@@ -30,7 +29,6 @@ public class SetupEvents {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        ModSetup.renderTypeSetup();
         PipboyPages.init(PipboyPages.content);
 
 //        ItemBlockRenderTypes.setRenderLayer(ModFluids.ACID_BLOCK.get(), RenderType.translucent());

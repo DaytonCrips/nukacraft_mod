@@ -37,7 +37,7 @@ public class ModBlockItems {
 
     @DataGen
     public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vaultdoor",
-            () -> new BlockItem(ModBlocks.GEARDOOR.get(), new Item.Properties()));
+            () -> new BlockItem(ModBlocks.GEAR_DOOR.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
