@@ -27,7 +27,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BasicStorageBlock extends BarrelBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

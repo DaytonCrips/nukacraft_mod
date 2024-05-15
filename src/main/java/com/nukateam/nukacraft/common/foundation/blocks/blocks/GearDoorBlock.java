@@ -1,9 +1,10 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
+import com.jetug.chassis_core.common.util.helpers.PlayerUtils;
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -45,28 +46,30 @@ public class GearDoorBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new GearDoorEntity(pPos, pState);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState pState) {
+        return new GearDoorEntity(pos, pState);
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        BlockState newstate = ModBlocks.OPENGEAR.get().defaultBlockState();
-        if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
-            filledEraser(pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
-                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
+        if (PipBoyUtils.hasPipboy(player)) {
+            var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
+            filledEraser(pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+
+            for (var entry : pState.getValues().entrySet()) {
+                Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                newState = newState.setValue(property, (Comparable) entry.getValue());
             }
-            pLevel.setBlock(pPos, newstate, 3);
+
+            pLevel.setBlock(pos, newState, 3);
             return InteractionResult.SUCCESS;
         } else return InteractionResult.FAIL;
     }
 
     @Override
-    public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
-        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-        super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
+    public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
+        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+        super.setPlacedBy(pLevel, pos, pState, pPlacer, pStack);
     }
 
     @Override
@@ -76,23 +79,16 @@ public class GearDoorBlock extends BaseEntityBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pos, CollisionContext pContext) {
         if (SHAPES.containsKey(pState)) {
             return SHAPES.get(pState);
         }
         List<VoxelShape> shapes = new ArrayList<>();
         switch (pState.getValue(FACING)) {
-            case NORTH:
-                shapes.add(box(-48, 0, 0, 16, 64, 16));
-                break;
-            case EAST:
-                shapes.add(box(0, 0, -48, 16, 64, 16));
-                break;
-            case WEST:
-                shapes.add(box(0, 0, 0, 16, 64, 64));
-                break;
-            default:
-                shapes.add(box(0, 0, 0, 64, 64, 16));
+            case NORTH -> shapes.add(box(-48, 0, 0, 16, 64, 16));
+            case EAST -> shapes.add(box(0, 0, -48, 16, 64, 16));
+            case WEST -> shapes.add(box(0, 0, 0, 16, 64, 64));
+            default -> shapes.add(box(0, 0, 0, 64, 64, 16));
         }
         //shapes.add(box(-48, 0, 0, 16, 64, 16));
         VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
@@ -101,8 +97,8 @@ public class GearDoorBlock extends BaseEntityBlock {
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return super.getOcclusionShape(pState, pLevel, pPos);
+    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pos) {
+        return super.getOcclusionShape(pState, pLevel, pos);
     }
 
     @Override

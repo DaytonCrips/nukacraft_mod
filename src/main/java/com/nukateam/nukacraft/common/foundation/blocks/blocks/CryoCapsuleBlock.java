@@ -63,7 +63,7 @@ public class CryoCapsuleBlock extends Block {
 
 
     public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        switch(pType) {
+        switch (pType) {
             case LAND:
                 return pState.getValue(OPEN);
             case WATER:
@@ -118,8 +118,8 @@ public class CryoCapsuleBlock extends Block {
                 int j = direction.getStepX();
                 int k = direction.getStepZ();
                 Vec3 vec3 = pContext.getClickLocation();
-                double d0 = vec3.x - (double)blockpos.getX();
-                double d1 = vec3.z - (double)blockpos.getZ();
+                double d0 = vec3.x - (double) blockpos.getX();
+                double d1 = vec3.z - (double) blockpos.getZ();
                 return (j >= 0 || !(d1 < 0.5D)) && (j <= 0 || !(d1 > 0.5D)) && (k >= 0 || !(d0 > 0.5D)) && (k <= 0 || !(d0 < 0.5D)) ? DoorHingeSide.LEFT : DoorHingeSide.RIGHT;
             } else {
                 return DoorHingeSide.LEFT;
@@ -130,17 +130,11 @@ public class CryoCapsuleBlock extends Block {
     }
 
 
-
-
-
-
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         BlockPos blockpos = pPos.below();
         BlockState blockstate = pLevel.getBlockState(blockpos);
         return pState.getValue(HALF) == DoubleBlockHalf.LOWER ? blockstate.isFaceSturdy(pLevel, blockpos, Direction.UP) : blockstate.is(this);
     }
-
-
 
 
     public PushReaction getPistonPushReaction(BlockState pState) {
@@ -165,8 +159,6 @@ public class CryoCapsuleBlock extends Block {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(HALF, FACING, OPEN, HINGE);
     }
-
-
 
 
 }

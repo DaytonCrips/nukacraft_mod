@@ -3,7 +3,6 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.mojang.math.Axis;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,7 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Vector3f;
 
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 public class PowerBlock extends RotatedPillarBlock {

@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.Container;
@@ -21,7 +21,7 @@ public class LockableStorage extends BasicStorageBlock {
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
+        if (PipBoyUtils.hasPipboy()) {
             if (pLevel.isClientSide) {
                 return InteractionResult.SUCCESS;
             } else {

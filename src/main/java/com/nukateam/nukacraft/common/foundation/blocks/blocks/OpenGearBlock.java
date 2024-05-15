@@ -1,9 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
-import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -32,8 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.registery.items.ModArmorItems.PIP_BOY_D;
-
 public class OpenGearBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
@@ -45,8 +43,8 @@ public class OpenGearBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new OpenGearEntity(pPos, pState);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState pState) {
+        return new OpenGearEntity(pos, pState);
     }
 
     protected void filledFrame(BlockState block, Level world, BlockState baseState, int base_x, int base_y, int base_z) {
@@ -131,28 +129,27 @@ public class OpenGearBlock extends BaseEntityBlock {
 
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-        BlockState newstate = ModBlocks.GEARDOOR.get().defaultBlockState();
-        if (pPlayer.getOffhandItem().getItem() == PIP_BOY_D.get()) {
-            for (Map.Entry<Property<?>, Comparable<?>> entry : pState.getValues().entrySet()) {
-                Property _property = newstate.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                newstate = newstate.setValue(_property, (Comparable) entry.getValue());
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+        if (PipBoyUtils.hasPipboy()) {
+            var newState = ModBlocks.GEAR_DOOR.get().defaultBlockState();
+            for (var entry : pState.getValues().entrySet()) {
+                Property property = newState
+                        .getBlock()
+                        .getStateDefinition()
+                        .getProperty(entry.getKey().getName());
+
+                newState = newState.setValue(property, (Comparable) entry.getValue());
             }
-            pLevel.setBlock(pPos, newstate, 3);
+            pLevel.setBlock(pos, newState, 3);
         }
         return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
-        //BlockEntity block = pLevel.getBlockEntity(pPos);
-        //var block = new GearDoorEntity(pPos, pState);
-        //((GearDoorEntity) block).setState(false);
-
-        filledEraser(pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-        //filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pPos.getX(), pPos.getY(), pPos.getZ());
-        super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
+    public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
+        filledEraser(pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+        super.setPlacedBy(pLevel, pos, pState, pPlacer, pStack);
     }
 
     @Override
@@ -162,7 +159,7 @@ public class OpenGearBlock extends BaseEntityBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pos, CollisionContext pContext) {
         if (SHAPES.containsKey(pState)) {
             return SHAPES.get(pState);
         }
@@ -195,8 +192,8 @@ public class OpenGearBlock extends BaseEntityBlock {
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return super.getOcclusionShape(pState, pLevel, pPos);
+    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pos) {
+        return super.getOcclusionShape(pState, pLevel, pos);
     }
 
     @Override

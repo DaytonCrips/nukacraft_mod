@@ -3,7 +3,7 @@
   "experience": 6,
   "cookingtime": 220,
   "ingredient": {
-    "item": "nukacraft:raw_btitan"
+    "item": "nukacraft:raw_black_titan"
   },
-  "result": "nukacraft:btitan"
+  "result": "nukacraft:black_titan"
 }

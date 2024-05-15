@@ -1,18 +1,15 @@
 package com.nukateam.nukacraft.common.foundation.materials;
 
-import com.ibm.icu.impl.Pair;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
