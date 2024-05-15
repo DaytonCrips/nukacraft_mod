@@ -923,13 +923,13 @@ public class ModBlocks {
                     .strength(2f), "FullBlock"));
 
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
 
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> VTCRATE2 = registerBlock("vtcrate2",
             () -> new LockableStorage(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
