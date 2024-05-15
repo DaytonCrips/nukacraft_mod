@@ -32,11 +32,12 @@ public class ModBlockItems {
     public static final RegistryObject<Item> MUTSHMUSHROOM = ITEMS.register("mutshootfungus",
             () -> new ItemNameBlockItem(ModBlocks.MUTTSHOOTFUNGUS.get(), new Item.Properties()));
 
+    @DataGen
     public static final RegistryObject<Item> BLASTCAPFUNGI = ITEMS.register("blastcap",
             () -> new ItemNameBlockItem(ModBlocks.BLASTCAP.get(), new Item.Properties()));
 
     @DataGen
-    public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vaultdoor",
+    public static final RegistryObject<Item> VAULT_DOOR = ITEMS.register("vault_door",
             () -> new BlockItem(ModBlocks.GEAR_DOOR.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
