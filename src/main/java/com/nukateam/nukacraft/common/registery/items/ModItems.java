@@ -27,8 +27,6 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
-
-
     public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
             () -> new Item(new Item.Properties().tab(ModItemTabs.NUKA_MATERIAL)));
     public static final RegistryObject<Item> DEATHCLAW = ITEMS.register("deathclaw",
