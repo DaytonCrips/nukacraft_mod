@@ -1,0 +1,6 @@
+{
+  "parent": "nukacraft:block/bog_pad",
+  "textures": {
+    "layer0": "nukacraft:item/bog_pad"
+  }
+}
