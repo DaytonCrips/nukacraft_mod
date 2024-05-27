@@ -1,6 +1,9 @@
 {
   "general": {
     "auto": true,
+    "fireMode": "ntgl:auto",
+    "fireTimer": 20,
+    "fullCharge": true,
     "rate": 2,
     "gripType": "ntgl:mini_gun",
     "maxAmmo": 40,

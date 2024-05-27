@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.client.events;
 
 
-import com.nukateam.ntgl.client.render.entity.ThrowableGrenadeRenderer;
+import  com.nukateam.ntgl.client.render.renderers.projectiles.*;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
