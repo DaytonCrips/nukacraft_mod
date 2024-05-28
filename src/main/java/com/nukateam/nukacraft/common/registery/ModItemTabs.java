@@ -26,7 +26,7 @@ public class ModItemTabs {
 
 
     public static final RegistryObject<CreativeModeTab> NUKA_BLOCKS = CREATIVE_MODE_TABS.register("nuka_blocks",
-            () -> builder().icon(() -> new ItemStack(ModBlockItems.FIREFUNGI.get()))
+            () -> builder().icon(() -> new ItemStack(ModBlocks.BLUETILE.get()))
                     .title(Component.translatable("itemGroup.nuka_blocks"))
                     .displayItems((params, output) -> registerItems(output, ModBlockItems.ITEMS))
                     .build());
