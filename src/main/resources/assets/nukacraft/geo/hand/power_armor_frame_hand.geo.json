@@ -1,11 +1,12 @@
+
 {
 	"format_version": "1.12.0",
 	"minecraft:geometry": [
 		{
 			"description": {
 				"identifier": "geometry.unknown",
-				"texture_width": 300,
-				"texture_height": 300,
+				"texture_width": 465,
+				"texture_height": 620,
 				"visible_bounds_width": 2,
 				"visible_bounds_height": 1.5,
 				"visible_bounds_offset": [0, 0.25, 0]
