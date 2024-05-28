@@ -24,11 +24,6 @@
 					"scale": {
 						"vector": [0, 0, 0]
 					}
-				},
-				"muzzle_flash2": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
 				}
 			}
 		},
@@ -167,11 +162,6 @@
 					}
 				},
 				"muzzle_flash": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				},
-				"muzzle_flash2": {
 					"scale": {
 						"vector": [0, 0, 0]
 					}
@@ -341,7 +331,7 @@
 						}
 					}
 				},
-				"bone10": {
+				"reload_handle": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -434,7 +424,7 @@
 							"vector": [-0.98448, -7.43547, 7.56397]
 						},
 						"2.5667": {
-							"vector": [-1.63219, -7.32123, 12.60443]
+							"vector": [-0.98448, -7.43547, 7.56397]
 						},
 						"3.1833": {
 							"vector": [0, 0, 0]
@@ -454,55 +444,18 @@
 							"vector": [0, 0, 0]
 						}
 					}
-				},
-				"muzzle_flash2": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				}
-			},
-			"sound_effects": {
-				"0.0833": {
-					"effect": "reload"
-				},
-				"2.0167": {
-					"effect": "cock"
 				}
 			}
 		},
 		"slide_on": {
-			"animation_length": 0.04167,
-			"bones": {
-				"muzzle_flash": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				},
-				"muzzle_flash2": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				}
-			}
+			"animation_length": 0.04167
 		},
 		"slide_off": {
-			"animation_length": 0.04167,
-			"bones": {
-				"muzzle_flash": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				},
-				"muzzle_flash2": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
-				}
-			}
+			"animation_length": 0.04167
 		},
 		"shot": {
 			"loop": true,
-			"animation_length": 0.08333,
+			"animation_length": 0.0917,
 			"bones": {
 				"barrel": {
 					"rotation": {
@@ -546,7 +499,7 @@
 							"vector": [0, 0, 0]
 						},
 						"0.0417": {
-							"vector": [2, 2, 2]
+							"vector": [0, 0, 0]
 						},
 						"0.0833": {
 							"vector": [0, 0, 0]
@@ -568,24 +521,46 @@
 					"position": {
 						"vector": [-0.25, 1.95, 6.7]
 					}
-				},
-				"muzzle_flash2": {
-					"scale": {
+				}
+			}
+		},
+		"charge": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"barrel": {
+					"rotation": {
 						"0.0": {
-							"vector": [2, 2, 1.6]
-						},
-						"0.0417": {
 							"vector": [0, 0, 0]
 						},
-						"0.0833": {
-							"vector": [0, 0, 0]
+						"0.5": {
+							"vector": [0, 0, 360]
 						}
 					}
-				}
-			},
-			"sound_effects": {
-				"0.0": {
-					"effect": "fire"
+				},
+				"muzzle_flash": {
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"left_arm": {
+					"rotation": {
+						"vector": [-3.96322, 28.15075, -16.42019]
+					},
+					"position": {
+						"vector": [-0.25, 1.95, 6.7]
+					},
+					"scale": {
+						"vector": [1, 1, 1.3]
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"vector": [15, 0, 0]
+					},
+					"position": {
+						"vector": [8, 3.95, 17.25]
+					}
 				}
 			}
 		}

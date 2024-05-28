@@ -1,6 +1,5 @@
 {
   "general": {
-    "auto": true,
     "fireMode": "ntgl:auto",
     "fireTimer": 20,
     "fullCharge": true,
