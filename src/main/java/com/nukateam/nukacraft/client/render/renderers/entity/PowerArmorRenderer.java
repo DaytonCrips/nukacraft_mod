@@ -3,49 +3,34 @@ package com.nukateam.nukacraft.client.render.renderers.entity;
 import com.jetug.chassis_core.client.render.renderers.ChassisRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.nukateam.ntgl.client.data.handler.AimingHandler;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.client.models.PowerArmorModel;
-import com.nukateam.nukacraft.client.render.layers.RaiderHeadLayer;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import mod.azure.azurelib.cache.object.BakedGeoModel;
 import mod.azure.azurelib.cache.object.GeoBone;
+import mod.azure.azurelib.util.RenderUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.world.InteractionHand;
-import org.joml.Vector3f;
+import net.minecraft.world.entity.LivingEntity;
+
+import java.util.Objects;
 
 public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
-//    public GunItem gunItem;
-
     public PowerArmorRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new PowerArmorModel());
-        addRenderLayer(new RaiderHeadLayer<>(this));
     }
 
-    public static Vector3f getRotations(GeoBone bone) {
-        return new Vector3f(
-                bone.getRotX(),
-                bone.getRotY(),
-                bone.getRotZ());
-    }
-
-    public static void setRotations(GeoBone bone, Vector3f vec) {
-        bone.setRotX(vec.x());
-        bone.setRotY(vec.y());
-        bone.setRotZ(vec.z());
-    }
-
-    public static void copyRotations(GeoBone dist, GeoBone source) {
-        dist.setRotX(source.getRotX());
-        dist.setRotY(source.getRotY());
-        dist.setRotZ(source.getRotZ());
-    }
-
-    private static void addRotation(GeoBone bone, int x, int y, int z) {
-        bone.setRotX(bone.getRotX() + x);
-        bone.setRotY(bone.getRotY() + y);
-        bone.setRotZ(bone.getRotZ() + z);
+    @Override
+    public void render(PowerArmorFrame entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 
     private static void setRotation(GeoBone bone, int rot) {
@@ -54,33 +39,20 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
         bone.setRotZ(rot);
     }
 
-    private static void addRotationX(GeoBone bone, int x) {
-        bone.setRotX(bone.getRotX() + x);
-    }
-
-    @Override
-    public void render(PowerArmorFrame entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
-    }
-
     @Override
     public void preRender(PoseStack poseStack, PowerArmorFrame animatable, BakedGeoModel model,
                           MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender,
                           float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-//        if (animatable == null) return;
 
-//        if (animatable.hasPassenger() && animatable.getPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
-//            this.gunItem = gunItem;
-//        } else {
-//            doSafe(() -> {
-//                this.gunItem = null;
-//                var rightArm = model.getBone("right_arm").get();
-//                var leftArm = model.getBone("left_arm").get();
-//                setRotation(rightArm, 0);
-//                setRotation(leftArm, 0);
-//            });
-//        }
+        if (animatable == null) return;
+
+        if (!animatable.hasPassenger() || !(animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem)) {
+                var rightArm = model.getBone("right_arm").get();
+                var leftArm = model.getBone("left_arm").get();
+                setRotation(rightArm, 0);
+                setRotation(leftArm, 0);
+        }
 
         var heldItem = animatable.getMainHandItem();
 
@@ -98,28 +70,5 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
                     poseStack,
                     bufferSource);
         }
-
-    }
-
-    @Override
-    public void renderRecursively(PoseStack poseStack, PowerArmorFrame animatable, GeoBone bone, RenderType renderType,
-                                  MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick,
-                                  int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-//        Vector3f buffVec = null;
-//        buffVec = getRotations(bone);
-
-//        if (gunItem != null) {
-//            gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
-//                    .applyGeoModelRotation(animatable, , getGeoModel());
-//        }
-//        else{
-//            if (bone.getName().equals("right_arm") || bone.getName().equals("left_arm")) {
-//                setRotation(bone, 0);
-////            setRotations(bone, buffVec);
-//            }
-//        }
-
-        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick,
-                packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

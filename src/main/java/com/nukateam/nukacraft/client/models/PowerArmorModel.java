@@ -17,7 +17,6 @@ public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
     public void setCustomAnimations(PowerArmorFrame animatable, long instanceId, AnimationState<PowerArmorFrame> animationState) {
         super.setCustomAnimations(animatable, instanceId, animationState);
         var animationProcessor = getAnimationProcessor();
-//        var data = (EntityModelData)animationState.getExtraData().get(DataTickets.ENTITY);
 
         if (animatable.hasPassenger() && animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
             gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
