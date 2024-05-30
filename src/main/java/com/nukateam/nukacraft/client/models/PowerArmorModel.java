@@ -22,8 +22,8 @@ public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
             gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
                     .applyGeoModelRotation(animatable, animationProcessor);
         } else if (animatable.currentAnimation == null) {
-            CoreGeoBone rightArm = animationProcessor.getBone("right_arm");
-            CoreGeoBone leftArm = animationProcessor.getBone("left_arm");
+            var rightArm = animationProcessor.getBone("right_arm");
+            var leftArm = animationProcessor.getBone("left_arm");
 
             setRotations(rightArm, 0);
             setRotations(leftArm, 0);
