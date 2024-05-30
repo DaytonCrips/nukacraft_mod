@@ -47,12 +47,12 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
 
         if (animatable == null) return;
 
-        if (!animatable.hasPassenger() || !(animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem)) {
-                var rightArm = model.getBone("right_arm").get();
-                var leftArm = model.getBone("left_arm").get();
-                setRotation(rightArm, 0);
-                setRotation(leftArm, 0);
-        }
+//        if (!animatable.hasPassenger() || !(animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem)) {
+//                var rightArm = model.getBone("right_arm").get();
+//                var leftArm = model.getBone("left_arm").get();
+//                setRotation(rightArm, 0);
+//                setRotation(leftArm, 0);
+//        }
 
         var heldItem = animatable.getMainHandItem();
 
