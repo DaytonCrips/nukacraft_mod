@@ -20,7 +20,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModWeapons {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-
     ///MELEE
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -2,
@@ -34,7 +33,6 @@ public class ModWeapons {
     public static final RegistryObject<Item> COMBAT_PIPE = ITEMS.register("combatpipe",
             () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
                     new Item.Properties()));
-
 
     ///GUNS
     public static final RegistryObject<GunItem> PISTOL10MM = registerGun("pistol10mm");
