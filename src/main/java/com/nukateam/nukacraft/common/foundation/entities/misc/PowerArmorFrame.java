@@ -227,7 +227,10 @@ public class PowerArmorFrame extends WearableChassis {
 
             var passenger = getControllingPassenger();
 
-            if (passenger != null && !passengerHaveGun()) {
+            if(passenger == null) {
+                animation = begin().then(IDLE_EMPTY, LOOP);
+            }
+            else if (!passengerHaveGun()) {
                 if (passenger.attackAnim > 0) {
                     controller.setAnimationSpeed(2.0D);
                     animation = begin().then(HIT, PLAY_ONCE);
@@ -236,7 +239,10 @@ public class PowerArmorFrame extends WearableChassis {
                 } else if (isWalking()) {
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                     animation = begin().then(WALK_ARMS, LOOP);
-                } else animation = begin().then(IDLE, LOOP);
+                }
+                else {
+                    animation = begin().then(IDLE, LOOP);
+                }
             }
 
             currentAnimation = animation;

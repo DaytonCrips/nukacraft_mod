@@ -337,15 +337,16 @@
 				{
 					"name": "head",
 					"parent": "body_back",
-					"pivot": [0, 30.25, 0]
+					"pivot": [0, 31, 0]
 				},
 				{
 					"name": "head_frame",
 					"parent": "head",
-					"pivot": [0, 28.65, 0],
+					"pivot": [0, 30.15, -0.75],
+					"rotation": [0, 0, -180],
 					"cubes": [
-						{"origin": [-4, 29.7, -4], "size": [8, 8, 8], "inflate": 0.5, "uv": [32, 0]},
-						{"origin": [-4, 29.65, -4], "size": [8, 8, 8], "uv": [0, 0]}
+						{"origin": [-4, 31.2, -4.75], "size": [8, 8, 8], "inflate": 0.5, "uv": [32, 0]},
+						{"origin": [-4, 31.15, -4.75], "size": [8, 8, 8], "uv": [0, 0]}
 					]
 				},
 				{

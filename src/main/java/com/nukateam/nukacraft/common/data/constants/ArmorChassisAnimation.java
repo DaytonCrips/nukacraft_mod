@@ -2,7 +2,7 @@ package com.nukateam.nukacraft.common.data.constants;
 
 public class ArmorChassisAnimation {
     public static final String IDLE = "idle";
-    public static final String IDLE2 = "idle2";
+    public static final String IDLE_EMPTY = "idle_empty";
     public static final String POWER_PUNCH_CHARGE = "power_punch_charge";
     public static final String POWER_PUNCH_CHARGE_LOOP = "power_punch_charge_loop";
     public static final String POWER_PUNCH = "power_punch";
