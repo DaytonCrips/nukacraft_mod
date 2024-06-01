@@ -1,8 +1,10 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
+import com.jetug.chassis_core.ChassisCore;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
+import com.nukateam.ntgl.common.foundation.entity.ProjectileEntity;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
@@ -13,7 +15,11 @@ import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -24,6 +30,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -32,15 +39,17 @@ import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damag
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class PowerArmorFrame extends WearableChassis {
     public static final int INVENTORY_SIZE = ChassisBase.INVENTORY_SIZE + 6;
-    public static final ResourceLocation ICON
-            = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/item/power_armor_frame.png");
+    public static final ResourceLocation ICON = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/item/power_armor_frame.png");
     public static final PowerArmorHand HAND = new PowerArmorHand();
+    public static final EntityDataAccessor<Boolean> IS_OPEN = defineId(PowerArmorFrame.class, EntityDataSerializers.BOOLEAN);
+    public static final String TRIGGER_CONTROLLER = "baseAnim";
 
     public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
 
@@ -62,20 +71,20 @@ public class PowerArmorFrame extends WearableChassis {
 //        return List.of(armorParts);
 //    }
 
-    public static int getId(String chassisPart) {
-        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(IS_OPEN, false);
     }
 
-    private static void addSlot(String slot) {
-        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
+    public void open(){
+        entityData.set(IS_OPEN, true);
+        this.triggerAnim(TRIGGER_CONTROLLER, OPEN);
     }
 
-    public static void doSafe(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (Exception var2) {
-            var2.printStackTrace();
-        }
+    public void close(){
+        entityData.set(IS_OPEN, false);
+        this.triggerAnim(TRIGGER_CONTROLLER, CLOSE);
     }
 
     @Override
@@ -99,6 +108,14 @@ public class PowerArmorFrame extends WearableChassis {
         }
     }
 
+    public static int getId(String chassisPart) {
+        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    }
+
+    private static void addSlot(String slot) {
+        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
+    }
+
     private void rareTick() {
         if (isClientSide || !hasFusionCore()) return;
         var core = getFusionCore();
@@ -110,6 +127,32 @@ public class PowerArmorFrame extends WearableChassis {
         if (isWalking()) {
             damageItem(core, 1);
         }
+    }
+
+    @Override
+    public InteractionResult interactAt(Player player, Vec3 vector, InteractionHand hand) {
+        if (this.isServerSide && !player.isPassenger() && hand == InteractionHand.MAIN_HAND) {
+            if(!this.isVehicle()) {
+                if (player.isShiftKeyDown()) {
+                    if(entityData.get(IS_OPEN)) {
+                        close();
+                    }
+                    else this.openGUI(player);
+                    return InteractionResult.SUCCESS;
+                }
+
+                if (entityData.get(IS_OPEN)) {
+                    this.ride(player);
+                    close();
+                }
+                else{
+                    open();
+                }
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -164,7 +207,6 @@ public class PowerArmorFrame extends WearableChassis {
             setSpeed(getSpeedAttribute());
         else {
             setSpeed(getMinSpeed());
-            return;
         }
     }
 
@@ -202,12 +244,6 @@ public class PowerArmorFrame extends WearableChassis {
         return speedometer.getSpeed() > 0;
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
-        controllerRegistrar.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
-    }
-
     public boolean passengerHaveGun() {
         return hasPassenger() && getControllingPassenger().getMainHandItem().getItem() instanceof GunItem;
     }
@@ -217,6 +253,32 @@ public class PowerArmorFrame extends WearableChassis {
         if (passengerHaveGun())
             return (GunItem) getControllingPassenger().getMainHandItem().getItem();
         return null;
+    }
+
+    @Override
+    public void registerControllers(ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
+        controllers.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
+//        controllers.add(new AnimationController<>(this, "common_controller", 0, animateCommon()));
+
+        controllers.add(new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
+                        .triggerableAnim(OPEN, RawAnimation.begin().thenPlayAndHold(OPEN))
+                        .triggerableAnim(CLOSE, RawAnimation.begin().thenPlay(CLOSE))
+        );
+    }
+
+    private AnimationController.AnimationStateHandler<PowerArmorFrame> animateCommon() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation = null;
+
+//            if(entityData.get(IS_OPEN))
+//                animation = begin().then(OPEN, HOLD_ON_LAST_FRAME);
+//            else animation = begin().then(CLOSE, HOLD_ON_LAST_FRAME);
+
+            return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
+        };
     }
 
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateArms() {
@@ -274,6 +336,14 @@ public class PowerArmorFrame extends WearableChassis {
             }
             return event.setAndContinue(animation);
         };
+    }
+
+    private static void doSafe(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception var2) {
+            var2.printStackTrace();
+        }
     }
 
 //    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
