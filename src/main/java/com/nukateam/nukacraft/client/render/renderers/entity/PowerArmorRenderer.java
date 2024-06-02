@@ -12,6 +12,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.InteractionHand;
 
+import java.util.Objects;
+
+import static com.jetug.chassis_core.common.data.constants.ChassisPart.HELMET;
+
 public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
     public PowerArmorRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager, new PowerArmorModel());
@@ -59,5 +63,14 @@ public class PowerArmorRenderer extends ChassisRenderer<PowerArmorFrame> {
                     poseStack,
                     bufferSource);
         }
+    }
+
+    @Override
+    protected void renderHead(PoseStack poseStack, PowerArmorFrame animatable, GeoBone bone, int packedLight, int packedOverlay) {
+        if(Objects.equals(bone.getName(), "head_frame") && animatable.hasArmor(HELMET)) {
+            bone.setHidden(true);
+            bone.setChildrenHidden(false);
+        }
+        else super.renderHead(poseStack, animatable, bone, packedLight, packedOverlay);
     }
 }
