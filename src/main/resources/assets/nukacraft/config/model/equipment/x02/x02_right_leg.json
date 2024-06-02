@@ -1,25 +1,8 @@
 {
-  "part": "right_leg",
+  "parent" : "nukacraft:config/model/base/right_leg.json",
   "model": "nukacraft:geo/power_armor/x02.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/x02.png",
     "rust": "nukacraft:textures/power_armor/x02_rust.png"
-  },
-  "uv": [155, 155, 155, 155],
-  "hide" : ["right_toes_frame"],
-
-  "attachments": [
-    {
-      "frame": "right_upper_leg",
-      "armor": "right_upper_leg_armor"
-    },
-    {
-      "frame": "right_lower_leg",
-      "armor": "right_lower_leg_armor"
-    },
-    {
-      "frame": "right_toes",
-      "armor": "right_toes_armor"
-    }
-  ]
+  }
 }

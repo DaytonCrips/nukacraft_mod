@@ -1,5 +1,5 @@
 {
-  "part": "left_leg",
+  "parent" : "nukacraft:config/model/base/left_leg.json",
   "model": "nukacraft:geo/power_armor/t51.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/t51.png",

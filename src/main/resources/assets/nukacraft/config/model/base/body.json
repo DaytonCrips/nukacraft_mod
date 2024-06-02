@@ -24,6 +24,10 @@
     {
       "frame": "body_bottom",
       "armor": "body_bottom_armor"
+    },
+    {
+      "frame": "body_back2",
+      "armor": "body_back_armor"
     }
   ]
 }

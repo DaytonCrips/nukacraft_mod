@@ -1,9 +1,10 @@
 {
-  "parent" : "nukacraft:config/model/base/left_leg.json",
-  "model": "nukacraft:geo/power_armor/raider.geo.json",
+  "part": "left_leg",
+  "model": "nukacraft:geo/power_armor/",
   "texture": {
-    "default": "nukacraft:textures/power_armor/raider.png"
+    "default": "nukacraft:textures/power_armor/"
   },
+
   "uv": [0, 155, 155, 155],
   "hide" : ["left_toes_frame"],
 
@@ -19,6 +20,14 @@
     {
       "frame": "left_toes",
       "armor": "left_toes_armor"
+    },
+    {
+      "frame": "left_upper_leg_back",
+      "armor": "left_upper_leg_back_armor"
+    },
+    {
+      "frame": "left_lower_leg_back",
+      "armor": "left_lower_leg_back_armor"
     }
   ]
 }

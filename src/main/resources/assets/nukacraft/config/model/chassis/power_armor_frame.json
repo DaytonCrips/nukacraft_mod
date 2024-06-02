@@ -10,7 +10,7 @@
     },
     {
       "part": "left_arm",
-      "bones" : ["left_shoulder", "left_shoulder_frame", "left_lower_arm", "left_arm", "left_forearm_frame", "left_upper_arm_frame"]
+      "bones" : ["left_shoulder", "left_shoulder_frame", "left_lower_arm", "left_arm", "left_forearm_frame", "left_forearm_frame_back", "left_upper_arm_frame", "left_upper_arm_frame_back"]
     },
     {
       "part": "right_arm",
