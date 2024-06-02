@@ -21,7 +21,7 @@ public class PowerArmorModel extends ChassisModel<PowerArmorFrame> {
         if (animatable.hasPassenger() && animatable.getControllingPassenger().getMainHandItem().getItem() instanceof GunItem gunItem) {
             gunItem.getGun().getGeneral().getGripType().getHeldAnimation()
                     .applyGeoModelRotation(animatable, animationProcessor);
-        } else if (animatable.currentAnimation == null) {
+        } else if (animatable.armsAnimation == null) {
             var rightArm = animationProcessor.getBone("right_arm");
             var leftArm = animationProcessor.getBone("left_arm");
 

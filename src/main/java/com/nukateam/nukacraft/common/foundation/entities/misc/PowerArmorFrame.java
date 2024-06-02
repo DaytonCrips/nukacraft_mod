@@ -1,19 +1,17 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.jetug.chassis_core.ChassisCore;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
-import com.nukateam.ntgl.common.foundation.entity.ProjectileEntity;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
-import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -59,7 +57,8 @@ public class PowerArmorFrame extends WearableChassis {
         addSlot(JETPACK);
     }
 
-    public RawAnimation currentAnimation = null;
+    public RawAnimation armsAnimation = null;
+    public RawAnimation legsAnimation = null;
     private int tickCounter = 0;
 
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
@@ -75,6 +74,11 @@ public class PowerArmorFrame extends WearableChassis {
     protected void defineSynchedData() {
         super.defineSynchedData();
         entityData.define(IS_OPEN, false);
+    }
+
+    @Override
+    public boolean renderHand() {
+        return false;
     }
 
     public void open(){
@@ -241,7 +245,12 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public Boolean isWalking() {
-        return speedometer.getSpeed() > 0;
+        return
+                Minecraft.getInstance().options.keyUp.isDown() ||
+                Minecraft.getInstance().options.keyDown.isDown() ||
+                Minecraft.getInstance().options.keyLeft.isDown() ||
+                Minecraft.getInstance().options.keyRight.isDown();
+//        return speedometer.getSpeed() > 0;
     }
 
     public boolean passengerHaveGun() {
@@ -303,11 +312,15 @@ public class PowerArmorFrame extends WearableChassis {
                     animation = begin().then(WALK_ARMS, LOOP);
                 }
                 else {
-                    animation = begin().then(IDLE, LOOP);
+                    if (begin().then(WALK_ARMS, LOOP).equals(armsAnimation))
+                        animation = begin().then(WALK_ARMS, PLAY_ONCE).then(IDLE, LOOP);
+                    else
+                        animation = begin().then(IDLE, LOOP);
                 }
             }
 
-            currentAnimation = animation;
+            armsAnimation = animation;
+
             return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };
     }
@@ -316,7 +329,7 @@ public class PowerArmorFrame extends WearableChassis {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
-            RawAnimation animation;
+            RawAnimation animation = null;
 
             if (!hasPassenger()) return PlayState.STOP;
 
@@ -331,10 +344,15 @@ public class PowerArmorFrame extends WearableChassis {
                 }
             } else if (passenger.isShiftKeyDown()) {
                 animation = begin().then(SNEAK_END, LOOP);
-            } else {
-                return PlayState.STOP;
             }
-            return event.setAndContinue(animation);
+            else {
+                if (begin().then(WALK_LEGS, LOOP).equals(legsAnimation))
+                    animation = begin().then(WALK_LEGS, PLAY_ONCE);
+            }
+
+            legsAnimation = animation;
+
+            return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };
     }
 
