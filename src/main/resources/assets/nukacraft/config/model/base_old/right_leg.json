@@ -6,6 +6,7 @@
   },
 
   "uv": [155, 155, 155, 155],
+  "hide" : ["right_toes_frame"],
 
   "attachments": [
     {
