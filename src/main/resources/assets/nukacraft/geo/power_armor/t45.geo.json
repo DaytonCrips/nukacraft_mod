@@ -1006,17 +1006,12 @@
 					]
 				},
 				{
-					"name": "left_shoe",
-					"parent": "left_lower_leg_armor",
-					"pivot": [2.5, 1.85, 0]
-				},
-				{
-					"name": "left_toes_armor",
-					"parent": "left_shoe",
-					"pivot": [2.1, 0.2, 7.75],
+					"name": "left_shoe_armor",
+					"parent": "left_lower_leg",
+					"pivot": [2.5, 1.85, 0],
 					"cubes": [
-						{"origin": [1.15, 1.85, -6.05], "size": [3.05, 1.1, 3.25], "inflate": 0.1, "uv": [16, 155]},
-						{"origin": [0.75, 0.05, -6.55], "size": [3.8, 2.2, 3.75], "inflate": 0.1, "uv": [0, 170]}
+						{"origin": [0.75, 0.05, -6.55], "size": [3.8, 2.2, 3.75], "inflate": 0.1, "uv": [0, 170]},
+						{"origin": [1.15, 1.85, -6.05], "size": [3.05, 1.1, 3.25], "inflate": 0.1, "uv": [16, 155]}
 					]
 				},
 				{
@@ -1130,17 +1125,12 @@
 					]
 				},
 				{
-					"name": "right_shoe",
-					"parent": "right_lower_leg_armor",
-					"pivot": [-2.5, 1.85, 0]
-				},
-				{
-					"name": "right_toes_armor",
-					"parent": "right_shoe",
-					"pivot": [-2.1, 0.2, 7.75],
+					"name": "right_shoe_armor",
+					"parent": "right_lower_leg",
+					"pivot": [-2.5, 1.85, 0],
 					"cubes": [
-						{"origin": [-4.2, 1.85, -6.05], "size": [3.05, 1.1, 3.25], "inflate": 0.1, "uv": [171, 155], "mirror": true},
-						{"origin": [-4.55, 0.05, -6.55], "size": [3.8, 2.2, 3.75], "inflate": 0.1, "uv": [155, 170], "mirror": true}
+						{"origin": [-4.55, 0.05, -6.55], "size": [3.8, 2.2, 3.75], "inflate": 0.1, "uv": [155, 170], "mirror": true},
+						{"origin": [-4.2, 1.85, -6.05], "size": [3.05, 1.1, 3.25], "inflate": 0.1, "uv": [171, 155], "mirror": true}
 					]
 				}
 			]

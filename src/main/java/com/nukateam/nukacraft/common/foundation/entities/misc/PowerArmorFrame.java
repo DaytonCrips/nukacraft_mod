@@ -265,15 +265,20 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     @Override
+    public boolean isOnFire() {
+        return false;
+    }
+
+    @Override
     public void registerControllers(ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
+                .triggerableAnim(OPEN, RawAnimation.begin().thenPlayAndHold(OPEN))
+                .triggerableAnim(CLOSE, RawAnimation.begin().thenPlay(CLOSE))
+        );
+
         controllers.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
         controllers.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
 //        controllers.add(new AnimationController<>(this, "common_controller", 0, animateCommon()));
-
-        controllers.add(new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
-                        .triggerableAnim(OPEN, RawAnimation.begin().thenPlayAndHold(OPEN))
-                        .triggerableAnim(CLOSE, RawAnimation.begin().thenPlay(CLOSE))
-        );
     }
 
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateCommon() {
@@ -282,9 +287,9 @@ public class PowerArmorFrame extends WearableChassis {
             controller.setAnimationSpeed(1);
             RawAnimation animation = null;
 
-//            if(entityData.get(IS_OPEN))
-//                animation = begin().then(OPEN, HOLD_ON_LAST_FRAME);
-//            else animation = begin().then(CLOSE, HOLD_ON_LAST_FRAME);
+            if(entityData.get(IS_OPEN))
+                animation = begin().then(OPEN, HOLD_ON_LAST_FRAME);
+            else animation = begin().then(CLOSE, PLAY_ONCE);
 
             return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };

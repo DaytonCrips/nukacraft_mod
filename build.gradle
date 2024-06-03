@@ -158,10 +158,10 @@ dependencies {
     implementation fg.deobf("mod.azure.azurelib:azurelib-neo-1.20.1:2.0.20")
 
     implementation fg.deobf('com.jetug:chassis_core:1.20.1-2.5.0')
-//    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.0.3')
+    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.2.0')
 
 //    implementation fg.deobf('curse.maven:chassiscore-908954:5378323')
-    implementation fg.deobf('curse.maven:ntgl-998474:5378261')
+//    implementation fg.deobf('curse.maven:ntgl-998474:5378261')
 
     implementation fg.deobf("curse.maven:framework-549225:${framework_file_id}")
     runtimeOnly fg.deobf("curse.maven:cyanide-541676:4824162")
