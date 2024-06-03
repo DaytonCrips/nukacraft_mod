@@ -1,0 +1,8 @@
+{
+  "parent" : "nukacraft:config/model/base/helmet.json",
+  "model": "nukacraft:geo/power_armor/excavator.geo.json",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/exc.png",
+    "rust": "nukacraft:textures/power_armor/exc_rust.png"
+  }
+}

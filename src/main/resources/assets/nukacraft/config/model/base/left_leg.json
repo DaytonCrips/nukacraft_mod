@@ -1,0 +1,32 @@
+{
+  "part": "left_leg",
+  "model": "nukacraft:geo/power_armor/",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/"
+  },
+
+  "uv": [0, 155, 155, 155],
+
+  "attachments": [
+    {
+      "frame": "left_upper_leg",
+      "armor": "left_upper_leg_armor"
+    },
+    {
+      "frame": "left_lower_leg",
+      "armor": "left_lower_leg_armor"
+    },
+    {
+      "frame": "left_shoe",
+      "armor": "left_shoe_armor"
+    },
+    {
+      "frame": "left_upper_leg_back",
+      "armor": "left_upper_leg_back_armor"
+    },
+    {
+      "frame": "left_lower_leg_back",
+      "armor": "left_lower_leg_back_armor"
+    }
+  ]
+}

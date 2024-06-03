@@ -1,16 +1,7 @@
 {
-  "part": "head",
+  "parent" : "nukacraft:config/model/base/helmet.json",
   "model": "nukacraft:geo/power_armor/x02_cryo.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/x02_cryo.png"
-  },
-  "uv": [310, 0, 155, 155],
-  "hide": ["head_frame"],
-
-  "attachments": [
-    {
-      "frame": "head",
-      "armor": "helmet"
-    }
-  ]
+  }
 }

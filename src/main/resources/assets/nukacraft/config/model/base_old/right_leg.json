@@ -1,10 +1,10 @@
 {
   "part": "right_leg",
-  "model": "nukacraft:geo/power_armor/excavator.geo.json",
+  "model": "nukacraft:geo/power_armor/",
   "texture": {
-    "default": "nukacraft:textures/power_armor/exc.png",
-    "rust": "nukacraft:textures/power_armor/exc_rust.png"
+    "default": "nukacraft:textures/power_armor/"
   },
+
   "uv": [155, 155, 155, 155],
   "hide" : ["right_toes_frame"],
 
@@ -20,6 +20,14 @@
     {
       "frame": "right_toes",
       "armor": "right_toes_armor"
+    },
+    {
+      "frame": "right_upper_leg_back",
+      "armor": "right_upper_leg_back_armor"
+    },
+    {
+      "frame": "right_lower_leg_back",
+      "armor": "right_lower_leg_back_armor"
     }
   ]
 }

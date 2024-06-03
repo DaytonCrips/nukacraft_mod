@@ -8,12 +8,16 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorMenu;
 import com.nukateam.nukacraft.common.foundation.container.PowerArmorStationMenu;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
-import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -24,6 +28,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -32,15 +37,17 @@ import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damag
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.LOOP;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
+import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class PowerArmorFrame extends WearableChassis {
     public static final int INVENTORY_SIZE = ChassisBase.INVENTORY_SIZE + 6;
-    public static final ResourceLocation ICON
-            = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/item/power_armor_frame.png");
+    public static final ResourceLocation ICON = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/item/power_armor_frame.png");
     public static final PowerArmorHand HAND = new PowerArmorHand();
+    public static final EntityDataAccessor<Boolean> IS_OPEN = defineId(PowerArmorFrame.class, EntityDataSerializers.BOOLEAN);
+    public static final String TRIGGER_CONTROLLER = "baseAnim";
 
     public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
 
@@ -50,7 +57,8 @@ public class PowerArmorFrame extends WearableChassis {
         addSlot(JETPACK);
     }
 
-    public RawAnimation currentAnimation = null;
+    public RawAnimation armsAnimation = null;
+    public RawAnimation legsAnimation = null;
     private int tickCounter = 0;
 
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
@@ -62,20 +70,25 @@ public class PowerArmorFrame extends WearableChassis {
 //        return List.of(armorParts);
 //    }
 
-    public static int getId(String chassisPart) {
-        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(IS_OPEN, false);
     }
 
-    private static void addSlot(String slot) {
-        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
+    @Override
+    public boolean renderHand() {
+        return false;
     }
 
-    public static void doSafe(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (Exception var2) {
-            var2.printStackTrace();
-        }
+    public void open(){
+        entityData.set(IS_OPEN, true);
+        this.triggerAnim(TRIGGER_CONTROLLER, OPEN);
+    }
+
+    public void close(){
+        entityData.set(IS_OPEN, false);
+        this.triggerAnim(TRIGGER_CONTROLLER, CLOSE);
     }
 
     @Override
@@ -99,6 +112,14 @@ public class PowerArmorFrame extends WearableChassis {
         }
     }
 
+    public static int getId(String chassisPart) {
+        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    }
+
+    private static void addSlot(String slot) {
+        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
+    }
+
     private void rareTick() {
         if (isClientSide || !hasFusionCore()) return;
         var core = getFusionCore();
@@ -110,6 +131,32 @@ public class PowerArmorFrame extends WearableChassis {
         if (isWalking()) {
             damageItem(core, 1);
         }
+    }
+
+    @Override
+    public InteractionResult interactAt(Player player, Vec3 vector, InteractionHand hand) {
+        if (this.isServerSide && !player.isPassenger() && hand == InteractionHand.MAIN_HAND) {
+            if(!this.isVehicle()) {
+                if (player.isShiftKeyDown()) {
+                    if(entityData.get(IS_OPEN)) {
+                        close();
+                    }
+                    else this.openGUI(player);
+                    return InteractionResult.SUCCESS;
+                }
+
+                if (entityData.get(IS_OPEN)) {
+                    this.ride(player);
+                    close();
+                }
+                else{
+                    open();
+                }
+                return InteractionResult.SUCCESS;
+            }
+        }
+
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -164,7 +211,6 @@ public class PowerArmorFrame extends WearableChassis {
             setSpeed(getSpeedAttribute());
         else {
             setSpeed(getMinSpeed());
-            return;
         }
     }
 
@@ -199,13 +245,12 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public Boolean isWalking() {
-        return speedometer.getSpeed() > 0;
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
-        controllerRegistrar.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
+        return
+                Minecraft.getInstance().options.keyUp.isDown() ||
+                Minecraft.getInstance().options.keyDown.isDown() ||
+                Minecraft.getInstance().options.keyLeft.isDown() ||
+                Minecraft.getInstance().options.keyRight.isDown();
+//        return speedometer.getSpeed() > 0;
     }
 
     public boolean passengerHaveGun() {
@@ -219,6 +264,37 @@ public class PowerArmorFrame extends WearableChassis {
         return null;
     }
 
+    @Override
+    public boolean isOnFire() {
+        return false;
+    }
+
+    @Override
+    public void registerControllers(ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
+                .triggerableAnim(OPEN, RawAnimation.begin().thenPlayAndHold(OPEN))
+                .triggerableAnim(CLOSE, RawAnimation.begin().thenPlay(CLOSE))
+        );
+
+        controllers.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
+        controllers.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
+//        controllers.add(new AnimationController<>(this, "common_controller", 0, animateCommon()));
+    }
+
+    private AnimationController.AnimationStateHandler<PowerArmorFrame> animateCommon() {
+        return event -> {
+            var controller = event.getController();
+            controller.setAnimationSpeed(1);
+            RawAnimation animation = null;
+
+            if(entityData.get(IS_OPEN))
+                animation = begin().then(OPEN, HOLD_ON_LAST_FRAME);
+            else animation = begin().then(CLOSE, PLAY_ONCE);
+
+            return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
+        };
+    }
+
     private AnimationController.AnimationStateHandler<PowerArmorFrame> animateArms() {
         return event -> {
             var controller = event.getController();
@@ -227,7 +303,10 @@ public class PowerArmorFrame extends WearableChassis {
 
             var passenger = getControllingPassenger();
 
-            if (passenger != null && !passengerHaveGun()) {
+            if(passenger == null) {
+                animation = begin().then(IDLE_EMPTY, LOOP);
+            }
+            else if (!passengerHaveGun()) {
                 if (passenger.attackAnim > 0) {
                     controller.setAnimationSpeed(2.0D);
                     animation = begin().then(HIT, PLAY_ONCE);
@@ -236,10 +315,17 @@ public class PowerArmorFrame extends WearableChassis {
                 } else if (isWalking()) {
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                     animation = begin().then(WALK_ARMS, LOOP);
-                } else animation = begin().then(IDLE, LOOP);
+                }
+                else {
+                    if (begin().then(WALK_ARMS, LOOP).equals(armsAnimation))
+                        animation = begin().then(WALK_ARMS, PLAY_ONCE).then(IDLE, LOOP);
+                    else
+                        animation = begin().then(IDLE, LOOP);
+                }
             }
 
-            currentAnimation = animation;
+            armsAnimation = animation;
+
             return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };
     }
@@ -248,7 +334,7 @@ public class PowerArmorFrame extends WearableChassis {
         return event -> {
             var controller = event.getController();
             controller.setAnimationSpeed(1);
-            RawAnimation animation;
+            RawAnimation animation = null;
 
             if (!hasPassenger()) return PlayState.STOP;
 
@@ -263,11 +349,24 @@ public class PowerArmorFrame extends WearableChassis {
                 }
             } else if (passenger.isShiftKeyDown()) {
                 animation = begin().then(SNEAK_END, LOOP);
-            } else {
-                return PlayState.STOP;
             }
-            return event.setAndContinue(animation);
+            else {
+                if (begin().then(WALK_LEGS, LOOP).equals(legsAnimation))
+                    animation = begin().then(WALK_LEGS, PLAY_ONCE);
+            }
+
+            legsAnimation = animation;
+
+            return animation != null ? event.setAndContinue(animation) : PlayState.STOP;
         };
+    }
+
+    private static void doSafe(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (Exception var2) {
+            var2.printStackTrace();
+        }
     }
 
 //    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {

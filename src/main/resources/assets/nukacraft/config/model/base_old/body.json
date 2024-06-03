@@ -1,12 +1,16 @@
 {
   "part": "body",
-  "model": "nukacraft:geo/power_armor/excavator.geo.json",
+  "model": "nukacraft:geo/power_armor/",
   "texture": {
-    "default": "nukacraft:textures/power_armor/exc.png",
-    "rust": "nukacraft:textures/power_armor/exc_rust.png"
+    "default": "nukacraft:textures/power_armor/"
   },
+
   "uv": [155, 0, 155, 155],
   "hide": ["body_bottom_frame"],
+
+  "mods" : [
+    "jetpack"
+  ],
 
   "attachments": [
     {
@@ -14,8 +18,16 @@
       "armor": "body_top_armor"
     },
     {
+      "frame": "body_top",
+      "armor": "jetpack"
+    },
+    {
       "frame": "body_bottom",
       "armor": "body_bottom_armor"
+    },
+    {
+      "frame": "body_back2",
+      "armor": "body_back_armor"
     }
   ]
 }

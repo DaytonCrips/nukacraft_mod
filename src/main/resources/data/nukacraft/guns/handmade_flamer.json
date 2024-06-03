@@ -15,7 +15,8 @@
     "magazineMode" : true,
     "visible": true,
     "damage": 5.0,
-    "size": 0.2,
+    "size": 3.0,
+    "gravity": true,
     "speed": 3.0,
     "life": 7
   },
