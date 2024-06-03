@@ -153,7 +153,7 @@
 		},
 		"open": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 1.375,
+			"animation_length": 1.75,
 			"bones": {
 				"left_arm": {
 					"rotation": {
@@ -250,16 +250,6 @@
 						}
 					}
 				},
-				"head": {
-					"rotation": {
-						"0.3333": {
-							"vector": [0, 0, 0]
-						},
-						"0.7083": {
-							"vector": [-62.5, 0, 0]
-						}
-					}
-				},
 				"body_back2": {
 					"rotation": {
 						"0.375": {
@@ -320,6 +310,24 @@
 						},
 						"0.7083": {
 							"vector": [0, 0, 157.5]
+						}
+					}
+				},
+				"head_base": {
+					"rotation": {
+						"0.2917": {
+							"vector": [0, 0, 0]
+						},
+						"0.7083": {
+							"vector": [-55, 0, 0]
+						}
+					},
+					"position": {
+						"0.2917": {
+							"vector": [0, 0, 0]
+						},
+						"0.7083": {
+							"vector": [0, -0.9, 1]
 						}
 					}
 				}
