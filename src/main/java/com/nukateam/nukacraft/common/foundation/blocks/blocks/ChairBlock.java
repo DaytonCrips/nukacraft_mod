@@ -82,6 +82,7 @@ public class ChairBlock extends CustomModelBlock {
             player.startRiding(seat);
             return InteractionResult.CONSUME;
         }
+
         return InteractionResult.PASS;
     }
 }

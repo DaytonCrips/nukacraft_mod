@@ -405,7 +405,7 @@ public class ModItems {
 
     @DataGen
     public static final RegistryObject<Item> BOG_PAD = ITEMS.register("bog_pad",
-            () -> new ItemNameBlockItem(ModBlocks.GAMMALEAF_BUSH.get(), new Item.Properties().rarity(Rarity.EPIC)));
+            () -> new ItemNameBlockItem(ModBlocks.BOGPAD.get(), new Item.Properties().rarity(Rarity.EPIC)));
 
     @DataGen
     public static final RegistryObject<Item> BLACK_BLOOD_LEAF_BUSH = ITEMS.register("bbloodleafl_",

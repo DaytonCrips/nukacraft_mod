@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.blocks;
 
 import com.nukateam.nukacraft.common.foundation.blocks.blocks.ChairBlock;
+import com.nukateam.nukacraft.common.foundation.blocks.blocks.ModuleChairBlock;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,6 +39,7 @@ public class ChairBlockEntity extends Entity {
             BlockState state = this.level().getBlockState(this.blockPosition());
             boolean remove = true;
             if (state.getBlock() instanceof ChairBlock seatBlock) remove = !seatBlock.isChair(state);
+            if (state.getBlock() instanceof ModuleChairBlock seatBlock) remove = !seatBlock.isChair(state);
             if (this.getPassengers().isEmpty() || remove) {
                 this.remove(RemovalReason.DISCARDED);
                 this.level().updateNeighbourForOutputSignal(blockPosition(), this.level().getBlockState(blockPosition()).getBlock());
@@ -84,6 +86,13 @@ public class ChairBlockEntity extends Entity {
                 return safeVec.add(0, 0.25, 0);
             }
         }
+        if (state.getBlock() instanceof ModuleChairBlock seatBlock) {
+            //pos = pos.offset(seatBlock.dismountLocationOffset());
+            safeVec = DismountHelper.findSafeDismountLocation(entity.getType(), this.level(), seatBlock.Dismount(this.level(), state, pos), false);
+            if (safeVec != null) {
+                return safeVec.add(0, 0.25, 0);
+            }
+        }
 
         Direction original = this.getDirection();
         Direction[] offsets = {original, original.getClockWise(), original.getCounterClockWise(), original.getOpposite()};
@@ -101,6 +110,9 @@ public class ChairBlockEntity extends Entity {
         BlockPos pos = this.blockPosition();
         BlockState state = this.level().getBlockState(pos);
         if (state.getBlock() instanceof ChairBlock seatBlock) {
+            passenger.setYRot(seatBlock.setPassangerRotation(state, passenger));
+        }
+        if (state.getBlock() instanceof ModuleChairBlock seatBlock) {
             passenger.setYRot(seatBlock.setPassangerRotation(state, passenger));
         }
         super.addPassenger(passenger);
