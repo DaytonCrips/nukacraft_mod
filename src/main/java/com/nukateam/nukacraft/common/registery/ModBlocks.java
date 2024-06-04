@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -305,13 +304,13 @@ public class ModBlocks {
 //    public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
 //            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
 //                    .strength(0.3f)));
-    @DataGen(type = ResourceType.BLOCK)
+    //@DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SHOWER_TAP = registerBlock("shower_tap",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(0.4f).noCollission()));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TABLE_LAMP = registerBlock("table_lamp",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(0.4f).lightLevel((p_50892_) -> {return 10;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> GOLD_TOILET = registerBlock("goldtoilet",
@@ -344,7 +343,7 @@ public class ModBlocks {
                     .strength(1.1f).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ARMY_THEATRE_CHAIR = registerBlock("army_theatre_chair",
-            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of(Material.METAL)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of()
                     .strength(0.4f).lightLevel((p_50892_) -> {return 1;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SHELTER_LAMP = registerBlock("shelter_lamp",
@@ -352,32 +351,33 @@ public class ModBlocks {
                     .strength(0.9f)));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> WASHBASIN = registerBlock("washbasin",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(1.2f)));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> BATH_TABLE = registerBlock("bath_table",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(1.2f)));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> STEEL_SHELF = registerBlock("steel_shelf",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(1.2f)));
 
+    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> VAULT_GEN_BLOCK1 = registerBlock("vaultgen_block1",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
                     .strength(1.1f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> VAULT_GEN_BLOCK2 = registerBlock("vaultgen_block2",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
                     .strength(1.1f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 7;})));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TESLA_BLOCK = registerBlock("tesla_block",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(1.0f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 9;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TESLA_COLUMN = registerBlock("tesla_column",
-            () -> new CustomModelBlock(BlockBehaviour.Properties.of(Material.METAL)
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(1.0f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 9;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> REDROCKET_PANEL = registerBlock("redrocketpanel",
@@ -385,9 +385,9 @@ public class ModBlocks {
                     .strength(1.2f).requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> NUC_STATION_CONTROL = registerBlock("nuc_stat_control",
-            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
+            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
     public static final RegistryObject<Block> NUC_STATION_BLOCK = registerBlock("nuc_stat_block",
-            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
+            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
 
 
     @DataGen(type = ResourceType.BLOCK)

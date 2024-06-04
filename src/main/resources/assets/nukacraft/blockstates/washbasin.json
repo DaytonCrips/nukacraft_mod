@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/washbasin",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "nukacraft:block/washbasin",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "nukacraft:block/washbasin"
+    },
+    "facing=west": {
+      "model": "nukacraft:block/washbasin",
+      "y": 90
+    }
+  }
+}
