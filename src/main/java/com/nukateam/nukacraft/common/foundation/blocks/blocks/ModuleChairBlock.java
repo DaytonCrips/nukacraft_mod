@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -20,23 +21,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-public class ChairBlock extends CustomModelBlock {
+import java.util.function.Supplier;
+public class ModuleChairBlock extends StairBlock{
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private float seatPos = 0.25f;
-    public ChairBlock(float seatPos, Properties properties) {
-        super(properties);
-        setSeatPos(seatPos);
-    }
 
 
-    public void setSeatPos(float seatPos) {
-        this.seatPos = seatPos;
+    public ModuleChairBlock(BlockState pBaseState, Properties pProperties) {
+        super(pBaseState, pProperties);
     }
 
-    public float seatY() {
-        return seatPos;
-    }
 
     private VoxelShape getShape(BlockState state)
     {
@@ -59,7 +52,9 @@ public class ChairBlock extends CustomModelBlock {
     public boolean isChair(BlockState state) {
         return true;
     }
-
+    public float seatY() {
+        return 0.25F;
+    }
 
     public BlockPos Dismount(Level level, BlockState state, BlockPos pos) {
         return pos;
@@ -68,6 +63,7 @@ public class ChairBlock extends CustomModelBlock {
     public float setPassangerRotation(BlockState state, Entity entity) {
         return entity.getYRot();
     }
+
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
@@ -84,4 +80,12 @@ public class ChairBlock extends CustomModelBlock {
         }
         return InteractionResult.PASS;
     }
+
+//    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
+//        if (!pState.is(pState.getBlock())) {
+//            pLevel.neighborChanged(this.baseState, pPos, Blocks.AIR, pPos, false);
+//            this.base.onPlace(this.baseState, pLevel, pPos, pOldState, false);
+//        }
+//    }
+
 }
