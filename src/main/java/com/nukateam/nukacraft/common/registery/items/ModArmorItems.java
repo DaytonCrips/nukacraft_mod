@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.ibm.icu.impl.Pair;
+import com.mojang.datafixers.util.Pair;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.data.utils.ArmorStorage;
@@ -48,8 +48,8 @@ public class ModArmorItems {
                 Pair.of(ArmorItem.Type.BOOTS, "boots"));
 
         for (var slot : armorSlots) {
-            var item = registerArmor(name + "_" + slot.second, name, material, slot.first);
-            armorSet.put(slot.first, item);
+            var item = registerArmor(name + "_" + slot.getSecond(), name, material, slot.getFirst());
+            armorSet.put(slot.getFirst(), item);
         }
 
         return armorSet;
