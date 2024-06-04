@@ -301,9 +301,9 @@ public class ModBlocks {
                     .strength(0.4f)));
 
 //    @DataGen(type = ResourceType.BLOCK)
-//    public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
-//            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
-//                    .strength(0.3f)));
+public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
+        () -> new ModuleChairBlock(ModBlocks.HALFBARRIER.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
     //@DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SHOWER_TAP = registerBlock("shower_tap",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of()
