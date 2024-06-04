@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.function.Supplier;
 public class ModuleChairBlock extends StairBlock{
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    private float seatPos = 0.25f;
 
-
-    public ModuleChairBlock(BlockState pBaseState, Properties pProperties) {
+    public ModuleChairBlock(float seatPos, BlockState pBaseState, Properties pProperties) {
         super(pBaseState, pProperties);
     }
 
@@ -44,6 +44,14 @@ public class ModuleChairBlock extends StairBlock{
         SHAPES.put(state, shape);
         return shape;
     }
+
+    public void setSeatPos(float seatPos) {
+        this.seatPos = seatPos;
+    }
+
+    public float seatY() {
+        return seatPos;
+    }
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
@@ -52,9 +60,7 @@ public class ModuleChairBlock extends StairBlock{
     public boolean isChair(BlockState state) {
         return true;
     }
-    public float seatY() {
-        return 0.25F;
-    }
+
 
     public BlockPos Dismount(Level level, BlockState state, BlockPos pos) {
         return pos;
@@ -63,7 +69,6 @@ public class ModuleChairBlock extends StairBlock{
     public float setPassangerRotation(BlockState state, Entity entity) {
         return entity.getYRot();
     }
-
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {

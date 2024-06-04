@@ -301,8 +301,8 @@ public class ModBlocks {
                     .strength(0.4f)));
 
 //    @DataGen(type = ResourceType.BLOCK)
-public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
-        () -> new ModuleChairBlock(ModBlocks.HALFBARRIER.get().defaultBlockState(), BlockBehaviour.Properties.of()
+public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("vtdinner_chair",
+        () -> new ModuleChairBlock(0.25f, ModBlocks.HALFBARRIER.get().defaultBlockState(), BlockBehaviour.Properties.of()
                 .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
     //@DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SHOWER_TAP = registerBlock("shower_tap",
