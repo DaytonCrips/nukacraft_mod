@@ -940,7 +940,7 @@
 					]
 				},
 				{
-					"name": "bone",
+					"name": "stick",
 					"parent": "body",
 					"pivot": [0.00319, 3.61984, -2.63499],
 					"cubes": [

@@ -198,7 +198,7 @@
 					"pivot": [-0.03041, -15.24267, 60.10895]
 				},
 				{
-					"name": "bone15",
+					"name": "main_pipe",
 					"parent": "body",
 					"pivot": [2.91232, 0.72443, 3.74977],
 					"rotation": [0, 0, 22.5],
@@ -231,7 +231,7 @@
 				},
 				{
 					"name": "valve",
-					"parent": "bone15",
+					"parent": "main_pipe",
 					"pivot": [3.09565, 0.72443, 1.3481],
 					"cubes": [
 						{
@@ -257,7 +257,7 @@
 					"pivot": [0, 1.32508, 1.17337]
 				},
 				{
-					"name": "bone16",
+					"name": "barrel_body",
 					"parent": "barrel",
 					"pivot": [0, 1.32508, -5.01893],
 					"cubes": [
@@ -391,7 +391,7 @@
 					]
 				},
 				{
-					"name": "bone3",
+					"name": "barrel_triple",
 					"parent": "barrel",
 					"pivot": [0, 0.63628, -3.49511],
 					"cubes": [
@@ -458,7 +458,6 @@
 						{
 							"origin": [-0.72226, -0.08598, -6.22924],
 							"size": [1.44452, 1.44452, 8.6606],
-							"inflate": 0,
 							"pivot": [0, 0.63628, -3.49511],
 							"rotation": [0, 0, 45],
 							"uv": {
@@ -473,7 +472,7 @@
 					]
 				},
 				{
-					"name": "bone5",
+					"name": "lever",
 					"parent": "barrel",
 					"pivot": [0, 1.32508, -6.01385],
 					"cubes": [
@@ -492,8 +491,8 @@
 					]
 				},
 				{
-					"name": "bone11",
-					"parent": "bone5",
+					"name": "fuel_core",
+					"parent": "lever",
 					"pivot": [-0.76054, 1.9756, -7.4871],
 					"rotation": [9.45701, 51.27821, 28.06902],
 					"cubes": [
@@ -544,8 +543,8 @@
 					]
 				},
 				{
-					"name": "bone12",
-					"parent": "bone11",
+					"name": "fuel_pipe",
+					"parent": "fuel_core",
 					"pivot": [-4.66942, 1.9756, -7.44752],
 					"rotation": [-9.07539, -16.2853, -16.61682],
 					"cubes": [
@@ -692,8 +691,8 @@
 					]
 				},
 				{
-					"name": "bone10",
-					"parent": "bone5",
+					"name": "lever_hand",
+					"parent": "lever",
 					"pivot": [3.32916, 1.32508, -6.60698],
 					"rotation": [0, -15, 0],
 					"cubes": [
@@ -781,8 +780,8 @@
 					]
 				},
 				{
-					"name": "bone13",
-					"parent": "bone5",
+					"name": "fuel_pump",
+					"parent": "lever",
 					"pivot": [-1.81353, 1.37309, 3.77872],
 					"rotation": [0, 2.5, 0],
 					"cubes": [

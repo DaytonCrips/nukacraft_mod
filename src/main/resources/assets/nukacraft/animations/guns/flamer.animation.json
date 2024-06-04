@@ -6,61 +6,88 @@
 			"animation_length": 2,
 			"bones": {
 				"left_arm": {
-					"rotation": {
-						"vector": [8.32828, 21.37891, -1.41017]
-					},
-					"position": {
-						"vector": [0, 1.325, 0.675]
-					},
-					"scale": {
-						"vector": [1, 1, 1.5]
-					}
+					"rotation": [8.32828, 21.37891, -1.41017],
+					"position": [0, 1.325, 0.675],
+					"scale": [1, 1, 1.5]
 				},
 				"ArmLock": {
-					"rotation": {
-						"vector": [0, 0, 0]
-					},
-					"position": {
-						"vector": [0, 0, 0]
-					},
-					"scale": {
-						"vector": [1, 1, 1]
-					}
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
 				},
 				"muzzle_flash": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 0
 				},
 				"right_arm": {
-					"rotation": {
-						"vector": [6.82772, -4.33883, 1.75546]
-					},
-					"position": {
-						"vector": [6.975, 3.35, 7]
-					}
+					"rotation": [6.82772, -4.33883, 1.75546],
+					"position": [6.975, 3.35, 7]
 				},
 				"flame": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
 					"scale": {
-						"0.0": {
-							"vector": [0.47, 0.47, 0.47]
-						},
-						"0.9583": {
-							"vector": [0.47, 0.9, 0.47],
-							"easing": "step",
-							"easingArgs": [20]
-						},
-						"1.0417": {
-							"vector": [0.47, 0.9, 0.47],
-							"easing": "step",
-							"easingArgs": [20]
-						},
-						"2.0": {
-							"vector": [0.47, 0.47, 0.47],
-							"easing": "step",
-							"easingArgs": [20]
-						}
+						"0.0": [0.47, 0.47, 0.47],
+						"0.9583": [0.47, 0.9, 0.47],
+						"1.0417": [0.47, 0.9, 0.47],
+						"2.0": [0.47, 0.47, 0.47]
 					}
+				},
+				"body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"main_pipe": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"valve": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"barrel": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"barrel_body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"barrel_triple": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"lever": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"fuel_core": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"fuel_pipe": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"lever_hand": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"fuel_pump": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
 				}
 			}
 		},

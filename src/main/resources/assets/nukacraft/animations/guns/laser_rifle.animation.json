@@ -56,7 +56,7 @@
 		},
 		"reload": {
 			"loop": true,
-			"animation_length": 2.70833,
+			"animation_length": 2.7083,
 			"bones": {
 				"gun": {
 					"rotation": {
@@ -166,7 +166,7 @@
 						"2.7": [0, 0, 0]
 					}
 				},
-				"bone5": {
+				"lever": {
 					"rotation": {
 						"0.5833": [0, 0, 0],
 						"0.75": [0, 0, 60],
@@ -174,7 +174,7 @@
 						"2.25": [0, 0, 0]
 					}
 				},
-				"bone6": {
+				"button": {
 					"rotation": {
 						"0.6667": [0, 0, 0],
 						"0.75": [0, 65, 0],
@@ -262,7 +262,59 @@
 					"position": [5.85, -1.05, 8.15]
 				},
 				"muzzle_flash": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
 					"scale": 0
+				},
+				"scope": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"lever": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"button": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"under_body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"barrel": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"stock": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"trigger": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"stock_body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"magazine": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
 				}
 			}
 		},

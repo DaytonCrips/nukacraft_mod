@@ -24,18 +24,18 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     ///RAW MATERIALS
-    @DataGen
-    public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
-            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
+//            () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> DEATHCLAW = ITEMS.register("deathclaw",
             () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> LEGWEAPONPARTS = ITEMS.register("leg_weapon_parts",
-            () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> MTHWEAPONPARTS = ITEMS.register("myth_weapon_parts",
-            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> LEGWEAPONPARTS = ITEMS.register("leg_weapon_parts",
+//            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> MTHWEAPONPARTS = ITEMS.register("myth_weapon_parts",
+//            () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> WEAPONPARTS = ITEMS.register("weapon_parts",
             () -> new Item(new Item.Properties()));
@@ -139,9 +139,9 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> CERAMIC = ITEMS.register("ceramic",
             () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> ELECTRONUM = ITEMS.register("electronum",
-            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> ELECTRONUM = ITEMS.register("electronum",
+//            () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> GLOW_MASS = ITEMS.register("glowmass",
             () -> new Item(new Item.Properties()));
@@ -163,9 +163,9 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> BLOODLEAF = ITEMS.register("nbloodleafi",
             () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> PRMT = ITEMS.register("pmt1",
-            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> PRMT = ITEMS.register("pmt1",
+//            () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> THISTLE = ITEMS.register("thistle_bud",
             () -> new Item(new Item.Properties()));
@@ -235,18 +235,18 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> COPPERWIRE = ITEMS.register("copperwires",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
-    @DataGen
-    public static final RegistryObject<Item> LAMP = ITEMS.register("lamp",
-            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
-    @DataGen
-    public static final RegistryObject<Item> ULTRBAR = ITEMS.register("ultrbar",
-            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    @DataGen
-    public static final RegistryObject<Item> COPPERCOND = ITEMS.register("coppercond",
-            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
-    @DataGen
-    public static final RegistryObject<Item> REDUCER = ITEMS.register("reducer",
-            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> LAMP = ITEMS.register("lamp",
+//            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> ULTRBAR = ITEMS.register("ultrbar",
+//            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> COPPERCOND = ITEMS.register("coppercond",
+//            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> REDUCER = ITEMS.register("reducer",
+//            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 
     ///FLUX
     @DataGen
@@ -310,45 +310,45 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
             () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-    @DataGen
-    public static final RegistryObject<Item> PIEZODIVIDE = ITEMS.register("piezonucleic_divider",
-            () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> QUARZDIVIDER = ITEMS.register("quartz_divider",
-            () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> ULTRDIVIDER = ITEMS.register("ultracite_divider",
-            () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> ULTRSHEAT = ITEMS.register("ultracite_shell",
-            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> PIEZODIVIDE = ITEMS.register("piezonucleic_divider",
+//            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> QUARZDIVIDER = ITEMS.register("quartz_divider",
+//            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> ULTRDIVIDER = ITEMS.register("ultracite_divider",
+//            () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> ULTRSHEAT = ITEMS.register("ultracite_shell",
+//            () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> WHITEBRICK = ITEMS.register("whitebrick",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> SILICATE = ITEMS.register("silicate",
             () -> new Item(new Item.Properties()));
-    @DataGen
-    public static final RegistryObject<Item> QUARZS_SHELL = ITEMS.register("quartz_shell",
-            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> QUARZS_SHELL = ITEMS.register("quartz_shell",
+//            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     @DataGen
     public static final RegistryObject<Item> QUARZPIECE = ITEMS.register("quartz_piece",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
     @DataGen
     public static final RegistryObject<Item> QUARZPLATE = ITEMS.register("quartz_plate",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
-    @DataGen
-    public static final RegistryObject<Item> ARMYCIRCUIT = ITEMS.register("army_circuit",
-            () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
-    @DataGen
-    public static final RegistryObject<Item> ELEDIVIDE = ITEMS.register("electrite_divider",
-            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-    @DataGen
-    public static final RegistryObject<Item> ELESHEAT = ITEMS.register("electrite_shell",
-            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-    @DataGen
-    public static final RegistryObject<Item> GILLEAD = ITEMS.register("gilded_lead",
-            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+//    @DataGen
+//    public static final RegistryObject<Item> ARMYCIRCUIT = ITEMS.register("army_circuit",
+//            () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
+//    @DataGen
+//    public static final RegistryObject<Item> ELEDIVIDE = ITEMS.register("electrite_divider",
+//            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+//    @DataGen
+//    public static final RegistryObject<Item> ELESHEAT = ITEMS.register("electrite_shell",
+//            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+//    @DataGen
+//    public static final RegistryObject<Item> GILLEAD = ITEMS.register("gilded_lead",
+//            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 
 //    @DataGen
 //    public static final RegistryObject<Item> PIMPBOY = ITEMS.register("pimpboy",

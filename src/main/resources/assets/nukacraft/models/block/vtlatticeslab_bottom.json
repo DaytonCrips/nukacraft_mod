@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/slab",
+  "render_type": "cutout",
   "textures": {
     "bottom": "nukacraft:block/vtlattice",
     "top": "nukacraft:block/vtlattice",
