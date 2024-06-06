@@ -403,7 +403,7 @@ public class ModItems {
     public static final RegistryObject<Item> CORAL_LEAF = ITEMS.register("coral_leaf",
             () -> new RadNamedItem(0f, ModBlocks.CORALLEAF.get(), new Item.Properties()));
 
-    @DataGen
+//    @DataGen
     public static final RegistryObject<Item> BOG_PAD = ITEMS.register("bog_pad",
             () -> new ItemNameBlockItem(ModBlocks.BOGPAD.get(), new Item.Properties().rarity(Rarity.EPIC)));
 

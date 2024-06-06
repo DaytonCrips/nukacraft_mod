@@ -2,8 +2,8 @@
   "ambientocclusion": false,
   "render_type": "cutout",
   "textures": {
-    "particle": "nukacraft:block/bog_pad",
-    "texture": "nukacraft:block/bog_pad"
+    "particle": "nukacraft:item/bog_pad",
+    "texture": "nukacraft:item/bog_pad"
   },
   "elements": [
     {   "from": [  0, 0.25,  0 ],

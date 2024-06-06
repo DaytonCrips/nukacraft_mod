@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/template_glass_pane_side",
+  "render_type": "cutout",
   "textures": {
     "pane": "nukacraft:block/armedglass",
     "edge": "nukacraft:block/armedglass_top"
