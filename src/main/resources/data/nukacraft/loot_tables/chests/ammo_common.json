@@ -8,46 +8,127 @@
         {
           "type": "minecraft:item",
           "name": "nukacraft:round45",
-          "weight": 2
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 9
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
           "name": "nukacraft:round10mm",
-          "weight": 2
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 12
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:round38"
+          "name": "nukacraft:round38",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 8
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:round44"
+          "name": "nukacraft:round44",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 8
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:steel_ball"
+          "name": "nukacraft:steel_ball",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:round22"
+          "name": "nukacraft:round22",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 14
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:shotshell"
+          "name": "nukacraft:shotshell",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 6
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:grenade"
+          "name": "nukacraft:grenade",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:fragmine"
+          "name": "nukacraft:fragmine",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:random_chance",
-          "chance": 0.35
+          "chance": 0.85
         }
       ]
     }

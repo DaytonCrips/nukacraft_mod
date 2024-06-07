@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-07T15:26:23.0395183	Item Models: nukacraft
+// 1.20.1	2024-06-07T18:42:13.5305651	Item Models: nukacraft
 ce0f4bf06c5c5d0545e04d6f4b24bf208f3eeede assets/nukacraft/models/item/abraxo_cleaner.json
 cd7fafe2d3a18785850e2b3c42b28310bddb085a assets/nukacraft/models/item/acid.json
 cb26da1b5691523241c3358d294a7645fb378eff assets/nukacraft/models/item/acid_bucket.json
@@ -220,6 +220,7 @@ abd02addb67c5fc00b522e0d04a5e003bb96f956 assets/nukacraft/models/item/redrocketp
 547f4a35bfc50717f79e14cb89b34e3511bdfb57 assets/nukacraft/models/item/redsteel.json
 ff3db863ec907d637a4ada4d366a1c11299be1a4 assets/nukacraft/models/item/redsteelslab.json
 50b053ba67241e278c3b4fb7595abfd52a5e7b90 assets/nukacraft/models/item/redtile.json
+924a93bf5cd27d680c81ffb2cded7b6c6f117eed assets/nukacraft/models/item/reducer.json
 ff9981879ae391fd46ec286a94fb7ef20b66d67e assets/nukacraft/models/item/resin_glow.json
 bba854b759a47bea9fcf5ca54bcf0518e752c227 assets/nukacraft/models/item/round10mm.json
 f0b2109b2b23ef8b28ddff1671b1e1f993d74701 assets/nukacraft/models/item/round127.json

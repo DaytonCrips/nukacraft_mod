@@ -244,9 +244,9 @@ public class ModItems {
 //    @DataGen
 //    public static final RegistryObject<Item> COPPERCOND = ITEMS.register("coppercond",
 //            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
-//    @DataGen
-//    public static final RegistryObject<Item> REDUCER = ITEMS.register("reducer",
-//            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+    @DataGen
+    public static final RegistryObject<Item> REDUCER = ITEMS.register("reducer",
+            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
 
     ///FLUX
     @DataGen

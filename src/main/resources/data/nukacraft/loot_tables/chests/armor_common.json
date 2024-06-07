@@ -8,20 +8,56 @@
         {
           "type": "minecraft:item",
           "name": "nukacraft:wooden_helmet",
-          "weight": 2
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wooden_body",
-          "weight": 2
+          "name": "nukacraft:wooden_chest",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wooden_leggins"
+          "name": "nukacraft:wooden_leggins",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wooden_boots"
+          "name": "nukacraft:wooden_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         }
       ],
       "conditions": [
@@ -36,25 +72,61 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:leather_helmet"
+          "name": "nukacraft:leather_helmet",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:leather_body"
+          "name": "nukacraft:leather_chest",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:leather_leggins"
+          "name": "nukacraft:leather_leggins",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:leather_boots"
+          "name": "nukacraft:leather_boots",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.3,
+                "max": 1
+              }
+            }
+          ]
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:random_chance",
-          "chance": 0.3
+          "chance": 0.7
         }
       ]
     }
