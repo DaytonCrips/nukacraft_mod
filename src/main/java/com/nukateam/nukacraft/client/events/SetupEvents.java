@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.client.events;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
+import com.nukateam.nukacraft.client.render.gui.hud.PowerArmorHud;
 import com.nukateam.nukacraft.client.render.particles.GammaParticles;
 import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
@@ -13,9 +14,11 @@ import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,6 +33,11 @@ public class SetupEvents {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
         PipboyPages.init(PipboyPages.content);
+    }
+
+    @SubscribeEvent
+    public static void registerHud(RegisterGuiOverlaysEvent event){
+        event.registerAbove(new ResourceLocation("hotbar"), "power_armor_hud", PowerArmorHud.POWER_ARMOR_HUD);
     }
 
     @SubscribeEvent

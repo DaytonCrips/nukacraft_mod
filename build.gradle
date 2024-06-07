@@ -164,10 +164,10 @@ dependencies {
     implementation fg.deobf('curse.maven:ntgl-998474:5396045')
 
     implementation fg.deobf("curse.maven:framework-549225:${framework_file_id}")
-    runtimeOnly fg.deobf("curse.maven:cyanide-541676:4824162")
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
+    implementation fg.deobf("curse.maven:cyanide-541676:4824162")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${project.curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${project.curios_version}:api")
