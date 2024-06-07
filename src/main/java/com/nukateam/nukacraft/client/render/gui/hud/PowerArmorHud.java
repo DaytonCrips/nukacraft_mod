@@ -16,7 +16,6 @@ public class PowerArmorHud {
     private static final int BAR_OFFSET_X = 95;
     private static final ResourceLocation DURABILITY_SENSOR = nukaResource("textures/gui/hud/durability_sensor.png");
     private static final ResourceLocation POWER_SENSOR = nukaResource("textures/gui/hud/power_sensor.png");
-    private static final ResourceLocation PIPBOY_SCREEN = nukaResource("textures/screens/pipboy_screen.png");
 
     public static final IGuiOverlay POWER_ARMOR_HUD = ((gui, graphics, partialTick, width, height) -> {
         if(!PlayerUtils.isLocalWearingChassis()) return;
@@ -25,12 +24,18 @@ public class PowerArmorHud {
         var y = height - 39;
         var x = width / 2;
 
-        graphics.blit(DURABILITY_SENSOR,-4, height - 127,0, 0,128, 127,128, 127);
-        graphics.blit(POWER_SENSOR, width - 128, height - 127,0, 0,128, 127,128, 127);
+        var poseStack = graphics.pose();
+        poseStack.pushPose();
+        {
+            poseStack.scale(0.5f, 0.5f, 0.5f);
+        }
+        poseStack.popPose();
+        graphics.blit(DURABILITY_SENSOR, -4, height - 127, 0, 0, 128, 127, 128, 127);
+        graphics.blit(POWER_SENSOR, width - 128, height - 127, 0, 0, 128, 127, 128, 127);
 
         x += BAR_OFFSET_X;
         x -= BAR_OFFSET_X - 26;
 
-        graphics.drawString(Minecraft.getInstance().font, "text", x, y, 0xFFFFFFFF, true);
+
     });
 }

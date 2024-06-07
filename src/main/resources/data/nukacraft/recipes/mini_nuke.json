@@ -1,0 +1,17 @@
+{
+  "type": "ntgl:workbench",
+  "materials": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 5
+    },
+    {
+      "tag": "forge:gunpowder",
+      "count": 24
+    }
+  ],
+  "result": {
+    "item": "nukacraft:mini_nuke",
+    "count": 1
+  }
+}
