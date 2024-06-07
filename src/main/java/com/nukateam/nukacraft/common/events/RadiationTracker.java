@@ -38,7 +38,7 @@ public class RadiationTracker {
 
         blocks.forEach((blockPos) -> {
             var block = level.getBlockState(blockPos).getBlock();
-            if (block instanceof RadioactiveBlock radioactiveBlock) {
+            if (block instanceof RadioactiveBlock radioactiveBlock && !player.isCreative()) {
                 RadiationUtils.addRadiation(player, radioactiveBlock.getRadiation());
             }
         });

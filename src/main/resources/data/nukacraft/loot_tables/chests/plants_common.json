@@ -1,0 +1,90 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:muttfruit",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:megasloth",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:crackberry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:silt_bean"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:spoiled_tato"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:ginsengroot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:bbloodleafl_"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:blood_leaf_bush"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:punga_fruit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:agave_fruit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:giga_wheat_seeds"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:irrad_beetroots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:thistle_bud"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:brainfungus"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:coral_leaf"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    }
+  ]
+}

@@ -69,7 +69,7 @@ public class NukaCraftMod {
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
-        ModPaintings.register(MOD_EVENT_BUS);
+        ModPaintings.PAINTING_TYPES.register(MOD_EVENT_BUS);
         ModTileEntities.REGISTER.register(MOD_EVENT_BUS);
         ModFluids.register(MOD_EVENT_BUS);
         ModFluidTypes.register(MOD_EVENT_BUS);

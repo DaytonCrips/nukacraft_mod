@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:wooden_helmet",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:wooden_body",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:wooden_leggins"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:wooden_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:leather_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:leather_body"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:leather_leggins"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:leather_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    }
+  ]
+}

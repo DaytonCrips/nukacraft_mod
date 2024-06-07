@@ -327,7 +327,7 @@
   "item.nukacraft.stun_grenade": "Stun Grenade",
   "item.nukacraft.fuel": "Fuel",
   "item.nukacraft.fusion_cell": "Fusion Cell",
-
+  "item.nukacraft.bog_pad": "Swamp Trash",
   "item.nukacraft.acid_bucket": "Acid Bucket",
   "item.nukacraft.dirty_water_bucket": "Dirty Water Bucket",
   "item.nukacraft.poisonous_water_bucket": "Poisonous Water Bucket",
@@ -391,9 +391,13 @@
   "block.nukacraft.vtcrate1": "Vault-Tec Crate",
   "block.nukacraft.vtcrate2": "Overseer Crate",
   "block.nukacraft.redlight": "Red Lamp",
+  "block.nukacraft.fridge_rust": "Fridge",
+  "block.nukacraft.cooler_rust": "Cooler",
   "block.nukacraft.vtdinner_chair": "Dinner Chair Vault-Tec",
   "block.nukacraft.shower_tap": "Shower Tap",
   "block.nukacraft.table_lamp": "Table Lamp",
+  "block.nukacraft.cryocapsuleact": "Empty Cryocapsule",
+  "block.nukacraft.opencryocapsule": "Open Cryocapsule",
   "block.nukacraft.army_theatre_chair": "Army Theatre Chair",
   "block.nukacraft.washbasin": "Wash Basin",
   "block.nukacraft.bath_table": "Bath Table",
@@ -653,6 +657,16 @@
   "gui.nukacraft.workbench.tab.melee": "Melees",
 
   "key.open_map": "Open map",
+
+
+
+
+  "painting.nukacraft.nukacola.title": "Nuka-Cola Promo",
+  "painting.nukacraft.quantcola.title": "Quant Nuka-Cola Promo",
+  "painting.nukacraft.sugar_bomb_promo.title": "Sugar Bombs Promo",
+
+
+
 
 
   "skin.default" : "§7§oDefault",

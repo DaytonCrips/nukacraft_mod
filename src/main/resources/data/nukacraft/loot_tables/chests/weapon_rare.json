@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:pistol10mm",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:powdergun",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:shotgun"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:laser_pistol"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:combatknife"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:combatpipe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.15
+        }
+      ]
+    }
+  ],
+  "random_sequence": "minecraft:archaeology/desert_well"
+}

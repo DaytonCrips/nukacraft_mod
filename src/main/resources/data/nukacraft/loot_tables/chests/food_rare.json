@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raw_brahmin_meat",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:aster_tea",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:firemushpuree"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:firemushsoup"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:silt_soup"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:tato_salad"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:vegetable_soup"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:nuka_cola"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:nuka_frutti"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    }
+  ]
+}

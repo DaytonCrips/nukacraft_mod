@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:scout10mm",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:piperevolver",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:cosmicknife"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:pipepistol"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:cleaver"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:classic10mm"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    }
+  ],
+  "random_sequence": "minecraft:archaeology/desert_well"
+}

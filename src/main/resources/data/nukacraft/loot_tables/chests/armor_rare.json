@@ -1,0 +1,89 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:metal_helmet",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:metal_chest",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:metal_leggins"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:metal_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raider_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raider_body"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raider_leggins"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raider_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:trapper_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:trapper_chest"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:trapper_leggins"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:trapper_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    }
+  ]
+}

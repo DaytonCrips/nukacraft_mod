@@ -331,6 +331,7 @@ public class ModItems {
 //    @DataGen
 //    public static final RegistryObject<Item> QUARZS_SHELL = ITEMS.register("quartz_shell",
 //            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
     @DataGen
     public static final RegistryObject<Item> QUARZPIECE = ITEMS.register("quartz_piece",
             () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));

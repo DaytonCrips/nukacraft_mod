@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:round45",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:round10mm",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:round38"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:round44"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:steel_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:round22"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:shotshell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:grenade"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:fragmine"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.35
+        }
+      ]
+    }
+  ]
+}

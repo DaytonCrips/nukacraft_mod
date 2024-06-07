@@ -1,0 +1,9 @@
+{
+  "replace": false,
+
+  "values": [
+    "nukacraft:glow_sea",
+	"nukacraft:cranberry_bog",
+	"nukacraft:poison_valley"
+  ]
+}

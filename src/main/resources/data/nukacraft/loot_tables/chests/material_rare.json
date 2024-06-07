@@ -1,0 +1,101 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:copper_ingot",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:threads",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:plastic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:silver"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:steel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:adhesive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:acid"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:antisept"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:fertilizer"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:oil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:fiber"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:optofiber"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:silvernugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:steelnugget"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    }
+  ]
+}

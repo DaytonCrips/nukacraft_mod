@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:radiotower_huge_ruined",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1487418562,
+
+
+    "spacing": 55,
+
+
+    "separation": 12,
+
+
+    "type": "minecraft:random_spread"
+  }
+}
