@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nukacraft:block/shower_tap" },
+    "facing=east": { "model": "nukacraft:block/shower_tap", "y": 90 },
+    "facing=south": { "model": "nukacraft:block/shower_tap", "y": 180 },
+    "facing=west": { "model": "nukacraft:block/shower_tap", "y": 270 }
+  }
+}

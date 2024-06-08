@@ -5,25 +5,50 @@
 			"loop": true,
 			"bones": {
 				"left_arm": {
-					"rotation": {
-						"vector": [-0.29494, 47.33577, 6.61145]
-					},
-					"position": {
-						"vector": [-0.45, -3.5, -1.35]
-					}
+					"rotation": [-0.29494, 47.33577, 6.61145],
+					"position": [-0.45, -3.5, -1.35]
 				},
 				"right_arm": {
-					"rotation": {
-						"vector": [-7, -14, 0]
-					},
-					"position": {
-						"vector": [6.05, -3.45, 6.55]
-					}
+					"rotation": [-7, -14, 0],
+					"position": [6.05, -3.45, 6.55]
 				},
 				"muzzle_flash": {
-					"scale": {
-						"vector": [0, 0, 0]
-					}
+					"scale": 0
+				},
+				"scope": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"slide": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"magazine": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"body": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"barrel": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"stock": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
+				},
+				"bullet": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, 0],
+					"scale": 1
 				}
 			}
 		},

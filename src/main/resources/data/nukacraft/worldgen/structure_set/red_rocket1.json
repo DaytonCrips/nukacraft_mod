@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:red_rocket1",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1487418562,
+
+
+    "spacing": 27,
+
+
+    "separation": 7,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

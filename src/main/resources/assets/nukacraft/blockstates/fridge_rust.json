@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=down,open=true": {
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    },
+    "facing=east,open=false": {
+      "y": -90,
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=east,open=true": {
+      "y": -90,
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    },
+    "facing=north,open=false": {
+      "y": -180,
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=north,open=true": {
+      "y": -180,
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    },
+    "facing=south,open=false": {
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=south,open=true": {
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    },
+    "facing=up,open=false": {
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=up,open=true": {
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    },
+    "facing=west,open=false": {
+      "y": 90,
+      "model": "nukacraft:block/c_fridgecamera_rust"
+    },
+    "facing=west,open=true": {
+      "y": 90,
+      "model": "nukacraft:block/o_fridgecamera_rust"
+    }
+  }
+}

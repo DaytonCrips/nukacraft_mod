@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "nukacraft:block/bath_table",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "nukacraft:block/bath_table",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "nukacraft:block/bath_table"
+    },
+    "facing=west": {
+      "model": "nukacraft:block/bath_table",
+      "y": 90
+    }
+  }
+}

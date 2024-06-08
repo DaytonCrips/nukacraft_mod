@@ -23,17 +23,25 @@ import java.util.Map;
 
 public class ChairBlock extends CustomModelBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-
-    public ChairBlock(Properties properties) {
+    private float seatPos = 0.25f;
+    public ChairBlock(float seatPos, Properties properties) {
         super(properties);
+        setSeatPos(seatPos);
+    }
+
+
+    public void setSeatPos(float seatPos) {
+        this.seatPos = seatPos;
     }
 
     public float seatY() {
-        return 0.25F;
+        return seatPos;
     }
 
-    private VoxelShape getShape(BlockState state) {
-        if (SHAPES.containsKey(state)) {
+    private VoxelShape getShape(BlockState state)
+    {
+        if(SHAPES.containsKey(state))
+        {
             return SHAPES.get(state);
         }
         Direction direction = state.getValue(FACING);
@@ -43,12 +51,11 @@ public class ChairBlock extends CustomModelBlock {
         SHAPES.put(state, shape);
         return shape;
     }
-
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    {
         return this.getShape(state);
     }
-
     public boolean isChair(BlockState state) {
         return true;
     }
@@ -64,17 +71,18 @@ public class ChairBlock extends CustomModelBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!isChair(state) || player.isPassenger() || player.isCrouching())
+        if(!isChair(state) || player.isPassenger() || player.isCrouching())
             return InteractionResult.PASS;
 
 
         List<ChairBlockEntity> seats = level.getEntitiesOfClass(ChairBlockEntity.class, new AABB(pos, pos.offset(1, 1, 1)));
-        if (seats.isEmpty()) {
+        if(seats.isEmpty()) {
             ChairBlockEntity seat = new ChairBlockEntity(level, pos, this.seatY());
             level.addFreshEntity(seat);
             player.startRiding(seat);
             return InteractionResult.CONSUME;
         }
+
         return InteractionResult.PASS;
     }
 }

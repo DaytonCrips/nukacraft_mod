@@ -196,6 +196,7 @@ public class OpenGearBlock extends BaseEntityBlock {
         return super.getOcclusionShape(pState, pLevel, pos);
     }
 
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);

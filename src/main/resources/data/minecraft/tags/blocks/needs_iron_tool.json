@@ -42,7 +42,6 @@
     "nukacraft:rustsupportwall",
     "nukacraft:rustsupportwalltop",
     "nukacraft:rustsupporttop",
-    "nukacraft:ruststeel_bars",
     "nukacraft:rustedredsteel",
     "nukacraft:rustedgreensteel",
     "nukacraft:platedgreensteel",
@@ -58,7 +57,8 @@
     "nukacraft:gray_tile",
     "nukacraft:whitesteel_column",
     "nukacraft:yellow_steel",
-    "nukacraft:yellow_steel_column"
-
+    "nukacraft:yellow_steel_column",
+    "nukacraft:quarts_ore",
+    "nukacraft:deepquarts_ore"
   ]
 }

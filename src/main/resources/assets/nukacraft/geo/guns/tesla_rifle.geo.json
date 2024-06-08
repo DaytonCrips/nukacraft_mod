@@ -64,7 +64,7 @@
 					]
 				},
 				{
-					"name": "bone8",
+					"name": "main_circle",
 					"parent": "scope",
 					"pivot": [0.1, 8.575, 5.975],
 					"rotation": [0, 0, 5],
@@ -111,7 +111,7 @@
 					]
 				},
 				{
-					"name": "bone9",
+					"name": "wire_holder",
 					"parent": "scope",
 					"pivot": [-0.825, 7.23961, 7.27842],
 					"rotation": [-3, -8.75, 0],
@@ -162,8 +162,8 @@
 					]
 				},
 				{
-					"name": "bone10",
-					"parent": "bone9",
+					"name": "wire",
+					"parent": "wire_holder",
 					"pivot": [-0.675, 5.94801, 10.25101],
 					"rotation": [0, 3.5, 0],
 					"cubes": [
@@ -283,7 +283,7 @@
 					]
 				},
 				{
-					"name": "bone11",
+					"name": "tesla_body",
 					"parent": "body",
 					"pivot": [0, 5.3525, -7.32],
 					"cubes": [
@@ -502,8 +502,8 @@
 					]
 				},
 				{
-					"name": "bone12",
-					"parent": "bone11",
+					"name": "coils",
+					"parent": "tesla_body",
 					"pivot": [-1.95, 5.5, 0.1],
 					"cubes": [
 						{
@@ -677,7 +677,7 @@
 					]
 				},
 				{
-					"name": "bone13",
+					"name": "lever",
 					"parent": "body",
 					"pivot": [2.75, 6.375, -1.5],
 					"cubes": [
@@ -785,7 +785,7 @@
 					]
 				},
 				{
-					"name": "bone14",
+					"name": "main",
 					"parent": "barrel",
 					"pivot": [0, 4, -6],
 					"rotation": [0, 0, 45],

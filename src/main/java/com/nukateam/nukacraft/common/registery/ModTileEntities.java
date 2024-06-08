@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.registery;
 
+import com.nukateam.ntgl.common.foundation.blockentity.WorkbenchBlockEntity;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.BasicStorageEntity;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
@@ -33,6 +34,7 @@ public class ModTileEntities {
 
     public static final RegistryObject<BlockEntityType<BasicStorageEntity>> STORAGE_ENTITY = register("storage",
             BasicStorageEntity::new, () -> new Block[]{ModBlocks.STORAGE.get()});
+
 
 
 }

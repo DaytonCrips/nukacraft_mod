@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nukacraft:block/vaultgen_block1",
+    "side": "nukacraft:block/vaultgen_block2"
+  }
+}

@@ -270,6 +270,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     }
 
     private void buttonMenu() {
+
         int xj = 0;
 
         if (current_archive_page == archive_pages) {

@@ -30,7 +30,7 @@ public class ModBlocks {
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> WORKBENCH = registerBlock("workbench",
-            () -> new WorkbenchBlock(Block.Properties.of().sound(SoundType.METAL).strength(1.5F)));
+            () -> new ArmoryWorkbench(Block.Properties.of().sound(SoundType.METAL).strength(1.5F)));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TERMINAL = registerBlock("wasteland_terminal",
@@ -50,6 +50,7 @@ public class ModBlocks {
             () -> new GearDoorBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
 //    @DataGen(type = ResourceType.BLOCK)
+
     public static final RegistryObject<Block> OPENGEAR = registerBlockWithoutItem("opengear",
             () -> new OpenGearBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
     @DataGen(type = ResourceType.BLOCK)
@@ -96,7 +97,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> TOXICFERN = registerBlock("toxicfern",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 2, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS)
                     .instabreak().noCollission()));
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> BOGPAD = registerBlockWithoutItem("bog_pad",
             () -> new WaterlilyBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS)
                     .instabreak().noCollission().noCollission()));
@@ -131,18 +132,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> URAN_ORE = registerBlock("uranium_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(2.8f).requiresCorrectToolForDrops()));
-    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> SATURNITE_ORE = registerBlock("saturnite_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
-                    .strength(2.8f).requiresCorrectToolForDrops()));
+//    @DataGen(type = ResourceType.BLOCK)
+//    public static final RegistryObject<Block> SATURNITE_ORE = registerBlock("saturnite_ore",
+//            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
+//                    .strength(2.8f).requiresCorrectToolForDrops()));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> DEEP_URAN_ORE = registerBlock("deeruranium",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(3.0f).requiresCorrectToolForDrops()));
-    @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> DEEP_SATURNITE_ORE = registerBlock("deepslate_saturnite",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
-                    .strength(3.0f).requiresCorrectToolForDrops()));
+//    @DataGen(type = ResourceType.BLOCK)
+//    public static final RegistryObject<Block> DEEP_SATURNITE_ORE = registerBlock("deepslate_saturnite",
+//            () -> new DropExperienceBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
+//                    .strength(3.0f).requiresCorrectToolForDrops()));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ULTRACITE_TUFF_ORE = registerBlock("ultracite_tuff_ore",
@@ -300,19 +301,26 @@ public class ModBlocks {
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(0.4f)));
 
+//    @DataGen(type = ResourceType.BLOCK)
+public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("vtdinner_chair",
+        () -> new ModuleChairBlock(0.25f, ModBlocks.HALFBARRIER.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
+    //@DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> SHOWER_TAP = registerBlock("shower_tap",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(0.4f).noCollission()));
     @DataGen(type = ResourceType.BLOCK)
-    public static final RegistryObject<Block> VAULT_DINER_CHAIR = registerBlock("dinnerchair",
-            () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
-                    .strength(0.3f)));
-
+    public static final RegistryObject<Block> TABLE_LAMP = registerBlock("table_lamp",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(0.4f).lightLevel((p_50892_) -> {return 10;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> GOLD_TOILET = registerBlock("goldtoilet",
-            () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of().sound(SoundType.BASALT).mapColor(MapColor.ICE)
                     .strength(0.4f)));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TOILET = registerBlock("toilet",
-            () -> new ChairBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.ICE)
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of().sound(SoundType.BASALT).mapColor(MapColor.ICE)
                     .strength(0.3f)));
 
 //    @DataGen(type = ResourceType.BLOCK)
@@ -334,17 +342,55 @@ public class ModBlocks {
     public static final RegistryObject<Block> REDTILE = registerBlock("redtile",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.1f).requiresCorrectToolForDrops()));
-
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> ARMY_THEATRE_CHAIR = registerBlock("army_theatre_chair",
+            () -> new ChairBlock(0.25f, BlockBehaviour.Properties.of()
+                    .strength(0.4f).lightLevel((p_50892_) -> {return 1;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> SHELTER_LAMP = registerBlock("shelter_lamp",
             () -> new RedstoneLampBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL).lightLevel(litBlockEmission(15))
                     .strength(0.9f)));
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> WASHBASIN = registerBlock("washbasin",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(1.2f)));
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> BATH_TABLE = registerBlock("bath_table",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(1.2f)));
 
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> STEEL_SHELF = registerBlock("steel_shelf",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(1.2f)));
 
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> VAULT_GEN_BLOCK1 = registerBlock("vaultgen_block1",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
+                    .strength(1.1f).requiresCorrectToolForDrops()));
+
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> VAULT_GEN_BLOCK2 = registerBlock("vaultgen_block2",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
+                    .strength(1.1f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 7;})));
+
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> TESLA_BLOCK = registerBlock("tesla_block",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(1.0f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 9;})));
+    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> TESLA_COLUMN = registerBlock("tesla_column",
+            () -> new CustomModelBlock(BlockBehaviour.Properties.of()
+                    .strength(1.0f).requiresCorrectToolForDrops().lightLevel((p_50892_) -> {return 9;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> REDROCKET_PANEL = registerBlock("redrocketpanel",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(1.2f).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> NUC_STATION_CONTROL = registerBlock("nuc_stat_control",
+            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
+    public static final RegistryObject<Block> NUC_STATION_BLOCK = registerBlock("nuc_stat_block",
+            () -> new DoubleBlockDeco(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(2.5f).lightLevel((p_50892_) -> {return 1;})));
 
 
     @DataGen(type = ResourceType.BLOCK)
@@ -467,7 +513,7 @@ public class ModBlocks {
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> RUSTTIREBLOCK = registerBlock("rusttiresblock",
-            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
+            () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.METAL).noOcclusion().mapColor(MapColor.METAL)
                     .strength(1.2f, 1.7f)));
 
     @DataGen(type = ResourceType.BLOCK)
@@ -534,40 +580,40 @@ public class ModBlocks {
     public static final RegistryObject<Block> NUKAMELON = registerBlock("nukamelon",
             () -> new MelonBlock(BlockBehaviour.Properties.of().sound(SoundType.GLASS).mapColor(MapColor.COLOR_LIGHT_GREEN).strength(1.0F).sound(SoundType.WOOD)));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> THISTLE = registerBlock("thistle",
             () -> new ModFlowerBlock(MobEffects.DIG_SPEED, 0,
                     BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> CRANBERRY_GRASS = registerBlock("cranberrygrass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ASHGRASS = registerBlock("ashgrass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> HEAP_GRASS = registerBlock("heap_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> RUSTY_BUSH = registerBlock("rusty_bush",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> POISONGRASS = registerBlock("poison_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> GLOW_GRASS = registerBlock("glow_grass",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> DEAD_PLANT = registerBlock("death_plant",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
-    @DataGen(type = ResourceType.BLOCK)
+//    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> DEATH_FLOWER = registerBlock("death_flower",
             () -> new FlowerBlock(MobEffects.DIG_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.AZALEA_LEAVES).noCollission().instabreak()));
 
@@ -923,6 +969,13 @@ public class ModBlocks {
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2f), "FullBlock"));
 
+    //    @DataGen(type = ResourceType.BLOCK)
+    public static final RegistryObject<Block> FRIDGE_RUST = registerBlock("fridge_rust",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
+                    .strength(2f), "FullBlock"));
+    public static final RegistryObject<Block> COOLER_RUST = registerBlock("cooler_rust",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
+                    .strength(2f), "FullBlock"));
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> VTCRATE = registerBlock("vtcrate1",
@@ -939,7 +992,7 @@ public class ModBlocks {
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> WOODCRATE = registerBlock("woodcrate",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
-                    .strength(1f)));
+                    .strength(0.4f)));
 
 
 //    @DataGen(type = ResourceType.BLOCK)
@@ -979,8 +1032,8 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion(), BlockSetType.OAK));
 
 //    @DataGen
-    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decay_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
+//    public static final RegistryObject<Block> DECAYDOOR = registerBlock("decay_door",
+//            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
 
     public static final RegistryObject<Block> STOREDOOR = registerBlock("door_store",
             () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), BlockSetType.OAK));
@@ -1045,6 +1098,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> RADIO_TERMINAL = registerBlock("radioterminal",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).mapColor(MapColor.METAL)
                     .strength(2.1f, 4.1f).requiresCorrectToolForDrops()));
+
 
 
     @DataGen(type = ResourceType.BLOCK)

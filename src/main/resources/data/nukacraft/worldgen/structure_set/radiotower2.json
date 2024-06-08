@@ -1,0 +1,21 @@
+{
+   "structures": [
+    {
+      "structure": "nukacraft:radiotower2",
+      "weight": 1
+    }
+  ],
+  "placement": {
+
+    "salt": 1487418562,
+
+
+    "spacing": 31,
+
+
+    "separation": 12,
+
+
+    "type": "minecraft:random_spread"
+  }
+}

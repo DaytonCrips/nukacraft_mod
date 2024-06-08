@@ -54,7 +54,7 @@
 				},
 				"right_hand": {
 					"rotation": {
-						"vector": [0, -87.5, 0]
+						"vector": [0, 2.5, 0]
 					}
 				},
 				"left_arm": {
@@ -93,15 +93,7 @@
 				},
 				"left_hand": {
 					"rotation": {
-						"0.0": {
-							"vector": [0, 87.5, 0]
-						},
-						"1.0": {
-							"vector": [63.39128, 84.41125, 63.50045]
-						},
-						"2.0": {
-							"vector": [0, 87.5, 0]
-						}
+						"vector": [0, -2.5, 0]
 					}
 				},
 				"jaw": {
@@ -604,12 +596,12 @@
 				},
 				"right_hand": {
 					"rotation": {
-						"vector": [0, -87.5, 0]
+						"vector": [0, 2.5, 0]
 					}
 				},
 				"left_hand": {
 					"rotation": {
-						"vector": [0, 87.5, 0]
+						"vector": [0, -2.5, 0]
 					}
 				}
 			}

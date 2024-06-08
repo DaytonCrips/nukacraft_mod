@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sugar",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:chips",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:cram"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:cotton_candy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:blamco"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:dandy_boy_apples"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:pures"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:cakes"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:bubble_apple"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    }
+  ]
+}

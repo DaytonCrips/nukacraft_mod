@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.client.render.gui.pipboy;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -36,6 +37,7 @@ public class TextPipBoyButton extends Button {
     protected void renderWidget(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
         Minecraft minecraft = Minecraft.getInstance();
         pGuiGraphics.setColor(1.0F, 1.0F, 1.0F, this.alpha);
+        PipBoyUtils.setPipboyShader();
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
         pGuiGraphics.blitNineSliced(TEXTURES_LOC, this.getX(), this.getY(), this.getWidth(), this.getHeight(), 20, 4, 200, 20, 0, this.getTextureY());

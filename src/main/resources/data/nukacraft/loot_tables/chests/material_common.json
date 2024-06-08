@@ -1,0 +1,132 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:silicate",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raw_lead",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:scrap"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:resin_glow"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:alumi_ingot"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:lead"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:aluminugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:leadnugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:ashdust"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:dogwood"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:raw_alumi"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:textile"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:clay_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brick"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.2
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:rubber"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:ceramic"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:gears"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:spring"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:screws"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.45
+        }
+      ]
+    }
+  ]
+}

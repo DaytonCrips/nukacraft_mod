@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:archaeology",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:undcobaltflux",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:undfluorflux",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:undscarletflux"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:undvioletflux"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:gloam_sap"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:nuclear_mat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:advmag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:inda_abraxo_cleaner"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:prism_leaf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:glowmass"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:adncan"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nukacraft:copperwires"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "minecraft:archaeology/desert_well"
+}

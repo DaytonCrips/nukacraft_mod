@@ -381,7 +381,7 @@
 					"pivot": [0, 2.81685, 5.65577]
 				},
 				{
-					"name": "bone5",
+					"name": "stock_default",
 					"parent": "body",
 					"pivot": [-0.0362, 1.27843, 10.53836],
 					"cubes": [

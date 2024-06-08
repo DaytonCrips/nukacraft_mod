@@ -202,7 +202,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:bubbleapple",
+          "name": "nukacraft:bubble_apple",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -262,7 +262,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:applesp",
+          "name": "nukacraft:dandy_boy_apples",
           "conditions": [
             {
               "condition": "minecraft:random_chance",
@@ -437,7 +437,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wood_body",
+          "name": "nukacraft:wood_chest",
           "conditions": [
             {
               "condition": "minecraft:random_chance",
