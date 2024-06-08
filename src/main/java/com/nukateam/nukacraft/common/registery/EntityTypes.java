@@ -91,7 +91,9 @@ public class EntityTypes {
                 //.noSummon()
                 .fireImmune()
                 .setShouldReceiveVelocityUpdates(true).build(id));
-    }    public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION
+    }
+
+    public static final RegistryObject<EntityType<NuclearExplosionEntity>> NUCLEAR_EXPLOSION
             = ENTITY_TYPES.register("nuclear_explosion", () -> (EntityType) EntityType.Builder
             .of(NuclearExplosionEntity::new, MobCategory.MISC)
             .sized(0.99F, 0.99F)
@@ -105,8 +107,6 @@ public class EntityTypes {
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
-
-
 
 
 }

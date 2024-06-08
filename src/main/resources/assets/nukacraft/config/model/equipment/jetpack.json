@@ -1,5 +1,5 @@
 {
-  "part": "body",
+  "parent" : "nukacraft:config/model/base/body.json",
   "model": "nukacraft:geo/equipment/fusion_core.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/fusion_core.png"

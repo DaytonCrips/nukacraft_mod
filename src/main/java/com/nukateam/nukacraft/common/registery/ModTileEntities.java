@@ -23,7 +23,7 @@ public class ModTileEntities {
     }
 
     public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR_ENTITY = register("geardoor_tile_entity",
-            GearDoorEntity::new, () -> new Block[]{ModBlocks.GEARDOOR.get()});
+            GearDoorEntity::new, () -> new Block[]{ModBlocks.GEAR_DOOR.get()});
 
     public static final RegistryObject<BlockEntityType<OpenGearEntity>> OPENGEAR_ENTITY = register("opengear_tile_entity",
             OpenGearEntity::new, () -> new Block[]{ModBlocks.OPENGEAR.get()});

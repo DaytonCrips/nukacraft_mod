@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "nukacraft:deepbtitan_block"
+              "name": "nukacraft:deep_black_titan_block"
             },
             {
               "type": "minecraft:item",
@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "nukacraft:raw_btitan"
+              "name": "nukacraft:raw_black_titan"
             }
           ]
         }

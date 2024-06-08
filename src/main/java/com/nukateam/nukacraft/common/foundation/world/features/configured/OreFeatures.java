@@ -48,7 +48,7 @@ public class OreFeatures {
 
         FeatureUtils.register(pContext, ORE_ULTRACITE_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.ULTRACITE_ORE.get().defaultBlockState()),
-                        OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPULTRACITE.get().defaultBlockState())), 9));
+                        OreConfiguration.target(DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEP_ULTRACITE.get().defaultBlockState())), 9));
 
         FeatureUtils.register(pContext, ORE_URAN_PLACE, Feature.ORE,
                 new OreConfiguration(List.of(OreConfiguration.target(STONE_ORE_REPLACEABLES, ModBlocks.URAN_ORE.get().defaultBlockState()),

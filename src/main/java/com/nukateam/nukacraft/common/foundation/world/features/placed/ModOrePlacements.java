@@ -19,7 +19,7 @@ public class ModOrePlacements {
 
     public static final ResourceKey<PlacedFeature> ORE_LEAD = registerKey("ore_lead");
     public static final ResourceKey<PlacedFeature> ORE_SILVER = registerKey("ore_silver");
-    public static final ResourceKey<PlacedFeature> ORE_BLACK_TITAN = registerKey("ore_btitan");
+    public static final ResourceKey<PlacedFeature> ORE_BLACK_TITAN = registerKey("ore_black_titan");
     public static final ResourceKey<PlacedFeature> ORE_URAN = registerKey("ore_uran");
     public static final ResourceKey<PlacedFeature> ORE_ULTRACITE = registerKey("ore_ultracite");
     public static final ResourceKey<PlacedFeature> ORE_ALUMINIUM = registerKey("ore_alumi");

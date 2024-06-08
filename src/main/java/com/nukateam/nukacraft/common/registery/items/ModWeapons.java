@@ -6,6 +6,7 @@ import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.ntgl.common.foundation.item.StunGrenadeItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.ModTiers;
+import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
@@ -18,7 +19,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModWeapons {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
-
 
     ///MELEE
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver",
@@ -33,7 +33,6 @@ public class ModWeapons {
     public static final RegistryObject<Item> COMBAT_PIPE = ITEMS.register("combatpipe",
             () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
                     new Item.Properties()));
-
 
     ///GUNS
     public static final RegistryObject<GunItem> PISTOL10MM = registerGun("pistol10mm");
@@ -77,29 +76,45 @@ public class ModWeapons {
     public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties(), 20 * 4));
     public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () -> new BaseGrenadeItem(new Item.Properties(), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties(), 72000));
+    public static final RegistryObject<Item> MININUKE = registerAmmo("mini_nuke");
 
     //Rounds
+    @DataGen
     public static final RegistryObject<Item> ROUND10MM = registerAmmo("round10mm");
+    @DataGen
     public static final RegistryObject<Item> ROUND38 = registerAmmo("round38");
+    @DataGen
     public static final RegistryObject<Item> STEEL_BALLS = registerAmmo("steel_ball");
+    @DataGen
     public static final RegistryObject<Item> ROUND45 = registerAmmo("round45");
+    @DataGen
     public static final RegistryObject<Item> ROUND5MM = registerAmmo("round5mm");
+    @DataGen
     public static final RegistryObject<Item> ROUND44 = registerAmmo("round44");
+    @DataGen
     public static final RegistryObject<Item> ROUND50 = registerAmmo("round50");
+    @DataGen
     public static final RegistryObject<Item> ROUND380 = registerAmmo("round380");
+    @DataGen
     public static final RegistryObject<Item> ROUND556 = registerAmmo("round556");
+    @DataGen
     public static final RegistryObject<Item> SHOT_SHELL = registerAmmo("shotshell");
+    @DataGen
     public static final RegistryObject<Item> ROUND127 = registerAmmo("round127");
+    @DataGen
     public static final RegistryObject<Item> ROUND22 = registerAmmo("round22");
-    public static final RegistryObject<Item> MININUKE = registerAmmo("mini_nuke");
+    @DataGen
     public static final RegistryObject<Item> FUSION_CELL = registerAmmo("fusion_cell");
+    @DataGen
     public static final RegistryObject<Item> FUEL = ModItems.ITEMS.register("fuel",
             () -> new AmmoItem(new Item.Properties()
                     .durability(1000)
             ));
 
+    @DataGen
     public static final RegistryObject<Item> FUSION_CORE = ITEMS.register("fusion_core",
             () -> new FusionCoreItem(new Item.Properties().durability(500)));
+
 
     public static RegistryObject<GunItem> registerGun(String name) {
         return ITEMS.register(name, () -> new GunItem(new Item.Properties()));

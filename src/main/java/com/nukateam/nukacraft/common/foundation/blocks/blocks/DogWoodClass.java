@@ -23,7 +23,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.Random;
 
 public class DogWoodClass extends RotatedPillarBlock {
     public DogWoodClass(Properties prop) {

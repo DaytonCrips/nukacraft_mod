@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "nukacraft:ultracite"
+    },
+    {
+      "item": "nukacraft:ultracite"
+    }
+  ],
+  "result": {
+    "item": "nukacraft:uranrod",
+    "count": 2
+  }
+}

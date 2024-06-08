@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "nukacraft:deepultracite_block"
+          "Name": "nukacraft:deep_ultracite_block"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

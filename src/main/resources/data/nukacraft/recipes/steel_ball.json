@@ -1,0 +1,17 @@
+{
+  "type": "ntgl:workbench",
+  "materials": [
+    {
+      "tag": "forge:ingots/steel",
+      "count": 4
+    },
+    {
+      "tag": "forge:gunpowder",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "nukacraft:steel_ball",
+    "count": 64
+  }
+}

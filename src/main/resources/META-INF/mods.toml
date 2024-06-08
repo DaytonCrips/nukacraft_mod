@@ -34,13 +34,13 @@ side="BOTH"
 [[dependencies.nukacraft]]
 modId="chassis_core"
 mandatory=true
-versionRange="[1.20.1-2.2.1,)"
+versionRange="[1.20.1-2.5.0,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.nukacraft]]
 modId="ntgl"
 mandatory=true
-versionRange="[1.20.1-1.0.0,)"
+versionRange="[1.20.1-1.1.0,)"
 ordering="AFTER"
 side="BOTH"
 

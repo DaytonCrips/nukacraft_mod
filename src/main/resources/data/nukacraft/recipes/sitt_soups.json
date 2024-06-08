@@ -9,7 +9,7 @@
       "item": "minecraft:carrot"
     },
     "1": {
-      "item": "nukacraft:sittbean"
+      "item": "nukacraft:silt_bean"
     },
     "2": {
       "item": "minecraft:potato"
@@ -19,7 +19,7 @@
     }
   },
   "result": {
-    "item": "nukacraft:sittsoup",
+    "item": "nukacraft:silt_soup",
     "count": 1
   }
 }

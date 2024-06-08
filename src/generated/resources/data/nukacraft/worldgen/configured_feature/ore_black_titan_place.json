@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "nukacraft:btitan_ore"
+          "Name": "nukacraft:black_titan_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "nukacraft:deepbtitan_block"
+          "Name": "nukacraft:deep_black_titan_block"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

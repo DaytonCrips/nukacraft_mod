@@ -46,7 +46,7 @@
 					"pivot": [0, -6.54289, 0.38102]
 				},
 				{
-					"name": "slide",
+					"name": "barrel",
 					"parent": "gun",
 					"pivot": [0, 0.972, -5.07344],
 					"cubes": [
@@ -698,37 +698,6 @@
 							}
 						}
 					]
-				},
-				{
-					"name": "barrel",
-					"parent": "gun",
-					"pivot": [0, -8.512, -2.397]
-				},
-				{
-					"name": "barrel2",
-					"parent": "barrel",
-					"pivot": [-1.61868, -6.89332, -1.41568]
-				},
-				{
-					"name": "barrel5",
-					"parent": "barrel",
-					"pivot": [1.41, -8.606, -6.157]
-				},
-				{
-					"name": "barrel3",
-					"parent": "barrel",
-					"pivot": [1.41, -8.606, -7.849]
-				},
-				{
-					"name": "barrel1",
-					"parent": "barrel",
-					"pivot": [0.00112, -6.961, -1.87451],
-					"rotation": [0, 0, 22]
-				},
-				{
-					"name": "barrel4",
-					"parent": "barrel",
-					"pivot": [1.41, -8.606, -6.157]
 				},
 				{
 					"name": "stock",

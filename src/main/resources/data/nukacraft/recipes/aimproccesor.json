@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " a ",
+    " b ",
+    " c "
+  ],
+  "key": {
+    "a": {
+      "item": "nukacraft:reducer"
+    },
+    "b": {
+      "item": "nukacraft:copperwires"
+    },
+    "c": {
+      "item": "nukacraft:leadplate"
+    }
+  },
+  "result": {
+    "item": "nukacraft:aimproccesor",
+    "count": 1
+  }
+}

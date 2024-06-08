@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:btitan_block",
+          "name": "nukacraft:black_titan_block",
           "weight": 1,
           "functions": [
             {

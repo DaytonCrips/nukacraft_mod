@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nukacraft:item/power_armor/x02_cryo/x02_cryo_left_leg"
+  }
+}

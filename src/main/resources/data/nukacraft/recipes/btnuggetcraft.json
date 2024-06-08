@@ -7,11 +7,11 @@
   ],
   "key": {
     "0": {
-      "item": "nukacraft:btitannugget"
+      "item": "nukacraft:black_titan_nugget"
     }
   },
   "result": {
-    "item": "nukacraft:btitan",
+    "item": "nukacraft:black_titan",
     "count": 1
   }
 }

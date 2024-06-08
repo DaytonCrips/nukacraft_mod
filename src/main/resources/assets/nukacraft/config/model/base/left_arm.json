@@ -1,0 +1,32 @@
+{
+  "part": "left_arm",
+  "model": "nukacraft:geo/power_armor/",
+  "texture": {
+    "default": "nukacraft:textures/power_armor/"
+  },
+
+  "uv": [0, 310, 155, 155],
+
+  "attachments": [
+    {
+      "frame": "left_shoulder",
+      "armor": "left_shoulder_armor"
+    },
+    {
+      "frame": "left_arm",
+      "armor": "left_upper_arm_armor"
+    },
+    {
+      "frame": "left_lower_arm",
+      "armor": "left_forearm_armor"
+    },
+    {
+      "frame": "left_upper_arm_back",
+      "armor": "left_upper_arm_back_armor"
+    },
+    {
+      "frame": "left_forearm_back",
+      "armor": "left_forearm_back_armor"
+    }
+  ]
+}

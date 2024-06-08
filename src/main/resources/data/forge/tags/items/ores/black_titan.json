@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "nukacraft:btitan_ore",
-	"nukacraft:deepbtitan_block"
+    "nukacraft:black_titan_ore",
+	"nukacraft:deep_black_titan_block"
   ]
 }

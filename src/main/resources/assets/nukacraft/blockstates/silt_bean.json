@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "nukacraft:block/silt_bean0"
+    },
+    "age=1": {
+      "model": "nukacraft:block/silt_bean1"
+    },
+    "age=2": {
+      "model": "nukacraft:block/silt_bean2"
+    },
+    "age=3": {
+      "model": "nukacraft:block/silt_bean3"
+    },
+    "age=4": {
+      "model": "nukacraft:block/silt_bean4"
+    },
+    "age=5": {
+      "model": "nukacraft:block/silt_bean5"
+    },
+    "age=6": {
+      "model": "nukacraft:block/silt_bean6"
+    },
+    "age=7": {
+      "model": "nukacraft:block/silt_bean7"
+    }
+  }
+}

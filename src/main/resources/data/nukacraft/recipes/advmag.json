@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    " b ",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "item": "nukacraft:magnet"
+    },
+    "b": {
+      "item": "nukacraft:adncan"
+    }
+  },
+  "result": {
+    "item": "nukacraft:advmag",
+    "count": 1
+  }
+}

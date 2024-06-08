@@ -30,8 +30,8 @@ public class ModBiomes {
 
         context.register(POISON_VALLEY, createPoisonValley(placedFeatures, worldCarvers));
         context.register(CRANBERRY_BOG, createCranberryBog(placedFeatures, worldCarvers));
-        context.register(ASH_HEAP     , createAshHeap     (placedFeatures, worldCarvers));
-        context.register(GLOW_SEA     , createGlowSea     (placedFeatures, worldCarvers));
+        context.register(ASH_HEAP, createAshHeap(placedFeatures, worldCarvers));
+        context.register(GLOW_SEA, createGlowSea(placedFeatures, worldCarvers));
     }
 
     private static Biome createPoisonValley(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -78,7 +78,7 @@ public class ModBiomes {
 
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.RADROACH.get(), 1, 1, 1));
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
-        mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN .get(), 1, 1, 1));
+        mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
         ModDefaultFeatures.addDewdropTrees(biomeBuilder);
         BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);

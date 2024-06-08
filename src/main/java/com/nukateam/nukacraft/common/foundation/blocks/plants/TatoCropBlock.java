@@ -19,7 +19,7 @@ public class TatoCropBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModFood.WILDTATO.get();
+        return ModFood.WILD_TATO.get();
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

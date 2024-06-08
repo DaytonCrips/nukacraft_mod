@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nukacraft:cerplate"
+  },
+  "result": "nukacraft:threads",
+  "count": 4
+}
