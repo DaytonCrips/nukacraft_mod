@@ -245,12 +245,16 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public Boolean isWalking() {
-        return
-                Minecraft.getInstance().options.keyUp.isDown() ||
-                Minecraft.getInstance().options.keyDown.isDown() ||
-                Minecraft.getInstance().options.keyLeft.isDown() ||
-                Minecraft.getInstance().options.keyRight.isDown();
-//        return speedometer.getSpeed() > 0;
+        if(hasPlayerPassenger()) {
+            return Minecraft.getInstance().options.keyUp.isDown() ||
+                    Minecraft.getInstance().options.keyDown.isDown() ||
+                    Minecraft.getInstance().options.keyLeft.isDown() ||
+                    Minecraft.getInstance().options.keyRight.isDown();
+        }
+        else if (hasPassenger()) {
+            return speedometer.getSpeed() > 0;
+        }
+        return false;
     }
 
     public boolean passengerHaveGun() {
