@@ -22,6 +22,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import com.nukateam.ntgl.client.render.renderers.projectiles.*;
 
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
 import static com.nukateam.nukacraft.common.registery.ModParticles.*;
@@ -36,7 +37,7 @@ public class SetupEvents {
 
     @SubscribeEvent
     public static void registerHud(RegisterGuiOverlaysEvent event){
-        event.registerAbove(new ResourceLocation("hotbar"), "power_armor_hud", PowerArmorHud.POWER_ARMOR_HUD);
+//        event.registerAbove(new ResourceLocation("hotbar"), "power_armor_hud", PowerArmorHud.POWER_ARMOR_HUD);
     }
 
     @SubscribeEvent
