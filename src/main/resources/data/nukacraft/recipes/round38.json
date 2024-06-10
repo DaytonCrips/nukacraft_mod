@@ -1,0 +1,17 @@
+{
+  "type": "ntgl:workbench",
+  "materials": [
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 4
+    },
+    {
+      "tag": "forge:gunpowder",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "nukacraft:round38",
+    "count": 64
+  }
+}

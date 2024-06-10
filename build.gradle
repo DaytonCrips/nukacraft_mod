@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = "${minecraft_version}-1.6.0-alpha"
+version = "${minecraft_version}-1.7.0-alpha"
 group = 'com.nukateam.nukacraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'nukacraft'
 
@@ -156,18 +156,18 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     implementation fg.deobf("mod.azure.azurelib:azurelib-neo-1.20.1:2.0.20")
+//
+//    implementation fg.deobf('com.jetug:chassis_core:1.20.1-2.5.0')
+//    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.2.0')
 
-    implementation fg.deobf('com.jetug:chassis_core:1.20.1-2.5.0')
-    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.2.0')
-
-//    implementation fg.deobf('curse.maven:chassiscore-908954:5378323')
-//    implementation fg.deobf('curse.maven:ntgl-998474:5378261')
+    implementation fg.deobf('curse.maven:chassiscore-908954:5395256')
+    implementation fg.deobf('curse.maven:ntgl-998474:5396045')
 
     implementation fg.deobf("curse.maven:framework-549225:${framework_file_id}")
-    runtimeOnly fg.deobf("curse.maven:cyanide-541676:4824162")
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
+    implementation fg.deobf("curse.maven:cyanide-541676:4824162")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
 
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${project.curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${project.curios_version}:api")

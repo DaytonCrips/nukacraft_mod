@@ -1,22 +1,17 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.ibm.icu.impl.Pair;
+import com.mojang.datafixers.util.Pair;
 import com.jetug.chassis_core.common.data.constants.ChassisPart;
 import com.jetug.chassis_core.common.foundation.ChassisArmorMaterial;
 import com.jetug.chassis_core.common.foundation.item.ChassisItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.data.enums.PowerArmorPart;
-import com.nukateam.nukacraft.common.data.utils.ArmorStorage;
 import com.nukateam.nukacraft.common.data.utils.PowerArmorStorage;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.items.armor.GeoArmorItem;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import com.nukateam.nukacraft.common.foundation.items.frame.Jetpack;
-import com.nukateam.nukacraft.common.foundation.materials.ModArmorMaterials;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -73,8 +68,8 @@ public class PowerArmorItems {
         );
 
         for (var slot : armorSlots) {
-            var item = registerArmor(name + "_" + slot.first.getName(), slot.second, material);
-            armorSet.put(slot.first, item);
+            var item = registerArmor(name + "_" + slot.getFirst().getName(), slot.getSecond(), material);
+            armorSet.put(slot.getFirst(), item);
         }
 
         return armorSet;
