@@ -621,12 +621,13 @@
   "item.nukacraft.dirty_water_bucket": "Ведро грязной воды",
   "item.nukacraft.poisonous_water_bucket": "Poisonous Water Bucket",
 
-  "item.nukacraft.laser_rifle": "Лазерная винтовка",
-  "item.nukacraft.laser_pistol": "Лазерная пистолет",
-  "item.nukacraft.gatling_laser": "Гатлинг лазер",
+  "item.nukacraft.laser_rifle": "Лазерная Карабин",
+  "item.nukacraft.laser_pistol": "Лазерная Пистолет",
+  "item.nukacraft.gatling_laser": "Гатлинг Лазер",
+  "item.nukacraft.tesla_rifle": "Тесла Карабин",
   "item.nukacraft.shotgun": "Дробовик",
-  "item.nukacraft.flamer": "Военный огнемёт",
-  "item.nukacraft.handmade_flamer": "Самодельный огнемёт",
+  "item.nukacraft.flamer": "Военный Огнемёт",
+  "item.nukacraft.handmade_flamer": "Самодельный Огнемёт",
 
   "effect.nukacraft.blinded": "Ослеплён",
   "effect.nukacraft.deafened": "Оглушён",
