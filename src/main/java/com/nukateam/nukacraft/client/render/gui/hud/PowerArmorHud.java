@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.client.render.gui.hud;
 
 import com.jetug.chassis_core.common.util.helpers.PlayerUtils;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.utils.PowerArmorUtils;
 import mod.azure.azurelib.util.RenderUtils;
@@ -48,48 +49,34 @@ public class PowerArmorHud {
         var frame = PowerArmorUtils.getPowerArmor();
         var minecraft = Minecraft.getInstance();
         if(minecraft.player == null) return;
-        var y = height - 39;
-        var x = width / 2;
-        var poseStack = graphics.pose();
         var core = frame.inventory.getItem(6);
+
+
+        var coreDamage = (float)core.getDamageValue();
+        var coreMaxDamage = (float)core.getMaxDamage();
+        var maxXPos = 95;
+        var chargePercent = coreDamage / coreMaxDamage;
+        var xPos = (int)(maxXPos * chargePercent);
 
         graphics.blit(DURABILITY_SENSOR, -4, height - 127, 0, 0, 128, 127, 128, 127);
         graphics.blit(DURABILITY_ARROW, 60, height - 24, 0, 0, 5, 6, 5, 6);
 
         graphics.blit(POWER_SENSOR, width - 128, height - 127, 0, 0, 128, 127, 128, 127);
-        graphics.blit(POWER_ARROW, width - 104, height - 23, 0, 0, 5, 9, 5, 9);
-//
+        graphics.blit(POWER_ARROW, width - 104 + xPos, height - 23, 0, 0, 5, 9, 5, 9);
 
        for (var i = 0; i < 6 ; i++){
            var item = frame.inventory.getItem(i);
-
-           if(!item.isEmpty() && item.getDamageValue() < item.getMaxDamage())
+           if(!item.isEmpty() && item.getDamageValue() < item.getMaxDamage()) {
+               setIndicatorColor(item);
                graphics.blit(INDICATORS[i], -4, height - 127, 0, 0,
-                       128, 127,128, 127);
+                       128, 127, 128, 127);
+               RenderSystem.setShaderColor(1, 1, 1, 1);
+           }
        }
-//
-//        if (!(frame.inventory.getItem(1).isEmpty())) {
-//            graphics.blit(DURABILITY_CHEST, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
-//        if (!(frame.inventory.getItem(2).isEmpty())) {
-//            graphics.blit(DURABILITY_L_HAND, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
-//        if (!(frame.inventory.getItem(3).isEmpty())) {
-//            graphics.blit(DURABILITY_R_HAND, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
-//        if (!(frame.inventory.getItem(4).isEmpty())) {
-//            graphics.blit(DURABILITY_L_LEG, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
-//        if (!(frame.inventory.getItem(5).isEmpty())) {
-//            graphics.blit(DURABILITY_R_LEG, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
-//        if (!(frame.inventory.getItem(0).isEmpty())) {
-//            graphics.blit(DURABILITY_HELMET, -4, height - 127, 0, 0, 128, 127, 128, 127);
-//        }
+
         if (!core.isEmpty()){
             graphics.blit(WORK, width - 56, height - 50, 0, 0, 11, 21, 11, 21);
-            if (core.getDamageValue() >= 410) {
-                NukaCraftMod.LOGGER.debug(String.valueOf(frame.inventory.getItem(6).getDamageValue()));
+            if (core.getDamageValue() >= (core.getMaxDamage() / 3) * 2) {
                 graphics.blit(LOW_POWER, width - 36, height - 50, 0, 0, 11, 21, 11, 21);
             }
         } else {
@@ -105,5 +92,16 @@ public class PowerArmorHud {
                              int pX1, int pX2, int pY1, int pY2,
                              int pUWidth, int pVHeight){
         gui.blit(resourceLocation, pX1, pX2, pY1, pY2, pUWidth, pVHeight, pUWidth, pVHeight);
+    }
+
+    private static void setIndicatorColor(ItemStack stack){
+        var damage = stack.getDamageValue();
+        var part = stack.getMaxDamage() / 3;
+        if(damage < part)
+            RenderSystem.setShaderColor(0.2f,0.5f,0.2f,1);
+        else if(damage < part * 2)
+            RenderSystem.setShaderColor(0.9f,0.8f,0.0f,1);
+        else
+            RenderSystem.setShaderColor(0.8f,0.1f,0.1f,1);
     }
 }

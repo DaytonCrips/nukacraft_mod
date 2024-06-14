@@ -206,6 +206,12 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     @Override
+    public void jump() {
+        if(hasEnergy())
+            super.jump();
+    }
+
+    @Override
     protected void updateSpeed() {
         if (hasEnergy())
             setSpeed(getSpeedAttribute());
