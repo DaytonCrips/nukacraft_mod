@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.Animation;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
@@ -21,11 +22,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
+import static mod.azure.azurelib.core.animation.Animation.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Deathclaw extends Monster implements GeoEntity {
     public static final EntityDataAccessor<Boolean> IS_RUNNING = defineId(Deathclaw.class, EntityDataSerializers.BOOLEAN);
+    public static final String SWIM = "swim";
+    public static final String SWIM_START = "swim_start";
+    public static final String SWIM_END = "swim_end";
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final boolean isServerSide = !level().isClientSide;
@@ -126,25 +132,35 @@ public class Deathclaw extends Monster implements GeoEntity {
     private AnimationController.AnimationStateHandler<Deathclaw> animateArms() {
         return event -> {
             var controller = event.getController();
+            var animation = begin();
             controller.setAnimationSpeed(1);
-            RawAnimation animation;
 
-            if (attackAnim > 0) {
-                if (!startAttacking) {
-                    startAttacking = true;
-                    attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
+            if(isInWater()){
+                animation.then(SWIM_START, PLAY_ONCE).thenLoop(SWIM);
+            }
+            else {
+                var currentAnimation = controller.getCurrentAnimation();
+                if(currentAnimation != null && currentAnimation.animation().name().equals(SWIM)){
+                    animation.thenPlay(SWIM_END);
                 }
 
-                controller.setAnimationSpeed(2);
-                animation = begin().thenLoop(attackAnimName);
+                if (attackAnim > 0) {
+                    if (!startAttacking) {
+                        startAttacking = true;
+                        attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
+                    }
 
-            } else if (event.isMoving()) {
-                var isRunning = getEntityData().get(IS_RUNNING);
-                animation = isRunning ? begin().thenLoop("run") : begin().thenLoop("walk");
-            } else {
-                animation = begin().thenLoop("idle");
+                    controller.setAnimationSpeed(2);
+                    animation.thenLoop(attackAnimName);
+
+                }
+                else if (event.isMoving()) {
+                    var isRunning = getEntityData().get(IS_RUNNING);
+                    animation = isRunning ? animation.thenLoop("run") : animation.thenLoop("walk");
+                } else {
+                    animation.thenLoop("idle");
+                }
             }
-
             return event.setAndContinue(animation);
         };
     }

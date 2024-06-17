@@ -251,12 +251,12 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     public Boolean isWalking() {
-        return
-                Minecraft.getInstance().options.keyUp.isDown() ||
-                Minecraft.getInstance().options.keyDown.isDown() ||
-                Minecraft.getInstance().options.keyLeft.isDown() ||
-                Minecraft.getInstance().options.keyRight.isDown();
-//        return speedometer.getSpeed() > 0;
+//        return
+//                Minecraft.getInstance().options.keyUp.isDown() ||
+//                Minecraft.getInstance().options.keyDown.isDown() ||
+//                Minecraft.getInstance().options.keyLeft.isDown() ||
+//                Minecraft.getInstance().options.keyRight.isDown();
+        return speedometer.getSpeed() > 0;
     }
 
     public boolean passengerHaveGun() {
@@ -275,13 +275,13 @@ public class PowerArmorFrame extends WearableChassis {
         return false;
     }
 
+    AnimationController<PowerArmorFrame> triggersController = new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
+            .triggerableAnim(OPEN, begin().thenPlayAndHold(OPEN))
+            .triggerableAnim(CLOSE, begin().thenPlay(CLOSE));
+
     @Override
     public void registerControllers(ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
-                .triggerableAnim(OPEN, RawAnimation.begin().thenPlayAndHold(OPEN))
-                .triggerableAnim(CLOSE, RawAnimation.begin().thenPlay(CLOSE))
-        );
-
+        controllers.add(triggersController);
         controllers.add(new AnimationController<>(this, "arm_controller", 0, animateArms()));
         controllers.add(new AnimationController<>(this, "leg_controller", 0, animateLegs()));
 //        controllers.add(new AnimationController<>(this, "common_controller", 0, animateCommon()));
@@ -308,6 +308,9 @@ public class PowerArmorFrame extends WearableChassis {
             RawAnimation animation = null;
 
             var passenger = getControllingPassenger();
+
+//            if(triggersController.isPlayingTriggeredAnimation())
+//                return PlayState.STOP;
 
             if(passenger == null) {
                 animation = begin().then(IDLE_EMPTY, LOOP);
