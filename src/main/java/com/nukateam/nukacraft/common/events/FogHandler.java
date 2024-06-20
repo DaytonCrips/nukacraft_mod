@@ -22,7 +22,7 @@ public class FogHandler {
     private static float timer = 0;
     private static Holder<Biome> lastBiome = null;
 
-    @SubscribeEvent
+//    @SubscribeEvent
     public static void onRenderFog(ViewportEvent.RenderFog event) {
         var world = event.getCamera().getEntity().level();
         var pos = event.getCamera().getBlockPosition();
