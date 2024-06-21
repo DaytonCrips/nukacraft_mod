@@ -4,6 +4,7 @@ import com.nukateam.nukacraft.common.data.interfaces.IBiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.features.ModDefaultFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModVegetationPlacements;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
@@ -36,13 +38,24 @@ public class ModBiomes {
         context.register(CRANBERRY_BOG  , createCranberryBog(placedFeatures, worldCarvers));
         context.register(ASH_HEAP       , createAshHeap(placedFeatures, worldCarvers));
         context.register(GLOW_SEA       , createGlowSea(placedFeatures, worldCarvers));
-
-        biomeSettings.put(POISON_VALLEY  , new BiomeSettings().setFogDensity(0.5f));
-        biomeSettings.put(CRANBERRY_BOG  , new BiomeSettings().setFogDensity(1.0f));
-        biomeSettings.put(ASH_HEAP       , new BiomeSettings().setFogDensity(0.4f));
-        biomeSettings.put(GLOW_SEA       , new BiomeSettings().setFogDensity(0.1f));
-
 //        BiomeSettings
+    }
+
+    public static void setupBiomeSettings() {
+        biomeSettings.put(POISON_VALLEY , new BiomeSettings().setFogDensity(1.0f));
+        biomeSettings.put(CRANBERRY_BOG , new BiomeSettings().setFogDensity(1.0f));
+        biomeSettings.put(ASH_HEAP      , new BiomeSettings().setFogDensity(0.5f));
+        biomeSettings.put(GLOW_SEA      , new BiomeSettings().setFogDensity(0.05f));
+    }
+
+    @Nullable
+    public static BiomeSettings getBiomeSettings(Holder<Biome> biome){
+        for (var key: biomeSettings.keySet()) {
+            if(biome.is(key)){
+                return biomeSettings.get(key);
+            }
+        }
+        return null;
     }
 
     private static Biome createPoisonValley(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {

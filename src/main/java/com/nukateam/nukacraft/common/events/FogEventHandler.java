@@ -14,6 +14,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
+import static com.nukateam.nukacraft.common.foundation.world.ModBiomes.getBiomeSettings;
+
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, value = Dist.CLIENT)
 public class FogEventHandler {
 //    @SubscribeEvent
@@ -78,8 +80,10 @@ public class FogEventHandler {
                 pos.set(playerX + x, 0, playerZ + z);
                 var biome = world.getBiome(pos);
 
-                if (biome.is(ModBiomes.POISON_VALLEY.location())) {
-                    float distancePart = 0.2f;//((BOPBiome) biome).getSettings(pos);
+                var settings = getBiomeSettings(biome);
+
+                if (settings != null) {
+                    float distancePart = settings.getFogDensity();//((BOPBiome) biome).getSettings(pos);
                     float weightPart = 1;
 
                     // Check if fog density is enabled for this biome

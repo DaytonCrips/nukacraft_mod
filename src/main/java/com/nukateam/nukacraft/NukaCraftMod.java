@@ -10,6 +10,7 @@ import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
+import com.nukateam.nukacraft.common.foundation.world.BiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
@@ -33,6 +34,7 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 
 import static com.nukateam.ntgl.common.foundation.init.Projectiles.LASER_PROJECTILE;
 import static com.nukateam.ntgl.common.foundation.init.Projectiles.TESLA_PROJECTILE;
+import static com.nukateam.nukacraft.common.foundation.world.ModBiomes.setupBiomeSettings;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -136,6 +138,7 @@ public class NukaCraftMod {
             PacketHandler.register();
 //            AntiqueAtlasNetworking.register();
             registerProjectileFactories();
+            setupBiomeSettings();
         });
     }
 }
