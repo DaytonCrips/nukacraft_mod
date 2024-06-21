@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
+import com.nukateam.nukacraft.common.data.interfaces.IBiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.features.ModDefaultFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModVegetationPlacements;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
@@ -15,8 +16,9 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
+import java.util.HashMap;
 
+import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class ModBiomes {
     public static final ResourceKey<Biome> POISON_VALLEY = createKey("poison_valley");
@@ -24,18 +26,29 @@ public class ModBiomes {
     public static final ResourceKey<Biome> ASH_HEAP = createKey("ash_heap");
     public static final ResourceKey<Biome> CRANBERRY_BOG = createKey("cranberry_bog");
 
+    private static final HashMap<ResourceKey<Biome>, BiomeSettings> biomeSettings = new HashMap<>();
+
     public static void bootstrap(BootstapContext<Biome> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var worldCarvers = context.lookup(Registries.CONFIGURED_CARVER);
 
-        context.register(POISON_VALLEY, createPoisonValley(placedFeatures, worldCarvers));
-        context.register(CRANBERRY_BOG, createCranberryBog(placedFeatures, worldCarvers));
-        context.register(ASH_HEAP, createAshHeap(placedFeatures, worldCarvers));
-        context.register(GLOW_SEA, createGlowSea(placedFeatures, worldCarvers));
+        context.register(POISON_VALLEY  , createPoisonValley(placedFeatures, worldCarvers));
+        context.register(CRANBERRY_BOG  , createCranberryBog(placedFeatures, worldCarvers));
+        context.register(ASH_HEAP       , createAshHeap(placedFeatures, worldCarvers));
+        context.register(GLOW_SEA       , createGlowSea(placedFeatures, worldCarvers));
+
+        biomeSettings.put(POISON_VALLEY  , new BiomeSettings().setFogDensity(0.5f));
+        biomeSettings.put(CRANBERRY_BOG  , new BiomeSettings().setFogDensity(1.0f));
+        biomeSettings.put(ASH_HEAP       , new BiomeSettings().setFogDensity(0.4f));
+        biomeSettings.put(GLOW_SEA       , new BiomeSettings().setFogDensity(0.1f));
+
+//        BiomeSettings
     }
 
     private static Biome createPoisonValley(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
         var mobBuilder = new MobSpawnSettings.Builder();
+        var settingsd = (IBiomeSettings)placedFeatures;
+
         var biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
         var effects = new BiomeSpecialEffects.Builder()
                 .fogColor(-5399162)
@@ -62,6 +75,9 @@ public class ModBiomes {
                 .mobSpawnSettings(mobBuilder.build())
                 .generationSettings(biomeBuilder.build())
                 .build();
+    }
+
+    private static void createBiomeSettings(Biome biome, BiomeSettings settings){
     }
 
     private static Biome createCranberryBog(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {

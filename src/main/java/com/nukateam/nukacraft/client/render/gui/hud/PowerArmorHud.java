@@ -18,8 +18,6 @@ import java.util.List;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class PowerArmorHud {
-
-
     private static final int BAR_OFFSET_X = 95;
     private static final ResourceLocation DURABILITY_SENSOR = nukaResource("textures/gui/hud/durability/durability_sensor.png");
     private static final ResourceLocation DURABILITY_ARROW  = nukaResource("textures/gui/hud/durability/durability_flag.png");
