@@ -1,10 +1,10 @@
 {
   "general": {
-    "rate": 5,
+    "rate": 16,
     "gripType": "ntgl:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 6,
-    "reloadTime": 40,
+    "reloadTime": 50,
     "reloadAmount": 1,
     "recoilAngle": 7.0,
     "recoilKick": 0.4,
@@ -14,7 +14,7 @@
   },
   "projectile": {
     "item": "nukacraft:round10mm",
-    "damage": 8.0,
+    "damage": 12.0,
     "size": 0.2,
     "speed": 26.0,
     "life": 12

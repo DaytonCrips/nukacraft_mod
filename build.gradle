@@ -21,7 +21,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = "${minecraft_version}-1.9.0-alpha"
+version = "${minecraft_version}-1.10.0-alpha"
 group = 'com.nukateam.nukacraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'nukacraft'
 
