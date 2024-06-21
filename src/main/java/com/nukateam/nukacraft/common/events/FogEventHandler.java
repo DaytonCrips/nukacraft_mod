@@ -79,7 +79,7 @@ public class FogEventHandler {
                 pos.set(playerX + x, 0, playerZ + z);
                 var biome = world.getBiome(pos);
                 if (biome.is(ModBiomes.POISON_VALLEY.location())) {
-                    float distancePart = 9f;//((BOPBiome) biome).getFogDensity(pos);
+                    float distancePart = 0.2f;//((BOPBiome) biome).getFogDensity(pos);
                     float weightPart = 1;
 
                     // Check if fog density is enabled for this biome
