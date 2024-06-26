@@ -132,7 +132,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
             var text = Component.translatable(page_buffer[i]);
             var fontColor = PipBoyUtils.getPipboyColor(minecraft.player).getIntColor();
 
-            graphics.drawString(this.font, text, -150, -87 + (i * 13), fontColor, false);
+            graphics.drawString(this.font, text, -150, -92   + (i * 13), fontColor, false);
 
         }
 
@@ -185,25 +185,25 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     }
 
     private void renderArchive() {
-        warningPipboy();
+        //warningPipboy();
 
-//        renderButtons();
-//        addRenderableWidget(getBackButton(() -> {
-//            if (current_archive_page > 0) {
-//                current_archive_page--;
-//                clearWidgets();
-//                renderArchive();
-//                buttonMenu();
-//            }
-//        }));
-//        addRenderableWidget(getForwardButton(() -> {
-//            if (!(current_archive_page == archive_pages)) {
-//                current_archive_page++;
-//                clearWidgets();
-//                renderArchive();
-//                buttonMenu();
-//            }
-//        }));
+        renderButtons();
+        addRenderableWidget(getBackButton(() -> {
+            if (current_archive_page > 0) {
+                current_archive_page--;
+                clearWidgets();
+                renderArchive();
+                buttonMenu();
+            }
+        }));
+        addRenderableWidget(getForwardButton(() -> {
+            if (!(current_archive_page == archive_pages)) {
+                current_archive_page++;
+                clearWidgets();
+                renderArchive();
+                buttonMenu();
+            }
+        }));
     }
 
     private void renderRadio() {
