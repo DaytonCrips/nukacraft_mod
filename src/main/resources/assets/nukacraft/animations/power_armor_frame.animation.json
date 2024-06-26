@@ -70,84 +70,46 @@
 			"loop": true,
 			"bones": {
 				"body": {
-					"rotation": {
-						"vector": [2.5, 0, 0]
-					}
+					"rotation": [2.5, 0, 0]
 				},
 				"body_top": {
-					"rotation": {
-						"vector": [16, 0, 0]
-					}
-				},
-				"left_arm": {
-					"rotation": {
-						"vector": [-5.21302, 4.77745, -9.99917]
-					}
+					"rotation": [16, 0, 0]
 				},
 				"left_lower_arm": {
-					"rotation": {
-						"vector": [-10, 0, 0]
-					}
+					"rotation": [-10, 0, 0]
 				},
 				"right_leg": {
-					"rotation": {
-						"vector": [-9, 0, 2.5]
-					}
+					"rotation": [-9, 0, 2.5]
 				},
 				"right_lower_leg": {
-					"rotation": {
-						"vector": [24.5, 0, 0]
-					}
+					"rotation": [24.5, 0, 0]
 				},
 				"right_shoe": {
-					"rotation": {
-						"vector": [-12.5, 0, -2]
-					}
+					"rotation": [-12.5, 0, -2]
 				},
 				"left_leg": {
-					"rotation": {
-						"vector": [-9, 0, -2.5]
-					}
+					"rotation": [-9, 0, -2.5]
 				},
 				"left_lower_leg": {
-					"rotation": {
-						"vector": [24.5, 0, 0]
-					}
+					"rotation": [24.5, 0, 0]
 				},
 				"left_shoe": {
-					"rotation": {
-						"vector": [-12.5, 0, 2]
-					}
+					"rotation": [-12.5, 0, 2]
 				},
 				"head": {
-					"rotation": {
-						"vector": [10, 0, 0]
-					}
+					"rotation": [10, 0, 0]
 				},
 				"model": {
-					"rotation": {
-						"vector": [-5, 0, 0]
-					}
+					"rotation": [-5, 0, 0]
 				},
 				"left_arm2": {
-					"rotation": {
-						"vector": [-5.21302, 4.77745, -9.99917]
-					}
+					"rotation": [-5.21302, 4.77745, -9.99917]
 				},
 				"left_lower_arm2": {
-					"rotation": {
-						"vector": [-10, 0, 0]
-					}
-				},
-				"right_arm": {
-					"rotation": {
-						"vector": [-5.21302, -4.77745, 9.99917]
-					}
+					"rotation": [-10, 0, 0]
 				},
 				"right_lower_arm": {
-					"rotation": {
-						"vector": [-10, 0, 0]
-					}
+					"rotation": [-10, 0, 0]
 				}
 			}
 		},

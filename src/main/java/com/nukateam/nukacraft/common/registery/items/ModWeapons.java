@@ -11,7 +11,10 @@ import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
+
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TridentItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,6 +27,56 @@ public class ModWeapons {
     public static final RegistryObject<Item> CLEAVER = ITEMS.register("cleaver",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -2,
                     new Item.Properties()));
+
+    public static final RegistryObject<Item> WRENCH = ITEMS.register("wrench",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 1, 1,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> SHIV = ITEMS.register("shiv",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 1, 3,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> BOXER = ITEMS.register("boxer",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 2, 6,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> ROLLPIN = ITEMS.register("rollpin",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 0, 1,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> CANE = ITEMS.register("cane",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 0, 2,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> BASEBALL_BAT = ITEMS.register("baseball_bat",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 3, 1,
+                    new Item.Properties()));
+
+
+    public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 3, 0,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> JETHAMMER = ITEMS.register("jethammer",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 6, 3,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> ATOM = ITEMS.register("atom",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 9, 3,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> SITO_BAT = ITEMS.register("cito_bat",
+            () -> new SimpleMeleeWeapon(ModTiers.TRASH, 3, 1,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> SEC_BATON = ITEMS.register("security_baton",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, 0,
+                    new Item.Properties()));
+//    public static final RegistryObject<Item> SPEAR = ITEMS.register("spear",
+//            () -> new SpearItem((new Item.Properties()).durability(250)));
+
+    public static final RegistryObject<Item> POOLCUE = ITEMS.register("poolcue",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 0, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> KOMI = ITEMS.register("komi",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, -1, 5,
+                    new Item.Properties()));
     public static final RegistryObject<Item> COMBAT_KNIFE = ITEMS.register("combatknife",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -1,
                     new Item.Properties()));
@@ -32,6 +85,47 @@ public class ModWeapons {
                     new Item.Properties()));
     public static final RegistryObject<Item> COMBAT_PIPE = ITEMS.register("combatpipe",
             () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 1, -1,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> CRUSHER = ITEMS.register("crusher",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 3, -2,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> GOLFDRIVER = ITEMS.register("golfdriver",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 0, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> RAZOR_BLADE = ITEMS.register("razorblade",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> HATCHET = ITEMS.register("hatchet",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> FIRE_AXE = ITEMS.register("fireaxe",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 2, -1,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> MACHETE = ITEMS.register("machete",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 4, 1,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> LIBERATOR = ITEMS.register("liberator",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 5, 0,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> KATANA = ITEMS.register("katana",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 8, 3,
+                    new Item.Properties()));
+
+    public static final RegistryObject<Item> NUKA_BREAK = ITEMS.register("nukabreak",
+            () -> new SimpleMeleeWeapon(ModTiers.SCRAP, 3, -3,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> PIPE_WRENCH = ITEMS.register("pipe_wrench",
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, -1,
                     new Item.Properties()));
 
     ///GUNS
