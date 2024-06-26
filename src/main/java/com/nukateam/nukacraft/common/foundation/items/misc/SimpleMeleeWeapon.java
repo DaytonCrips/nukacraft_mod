@@ -22,25 +22,24 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static net.minecraft.world.entity.ai.attributes.AttributeModifier.*;
+
 public class SimpleMeleeWeapon extends SwordItem implements GeoItem, IMeleeWeapon {
-    private final float attackDamage;
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final Lazy<String> name = Lazy.of(() -> ResourceUtils.getResourceName(ForgeRegistries.ITEMS.getKey(this)));
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
     public SimpleMeleeWeapon(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
-        this.attackDamage = (float) pAttackDamageModifier + pTier.getAttackDamageBonus();
+        var attackDamage = (float) pAttackDamageModifier + pTier.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double) this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double) pAttackSpeedModifier, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", attackDamage, Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", pAttackSpeedModifier, Operation.ADDITION));
+        Multimap<Attribute, AttributeModifier> defaultModifiers = builder.build();
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-    }
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
 
     public String getName() {
         return name.get();

@@ -146,6 +146,7 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
@@ -165,6 +166,11 @@ dependencies {
 
     implementation fg.deobf("curse.maven:framework-549225:${framework_file_id}")
     implementation fg.deobf("curse.maven:cyanide-541676:4824162")
+
+    implementation fg.deobf("curse.maven:bettercombat-639842:5266134")
+    implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
+    implementation(fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.1.118"))
+
     implementation fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
     implementation fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
