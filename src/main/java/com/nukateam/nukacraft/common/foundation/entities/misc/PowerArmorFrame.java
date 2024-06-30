@@ -43,7 +43,6 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class PowerArmorFrame extends WearableChassis {
-    public static final int INVENTORY_SIZE = ChassisBase.INVENTORY_SIZE + 6;
     public static final ResourceLocation ICON = new ResourceLocation(NukaCraftMod.MOD_ID, "textures/item/power_armor_frame.png");
     public static final PowerArmorHand HAND = new PowerArmorHand();
     public static final EntityDataAccessor<Boolean> IS_OPEN = defineId(PowerArmorFrame.class, EntityDataSerializers.BOOLEAN);
