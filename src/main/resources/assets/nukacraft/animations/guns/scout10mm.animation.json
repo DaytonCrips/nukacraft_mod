@@ -63,7 +63,7 @@
 				}
 			}
 		},
-		"hold_ane_hand": {
+		"hold_one_hand": {
 			"loop": true,
 			"bones": {
 				"gun_arm": {
