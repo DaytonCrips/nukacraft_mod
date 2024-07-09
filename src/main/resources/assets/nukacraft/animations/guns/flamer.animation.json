@@ -390,6 +390,9 @@
 					}
 				}
 			}
+		},
+		"void": {
+			"loop": true
 		}
 	},
 	"azurelib_format_version": 2
