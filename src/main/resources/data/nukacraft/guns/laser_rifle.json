@@ -1,7 +1,7 @@
 {
   "general": {
     "auto": false,
-    "rate": 3,
+    "rate": 10,
     "gripType": "ntgl:two_handed",
     "maxAmmo": 40,
     "reloadTime": 40,
