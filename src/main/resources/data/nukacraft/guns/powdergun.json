@@ -20,9 +20,9 @@
     "life": 5
   },
   "sounds": {
-    "fire": "nukacraft:item.shotgun.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "cock": "nukacraft:item.shotgun.cock",
+    "fire": "nukacraft:item.powdergun.fire",
+    "reload": "nukacraft:item.powdergun.reload",
+    "cock": "nukacraft:item.powdergun.cock",
     "silencedFire": "nukacraft:item.shotgun.silenced_fire",
     "enchantedFire": "nukacraft:item.shotgun.enchanted_fire"
   },

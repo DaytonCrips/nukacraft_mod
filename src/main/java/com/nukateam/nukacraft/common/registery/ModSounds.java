@@ -24,7 +24,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_COCK = register("item.laser_gatling.cock");
     public static final RegistryObject<SoundEvent> ITEM_LASER_GATLING_RELOAD = register("item.laser_gatling.reload");
 
-
+    public static final RegistryObject<SoundEvent> ITEM_POWDER_RIFLE_RELOAD = register("item.powdergun.reload");
+    public static final RegistryObject<SoundEvent> ITEM_POWDER_RIFLE_COCK = register("item.powdergun.cock");
+    public static final RegistryObject<SoundEvent> ITEM_POWDER_RIFLE_FIRE = register("item.powdergun.fire");
     public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_FIRE = register("item.pump_shotgun.fire");
     //public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_ENCHANTED_FIRE = register("item.pump_shotgun.enchanted_fire");
     //public static final RegistryObject<SoundEvent> ITEM_PUMPSHOTGUN_SILENCED_FIRE = register("item.pump_shotgun.silenced_fire");
