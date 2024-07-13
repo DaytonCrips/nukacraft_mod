@@ -54,6 +54,7 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> ANTISEPTIC = ITEMS.register("antisept",
             () -> new Item(new Item.Properties()));
+
     @DataGen
     public static final RegistryObject<Item> FERTILIZER = ITEMS.register("fertilizer",
             () -> new BoneMealItem(new Item.Properties()));

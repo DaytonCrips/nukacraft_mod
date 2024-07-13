@@ -94,5 +94,10 @@
 
    "item.flamer.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/flamer/fire" }]},
    "item.flamer.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/flamer/reload" }]},
-   "item.flamer.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/flamer/cock" }]}
+   "item.flamer.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/flamer/cock" }]},
+
+
+   "item.powdergun.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/powdergun/fire" }]},
+   "item.powdergun.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/powdergun/reload" }]},
+   "item.powdergun.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/powdergun/cock" }]}
 }
