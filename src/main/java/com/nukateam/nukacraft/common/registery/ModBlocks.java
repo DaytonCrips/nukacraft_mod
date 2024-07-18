@@ -44,7 +44,9 @@ public class ModBlocks {
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> LANDMINE = registerBlock("fragmine",
             () -> new LandMineBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
-                    .strength(1.6F, 1.9F)));
+                    .strength(1.6F, 1.9F).lightLevel((p_50892_) -> {
+                        return 1;
+                    })));
 //    @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> GEAR_DOOR = registerBlockWithoutItem("geardoor",
             () -> new GearDoorBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
