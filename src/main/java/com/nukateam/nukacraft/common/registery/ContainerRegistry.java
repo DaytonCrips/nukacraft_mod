@@ -24,6 +24,7 @@ public class ContainerRegistry {
 
     public static void register(IEventBus eventBus) {
         CONTAINERS.register(eventBus);
+
     }
 
     public static final RegistryObject<MenuType<PowerArmorMenu>> POWER_CHASSIS_MENU

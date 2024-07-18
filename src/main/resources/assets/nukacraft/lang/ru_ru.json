@@ -337,6 +337,7 @@
   "block.nukacraft.aluminium_ore": "Алюминиевая Руда",
   "block.nukacraft.copper_ore": "Медная Руда",
   "block.nukacraft.barnplanks": "Амбарныe Доски",
+  "itemGroup.power_armor": "NukaCraft: Силовая броня",
   "itemGroup.nuka_blocks": "Nukacraft: Блоки",
   "block.nukacraft.door_red": "Красная Дверь",
   "block.nukacraft.door_green": "Зелёная Дверь",
@@ -516,9 +517,12 @@
   "item.nukacraft.raiders_boots": "Рейдерские Ботинки",
   "item.nukacraft.starlight_berry": "Ягода Ночного Ползуна",
   "item.nukacraft.neutron_rod": "Нейтронный Стручок",
-  "block.nukacraft.qbloodleaf": "Куст Квантового Листа",
   "item.nukacraft.nuka_frutti": "Ядер Фрутти",
+
+  "block.nukacraft.qbloodleaf": "Куст Квантового Листа",
   "block.nukacraft.copper_block": "Медный Блок",
+  "block.nukacraft.bblight": "Яркая Чума",
+
   "tooltip.nukacraft.regen": "§9Регенерация ",
   "item.nukacraft.dandy_boy_apples": "Наливные яблоки",
   "item.nukacraft.aster_tea": "Чай с Астрой",
@@ -557,9 +561,9 @@
   "item.nukacraft.punga_fruit": "Фрукт Пунги",
   "item.nukacraft.neoagave_fruit": "Фрукт Неоновой Огавы",
   "item.nukacraft.ginsengroot": "Корень Женьшеня",
-  "block.nukacraft.bblight": "Яркая Чума",
   "item.nukacraft.filter": "Фильтр для Воды",
   "item.nukacraft.firemushpuree": "Пюре из Огнегриба",
+  "item.nukacraft.acid_bucket": "Ведро кислоты",
   "effect.nukacraft.speed": "§9Скорость ",
 
   "tooltip.nukacraft.irradiation": "§aРад ",
@@ -597,6 +601,7 @@
   "color.display.red": "§cКрасный",
   "color.display.orange": "§6Оранжевый",
   "color.display.gold": "§eЗолотой",
+  "color.display.violetn": "§dПурпурный",
 
   "archive.nukacraft.vaultboy.name": "▪ Дорогой Резидент Убежища!",
 
@@ -653,9 +658,6 @@
   "item.nukacraft.flamer": "Военный Огнемёт",
   "item.nukacraft.handmade_flamer": "Самодельный Огнемёт",
 
-  "effect.nukacraft.blinded": "Ослеплён",
-  "effect.nukacraft.deafened": "Оглушён",
-
   "gui.nukacraft.workbench.tab.weapons": "Оружие",
   "gui.nukacraft.workbench.tab.attachments": "Обвесы",
   "gui.nukacraft.workbench.tab.ammo": "Боеприпасы",
@@ -666,5 +668,5 @@
   "gui.nukacraft.workbench.tab.rifle": "Винтовки",
   "gui.nukacraft.workbench.tab.melee": "Ближнее",
 
-  "item.nukacraft.acid_bucket": "Ведро кислоты"
+  "generator.nukacraft.fallout_wasteland": "Пустошь"
 }
