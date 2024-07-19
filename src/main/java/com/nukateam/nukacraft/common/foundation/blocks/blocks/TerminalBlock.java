@@ -25,8 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings.WASTELAND_DIMENSION;
-
+//import static com.nukateam.nukacraft.common.foundation.world.WastelandDimensionsSettings.WASTELAND_DIMENSION;
 
 public class TerminalBlock extends RotatedObjectBlock {
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
@@ -64,31 +63,31 @@ public class TerminalBlock extends RotatedObjectBlock {
         }
     }
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
-            if (!pPlayer.isCrouching()) {
-                MinecraftServer server = pLevel.getServer();
-
-                if (server != null) {
-                    if (pLevel.dimension() == WASTELAND_DIMENSION) {
-                        ServerLevel overWorld = server.getLevel(Level.OVERWORLD);
-                        if (overWorld != null) {
-                            pPlayer.changeDimension(overWorld, new WastelandTeleporter(pPos, false));
-                        }
-                    } else {
-                        ServerLevel kjDim = server.getLevel(WASTELAND_DIMENSION);
-                        if (kjDim != null) {
-                            pPlayer.changeDimension(kjDim, new WastelandTeleporter(pPos, true));
-                        }
-                    }
-                    return InteractionResult.SUCCESS;
-                }
-            }
-        }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-    }
+//    @Override
+//    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
+//                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+//        if (!pLevel.isClientSide()) {
+//            if (!pPlayer.isCrouching()) {
+//                MinecraftServer server = pLevel.getServer();
+//
+//                if (server != null) {
+//                    if (pLevel.dimension() == WASTELAND_DIMENSION) {
+//                        ServerLevel overWorld = server.getLevel(Level.OVERWORLD);
+//                        if (overWorld != null) {
+//                            pPlayer.changeDimension(overWorld, new WastelandTeleporter(pPos, false));
+//                        }
+//                    } else {
+//                        ServerLevel kjDim = server.getLevel(WASTELAND_DIMENSION);
+//                        if (kjDim != null) {
+//                            pPlayer.changeDimension(kjDim, new WastelandTeleporter(pPos, true));
+//                        }
+//                    }
+//                    return InteractionResult.SUCCESS;
+//                }
+//            }
+//        }
+//        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+//    }
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
