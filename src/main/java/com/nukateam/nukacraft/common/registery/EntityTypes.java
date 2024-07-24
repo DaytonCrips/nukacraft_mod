@@ -76,6 +76,11 @@ public class EntityTypes {
                     .of(Molerat::new, MobCategory.MONSTER)
                     .sized(1.0f, 1.0f));
 
+    public static final RegistryObject<EntityType<Assaultron>> ASSAULTRON =
+            registerEntity("assaultron", Builder
+                    .of(Assaultron::new, MobCategory.MONSTER)
+                    .sized(1.0f, 1.0f));
+
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder
             .of(NuclearExplosionEffectEntity::new, MobCategory.MISC)

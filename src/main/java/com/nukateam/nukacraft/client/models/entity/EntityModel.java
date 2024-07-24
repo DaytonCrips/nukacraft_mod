@@ -12,6 +12,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 
 public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoModel<T> {
+    public static final EntityModel INSTANCE = new EntityModel();
+
     public static ResourceLocation getResource(Entity animatable, String path, String extension) {
         var name = ResourceHelper.getResourceName(ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()));
         var modId = ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()).getNamespace();

@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
+import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -42,7 +43,7 @@ public class Assaultron extends Monster implements GeoEntity {
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final boolean isServerSide = !level().isClientSide;
-    private final AnimationHelper<Assaultron> animationHelper = new AnimationHelper<>(this, DEATHCLAW_MODEL);
+    private final AnimationHelper<Assaultron> animationHelper = new AnimationHelper<>(this, new EntityModel<Assaultron>());
 
     private boolean startAttacking = false;
     private String[] attackAnims = new String[]{
@@ -126,6 +127,7 @@ public class Assaultron extends Monster implements GeoEntity {
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
+            var isRunning = getEntityData().get(IS_RUNNING);
 
             if (attackAnim > 0) {
                 if (!startAttacking) {
@@ -138,10 +140,10 @@ public class Assaultron extends Monster implements GeoEntity {
 
             }
             else if (event.isMoving()) {
-                var isRunning = getEntityData().get(IS_RUNNING);
                 animation = isRunning ? animation.thenLoop("run") : animation.thenLoop("walk");
                 controller.setAnimationSpeed(2);
-            } else {
+            }
+            else {
                 animation.thenLoop("idle");
             }
 

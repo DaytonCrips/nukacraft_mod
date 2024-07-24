@@ -23,6 +23,7 @@ public class ModEventBusEvents {
         event.put(EntityTypes.BRAHMIN.get(), Brahmin.createAttributes().build());
         event.put(EntityTypes.BLOATFLY.get(), Bloatfly.createAttributes().build());
         event.put(EntityTypes.MOLERAT.get(), Molerat.createAttributes().build());
+        event.put(EntityTypes.ASSAULTRON.get(), Assaultron.createAttributes().build());
 
     }
 }
