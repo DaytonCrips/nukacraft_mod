@@ -25,6 +25,7 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,10 +33,10 @@ import org.jetbrains.annotations.Nullable;
 
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
-public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
+public class Bloatfly extends Monster implements GeoEntity, FlyingAnimal {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    public Bloatfly(EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public Bloatfly(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.moveControl = new FlyingMoveControl(this, 20, true);
 //        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
@@ -101,11 +102,5 @@ public class Bloatfly extends Animal implements GeoEntity, FlyingAnimal {
     @Override
     public boolean isFlying() {
         return !this.onGround();
-    }
-
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        return null;
     }
 }

@@ -31,11 +31,6 @@ public class EntityTypes {
                     .of(ChairBlockEntity::new, MobCategory.MISC)
                     .sized(0f, 0f));
 
-
-
-
-
-
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
             registerEntity("deathclaw", Builder
                     .of(Deathclaw::new, MobCategory.MONSTER)
@@ -63,9 +58,8 @@ public class EntityTypes {
 
     public static final RegistryObject<EntityType<Radroach>> RADROACH =
             registerEntity("radroach", Builder
-                    .of(Radroach::new, MobCategory.CREATURE)
+                    .of(Radroach::new, MobCategory.MONSTER)
                     .sized(0.5f, 0.25f));
-
 
     public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
             registerEntity("brahmin", Builder
@@ -74,7 +68,12 @@ public class EntityTypes {
 
     public static final RegistryObject<EntityType<Bloatfly>> BLOATFLY =
             registerEntity("bloatfly", Builder
-                    .of(Bloatfly::new, MobCategory.CREATURE)
+                    .of(Bloatfly::new, MobCategory.MONSTER)
+                    .sized(1.0f, 1.0f));
+
+    public static final RegistryObject<EntityType<Molerat>> MOLERAT =
+            registerEntity("molerat", Builder
+                    .of(Molerat::new, MobCategory.MONSTER)
                     .sized(1.0f, 1.0f));
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
@@ -85,7 +84,7 @@ public class EntityTypes {
             .build("nuclear_explosion_effect"));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntity(String entityName, EntityType.Builder<T> builder) {
-        NukaCraftMod.LOGGER.debug("ENTITY REGISTERED");
+        NukaCraftMod.LOGGER.debug(entityName + "ENTITY REGISTERED");
         return ENTITY_TYPES.register(entityName, () -> builder.build(new ResourceLocation(NukaCraftMod.MOD_ID, entityName).toString()));
     }
 

@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.client.helpers;
+package com.nukateam.nukacraft.common.foundation;
 
 import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.tags.BlockTags;

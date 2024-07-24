@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimation;
 
 public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoModel<T> {
-    public static ResourceLocation getChassisResource(Entity animatable, String path, String extension) {
+    public static ResourceLocation getResource(Entity animatable, String path, String extension) {
         var name = ResourceHelper.getResourceName(ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()));
         var modId = ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()).getNamespace();
 
@@ -21,17 +21,17 @@ public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoMode
 
     @Override
     public ResourceLocation getModelResource(T object) {
-        return getChassisResource(object, "geo/entity/", ".geo.json");
+        return getResource(object, "geo/entity/", ".geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T object) {
-        return getChassisResource(object, "textures/entity/", ".png");
+        return getResource(object, "textures/entity/", ".png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(T object) {
-        return getChassisResource(object, "animations/entity/", ".animation.json");
+        return getResource(object, "animations/entity/", ".animation.json");
     }
 
     @Override

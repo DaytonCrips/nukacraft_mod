@@ -54,15 +54,18 @@ public class SetupEvents {
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MININUKE.get(), MiniNukeRenderer::new);
         event.registerEntityRenderer(BASEBALL_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
-        event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
-        event.registerEntityRenderer(RAIDER.get(), RaiderRenderer::new);
         event.registerEntityRenderer(CHAIRENTITY.get(), (context) -> new ChairEntityRenderer(context));
+
+        event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
+        event.registerEntityRenderer(RAIDER.get(), RaiderRenderer::new);
         event.registerEntityRenderer(RADROACH.get(), (context) -> new SimpleEntityRenderer<>(context).setScale(3));
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
+        event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
+
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());
     }
