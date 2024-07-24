@@ -60,7 +60,7 @@ public class Assaultron extends Monster implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 200)
+                .add(Attributes.MAX_HEALTH, 75)
                 .add(Attributes.ATTACK_DAMAGE, 10.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
@@ -117,7 +117,7 @@ public class Assaultron extends Monster implements GeoEntity {
         getEntityData().set(IS_RUNNING, isRunning);
 
         if (isRunning)
-            setSpeed(2f);
+            setSpeed(1.4f);
         else setSpeed((float) getAttributeValue(Attributes.MOVEMENT_SPEED));
     }
 
@@ -140,8 +140,15 @@ public class Assaultron extends Monster implements GeoEntity {
 
             }
             else if (event.isMoving()) {
-                animation = isRunning ? animation.thenLoop("run") : animation.thenLoop("walk");
-                controller.setAnimationSpeed(2);
+                if(isRunning){
+                    animation.thenLoop("run");
+                    controller.setAnimationSpeed(4);
+                }
+                else {
+                    animation.thenLoop("walk");
+                    controller.setAnimationSpeed(2);
+                }
+
             }
             else {
                 animation.thenLoop("idle");

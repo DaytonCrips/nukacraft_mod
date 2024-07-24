@@ -79,7 +79,8 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Assaultron>> ASSAULTRON =
             registerEntity("assaultron", Builder
                     .of(Assaultron::new, MobCategory.MONSTER)
-                    .sized(1.0f, 1.0f));
+                    .sized(0.8f, 2.1f)
+                    .fireImmune());
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder

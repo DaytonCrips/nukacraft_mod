@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-07T18:42:13.5305651	Item Models: nukacraft
+// 1.20.1	2024-07-24T22:24:20.0869819	Item Models: nukacraft
 ce0f4bf06c5c5d0545e04d6f4b24bf208f3eeede assets/nukacraft/models/item/abraxo_cleaner.json
 cd7fafe2d3a18785850e2b3c42b28310bddb085a assets/nukacraft/models/item/acid.json
 cb26da1b5691523241c3358d294a7645fb378eff assets/nukacraft/models/item/acid_bucket.json
@@ -19,6 +19,7 @@ abbfbd3057e3b43d1d3fd0af06be342004d87d4e assets/nukacraft/models/item/ashdust.js
 4429cb2d0746650d70e4eeae6a7bbf56b0158218 assets/nukacraft/models/item/ash_smoker.json
 71c6e3a618d32d1afd8bff8c9a8e5947b5487c3d assets/nukacraft/models/item/ash_stone.json
 289c968a22a32b21d83f7ed8062da9e596d4fe94 assets/nukacraft/models/item/ash_tea.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/nukacraft/models/item/assaultron_spawn_egg.json
 ed982edcf70fcd321b46dfbf9082d58ebcd42269 assets/nukacraft/models/item/aster_tea.json
 45c3efa23a876b221c24e75137c2335a46543fd7 assets/nukacraft/models/item/barrel.json
 1d60f3c0483b0e1eef12cf2d82264a5090d97971 assets/nukacraft/models/item/bath_table.json
@@ -158,6 +159,7 @@ f5b19f8bf8ffd8688f8bd560cedb6039e9247f2d assets/nukacraft/models/item/metal_ches
 abc5bf4cc3078087230b5ab9ce853fbdb7a28f7c assets/nukacraft/models/item/metal_helmet.json
 1a1cc0977d0aa903037b9e776ac8a643f22e2a81 assets/nukacraft/models/item/metal_leggins.json
 9f53ca8769bffceeb15ce0584801469fa1c9dab1 assets/nukacraft/models/item/mindfungus.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/nukacraft/models/item/molerat_spawn_egg.json
 95038547fc4e8d52a417f78544d9f22c8b79dacd assets/nukacraft/models/item/mosswhitebricks_stairs.json
 f55d44af7903e16607c9185352184861aa476775 assets/nukacraft/models/item/moss_whitebricks.json
 3e95d2e0df6b778f9af9dd07f96eba333f098768 assets/nukacraft/models/item/muttfruit.json

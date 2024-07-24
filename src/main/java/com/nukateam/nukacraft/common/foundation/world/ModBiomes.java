@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.world;
 
-import com.nukateam.nukacraft.common.data.interfaces.IBiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.features.ModDefaultFeatures;
 import com.nukateam.nukacraft.common.foundation.world.features.placed.ModVegetationPlacements;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
@@ -60,7 +59,6 @@ public class ModBiomes {
 
     private static Biome createPoisonValley(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
         var mobBuilder = new MobSpawnSettings.Builder();
-        var settingsd = (IBiomeSettings)placedFeatures;
 
         var biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
         var effects = new BiomeSpecialEffects.Builder()

@@ -3,7 +3,6 @@
   "package": "com.nukateam.nukacraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "common.BiomeMixin",
     "common.PathNavigationMixin"
   ],
   "client": [

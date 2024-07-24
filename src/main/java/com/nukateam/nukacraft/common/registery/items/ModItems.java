@@ -461,12 +461,12 @@ public class ModItems {
 
     @DataGen(parent = ItemParent.SPAWN_EGG)
     public static final RegistryObject<ForgeSpawnEggItem> MOLERAT_SPAWN_EGG = ITEMS.register("molerat_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.MOLERAT, 0x4bbb35, 0x332266,
+            () -> new ForgeSpawnEggItem(EntityTypes.MOLERAT, 0x413135, 0x322226,
                     new Item.Properties()));
 
     @DataGen(parent = ItemParent.SPAWN_EGG)
     public static final RegistryObject<ForgeSpawnEggItem> ASSAULTRON_SPAWN_EGG = ITEMS.register("assaultron_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.ASSAULTRON, 0x413135, 0x322226,
+            () -> new ForgeSpawnEggItem(EntityTypes.ASSAULTRON, 0x4bbb35, 0x332266,
                     new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

@@ -50,12 +50,12 @@ public class PipboyPages {
                 }))
         );
 
-        content.add(new Archive("▪ Ам ням").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ Kakavozik").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ SUKA").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ Метро Люблино").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ Вкусно и почка").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ Ну а шо еще писать").addPage(new ArchivePage(PipboyPages.warning_screen)));
-        content.add(new Archive("▪ WARN1").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ Ам ням").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ Kakavozik").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ SUKA").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ Метро Люблино").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ Вкусно и почка").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ Ну а шо еще писать").addPage(new ArchivePage(PipboyPages.warning_screen)));
+//        content.add(new Archive("▪ WARN1").addPage(new ArchivePage(PipboyPages.warning_screen)));
     }
 }
