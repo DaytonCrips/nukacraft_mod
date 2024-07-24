@@ -4,7 +4,7 @@ import com.nukateam.ntgl.client.data.handler.ShootingHandler;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.entities.variants.RaiderVariant;
+import com.nukateam.nukacraft.common.foundation.variants.RaiderVariant;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.RidePowerArmorGoal;
 import com.nukateam.nukacraft.common.registery.items.ModWeapons;

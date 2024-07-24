@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.variants;
+package com.nukateam.nukacraft.common.foundation.variants;
 
 import java.util.Arrays;
 import java.util.Comparator;

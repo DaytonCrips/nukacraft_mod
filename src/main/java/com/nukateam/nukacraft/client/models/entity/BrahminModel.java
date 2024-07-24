@@ -6,16 +6,16 @@ import net.minecraft.resources.ResourceLocation;
 public class BrahminModel extends EntityModel<Brahmin> {
     @Override
     public ResourceLocation getModelResource(Brahmin object) {
-        return getChassisResource(object, "geo/entity/", ".geo.json");
+        return getResource(object, "geo/entity/", ".geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Brahmin object) {
-        return getChassisResource(object, "textures/entity/", ".png");
+        return getResource(object, "textures/entity/", ".png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Brahmin object) {
-        return getChassisResource(object, "animations/entity/", ".animation.json");
+        return getResource(object, "animations/entity/", ".animation.json");
     }
 }
