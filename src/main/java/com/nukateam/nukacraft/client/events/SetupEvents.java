@@ -66,6 +66,7 @@ public class SetupEvents {
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
+        event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());

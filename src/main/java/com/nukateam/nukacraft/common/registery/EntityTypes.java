@@ -82,6 +82,12 @@ public class EntityTypes {
                     .sized(0.8f, 2.1f)
                     .fireImmune());
 
+    public static final RegistryObject<EntityType<Securitron>> SECURITRON =
+            registerEntity("securitron", Builder
+                    .of(Securitron::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2.1f)
+                    .fireImmune());
+
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
             = ENTITY_TYPES.register("nuclear_explosion_effect", () -> Builder
             .of(NuclearExplosionEffectEntity::new, MobCategory.MISC)

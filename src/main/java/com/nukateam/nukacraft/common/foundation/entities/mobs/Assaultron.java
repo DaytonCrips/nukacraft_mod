@@ -151,6 +151,9 @@ public class Assaultron extends Monster implements GeoEntity {
 
             }
             else {
+                if(getTarget() != null)
+                    animation.thenLoop("aggressive");
+
                 animation.thenLoop("idle");
             }
 
