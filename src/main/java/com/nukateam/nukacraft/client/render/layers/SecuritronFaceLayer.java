@@ -24,7 +24,7 @@ public class SecuritronFaceLayer extends LayerBase<Securitron> {
                        VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
 
-        var texture = nukaResource(entity.getVariant());
+        var texture = nukaResource("textures/entity/securitron/" + entity.getVariant().getTexture());
         renderLayer(poseStack, entity, bakedModel, bufferSource, partialTick, packedLight, texture);
     }
 }
