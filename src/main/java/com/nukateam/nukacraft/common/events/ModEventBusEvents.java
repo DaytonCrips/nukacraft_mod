@@ -24,6 +24,6 @@ public class ModEventBusEvents {
         event.put(EntityTypes.BLOATFLY.get(), Bloatfly.createAttributes().build());
         event.put(EntityTypes.MOLERAT.get(), Molerat.createAttributes().build());
         event.put(EntityTypes.ASSAULTRON.get(), Assaultron.createAttributes().build());
-
+        event.put(EntityTypes.SECURITRON.get(), Securitron.createAttributes().build());
     }
 }

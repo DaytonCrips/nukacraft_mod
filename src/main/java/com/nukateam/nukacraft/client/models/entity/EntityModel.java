@@ -21,6 +21,13 @@ public class EntityModel<T extends LivingEntity & GeoAnimatable> extends GeoMode
         return new ResourceLocation(modId, path + name + extension);
     }
 
+//    public static ResourceLocation getNestedResource(Entity animatable, String path, String extension) {
+//        var name = ResourceHelper.getResourceName(ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()));
+//        var modId = ForgeRegistries.ENTITY_TYPES.getKey(animatable.getType()).getNamespace();
+//
+//        return new ResourceLocation(modId, path + name + "/" + name + "/" + extension);
+//    }
+
     @Override
     public ResourceLocation getModelResource(T object) {
         return getResource(object, "geo/entity/", ".geo.json");
