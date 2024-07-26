@@ -22,8 +22,13 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
 
     @Override
     public void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
+        var scale = getScale();
         poseStack.scale(scale, scale, scale);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
+    }
+
+    public float getScale() {
+        return scale;
     }
 
     public SimpleEntityRenderer setScale(float scale) {

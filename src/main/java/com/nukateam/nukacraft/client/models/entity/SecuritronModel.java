@@ -10,11 +10,13 @@ import static com.jetug.chassis_core.client.render.utils.GeoUtils.setHeadAnimati
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class SecuritronModel<Type extends Securitron> extends EntityModel<Type> {
-    private static final ResourceLocation model = nukaResource("geo/entity/deathclaw.geo.json");
-    private static final ResourceLocation animation = nukaResource("animations/entity/deathclaw.animation.json");
-
     @Override
     public ResourceLocation getTextureResource(Type object) {
-        return nukaResource("textures/entity/securitron/"+ object.getVariant().getTexture() +".png");
+        return nukaResource("textures/entity/securitron/securitron.png");
+    }
+
+    @Override
+    public RenderType getRenderType(Type animatable, ResourceLocation texture) {
+        return RenderType.entityTranslucent(texture);
     }
 }

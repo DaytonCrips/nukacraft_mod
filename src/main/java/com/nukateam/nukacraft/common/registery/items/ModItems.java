@@ -469,6 +469,12 @@ public class ModItems {
             () -> new ForgeSpawnEggItem(EntityTypes.ASSAULTRON, 0x4bbb35, 0x332266,
                     new Item.Properties()));
 
+
+    @DataGen(parent = ItemParent.SPAWN_EGG)
+    public static final RegistryObject<ForgeSpawnEggItem> SECURITRON_SPAWN_EGG = ITEMS.register("securitron_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.SECURITRON, 0x4bbbbb, 0x337766,
+                    new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

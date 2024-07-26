@@ -2,26 +2,38 @@ package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
 import com.nukateam.nukacraft.common.foundation.variants.SecuritronVariant;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
+import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.CLOSE;
+import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.OPEN;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
@@ -35,6 +47,15 @@ public class Securitron extends Monster implements GeoEntity {
     public Securitron(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }
+
+    @Nullable
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
+                                        @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        setVariant(Util.getRandom(SecuritronVariant.values(), random));
+        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+    }
+
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
@@ -52,9 +73,10 @@ public class Securitron extends Monster implements GeoEntity {
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.5D, false));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Animal.class, false));
+//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Animal.class, false));
     }
 
     @Override
@@ -70,7 +92,22 @@ public class Securitron extends Monster implements GeoEntity {
 
     @Override
     public void registerControllers(ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controllerName", 0, animate()));
+        controllers.add(new AnimationController<>(this, "controller", 0, animate()));
+        controllers.add(new AnimationController<>(this, "armController", 0, animateArms()));
+        controllers.add(new AnimationController<>(this, "antenaController", 0, animateAntena()));
+    }
+
+    private AnimationController.AnimationStateHandler<Securitron> animateArms() {
+        return event -> {
+            var controller = event.getController();
+            var animation = begin();
+            controller.setAnimationSpeed(1);
+            if (getTarget() != null) {
+                var animationName = getVariant().isUpgraded() ? "laser_mode" : "gun_mode";
+                animation.thenLoop(animationName);
+            }
+            return event.setAndContinue(animation);
+        };
     }
 
     @NotNull
@@ -79,18 +116,7 @@ public class Securitron extends Monster implements GeoEntity {
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
-
-//            if (attackAnim > 0) {
-//                if (!startAttacking) {
-//                    startAttacking = true;
-//                    attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
-//                }
-//
-//                animationHelper.syncAnimation(event, attackAnimName, 20);
-//                animation.thenLoop(attackAnimName);
-//            }
-//            else
-                if (event.isMoving()) {
+            if (event.isMoving()) {
                 animation.thenLoop("walk");
                 controller.setAnimationSpeed(2);
             }
@@ -102,12 +128,18 @@ public class Securitron extends Monster implements GeoEntity {
         };
     }
 
+
+    @NotNull
+    private AnimationController.AnimationStateHandler<Securitron> animateAntena() {
+        return event -> event.setAndContinue( begin().thenLoop("antena"));
+    }
+
     public SecuritronVariant getVariant() {
         return SecuritronVariant.byId(this.getTypeVariant() & 255);
     }
 
     private void setVariant(SecuritronVariant variant) {
-        this.setTypeVariant(variant.getId() & 255);
+        this.setTypeVariant(variant.ordinal() & 255);
     }
 
     public int getTypeVariant() {

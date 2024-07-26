@@ -4,29 +4,35 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public enum SecuritronVariant {
-    MARK1(0, "mark1"),
-    MARK2(1, "mark2"),
-    YES_MAN(2, "yes_man"),
-    VICTOR(3, "victor");
+    MARK1   ("mark1"  , false),
+    MARK2   ("mark2"  , true),
+    YES_MAN ("yes_man", false),
+//    VICTOR  ("victor" , false),
+    BERSERK ("berserk", true),
+    DAMAGED ("damaged", false);
 
-    private static final SecuritronVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(SecuritronVariant::getId)).toArray(SecuritronVariant[]::new);
-    private final int id;
+    private static final SecuritronVariant[] BY_ID = Arrays
+            .stream(values())
+            .sorted(Comparator.comparingInt(SecuritronVariant::ordinal))
+            .toArray(SecuritronVariant[]::new);
+
     private final String texture;
+    private final Boolean isUpgraded;
 
-    SecuritronVariant(int pId, String texture) {
-        this.id = pId;
+    SecuritronVariant(String texture, Boolean isUpgraded) {
         this.texture = texture;
+        this.isUpgraded = isUpgraded;
     }
 
     public static SecuritronVariant byId(int id) {
         return BY_ID[id % BY_ID.length];
     }
 
-    public int getId() {
-        return this.id;
-    }
-
     public String getTexture() {
         return texture;
+    }
+
+    public Boolean isUpgraded() {
+        return isUpgraded;
     }
 }
