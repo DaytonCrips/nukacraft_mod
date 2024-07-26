@@ -113,6 +113,14 @@ public class Assaultron extends Monster implements GeoEntity {
         controllers.add(new AnimationController<>(this, "controllerName", 0, animateArms()));
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        if(isServerSide){
+            getEntityData().set(IS_RUNNING, getTarget() != null);
+        }
+    }
+
     public void setIsRunning(boolean isRunning) {
         getEntityData().set(IS_RUNNING, isRunning);
 
@@ -151,10 +159,9 @@ public class Assaultron extends Monster implements GeoEntity {
 
             }
             else {
-                if(getTarget() != null)
+                if(isRunning)
                     animation.thenLoop("aggressive");
-
-                animation.thenLoop("idle");
+                else animation.thenLoop("idle");
             }
 
             return event.setAndContinue(animation);

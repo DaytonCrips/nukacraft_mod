@@ -49,7 +49,7 @@ public class Securitron extends Monster implements GeoEntity {
 
     public Securitron(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
-        getEntityData().set(HAS_TARGET, true);
+        getEntityData().set(HAS_TARGET, false);
     }
 
     @Nullable
@@ -100,6 +100,15 @@ public class Securitron extends Monster implements GeoEntity {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if(isServerSide){
+            getEntityData().set(HAS_TARGET, getTarget() != null);
+
+        }
+    }
+
+    @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
@@ -119,8 +128,9 @@ public class Securitron extends Monster implements GeoEntity {
             if (hasTarget()) {
                 var animationName = getVariant().isUpgraded() ? "laser_mode" : "gun_mode";
                 animation.thenPlayAndHold(animationName);
+                return event.setAndContinue(animation);
             }
-            return event.setAndContinue(animation);
+            else return PlayState.STOP;
         };
     }
 
