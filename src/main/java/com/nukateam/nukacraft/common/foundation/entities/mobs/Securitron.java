@@ -17,6 +17,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -36,16 +37,19 @@ import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.OPEN;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Securitron extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final boolean isServerSide = !level().isClientSide;
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Deathclaw.class, EntityDataSerializers.INT);
-
+    public static final EntityDataAccessor<Boolean> HAS_TARGET =
+            defineId(Deathclaw.class, EntityDataSerializers.BOOLEAN);
     private final AnimationHelper<Securitron> animationHelper = new AnimationHelper<>(this, new EntityModel<Securitron>());
 
     public Securitron(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
+        getEntityData().set(HAS_TARGET, true);
     }
 
     @Nullable
@@ -59,7 +63,7 @@ public class Securitron extends Monster implements GeoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 75)
+                .add(Attributes.MAX_HEALTH, 100)
                 .add(Attributes.ATTACK_DAMAGE, 10.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
@@ -82,7 +86,17 @@ public class Securitron extends Monster implements GeoEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        entityData.define(HAS_TARGET, false);
         entityData.define(VARIANT, 0);
+    }
+
+    @Override
+    public void setTarget(@Nullable LivingEntity pTarget) {
+        super.setTarget(pTarget);
+
+        if (isServerSide) {
+            hasTarget(pTarget != null);
+        }
     }
 
     @Override
@@ -102,9 +116,9 @@ public class Securitron extends Monster implements GeoEntity {
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
-            if (getTarget() != null) {
+            if (hasTarget()) {
                 var animationName = getVariant().isUpgraded() ? "laser_mode" : "gun_mode";
-                animation.thenLoop(animationName);
+                animation.thenPlayAndHold(animationName);
             }
             return event.setAndContinue(animation);
         };
@@ -132,6 +146,14 @@ public class Securitron extends Monster implements GeoEntity {
     @NotNull
     private AnimationController.AnimationStateHandler<Securitron> animateAntena() {
         return event -> event.setAndContinue( begin().thenLoop("antena"));
+    }
+
+    public void hasTarget(boolean hasTarget) {
+        getEntityData().set(HAS_TARGET, hasTarget);
+    }
+
+    public boolean hasTarget(){
+        return getEntityData().get(HAS_TARGET);
     }
 
     public SecuritronVariant getVariant() {
