@@ -20,6 +20,6 @@ public class SecuritronModel<Type extends Securitron> extends EntityModel<Type> 
 
     @Override
     public RenderType getRenderType(Type animatable, ResourceLocation texture) {
-        return RenderType.entityTranslucent(texture);
+        return RenderType.entityTranslucent(this.getTextureResource(animatable));
     }
 }

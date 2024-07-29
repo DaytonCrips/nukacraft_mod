@@ -9,6 +9,7 @@ import com.nukateam.nukacraft.common.foundation.ModTiers;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.BaseGrenadeItem;
+import com.nukateam.nukacraft.common.foundation.items.guns.TechnicGun;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
 
@@ -150,6 +151,9 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> FLAMER = registerGun("flamer");
     public static final RegistryObject<GunItem> HANDMADE_FLAMER = registerGun("handmade_flamer");
 
+    public static final RegistryObject<GunItem> SECURITRON_GUN = registerTechnicGun("securitron_gun");
+    public static final RegistryObject<GunItem> SECURITRON_LASER = registerTechnicGun("securitron_laser");
+
     ///MAGAZINES
     // public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     // public static final RegistryObject<Item> MAGAZINE2  = ITEMS.register("magazine_t2", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
@@ -214,6 +218,10 @@ public class ModWeapons {
 
     public static RegistryObject<GunItem> registerGun(String name) {
         return ITEMS.register(name, () -> new GunItem(new Item.Properties().stacksTo(1)));
+    }
+
+    public static RegistryObject<GunItem> registerTechnicGun(String name) {
+        return ITEMS.register(name, () -> new TechnicGun(new Item.Properties().stacksTo(1)));
     }
 
     public static RegistryObject<GunItem> registerGun(String name, int durability) {
