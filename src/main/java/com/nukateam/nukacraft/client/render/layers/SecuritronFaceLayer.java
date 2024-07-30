@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
-@SuppressWarnings("ConstantConditions")
 public class SecuritronFaceLayer extends GeoRenderLayer<Securitron> {
     public SecuritronFaceLayer(GeoRenderer<Securitron> entityRendererIn) {
         super(entityRendererIn);
@@ -25,7 +24,6 @@ public class SecuritronFaceLayer extends GeoRenderLayer<Securitron> {
     @Override
     public void render(PoseStack poseStack, Securitron entity, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource,
                        VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
-
         var texture = nukaResource("textures/entity/securitron/screen.png");
         renderLayer(poseStack, entity, bakedModel, bufferSource, partialTick, packedLight, texture);
     }

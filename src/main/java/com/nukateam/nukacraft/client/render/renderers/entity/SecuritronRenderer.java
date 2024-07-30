@@ -42,15 +42,25 @@ public class SecuritronRenderer extends DynamicGeoEntityRenderer<Securitron> {
                                   MultiBufferSource bufferSource, VertexConsumer buffer,
                                   boolean isReRender, float partialTick, int packedLight,
                                   int packedOverlay, float red, float green, float blue, float alpha) {
-        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+
+        if(bone.getName().equals("screen"))
+            alpha = 0.4f;
+
+        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
+                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     @Nullable
     @Override
     protected ResourceLocation getTextureOverrideForBone(GeoBone bone, Securitron entity, float partialTick) {
-        var texture = nukaResource("textures/entity/securitron/" + entity.getVariant().getTexture() + ".png");
-        return bone.getName().equals("screen") ? texture : null;
+        return switch (bone.getName()){
+            case "face" -> nukaResource("textures/entity/securitron/" + entity.getVariant().getTexture() + ".png");
+            case "screen" -> nukaResource("textures/entity/securitron/screen.png");
+            default -> null;
+        };
     }
+
+
 
     @Override
     public RenderType getRenderType(Securitron animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
