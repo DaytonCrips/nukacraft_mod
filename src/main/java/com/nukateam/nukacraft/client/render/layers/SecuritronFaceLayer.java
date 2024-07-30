@@ -26,11 +26,12 @@ public class SecuritronFaceLayer extends GeoRenderLayer<Securitron> {
     public void render(PoseStack poseStack, Securitron entity, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource,
                        VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
-        var texture = nukaResource("textures/entity/securitron/" + entity.getVariant().getTexture() + ".png");
+        var texture = nukaResource("textures/entity/securitron/screen.png");
         renderLayer(poseStack, entity, bakedModel, bufferSource, partialTick, packedLight, texture);
     }
 
-    protected void renderLayer(PoseStack poseStack, Securitron entity, BakedGeoModel bakedModel, MultiBufferSource bufferSource, float partialTick, int packedLight, ResourceLocation texture) {
+    protected void renderLayer(PoseStack poseStack, Securitron entity, BakedGeoModel bakedModel,
+                               MultiBufferSource bufferSource, float partialTick, int packedLight, ResourceLocation texture) {
         int overlay = OverlayTexture.NO_OVERLAY;
         RenderType renderTypeNew = RenderType.entityTranslucent(texture);
         this.getRenderer().reRender(bakedModel, poseStack, bufferSource, entity,

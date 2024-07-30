@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.ntgl.client.render.renderers.DynamicGunRenderer;
 import com.nukateam.nukacraft.client.models.entity.*;
 import com.nukateam.nukacraft.client.render.layers.SecuritronFaceLayer;
@@ -22,7 +23,7 @@ import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 public class SecuritronRenderer extends DynamicGeoEntityRenderer<Securitron> {
     public SecuritronRenderer(EntityRendererProvider.Context renderManager) {
         super(renderManager,  new SecuritronModel<>());
-//        addRenderLayer(new SecuritronFaceLayer(this));
+        addRenderLayer(new SecuritronFaceLayer(this));
     }
 
     @Override
@@ -34,6 +35,14 @@ public class SecuritronRenderer extends DynamicGeoEntityRenderer<Securitron> {
         poseStack.pushPose();
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
         poseStack.popPose();
+    }
+
+    @Override
+    public void renderRecursively(PoseStack poseStack, Securitron animatable, GeoBone bone, RenderType renderType,
+                                  MultiBufferSource bufferSource, VertexConsumer buffer,
+                                  boolean isReRender, float partialTick, int packedLight,
+                                  int packedOverlay, float red, float green, float blue, float alpha) {
+        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
     @Nullable

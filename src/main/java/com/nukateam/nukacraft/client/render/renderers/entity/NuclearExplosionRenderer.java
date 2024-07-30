@@ -27,8 +27,8 @@ public class NuclearExplosionRenderer extends DynamicGeoEntityRenderer<NuclearEx
     }
 
     @Override
-    public Color getRenderColor(NuclearExplosionEffectEntity getOpacity, float partialTick, int packedLight) {
-        return Color.ofRGBA(1, 1, 1, getOpacity.getOpacity());
+    public Color getRenderColor(NuclearExplosionEffectEntity entity, float partialTick, int packedLight) {
+        return Color.ofRGBA(1, 1, 1, entity.getOpacity());
     }
 
     @Override
