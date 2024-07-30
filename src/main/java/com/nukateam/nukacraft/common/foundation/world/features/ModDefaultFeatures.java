@@ -17,6 +17,10 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_ASH);
     }
 
+//    public static void addMireTrees(BiomeGenerationSettings.Builder builder) {
+//        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_ASH);
+//    }
+
     public static void addDewdropTrees(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_DEWDROP);
     }

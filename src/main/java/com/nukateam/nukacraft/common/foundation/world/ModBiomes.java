@@ -26,6 +26,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> GLOW_SEA = createKey("glow_sea");
     public static final ResourceKey<Biome> ASH_HEAP = createKey("ash_heap");
     public static final ResourceKey<Biome> CRANBERRY_BOG = createKey("cranberry_bog");
+    public static final ResourceKey<Biome> MIRE = createKey("mire");
 
     private static final HashMap<ResourceKey<Biome>, BiomeSettings> biomeSettings = new HashMap<>();
 
@@ -37,6 +38,7 @@ public class ModBiomes {
         context.register(CRANBERRY_BOG  , createCranberryBog(placedFeatures, worldCarvers));
         context.register(ASH_HEAP       , createAshHeap(placedFeatures, worldCarvers));
         context.register(GLOW_SEA       , createGlowSea(placedFeatures, worldCarvers));
+        context.register(MIRE       , createMire(placedFeatures, worldCarvers));
 //        BiomeSettings
     }
 
@@ -45,6 +47,7 @@ public class ModBiomes {
         biomeSettings.put(CRANBERRY_BOG , new BiomeSettings().setFogDensity(1.0f));
         biomeSettings.put(ASH_HEAP      , new BiomeSettings().setFogDensity(0.5f));
         biomeSettings.put(GLOW_SEA      , new BiomeSettings().setFogDensity(0.05f));
+        biomeSettings.put(MIRE      , new BiomeSettings().setFogDensity(0.8f));
     }
 
     @Nullable
@@ -77,6 +80,39 @@ public class ModBiomes {
         ModDefaultFeatures.addAshStone(biomeBuilder);
         ModDefaultFeatures.addAcidLake(biomeBuilder);
         ModDefaultFeatures.addPoisonValleyPlants(biomeBuilder);
+
+        return (new Biome.BiomeBuilder())
+                .hasPrecipitation(true)
+                .temperature(0.5f)
+                .downfall(0.5f)
+                .specialEffects(effects)
+                .mobSpawnSettings(mobBuilder.build())
+                .generationSettings(biomeBuilder.build())
+                .build();
+    }
+
+    private static Biome createMire(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
+        var mobBuilder = new MobSpawnSettings.Builder();
+        //var settingsd = (IBiomeSettings)placedFeatures;
+
+        var biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
+        var effects = new BiomeSpecialEffects.Builder()
+                .fogColor(-5399162)
+                .waterColor(-9547964)
+                .waterFogColor(11648455)
+                .skyColor(-7964315)
+                .foliageColorOverride(1783388)
+                .grassColorOverride(-861768)
+                .build();
+
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.ASH_GRASS);
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.POISON_GRASS);
+//
+
+        //ModDefaultFeatures.addMireTrees(biomeBuilder);
+//        ModDefaultFeatures.addAshStone(biomeBuilder);
+//        ModDefaultFeatures.addAcidLake(biomeBuilder);
+//        ModDefaultFeatures.addPoisonValleyPlants(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(true)

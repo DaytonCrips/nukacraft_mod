@@ -65,7 +65,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPALUMI = registerBlock("deepalumi_block",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
                     .strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE).requiresCorrectToolForDrops()));
-    
+
+
+    public static final RegistryObject<Block> GARVELL = registerBlock("garvellll",
+            () -> new GravelBlock(BlockBehaviour.Properties.of().sound(SoundType.LARGE_AMETHYST_BUD).mapColor(MapColor.STONE)
+                    .strength(4.7f).sound(SoundType.LARGE_AMETHYST_BUD)));
+
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> ULTRACITE_TUFF = registerBlock("ultracite_tuff",
             () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE)
