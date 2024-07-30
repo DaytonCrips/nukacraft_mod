@@ -28,11 +28,9 @@ public class SecuritronRenderer extends DynamicGeoEntityRenderer<Securitron> {
 
     @Override
     public void render(Securitron entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if(entity.getVariant() == SecuritronVariant.BERSERK || entity.getVariant() == SecuritronVariant.DAMAGED) {
-            var scale = 1.5f;
-            poseStack.scale(scale, scale, scale);
-        }
+        var scale = entity.getVariant().getScale();
         poseStack.pushPose();
+        poseStack.scale(scale, scale, scale);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
         poseStack.popPose();
     }

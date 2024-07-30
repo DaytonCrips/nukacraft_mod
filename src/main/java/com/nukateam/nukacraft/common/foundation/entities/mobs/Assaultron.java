@@ -13,10 +13,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -35,7 +32,7 @@ import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
-public class Assaultron extends Monster implements GeoEntity {
+public class Assaultron extends PathfinderMob implements GeoEntity {
     public static final EntityDataAccessor<Boolean> IS_RUNNING =
             defineId(Assaultron.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
@@ -53,7 +50,7 @@ public class Assaultron extends Monster implements GeoEntity {
     };
     private String attackAnimName;
 
-    public Assaultron(EntityType<? extends Monster> entityType, Level level) {
+    public Assaultron(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
         getEntityData().set(IS_RUNNING, true);
     }
