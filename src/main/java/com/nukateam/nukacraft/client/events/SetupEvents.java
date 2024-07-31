@@ -12,6 +12,7 @@ import com.nukateam.nukacraft.client.render.renderers.entity.*;
 import com.nukateam.ntgl.client.render.renderers.projectiles.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.common.registery.ModParticles;
+import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -67,6 +68,8 @@ public class SetupEvents {
         event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
+
+        event.registerEntityRenderer(ModProjectiles.SECURITRON_LASER_PROJECTILE.get(), LaserProjectileRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());
