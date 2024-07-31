@@ -6,6 +6,7 @@ import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
+import com.nukateam.nukacraft.common.foundation.goals.SecuritronRangedAttackGoal;
 import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
 import com.nukateam.nukacraft.common.foundation.variants.SecuritronVariant;
 import com.nukateam.nukacraft.common.registery.items.ModWeapons;
@@ -44,11 +45,12 @@ import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Securitron extends PathfinderMob implements GeoEntity, RangedAttackMob, IGunUser {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private static final EntityDataAccessor<Boolean> HAS_TARGET = defineId(Securitron.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Securitron.class, EntityDataSerializers.INT);
+    private static final int SHOOTING_START_TIME = 15;
+
     private final boolean isServerSide = !level().isClientSide;
-    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Deathclaw.class, EntityDataSerializers.INT);
-    public static final EntityDataAccessor<Boolean> HAS_TARGET =
-            defineId(Deathclaw.class, EntityDataSerializers.BOOLEAN);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final AnimationHelper<Securitron> animationHelper = new AnimationHelper<>(this, new EntityModel<Securitron>());
 
     public Securitron(EntityType<? extends PathfinderMob> entityType, Level level) {
@@ -69,15 +71,14 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(3, new GunAttackGoal<>(this, 1.0D, 20.0F));
+        this.goalSelector.addGoal(3, new SecuritronRangedAttackGoal<>(this, 1.0D, 20.0F));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, this.getClass()));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        if(getVariant() == SecuritronVariant.BERSERK || getVariant() == SecuritronVariant.DAMAGED)
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
-
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Animal.class, false));
     }
 
     @Nullable
@@ -140,12 +141,21 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
+            var currentAnimation = controller.getCurrentAnimation();
+
             if (hasTarget()) {
                 var animationName = isUpgraded() ? "laser_mode" : "gun_mode";
                 animation.thenPlayAndHold(animationName);
-                return event.setAndContinue(animation);
+                animationHelper.syncAnimation(event, animationName, SHOOTING_START_TIME);
+            }
+            else if(controller.getCurrentAnimation() != null){
+                var animationName = isUpgraded() ? "laser_mode_end" : "gun_mode_end";
+                animation.thenPlay(animationName);
+                animationHelper.syncAnimation(event, animationName, SHOOTING_START_TIME);
             }
             else return PlayState.STOP;
+
+            return event.setAndContinue(animation);
         };
     }
 
@@ -180,6 +190,10 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
         return getEntityData().get(HAS_TARGET);
     }
 
+    public int getAttackDelay(){
+        return SHOOTING_START_TIME;
+    }
+
     public SecuritronVariant getVariant() {
         return SecuritronVariant.byId(this.getTypeVariant() & 255);
     }
@@ -206,5 +220,10 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
         if(!item.isEmpty())
             ShootingHandler.get().fire(this, item);
         else setupGuns();
+    }
+
+    @Override
+    public ItemStack getGun() {
+        return getMainHandItem();
     }
 }

@@ -1,0 +1,40 @@
+{
+  "general": {
+    "rate": 60,
+    "fireMode": "ntgl:semi",
+    "gripType": "ntgl:one_handed",
+    "loadingType": "magazine",
+    "maxAmmo": 1,
+    "reloadTime": 50,
+    "recoilAngle": 0,
+    "recoilKick": 0,
+    "recoilAdsReduction": 0,
+    "alwaysSpread": false
+  },
+  "projectile": {
+    "item": "nukacraft:fusion_cell",
+    "damage": 10.0,
+    "size": 0.2,
+    "speed": 26.0,
+    "life": 12
+  },
+  "sounds": {
+    "fire": "nukacraft:item.pistol10mm.fire",
+    "reload": "nukacraft:item.pistol10mm.reload",
+    "cock": "nukacraft:item.pistol10mm.cock",
+    "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
+    "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
+  },
+  "modules": {
+    "mods":[
+      {
+        "name": "short_scope",
+        "slot": "scope"
+      },
+      {
+        "name": "silencer",
+        "slot": "barrel"
+      }
+    ]
+  }
+}

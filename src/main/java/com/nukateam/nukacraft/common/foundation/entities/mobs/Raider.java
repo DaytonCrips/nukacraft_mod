@@ -150,4 +150,9 @@ public class Raider extends PathfinderMob implements RangedAttackMob, IGunUser {
     public ResourceLocation getTexture() {
         return nukaResource("textures/entity/raider/raider_" + getTypeVariant() + ".png");
     }
+
+    @Override
+    public ItemStack getGun() {
+        return getMainHandItem();
+    }
 }

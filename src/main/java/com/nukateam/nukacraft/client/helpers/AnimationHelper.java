@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.client.helpers;
 
-import com.nukateam.example.common.data.interfaces.IResourceProvider;
 import mod.azure.azurelib.cache.AzureLibCache;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animation.Animation;
@@ -18,8 +17,8 @@ public class AnimationHelper<T extends GeoAnimatable> {
         this.model = model;
     }
 
-    public void syncAnimation(AnimationState event, String animationName, int reloadDuration) {
-        var multiplier = (float) getSpeedMultiplier(animationName, reloadDuration);
+    public void syncAnimation(AnimationState event, String animationName, int duration) {
+        var multiplier = (float) getSpeedMultiplier(animationName, duration);
         event.setControllerSpeed(multiplier);
     }
 

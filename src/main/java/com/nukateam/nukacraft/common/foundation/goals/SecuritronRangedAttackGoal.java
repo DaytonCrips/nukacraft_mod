@@ -2,31 +2,30 @@ package com.nukateam.nukacraft.common.foundation.goals;
 
 import com.nukateam.ntgl.common.base.gun.Gun;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
-import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
+import com.nukateam.nukacraft.common.foundation.entities.mobs.Securitron;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 
 import java.util.EnumSet;
 
-public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser> extends Goal {
+public class SecuritronRangedAttackGoal<T extends Securitron> extends Goal {
     public static final UniformInt PATHFINDING_DELAY_RANGE = TimeUtil.rangeOfSeconds(1, 2);
     private final T mob;
-    //    private GunAttackGoal.CrossbowState crossbowState = GunAttackGoal.CrossbowState.UNCHARGED;
     private final double speedModifier;
     private final float attackRadiusSqr;
     private int seeTime;
-    private int attackDelay;
+    private int attackDelay = 0;
     private int updatePathDelay;
     private int reloadTimer = 0;
+    private LivingEntity buffTarget = null;
 
-    public GunAttackGoal(T pMob, double pSpeedModifier, float pAttackRadius) {
+    public SecuritronRangedAttackGoal(T pMob, double pSpeedModifier, float pAttackRadius) {
         this.mob = pMob;
         this.speedModifier = pSpeedModifier;
         this.attackRadiusSqr = pAttackRadius * pAttackRadius;
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     /**
@@ -72,28 +71,32 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         return true;
     }
 
-    /**
-     * Keep ticking a continuous task that has already been started
-     */
     public void tick() {
         var target = this.mob.getTarget();
-        if (target == null) return;
 
-        var hasLineOfSight = this.mob.getSensing().hasLineOfSight(target);
-        var flag1 = this.seeTime > 0;
+        if(buffTarget == null && target != null)
+            attackDelay = this.mob.getAttackDelay();
 
-        if (hasLineOfSight != flag1) this.seeTime = 0;
+        buffTarget = target;
+
+        if (buffTarget == null) return;
+
+        var hasLineOfSight = this.mob.getSensing().hasLineOfSight(buffTarget);
+        var seen = this.seeTime > 0;
+
+        if (hasLineOfSight != seen) this.seeTime = 0;
 
         if (hasLineOfSight)
             ++this.seeTime;
         else --this.seeTime;
 
-        var distance = this.mob.distanceToSqr(target);
+        var distance = this.mob.distanceToSqr(buffTarget);
         var flag2 = (distance > (double) this.attackRadiusSqr || this.seeTime < 5) && this.attackDelay == 0;
+
         if (flag2) {
             --this.updatePathDelay;
             if (this.updatePathDelay <= 0) {
-                this.mob.getNavigation().moveTo(target, this.canRun() ? this.speedModifier : this.speedModifier * 0.5D);
+                this.mob.getNavigation().moveTo(buffTarget, this.canRun() ? this.speedModifier : this.speedModifier * 0.5D);
                 this.updatePathDelay = PATHFINDING_DELAY_RANGE.sample(this.mob.getRandom());
             }
         } else {
@@ -104,11 +107,11 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
         var gunStack = mob.getGun();
-
         var gun = (GunItem) mob.getGun().getItem();
 
         if (Gun.hasAmmo(mob.getGun())) {
-            mob.performRangedAttack(target, 1);
+            if(attackDelay == 0)
+                mob.performRangedAttack(target, 1);
         } else if (reloadTimer == -1) {
             reloadTimer = gun.getGun().getGeneral().getReloadTime();
         } else if (reloadTimer > 0) {
@@ -117,16 +120,12 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
             Gun.fillAmmo(gunStack);
             reloadTimer = -1;
         }
+
+        if(attackDelay > 0)
+            attackDelay--;
     }
 
     private boolean canRun() {
         return true; //this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED;
     }
-
-//    enum CrossbowState {
-//        UNCHARGED,
-//        CHARGING,
-//        CHARGED,
-//        READY_TO_ATTACK;
-//    }
 }

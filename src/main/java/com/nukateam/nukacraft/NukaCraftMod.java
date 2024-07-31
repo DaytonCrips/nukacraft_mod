@@ -10,7 +10,6 @@ import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
-import com.nukateam.nukacraft.common.foundation.world.BiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
@@ -47,16 +46,6 @@ public class NukaCraftMod {
     private static boolean curiosLoaded = false;
 
     public NukaCraftMod() {
-//        AzureLib.initialize();
-
-        //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-//        MOD_EVENT_BUS.addListener(this::setup);
-
-//        MapCore.onInitialize();
-//        MapCore.initMapClient();
-
-//        new GunMod().initGunMod(MOD_EVENT_BUS);
-
         ModEffect.register(MOD_EVENT_BUS);
         EntityTypes.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
@@ -64,10 +53,10 @@ public class NukaCraftMod {
         ModWeapons.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
-//        ModBiomes.register(MOD_EVENT_BUS);
         ModFood.register(MOD_EVENT_BUS);
         ModBlockItems.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
+        ModProjectiles.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
@@ -78,10 +67,7 @@ public class NukaCraftMod {
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
         ModItemTabs.register(MOD_EVENT_BUS);
-//        WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
-//        WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
 
-//        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
 
