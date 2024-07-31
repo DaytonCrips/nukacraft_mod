@@ -44,7 +44,7 @@ public class SetupEvents {
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
         var particleEngine = Minecraft.getInstance().particleEngine;
-        particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
+        particleEngine.register(GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
         particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
         particleEngine.register(MUSHROOM_CLOUD_SMOKE.get(), SmallExplosionParticle.NukeFactory::new);
         particleEngine.register(MUSHROOM_CLOUD_EXPLOSION.get(), SmallExplosionParticle.NukeFactory::new);
@@ -69,7 +69,7 @@ public class SetupEvents {
         event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
 
-        event.registerEntityRenderer(ModProjectiles.SECURITRON_LASER_PROJECTILE.get(), LaserProjectileRenderer::new);
+        event.registerEntityRenderer(ModProjectiles.SECURITRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());
