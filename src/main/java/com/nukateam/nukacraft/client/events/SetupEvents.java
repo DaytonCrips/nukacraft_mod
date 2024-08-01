@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.events;
 
+import com.nukateam.ntgl.client.render.renderers.projectiles.ThrowableGrenadeRenderer;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
 import com.nukateam.nukacraft.client.render.gui.hud.PowerArmorHud;
@@ -9,9 +10,8 @@ import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
-import com.nukateam.ntgl.client.render.renderers.projectiles.*;
+import com.nukateam.nukacraft.client.render.renderers.projectile.AssaultronLaserRenderer;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
-import com.nukateam.nukacraft.common.registery.ModParticles;
 import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
@@ -68,7 +68,6 @@ public class SetupEvents {
         event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
-
         event.registerEntityRenderer(ModProjectiles.SECURITRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
