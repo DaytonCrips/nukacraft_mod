@@ -2,6 +2,7 @@ package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
 import com.nukateam.ntgl.common.base.utils.ProjectileManager;
+import com.nukateam.ntgl.common.foundation.entity.ContinuousLaserProjectile;
 import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
 import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
 import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
@@ -31,9 +32,10 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import static com.nukateam.ntgl.common.foundation.init.Projectiles.LASER_PROJECTILE;
-import static com.nukateam.ntgl.common.foundation.init.Projectiles.TESLA_PROJECTILE;
+import static com.nukateam.ntgl.common.foundation.init.Projectiles.*;
 import static com.nukateam.nukacraft.common.foundation.world.ModBiomes.setupBiomeSettings;
+import static com.nukateam.nukacraft.common.registery.ModProjectiles.ASSAULTRON_LASER_PROJECTILE;
+import static com.nukateam.nukacraft.common.registery.items.ModWeapons.ASSAULTRON_LASER;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -95,6 +97,8 @@ public class NukaCraftMod {
                 (level, entity, weapon, item, modifiedGun) -> {
                     if (item instanceof TeslaGun)
                         return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else if(item == ModWeapons.ASSAULTRON_LASER.get())
+                        return new ContinuousLaserProjectile(ASSAULTRON_LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                     else
                         return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                 });

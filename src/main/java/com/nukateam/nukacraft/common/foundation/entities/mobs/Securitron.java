@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.ntgl.client.data.handler.ShootingHandler;
+import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
@@ -44,7 +45,7 @@ import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegi
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
-public class Securitron extends PathfinderMob implements GeoEntity, RangedAttackMob, IGunUser {
+public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     private static final EntityDataAccessor<Boolean> HAS_TARGET = defineId(Securitron.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Securitron.class, EntityDataSerializers.INT);
     private static final int SHOOTING_START_TIME = 15;
@@ -90,11 +91,24 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
         return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 
-    private void setupGuns() {
-        var gun = isUpgraded() ? ModWeapons.SECURITRON_LASER : ModWeapons.SECURITRON_GUN;
-        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(gun.get()));
+    @Override
+    public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
+        var item = getMainHandItem();
+        if(!item.isEmpty()) {
+            try {
+                ShootingHandler.get().fire(this, item);
+            }
+            catch (Exception e){
+                NukaCraftMod.LOGGER.error(e.getMessage(), e);
+            }
+        }
+        else setupGuns();
     }
 
+    @Override
+    public ItemStack getGun() {
+        return getMainHandItem();
+    }
 
     @Override
     protected void defineSynchedData() {
@@ -134,6 +148,11 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
         controllers.add(new AnimationController<>(this, "controller", 0, animate()));
         controllers.add(new AnimationController<>(this, "armController", 0, animateArms()));
         controllers.add(new AnimationController<>(this, "antenaController", 0, animateAntena()));
+    }
+
+    private void setupGuns() {
+        var gun = isUpgraded() ? ModWeapons.SECURITRON_LASER : ModWeapons.SECURITRON_GUN;
+        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(gun.get()));
     }
 
     private AnimationController.AnimationStateHandler<Securitron> animateArms() {
@@ -212,18 +231,5 @@ public class Securitron extends PathfinderMob implements GeoEntity, RangedAttack
 
     private boolean isUpgraded(){
         return getVariant().isUpgraded();
-    }
-
-    @Override
-    public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        var item = getMainHandItem();
-        if(!item.isEmpty())
-            ShootingHandler.get().fire(this, item);
-        else setupGuns();
-    }
-
-    @Override
-    public ItemStack getGun() {
-        return getMainHandItem();
     }
 }

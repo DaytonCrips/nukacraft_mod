@@ -10,7 +10,7 @@ import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
-import com.nukateam.nukacraft.client.render.renderers.projectile.AssaultronLaserRenderer;
+import com.nukateam.nukacraft.client.render.renderers.projectile.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
 import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
@@ -27,6 +27,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
 import static com.nukateam.nukacraft.common.registery.ModParticles.*;
+import static com.nukateam.nukacraft.common.registery.ModProjectiles.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupEvents {
@@ -66,9 +67,10 @@ public class SetupEvents {
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
-        event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
+        event.registerEntityRenderer(ASSAULTRON.get(), AssaultronRenderer::new);
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
-        event.registerEntityRenderer(ModProjectiles.SECURITRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
+
+        event.registerEntityRenderer(ASSAULTRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());

@@ -15,7 +15,8 @@ import java.util.function.BiFunction;
 
 public class ModProjectiles {
     public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Ntgl.MOD_ID);
-    public static final RegistryObject<EntityType<LaserProjectile>> SECURITRON_LASER_PROJECTILE = registerBasic("securitron_laser_projectile", LaserProjectile::new);
+    public static final RegistryObject<EntityType<LaserProjectile>> ASSAULTRON_LASER_PROJECTILE =
+            registerBasic("assaultron_laser_projectile", ContinuousLaserProjectile::new);
 
     private static <T extends Entity> RegistryObject<EntityType<T>> registerBasic(String id, BiFunction<EntityType<T>, Level, T> function) {
         return REGISTER.register(id, () -> EntityType.Builder.of(function::apply, MobCategory.MISC)
