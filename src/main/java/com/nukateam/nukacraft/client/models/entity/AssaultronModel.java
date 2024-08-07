@@ -12,9 +12,4 @@ public class AssaultronModel<Type extends Assaultron> extends EntityModel<Type> 
     public ResourceLocation getTextureResource(Type object) {
         return nukaResource("textures/entity/assaultron/assaultron.png");
     }
-
-    @Override
-    public RenderType getRenderType(Type animatable, ResourceLocation texture) {
-        return RenderType.entityTranslucent(this.getTextureResource(animatable));
-    }
 }

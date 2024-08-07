@@ -151,10 +151,6 @@ public class ModWeapons {
     public static final RegistryObject<GunItem> FLAMER = registerGun("flamer");
     public static final RegistryObject<GunItem> HANDMADE_FLAMER = registerGun("handmade_flamer");
 
-    public static final RegistryObject<GunItem> SECURITRON_GUN = registerTechnicGun("securitron_gun");
-    public static final RegistryObject<GunItem> SECURITRON_LASER = registerTechnicGun("securitron_laser");
-    public static final RegistryObject<GunItem> ASSAULTRON_LASER = registerTechnicGun("assaultron_laser");
-
     ///MAGAZINES
     // public static final RegistryObject<Item> MAGAZINE1  = ITEMS.register("magazine_t1", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     // public static final RegistryObject<Item> MAGAZINE2  = ITEMS.register("magazine_t2", () -> new MagazineItem(UnderBarrel.create(ExtraGunModifiers.MAGAZINES), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));

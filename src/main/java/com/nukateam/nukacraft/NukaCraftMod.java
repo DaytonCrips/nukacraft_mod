@@ -35,7 +35,6 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 import static com.nukateam.ntgl.common.foundation.init.Projectiles.*;
 import static com.nukateam.nukacraft.common.foundation.world.ModBiomes.setupBiomeSettings;
 import static com.nukateam.nukacraft.common.registery.ModProjectiles.ASSAULTRON_LASER_PROJECTILE;
-import static com.nukateam.nukacraft.common.registery.items.ModWeapons.ASSAULTRON_LASER;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -53,6 +52,7 @@ public class NukaCraftMod {
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModWeapons.register(MOD_EVENT_BUS);
+        MobGuns.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
         ModFood.register(MOD_EVENT_BUS);
@@ -97,7 +97,7 @@ public class NukaCraftMod {
                 (level, entity, weapon, item, modifiedGun) -> {
                     if (item instanceof TeslaGun)
                         return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
-                    else if(item == ModWeapons.ASSAULTRON_LASER.get())
+                    else if(item == MobGuns.ASSAULTRON_LASER.get())
                         return new ContinuousLaserProjectile(ASSAULTRON_LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                     else
                         return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);

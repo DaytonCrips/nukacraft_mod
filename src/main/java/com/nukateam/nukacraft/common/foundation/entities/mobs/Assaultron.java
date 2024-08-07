@@ -9,7 +9,7 @@ import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.goals.AssaultronAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.GeoMeleeAttackGoal;
-import com.nukateam.nukacraft.common.registery.items.ModWeapons;
+import com.nukateam.nukacraft.common.registery.items.MobGuns;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -24,6 +24,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -36,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.advancements.critereon.SlimePredicate.sized;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, ITriggerProvider {
@@ -85,6 +87,7 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
         this.goalSelector.addGoal(4, new GeoMeleeAttackGoal<>(this, 1.5D, false));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, this.getClass()));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Monster.class, false));
@@ -100,7 +103,7 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
     }
 
     private void setupGuns() {
-        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModWeapons.ASSAULTRON_LASER.get()));
+        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(MobGuns.ASSAULTRON_LASER.get()));
     }
 
     @Override
@@ -280,12 +283,11 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
 
     @Override
     public void onAttack() {
-        if (!startAttacking) {
-            startAttacking = true;
-            attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
-        }
-
-        triggerAnim(TRIGGER,attackAnimName);
+//        if (!startAttacking) {
+//            startAttacking = true;
+//        }
+        attackAnimName = attackAnims[random.nextInt(attackAnims.length)];
+        triggerAnim(TRIGGER, attackAnimName);
     }
 
 //    public DeathclawVariant getVariant() {

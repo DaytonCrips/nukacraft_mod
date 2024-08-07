@@ -103,6 +103,18 @@ public class Deathclaw extends Monster implements GeoEntity {
     }
 
     @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.setTypeVariant(pCompound.getInt("Variant"));
+    }
+
+    @Override
     public void setTarget(@Nullable LivingEntity pTarget) {
         super.setTarget(pTarget);
 

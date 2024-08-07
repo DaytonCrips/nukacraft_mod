@@ -5,12 +5,9 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
-import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.SecuritronRangedAttackGoal;
-import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
 import com.nukateam.nukacraft.common.foundation.variants.SecuritronVariant;
-import com.nukateam.nukacraft.common.registery.items.ModWeapons;
+import com.nukateam.nukacraft.common.registery.items.MobGuns;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -29,9 +26,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -39,10 +35,9 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.CLOSE;
-import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.OPEN;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.advancements.critereon.SlimePredicate.sized;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
@@ -92,6 +87,29 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     }
 
     @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.setTypeVariant(pCompound.getInt("Variant"));
+    }
+Villager
+    @Override
+    public EntityDimensions getDimensions(Pose pPose) {
+        return getType().getDimensions().scale(this.getScale());
+    }
+
+    @Override
+    public float getScale() {
+        var variant = getVariant();
+        return variant.getScale();
+    }
+
+    @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
         var item = getMainHandItem();
         if(!item.isEmpty()) {
@@ -130,11 +148,20 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     }
 
     @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
+        if (VARIANT.equals(pKey)) {
+            this.refreshDimensions();
+        }
+
+        super.onSyncedDataUpdated(pKey);
+    }
+
+
+    @Override
     public void tick() {
         super.tick();
         if(isServerSide){
             getEntityData().set(HAS_TARGET, getTarget() != null);
-
         }
     }
 
@@ -151,7 +178,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     }
 
     private void setupGuns() {
-        var gun = isUpgraded() ? ModWeapons.SECURITRON_LASER : ModWeapons.SECURITRON_GUN;
+        var gun = isUpgraded() ? MobGuns.SECURITRON_LASER : MobGuns.SECURITRON_GUN;
         setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(gun.get()));
     }
 
