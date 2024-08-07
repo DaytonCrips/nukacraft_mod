@@ -2,7 +2,10 @@ package com.nukateam.nukacraft.client.render.renderers.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.nukateam.nukacraft.client.models.entity.AssaultronModel;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
+import com.nukateam.nukacraft.client.render.layers.AssaultronLaserLayer;
+import com.nukateam.nukacraft.client.render.layers.GlowingLayer;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.Assaultron;
 import mod.azure.azurelib.cache.object.GeoBone;
 import mod.azure.azurelib.renderer.DynamicGeoEntityRenderer;
@@ -15,7 +18,8 @@ import javax.annotation.Nullable;
 
 public class AssaultronRenderer extends DynamicGeoEntityRenderer<Assaultron> {
     public AssaultronRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager,  new EntityModel<>());
+        super(renderManager,  new AssaultronModel<>());
+        addRenderLayer(new GlowingLayer<>(this));
     }
 
     @Override
@@ -23,18 +27,18 @@ public class AssaultronRenderer extends DynamicGeoEntityRenderer<Assaultron> {
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 
-    @Override
-    public void renderRecursively(PoseStack poseStack, Assaultron animatable, GeoBone bone, RenderType renderType,
-                                  MultiBufferSource bufferSource, VertexConsumer buffer,
-                                  boolean isReRender, float partialTick, int packedLight,
-                                  int packedOverlay, float red, float green, float blue, float alpha) {
-
-        if(bone.getName().equals("laser"))
-            bone.setHidden(!animatable.isShootingLaser());
-
-        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
-                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-    }
+//    @Override
+//    public void renderRecursively(PoseStack poseStack, Assaultron animatable, GeoBone bone, RenderType renderType,
+//                                  MultiBufferSource bufferSource, VertexConsumer buffer,
+//                                  boolean isReRender, float partialTick, int packedLight,
+//                                  int packedOverlay, float red, float green, float blue, float alpha) {
+//
+//        if(bone.getName().equals("laser"))
+//            bone.setHidden(!animatable.isShootingLaser());
+//
+//        super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer, isReRender,
+//                partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+//    }
 
 
     @Override

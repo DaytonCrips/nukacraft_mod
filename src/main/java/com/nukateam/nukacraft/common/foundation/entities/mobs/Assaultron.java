@@ -215,25 +215,27 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
     @NotNull
     private AnimationController.AnimationStateHandler<Assaultron> animateArms() {
         return event -> {
-//            var controller = event.getController();
-//            var animation = begin();
-//            var isAggressive = getEntityData().get(IS_AGGRESSIVE);
-//            controller.setAnimationSpeed(1);
-//
-//            if (event.isMoving()) {
-//                if(isAggressive){
-//                    animation.thenLoop("run_arms");
-//                    controller.setAnimationSpeed(3);
-//                }
-//                else {
-//                    animation.thenLoop("walk_arms");
-//                    controller.setAnimationSpeed(2);
-//                }
-//            }
-//            else
+            var controller = event.getController();
+            var animation = begin();
+            var isAggressive = getEntityData().get(IS_AGGRESSIVE);
+            controller.setAnimationSpeed(1);
+
+            if(!triggersController.hasAnimationFinished())
                 return PlayState.STOP;
 
-//            return event.setAndContinue(animation);
+            if (event.isMoving()) {
+                if(isAggressive){
+                    animation.thenLoop("run_arms");
+                    controller.setAnimationSpeed(3);
+                }
+                else {
+                    animation.thenLoop("walk_arms");
+                    controller.setAnimationSpeed(2);
+                }
+            }
+            else return PlayState.STOP;
+
+            return event.setAndContinue(animation);
         };
     }
 
