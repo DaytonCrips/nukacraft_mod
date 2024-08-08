@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
+import com.google.common.collect.ImmutableMap;
 import com.jetug.chassis_core.common.foundation.entity.ChassisBase;
 import com.jetug.chassis_core.common.foundation.entity.HandEntity;
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
@@ -11,7 +12,6 @@ import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -22,22 +22,28 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damageItem;
 import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.*;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.JETPACK;
-import static mod.azure.azurelib.core.animation.AnimatableManager.*;
+import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
@@ -47,6 +53,23 @@ public class PowerArmorFrame extends WearableChassis {
     public static final PowerArmorHand HAND = new PowerArmorHand();
     public static final EntityDataAccessor<Boolean> IS_OPEN = defineId(PowerArmorFrame.class, EntityDataSerializers.BOOLEAN);
     public static final String TRIGGER_CONTROLLER = "baseAnim";
+    public static final EntityDimensions STANDING_DIMENSIONS = EntityDimensions.scalable(1.0f, 2.3f);
+    public static final EntityDimensions CROUCHING_DIMENSIONS = EntityDimensions.scalable(1.0f, 2.0f);
+    private static final Map<Pose, EntityDimensions> POSES = ImmutableMap.<Pose, EntityDimensions>builder()
+            .put(Pose.STANDING, STANDING_DIMENSIONS)
+            .put(Pose.CROUCHING, CROUCHING_DIMENSIONS)
+            .build();
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return ChassisBase.createLivingAttributes()
+                .add(Attributes.MAX_HEALTH, 1000.0)
+                .add(Attributes.ATTACK_DAMAGE, 0.0)
+                .add(Attributes.MOVEMENT_SPEED, 0.1)
+                .add(Attributes.ATTACK_KNOCKBACK, 0.0)
+                .add(Attributes.JUMP_STRENGTH, 0.5)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.8);
+    }
+
 
     public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
 
@@ -69,6 +92,12 @@ public class PowerArmorFrame extends WearableChassis {
 //        return List.of(armorParts);
 //    }
 
+
+//    @Override
+//    public boolean isAttackable() {
+//        return false;
+//    }
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -80,12 +109,12 @@ public class PowerArmorFrame extends WearableChassis {
         return false;
     }
 
-    public void open(){
+    public void open() {
         entityData.set(IS_OPEN, true);
         this.triggerAnim(TRIGGER_CONTROLLER, OPEN);
     }
 
-    public void close(){
+    public void close() {
         entityData.set(IS_OPEN, false);
         this.triggerAnim(TRIGGER_CONTROLLER, CLOSE);
     }
@@ -109,7 +138,28 @@ public class PowerArmorFrame extends WearableChassis {
         } else {
             tickCounter++;
         }
+
+        updatePlayerPose();
     }
+
+    @Override
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose pPose) {
+        return POSES.getOrDefault(pPose, STANDING_DIMENSIONS);
+    }
+
+    protected void updatePlayerPose() {
+        if (this.canEnterPose(Pose.SWIMMING)) {
+            Pose pose;
+            if (hasPlayerPassenger() && getPlayerPassenger().isShiftKeyDown()) {
+                pose = Pose.CROUCHING;
+            } else {
+                pose = Pose.STANDING;
+            }
+
+            this.setPose(pose);
+        }
+    }
+
 
     public static int getId(String chassisPart) {
         return POWER_ARMOR_PART_IDS.get(chassisPart);
@@ -135,20 +185,18 @@ public class PowerArmorFrame extends WearableChassis {
     @Override
     public InteractionResult interactAt(Player player, Vec3 vector, InteractionHand hand) {
         if (this.isServerSide && !player.isPassenger() && hand == InteractionHand.MAIN_HAND) {
-            if(!this.isVehicle()) {
+            if (!this.isVehicle()) {
                 if (player.isShiftKeyDown()) {
-                    if(entityData.get(IS_OPEN)) {
+                    if (entityData.get(IS_OPEN)) {
                         close();
-                    }
-                    else this.openGUI(player);
+                    } else this.openGUI(player);
                     return InteractionResult.SUCCESS;
                 }
 
                 if (entityData.get(IS_OPEN)) {
                     this.ride(player);
                     close();
-                }
-                else{
+                } else {
                     open();
                 }
                 return InteractionResult.SUCCESS;
@@ -206,17 +254,24 @@ public class PowerArmorFrame extends WearableChassis {
 
     @Override
     public void jump() {
-        if(hasEnergy())
+        if (hasEnergy())
             super.jump();
     }
 
     @Override
     protected void updateSpeed() {
-        if (hasEnergy())
-            setSpeed(getSpeedAttribute());
+        if (hasEnergy()) {
+            if(isCrouching())
+                setSpeed(getSpeedAttribute() / 2);
+            else setSpeed(getSpeedAttribute());
+        }
         else {
             setSpeed(getMinSpeed());
         }
+    }
+
+    public boolean isCrouching() {
+        return this.hasPose(Pose.CROUCHING);
     }
 
     @Override
@@ -292,7 +347,7 @@ public class PowerArmorFrame extends WearableChassis {
             controller.setAnimationSpeed(1);
             RawAnimation animation = null;
 
-            if(entityData.get(IS_OPEN))
+            if (entityData.get(IS_OPEN))
                 animation = begin().then(OPEN, HOLD_ON_LAST_FRAME);
             else animation = begin().then(CLOSE, PLAY_ONCE);
 
@@ -311,10 +366,9 @@ public class PowerArmorFrame extends WearableChassis {
 //            if(triggersController.isPlayingTriggeredAnimation())
 //                return PlayState.STOP;
 
-            if(passenger == null) {
+            if (passenger == null) {
                 animation = begin().then(IDLE_EMPTY, LOOP);
-            }
-            else if (!passengerHaveGun()) {
+            } else if (!passengerHaveGun()) {
                 if (passenger.attackAnim > 0) {
                     controller.setAnimationSpeed(2.0D);
                     animation = begin().then(HIT, PLAY_ONCE);
@@ -323,8 +377,7 @@ public class PowerArmorFrame extends WearableChassis {
                 } else if (isWalking()) {
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                     animation = begin().then(WALK_ARMS, LOOP);
-                }
-                else {
+                } else {
                     if (begin().then(WALK_ARMS, LOOP).equals(armsAnimation))
                         animation = begin().then(WALK_ARMS, PLAY_ONCE).then(IDLE, LOOP);
                     else
@@ -357,8 +410,7 @@ public class PowerArmorFrame extends WearableChassis {
                 }
             } else if (passenger.isShiftKeyDown()) {
                 animation = begin().then(SNEAK_END, LOOP);
-            }
-            else {
+            } else {
                 if (begin().then(WALK_LEGS, LOOP).equals(legsAnimation))
                     animation = begin().then(WALK_LEGS, PLAY_ONCE);
             }

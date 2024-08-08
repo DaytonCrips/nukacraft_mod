@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.mixin.client;
+package com.nukateam.nukacraft.mixin.common;
 
 import com.jetug.chassis_core.common.foundation.entity.WearableChassis;
 import net.bettercombat.BetterCombat;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.getPowerArmor;
 
 @Mixin(TargetFinder.class)
-public class TargetFinderMixin {
+public abstract class TargetFinderMixin {
     @Inject(method = "getInitialTargets(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;D)Ljava/util/List;",
             at = @At(value = "HEAD"), cancellable = true, remap = false)
     private static void getInitialTargets(Player player, Entity cursorTarget, double attackRange,
@@ -38,7 +38,7 @@ public class TargetFinderMixin {
                                 || TargetHelper.isAttackableMount(entity))
                         && TargetHelper.getRelation(player, entity) == TargetHelper.Relation.HOSTILE)
                 .collect(Collectors.toList());
-        if (cursorTarget != null && cursorTarget.isAttackable()) {
+        if (cursorTarget != null && cursorTarget.isAttackable() && cursorTarget != player.getVehicle()) {
             entities.add(cursorTarget);
         }
 
