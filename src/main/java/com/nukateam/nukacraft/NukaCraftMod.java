@@ -45,6 +45,7 @@ public class NukaCraftMod {
     public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
     private static boolean curiosLoaded = false;
+    private static boolean betterCombatLoaded = false;
 
     public NukaCraftMod() {
         ModEffect.register(MOD_EVENT_BUS);
@@ -81,11 +82,16 @@ public class NukaCraftMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         curiosLoaded = ModList.get().isLoaded("curios");
+        betterCombatLoaded = ModList.get().isLoaded("bettercombat");
     }
 
 
     public static boolean isCuriosLoaded() {
         return curiosLoaded;
+    }
+
+    public static boolean isBetterCombatLoaded() {
+        return betterCombatLoaded;
     }
 
     private static void registerProjectileFactories() {

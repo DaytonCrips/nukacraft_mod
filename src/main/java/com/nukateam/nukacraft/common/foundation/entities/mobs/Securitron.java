@@ -97,7 +97,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
         super.readAdditionalSaveData(pCompound);
         this.setTypeVariant(pCompound.getInt("Variant"));
     }
-Villager
+
     @Override
     public EntityDimensions getDimensions(Pose pPose) {
         return getType().getDimensions().scale(this.getScale());

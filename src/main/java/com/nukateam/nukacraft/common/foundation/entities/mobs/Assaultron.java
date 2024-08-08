@@ -197,9 +197,7 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
 
     @Override
     protected boolean shouldDropLoot() {
-
         dropEquipment();
-
         return super.shouldDropLoot();
     }
 
