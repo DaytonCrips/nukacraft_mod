@@ -139,7 +139,7 @@ public class PowerArmorFrame extends WearableChassis {
             tickCounter++;
         }
 
-        updatePlayerPose();
+        updatePose();
     }
 
     @Override
@@ -147,17 +147,24 @@ public class PowerArmorFrame extends WearableChassis {
         return POSES.getOrDefault(pPose, STANDING_DIMENSIONS);
     }
 
-    protected void updatePlayerPose() {
-        if (this.canEnterPose(Pose.SWIMMING)) {
-            Pose pose;
-            if (hasPlayerPassenger() && getPlayerPassenger().isShiftKeyDown()) {
-                pose = Pose.CROUCHING;
-            } else {
-                pose = Pose.STANDING;
-            }
+    protected void updatePose() {
+        Pose pose;
+        if (hasPlayerPassenger() && getPlayerPassenger().isShiftKeyDown()) {
+            pose = Pose.CROUCHING;
+            setSpeed(getSpeedAttribute() / 2f);
 
-            this.setPose(pose);
+        } else {
+            pose = Pose.STANDING;
+            if(hasPlayerPassenger() && getPlayerPassenger().isSprinting())
+                setSpeed(getSpeedAttribute() * 1.5f);
+            else setSpeed(getSpeedAttribute());
         }
+
+        if (!hasEnergy()) {
+            setSpeed(getMinSpeed());
+        }
+
+        this.setPose(pose);
     }
 
 
@@ -258,17 +265,17 @@ public class PowerArmorFrame extends WearableChassis {
             super.jump();
     }
 
-    @Override
-    protected void updateSpeed() {
-        if (hasEnergy()) {
-            if(isCrouching())
-                setSpeed(getSpeedAttribute() / 2);
-            else setSpeed(getSpeedAttribute());
-        }
-        else {
-            setSpeed(getMinSpeed());
-        }
-    }
+//    @Override
+//    protected void updateSpeed() {
+//        if (hasEnergy()) {
+//            if(isCrouching())
+//                setSpeed(getSpeedAttribute() / 2);
+//            else setSpeed(getSpeedAttribute());
+//        }
+//        else {
+//            setSpeed(getMinSpeed());
+//        }
+//    }
 
     public boolean isCrouching() {
         return this.hasPose(Pose.CROUCHING);
