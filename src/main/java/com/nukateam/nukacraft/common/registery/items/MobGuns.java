@@ -21,10 +21,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class MobGuns {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
-    public static final RegistryObject<GunItem> SECURITRON_GUN = ModWeapons.registerTechnicGun("securitron_gun");
-    public static final RegistryObject<GunItem> SECURITRON_LASER = ModWeapons.registerTechnicGun("securitron_laser");
-    public static final RegistryObject<GunItem> ASSAULTRON_LASER = ModWeapons.registerTechnicGun("assaultron_laser");
-
+    public static final RegistryObject<GunItem> SECURITRON_GUN = registerTechnicGun("securitron_gun");
+    public static final RegistryObject<GunItem> SECURITRON_LASER = registerTechnicGun("securitron_laser");
+    public static final RegistryObject<GunItem> ASSAULTRON_LASER = registerTechnicGun("assaultron_laser");
 
     public static RegistryObject<GunItem> registerTechnicGun(String name) {
         return ITEMS.register(name, () -> new TechnicGun(new Item.Properties().stacksTo(1)));

@@ -23,9 +23,8 @@ public class ArmorChassisAnimation {
     public static final String PUNCH2 = "punch2";
     public static final String WALK_ARMS = "walk_arms";
     public static final String WALK_LEGS = "walk_legs";
-    public static final String SNEAK = "sneak";
+    public static final String SNEAK_START = "sneak_start";
     public static final String SNEAK_END = "sneak_end";
-    public static final String STOP_SNEAK = "stop_sneak";
     public static final String SNEAK_WALK = "sneak_walk";
     public static final String DASH_UP = "dash_up";
     public static final String DASH_FORWARD = "dash_forward";

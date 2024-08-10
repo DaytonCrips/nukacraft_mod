@@ -12,25 +12,29 @@ import com.nukateam.nukacraft.common.foundation.entities.mobs.Raider;
 import mod.azure.azurelib.core.animation.AnimationController;
 import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.core.object.PlayState;
+import net.minecraft.client.gui.screens.ReceivingLevelScreen;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -82,6 +86,8 @@ public class PowerArmorFrame extends WearableChassis {
     public RawAnimation armsAnimation = null;
     public RawAnimation legsAnimation = null;
     private int tickCounter = 0;
+    protected int sprintTriggerTime;
+    private boolean crouching;
 
     public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
         super(type, worldIn, POWER_ARMOR_PART_IDS);
@@ -97,6 +103,8 @@ public class PowerArmorFrame extends WearableChassis {
 //    public boolean isAttackable() {
 //        return false;
 //    }
+
+
 
     @Override
     protected void defineSynchedData() {
@@ -123,6 +131,16 @@ public class PowerArmorFrame extends WearableChassis {
     public void positionRider(Entity entity, Entity.MoveFunction pCallback) {
         super.positionRider(entity, pCallback);
 
+        var passenger = getControllingPassenger();
+        if (passenger == null) return;
+
+        var yOffset =  1.0f;
+        var posY = getY() + getPassengersRidingOffset() + entity.getMyRidingOffset() - yOffset;
+        entity.setPos(getX(), posY, getZ());
+
+        if (entity instanceof LivingEntity livingEntity)
+            livingEntity.yBodyRot = yBodyRot;
+
         if (entity instanceof Raider) {
             entity.setPos(this.position());
         }
@@ -147,17 +165,26 @@ public class PowerArmorFrame extends WearableChassis {
         return POSES.getOrDefault(pPose, STANDING_DIMENSIONS);
     }
 
+    protected float getCrouchingSpeed(){
+        return getSpeedAttribute() / 2f;
+    }
+
+    protected float getSprintingSpeed(){
+        return getSpeedAttribute() * 1.5f;
+    }
+
     protected void updatePose() {
         Pose pose;
         if (hasPlayerPassenger() && getPlayerPassenger().isShiftKeyDown()) {
             pose = Pose.CROUCHING;
-            setSpeed(getSpeedAttribute() / 2f);
+            setSpeed(getCrouchingSpeed());
 
         } else {
             pose = Pose.STANDING;
             if(hasPlayerPassenger() && getPlayerPassenger().isSprinting())
-                setSpeed(getSpeedAttribute() * 1.5f);
-            else setSpeed(getSpeedAttribute());
+                setSpeed(getSprintingSpeed());
+            else
+                setSpeed(getSpeedAttribute());
         }
 
         if (!hasEnergy()) {
@@ -167,6 +194,181 @@ public class PowerArmorFrame extends WearableChassis {
         this.setPose(pose);
     }
 
+//    private boolean hasEnoughImpulseToStartSprinting(LocalPlayer player) {
+//        double d0 = 0.8D;
+//        return this.isUnderWater() ? player.input.hasForwardImpulse() : (double)player.input.forwardImpulse >= 0.8D;
+//    }
+//
+//    public boolean isMovingSlowly() {
+//        return this.isCrouching() || this.isVisuallyCrawling();
+//    }
+
+//    @Override
+//    public void aiStep() {
+//        super.aiStep();
+//
+//        var passenger = getControllingPassenger();
+//
+//        if (isClientSide && passenger instanceof LocalPlayer player) {
+//            if (this.sprintTriggerTime > 0) {
+//                --this.sprintTriggerTime;
+//            }
+//
+//            var input = player.input;
+//
+//            boolean flag = input.jumping;
+//            boolean flag1 = input.shiftKeyDown;
+//            boolean flag2 = hasEnoughImpulseToStartSprinting(player);
+//            this.crouching = !this.isSwimming()
+//                    && this.canEnterPose(Pose.CROUCHING)
+//                    && (player.isShiftKeyDown()
+//                        || !this.isSleeping()
+//                        && !this.canEnterPose(Pose.STANDING));
+//
+//            float f = Mth.clamp(0.3F + EnchantmentHelper.getSneakingSpeedBonus(this), 0.0F, 1.0F);
+//            input.tick(this.isMovingSlowly(), f);
+//            net.minecraftforge.client.ForgeHooksClient.onMovementInputUpdate(this, input);
+////            this.minecraft.getTutorial().onInput(input);
+//
+//            if (this.isUsingItem() && !this.isPassenger()) {
+//                input.leftImpulse *= 0.2F;
+//                input.forwardImpulse *= 0.2F;
+//                this.sprintTriggerTime = 0;
+//            }
+//
+//            boolean flag3 = false;
+//
+//
+////            if (!this.noPhysics) {
+////                this.moveTowardsClosestSpace(this.getX() - (double) this.getBbWidth() * 0.35D, this.getZ() + (double) this.getBbWidth() * 0.35D);
+////                this.moveTowardsClosestSpace(this.getX() - (double) this.getBbWidth() * 0.35D, this.getZ() - (double) this.getBbWidth() * 0.35D);
+////                this.moveTowardsClosestSpace(this.getX() + (double) this.getBbWidth() * 0.35D, this.getZ() - (double) this.getBbWidth() * 0.35D);
+////                this.moveTowardsClosestSpace(this.getX() + (double) this.getBbWidth() * 0.35D, this.getZ() + (double) this.getBbWidth() * 0.35D);
+////            }
+//
+//            if (flag1) {
+//                this.sprintTriggerTime = 0;
+//            }
+//
+//            boolean flag4 = this.canStartSprinting();
+//            boolean flag5 = this.isPassenger() ? this.getVehicle().onGround() : this.onGround();
+//            boolean flag6 = !flag1 && !flag2;
+//            if ((flag5 || this.isUnderWater() || this.canStartSwimming()) && flag6 && flag4) {
+//                if (this.sprintTriggerTime <= 0 && !this.minecraft.options.keySprint.isDown()) {
+//                    this.sprintTriggerTime = 7;
+//                } else {
+//                    this.setSprinting(true);
+//                }
+//            }
+//
+//            if (!this.isSprinting() && (!(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType))) || (this.isUnderWater() || this.canStartSwimming())) && this.hasEnoughImpulseToStartSprinting() && flag4 && !this.isUsingItem() && !this.hasEffect(MobEffects.BLINDNESS) && this.minecraft.options.keySprint.isDown()) {
+//                this.setSprinting(true);
+//            }
+//
+//            if (this.isSprinting()) {
+//                boolean flag7 = !input.hasForwardImpulse() || !this.hasEnoughFoodToStartSprinting();
+//                boolean flag8 = flag7 || this.horizontalCollision && !this.minorHorizontalCollision || this.isInWater() && !this.isUnderWater() || (this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType)) && !this.canStartSwimming());
+//                if (this.isSwimming()) {
+//                    if (!this.onGround() && !input.shiftKeyDown && flag7 || !(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType)))) {
+//                        this.setSprinting(false);
+//                    }
+//                } else if (flag8) {
+//                    this.setSprinting(false);
+//                }
+//            }
+//
+//            boolean flag9 = false;
+//            if (this.getAbilities().mayfly) {
+//                if (this.minecraft.gameMode.isAlwaysFlying()) {
+//                    if (!this.getAbilities().flying) {
+//                        this.getAbilities().flying = true;
+//                        flag9 = true;
+//                        this.onUpdateAbilities();
+//                    }
+//                } else if (!flag && input.jumping && !flag3) {
+//                    if (this.jumpTriggerTime == 0) {
+//                        this.jumpTriggerTime = 7;
+//                    } else if (!this.isSwimming()) {
+//                        this.getAbilities().flying = !this.getAbilities().flying;
+//                        flag9 = true;
+//                        this.onUpdateAbilities();
+//                        this.jumpTriggerTime = 0;
+//                    }
+//                }
+//            }
+//
+//            if (input.jumping && !flag9 && !flag && !this.getAbilities().flying && !this.isPassenger() && !this.onClimbable()) {
+//                ItemStack itemstack = this.getItemBySlot(EquipmentSlot.CHEST);
+//                if (itemstack.canElytraFly(this) && this.tryToStartFallFlying()) {
+//                    this.connection.send(new ServerboundPlayerCommandPacket(this, ServerboundPlayerCommandPacket.Action.START_FALL_FLYING));
+//                }
+//            }
+//
+//            this.wasFallFlying = this.isFallFlying();
+//            net.minecraftforge.fluids.FluidType fluidType = this.getMaxHeightFluidType();
+//            if ((this.isInWater() || (!fluidType.isAir() && this.canSwimInFluidType(fluidType))) && input.shiftKeyDown && this.isAffectedByFluids()) {
+//                this.sinkInFluid(this.isInWater() ? net.minecraftforge.common.ForgeMod.WATER_TYPE.get() : fluidType);
+//            }
+//
+//            if (this.isEyeInFluid(FluidTags.WATER)) {
+//                int i = this.isSpectator() ? 10 : 1;
+//                this.waterVisionTime = Mth.clamp(this.waterVisionTime + i, 0, 600);
+//            } else if (this.waterVisionTime > 0) {
+//                this.isEyeInFluid(FluidTags.WATER);
+//                this.waterVisionTime = Mth.clamp(this.waterVisionTime - 10, 0, 600);
+//            }
+//
+//            if (this.getAbilities().flying && this.isControlledCamera()) {
+//                int j = 0;
+//                if (input.shiftKeyDown) {
+//                    --j;
+//                }
+//
+//                if (input.jumping) {
+//                    ++j;
+//                }
+//
+//                if (j != 0) {
+//                    this.setDeltaMovement(this.getDeltaMovement().add(0.0D, (double) ((float) j * this.getAbilities().getFlyingSpeed() * 3.0F), 0.0D));
+//                }
+//            }
+//
+//            PlayerRideableJumping playerrideablejumping = this.jumpableVehicle();
+//            if (playerrideablejumping != null && playerrideablejumping.getJumpCooldown() == 0) {
+//                if (this.jumpRidingTicks < 0) {
+//                    ++this.jumpRidingTicks;
+//                    if (this.jumpRidingTicks == 0) {
+//                        this.jumpRidingScale = 0.0F;
+//                    }
+//                }
+//
+//                if (flag && !input.jumping) {
+//                    this.jumpRidingTicks = -10;
+//                    playerrideablejumping.onPlayerJump(Mth.floor(this.getJumpRidingScale() * 100.0F));
+//                    this.sendRidingJump();
+//                } else if (!flag && input.jumping) {
+//                    this.jumpRidingTicks = 0;
+//                    this.jumpRidingScale = 0.0F;
+//                } else if (flag) {
+//                    ++this.jumpRidingTicks;
+//                    if (this.jumpRidingTicks < 10) {
+//                        this.jumpRidingScale = (float) this.jumpRidingTicks * 0.1F;
+//                    } else {
+//                        this.jumpRidingScale = 0.8F + 2.0F / (float) (this.jumpRidingTicks - 9) * 0.1F;
+//                    }
+//                }
+//            } else {
+//                this.jumpRidingScale = 0.0F;
+//            }
+//
+//            super.aiStep();
+//            if (this.onGround() && this.getAbilities().flying && !this.minecraft.gameMode.isAlwaysFlying()) {
+//                this.getAbilities().flying = false;
+//                this.onUpdateAbilities();
+//            }
+//        }
+//
+//    }
 
     public static int getId(String chassisPart) {
         return POWER_ARMOR_PART_IDS.get(chassisPart);
@@ -276,10 +478,6 @@ public class PowerArmorFrame extends WearableChassis {
 //            setSpeed(getMinSpeed());
 //        }
 //    }
-
-    public boolean isCrouching() {
-        return this.hasPose(Pose.CROUCHING);
-    }
 
     @Override
     public MenuProvider getMenuProvider() {
@@ -409,13 +607,13 @@ public class PowerArmorFrame extends WearableChassis {
             var passenger = getControllingPassenger();
 
             if (this.isWalking()) {
-                if (passenger.isShiftKeyDown()) {
+                if (isCrouching()) {
                     animation = begin().then(SNEAK_WALK, LOOP);
                 } else {
                     animation = begin().then(WALK_LEGS, LOOP);
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                 }
-            } else if (passenger.isShiftKeyDown()) {
+            } else if (isCrouching()) {
                 animation = begin().then(SNEAK_END, LOOP);
             } else {
                 if (begin().then(WALK_LEGS, LOOP).equals(legsAnimation))
