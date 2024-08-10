@@ -40,7 +40,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.jetug.chassis_core.common.foundation.item.DamageableItem.damageItem;
@@ -59,10 +61,24 @@ public class PowerArmorFrame extends WearableChassis {
     public static final String TRIGGER_CONTROLLER = "baseAnim";
     public static final EntityDimensions STANDING_DIMENSIONS = EntityDimensions.scalable(1.0f, 2.3f);
     public static final EntityDimensions CROUCHING_DIMENSIONS = EntityDimensions.scalable(1.0f, 2.0f);
-    private static final Map<Pose, EntityDimensions> POSES = ImmutableMap.<Pose, EntityDimensions>builder()
-            .put(Pose.STANDING, STANDING_DIMENSIONS)
-            .put(Pose.CROUCHING, CROUCHING_DIMENSIONS)
-            .build();
+    public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
+    public final AnimationController<PowerArmorFrame> triggersController = new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
+            .triggerableAnim(OPEN, begin().thenPlayAndHold(OPEN))
+            .triggerableAnim(CLOSE, begin().thenPlay(CLOSE));
+
+    public RawAnimation armsAnimation = null;
+    public RawAnimation legsAnimation = null;
+    private int tickCounter = 0;
+
+    static {
+        POWER_ARMOR_PART_IDS = (HashMap<String, Integer>) PART_IDS.clone();
+        addSlot(FUSION_CORE);
+        addSlot(JETPACK);
+    }
+
+    public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
+        super(type, worldIn, POWER_ARMOR_PART_IDS);
+    }
 
     public static AttributeSupplier.Builder createAttributes() {
         return ChassisBase.createLivingAttributes()
@@ -74,38 +90,6 @@ public class PowerArmorFrame extends WearableChassis {
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.8);
     }
 
-
-    public static HashMap<String, Integer> POWER_ARMOR_PART_IDS;
-
-    static {
-        POWER_ARMOR_PART_IDS = (HashMap<String, Integer>) PART_IDS.clone();
-        addSlot(FUSION_CORE);
-        addSlot(JETPACK);
-    }
-
-    public RawAnimation armsAnimation = null;
-    public RawAnimation legsAnimation = null;
-    private int tickCounter = 0;
-    protected int sprintTriggerTime;
-    private boolean crouching;
-
-    public PowerArmorFrame(EntityType<? extends WearableChassis> type, Level worldIn) {
-        super(type, worldIn, POWER_ARMOR_PART_IDS);
-    }
-
-//    @Override
-//    public Collection<String> getEquipment() {
-//        return List.of(armorParts);
-//    }
-
-
-//    @Override
-//    public boolean isAttackable() {
-//        return false;
-//    }
-
-
-
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -115,35 +99,6 @@ public class PowerArmorFrame extends WearableChassis {
     @Override
     public boolean renderHand() {
         return false;
-    }
-
-    public void open() {
-        entityData.set(IS_OPEN, true);
-        this.triggerAnim(TRIGGER_CONTROLLER, OPEN);
-    }
-
-    public void close() {
-        entityData.set(IS_OPEN, false);
-        this.triggerAnim(TRIGGER_CONTROLLER, CLOSE);
-    }
-
-    @Override
-    public void positionRider(Entity entity, Entity.MoveFunction pCallback) {
-        super.positionRider(entity, pCallback);
-
-        var passenger = getControllingPassenger();
-        if (passenger == null) return;
-
-        var yOffset =  1.0f;
-        var posY = getY() + getPassengersRidingOffset() + entity.getMyRidingOffset() - yOffset;
-        entity.setPos(getX(), posY, getZ());
-
-        if (entity instanceof LivingEntity livingEntity)
-            livingEntity.yBodyRot = yBodyRot;
-
-        if (entity instanceof Raider) {
-            entity.setPos(this.position());
-        }
     }
 
     @Override
@@ -161,233 +116,31 @@ public class PowerArmorFrame extends WearableChassis {
     }
 
     @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose pPose) {
-        return POSES.getOrDefault(pPose, STANDING_DIMENSIONS);
+    public EntityDimensions getStandingDimensions(){
+        return STANDING_DIMENSIONS;
     }
 
+    @Override
+    public EntityDimensions getCrouchingDimensions(){
+        return CROUCHING_DIMENSIONS;
+    }
+
+    @Override
     protected float getCrouchingSpeed(){
-        return getSpeedAttribute() / 2f;
+        return getSpeedAttribute() * 0.7f;
     }
 
+    @Override
     protected float getSprintingSpeed(){
         return getSpeedAttribute() * 1.5f;
     }
 
+    @Override
     protected void updatePose() {
-        Pose pose;
-        if (hasPlayerPassenger() && getPlayerPassenger().isShiftKeyDown()) {
-            pose = Pose.CROUCHING;
-            setSpeed(getCrouchingSpeed());
-
-        } else {
-            pose = Pose.STANDING;
-            if(hasPlayerPassenger() && getPlayerPassenger().isSprinting())
-                setSpeed(getSprintingSpeed());
-            else
-                setSpeed(getSpeedAttribute());
-        }
+        super.updatePose();
 
         if (!hasEnergy()) {
             setSpeed(getMinSpeed());
-        }
-
-        this.setPose(pose);
-    }
-
-//    private boolean hasEnoughImpulseToStartSprinting(LocalPlayer player) {
-//        double d0 = 0.8D;
-//        return this.isUnderWater() ? player.input.hasForwardImpulse() : (double)player.input.forwardImpulse >= 0.8D;
-//    }
-//
-//    public boolean isMovingSlowly() {
-//        return this.isCrouching() || this.isVisuallyCrawling();
-//    }
-
-//    @Override
-//    public void aiStep() {
-//        super.aiStep();
-//
-//        var passenger = getControllingPassenger();
-//
-//        if (isClientSide && passenger instanceof LocalPlayer player) {
-//            if (this.sprintTriggerTime > 0) {
-//                --this.sprintTriggerTime;
-//            }
-//
-//            var input = player.input;
-//
-//            boolean flag = input.jumping;
-//            boolean flag1 = input.shiftKeyDown;
-//            boolean flag2 = hasEnoughImpulseToStartSprinting(player);
-//            this.crouching = !this.isSwimming()
-//                    && this.canEnterPose(Pose.CROUCHING)
-//                    && (player.isShiftKeyDown()
-//                        || !this.isSleeping()
-//                        && !this.canEnterPose(Pose.STANDING));
-//
-//            float f = Mth.clamp(0.3F + EnchantmentHelper.getSneakingSpeedBonus(this), 0.0F, 1.0F);
-//            input.tick(this.isMovingSlowly(), f);
-//            net.minecraftforge.client.ForgeHooksClient.onMovementInputUpdate(this, input);
-////            this.minecraft.getTutorial().onInput(input);
-//
-//            if (this.isUsingItem() && !this.isPassenger()) {
-//                input.leftImpulse *= 0.2F;
-//                input.forwardImpulse *= 0.2F;
-//                this.sprintTriggerTime = 0;
-//            }
-//
-//            boolean flag3 = false;
-//
-//
-////            if (!this.noPhysics) {
-////                this.moveTowardsClosestSpace(this.getX() - (double) this.getBbWidth() * 0.35D, this.getZ() + (double) this.getBbWidth() * 0.35D);
-////                this.moveTowardsClosestSpace(this.getX() - (double) this.getBbWidth() * 0.35D, this.getZ() - (double) this.getBbWidth() * 0.35D);
-////                this.moveTowardsClosestSpace(this.getX() + (double) this.getBbWidth() * 0.35D, this.getZ() - (double) this.getBbWidth() * 0.35D);
-////                this.moveTowardsClosestSpace(this.getX() + (double) this.getBbWidth() * 0.35D, this.getZ() + (double) this.getBbWidth() * 0.35D);
-////            }
-//
-//            if (flag1) {
-//                this.sprintTriggerTime = 0;
-//            }
-//
-//            boolean flag4 = this.canStartSprinting();
-//            boolean flag5 = this.isPassenger() ? this.getVehicle().onGround() : this.onGround();
-//            boolean flag6 = !flag1 && !flag2;
-//            if ((flag5 || this.isUnderWater() || this.canStartSwimming()) && flag6 && flag4) {
-//                if (this.sprintTriggerTime <= 0 && !this.minecraft.options.keySprint.isDown()) {
-//                    this.sprintTriggerTime = 7;
-//                } else {
-//                    this.setSprinting(true);
-//                }
-//            }
-//
-//            if (!this.isSprinting() && (!(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType))) || (this.isUnderWater() || this.canStartSwimming())) && this.hasEnoughImpulseToStartSprinting() && flag4 && !this.isUsingItem() && !this.hasEffect(MobEffects.BLINDNESS) && this.minecraft.options.keySprint.isDown()) {
-//                this.setSprinting(true);
-//            }
-//
-//            if (this.isSprinting()) {
-//                boolean flag7 = !input.hasForwardImpulse() || !this.hasEnoughFoodToStartSprinting();
-//                boolean flag8 = flag7 || this.horizontalCollision && !this.minorHorizontalCollision || this.isInWater() && !this.isUnderWater() || (this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType)) && !this.canStartSwimming());
-//                if (this.isSwimming()) {
-//                    if (!this.onGround() && !input.shiftKeyDown && flag7 || !(this.isInWater() || this.isInFluidType((fluidType, height) -> this.canSwimInFluidType(fluidType)))) {
-//                        this.setSprinting(false);
-//                    }
-//                } else if (flag8) {
-//                    this.setSprinting(false);
-//                }
-//            }
-//
-//            boolean flag9 = false;
-//            if (this.getAbilities().mayfly) {
-//                if (this.minecraft.gameMode.isAlwaysFlying()) {
-//                    if (!this.getAbilities().flying) {
-//                        this.getAbilities().flying = true;
-//                        flag9 = true;
-//                        this.onUpdateAbilities();
-//                    }
-//                } else if (!flag && input.jumping && !flag3) {
-//                    if (this.jumpTriggerTime == 0) {
-//                        this.jumpTriggerTime = 7;
-//                    } else if (!this.isSwimming()) {
-//                        this.getAbilities().flying = !this.getAbilities().flying;
-//                        flag9 = true;
-//                        this.onUpdateAbilities();
-//                        this.jumpTriggerTime = 0;
-//                    }
-//                }
-//            }
-//
-//            if (input.jumping && !flag9 && !flag && !this.getAbilities().flying && !this.isPassenger() && !this.onClimbable()) {
-//                ItemStack itemstack = this.getItemBySlot(EquipmentSlot.CHEST);
-//                if (itemstack.canElytraFly(this) && this.tryToStartFallFlying()) {
-//                    this.connection.send(new ServerboundPlayerCommandPacket(this, ServerboundPlayerCommandPacket.Action.START_FALL_FLYING));
-//                }
-//            }
-//
-//            this.wasFallFlying = this.isFallFlying();
-//            net.minecraftforge.fluids.FluidType fluidType = this.getMaxHeightFluidType();
-//            if ((this.isInWater() || (!fluidType.isAir() && this.canSwimInFluidType(fluidType))) && input.shiftKeyDown && this.isAffectedByFluids()) {
-//                this.sinkInFluid(this.isInWater() ? net.minecraftforge.common.ForgeMod.WATER_TYPE.get() : fluidType);
-//            }
-//
-//            if (this.isEyeInFluid(FluidTags.WATER)) {
-//                int i = this.isSpectator() ? 10 : 1;
-//                this.waterVisionTime = Mth.clamp(this.waterVisionTime + i, 0, 600);
-//            } else if (this.waterVisionTime > 0) {
-//                this.isEyeInFluid(FluidTags.WATER);
-//                this.waterVisionTime = Mth.clamp(this.waterVisionTime - 10, 0, 600);
-//            }
-//
-//            if (this.getAbilities().flying && this.isControlledCamera()) {
-//                int j = 0;
-//                if (input.shiftKeyDown) {
-//                    --j;
-//                }
-//
-//                if (input.jumping) {
-//                    ++j;
-//                }
-//
-//                if (j != 0) {
-//                    this.setDeltaMovement(this.getDeltaMovement().add(0.0D, (double) ((float) j * this.getAbilities().getFlyingSpeed() * 3.0F), 0.0D));
-//                }
-//            }
-//
-//            PlayerRideableJumping playerrideablejumping = this.jumpableVehicle();
-//            if (playerrideablejumping != null && playerrideablejumping.getJumpCooldown() == 0) {
-//                if (this.jumpRidingTicks < 0) {
-//                    ++this.jumpRidingTicks;
-//                    if (this.jumpRidingTicks == 0) {
-//                        this.jumpRidingScale = 0.0F;
-//                    }
-//                }
-//
-//                if (flag && !input.jumping) {
-//                    this.jumpRidingTicks = -10;
-//                    playerrideablejumping.onPlayerJump(Mth.floor(this.getJumpRidingScale() * 100.0F));
-//                    this.sendRidingJump();
-//                } else if (!flag && input.jumping) {
-//                    this.jumpRidingTicks = 0;
-//                    this.jumpRidingScale = 0.0F;
-//                } else if (flag) {
-//                    ++this.jumpRidingTicks;
-//                    if (this.jumpRidingTicks < 10) {
-//                        this.jumpRidingScale = (float) this.jumpRidingTicks * 0.1F;
-//                    } else {
-//                        this.jumpRidingScale = 0.8F + 2.0F / (float) (this.jumpRidingTicks - 9) * 0.1F;
-//                    }
-//                }
-//            } else {
-//                this.jumpRidingScale = 0.0F;
-//            }
-//
-//            super.aiStep();
-//            if (this.onGround() && this.getAbilities().flying && !this.minecraft.gameMode.isAlwaysFlying()) {
-//                this.getAbilities().flying = false;
-//                this.onUpdateAbilities();
-//            }
-//        }
-//
-//    }
-
-    public static int getId(String chassisPart) {
-        return POWER_ARMOR_PART_IDS.get(chassisPart);
-    }
-
-    private static void addSlot(String slot) {
-        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
-    }
-
-    private void rareTick() {
-        if (isClientSide || !hasFusionCore()) return;
-        var core = getFusionCore();
-        var dmg = core.getMaxDamage() - core.getDamageValue();
-        if (dmg <= 0) {
-            setEquipment(FUSION_CORE, ItemStack.EMPTY);
-        }
-
-        if (isWalking()) {
-            damageItem(core, 1);
         }
     }
 
@@ -396,18 +149,17 @@ public class PowerArmorFrame extends WearableChassis {
         if (this.isServerSide && !player.isPassenger() && hand == InteractionHand.MAIN_HAND) {
             if (!this.isVehicle()) {
                 if (player.isShiftKeyDown()) {
-                    if (entityData.get(IS_OPEN)) {
+                    if (entityData.get(IS_OPEN))
                         close();
-                    } else this.openGUI(player);
+                    else this.openGUI(player);
                     return InteractionResult.SUCCESS;
                 }
 
                 if (entityData.get(IS_OPEN)) {
                     this.ride(player);
                     close();
-                } else {
-                    open();
-                }
+                } else open();
+
                 return InteractionResult.SUCCESS;
             }
         }
@@ -441,43 +193,11 @@ public class PowerArmorFrame extends WearableChassis {
         return HAND;
     }
 
-    public ItemStack getFusionCore() {
-        return getEquipment(FUSION_CORE);
-    }
-
-//    @Override
-//    protected void createPartIdMap() {
-//        //super.createPartIdMap();
-//        int i = inventorySize;
-//        this.partIdMap.put(FUSION_CORE, i++);
-//        this.inventorySize = i;
-//    }
-
-    public boolean hasFusionCore() {
-        return hasEquipment(FUSION_CORE);
-    }
-
-    public boolean hasEnergy() {
-        return hasFusionCore();
-    }
-
     @Override
     public void jump() {
         if (hasEnergy())
             super.jump();
     }
-
-//    @Override
-//    protected void updateSpeed() {
-//        if (hasEnergy()) {
-//            if(isCrouching())
-//                setSpeed(getSpeedAttribute() / 2);
-//            else setSpeed(getSpeedAttribute());
-//        }
-//        else {
-//            setSpeed(getMinSpeed());
-//        }
-//    }
 
     @Override
     public MenuProvider getMenuProvider() {
@@ -509,18 +229,7 @@ public class PowerArmorFrame extends WearableChassis {
         };
     }
 
-    public Boolean isWalking() {
-//        return
-//                Minecraft.getInstance().options.keyUp.isDown() ||
-//                Minecraft.getInstance().options.keyDown.isDown() ||
-//                Minecraft.getInstance().options.keyLeft.isDown() ||
-//                Minecraft.getInstance().options.keyRight.isDown();
-        return speedometer.getSpeed() > 0;
-    }
 
-    public boolean passengerHaveGun() {
-        return hasPassenger() && getControllingPassenger().getMainHandItem().getItem() instanceof GunItem;
-    }
 
     @Nullable
     public GunItem getPassengerGun() {
@@ -534,9 +243,61 @@ public class PowerArmorFrame extends WearableChassis {
         return false;
     }
 
-    AnimationController<PowerArmorFrame> triggersController = new AnimationController<>(this, TRIGGER_CONTROLLER, event -> PlayState.CONTINUE)
-            .triggerableAnim(OPEN, begin().thenPlayAndHold(OPEN))
-            .triggerableAnim(CLOSE, begin().thenPlay(CLOSE));
+    public Boolean isWalking() {
+//        return
+//                Minecraft.getInstance().options.keyUp.isDown() ||
+//                Minecraft.getInstance().options.keyDown.isDown() ||
+//                Minecraft.getInstance().options.keyLeft.isDown() ||
+//                Minecraft.getInstance().options.keyRight.isDown();
+        return speedometer.getSpeed() > 0;
+    }
+
+    public boolean passengerHaveGun() {
+        return hasPassenger() && getControllingPassenger().getMainHandItem().getItem() instanceof GunItem;
+    }
+
+    public ItemStack getFusionCore() {
+        return getEquipment(FUSION_CORE);
+    }
+
+    public boolean hasFusionCore() {
+        return hasEquipment(FUSION_CORE);
+    }
+
+    public boolean hasEnergy() {
+        return hasFusionCore();
+    }
+
+    public void open() {
+        entityData.set(IS_OPEN, true);
+        this.triggerAnim(TRIGGER_CONTROLLER, OPEN);
+    }
+
+    public void close() {
+        entityData.set(IS_OPEN, false);
+        this.triggerAnim(TRIGGER_CONTROLLER, CLOSE);
+    }
+
+    public static int getId(String chassisPart) {
+        return POWER_ARMOR_PART_IDS.get(chassisPart);
+    }
+
+    private static void addSlot(String slot) {
+        POWER_ARMOR_PART_IDS.put(slot, PART_IDS.size());
+    }
+
+    private void rareTick() {
+        if (isClientSide || !hasFusionCore()) return;
+        var core = getFusionCore();
+        var dmg = core.getMaxDamage() - core.getDamageValue();
+        if (dmg <= 0) {
+            setEquipment(FUSION_CORE, ItemStack.EMPTY);
+        }
+
+        if (isWalking()) {
+            damageItem(core, 1);
+        }
+    }
 
     @Override
     public void registerControllers(ControllerRegistrar controllers) {
@@ -611,7 +372,7 @@ public class PowerArmorFrame extends WearableChassis {
                     animation = begin().then(SNEAK_WALK, LOOP);
                 } else {
                     animation = begin().then(WALK_LEGS, LOOP);
-                    controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
+                    controller.setAnimationSpeed(speedometer.getSpeed() * 2.0D);
                 }
             } else if (isCrouching()) {
                 animation = begin().then(SNEAK_END, LOOP);
@@ -633,54 +394,4 @@ public class PowerArmorFrame extends WearableChassis {
             var2.printStackTrace();
         }
     }
-
-//    private <E extends IAnimatable> PlayState animateArms(AnimationEvent<E> event) {
-//        var controller = event.getController();
-//        controller.animationSpeed = 1.0D;
-//
-//        var player = getPlayerPassenger();
-//
-//        if (player != null) {
-//            if (player.attackAnim > 0) {
-//                controller.animationSpeed = 2.0D;
-//                setAnimation(controller, HIT, PLAY_ONCE);
-//                return PlayState.CONTINUE;
-//            } else if (hurtTime > 0) {
-//                setAnimation(controller, HURT, PLAY_ONCE);
-//                return PlayState.CONTINUE;
-//            }
-//            else if (isWalking()) {
-//                setAnimation(controller, WALK_ARMS, LOOP);
-//                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
-//                return PlayState.CONTINUE;
-//            }
-//        }
-//
-//        setAnimation(controller, "idle", LOOP);
-//        return PlayState.CONTINUE;
-//    }
-//
-//    private <E extends IAnimatable> PlayState animateLegs(AnimationEvent<E> event) {
-//        var controller = event.getController();
-//        controller.animationSpeed = 1.0D;
-//
-//        if (!hasPlayerPassenger()) return PlayState.STOP;
-//        var player = getPlayerPassenger();
-//
-//        if (this.isWalking()) {
-//            if (player.isShiftKeyDown()){
-//                setAnimation(controller, SNEAK_WALK, LOOP);
-//            }
-//            else {
-//                setAnimation(controller, WALK_LEGS, LOOP);
-//                controller.animationSpeed = speedometer.getSpeed() * 4.0D;
-//            }
-//            return PlayState.CONTINUE;
-//        }
-//        else if (player.isShiftKeyDown()) {
-//            setAnimation(controller, SNEAK_END, LOOP);
-//            return PlayState.CONTINUE;
-//        }
-//        return PlayState.STOP;
-//    }
 }
