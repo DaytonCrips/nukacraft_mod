@@ -74,7 +74,7 @@ public class ModWeapons {
                     new Item.Properties()));
 
     public static final RegistryObject<Item> KOMI = ITEMS.register("komi",
-            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, -1, -5,
+            () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, -1, -2,
                     new Item.Properties()));
 
     public static final RegistryObject<Item> COMBAT_KNIFE = ITEMS.register("combatknife",

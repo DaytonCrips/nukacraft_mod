@@ -1,0 +1,12 @@
+{
+  "type": "ntgl:workbench",
+  "materials": [
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "nukacraft:combatknife"
+  }
+}

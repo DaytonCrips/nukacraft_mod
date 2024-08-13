@@ -342,6 +342,7 @@ public class PowerArmorFrame extends WearableChassis {
                     animation = begin().then(HURT, PLAY_ONCE);
                 } else if (isWalking()) {
                     controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
+                    controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                     animation = begin().then(WALK_ARMS, LOOP);
                 } else {
                     if (begin().then(WALK_ARMS, LOOP).equals(armsAnimation))
@@ -370,9 +371,10 @@ public class PowerArmorFrame extends WearableChassis {
             if (this.isWalking()) {
                 if (isCrouching()) {
                     animation = begin().then(SNEAK_WALK, LOOP);
+                    controller.setAnimationSpeed(0.5D);
                 } else {
                     animation = begin().then(WALK_LEGS, LOOP);
-                    controller.setAnimationSpeed(speedometer.getSpeed() * 2.0D);
+                    controller.setAnimationSpeed(speedometer.getSpeed() * 4.0D);
                 }
             } else if (isCrouching()) {
                 animation = begin().then(SNEAK_END, LOOP);

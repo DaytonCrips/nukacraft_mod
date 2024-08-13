@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
 import com.nukateam.ntgl.common.base.gun.Gun;
+import com.nukateam.ntgl.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import net.minecraft.util.TimeUtil;
@@ -65,7 +66,11 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
 //            this.mob.setChargingCrossbow(false);
 //            CrossbowItem.setCharged(this.mob.getUseItem(), false);
         }
+        setReloading(false);
+    }
 
+    private void setReloading(boolean value) {
+        ModSyncedDataKeys.RELOADING_RIGHT.setValue(mob, value);
     }
 
     public boolean requiresUpdateEveryTick() {
@@ -109,15 +114,22 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
 
         if (Gun.hasAmmo(mob.getGun())) {
             mob.performRangedAttack(target, 1);
-        } else if (reloadTimer == -1) {
+        }
+        else if (reloadTimer == -1) {
+            setReloading(true);
             reloadTimer = gun.getGun().getGeneral().getReloadTime();
-        } else if (reloadTimer > 0) {
+        }
+        else if (reloadTimer > 0) {
             reloadTimer = Math.max(reloadTimer - 1, 0);
-        } else if (reloadTimer == 0) {
+        }
+        else if (reloadTimer == 0) {
             Gun.fillAmmo(gunStack);
+            setReloading(false);
             reloadTimer = -1;
         }
     }
+
+
 
     private boolean canRun() {
         return true; //this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED;
