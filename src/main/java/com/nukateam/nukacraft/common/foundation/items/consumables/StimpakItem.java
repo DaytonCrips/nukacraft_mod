@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -38,6 +39,14 @@ public class StimpakItem extends Item {
     }
 
     @Override
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
+        if(player.getHealth() < player.getMaxHealth()){
+            return super.use(pLevel, player, pUsedHand);
+        }
+        return InteractionResultHolder.fail(player.getItemInHand(pUsedHand));
+    }
+
+    @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if(entity.getHealth() < entity.getMaxHealth()) {
             entity.heal(heal);
@@ -46,7 +55,6 @@ public class StimpakItem extends Item {
                 stack.shrink(1);
             }
         }
-
         return stack;
     }
 
@@ -54,7 +62,6 @@ public class StimpakItem extends Item {
     public void appendHoverText(ItemStack item, @Nullable Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(item, level, list, flag);
         list.add(Component.translatable("effect.nukacraft.health").append("§9+" + heal));
-
     }
 
     @Override
