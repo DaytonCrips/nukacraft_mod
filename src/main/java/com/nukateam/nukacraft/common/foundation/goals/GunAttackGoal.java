@@ -129,8 +129,6 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         }
     }
 
-
-
     private boolean canRun() {
         return true; //this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED;
     }
