@@ -6,6 +6,7 @@ import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -115,18 +116,22 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         if (Gun.hasAmmo(mob.getGun())) {
             mob.performRangedAttack(target, 1);
         }
-        else if (reloadTimer == -1) {
-            setReloading(true);
-            reloadTimer = gun.getGun().getGeneral().getReloadTime();
+        else if(!EntityReloadTracker.isReloading(mob)) {
+            EntityReloadTracker.addTracker(mob, HumanoidArm.RIGHT);
         }
-        else if (reloadTimer > 0) {
-            reloadTimer = Math.max(reloadTimer - 1, 0);
-        }
-        else if (reloadTimer == 0) {
-            Gun.fillAmmo(gunStack);
-            setReloading(false);
-            reloadTimer = -1;
-        }
+//
+//        else if (reloadTimer == -1) {
+//            setReloading(true);
+//            reloadTimer = gun.getGun().getGeneral().getReloadTime();
+//        }
+//        else if (reloadTimer > 0) {
+//            reloadTimer = Math.max(reloadTimer - 1, 0);
+//        }
+//        else if (reloadTimer == 0) {
+//            Gun.fillAmmo(gunStack);
+//            setReloading(false);
+//            reloadTimer = -1;
+//        }
     }
 
     private boolean canRun() {
