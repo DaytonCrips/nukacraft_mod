@@ -4,16 +4,20 @@ import com.nukateam.ntgl.client.render.renderers.DefaultGunRenderer;
 import com.nukateam.ntgl.client.render.renderers.DynamicGunRenderer;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.client.render.renderers.items.TechnicGunRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Lazy;
 
 public class TechnicGun extends GunItem {
-    private final TechnicGunRenderer GUN_RENDERER = new TechnicGunRenderer();
+    private final Lazy<TechnicGunRenderer> GUN_RENDERER = Lazy.of(() -> new TechnicGunRenderer());
 
     public TechnicGun(Properties properties) {
         super(properties);
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public DynamicGunRenderer getRenderer() {
-        return GUN_RENDERER;
+        return GUN_RENDERER.get();
     }
 }

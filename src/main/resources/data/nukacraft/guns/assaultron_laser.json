@@ -24,17 +24,5 @@
     "cock": "nukacraft:item.laser_rifle.cock",
     "silencedFire": "nukacraft:item.laser_rifle.silenced_fire",
     "enchantedFire": "nukacraft:item.laser_rifle.enchanted_fire"
-  },
-  "modules": {
-    "mods":[
-      {
-        "name": "short_scope",
-        "slot": "scope"
-      },
-      {
-        "name": "silencer",
-        "slot": "barrel"
-      }
-    ]
   }
 }

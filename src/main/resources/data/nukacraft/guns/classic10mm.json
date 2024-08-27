@@ -27,15 +27,6 @@
     "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
   },
   "modules": {
-    "mods":[
-      {
-        "name": "short_scope",
-        "slot": "scope"
-      },
-      {
-        "name": "silencer",
-        "slot": "barrel"
-      }
-    ]
+
   }
 }
