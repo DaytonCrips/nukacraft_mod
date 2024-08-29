@@ -78,6 +78,7 @@ public class ModBiomes {
         ModDefaultFeatures.addAcidLake(biomeBuilder);
         ModDefaultFeatures.addPoisonValleyPlants(biomeBuilder);
 
+
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(true)
                 .temperature(0.5f)
@@ -107,10 +108,14 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
+        //
+        ModDefaultFeatures.coalOre(biomeBuilder);
+        ModDefaultFeatures.copperOre(biomeBuilder);
+        ModDefaultFeatures.ultraciteOre(biomeBuilder);
+
         ModDefaultFeatures.addDewdropTrees(biomeBuilder);
         BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);
         BiomeDefaultFeatures.addFossilDecoration(biomeBuilder);
-
         ModDefaultFeatures.addCranBerryBogPlants(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
@@ -145,7 +150,9 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
 
         ModDefaultFeatures.addGlowSeaPlants(biomeBuilder);
-
+        //
+        ModDefaultFeatures.coalOre(biomeBuilder);
+        ModDefaultFeatures.copperOre(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)
@@ -182,6 +189,9 @@ public class ModBiomes {
 
         ModDefaultFeatures.addAshHeapDisks(biomeBuilder);
         ModDefaultFeatures.addAshHeapPlants(biomeBuilder);
+        //
+        ModDefaultFeatures.coalOre(biomeBuilder);
+        ModDefaultFeatures.copperOre(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)
