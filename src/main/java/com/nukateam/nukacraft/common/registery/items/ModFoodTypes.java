@@ -39,8 +39,18 @@ public class ModFoodTypes {
     public static final FoodProperties DEATHMEAT = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(1.1f).build();
     public static final FoodProperties CDEATHMEAT = (new FoodProperties.Builder()).nutrition(5).alwaysEat().saturationMod(2.5f).build();
     public static final FoodProperties ROACHMEAT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1.2f).build();
+    public static final FoodProperties RAW_MOLERAT_MEAT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1.6f).build();
+    public static final FoodProperties RAW_MIRELURK_MEAT = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(1.1f).build();
+    public static final FoodProperties RAW_IGUANA_MEAT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1.2f).build();
     public static final FoodProperties CROACHMEAT = (new FoodProperties.Builder()).nutrition(3).alwaysEat().saturationMod(1.7f).build();
+    public static final FoodProperties COOKED_MOLERAT_MEAT = (new FoodProperties.Builder()).nutrition(5).alwaysEat().saturationMod(1.5f).build();
+    public static final FoodProperties COOKED_MIRELURK_MEAT = (new FoodProperties.Builder()).nutrition(7).alwaysEat().saturationMod(1.8f).build();
+    public static final FoodProperties COOKED_IGUANA_MEAT = (new FoodProperties.Builder()).nutrition(4).alwaysEat().saturationMod(1f).build();
     public static final FoodProperties RAWBRMEAT = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(1f).build();
+    public static final FoodProperties COOKEDBLOATFLY = (new FoodProperties.Builder()).nutrition(3).alwaysEat().saturationMod(3f).build();
+    public static final FoodProperties BRAHMIN_TESTICULES = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1f).build();
+    public static final FoodProperties BRAHMIN_FRIES = (new FoodProperties.Builder()).nutrition(3).alwaysEat().saturationMod(4f).build();
+    public static final FoodProperties RAWBLOATFLY = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(1f).effect(new MobEffectInstance(MobEffects.POISON, 140, 0), 0.3f).build();
     public static final FoodProperties CBRMEAT = (new FoodProperties.Builder()).nutrition(6).alwaysEat().saturationMod(3f).build();
 
 

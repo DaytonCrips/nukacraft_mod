@@ -23,6 +23,7 @@ import static com.nukateam.nukacraft.common.data.constants.PipboyColors.*;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
+
     ///RAW MATERIALS
 //    @DataGen
 //    public static final RegistryObject<Item> UNWEAPONPARTS = ITEMS.register("unc_weapon_parts",
@@ -44,6 +45,25 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
+            () -> new Item(new Item.Properties()));
+    @DataGen
+    public static final RegistryObject<Item> MOLERAT_LEATHER = ITEMS.register("molerat_leather",
+            () -> new Item(new Item.Properties()));
+    @DataGen
+    public static final RegistryObject<Item> MOLERAT_TEETH = ITEMS.register("molerat_teeth",
+            () -> new Item(new Item.Properties()));
+
+    @DataGen
+    public static final RegistryObject<Item> CLAW_MIRELURK = ITEMS.register("claw_milelurk",
+            () -> new Item(new Item.Properties()));
+    @DataGen
+    public static final RegistryObject<Item> RAZOR_MIRELURK = ITEMS.register("razor_milelurk",
+            () -> new Item(new Item.Properties()));
+    @DataGen
+    public static final RegistryObject<Item> MIRELURK_EGG = ITEMS.register("mirelurk_egg",
+            () -> new Item(new Item.Properties()));
+    @DataGen
+    public static final RegistryObject<Item> MIRELURK_EGGSHELL = ITEMS.register("mirelurk_eggshell",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> PURPLE_REAGENT = ITEMS.register("purple_reagent",

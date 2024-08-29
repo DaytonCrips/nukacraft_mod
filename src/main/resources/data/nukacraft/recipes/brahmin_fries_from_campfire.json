@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 650,
+  "experience": 0.75,
+  "ingredient": {
+    "item": "nukacraft:testicules_brahmin"
+  },
+  "result": "nukacraft:brahmin_fries"
+}

@@ -25,7 +25,12 @@
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "nukacraft:cranberryleaves"
+        "Name": "nukacraft:cranberryleaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
+        }
       }
     },
     "force_dirt": false,

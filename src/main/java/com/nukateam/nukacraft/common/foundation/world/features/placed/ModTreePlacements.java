@@ -26,7 +26,9 @@ public class ModTreePlacements {
     public static final ResourceKey<PlacedFeature> TREES_GLOW = registerKey("trees_glow");
     public static final ResourceKey<PlacedFeature> TREES_DEWDROP = registerKey("trees_dewdrop");
     public static final ResourceKey<PlacedFeature> TREES_ASH = registerKey("trees_ash");
-    public static final ResourceKey<PlacedFeature> TREES_MIRE = registerKey("trees_mire");
+    public static final ResourceKey<PlacedFeature> TREES_IMMORTAL_GREEN = registerKey("trees_immortal_green");
+    public static final ResourceKey<PlacedFeature> TREES_RUSTY = registerKey("trees_rusty");
+    //public static final ResourceKey<PlacedFeature> TREES_MIRE = registerKey("trees_mire");
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, nukaResource(name));
@@ -34,7 +36,7 @@ public class ModTreePlacements {
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         var features = context.lookup(Registries.CONFIGURED_FEATURE);
-
+//
 //        context.register(TREES_MIRE, new PlacedFeature(
 //                        features.getOrThrow(
 //                                ModTreeFeatures.MIRE_TREE),
@@ -45,9 +47,28 @@ public class ModTreePlacements {
 //        );
 
 
+        context.register(TREES_RUSTY, new PlacedFeature(
+                        features.getOrThrow(
+                                ModTreeFeatures.RUSTY_TREE),
+                        VegetationPlacements.treePlacement(
+                                PlacementUtils.countExtra(2, 0.2F, 1),
+                                Blocks.BIRCH_SAPLING)
+                )
+        );
+
+
         context.register(TREES_ASH_HEAP, new PlacedFeature(
                         features.getOrThrow(
                                 ModTreeFeatures.ASH_HEAP_TREE),
+                        VegetationPlacements.treePlacement(
+                                PlacementUtils.countExtra(1, 0.1F, 1),
+                                Blocks.BIRCH_SAPLING)
+                )
+        );
+
+        context.register(TREES_IMMORTAL_GREEN, new PlacedFeature(
+                        features.getOrThrow(
+                                ModTreeFeatures.IMMORTAL_TREE),
                         VegetationPlacements.treePlacement(
                                 PlacementUtils.countExtra(1, 0.1F, 1),
                                 Blocks.BIRCH_SAPLING)

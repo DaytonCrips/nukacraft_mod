@@ -7,6 +7,7 @@ import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -17,9 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.*;
 import net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement;
 import net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacement;
 import net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer;
@@ -47,10 +46,10 @@ public class ModTrees {
 //                    .ignoreVines()
 //                    .build());
 
-    private static HolderGetter<Block> holderGetter;
-    public static <S> void setTags(HolderGetter<S> lookup) {
-        holderGetter = (HolderGetter<Block>) lookup;
-    }
+//    private static HolderGetter<Block> holderGetter;
+//    public static <S> void setTags(HolderGetter<S> lookup) {
+//        holderGetter = (HolderGetter<Block>) lookup;
+//    }
     public static final TreeConfiguration TREE_ASH_HEAP = new TreeConfiguration.TreeConfigurationBuilder(
             BlockStateProvider.simple(ModBlocks.ASHWOOD.get().defaultBlockState()),
             new StraightTrunkPlacer(1, 1, 0), BlockStateProvider.simple(Blocks.AIR.defaultBlockState()),
@@ -86,22 +85,44 @@ public class ModTrees {
                     new TwoLayersFeatureSize(1, 0, 1))
                     .decorators(ImmutableList.of(new ResinDecorator(0.05F), new MegaSlothDecorator(0.03F))).ignoreVines()
                     .build();
+
+    public static final TreeConfiguration TREE_IMMORTAL =
+            new TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(ModBlocks.ASHWOOD.get()),
+                    new StraightTrunkPlacer(5, 2, 1),
+                    BlockStateProvider.simple(ModBlocks.EVERGREEN_LEAVES.get()),
+                    new SpruceFoliagePlacer(UniformInt.of(2, 3),
+                            UniformInt.of(0, 2), UniformInt.of(1, 2)),
+                    new TwoLayersFeatureSize(2, 0, 2)).ignoreVines().build();
+
+
+    public static final TreeConfiguration TREE_RUSTY =
+            new TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(ModBlocks.ASHWOOD.get()),
+                    new StraightTrunkPlacer(4, 2, 1),
+                    BlockStateProvider.simple(ModBlocks.RUSTY_LEAVES.get()),
+                    new SpruceFoliagePlacer(UniformInt.of(2, 4),
+                            UniformInt.of(0, 2), UniformInt.of(1, 2)),
+                    new TwoLayersFeatureSize(2, 0, 2)).ignoreVines().build();
+
+
+
 //    public static final TreeConfiguration TREE_MIRE =
 //            new TreeConfiguration.TreeConfigurationBuilder(
 //                    BlockStateProvider.simple(ModBlocks.ASHWOOD.get().defaultBlockState()),
 //                    new UpwardsBranchingTrunkPlacer(2, 1, 4,UniformInt.of(1, 4), 0.5F, UniformInt.of(0, 1), holderGetter.getOrThrow(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)),
-//                    BlockStateProvider.simple(Blocks.MANGROVE_LEAVES),
+//                    BlockStateProvider.simple(ModBlocks.ASHWOOD.get()),
 //                    new RandomSpreadFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), ConstantInt.of(2), 70),
 //                    Optional.of(new MangroveRootPlacer(UniformInt.of(1, 3),
-//                            BlockStateProvider.simple(Blocks.MANGROVE_ROOTS),
+//                            BlockStateProvider.simple(ModBlocks.ASHWOOD.get()),
 //                            Optional.of(new AboveRootPlacement(BlockStateProvider.simple(Blocks.MOSS_CARPET), 0.5F)),
 //                            new MangroveRootPlacement(holderGetter.getOrThrow(BlockTags.MANGROVE_ROOTS_CAN_GROW_THROUGH),
-//                                    HolderSet.direct(Block::builtInRegistryHolder, new Block[]{Blocks.MUD, Blocks.MUDDY_MANGROVE_ROOTS}),
-//                                    BlockStateProvider.simple(Blocks.MUDDY_MANGROVE_ROOTS), 8, 15, 0.2F))),
+//                                    HolderSet.direct(Block::builtInRegistryHolder, new Block[]{Blocks.GRASS_BLOCK, ModBlocks.ASHWOOD.get()}),
+//                                    BlockStateProvider.simple(ModBlocks.ASHWOOD.get()), 8, 15, 0.2F))),
 //                    new TwoLayersFeatureSize(2, 0, 2))
 //                    .decorators(List.of(new LeaveVineDecorator(0.125F),
 //                            new AttachedToLeavesDecorator(0.14F, 1, 0,
-//                                    new RandomizedIntStateProvider(BlockStateProvider.simple((BlockState)Blocks.MANGROVE_PROPAGULE.defaultBlockState().setValue(MangrovePropaguleBlock.HANGING, true)),
+//                                    new RandomizedIntStateProvider(BlockStateProvider.simple((BlockState)ModBlocks.ASHWOOD.get().defaultBlockState().setValue(MangrovePropaguleBlock.HANGING, true)),
 //                                            MangrovePropaguleBlock.AGE, UniformInt.of(0, 4)), 2, List.of(Direction.DOWN)))).ignoreVines().build();
 
 

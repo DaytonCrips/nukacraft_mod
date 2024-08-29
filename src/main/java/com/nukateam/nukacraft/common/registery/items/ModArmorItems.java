@@ -31,6 +31,12 @@ public class ModArmorItems {
     public static final ArmorStorage METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
     @DataGen(path = "armor")
     public static final ArmorStorage TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
+    @DataGen(path = "armor")
+    public static final ArmorStorage SCOUT_SET = registerArmorSet("scout", ModArmorMaterials.SCOUT);
+    @DataGen(path = "armor")
+    public static final ArmorStorage COMBAT_SET = registerArmorSet("combat", ModArmorMaterials.COMBAT);
+    @DataGen(path = "armor")
+    public static final ArmorStorage ROBOT_SET = registerArmorSet("robot", ModArmorMaterials.ROBOT);
 
     public static final RegistryObject<Item> PIP_BOY_D = ITEMS.register("pipboy",
             () -> new PipBoyItem("default", new Item.Properties().stacksTo(1)));
@@ -45,7 +51,7 @@ public class ModArmorItems {
                 Pair.of(ArmorItem.Type.HELMET, "helmet"),
                 Pair.of(ArmorItem.Type.CHESTPLATE, "chest"),
                 Pair.of(ArmorItem.Type.LEGGINGS, "leggins"),
-                Pair.of(ArmorItem.Type.BOOTS, "boots"));
+                    Pair.of(ArmorItem.Type.BOOTS, "boots"));
 
         for (var slot : armorSlots) {
             var item = registerArmor(name + "_" + slot.getSecond(), name, material, slot.getFirst());

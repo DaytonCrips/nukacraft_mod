@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 140,
+  "experience": 0.25,
+  "ingredient": {
+    "item": "nukacraft:raw_iguana_meat"
+  },
+  "result": "nukacraft:cooked_iguana_meat"
+}

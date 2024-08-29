@@ -142,6 +142,9 @@ public class ModVegetationFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRANBERRY_GRASS =
             registerKey("patch_cranberry_grass");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_STRANGE_GRASS =
+            registerKey("patch_strange_grass");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_SLIT_BEANS =
             registerKey("patch_slit_beans");
 
@@ -330,6 +333,9 @@ public class ModVegetationFeatures {
                 Feature.RANDOM_PATCH,
                 vegetationPatch(BlockStateProvider.simple(ModBlocks.CRANBERRY_GRASS.get()), 19));
 
+        FeatureUtils.register(pContext, PATCH_STRANGE_GRASS,
+                Feature.RANDOM_PATCH,
+                vegetationPatch(BlockStateProvider.simple(ModBlocks.STRANGE_GRASS.get()), 33));
 
         FeatureUtils.register(pContext, PATCH_SLIT_BEANS,
                 Feature.RANDOM_PATCH,

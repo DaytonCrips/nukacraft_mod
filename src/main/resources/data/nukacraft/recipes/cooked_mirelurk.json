@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 260,
+  "experience": 0.65,
+  "ingredient": {
+    "item": "nukacraft:raw_mirelurk_meat"
+  },
+  "result": "nukacraft:cooked_mirelurk_meat"
+}
