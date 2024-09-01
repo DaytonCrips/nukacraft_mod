@@ -27,6 +27,19 @@
     "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
   },
   "modules": {
-
+    "zoom": {
+      "xOffset": 0.0,
+      "yOffset": 4.8,
+      "zOffset": 0.0,
+      "fovModifier": 0.7
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "short_scope",
+          "item": "ntgl:holographic_sight"
+        }
+      ]
+    }
   }
 }
