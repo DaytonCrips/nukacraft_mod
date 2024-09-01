@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft;
 
+import com.nukateam.ntgl.client.data.handler.GunRenderingHandler;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;

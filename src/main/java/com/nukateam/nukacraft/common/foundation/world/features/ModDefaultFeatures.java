@@ -35,7 +35,7 @@ public class ModDefaultFeatures {
 
     public static void coalOre(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_UPPER);
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
+//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
     }
 
     public static void alumiOre(BiomeGenerationSettings.Builder builder) {

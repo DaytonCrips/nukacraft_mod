@@ -89,9 +89,6 @@ public class ModBiomes {
                 .build();
     }
 
-    private static void createBiomeSettings(Biome biome, BiomeSettings settings){
-    }
-
     private static Biome createCranberryBog(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
         var mobBuilder = new MobSpawnSettings.Builder();
         var biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
@@ -109,9 +106,9 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
         //
-        ModDefaultFeatures.coalOre(biomeBuilder);
         ModDefaultFeatures.copperOre(biomeBuilder);
-        ModDefaultFeatures.ultraciteOre(biomeBuilder);
+        ModDefaultFeatures.coalOre(biomeBuilder);
+//        ModDefaultFeatures.ultraciteOre(biomeBuilder);
 
         ModDefaultFeatures.addDewdropTrees(biomeBuilder);
         BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);
@@ -151,8 +148,8 @@ public class ModBiomes {
 
         ModDefaultFeatures.addGlowSeaPlants(biomeBuilder);
         //
-        ModDefaultFeatures.coalOre(biomeBuilder);
         ModDefaultFeatures.copperOre(biomeBuilder);
+        ModDefaultFeatures.coalOre(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)
@@ -187,11 +184,12 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.HEAP_GRASS);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.RUSTY_BUSH);
 
+        ModDefaultFeatures.copperOre(biomeBuilder);
+        ModDefaultFeatures.coalOre(biomeBuilder);
+
         ModDefaultFeatures.addAshHeapDisks(biomeBuilder);
         ModDefaultFeatures.addAshHeapPlants(biomeBuilder);
         //
-        ModDefaultFeatures.coalOre(biomeBuilder);
-        ModDefaultFeatures.copperOre(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)

@@ -35,7 +35,7 @@ import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.getPowerA
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.isWearingPowerArmor;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
-public class Raider extends PathfinderMob implements IGunUser {
+public class  Raider extends PathfinderMob implements IGunUser {
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT =
             SynchedEntityData.defineId(Raider.class, EntityDataSerializers.INT);
 
