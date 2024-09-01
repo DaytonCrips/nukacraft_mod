@@ -144,8 +144,11 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> RAW_URANIUM = ITEMS.register("raw_uran",
             () -> new Item(new Item.Properties()));
+//    @DataGen
+//    public static final RegistryObject<Item> SATURNITERAW = ITEMS.register("raw_saturnite",
+//            () -> new Item(new Item.Properties()));
     @DataGen
-    public static final RegistryObject<Item> SATURNITERAW = ITEMS.register("raw_saturnite",
+    public static final RegistryObject<Item> SATURNITE_INGOT = ITEMS.register("saturnite_ingot",
             () -> new Item(new Item.Properties()));
     @DataGen
     public static final RegistryObject<Item> LEAD_NUGGET = ITEMS.register("leadnugget",
