@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 180,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "nukacraft:raw_iguana_meat"
+  },
+  "result": "nukacraft:cooked_iguana_meat"
+}

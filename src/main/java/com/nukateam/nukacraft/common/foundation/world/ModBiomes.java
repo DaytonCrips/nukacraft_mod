@@ -26,6 +26,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> GLOW_SEA = createKey("glow_sea");
     public static final ResourceKey<Biome> ASH_HEAP = createKey("ash_heap");
     public static final ResourceKey<Biome> CRANBERRY_BOG = createKey("cranberry_bog");
+    public static final ResourceKey<Biome> SAVAGE_DIVIDE = createKey("savage_divide");
 
     private static final HashMap<ResourceKey<Biome>, BiomeSettings> biomeSettings = new HashMap<>();
 
@@ -37,6 +38,7 @@ public class ModBiomes {
         context.register(CRANBERRY_BOG  , createCranberryBog(placedFeatures, worldCarvers));
         context.register(ASH_HEAP       , createAshHeap(placedFeatures, worldCarvers));
         context.register(GLOW_SEA       , createGlowSea(placedFeatures, worldCarvers));
+        context.register(SAVAGE_DIVIDE       , createSavageDivide(placedFeatures, worldCarvers));
 //        BiomeSettings
     }
 
@@ -45,6 +47,7 @@ public class ModBiomes {
         biomeSettings.put(CRANBERRY_BOG , new BiomeSettings().setFogDensity(1.0f));
         biomeSettings.put(ASH_HEAP      , new BiomeSettings().setFogDensity(0.5f));
         biomeSettings.put(GLOW_SEA      , new BiomeSettings().setFogDensity(0.05f));
+        biomeSettings.put(SAVAGE_DIVIDE      , new BiomeSettings().setFogDensity(1.0f));
     }
 
     @Nullable
@@ -78,7 +81,6 @@ public class ModBiomes {
         ModDefaultFeatures.addAcidLake(biomeBuilder);
         ModDefaultFeatures.addPoisonValleyPlants(biomeBuilder);
 
-
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(true)
                 .temperature(0.5f)
@@ -87,6 +89,53 @@ public class ModBiomes {
                 .mobSpawnSettings(mobBuilder.build())
                 .generationSettings(biomeBuilder.build())
                 .build();
+    }
+
+    private static Biome createSavageDivide(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
+        var mobBuilder = new MobSpawnSettings.Builder();
+        //var settingsd = (IBiomeSettings)placedFeatures;
+
+        var biomeBuilder = new BiomeGenerationSettings.Builder(placedFeatures, worldCarvers);
+        var effects = new BiomeSpecialEffects.Builder()
+                .fogColor(-10990522)
+                .waterColor(-11386816)
+                .waterFogColor(-11386816)
+                .skyColor(16246715)
+                .foliageColorOverride(-861668)
+                .grassColorOverride(-861668)
+                .build();
+
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.STRANGE_GRASS);
+
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+        ModDefaultFeatures.addImmortalGreenTrees(biomeBuilder);
+        ModDefaultFeatures.addCommonBerryBush(biomeBuilder);
+        ModDefaultFeatures.addRustyTrees(biomeBuilder);
+        BiomeDefaultFeatures.addBadlandGrass(biomeBuilder);
+        BiomeDefaultFeatures.addTaigaGrass(biomeBuilder);
+        BiomeDefaultFeatures.addSavannaExtraGrass(biomeBuilder);
+        BiomeDefaultFeatures.addMossyStoneBlock(biomeBuilder);
+
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.ASH_GRASS);
+//        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.POISON_GRASS);
+//
+
+
+//        ModDefaultFeatures.addAshStone(biomeBuilder);
+//        ModDefaultFeatures.addAcidLake(biomeBuilder);
+//        ModDefaultFeatures.addPoisonValleyPlants(biomeBuilder);
+
+        return (new Biome.BiomeBuilder())
+                .hasPrecipitation(true)
+                .temperature(0.7f)
+                .downfall(0.4f)
+                .specialEffects(effects)
+                .mobSpawnSettings(mobBuilder.build())
+                .generationSettings(biomeBuilder.build())
+                .build();
+    }
+
+    private static void createBiomeSettings(Biome biome, BiomeSettings settings){
     }
 
     private static Biome createCranberryBog(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
@@ -105,14 +154,10 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
-        //
-        ModDefaultFeatures.copperOre(biomeBuilder);
-        ModDefaultFeatures.coalOre(biomeBuilder);
-//        ModDefaultFeatures.ultraciteOre(biomeBuilder);
-
         ModDefaultFeatures.addDewdropTrees(biomeBuilder);
         BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);
         BiomeDefaultFeatures.addFossilDecoration(biomeBuilder);
+
         ModDefaultFeatures.addCranBerryBogPlants(biomeBuilder);
 
         return (new Biome.BiomeBuilder())
@@ -147,9 +192,7 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
 
         ModDefaultFeatures.addGlowSeaPlants(biomeBuilder);
-        //
-        ModDefaultFeatures.copperOre(biomeBuilder);
-        ModDefaultFeatures.coalOre(biomeBuilder);
+
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)
@@ -184,12 +227,9 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.HEAP_GRASS);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.RUSTY_BUSH);
 
-        ModDefaultFeatures.copperOre(biomeBuilder);
-        ModDefaultFeatures.coalOre(biomeBuilder);
-
+        BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         ModDefaultFeatures.addAshHeapDisks(biomeBuilder);
         ModDefaultFeatures.addAshHeapPlants(biomeBuilder);
-        //
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(false)

@@ -23,7 +23,16 @@ public enum ModArmorMaterials implements ArmorMaterial {
     METAL("metal", 4, new int[]{3, 4, 4, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.2F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
     TRAPPER("trapper", 4, new int[]{4, 5, 5, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
-            0.1F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get()));
+            0.1F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
+
+    SCOUT("scout", 4, new int[]{5, 6, 6, 4}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.2F, 0.2F, () -> Ingredient.of(ModItems.STEELING.get())),
+
+    COMBAT("combat", 4, new int[]{7, 8, 8, 6}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.3F, 0.3F, () -> Ingredient.of(ModItems.STEELING.get())),
+
+    ROBOT("robot", 4, new int[]{8, 9, 9, 7}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+            0.6F, 0.3F, () -> Ingredient.of(ModItems.STEELING.get()));
 
     public static final Map<ArmorItem.Type, Integer> TYPE_ID = Map.of(
             ArmorItem.Type.HELMET, 0,

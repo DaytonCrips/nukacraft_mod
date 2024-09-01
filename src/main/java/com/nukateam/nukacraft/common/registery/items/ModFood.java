@@ -98,13 +98,48 @@ public class ModFood {
             () -> new RadFoodItem(0.6f, new Item.Properties().food(ModFoodTypes.ROACHMEAT)));
     @DataGen
     public static final RegistryObject<Item> COOKED_RADROACH_MEAT = ITEMS.register("cooked_radroach_meat",
-            () -> new RadFoodItem(0.1f, new Item.Properties().food(ModFoodTypes.CROACHMEAT)));
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.CROACHMEAT)));
     @DataGen
     public static final RegistryObject<Item> COOKED_DEADCLAW_MEAT = ITEMS.register("cooked_deadclaw_meat",
-            () -> new RadFoodItem(0.1f, new Item.Properties().food(ModFoodTypes.CDEATHMEAT)));
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.CDEATHMEAT)));
     @DataGen
     public static final RegistryObject<Item> RAW_BRAHMIN_MEAT = ITEMS.register("raw_brahmin_meat",
             () -> new RadFoodItem(0.2f, new Item.Properties().food(ModFoodTypes.RAWBRMEAT)));
+
+    @DataGen
+    public static final RegistryObject<Item> RAW_MOLERAT_MEAT = ITEMS.register("raw_molerat",
+            () -> new RadFoodItem(0.4f, new Item.Properties().food(ModFoodTypes.RAW_MOLERAT_MEAT)));
+    @DataGen
+    public static final RegistryObject<Item> COOKED_MOLERAT_MEAT = ITEMS.register("cooked_molerat",
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.COOKED_MOLERAT_MEAT)));
+    @DataGen
+    public static final RegistryObject<Item> RAW_MIRELURK_MEAT = ITEMS.register("raw_mirelurk_meat",
+            () -> new RadFoodItem(0.4f, new Item.Properties().food(ModFoodTypes.RAW_MIRELURK_MEAT)));
+    @DataGen
+    public static final RegistryObject<Item> COOKED_MIRELURK_MEAT = ITEMS.register("cooked_mirelurk_meat",
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.COOKED_MIRELURK_MEAT)));
+
+    @DataGen
+    public static final RegistryObject<Item> RAW_IGUANA_MEAT = ITEMS.register("raw_iguana_meat",
+            () -> new RadFoodItem(0.4f, new Item.Properties().food(ModFoodTypes.RAW_IGUANA_MEAT)));
+    @DataGen
+    public static final RegistryObject<Item> COOKED_IGUANA_MEAT = ITEMS.register("cooked_iguana_meat",
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.COOKED_IGUANA_MEAT)));
+
+    @DataGen
+    public static final RegistryObject<Item> BRAHMIN_TESTICULES = ITEMS.register("testicules_brahmin",
+            () -> new RadFoodItem(0.1f, new Item.Properties().food(ModFoodTypes.BRAHMIN_TESTICULES)));
+
+    @DataGen
+    public static final RegistryObject<Item> BRAHMIN_FRIES = ITEMS.register("brahmin_fries",
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.BRAHMIN_FRIES)));
+
+    @DataGen
+    public static final RegistryObject<Item> RAW_BLOATFLY_MEAT = ITEMS.register("raw_bloatfly",
+            () -> new RadFoodItem(0.3f, new Item.Properties().food(ModFoodTypes.RAWBLOATFLY)));
+    @DataGen
+    public static final RegistryObject<Item> COOKED_BLOATFLY_MEAT = ITEMS.register("cooked_bloatfly",
+            () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.COOKEDBLOATFLY)));
     @DataGen
     public static final RegistryObject<Item> COOKED_BRAHMIN_MEAT = ITEMS.register("cooked_brahmin_meat",
             () -> new RadFoodItem(0f, new Item.Properties().food(ModFoodTypes.CBRMEAT)));

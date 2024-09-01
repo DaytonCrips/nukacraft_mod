@@ -89,15 +89,15 @@ public class TerminalBlock extends RotatedObjectBlock {
 //        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
 //    }
 
-    @Override
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if (!pLevel.isClientSide()) {
-            if (pEntity instanceof LivingEntity) {
-                LivingEntity entity = ((LivingEntity) pEntity);
-                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200));
-            }
-        }
-
-        super.stepOn(pLevel, pPos, pState, pEntity);
-    }
+//    @Override
+//    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
+//        if (!pLevel.isClientSide()) {
+//            if (pEntity instanceof LivingEntity) {
+//                LivingEntity entity = ((LivingEntity) pEntity);
+//                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200));
+//            }
+//        }
+//
+//        super.stepOn(pLevel, pPos, pState, pEntity);
+//    }
 }

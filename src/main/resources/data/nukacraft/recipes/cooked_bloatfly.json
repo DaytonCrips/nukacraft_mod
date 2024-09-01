@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 210,
+  "experience": 0.25,
+  "ingredient": {
+    "item": "nukacraft:raw_bloatfly"
+  },
+  "result": "nukacraft:cooked_bloatfly"
+}

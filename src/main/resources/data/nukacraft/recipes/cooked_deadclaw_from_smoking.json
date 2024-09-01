@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 150,
+  "experience": 0.4,
+  "ingredient": {
+    "item": "nukacraft:raw_deadclaw_meat"
+  },
+  "result": "nukacraft:cooked_deadclaw_meat"
+}

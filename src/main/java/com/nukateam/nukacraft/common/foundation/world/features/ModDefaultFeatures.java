@@ -17,6 +17,10 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_ASH);
     }
 
+//    public static void addMireTrees(BiomeGenerationSettings.Builder builder) {
+//        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_MIRE);
+//    }
+
     public static void addDewdropTrees(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_DEWDROP);
     }
@@ -24,6 +28,15 @@ public class ModDefaultFeatures {
     public static void addAshHeapTrees(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_ASH_HEAP);
     }
+
+    public static void addImmortalGreenTrees(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_IMMORTAL_GREEN);
+    }
+
+    public static void addRustyTrees(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_RUSTY);
+    }
+
 
     public static void addGlowTrees(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModTreePlacements.TREES_GLOW);
@@ -35,7 +48,7 @@ public class ModDefaultFeatures {
 
     public static void coalOre(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_UPPER);
-//        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
     }
 
     public static void alumiOre(BiomeGenerationSettings.Builder builder) {
@@ -138,6 +151,12 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_ASTER_PLANT_PLACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_THISTLE_PLANT_PLACE);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_DEAD_PLANT_PLACE);
+    }
+
+    public static void addCommonBerryBush(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_COMMON_BERRY_BUSH1);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_COMMON_BERRY_BUSH2);
+        builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.PATCH_COMMON_BERRY_BUSH3);
     }
 
     public static void addCranBerryBogPlants(BiomeGenerationSettings.Builder builder) {

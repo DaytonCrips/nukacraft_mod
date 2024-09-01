@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 610,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "nukacraft:raw_bloatfly"
+  },
+  "result": "nukacraft:cooked_bloatfly"
+}

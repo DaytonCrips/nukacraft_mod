@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 110,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "nukacraft:raw_radroach_meat"
+  },
+  "result": "nukacraft:cooked_radroach_meat"
+}

@@ -1,4 +1,4 @@
-# nukacraft_mod
+**# nukacraft_mod
 This is my first mod, created with the support of friends. It is based on the Fallout game universe and positions itself as a sandbox mod with no apparent goal or progression.
 
 A little tour of the content:

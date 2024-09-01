@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 620,
+  "experience": 0.45,
+  "ingredient": {
+    "item": "nukacraft:raw_iguana_meat"
+  },
+  "result": "nukacraft:cooked_iguana_meat"
+}

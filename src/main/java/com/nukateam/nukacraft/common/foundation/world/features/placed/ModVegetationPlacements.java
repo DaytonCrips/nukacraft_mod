@@ -20,6 +20,9 @@ public class ModVegetationPlacements {
     public static final ResourceKey<PlacedFeature> PATCH_MEGA_HATTER_PLACE = registerKey("patch_mega_hatter_place");
     public static final ResourceKey<PlacedFeature> PATCH_ASTER_PLANT_PLACE = registerKey("patch_aster_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_BROC_PLANT_PLACE = registerKey("patch_broc_plant_place");
+    public static final ResourceKey<PlacedFeature> PATCH_COMMON_BERRY_BUSH1 = registerKey("patch_common_berry_bush1");
+    public static final ResourceKey<PlacedFeature> PATCH_COMMON_BERRY_BUSH2 = registerKey("patch_common_berry_bush2");
+    public static final ResourceKey<PlacedFeature> PATCH_COMMON_BERRY_BUSH3 = registerKey("patch_common_berry_bush3");
     public static final ResourceKey<PlacedFeature> PATCH_THISTLE_PLANT_PLACE = registerKey("patch_thistle_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_DEAD_PLANT_PLACE = registerKey("patch_dead_plant_place");
     public static final ResourceKey<PlacedFeature> PATCH_SOOT_FLOWER_PLANT_PLACE = registerKey("patch_soot_flower_plant_place");
@@ -55,6 +58,7 @@ public class ModVegetationPlacements {
     public static final ResourceKey<PlacedFeature> PATCH_ZANDER = registerKey("patch_zander");
     public static final ResourceKey<PlacedFeature> PATCH_RUSTY_BUSH = registerKey("patch_rusty_bush");
     public static final ResourceKey<PlacedFeature> ASH_GRASS = registerKey("ash_grass");
+    public static final ResourceKey<PlacedFeature> STRANGE_GRASS = registerKey("strange_grass");
     public static final ResourceKey<PlacedFeature> POISON_GRASS = registerKey("poison_grass");
     public static final ResourceKey<PlacedFeature> CRANBERRY_GRASS = registerKey("cranberry_grass");
     public static final ResourceKey<PlacedFeature> GRASS_ASH = registerKey("grass_ash");
@@ -104,6 +108,27 @@ public class ModVegetationPlacements {
                 new PlacedFeature(features.getOrThrow(
                         ModVegetationFeatures.ASTER_PLANT), List.of(
                         RarityFilter.onAverageOnceEvery(3),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome())));
+        context.register(PATCH_COMMON_BERRY_BUSH1,
+                new PlacedFeature(features.getOrThrow(
+                        ModVegetationFeatures.CRACKBERRY_BUSH_PLANT), List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome())));
+        context.register(PATCH_COMMON_BERRY_BUSH2,
+                new PlacedFeature(features.getOrThrow(
+                        ModVegetationFeatures.STARLIGHT_BERRY_PLANT), List.of(
+                        RarityFilter.onAverageOnceEvery(2),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                        BiomeFilter.biome())));
+        context.register(PATCH_COMMON_BERRY_BUSH3,
+                new PlacedFeature(features.getOrThrow(
+                        ModVegetationFeatures.MUTTFRUIT_BUSH_PLANT), List.of(
+                        RarityFilter.onAverageOnceEvery(2),
                         InSquarePlacement.spread(),
                         PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         BiomeFilter.biome())));
@@ -371,6 +396,12 @@ public class ModVegetationPlacements {
 
         context.register(GRASS_ASH, new PlacedFeature(features.getOrThrow(VegetationFeatures.PATCH_GRASS),
                         List.of(NoiseThresholdCountPlacement.of(-0.8D, 5, 4),
+                                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
+                )
+        );
+
+        context.register(STRANGE_GRASS, new PlacedFeature(features.getOrThrow(ModVegetationFeatures.PATCH_STRANGE_GRASS),
+                        List.of(NoiseThresholdCountPlacement.of(-0.3D, 1, 12),
                                 InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())
                 )
         );

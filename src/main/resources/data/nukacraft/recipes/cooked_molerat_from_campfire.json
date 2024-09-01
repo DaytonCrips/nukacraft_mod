@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 620,
+  "experience": 0.45,
+  "ingredient": {
+    "item": "nukacraft:raw_molerat"
+  },
+  "result": "nukacraft:cooked_molerat"
+}
