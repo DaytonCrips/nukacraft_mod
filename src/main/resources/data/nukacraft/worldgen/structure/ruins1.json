@@ -14,5 +14,15 @@
     "absolute": 0
   },
   "step": "surface_structures",
-  "spawn_overrides": {}
+  "spawn_overrides": {"monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "nukacraft:raider",
+          "weight": 1,
+          "minCount": 4,
+          "maxCount": 7
+        }
+      ]
+    }}
 }

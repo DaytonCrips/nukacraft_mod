@@ -16,7 +16,12 @@
     [],
     [],
     [],
-    [],
+    [
+      "nukacraft:ore_uran",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "nukacraft:ore_ultracite"
+    ],
     [],
     [],
     [
