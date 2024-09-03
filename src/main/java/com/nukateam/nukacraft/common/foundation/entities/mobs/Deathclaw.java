@@ -1,13 +1,11 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
+import com.nukateam.nukacraft.client.models.entity.DeathclawModel;
 import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
-import com.nukateam.nukacraft.common.foundation.variants.RaiderVariant;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animation.Animation;
 import mod.azure.azurelib.core.animation.AnimationController;
-import mod.azure.azurelib.core.animation.RawAnimation;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +13,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -23,20 +20,22 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer.DEATHCLAW_MODEL;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
-import static mod.azure.azurelib.core.animation.Animation.*;
-import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
+import static mod.azure.azurelib.core.animation.Animation.LoopType.PLAY_ONCE;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
@@ -51,7 +50,8 @@ public class Deathclaw extends Monster implements GeoEntity {
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final boolean isServerSide = !level().isClientSide;
-    private final AnimationHelper<Deathclaw> animationHelper = new AnimationHelper<>(this, DEATHCLAW_MODEL);
+//    @OnlyIn(Dist.CLIENT)
+    private final Lazy<AnimationHelper<Deathclaw>> animationHelper = Lazy.of(() -> new AnimationHelper<>(this, new DeathclawModel<>()));
 
     private boolean startAttacking = false;
     private String[] attackAnims = new String[]{
@@ -82,6 +82,7 @@ public class Deathclaw extends Monster implements GeoEntity {
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.5D, false));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, this.getClass()));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Animal.class, false));
@@ -163,7 +164,7 @@ public class Deathclaw extends Monster implements GeoEntity {
                         attackAnimName = attackAnims[random.nextInt(0, attackAnims.length)];
                     }
 
-                    animationHelper.syncAnimation(event, attackAnimName, 20);
+                    animationHelper.get().syncAnimation(event, attackAnimName, 20);
 //                    controller.setAnimationSpeed(2);
                     animation.thenLoop(attackAnimName);
 

@@ -9,6 +9,7 @@ import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.goals.AssaultronAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.GeoMeleeAttackGoal;
+import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.registery.items.MobGuns;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
@@ -48,7 +49,7 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final boolean isServerSide = !level().isClientSide;
-    private final AnimationHelper<Assaultron> animationHelper = new AnimationHelper<>(this, new EntityModel<Assaultron>());
+//    private final AnimationHelper<Assaultron> animationHelper = new AnimationHelper<>(this, new EntityModel<Assaultron>());
     private final TickTimer serverTimer = new TickTimer();
     private boolean startAttacking = false;
     private String attackAnimName;
@@ -130,8 +131,12 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
+//        ShootingHandler.get().fire(this, item);
+//
+//
+        GunAttackGoal.shoot(this, true);
+
         var item = getGun();
-        ShootingHandler.get().fire(this, item);
         var gun = (GunItem)item.getItem();
         var laserDuration = gun.getModifiedGun(item).getProjectile().getLife();
         entityData.set(IS_SHOOTING_LASER, true);

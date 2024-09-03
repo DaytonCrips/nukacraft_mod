@@ -8,12 +8,12 @@ import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +28,7 @@ public class EntityReloadTracker {
     private int reloadTick;
 
     private static final Map<LivingEntity, EntityReloadTracker> RELOAD_TRACKER_MAP = new HashMap<>();
+    private static final ArrayList<LivingEntity> FOR_REMOVE = new ArrayList<>();
 
     private EntityReloadTracker(LivingEntity entity, HumanoidArm arm) {
         this.arm = arm;
@@ -55,12 +56,21 @@ public class EntityReloadTracker {
                     var entity = entry.getKey();
                     onTick(entity, tracker);
                 }
+                removeTrackers();
             }
         }
         catch (Exception e){
             Ntgl.LOGGER.error(e.getMessage(), e);
         }
     }
+
+    private static void removeTrackers() {
+        for (var removed: FOR_REMOVE) {
+            RELOAD_TRACKER_MAP.remove(removed);
+        }
+        FOR_REMOVE.clear();
+    }
+
 
     private static void onTick(LivingEntity entity, EntityReloadTracker tracker){
         if (tracker.reloadTick > 0) {
@@ -69,7 +79,8 @@ public class EntityReloadTracker {
         else{
             Gun.fillAmmo(tracker.stack);
             setReloading(entity, tracker.arm, false);
-            RELOAD_TRACKER_MAP.remove(entity);
+//            RELOAD_TRACKER_MAP.remove(entity);
+            FOR_REMOVE.add(entity);
         }
     }
 

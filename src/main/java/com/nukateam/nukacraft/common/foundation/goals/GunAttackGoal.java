@@ -1,12 +1,16 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
+import com.nukateam.ntgl.client.data.handler.ShootingHandler;
 import com.nukateam.ntgl.common.base.gun.Gun;
+import com.nukateam.ntgl.common.base.network.ServerPlayHandler;
 import com.nukateam.ntgl.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.network.message.C2SMessageShoot;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -109,10 +113,6 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
 
         this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
-        var gunStack = mob.getGun();
-
-        var gun = (GunItem) mob.getGun().getItem();
-
         if (Gun.hasAmmo(mob.getGun())) {
             mob.performRangedAttack(target, 1);
         }
@@ -138,10 +138,21 @@ public class GunAttackGoal<T extends PathfinderMob & RangedAttackMob & IGunUser>
         return true; //this.crossbowState == GunAttackGoal.CrossbowState.UNCHARGED;
     }
 
-//    enum CrossbowState {
-//        UNCHARGED,
-//        CHARGING,
-//        CHARGED,
-//        READY_TO_ATTACK;
-//    }
+    public void performRangedAttack() {
+        var msg = new C2SMessageShoot(mob.getId(),
+                mob.getViewYRot(1),
+                mob.getViewXRot(1),
+                0, 0, true);
+
+        ServerPlayHandler.handleShoot(msg, mob);
+    }
+
+    public static void shoot(LivingEntity shooter, boolean isRightHand){
+        var msg = new C2SMessageShoot(shooter.getId(),
+                shooter.getViewYRot(1),
+                shooter.getViewXRot(1),
+                0, 0, isRightHand);
+
+        ServerPlayHandler.handleShoot(msg, shooter);
+    }
 }

@@ -5,6 +5,7 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
+import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.SecuritronRangedAttackGoal;
 import com.nukateam.nukacraft.common.foundation.variants.SecuritronVariant;
 import com.nukateam.nukacraft.common.registery.items.MobGuns;
@@ -32,9 +33,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer.DEATHCLAW_MODEL;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 import static net.minecraft.advancements.critereon.SlimePredicate.sized;
@@ -47,7 +52,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
 
     private final boolean isServerSide = !level().isClientSide;
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final AnimationHelper<Securitron> animationHelper = new AnimationHelper<>(this, new EntityModel<Securitron>());
+    private final Lazy<AnimationHelper<Securitron>> animationHelper = Lazy.of(() -> new AnimationHelper<>(this, new EntityModel<Securitron>()));
 
     public Securitron(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
@@ -111,10 +116,11 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        var item = getMainHandItem();
+        var item = getGun();
         if(!item.isEmpty()) {
             try {
-                ShootingHandler.get().fire(this, item);
+                GunAttackGoal.shoot(this, true);
+//                ShootingHandler.get().fire(this, item);
             }
             catch (Exception e){
                 NukaCraftMod.LOGGER.error(e.getMessage(), e);
@@ -192,12 +198,12 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
             if (hasTarget()) {
                 var animationName = isUpgraded() ? "laser_mode" : "gun_mode";
                 animation.thenPlayAndHold(animationName);
-                animationHelper.syncAnimation(event, animationName, SHOOTING_START_TIME);
+                animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
             }
             else if(controller.getCurrentAnimation() != null){
                 var animationName = isUpgraded() ? "laser_mode_end" : "gun_mode_end";
                 animation.thenPlay(animationName);
-                animationHelper.syncAnimation(event, animationName, SHOOTING_START_TIME);
+                animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
             }
             else return PlayState.STOP;
 
