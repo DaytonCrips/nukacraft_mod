@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
 import com.nukateam.nukacraft.common.registery.items.ModFood;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -34,7 +35,7 @@ public class IrradRootBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModFood.IRRADIATED_BEETROOT_SEED.get();
+        return ModItems.IRRADIATED_BEETROOT_SEED.get();
     }
 
 

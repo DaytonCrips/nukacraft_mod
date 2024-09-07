@@ -6,20 +6,20 @@
   ],
   "key": {
     "0": {
-      "item": "minecraft:carrot"
+      "item": "nukacraft:spices"
     },
     "1": {
-      "item": "nukacraft:firemushroom"
+      "item": "nukacraft:silt_bean"
     },
     "2": {
-      "item": "nukacraft:nbloodleafi"
+      "item": "minecraft:potato"
     },
     "4": {
       "item": "nukacraft:steelbowl"
     }
   },
   "result": {
-    "item": "nukacraft:firemushsoup",
+    "item": "nukacraft:silt_puree",
     "count": 1
   }
 }

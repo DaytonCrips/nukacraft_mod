@@ -16,6 +16,8 @@ public class ModFoodTypes {
     public static final FoodProperties FUSFRUIT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.3f).build();
     public static final FoodProperties SILT_BEAN = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.1f).build();
     public static final FoodProperties NEUTRONROD = (new FoodProperties.Builder()).nutrition(0).alwaysEat().saturationMod(0.1f).build();
+    public static final FoodProperties UFCARROT = (new FoodProperties.Builder()).nutrition(1).alwaysEat().saturationMod(0.5f).build();
+
     public static final FoodProperties WILDTATO = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(0.6f).build();
     public static final FoodProperties STARBERRY = (new FoodProperties.Builder()).nutrition(3).alwaysEat().saturationMod(0.9f).build();
     public static final FoodProperties CRANBERRY = (new FoodProperties.Builder()).nutrition(2).alwaysEat().saturationMod(0.2f).build();

@@ -331,6 +331,10 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> STEELBOWL = ITEMS.register("steelbowl",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
+    @DataGen
+    public static final RegistryObject<Item> SPICES = ITEMS.register("spices",
+            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
     @DataGen
     public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
             () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
@@ -456,6 +460,13 @@ public class ModItems {
     public static final RegistryObject<Item> GIGAWHEAT_SEEDS = ITEMS.register("giga_wheat_seeds",
             () -> new ItemNameBlockItem(ModBlocks.GIGAWHEAT.get(), (new Item.Properties().rarity(Rarity.RARE))));
 
+    @DataGen
+    public static final RegistryObject<Item> IRRADIATED_BEETROOT_SEED = ITEMS.register("irradiated_beetroot_seed",
+            () -> new ItemNameBlockItem(ModBlocks.IRRADROOT.get(), new Item.Properties()));
+
+    @DataGen
+    public static final RegistryObject<Item> ULTRAVIOLET_CARROT_SEED = ITEMS.register("uf_carrot_seed",
+            () -> new ItemNameBlockItem(ModBlocks.UFCARROT.get(), new Item.Properties()));
     //Spawn Eggs
     @DataGen(parent = ItemParent.SPAWN_EGG)
     public static final RegistryObject<ForgeSpawnEggItem> RAIDER_SPAWN_EGG = ITEMS.register("raider_spawn_egg",

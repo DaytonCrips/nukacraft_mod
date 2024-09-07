@@ -19,11 +19,11 @@
                   }
                 }
               ],
-              "name": "nukacraft:irrad_beetroot"
+              "name": "nukacraft:irradiated_beetroot"
             },
             {
               "type": "minecraft:item",
-              "name": "nukacraft:irradb_seed"
+              "name": "nukacraft:irradiated_beetroot_seed"
             }
           ]
         }
@@ -46,7 +46,7 @@
               }
             }
           ],
-          "name": "nukacraft:irradb_seed"
+          "name": "nukacraft:irradiated_beetroot_seed"
         }
       ],
       "conditions": [

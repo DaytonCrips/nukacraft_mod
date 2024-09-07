@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.blocks.plants;
 
 import com.nukateam.nukacraft.common.registery.items.ModFood;
+import com.nukateam.nukacraft.common.registery.items.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -19,7 +20,7 @@ public class UltravioletCarrotBlock extends CropBlock {
     }
 
     protected ItemLike getBaseSeedId() {
-        return ModFood.IRRADIATED_BEETROOT_SEED.get();
+        return ModItems.ULTRAVIOLET_CARROT_SEED.get();
     }
 
 

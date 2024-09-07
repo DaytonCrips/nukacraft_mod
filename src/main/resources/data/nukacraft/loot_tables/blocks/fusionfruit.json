@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:fusionfruit"
+          "name": "nukacraft:fusion_fruit"
         }
       ],
       "conditions": [
@@ -42,7 +42,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:fusionfruit"
+          "name": "nukacraft:fusion_fruit"
         }
       ],
       "conditions": [

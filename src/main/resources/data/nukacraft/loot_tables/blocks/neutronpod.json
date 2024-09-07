@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:neutronpod"
+          "name": "nukacraft:neutron_rod"
         }
       ],
       "conditions": [
@@ -42,7 +42,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:neutronpod"
+          "name": "nukacraft:neutron_rod"
         }
       ],
       "conditions": [

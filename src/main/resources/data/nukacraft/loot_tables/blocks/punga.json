@@ -12,9 +12,9 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "nukacraft:punga_fruit",
+          "block": "nukacraft:punga",
           "properties": {
-            "age": "5"
+            "age": "3"
           }
         }
       ],
@@ -48,9 +48,9 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "nukacraft:punga_fruit",
+          "block": "nukacraft:punga",
           "properties": {
-            "age": "4"
+            "age": "2"
           }
         }
       ],

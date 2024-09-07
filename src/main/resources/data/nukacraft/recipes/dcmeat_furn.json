@@ -3,7 +3,7 @@
   "experience": 2,
   "cookingtime": 110,
   "ingredient": {
-    "item": "nukacraft:raw_dcmeat"
+    "item": "nukacraft:raw_deadclaw_meat"
   },
-  "result": "nukacraft:c_dcmeat"
+  "result": "nukacraft:cooked_deadclaw_meat"
 }
