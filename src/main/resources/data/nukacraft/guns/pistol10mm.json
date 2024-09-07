@@ -34,6 +34,91 @@
       "yOffset": 3.7,
       "zOffset": 0.0,
       "fovModifier": 0.7
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "scope_1",
+          "item": "ntgl:holographic_sight"
+        },
+        {
+          "name": "scope_2",
+          "item": "ntgl:collimator_sight"
+        },
+        {
+          "name": "scope_3",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "scope_4",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "scope_5",
+          "item": "ntgl:placeholder"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "barrel_2",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "barrel_3",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "barrel_4",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "barrel_5",
+          "item": "ntgl:silencer",
+          "hide": [
+            "muzzle_flash"
+          ]
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_2",
+          "item": "ntgl:tactical_stock",
+          "hide": [
+            "grip_1"
+          ]
+        },
+        {
+          "name": "grip_3",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "grip_4",
+          "item": "ntgl:weighted_stock"
+        }
+      ],
+      "ntgl:magazine": [
+        {
+          "name": "magazine_1",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "magazine_2",
+          "item": "ntgl:extended_magazine"
+        },
+        {
+          "name": "magazine_3",
+          "item": "ntgl:placeholder"
+        },
+        {
+          "name": "magazine_4",
+          "item": "ntgl:drum_magazine"
+        }
+      ]
     }
+
   }
 }
