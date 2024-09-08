@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "experience": 2.2,
-  "cookingtime": 190,
-  "ingredient": {
-    "item": "nukacraft:deepultracite_block"
-  },
-  "result": "nukacraft:ultracite"
-}

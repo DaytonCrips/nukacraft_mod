@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "experience": 3,
-  "cookingtime": 110,
-  "ingredient": {
-    "item": "nukacraft:deepultracite_block"
-  },
-  "result": "nukacraft:ultracite"
-}

@@ -46,13 +46,19 @@ public class ModDefaultFeatures {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COPPER);
     }
 
+    public static void goldOre(BiomeGenerationSettings.Builder builder) {
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_GOLD);
+    }
+
+
+
     public static void coalOre(BiomeGenerationSettings.Builder builder) {
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_UPPER);
         builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
     }
 
     public static void alumiOre(BiomeGenerationSettings.Builder builder) {
-        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COPPER);
+        builder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ModOrePlacements.ORE_ALUMINIUM);
     }
 
     public static void ultraciteOre(BiomeGenerationSettings.Builder builder) {
@@ -81,31 +87,37 @@ public class ModDefaultFeatures {
     }
 
     public static void addPoisonValleyOres(BiomeGenerationSettings.Builder builder) {
-        //  alumiOre(builder);
-        //copperOre(builder);
+        copperOre(builder);
+        alumiOre(builder);
         coalOre(builder);
     }
 
     public static void addCranberryBogOres(BiomeGenerationSettings.Builder builder) {
-        //alumiOre(builder);
+        alumiOre(builder);
         coalOre(builder);
-        //ultraciteOre(builder);
+        ultraciteOre(builder);
     }
 
     public static void addGlowSeaOres(BiomeGenerationSettings.Builder builder) {
-        //uranOre(builder);
+        uranOre(builder);
         coalOre(builder);
-        //ultraciteOre(builder);
+        ultraciteOre(builder);
+    }
+
+    public static void addSavageDivideOres(BiomeGenerationSettings.Builder builder) {
+        goldOre(builder);
+        coalOre(builder);
+        ironOre(builder);
     }
 
     public static void addAshHeapOres(BiomeGenerationSettings.Builder builder) {
-        //alumiOre(builder);
-        //copperOre(builder);
+        copperOre(builder);
+        alumiOre(builder);
         coalOre(builder);
-        //ironOre(builder);
-        //leadOre(builder);
-        //silverOre(builder);
-        //btitanOre(builder);
+        ironOre(builder);
+        leadOre(builder);
+        silverOre(builder);
+        blackTitanOre(builder);
     }
 //
 //    public static void addWastelandAluminium(BiomeGenerationSettings.Builder builder) {

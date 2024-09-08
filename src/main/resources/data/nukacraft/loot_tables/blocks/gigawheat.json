@@ -23,7 +23,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "nukacraft:gigawheat_seeds"
+              "name": "nukacraft:giga_wheat_seeds"
             }
           ]
         }
@@ -46,7 +46,7 @@
               }
             }
           ],
-          "name": "nukacraft:gigawheat_seeds"
+          "name": "nukacraft:giga_wheat_seeds"
         }
       ],
       "conditions": [

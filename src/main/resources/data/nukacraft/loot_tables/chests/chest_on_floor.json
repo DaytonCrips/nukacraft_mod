@@ -427,7 +427,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wood_helmet",
+          "name": "nukacraft:wooden_helmet",
           "conditions": [
             {
               "condition": "minecraft:random_chance",
@@ -437,7 +437,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wood_chest",
+          "name": "nukacraft:wooden_chest",
           "conditions": [
             {
               "condition": "minecraft:random_chance",
@@ -447,7 +447,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wood_leggins",
+          "name": "nukacraft:wooden_leggins",
           "conditions": [
             {
               "condition": "minecraft:random_chance",
@@ -457,7 +457,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wood_boots",
+          "name": "nukacraft:wooden_boots",
           "conditions": [
             {
               "condition": "minecraft:random_chance",

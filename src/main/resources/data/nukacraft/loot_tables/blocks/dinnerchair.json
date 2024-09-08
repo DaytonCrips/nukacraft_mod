@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:dinnerchair",
+          "name": "nukacraft:vtdinner_chair",
           "weight": 1,
           "functions": [
             {

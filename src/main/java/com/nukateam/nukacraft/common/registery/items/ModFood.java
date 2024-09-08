@@ -56,10 +56,8 @@ public class ModFood {
             () -> new Item(new Item.Properties().food(Foods.BEETROOT)));
     @DataGen
     public static final RegistryObject<Item> ULTRAVIOLET_CARROT = ITEMS.register("ultraviolet_carrot",
-            () -> new RadNamedItem(0.2f, ModBlocks.UFCARROT.get(), new Item.Properties().food(ModFoodTypes.WILDTATO)));
-    @DataGen
-    public static final RegistryObject<Item> IRRADIATED_BEETROOT_SEED = ITEMS.register("irradiated_beetroot_seed",
-            () -> new BlockItem(ModBlocks.IRRADROOT.get(), new Item.Properties()));
+            () -> new RadNamedItem(0.2f, ModBlocks.UFCARROT.get(), new Item.Properties().food(ModFoodTypes.UFCARROT)));
+
     @DataGen
     public static final RegistryObject<Item> SPOILED_TATO = ITEMS.register("spoiled_tato",
             () -> new Item(new Item.Properties().food(ModFoodTypes.SPOILED)));

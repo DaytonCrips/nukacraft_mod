@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:item/raw_saturnite"
+    "layer0": "nukacraft:item/saturnite_ingot"
   }
 }

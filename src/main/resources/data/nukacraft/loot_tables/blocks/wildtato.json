@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wildtato"
+          "name": "nukacraft:wild_tato"
         }
       ],
       "conditions": [
@@ -42,7 +42,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nukacraft:wildtato"
+          "name": "nukacraft:wild_tato"
         }
       ],
       "conditions": [
