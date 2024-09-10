@@ -28,7 +28,7 @@ public class BlastDoorBlock extends DoorBlock {
     protected static final VoxelShape EMPTY_AABB = Block.box(0, 0, 0, 0, 0, 0);
 
     public BlastDoorBlock(Properties pProperties) {
-        super(pProperties, BlockSetType.IRON);
+        super(pProperties, BlockSetType.OAK);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)).setValue(HINGE, DoorHingeSide.LEFT).setValue(POWERED, Boolean.valueOf(false)).setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
