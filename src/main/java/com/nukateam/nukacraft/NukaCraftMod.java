@@ -53,6 +53,7 @@ public class NukaCraftMod {
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModWeapons.register(MOD_EVENT_BUS);
+        WeaponAttachments.register(MOD_EVENT_BUS);
         MobGuns.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);

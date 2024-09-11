@@ -41,7 +41,7 @@ public class ModItemTabs {
     public static final RegistryObject<CreativeModeTab> NUKA_WEAPONS = CREATIVE_MODE_TABS.register("nuka_equip",
             () -> builder().icon(() -> new ItemStack(ModWeapons.ROUND10MM.get()))
                     .title(Component.translatable("itemGroup.nuka_equip"))
-                    .displayItems((params, output) -> registerItems(output, ModWeapons.ITEMS))
+                    .displayItems(ModItemTabs::getWeaponTab)
                     .build());
 
 
@@ -54,6 +54,11 @@ public class ModItemTabs {
     private static void getArmorTab(ItemDisplayParameters itemDisplayParameters, Output output) {
         registerItems(output, PowerArmorItems.ITEMS);
         registerItems(output, ModArmorItems.ITEMS);
+    }
+
+    private static void getWeaponTab(ItemDisplayParameters itemDisplayParameters, Output output) {
+        registerItems(output, ModWeapons.ITEMS);
+        registerItems(output, WeaponAttachments.ITEMS);
     }
 
 //    public static final RegistryObject<CreativeModeTab> POWER_ARMOR = CREATIVE_MODE_TABS.register("power_armor",
