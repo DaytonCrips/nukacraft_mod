@@ -41,48 +41,37 @@ public class WeaponAttachments {
     /* Barrel Attachments */
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_SILENCER = ITEMS.register("pistol_silencer",
-            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.SILENCED, GunModifiers.REDUCED_DAMAGE), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.FLASH_HIDER, GunModifiers.SILENCED, GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_DAMAGE_lvl1, GunModifiers.REDUCED_DISTANCE_LVL3), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_COMPENSATOR = ITEMS.register("pistol_compensator",
-            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.SILENCED, GunModifiers.REDUCED_DAMAGE), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(3.0F, GunModifiers.REDUCED_RECOIL_LVL2, GunModifiers.REDUCED_DAMAGE_lvl2), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_FLAME_HIDER = ITEMS.register("pistol_flame_hider",
-            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.SILENCED, GunModifiers.REDUCED_DAMAGE), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(3.0F, GunModifiers.FLASH_HIDER, GunModifiers.REDUCED_DAMAGE_lvl1), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_HEAVY_BARREL = ITEMS.register("pistol_heavy_barrel",
-            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.SILENCED, GunModifiers.REDUCED_DAMAGE), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(4.0F, GunModifiers.EXTEND_RECOIL_LVL1, GunModifiers.EXTEND_DAMAGE_lvl1, GunModifiers.EXTEND_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_LONG_BARREL = ITEMS.register("pistol_long_barrel",
-            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.SILENCED, GunModifiers.REDUCED_DAMAGE), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(4.0F, GunModifiers.EXTEND_RECOIL_LVL1, GunModifiers.EXTEND_DAMAGE_lvl2, GunModifiers.EXTEND_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
 
-    /* Stock Attachments */
-    @DataGen(path = "attachments")
-    public static final RegistryObject<Item> PISTOL_LIGHT_STOCK = ITEMS.register("pistol_light_stock",
-            () -> new StockItem(Stock.create(GunModifiers.BETTER_CONTROL), new Item.Properties().stacksTo(1), false));
-    @DataGen(path = "attachments")
-    public static final RegistryObject<Item> PISTOL_TACTICAL_STOCK = ITEMS.register("pistol_tactical_stock",
-            () -> new StockItem(Stock.create(GunModifiers.STABILISED), new Item.Properties().stacksTo(1), false));
-    @DataGen(path = "attachments")
-    public static final RegistryObject<Item> PISTOL_WEIGHTED_STOCK = ITEMS.register("pistol_weighted_stock",
-            () -> new StockItem(Stock.create(GunModifiers.SUPER_STABILISED), new Item.Properties().stacksTo(1)));
+
 
     /* Under Barrel Attachments */
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_SPECIALISED_GRIP = ITEMS.register("pistol_specialised_grip",
-            () -> new UnderBarrelItem(UnderBarrel.create(GunModifiers.REDUCED_RECOIL), new Item.Properties().stacksTo(1)));
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL2, GunModifiers.REDUCED_KICKING_LVL1), new Item.Properties().stacksTo(1)));
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_TACTICAL_GRIP = ITEMS.register("pistol_tactical_grip",
-            () -> new StockItem(Stock.create(GunModifiers.STABILISED), new Item.Properties().stacksTo(1), false));
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_KICKING_LVL3), new Item.Properties().stacksTo(1), false));
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_WEIGHTED_GRIP = ITEMS.register("pistol_weighted_grip",
-            () -> new StockItem(Stock.create(GunModifiers.SUPER_STABILISED), new Item.Properties().stacksTo(1)));
-    @DataGen(path = "attachments")
-    public static final RegistryObject<Item> PISTOL_LIGHT_GRIP = ITEMS.register("pistol_light_grip",
-            () -> new UnderBarrelItem(UnderBarrel.create(GunModifiers.LIGHT_RECOIL), new Item.Properties().stacksTo(1)));
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL3, GunModifiers.REDUCED_KICKING_LVL2), new Item.Properties().stacksTo(1)));
+
 
     /* Magazine Attachments*/
     @DataGen(path = "attachments")
@@ -91,15 +80,66 @@ public class WeaponAttachments {
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_HUGE_MAGAZINE = ITEMS.register("pistol_huge_magazine",
-            () -> new MagazineItem(Magazine.create(60, GunModifiers.SLOWER_ADS, GunModifiers.HUGE_MAG), new Item.Properties().stacksTo(1)));
+            () -> new MagazineItem(Magazine.create(60, GunModifiers.HUGE_MAG), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_DRUM_MAGAZINE = ITEMS.register("pistol_drum_magazine",
-            () -> new MagazineItem(Magazine.create(60, GunModifiers.SLOWER_ADS, GunModifiers.DRUM_MAG), new Item.Properties().stacksTo(1)));
+            () -> new MagazineItem(Magazine.create(60, GunModifiers.DRUM_MAG), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_QUICK_MAGAZINE = ITEMS.register("pistol_quick_magazine",
-            () -> new MagazineItem(Magazine.create(60, GunModifiers.SLOWER_ADS, GunModifiers.QUICK_MAG), new Item.Properties().stacksTo(1)));
+            () -> new MagazineItem(Magazine.create(60, GunModifiers.QUICK_MAG, GunModifiers.EXTEND_KICKING_LVL3), new Item.Properties().stacksTo(1)));
+
+
+
+
+
+
+
+    /* Handmade Grip Attachmentы */
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_TACTICAL_GRIP = ITEMS.register("handmade_tactical_grip",
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL1,GunModifiers.TRANSFORM_CARBINE, GunModifiers.REDUCED_KICKING_LVL3), new Item.Properties().stacksTo(1), false));
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_PISTOL_GRIP = ITEMS.register("handmade_pistol_grip",
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_KICKING_LVL1), new Item.Properties().stacksTo(1)));
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_LONG_GRIP = ITEMS.register("handmade_long_grip",
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL3,GunModifiers.TRANSFORM_CARBINE, GunModifiers.REDUCED_KICKING_LVL1, GunModifiers.REDUCED_KICKING_LVL2), new Item.Properties().stacksTo(1)));
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_CARBINE_GRIP = ITEMS.register("handmade_carbine_grip",
+            () -> new StockItem(Stock.create(GunModifiers.REDUCED_RECOIL_LVL3,GunModifiers.TRANSFORM_CARBINE, GunModifiers.REDUCED_KICKING_LVL1, GunModifiers.REDUCED_KICKING_LVL3), new Item.Properties().stacksTo(1)));
+
+
+
+
+
+
+    /* Handmade Barrel Attachments */
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_SILENCER = ITEMS.register("handmade_silencer",
+            () -> new BarrelItem(Barrel.create(8.0F, GunModifiers.FLASH_HIDER, GunModifiers.SILENCED, GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_DAMAGE_lvl1, GunModifiers.REDUCED_DISTANCE_LVL3), new Item.Properties().stacksTo(1)));
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_COMPENSATOR = ITEMS.register("handmade_compensator",
+            () -> new BarrelItem(Barrel.create(3.0F, GunModifiers.REDUCED_RECOIL_LVL2, GunModifiers.REDUCED_DAMAGE_lvl2), new Item.Properties().stacksTo(1)));
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_FLAME_HIDER = ITEMS.register("handmade_flame_hider",
+            () -> new BarrelItem(Barrel.create(3.0F, GunModifiers.FLASH_HIDER, GunModifiers.REDUCED_DAMAGE_lvl1), new Item.Properties().stacksTo(1)));
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_HEAVY_BARREL = ITEMS.register("handmade_heavy_barrel",
+            () -> new BarrelItem(Barrel.create(4.0F, GunModifiers.EXTEND_RECOIL_LVL2, GunModifiers.EXTEND_DAMAGE_lvl1, GunModifiers.EXTEND_DISTANCE_LVL2, GunModifiers.EXTEND_KICKING_LVL3), new Item.Properties().stacksTo(1)));
+
+    @DataGen(path = "attachments")
+    public static final RegistryObject<Item> HANDMADE_LONG_BARREL = ITEMS.register("handmade_long_barrel",
+            () -> new BarrelItem(Barrel.create(4.0F, GunModifiers.EXTEND_RECOIL_LVL2, GunModifiers.EXTEND_DAMAGE_lvl2, GunModifiers.EXTEND_DISTANCE_LVL2, GunModifiers.EXTEND_KICKING_LVL2), new Item.Properties().stacksTo(1)));
+
+
+
 
 
     public static void register(IEventBus eventBus) {

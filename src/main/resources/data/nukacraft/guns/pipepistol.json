@@ -31,6 +31,115 @@
       "yOffset": 4.7,
       "zOffset": 0.0,
       "fovModifier": 0.7
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "scope_1",
+          "item": "nukacraft:pistol_holographic_sight",
+          "xOffset": 10.0,
+          "yOffset": 4.7,
+          "zOffset": 0.0
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_collimator_sight"
+        },
+        {
+          "name": "scope_3",
+          "item": "nukacraft:pistol_hunting_optics"
+        },
+        {
+          "name": "scope_4",
+          "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_5",
+          "item": "nukacraft:pistol_scout_sight"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:handmade_silencer",
+          "hide": [
+            "muzzle_flash"
+          ]
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:handmade_flame_hider",
+          "hide": [
+            "muzzle_flash"
+          ]
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:handmade_compensator"
+        },
+        {
+          "name": "barrel_4",
+          "item": "nukacraft:handmade_heavy_barrel"
+        },
+        {
+          "name": "barrel_5",
+          "item": "nukacraft:handmade_long_barrel"
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_1",
+          "item": "nukacraft:handmade_tactical_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_2",
+          "item": "nukacraft:handmade_pistol_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_3",
+          "item": "nukacraft:handmade_long_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_4",
+          "item": "nukacraft:handmade_carbine_grip",
+          "hide": [
+            "grip_default"
+          ]
+        }
+      ],
+      "ntgl:magazine": [
+        {
+          "name": "magazine_1",
+          "item": "nukacraft:pistol_extended_magazine",
+          "hide": [
+            "magazine_default"
+          ]
+        },
+        {
+          "name": "magazine_2",
+          "item": "nukacraft:pistol_quick_magazine",
+          "hide": [
+            "magazine_default"
+          ]
+        },
+        {
+          "name": "magazine_3",
+          "item": "nukacraft:pistol_drum_magazine",
+          "hide": [
+            "magazine_default"
+          ]
+        }
+      ]
     }
+
   }
 }

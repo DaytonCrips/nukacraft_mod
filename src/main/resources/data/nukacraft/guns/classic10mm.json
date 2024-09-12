@@ -36,8 +36,72 @@
     "attachments": {
       "ntgl:scope": [
         {
-          "name": "short_scope",
-          "item": "ntgl:holographic_sight"
+          "name": "scope_1",
+          "item": "nukacraft:pistol_holographic_sight"
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_collimator_sight"
+        },
+        {
+          "name": "scope_3",
+          "item": "nukacraft:pistol_hunting_optics"
+        },
+        {
+          "name": "scope_4",
+          "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_5",
+          "item": "nukacraft:pistol_scout_sight"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:pistol_flame_hider",
+          "hide": [
+            "muzzle_flash"
+          ]
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:pistol_long_barrel"
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:pistol_compensator"
+        },
+        {
+          "name": "barrel_4",
+          "item": "nukacraft:pistol_heavy_barrel"
+        },
+        {
+          "name": "barrel_5",
+          "item": "nukacraft:pistol_silencer"
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_1",
+          "item": "nukacraft:pistol_specialised_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_2",
+          "item": "nukacraft:pistol_tactical_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_3",
+          "item": "nukacraft:pistol_weighted_grip",
+          "hide": [
+            "grip_default"
+          ]
         }
       ]
     }
