@@ -46,7 +46,7 @@ public class ModTrees {
 //                    .ignoreVines()
 //                    .build());
 
-//    private static HolderGetter<Block> holderGetter;
+    //    private static HolderGetter<Block> holderGetter;
 //    public static <S> void setTags(HolderGetter<S> lookup) {
 //        holderGetter = (HolderGetter<Block>) lookup;
 //    }
@@ -124,9 +124,4 @@ public class ModTrees {
 //                            new AttachedToLeavesDecorator(0.14F, 1, 0,
 //                                    new RandomizedIntStateProvider(BlockStateProvider.simple((BlockState)ModBlocks.ASHWOOD.get().defaultBlockState().setValue(MangrovePropaguleBlock.HANGING, true)),
 //                                            MangrovePropaguleBlock.AGE, UniformInt.of(0, 4)), 2, List.of(Direction.DOWN)))).ignoreVines().build();
-
-
-
-
-
 }

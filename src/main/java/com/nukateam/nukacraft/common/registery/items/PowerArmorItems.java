@@ -30,10 +30,10 @@ public class PowerArmorItems {
             new ChassisItem<>(new Item.Properties().fireResistant(), EntityTypes.POWER_ARMOR_FRAME, PowerArmorFrame::new)
     );
 
-    @DataGen
-    public static final RegistryObject<Item> JETPACK = ITEMS.register("jetpack", () ->
-            new Jetpack(new Item.Properties().fireResistant())
-    );
+//    @DataGen
+//    public static final RegistryObject<Item> JETPACK = ITEMS.register("jetpack", () ->
+//            new Jetpack(new Item.Properties().fireResistant())
+//    );
 
     @DataGen(path = "power_armor/t45")
     public static final PowerArmorStorage T45_SET = registerArmorSet("t45", T45);

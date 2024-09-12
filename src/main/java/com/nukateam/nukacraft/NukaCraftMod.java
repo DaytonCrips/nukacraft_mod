@@ -2,6 +2,7 @@ package com.nukateam.nukacraft;
 
 import com.mojang.logging.LogUtils;
 import com.nukateam.ntgl.common.base.utils.ProjectileManager;
+import com.nukateam.ntgl.common.foundation.entity.ContinuousLaserProjectile;
 import com.nukateam.ntgl.common.foundation.entity.FlameProjectile;
 import com.nukateam.ntgl.common.foundation.entity.LaserProjectile;
 import com.nukateam.ntgl.common.foundation.entity.TeslaProjectile;
@@ -10,7 +11,6 @@ import com.nukateam.nukacraft.client.KeyBindings;
 import com.nukateam.nukacraft.common.events.RadiationTracker;
 import com.nukateam.nukacraft.common.foundation.entities.misc.MiniNukeEntity;
 import com.nukateam.nukacraft.common.foundation.items.guns.TeslaGun;
-import com.nukateam.nukacraft.common.foundation.world.BiomeSettings;
 import com.nukateam.nukacraft.common.foundation.world.ModStructures;
 import com.nukateam.nukacraft.common.network.PacketHandler;
 import com.nukateam.nukacraft.common.registery.*;
@@ -32,9 +32,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import static com.nukateam.ntgl.common.foundation.init.Projectiles.LASER_PROJECTILE;
-import static com.nukateam.ntgl.common.foundation.init.Projectiles.TESLA_PROJECTILE;
+import static com.nukateam.ntgl.common.foundation.init.Projectiles.*;
 import static com.nukateam.nukacraft.common.foundation.world.ModBiomes.setupBiomeSettings;
+import static com.nukateam.nukacraft.common.registery.ModProjectiles.ASSAULTRON_LASER_PROJECTILE;
 
 //Приходит улитка в бар, а там java классы в нарды играют...
 
@@ -45,29 +45,22 @@ public class NukaCraftMod {
     public static final IEventBus MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
     private static boolean curiosLoaded = false;
+    private static boolean betterCombatLoaded = false;
 
     public NukaCraftMod() {
-//        AzureLib.initialize();
-
-        //IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-//        MOD_EVENT_BUS.addListener(this::setup);
-
-//        MapCore.onInitialize();
-//        MapCore.initMapClient();
-
-//        new GunMod().initGunMod(MOD_EVENT_BUS);
-
         ModEffect.register(MOD_EVENT_BUS);
         EntityTypes.register(MOD_EVENT_BUS);
         PowerArmorItems.register(MOD_EVENT_BUS);
         ModArmorItems.register(MOD_EVENT_BUS);
         ModWeapons.register(MOD_EVENT_BUS);
+        WeaponAttachments.register(MOD_EVENT_BUS);
+        MobGuns.register(MOD_EVENT_BUS);
         ModAttributes.register(MOD_EVENT_BUS);
         ModBlocks.register(MOD_EVENT_BUS);
-//        ModBiomes.register(MOD_EVENT_BUS);
         ModFood.register(MOD_EVENT_BUS);
         ModBlockItems.register(MOD_EVENT_BUS);
         ModParticles.register(MOD_EVENT_BUS);
+        ModProjectiles.register(MOD_EVENT_BUS);
         ModSounds.SOUNDS.register(MOD_EVENT_BUS);
         ContainerRegistry.register(MOD_EVENT_BUS);
         ModStructures.DEFERRED_REGISTRY_STRUCTURE.register(MOD_EVENT_BUS);
@@ -78,10 +71,7 @@ public class NukaCraftMod {
         ModTreeDecorator.register(MOD_EVENT_BUS);
         ModItems.register(MOD_EVENT_BUS);
         ModItemTabs.register(MOD_EVENT_BUS);
-//        WastelandDimensionsSettings.NOISE_GENERATORS.register(MOD_EVENT_BUS);
-//        WastelandDimensionsSettings.DIMENSION_TYPES.register(MOD_EVENT_BUS);
 
-//        MOD_EVENT_BUS.addListener(this::clientSetup);
         MOD_EVENT_BUS.addListener(this::onCommonSetup);
         MOD_EVENT_BUS.addListener(this::onEnqueueIMC);
 
@@ -93,11 +83,16 @@ public class NukaCraftMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         curiosLoaded = ModList.get().isLoaded("curios");
+        betterCombatLoaded = ModList.get().isLoaded("bettercombat");
     }
 
 
     public static boolean isCuriosLoaded() {
         return curiosLoaded;
+    }
+
+    public static boolean isBetterCombatLoaded() {
+        return betterCombatLoaded;
     }
 
     private static void registerProjectileFactories() {
@@ -109,6 +104,8 @@ public class NukaCraftMod {
                 (level, entity, weapon, item, modifiedGun) -> {
                     if (item instanceof TeslaGun)
                         return new TeslaProjectile(TESLA_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
+                    else if(item == MobGuns.ASSAULTRON_LASER.get())
+                        return new ContinuousLaserProjectile(ASSAULTRON_LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                     else
                         return new LaserProjectile(LASER_PROJECTILE.get(), level, entity, weapon, item, modifiedGun);
                 });

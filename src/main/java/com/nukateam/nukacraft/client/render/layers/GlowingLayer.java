@@ -18,9 +18,9 @@ public class GlowingLayer<T extends GeoAnimatable> extends GeoRenderLayer<T> {
     }
 
     public void render(PoseStack poseStack, T animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
-        ResourceLocation model = this.getRenderer().getGeoModel().getTextureResource(animatable);
-        ResourceLocation texture = GeoAbstractTexture.appendToPath(model, "_glowmask");
-        RenderType renderTypeNew = RenderType.eyes(texture);
+        var model = this.getRenderer().getGeoModel().getTextureResource(animatable);
+        var texture = GeoAbstractTexture.appendToPath(model, "_glowmask");
+        var renderTypeNew = RenderType.eyes(texture);
         this.getRenderer().reRender(bakedModel, poseStack, bufferSource, animatable, renderTypeNew,
                 bufferSource.getBuffer(renderTypeNew), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
                 1.0F, 1.0F, 1.0F, 1.0F);

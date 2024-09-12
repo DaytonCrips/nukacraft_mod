@@ -10,15 +10,23 @@ import java.util.Set;
 
 public class MixinPlugin implements IMixinConfigPlugin {
     private boolean isFrameworkInstalled;
+    private static boolean betterCombatLoaded;
 
     @Override
     public void onLoad(String mixinPackage) {
+        isFrameworkInstalled = isClassLoaded("com.mrcrayfish.framework.Framework");
+        betterCombatLoaded = isClassLoaded("net.bettercombat.client.collision.TargetFinder");
+    }
+
+    private boolean isClassLoaded(String name) {
+        var result = false;
         try {
-            Class.forName("com.mrcrayfish.framework.Framework", false, this.getClass().getClassLoader());
-            this.isFrameworkInstalled = true;
+            Class.forName(name, false, this.getClass().getClassLoader());
+            result = true;
         } catch (Exception e) {
-            this.isFrameworkInstalled = false;
+            result = false;
         }
+        return result;
     }
 
     @Override
@@ -28,12 +36,12 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        boolean isDevelopmentEnvironment = !FMLEnvironment.production;
-        if (mixinClassName.contains("mixin.dev") && !isDevelopmentEnvironment)
+        var isDevelopmentEnvironment = !FMLEnvironment.production;
+        var betterCombatCheck = true; //!targetClassName.contains("bettercombat") || betterCombatLoaded;
+
+        if (mixinClassName.contains("mixin.dev") && !isDevelopmentEnvironment && betterCombatCheck)
             return false;
         else return !mixinClassName.contains("mixin.prod") || !isDevelopmentEnvironment;
-
-        //return this.isFrameworkInstalled; // this makes sure that forge's helpful mods not found screen shows up
     }
 
     @Override

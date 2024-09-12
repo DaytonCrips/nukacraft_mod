@@ -31,6 +31,7 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         generate(ModFood.class);
         generate(ModArmorItems.class);
         generate(PowerArmorItems.class);
+        generate(WeaponAttachments.class);
     }
 
     private void generate(Class<?> modItemsClass) {

@@ -1,10 +1,14 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
+import com.nukateam.ntgl.client.data.handler.ShootingHandler;
+import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
-import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
-import com.nukateam.nukacraft.common.foundation.variants.DeathclawVariant;
+import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
+import com.nukateam.nukacraft.common.foundation.goals.GunAttackGoal;
+import com.nukateam.nukacraft.common.foundation.goals.SecuritronRangedAttackGoal;
 import com.nukateam.nukacraft.common.foundation.variants.SecuritronVariant;
+import com.nukateam.nukacraft.common.registery.items.MobGuns;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimationController;
@@ -16,50 +20,44 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.CLOSE;
-import static com.nukateam.nukacraft.common.data.constants.ArmorChassisAnimation.OPEN;
+import static com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer.DEATHCLAW_MODEL;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
+import static net.minecraft.advancements.critereon.SlimePredicate.sized;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
-public class Securitron extends Monster implements GeoEntity {
-    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
-    private final boolean isServerSide = !level().isClientSide;
-    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Deathclaw.class, EntityDataSerializers.INT);
-    public static final EntityDataAccessor<Boolean> HAS_TARGET =
-            defineId(Deathclaw.class, EntityDataSerializers.BOOLEAN);
-    private final AnimationHelper<Securitron> animationHelper = new AnimationHelper<>(this, new EntityModel<Securitron>());
+public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
+    private static final EntityDataAccessor<Boolean> HAS_TARGET = defineId(Securitron.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Securitron.class, EntityDataSerializers.INT);
+    private static final int SHOOTING_START_TIME = 15;
 
-    public Securitron(EntityType<? extends Monster> entityType, Level level) {
+    private final boolean isServerSide = !level().isClientSide;
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
+    private final Lazy<AnimationHelper<Securitron>> animationHelper = Lazy.of(() -> new AnimationHelper<>(this, new EntityModel<Securitron>()));
+
+    public Securitron(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
         getEntityData().set(HAS_TARGET, false);
     }
-
-    @Nullable
-    @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
-                                        @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
-        setVariant(Util.getRandom(SecuritronVariant.values(), random));
-        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
-    }
-
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
@@ -74,13 +72,66 @@ public class Securitron extends Monster implements GeoEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.5D, false));
+        this.goalSelector.addGoal(3, new SecuritronRangedAttackGoal<>(this, 1.0D, 20.0F));
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, this.getClass()));
+        if(getVariant() == SecuritronVariant.BERSERK || getVariant() == SecuritronVariant.DAMAGED)
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Animal.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
+    }
+
+    @Nullable
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason,
+                                        @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        setVariant(Util.getRandom(SecuritronVariant.values(), random));
+        setupGuns();
+        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.setTypeVariant(pCompound.getInt("Variant"));
+    }
+
+    @Override
+    public EntityDimensions getDimensions(Pose pPose) {
+        return getType().getDimensions().scale(this.getScale());
+    }
+
+    @Override
+    public float getScale() {
+        var variant = getVariant();
+        return variant.getScale();
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
+        var item = getGun();
+        if(!item.isEmpty()) {
+            try {
+                GunAttackGoal.shoot(this, true);
+//                ShootingHandler.get().fire(this, item);
+            }
+            catch (Exception e){
+                NukaCraftMod.LOGGER.error(e.getMessage(), e);
+            }
+        }
+        else setupGuns();
+    }
+
+    @Override
+    public ItemStack getGun() {
+        return getMainHandItem();
     }
 
     @Override
@@ -91,20 +142,32 @@ public class Securitron extends Monster implements GeoEntity {
     }
 
     @Override
-    public void setTarget(@Nullable LivingEntity pTarget) {
-        super.setTarget(pTarget);
+    public void setTarget(@Nullable LivingEntity target) {
+        if(getVariant() == SecuritronVariant.MUGGY)
+            target = null;
+
+        super.setTarget(target);
 
         if (isServerSide) {
-            hasTarget(pTarget != null);
+            hasTarget(target != null);
         }
     }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
+        if (VARIANT.equals(pKey)) {
+            this.refreshDimensions();
+        }
+
+        super.onSyncedDataUpdated(pKey);
+    }
+
 
     @Override
     public void tick() {
         super.tick();
         if(isServerSide){
             getEntityData().set(HAS_TARGET, getTarget() != null);
-
         }
     }
 
@@ -120,17 +183,31 @@ public class Securitron extends Monster implements GeoEntity {
         controllers.add(new AnimationController<>(this, "antenaController", 0, animateAntena()));
     }
 
+    private void setupGuns() {
+        var gun = isUpgraded() ? MobGuns.SECURITRON_LASER : MobGuns.SECURITRON_GUN;
+        setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(gun.get()));
+    }
+
     private AnimationController.AnimationStateHandler<Securitron> animateArms() {
         return event -> {
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
+            var currentAnimation = controller.getCurrentAnimation();
+
             if (hasTarget()) {
-                var animationName = getVariant().isUpgraded() ? "laser_mode" : "gun_mode";
+                var animationName = isUpgraded() ? "laser_mode" : "gun_mode";
                 animation.thenPlayAndHold(animationName);
-                return event.setAndContinue(animation);
+                animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
+            }
+            else if(controller.getCurrentAnimation() != null){
+                var animationName = isUpgraded() ? "laser_mode_end" : "gun_mode_end";
+                animation.thenPlay(animationName);
+                animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
             }
             else return PlayState.STOP;
+
+            return event.setAndContinue(animation);
         };
     }
 
@@ -152,7 +229,6 @@ public class Securitron extends Monster implements GeoEntity {
         };
     }
 
-
     @NotNull
     private AnimationController.AnimationStateHandler<Securitron> animateAntena() {
         return event -> event.setAndContinue( begin().thenLoop("antena"));
@@ -164,6 +240,10 @@ public class Securitron extends Monster implements GeoEntity {
 
     public boolean hasTarget(){
         return getEntityData().get(HAS_TARGET);
+    }
+
+    public int getAttackDelay(){
+        return SHOOTING_START_TIME;
     }
 
     public SecuritronVariant getVariant() {
@@ -180,5 +260,9 @@ public class Securitron extends Monster implements GeoEntity {
 
     private void setTypeVariant(int pTypeVariant) {
         this.entityData.set(VARIANT, pTypeVariant);
+    }
+
+    private boolean isUpgraded(){
+        return getVariant().isUpgraded();
     }
 }

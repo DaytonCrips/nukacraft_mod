@@ -42,7 +42,7 @@ public final class ModTreeFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_TREE = registerKey("tree_ash");
     public static final ResourceKey<ConfiguredFeature<?, ?>> IMMORTAL_TREE = registerKey("trees_immortal_green");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUSTY_TREE = registerKey("trees_rusty");
-/*    public static final ResourceKey<ConfiguredFeature<?, ?>> MIRE_TREE = registerKey("tree_mire");*/
+    /*    public static final ResourceKey<ConfiguredFeature<?, ?>> MIRE_TREE = registerKey("tree_mire");*/
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<Block> $$1 = context.lookup(Registries.BLOCK);

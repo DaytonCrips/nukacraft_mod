@@ -793,6 +793,239 @@
 					}
 				}
 			}
+		},
+		"laser_mode_end": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.9167,
+			"bones": {
+				"left_arm": {
+					"rotation": {
+						"0.0": {
+							"vector": [-17.5, 0, -10]
+						},
+						"0.5": {
+							"vector": [0, 0, -10]
+						}
+					}
+				},
+				"left_arm2": {
+					"rotation": {
+						"0.0": {
+							"vector": [-37.5, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 5]
+						}
+					}
+				},
+				"left_hand": {
+					"rotation": {
+						"0.0": {
+							"vector": [-35, 0, 0]
+						},
+						"0.5": {
+							"vector": [0, 0, 2.5]
+						}
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"vector": [0, 0, 10]
+					}
+				},
+				"right_arm2": {
+					"rotation": {
+						"vector": [0, 0, -5]
+					}
+				},
+				"right_hand": {
+					"rotation": {
+						"vector": [0, 0, -2.5]
+					}
+				},
+				"left_finger1": {
+					"rotation": {
+						"0.3333": {
+							"vector": [0, 0, -180]
+						},
+						"0.9167": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_finger1_tip": {
+					"rotation": {
+						"0.3333": {
+							"vector": [0, 0, 110]
+						},
+						"0.9167": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_finger2": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-180, 0, 0]
+						},
+						"0.8333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_finger2_tip": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-127.5, 0, 0]
+						},
+						"0.8333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_thumb": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-180, 0, 0]
+						},
+						"0.8333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"left_thumb_tip": {
+					"rotation": {
+						"0.5": {
+							"vector": [117.5, 0, 0]
+						},
+						"0.8333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		},
+		"gun_mode_end": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.9583,
+			"bones": {
+				"left_arm": {
+					"rotation": {
+						"vector": [0, 0, -10]
+					}
+				},
+				"left_arm2": {
+					"rotation": {
+						"vector": [0, 0, 5]
+					}
+				},
+				"left_hand": {
+					"rotation": {
+						"vector": [0, 0, 2.5]
+					}
+				},
+				"right_arm": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-17.5, 0, 10]
+						},
+						"0.6667": {
+							"vector": [0, 0, 10]
+						}
+					}
+				},
+				"right_arm2": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-37.5, 0, 0]
+						},
+						"0.6667": {
+							"vector": [0, 0, -5]
+						}
+					}
+				},
+				"right_hand": {
+					"rotation": {
+						"0.3333": {
+							"vector": [-35, 0, 0]
+						},
+						"0.6667": {
+							"vector": [0, 0, -2.5]
+						}
+					}
+				},
+				"muzzle": {
+					"position": {
+						"0.0": {
+							"vector": [0, -4, 0],
+							"easing": "easeInBack"
+						},
+						"0.3333": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_finger1": {
+					"rotation": {
+						"0.6667": {
+							"vector": [0, 0, 180]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_finger1_tip": {
+					"rotation": {
+						"0.5417": {
+							"vector": [0, 0, -110]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_finger2": {
+					"rotation": {
+						"0.5417": {
+							"vector": [-180, 0, 0]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_finger2_tip": {
+					"rotation": {
+						"0.5417": {
+							"vector": [-127.5, 0, 0]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_thumb": {
+					"rotation": {
+						"0.5417": {
+							"vector": [-180, 0, 0]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"right_thumb_tip": {
+					"rotation": {
+						"0.6667": {
+							"vector": [117.5, 0, 0]
+						},
+						"0.9583": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
 		}
 	}
 }

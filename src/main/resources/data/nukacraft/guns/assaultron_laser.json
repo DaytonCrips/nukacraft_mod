@@ -1,0 +1,28 @@
+{
+  "general": {
+    "rate": 60,
+    "fireMode": "ntgl:semi",
+    "gripType": "ntgl:one_handed",
+    "loadingType": "magazine",
+    "maxAmmo": 1,
+    "reloadTime": 600,
+    "recoilAngle": 0,
+    "recoilKick": 0,
+    "recoilAdsReduction": 0,
+    "alwaysSpread": false
+  },
+  "projectile": {
+    "item": "nukacraft:fusion_cell",
+    "damage": 2.0,
+    "size": 0.2,
+    "speed": 300.0,
+    "life": 120
+  },
+  "sounds": {
+    "fire": "nukacraft:item.laser_rifle.fire",
+    "reload": "nukacraft:item.laser_rifle.reload",
+    "cock": "nukacraft:item.laser_rifle.cock",
+    "silencedFire": "nukacraft:item.laser_rifle.silenced_fire",
+    "enchantedFire": "nukacraft:item.laser_rifle.enchanted_fire"
+  }
+}

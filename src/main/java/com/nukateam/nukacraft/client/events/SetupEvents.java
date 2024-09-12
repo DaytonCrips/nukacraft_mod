@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.events;
 
+import com.nukateam.ntgl.client.render.renderers.projectiles.ThrowableGrenadeRenderer;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.models.entity.BrahminModel;
 import com.nukateam.nukacraft.client.render.gui.hud.PowerArmorHud;
@@ -9,9 +10,9 @@ import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
-import com.nukateam.ntgl.client.render.renderers.projectiles.*;
+import com.nukateam.nukacraft.client.render.renderers.projectile.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
-import com.nukateam.nukacraft.common.registery.ModParticles;
+import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static com.nukateam.nukacraft.common.registery.EntityTypes.*;
 import static com.nukateam.nukacraft.common.registery.ModParticles.*;
+import static com.nukateam.nukacraft.common.registery.ModProjectiles.*;
 
 @Mod.EventBusSubscriber(modid = NukaCraftMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupEvents {
@@ -43,7 +45,7 @@ public class SetupEvents {
     @SubscribeEvent
     public static void registerParticleFactories(final RegisterParticleProvidersEvent event) {
         var particleEngine = Minecraft.getInstance().particleEngine;
-        particleEngine.register(ModParticles.GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
+        particleEngine.register(GAMMA_PARTICLE.get(), GammaParticles.Provider::new);
         particleEngine.register(MUSHROOM_CLOUD.get(), new MushroomCloudParticle.Factory());
         particleEngine.register(MUSHROOM_CLOUD_SMOKE.get(), SmallExplosionParticle.NukeFactory::new);
         particleEngine.register(MUSHROOM_CLOUD_EXPLOSION.get(), SmallExplosionParticle.NukeFactory::new);
@@ -65,8 +67,10 @@ public class SetupEvents {
         event.registerEntityRenderer(BRAHMIN.get(), (context) -> new SimpleEntityRenderer<>(context, new BrahminModel()));
         event.registerEntityRenderer(BLOATFLY.get(), SimpleEntityRenderer::new);
         event.registerEntityRenderer(MOLERAT.get(), SimpleEntityRenderer::new);
-        event.registerEntityRenderer(ASSAULTRON.get(), SimpleEntityRenderer::new);
+        event.registerEntityRenderer(ASSAULTRON.get(), AssaultronRenderer::new);
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
+
+        event.registerEntityRenderer(ASSAULTRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
 
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());

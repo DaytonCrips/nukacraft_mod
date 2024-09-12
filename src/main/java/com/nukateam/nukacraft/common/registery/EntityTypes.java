@@ -85,7 +85,7 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Securitron>> SECURITRON =
             registerEntity("securitron", Builder
                     .of(Securitron::new, MobCategory.MONSTER)
-                    .sized(0.8f, 2.1f)
+                    .sized(1.35f, 2.3f)
                     .fireImmune());
 
     public static final RegistryObject<EntityType<NuclearExplosionEffectEntity>> NUCLEAR_EXPLOSION_EFFECT
