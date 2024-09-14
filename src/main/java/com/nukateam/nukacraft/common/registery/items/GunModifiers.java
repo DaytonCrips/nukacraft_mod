@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.registery.items;
 
+import com.nukateam.ntgl.common.base.gun.FireMode;
 import com.nukateam.ntgl.common.base.gun.GripType;
 import com.nukateam.ntgl.common.data.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
@@ -54,6 +55,38 @@ public class GunModifiers {
         @Override
         public float modifyProjectileDamage(float damage) {
             return damage * 1.2F;
+        }
+    };
+
+    public static final IGunModifier REDUCED_LASER_RATE_lvl1 = new IGunModifier() {
+        @Override
+        public int modifyFireRate(int rate) {
+            return rate + 1;
+        }
+    };
+    public static final IGunModifier EXTEND_LASER_RATE_lvl1 = new IGunModifier() {
+        @Override
+        public int modifyFireRate(int rate) {
+            return rate - 1;
+        }
+    };
+    public static final IGunModifier SLOWEST_LASER_RATE_lvl1 = new IGunModifier() {
+        @Override
+        public int modifyFireRate(int rate) {
+            return rate + 2;
+        }
+    };
+    public static final IGunModifier SET_AUTO_FIRE = new IGunModifier() {
+        @Override
+        public FireMode modifyFireMod(FireMode fireMode) {
+            return FireMode.AUTO;
+        }
+    };
+
+    public static final IGunModifier EXTEND_LASER_RATE_lvl2 = new IGunModifier() {
+        @Override
+        public int modifyFireRate(int rate) {
+            return 3;
         }
     };
 

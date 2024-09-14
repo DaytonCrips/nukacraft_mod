@@ -24,5 +24,67 @@
     "fire": "nukacraft:item.minigun.fire",
     "reload": "nukacraft:item.pistol.reload",
     "enchantedFire": "nukacraft:item.minigun.fire"
+  },
+  "modules": {
+  "attachments": {
+    "ntgl:barrel": [
+      {
+        "name": "barrel_1",
+        "item": "nukacraft:minigun_long_barrel",
+        "hide": [
+          "barrel_default"
+        ]
+      },
+      {
+        "name": "barrel_2",
+        "item": "nukacraft:minigun_shredder",
+        "hide": [
+          "barrel_default"
+        ]
+      },
+      {
+        "name": "barrel_3",
+        "item": "nukacraft:minigun_six_barrel",
+        "hide": [
+          "barrel_default"
+        ]
+      },
+      {
+        "name": "barrel_4",
+        "item": "nukacraft:minigun_shredder_saturnite",
+        "hide": [
+          "barrel_default"
+        ]
+      },
+      {
+        "name": "barrel_5",
+        "item": "nukacraft:minigun_shredder_heat",
+        "hide": [
+          "barrel_default"
+        ]
+      }
+    ],
+    "ntgl:magazine": [
+      {
+        "name": "magazine_1",
+        "item": "nukacraft:minigun_extend_mag",
+        "hide": [
+          "magazine_default"
+        ]
+      },
+      {
+        "name": "magazine_2",
+        "item": "nukacraft:minigun_drum_mag",
+        "hide": [
+          "magazine_default"
+        ]
+      }
+    ],
+    "ntgl:stock": [
+      {
+        "name": "grip_1",
+        "item": "nukacraft:stock_shield"
+      }
+    ]
   }
-}
+}}

@@ -32,5 +32,45 @@
       "yOffset": 3.6,
       "zOffset": -6.41
     }
-  }
-}
+  },
+  "modules": {
+    "attachments": {
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:gatling_laser_triple_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:gatling_laser_seven_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:gatling_laser_industrial_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        }
+      ],
+      "ntgl:under_barrel": [
+        {
+          "name": "under_barrel_1",
+          "item": "nukacraft:gatling_laser_beam_splitter"
+        },
+        {
+          "name": "under_barrel_2",
+          "item": "nukacraft:gatling_laser_beam_focuser"
+        },
+        {
+          "name": "under_barrel_3",
+          "item": "nukacraft:gatling_laser_correction_lens"
+        }
+      ]
+    }
+  }}
