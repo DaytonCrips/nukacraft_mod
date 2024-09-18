@@ -471,7 +471,7 @@
 					]
 				},
 				{
-					"name": "grip_2",
+					"name": "grip_default",
 					"parent": "grip",
 					"pivot": [0, 2.93331, -1.71619],
 					"cubes": [
@@ -513,7 +513,7 @@
 					]
 				},
 				{
-					"name": "grip_3",
+					"name": "grip_2",
 					"parent": "grip",
 					"pivot": [0, 2.93331, -1.71619],
 					"cubes": [
@@ -555,7 +555,7 @@
 					]
 				},
 				{
-					"name": "grip_4",
+					"name": "grip_3",
 					"parent": "grip",
 					"pivot": [0, 2.93331, -1.71619],
 					"cubes": [
