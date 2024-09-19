@@ -1,0 +1,42 @@
+{
+  "structures": [
+    {
+      "structure": "nukacraft:ultracite_rift1",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift2",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift3",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift4",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift5",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift6",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift7",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:ultracite_rift8",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 2085933666,
+    "spacing": 8,
+    "separation": 3
+  }
+}

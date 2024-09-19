@@ -24,5 +24,44 @@
     "fire": "nukacraft:item.flamer.fire",
     "reload": "nukacraft:item.flamer.reload",
     "cock": "nukacraft:item.flamer.cock"
-  }
-}
+  },
+  "modules": {
+    "attachments": {
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:flamer_long_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:flamer_compress_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:flamer_evaporative_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_4",
+          "item": "nukacraft:flamer_heavy_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_1",
+          "item": "nukacraft:stock_shield"
+        }
+      ]
+    }
+  }}

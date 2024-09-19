@@ -5,6 +5,105 @@
   "itemGroup.nuka_foods": "Nukacraft: Food",
   "itemGroup.nuka_blocks": "Nukacraft: Building Blocks",
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "item.nukacraft.pistol_collimator_sight": "Collimator Sight",
+  "item.nukacraft.pistol_holographic_sight": "Holographic Sight",
+  "item.nukacraft.pistol_hunting_optics": "Hunting Scope",
+  "item.nukacraft.pistol_iron_sight": "Sight",
+  "item.nukacraft.pistol_scout_sight": "Scout Scope",
+
+  "item.nukacraft.pistol_silencer": "Pistol: Silencer",
+  "item.nukacraft.pistol_compensator": "Pistol: Compencer",
+  "item.nukacraft.pistol_flame_hider": "Pistol: Flame Hider",
+  "item.nukacraft.pistol_heavy_barrel": "Pistol: Heavy Barrel",
+  "item.nukacraft.pistol_long_barrel": "Pistol: Long Barrel",
+
+  "item.nukacraft.pistol_specialised_grip": "Pistol: Specialised Grip",
+  "item.nukacraft.pistol_tactical_grip": "Pistol: Tactical Grip",
+  "item.nukacraft.pistol_weighted_grip": "Pistol: Weighted Grip",
+
+  "item.nukacraft.pistol_extended_magazine": "Pistol: Extended Magazine",
+  "item.nukacraft.pistol_huge_magazine": "Pistol: Huge Magazine",
+  "item.nukacraft.pistol_drum_magazine": "Pistol: Drum Magazine",
+  "item.nukacraft.pistol_quick_magazine": "Pistol: Quick Release Magazine",
+
+  "item.nukacraft.pipe_tactical_grip": "Pipegun: Tactical Grip",
+  "item.nukacraft.pipe_pistol_grip": "Pipegun: Pistol Grip",
+  "item.nukacraft.pipe_long_grip": "Pipegun: Long Grip",
+  "item.nukacraft.pipe_carbine_grip": "Pipegun: Carbine Grip",
+
+  "item.nukacraft.pipe_silencer": "Pipegun: Silencer",
+  "item.nukacraft.pipe_compensator": "Pipegun: Compencer",
+  "item.nukacraft.pipe_flame_hider": "Pipegun: Flame Hider",
+  "item.nukacraft.pipe_heavy_barrel": "Pipegun: Heavy Barrel",
+  "item.nukacraft.pipe_long_barrel": "Pipegun: Long Barrel",
+
+  "item.nukacraft.minigun_long_barrel": "Minigun: Long Barrel",
+  "item.nukacraft.minigun_shredder": "Minigun: Shredder",
+  "item.nukacraft.minigun_six_barrel": "Minigun: Six Barrels",
+  "item.nukacraft.minigun_shredder_saturnite": "Minigun: Saturnite Shredder",
+  "item.nukacraft.minigun_shredder_heat": "Minigun: Overheated Shredder",
+
+  "item.nukacraft.minigun_extend_mag": "Minigun: Extended Magazine",
+  "item.nukacraft.minigun_drum_mag": "Minigun: Drum Magazine",
+
+  "item.nukacraft.gatling_laser_beam_splitter": "Gatling Laser: Beam Splitter",
+  "item.nukacraft.gatling_laser_beam_focuser": "Gatling Laser: Beam Focuser",
+  "item.nukacraft.gatling_laser_correction_lens": "Gatling Laser: Correction Lens",
+
+  "item.nukacraft.gatling_laser_triple_barrel": "Gatling Laser: Triple Barrel",
+  "item.nukacraft.gatling_laser_seven_barrel": "Gatling Laser: Seven Barrel",
+  "item.nukacraft.gatling_laser_industrial_barrel": "Gatling Laser: Industrial Barrel",
+
+
+  "item.nukacraft.pump_shield_barrel": "Pump Shotgun: Barrel Shield",
+  "item.nukacraft.pump_silencer_barrel": "Pump Shotgun: Silencer",
+  "item.nukacraft.pump_long_barrel": "Pump Shotgun: Long Barrel",
+
+  "item.nukacraft.pump_tactical_grip": "Pump Shotgun: Tactical Stock",
+  "item.nukacraft.pump_pistol_grip": "Pump Shotgun: Pistol Grip",
+  "item.nukacraft.pump_long_grip": "Pump Shotgun: Long Stock",
+  "item.nukacraft.pump_weighted_grip": "Pump Shotgun: Weighted Stock",
+
+  "item.nukacraft.tesla_tactical_grip": "Tesla Rifle: Tactical Stock",
+
+  "item.nukacraft.tesla_auto_barrel": "Tesla Rifle: Auto Barrel",
+  "item.nukacraft.tesla_charging_barrel": "Tesla Rifle: Charging Barrel",
+  "item.nukacraft.tesla_rail_barrel": "Tesla Rifle: Rail Barrel",
+  "item.nukacraft.tesla_overheat_barrel": "Tesla Rifle: Overload Barrel",
+
+  "item.nukacraft.laser_sniper_barrel": "Laser Gun: Sniper Barrel",
+  "item.nukacraft.laser_auto_barrel": "Laser Gun: Auto Barrel",
+  "item.nukacraft.laser_protectron_barrel": "Laser Gun: Protectron Hand",
+
+  "item.nukacraft.laser_tactical_grip": "Laser Gun: Tactical Stock",
+  "item.nukacraft.laser_long_grip": "Laser Gun: Long Stock",
+  "item.nukacraft.laser_weighted_grip": "Laser Gun: Weighted Stock",
+
+  "item.nukacraft.laser_long_scout_optics": "Laser Gun: Long Scout Scope",
+  "item.nukacraft.laser_all_vision": "Laser Gun: Observation Module 'All Vision'",
+
+  "item.nukacraft.flamer_long_barrel": "Flamer: Long Barrel",
+  "item.nukacraft.flamer_compress_barrel": "Flamer: Compress Nozzle",
+  "item.nukacraft.flamer_evaporative_barrel": "Flamer: Evaporative Nozzle",
+  "item.nukacraft.flamer_heavy_barrel": "Flamer: Heavy Barrel",
+
+  "item.nukacraft.stock_shield": "Heavy Weapons: Ballistic Shield",
+
+
+
   "item.nukacraft.acid": "Acid",
   "item.nukacraft.adhesive": "Adhesive",
   "item.nukacraft.adncan": "Advanced Circuit Board",
@@ -15,14 +114,14 @@
   "item.nukacraft.poolcue": "Pool Cue",
   "item.nukacraft.hammer": "Sledgehammer",
   "item.nukacraft.jethammer": "Super Sledgehammer",
-  "item.nukacraft.atom": "§6Atom's Judgement★★★",
+  "item.nukacraft.atom": "§6Atom's Judgement",
   "item.nukacraft.wrench": "Wrench",
   "item.nukacraft.shiv": "Shiv",
   "item.nukacraft.boxer": "Box Gauntlet",
   "item.nukacraft.rollpin": "Rolling Pin",
   "item.nukacraft.cane": "Cane",
   "item.nukacraft.baseball_bat": "Baseball Bat",
-  "item.nukacraft.cito_bat": "§6Jet Bat★★★",
+  "item.nukacraft.cito_bat": "§6Jet Bat",
   "item.nukacraft.komi": "Commie Whacker",
   "item.nukacraft.crowbar": "Crowbar",
   "item.nukacraft.crusher": "Crusher",
@@ -33,7 +132,7 @@
   "item.nukacraft.machete": "Machete",
   "item.nukacraft.liberator": "Liberator",
   "item.nukacraft.katana": "Katana",
-  "item.nukacraft.nukabreak": "§cNuka-Break★★",
+  "item.nukacraft.nukabreak": "§cNuka-Break",
   "item.nukacraft.pipe_wrench": "Pipe Wrench",
   "item.nukacraft.resin_glow": "Glowing Resin",
   "item.nukacraft.gloam_sap": "Gloam Sap",
@@ -62,9 +161,9 @@
   "death.attack.ultracite_step": "%1$s has dissolved into Ultracite",
   "item.nukacraft.weapon_parts": "Weapon Parts",
   "item.nukacraft.raw_saturnite": "Raw Saturnite",
-  "item.nukacraft.unc_weapon_parts": "§aRare Weapon Parts★",
-  "item.nukacraft.leg_weapon_parts": "§cSpecial Weapon Parts★★",
-  "item.nukacraft.myth_weapon_parts": "§6Illegal Weapon Parts★★★",
+  "item.nukacraft.unc_weapon_parts": "§aRare Weapon Parts",
+  "item.nukacraft.leg_weapon_parts": "§cSpecial Weapon Parts",
+  "item.nukacraft.myth_weapon_parts": "§6Illegal Weapon Parts",
   "item.nukacraft.dcleather": "Deathclaw Leather",
   "item.nukacraft.raw_deadclaw_meat": "Raw Deathclaw Meat",
   "item.nukacraft.raw_radroach_meat": "Raw Radroach Meat",
@@ -123,8 +222,8 @@
   "item.nukacraft.metal_leggins": "Metal Leggins",
   "item.nukacraft.metal_boots": "Metal Boots",
 
-  "item.nukacraft.ultracite_divider": "§cUltracite Divider★★",
-  "item.nukacraft.ultracite_shell": "§aUltracite Shell★",
+  "item.nukacraft.ultracite_divider": "§cUltracite Divider",
+  "item.nukacraft.ultracite_shell": "§aUltracite Shell",
   "item.nukacraft.whitebrick": "White Brick",
   "item.nukacraft.steelbowl": "Steel Bowl",
   "item.nukacraft.gilded_lead": "Gilded Lead Plate",
@@ -156,26 +255,26 @@
   "item.nukacraft.t60_right_leg": "§eT-60 Right Leg",
   "item.nukacraft.t60_left_leg": "§eT-60 Left Leg",
 
-  "item.nukacraft.x01_helmet": "§cX-01 Helmet★★",
-  "item.nukacraft.x01_torso": "§cX-01 Body★★",
-  "item.nukacraft.x01_right_arm": "§cX-01 Right Arm★★",
-  "item.nukacraft.x01_left_arm": "§cX-01 Left Arm★★",
-  "item.nukacraft.x01_right_leg": "§cX-01 Right Leg★★",
-  "item.nukacraft.x01_left_leg": "§cX-01 Left Leg★★",
+  "item.nukacraft.x01_helmet": "§cX-01 Helmet",
+  "item.nukacraft.x01_torso": "§cX-01 Body",
+  "item.nukacraft.x01_right_arm": "§cX-01 Right Arm",
+  "item.nukacraft.x01_left_arm": "§cX-01 Left Arm",
+  "item.nukacraft.x01_right_leg": "§cX-01 Right Leg",
+  "item.nukacraft.x01_left_leg": "§cX-01 Left Leg",
 
-  "item.nukacraft.x02_helmet": "§cX-02 Helmet★★",
-  "item.nukacraft.x02_torso": "§cX-02 Body★★",
-  "item.nukacraft.x02_right_arm": "§cX-02 Right Arm★★",
-  "item.nukacraft.x02_left_arm": "§cX-02 Left Arm★★",
-  "item.nukacraft.x02_right_leg": "§cX-02 Right Leg★★",
-  "item.nukacraft.x02_left_leg": "§cX-02 Left Leg★★",
+  "item.nukacraft.x02_helmet": "§cX-02 Helmet",
+  "item.nukacraft.x02_torso": "§cX-02 Body",
+  "item.nukacraft.x02_right_arm": "§cX-02 Right Arm",
+  "item.nukacraft.x02_left_arm": "§cX-02 Left Arm",
+  "item.nukacraft.x02_right_leg": "§cX-02 Right Leg",
+  "item.nukacraft.x02_left_leg": "§cX-02 Left Leg",
 
-  "item.nukacraft.x02_cryo_helmet": "§6X-02 Cryo Helmet★★★",
-  "item.nukacraft.x02_cryo_torso": "§6X-02 Cryo Body★★★",
-  "item.nukacraft.x02_cryo_right_arm": "§6X-02 Cryo Right Arm★★★",
-  "item.nukacraft.x02_cryo_left_arm": "§6X-02 Cryo Left Arm★★★",
-  "item.nukacraft.x02_cryo_right_leg": "§6X-02 Cryo Right Leg★★★",
-  "item.nukacraft.x02_cryo_left_leg": "§6X-02 Cryo Left Leg★★★",
+  "item.nukacraft.x02_cryo_helmet": "§6X-02 Cryo Helmet",
+  "item.nukacraft.x02_cryo_torso": "§6X-02 Cryo Body",
+  "item.nukacraft.x02_cryo_right_arm": "§6X-02 Cryo Right Arm",
+  "item.nukacraft.x02_cryo_left_arm": "§6X-02 Cryo Left Arm",
+  "item.nukacraft.x02_cryo_right_leg": "§6X-02 Cryo Right Leg",
+  "item.nukacraft.x02_cryo_left_leg": "§6X-02 Cryo Left Leg",
 
   "item.nukacraft.raider_helmet": "Raider Helmet",
   "item.nukacraft.raider_torso": "Raider Body",
@@ -192,8 +291,8 @@
   "item.nukacraft.excavator_left_leg": "§bExcavator Left Leg",
 
   "item.nukacraft.inda_abraxo_cleaner": "Industrial Abraxo Cleaner",
-  "item.nukacraft.quartz_divider": "§aQuartz Divider★",
-  "item.nukacraft.piezonucleic_divider": "§6Piezonucleic Divider★★★",
+  "item.nukacraft.quartz_divider": "§aQuartz Divider",
+  "item.nukacraft.piezonucleic_divider": "§6Piezonucleic Divider",
   "item.nukacraft.nuka_cola": "Nuka Cola",
   "item.nukacraft.nuka_frutti": "Nuka Frutti",
   "item.nukacraft.crackberry": "Firecracker Berry",
@@ -253,12 +352,9 @@
   "item.nukacraft.megamorph_hatter": "Megamorph Hatter Mushroom",
   "item.nukacraft.hatter": "Hatter Mushroom",
   "item.nukacraft.classic10mm_zapaway": "Classic 10mm Pistol",
-  "item.nukacraft.magazine_t1": "Tier 1 Magazine",
   "item.nukacraft.cleaver": "Cleaver",
   "item.nukacraft.combatknife": "Combat Knife",
   "item.nukacraft.cosmicknife": "Cosmic Knife",
-  "item.nukacraft.magazine_t2": "§aTier 2 Magazine★",
-  "item.nukacraft.magazine_t3": "§cTier 3 Magazine★★",
   "item.nukacraft.alumi_ingot": "Aluminium Ingot",
   "item.nukacraft.aluminugget": "Aluminium Nugget",
   "item.nukacraft.bbloodleaf": "Black BloodLeaf",
@@ -289,11 +385,12 @@
   "item.nukacraft.scarletflux": "Scarlet Flux",
   "item.nukacraft.undscarletflux": "Raw Scarlet Flux",
   "item.nukacraft.cleanscarletflux": "Pure Scarlet Flux",
-  "item.nukacraft.uraniumflux": "§aUranium Flux★",
-  "item.nukacraft.cleanuraniumflux": "§aPure Uranium Flux★",
+  "item.nukacraft.uraniumflux": "§aUranium Flux",
+  "item.nukacraft.cleanuraniumflux": "§aPure Uranium Flux",
   "item.nukacraft.violetflux": "Violet Flux",
   "item.nukacraft.undvioletflux": "Raw Violet Flux",
   "item.nukacraft.cleanvioletflux": "Pure Violet Flux",
+  "item.nukacraft.irradiated_beetroot_seed": "Irradiated Beetroot Seed",
   "item.nukacraft.composite": "Composite",
   "item.nukacraft.copperwires": "Copper Wires",
   "item.nukacraft.dogwood": "Dogwood",
@@ -375,7 +472,7 @@
   "item.nukacraft.round380": ".380 Round",
   "item.nukacraft.round556": "5.56 Round",
   "item.nukacraft.shotshell": "Shotgun Shell",
-  "item.nukacraft.mini_nuke": "§cMini Nuke★★",
+  "item.nukacraft.mini_nuke": "§cMini Nuke",
   "item.nukacraft.round127": "12.7mm Round",
   "item.nukacraft.round22": "22LR Round",
   "item.nukacraft.baseball_grenade": "Baseball Grenade",
@@ -390,8 +487,8 @@
   "item.nukacraft.dirty_water_bucket": "Dirty Water Bucket",
   "item.nukacraft.poisonous_water_bucket": "Poisonous Water Bucket",
 
-  "item.nukacraft.minigun": "§cMinigun★★",
-  "item.nukacraft.fatman": "§cFatman★★",
+  "item.nukacraft.minigun": "§cMinigun",
+  "item.nukacraft.fatman": "§cFatman",
   "item.nukacraft.pipepistol": "Pipe Pistol",
   "item.nukacraft.pistol10mm": "10mm Pistol",
   "item.nukacraft.scout10mm": "Scout 10mm Pistol",
@@ -420,6 +517,8 @@
   "block.nukacraft.ultracite_magma": "Ultracite Magma",
   "block.nukacraft.ultracite_tuff_ore": "Ultracite Tuff Ore",
   "block.nukacraft.dewdrop": "Dewlap Sprout",
+  "block.nukacraft.rusty_leaves": "Rusty Leaves",
+  "block.nukacraft.immortal_green_leaves": "Immortal Green Leaves",
   "block.nukacraft.cranberryleaves": "Dewlap Leaves",
   "block.nukacraft.cranberrywood": "Dewlap Wood",
   "block.nukacraft.cranberrystripped": "Stripped Dewlap Wood",
@@ -544,7 +643,7 @@
   "block.nukacraft.brown_tile": "Brown Tiles",
   "block.nukacraft.yellow_steel": "Yellow Steel",
   "block.nukacraft.toilet": "Toilet",
-  "block.nukacraft.goldtoilet": "§6Gold Toilet★★★",
+  "block.nukacraft.goldtoilet": "§6Gold Toilet★",
   "block.nukacraft.yellow_steel_column": "Yellow Steel Column",
   "block.nukacraft.scrapmetall": "Scrap Block",
   "block.nukacraft.rusttiresblock": "Rust Cage Block",

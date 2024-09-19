@@ -17,7 +17,7 @@
     "visible": true,
     "damage": 9.0,
     "size": 0.2,
-    "speed": 150,
+    "speed": 100,
     "life": 7,
     "type": "ballistic"
   },
@@ -61,18 +61,18 @@
       "ntgl:barrel": [
         {
           "name": "barrel_1",
-          "item": "nukacraft:pistol_silencer",
+          "item": "nukacraft:pistol_flame_hider",
           "hide": [
             "muzzle_flash"
           ]
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:pistol_compensator"
+          "item": "nukacraft:pistol_long_barrel"
         },
         {
           "name": "barrel_3",
-          "item": "nukacraft:pistol_flame_hider"
+          "item": "nukacraft:pistol_compensator"
         },
         {
           "name": "barrel_4",
@@ -80,28 +80,30 @@
         },
         {
           "name": "barrel_5",
-          "item": "nukacraft:pistol_long_barrel"
+          "item": "nukacraft:pistol_silencer"
         }
       ],
       "ntgl:stock": [
         {
-          "name": "grip_2",
+          "name": "grip_1",
           "item": "nukacraft:pistol_specialised_grip",
           "hide": [
-            "grip_1"
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_2",
+          "item": "nukacraft:pistol_tactical_grip",
+          "hide": [
+            "grip_default"
           ]
         },
         {
           "name": "grip_3",
-          "item": "nukacraft:pistol_tactical_grip"
-        },
-        {
-          "name": "grip_4",
-          "item": "nukacraft:pistol_weighted_grip"
-        },
-        {
-          "name": "grip_5",
-          "item": "nukacraft:pistol_light_grip"
+          "item": "nukacraft:pistol_weighted_grip",
+          "hide": [
+            "grip_default"
+          ]
         }
       ],
       "ntgl:magazine": [
@@ -115,11 +117,11 @@
         },
         {
           "name": "magazine_3",
-          "item": "nukacraft:pistol_drum_magazine"
+          "item": "nukacraft:pistol_quick_magazine"
         },
         {
           "name": "magazine_4",
-          "item": "nukacraft:pistol_quick_magazine"
+          "item": "nukacraft:pistol_drum_magazine"
         }
       ]
     }

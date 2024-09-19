@@ -1,0 +1,54 @@
+{
+  "structures": [
+    {
+      "structure": "nukacraft:radiotower",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:radiotower_huge_ruined",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:radiotower_huge1",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:radiotower2",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth1",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth2",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth3",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth4",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth5",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:scorched_earth6",
+      "weight": 1
+    },
+    {
+      "structure": "nukacraft:tower1",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 2085933666,
+    "spacing": 14,
+    "separation": 3
+  }
+}

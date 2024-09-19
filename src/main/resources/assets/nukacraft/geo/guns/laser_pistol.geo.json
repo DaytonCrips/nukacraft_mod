@@ -319,7 +319,7 @@
 					"pivot": [0, 0.34, -1.624]
 				},
 				{
-					"name": "barrel1",
+					"name": "barrel_1",
 					"parent": "barrel",
 					"pivot": [-1.92864, 1.44364, 2.52024],
 					"cubes": [
@@ -354,7 +354,7 @@
 					]
 				},
 				{
-					"name": "barrel2",
+					"name": "barrel_2",
 					"parent": "barrel",
 					"pivot": [1.955, -1.247, -3.829],
 					"cubes": [
@@ -518,7 +518,7 @@
 					]
 				},
 				{
-					"name": "barrel3",
+					"name": "barrel_3",
 					"parent": "barrel",
 					"pivot": [1.68, -0.297, -4.87],
 					"cubes": [

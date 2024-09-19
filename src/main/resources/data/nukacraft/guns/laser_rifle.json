@@ -36,6 +36,63 @@
       "yOffset": 4.1,
       "zOffset": -12.1,
       "fovModifier": 0.6
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "scope_1",
+          "item": "nukacraft:laser_long_scout_optics"
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_scout_optics"
+        },
+        {
+          "name": "scope_3",
+          "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_4",
+          "item": "nukacraft:laser_all_vision"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:laser_sniper_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:laser_auto_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:laser_protectron_barrel",
+          "hide": [
+            "barrel_default"
+          ]
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_1",
+          "item": "nukacraft:laser_tactical_grip"
+        },
+        {
+          "name": "grip_2",
+          "item": "nukacraft:laser_long_grip"
+        },
+        {
+          "name": "grip_3",
+          "item": "nukacraft:laser_weighted_grip"
+        }
+      ]
     }
   }
 }

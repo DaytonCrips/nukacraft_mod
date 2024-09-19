@@ -35,10 +35,73 @@
   },
   "modules": {
     "zoom": {
-      "xOffset": 0,
-      "yOffset": 4.5,
-      "zOffset": 3.4,
+      "xOffset": 0.0,
+      "yOffset": 4.8,
+      "zOffset": 0.0,
       "fovModifier": 0.7
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "scope_1",
+          "item": "nukacraft:pistol_holographic_sight"
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_hunting_optics"
+        },
+        {
+          "name": "scope_3",
+          "item": "nukacraft:pistol_iron_sight"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:pump_shield_barrel"
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:pump_silencer_barrel",
+          "hide": [
+            "muzzle_flash"
+          ]
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:pump_long_barrel"
+        }
+      ],
+      "ntgl:stock": [
+        {
+          "name": "grip_1",
+          "item": "nukacraft:pump_long_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_2",
+          "item": "nukacraft:pump_pistol_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_3",
+          "item": "nukacraft:pump_tactical_grip",
+          "hide": [
+            "grip_default"
+          ]
+        },
+        {
+          "name": "grip_4",
+          "item": "nukacraft:pump_weighted_grip",
+          "hide": [
+            "grip_default"
+          ]
+        }
+      ]
     }
   }
 }
