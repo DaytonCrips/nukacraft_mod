@@ -9,6 +9,7 @@ import com.nukateam.nukacraft.client.render.particles.MushroomCloudParticle;
 import com.nukateam.nukacraft.client.render.particles.SmallExplosionParticle;
 import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
+import com.nukateam.nukacraft.client.render.renderers.block.PowerAmorStationRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
 import com.nukateam.nukacraft.client.render.renderers.projectile.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
@@ -72,6 +73,7 @@ public class SetupEvents {
 
         event.registerEntityRenderer(ASSAULTRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
 
+        event.registerBlockEntityRenderer(ModTileEntities.PA_STATION_ENTITY.get(), (context) -> new PowerAmorStationRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());
     }

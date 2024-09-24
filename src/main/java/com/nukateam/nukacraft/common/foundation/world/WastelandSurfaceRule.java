@@ -20,10 +20,10 @@ public class WastelandSurfaceRule {
     }
 
     public static SurfaceRules.RuleSource fallout() {
-        return tofuWorldLike(true, false, true);
+        return falloutWorldLike(true, false, true);
     }
 
-    public static SurfaceRules.RuleSource tofuWorldLike(boolean p_198381_, boolean p_198382_, boolean p_198383_) {
+    public static SurfaceRules.RuleSource falloutWorldLike(boolean p_198381_, boolean p_198382_, boolean p_198383_) {
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         if (p_198382_) {
             builder.add(SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), BEDROCK));

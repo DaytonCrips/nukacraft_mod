@@ -53,18 +53,6 @@
             "depth": -2,
             "offset": 0
           }
-        },
-        {
-          "biome": "nukacraft:savage_divide",
-          "parameters": {
-            "temperature": 0.4,
-            "humidity": -0.3,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": -2,
-            "offset": 0
-          }
         }
       ]
     }

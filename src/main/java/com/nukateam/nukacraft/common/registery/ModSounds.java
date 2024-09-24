@@ -75,6 +75,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PIPBOY_DOWN = register("gui.pipboy.pipboy_down");
     public static final RegistryObject<SoundEvent> PIPBOY_TAB = register("gui.pipboy.pipboy_tab");
 
+    public static final RegistryObject<SoundEvent> ASSAULTRON_FIRE = register("entity.assaultron.fire");
+
     public static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> SoundEvent.createVariableRangeEvent(nukaResource(key)));
     }

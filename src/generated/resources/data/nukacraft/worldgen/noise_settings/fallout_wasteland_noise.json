@@ -1,7 +1,7 @@
 {
   "aquifers_enabled": true,
   "default_block": {
-    "Name": "minecraft:grass_block",
+    "Name": "nukacraft:garvellll",
     "Properties": {
       "snowy": "false"
     }
