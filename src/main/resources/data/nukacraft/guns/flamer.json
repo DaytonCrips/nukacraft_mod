@@ -4,21 +4,15 @@
     "rate": 1,
     "gripType": "ntgl:mini_gun",
     "category": "heavy",
+    "damage": 5.0,
     "maxAmmo": 1000,
     "reloadTime": 40,
     "recoilAngle": 0.0,
     "alwaysSpread": true,
-    "spread": 6.0
-  },
-  "projectile": {
-    "item": "nukacraft:fuel",
-    "magazineMode" : true,
-    "visible": true,
-    "damage": 5.0,
-    "size": 1.0,
-    "gravity": true,
-    "speed": 3.0,
-    "life": 10
+    "spread": 6.0,
+    "ammo": [
+      "nukacraft:fuel"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.flamer.fire",

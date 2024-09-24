@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.goals;
 
-import com.nukateam.ntgl.common.base.gun.Gun;
+import com.nukateam.ntgl.common.base.config.Gun;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.Securitron;
 import net.minecraft.util.TimeUtil;

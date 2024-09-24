@@ -22,40 +22,40 @@ public class GunModifiers {
 
     public static final IGunModifier REDUCED_DAMAGE_lvl3 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 0.8F;
         }
     };
 
     public static final IGunModifier REDUCED_DAMAGE_lvl2 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 0.7F;
         }
     };
     public static final IGunModifier REDUCED_DAMAGE_lvl1 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 0.5F;
         }
     };
 
     public static final IGunModifier EXTEND_DAMAGE_lvl3 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 1.6F;
         }
     };
 
     public static final IGunModifier EXTEND_DAMAGE_lvl2 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 1.4F;
         }
     };
     public static final IGunModifier EXTEND_DAMAGE_lvl1 = new IGunModifier() {
         @Override
-        public float modifyProjectileDamage(float damage) {
+        public float modifyDamage(float damage) {
             return damage * 1.2F;
         }
     };

@@ -206,7 +206,7 @@ public class ModWeapons {
     @DataGen
     public static final RegistryObject<Item> FUEL = ModItems.ITEMS.register("fuel",
             () -> new AmmoItem(new Item.Properties()
-                    .durability(1000)
+                    .durability(500)
             ));
 
     @DataGen

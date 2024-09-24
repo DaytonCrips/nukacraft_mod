@@ -9,14 +9,11 @@
     "recoilAngle": 0,
     "recoilKick": 0,
     "recoilAdsReduction": 0,
-    "alwaysSpread": false
-  },
-  "projectile": {
-    "item": "nukacraft:fusion_cell",
     "damage": 2.0,
-    "size": 0.2,
-    "speed": 300.0,
-    "life": 120
+    "alwaysSpread": false,
+    "ammo": [
+      "nukacraft:fusion_cell"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:entity.assaultron.fire",

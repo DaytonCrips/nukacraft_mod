@@ -11,14 +11,10 @@
     "recoilAdsReduction": 0.6,
     "projectileAmount": 6,
     "alwaysSpread": true,
-    "spread": 10.0
-  },
-  "projectile": {
-    "item": "nukacraft:shotshell",
-    "damage": 20.0,
-    "size": 1.0,
-    "speed": 10.0,
-    "life": 5
+    "spread": 10.0,
+    "ammo": [
+      "nukacraft:shotshell"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.pump_shotgun.fire",

@@ -6,16 +6,10 @@
     "maxAmmo": 1,
     "reloadTime": 60,
     "recoilAngle": 10.0,
-    "recoilDurationOffset": 0.25
-  },
-  "projectile": {
-    "item": "nukacraft:mini_nuke",
-    "visible": true,
-    "damage": 60.0,
-    "size": 0.2,
-    "speed": 2.0,
-    "life": 150,
-    "gravity": true
+    "recoilDurationOffset": 0.25,
+    "ammo": [
+      "nukacraft:mini_nuke"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.fatman.fire",

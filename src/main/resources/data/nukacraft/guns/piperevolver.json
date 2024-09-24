@@ -7,16 +7,13 @@
     "reloadAmount": 2,
     "recoilAngle": 5.6,
     "recoilKick": 0.8,
+    "damage": 7.0,
     "recoilAdsReduction": 0.27,
     "alwaysSpread": true,
-    "spread": 1.4
-  },
-  "projectile": {
-    "item": "nukacraft:round45",
-    "damage": 7.0,
-    "size": 0.2,
-    "speed": 23.0,
-    "life": 16
+    "spread": 1.4,
+    "ammo": [
+      "nukacraft:round45"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.pistol45mm.fire",

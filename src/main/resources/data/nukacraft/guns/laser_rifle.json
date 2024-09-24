@@ -8,7 +8,11 @@
     "reloadAmount": 10,
     "recoilAngle": 3.0,
     "recoilKick": 0.25,
-    "spread": 4.0
+    "spread": 4.0,
+    "damage": 10.0,
+    "ammo": [
+      "nukacraft:fusion_cell"
+    ]
   },
   "projectile": {
     "item": "nukacraft:fusion_cell",

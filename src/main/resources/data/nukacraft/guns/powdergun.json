@@ -10,14 +10,11 @@
     "recoilAdsReduction": 0.6,
     "projectileAmount": 6,
     "alwaysSpread": true,
-    "spread": 20.0
-  },
-  "projectile": {
-    "item": "nukacraft:steel_ball",
     "damage": 10.0,
-    "size": 1.0,
-    "speed": 10.0,
-    "life": 5
+    "spread": 20.0,
+    "ammo": [
+      "nukacraft:steel_ball"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.powdergun.fire",

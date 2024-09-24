@@ -10,14 +10,11 @@
     "recoilAdsReduction": 0.6,
     "projectileAmount": 1,
     "alwaysSpread": false,
-    "spread": 2.0
-  },
-  "projectile": {
-    "item": "nukacraft:fusion_cell",
     "damage": 10.0,
-    "size": 1.0,
-    "speed": 25.0,
-    "life": 5
+    "spread": 2.0,
+    "ammo": [
+      "nukacraft:fusion_cell"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.tesla_carbine.fire",

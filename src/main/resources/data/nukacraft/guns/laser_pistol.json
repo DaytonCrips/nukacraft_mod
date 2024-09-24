@@ -10,14 +10,11 @@
 	"recoilKick": 0.3,
     "recoilAdsReduction": 0.25,
     "alwaysSpread": true,
-    "spread": 1.0
-  },
-  "projectile": {
-    "item": "nukacraft:fusion_cell",
-    "damage": 9.0,
-    "size": 0.2,
-    "speed": 150,
-    "life": 6
+    "damage": 6.5,
+    "spread": 1.0,
+    "ammo": [
+      "nukacraft:fusion_cell"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.laser_pistol.fire",

@@ -4,20 +4,17 @@
     "gripType": "ntgl:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 6,
+    "damage": 12.0,
     "reloadTime": 50,
     "reloadAmount": 1,
     "recoilAngle": 7.0,
     "recoilKick": 0.4,
     "recoilAdsReduction": 0.15,
     "alwaysSpread": true,
-    "spread": 2.0
-  },
-  "projectile": {
-    "item": "nukacraft:round10mm",
-    "damage": 12.0,
-    "size": 0.2,
-    "speed": 26.0,
-    "life": 12
+    "spread": 2.0,
+    "ammo": [
+      "nukacraft:round10mm"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",

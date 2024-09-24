@@ -10,16 +10,11 @@
 	"recoilKick": 0.3,
     "recoilAdsReduction": 0.25,
     "alwaysSpread": true,
-    "spread": 1.0
-  },
-  "projectile": {
-    "item": "nukacraft:round10mm",
-    "visible": true,
     "damage": 9.0,
-    "size": 0.2,
-    "speed": 100,
-    "life": 7,
-    "type": "ballistic"
+    "spread": 1.0,
+    "ammo": [
+      "nukacraft:round10mm"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",

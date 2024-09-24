@@ -2,10 +2,8 @@ package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
 import com.jetug.chassis_core.common.util.helpers.timer.PlayOnceTimerTask;
 import com.jetug.chassis_core.common.util.helpers.timer.TickTimer;
-import com.nukateam.ntgl.client.data.handler.ShootingHandler;
+import com.nukateam.ntgl.common.data.util.GunModifierHelper;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
-import com.nukateam.nukacraft.client.helpers.AnimationHelper;
-import com.nukateam.nukacraft.client.models.entity.EntityModel;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import com.nukateam.nukacraft.common.foundation.goals.AssaultronAttackGoal;
 import com.nukateam.nukacraft.common.foundation.goals.GeoMeleeAttackGoal;
@@ -38,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.Animation.LoopType.*;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
-import static net.minecraft.advancements.critereon.SlimePredicate.sized;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, ITriggerProvider {
@@ -136,9 +133,9 @@ public class Assaultron extends PathfinderMob implements GeoEntity, IGunUser, IT
 //
         GunAttackGoal.shoot(this, true);
 
-        var item = getGun();
-        var gun = (GunItem)item.getItem();
-        var laserDuration = gun.getModifiedGun(item).getProjectile().getLife();
+        var weapon = getGun();
+        var gun = (GunItem) weapon.getItem();
+        var laserDuration = GunModifierHelper.getCurrentProjectile(weapon).getLife();
         entityData.set(IS_SHOOTING_LASER, true);
 
         serverTimer.addTimer(new PlayOnceTimerTask(laserDuration, () -> {

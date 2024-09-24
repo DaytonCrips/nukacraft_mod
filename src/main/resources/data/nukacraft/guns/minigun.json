@@ -10,15 +10,12 @@
     "reloadTime": 80,
     "reloadAmount": 10,
     "recoilAngle": 1.0,
-    "alwaysSpread": true,
-    "spread": 6.0
-  },
-  "projectile": {
-    "item": "nukacraft:round5mm",
     "damage": 5.0,
-    "size": 0.2,
-    "speed": 8.0,
-    "life": 30
+    "alwaysSpread": true,
+    "spread": 6.0,
+    "ammo": [
+      "nukacraft:round5mm"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.minigun.fire",

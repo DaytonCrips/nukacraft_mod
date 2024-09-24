@@ -9,14 +9,11 @@
 	"recoilKick": 0.6,
     "recoilAdsReduction": 0.12,
     "alwaysSpread": true,
-    "spread": 1.0
-  },
-  "projectile": {
-    "item": "nukacraft:round38",
     "damage": 6.0,
-    "size": 0.2,
-    "speed": 29.0,
-    "life": 16
+    "spread": 1.0,
+    "ammo": [
+      "nukacraft:round38"
+    ]
   },
   "sounds": {
     "fire": "nukacraft:item.pistol38mm.fire",
