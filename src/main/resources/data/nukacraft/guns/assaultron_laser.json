@@ -1,7 +1,7 @@
 {
   "general": {
     "rate": 60,
-    "fireMode": "ntgl:semi",
+    "fireMode": ["ntgl:semi"],
     "gripType": "ntgl:one_handed",
     "loadingType": "magazine",
     "maxAmmo": 1,

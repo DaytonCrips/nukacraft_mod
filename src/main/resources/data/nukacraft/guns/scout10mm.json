@@ -1,6 +1,6 @@
 {
   "general": {
-    "fireMode": "ntgl:auto",
+    "fireMode": ["ntgl:auto"],
     "rate": 4,
     "gripType": "ntgl:one_handed",
     "maxAmmo": 9,
