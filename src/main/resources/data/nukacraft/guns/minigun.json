@@ -22,8 +22,7 @@
   },
   "sounds": {
     "fire": "nukacraft:item.minigun.fire",
-    "reload": "nukacraft:item.pistol.reload",
-    "enchantedFire": "nukacraft:item.minigun.fire"
+    "reload": "nukacraft:item.minigun.reload"
   },
   "modules": {
   "attachments": {

@@ -43,15 +43,7 @@
       "ntgl:scope": [
         {
           "name": "scope_1",
-          "item": "nukacraft:pistol_iron_sight"
-        },
-        {
-          "name": "scope_2",
-          "item": "nukacraft:pistol_scout_sight"
-        },
-        {
-          "name": "scope_3",
-          "item": "nukacraft:pistol_hunting_optics"
+          "item": "nukacraft:tesla_iron_sight"
         }
       ],
       "ntgl:barrel": [
@@ -61,10 +53,7 @@
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:tesla_auto_barrel",
-          "hide": [
-            "muzzle_flash"
-          ]
+          "item": "nukacraft:tesla_auto_barrel"
         },
         {
           "name": "barrel_3",
@@ -78,7 +67,7 @@
       "ntgl:stock": [
         {
           "name": "grip_1",
-          "item": "nukacraft:pump_long_grip"
+          "item": "nukacraft:tesla_tactical_grip"
         }
       ]
     }

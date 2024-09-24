@@ -45,7 +45,7 @@
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:gatling_laser_seven_barrel",
+          "item": "nukacraft:gatling_laser_eight_barrel",
           "hide": [
             "barrel_default"
           ]

@@ -21,8 +21,8 @@
   },
   "sounds": {
     "fire": "nukacraft:item.pistol10mm.fire",
-    "reload": "nukacraft:item.pistol10mm.reload",
-    "cock": "nukacraft:item.pistol10mm.cock",
+    "reload": "nukacraft:item.pistol45mm.reload",
+    "cock": "nukacraft:item.pistol45mm.cock",
     "silencedFire": "nukacraft:item.pistol10mm.silenced_fire",
     "enchantedFire": "nukacraft:item.pistol10mm.enchanted_fire"
   },
@@ -37,11 +37,11 @@
       "ntgl:scope": [
         {
           "name": "scope_1",
-          "item": "nukacraft:pistol_holographic_sight"
+          "item": "nukacraft:pistol_collimator_sight"
         },
         {
           "name": "scope_2",
-          "item": "nukacraft:pistol_collimator_sight"
+          "item": "nukacraft:pistol_holographic_sight"
         },
         {
           "name": "scope_3",
@@ -54,19 +54,23 @@
         {
           "name": "scope_5",
           "item": "nukacraft:pistol_scout_sight"
+        },
+        {
+          "name": "scope_6",
+          "item": "nukacraft:laser_all_vision"
         }
       ],
       "ntgl:barrel": [
         {
           "name": "barrel_1",
-          "item": "nukacraft:pistol_flame_hider",
+          "item": "nukacraft:pistol_silencer",
           "hide": [
             "muzzle_flash"
           ]
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:pistol_long_barrel"
+          "item": "nukacraft:pistol_flame_hider"
         },
         {
           "name": "barrel_3",
@@ -78,7 +82,7 @@
         },
         {
           "name": "barrel_5",
-          "item": "nukacraft:pistol_silencer"
+          "item": "nukacraft:pistol_long_barrel"
         }
       ],
       "ntgl:stock": [
@@ -90,14 +94,14 @@
           ]
         },
         {
-          "name": "grip_2",
+          "name": "grip_3",
           "item": "nukacraft:pistol_tactical_grip",
           "hide": [
             "grip_default"
           ]
         },
         {
-          "name": "grip_3",
+          "name": "grip_2",
           "item": "nukacraft:pistol_weighted_grip",
           "hide": [
             "grip_default"

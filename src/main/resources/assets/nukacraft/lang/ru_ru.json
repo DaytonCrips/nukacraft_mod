@@ -359,7 +359,7 @@
   "item.nukacraft.gatling_laser_correction_lens": "Гатлинг Лазер: Корректирующая Линза",
 
   "item.nukacraft.gatling_laser_triple_barrel": "Гатлинг Лазер: Три Ствола",
-  "item.nukacraft.gatling_laser_seven_barrel": "Гатлинг Лазер: Семь Стволов",
+  "item.nukacraft.gatling_laser_eight_barrel": "Гатлинг Лазер: Восемь Стволов",
   "item.nukacraft.gatling_laser_industrial_barrel": "Гатлинг Лазер: Промышленный Лазер",
 
 
@@ -378,17 +378,18 @@
   "item.nukacraft.tesla_charging_barrel": "Тесла Карабин: Заряжающийся Ствол",
   "item.nukacraft.tesla_rail_barrel": "Тесла Карабин: Рельсовый Ствол",
   "item.nukacraft.tesla_overheat_barrel": "Тесла Карабин: Перегруженный Ствол",
+  "item.nukacraft.tesla_iron_sight": "Тесла Карабин: Прицельная Планка",
 
   "item.nukacraft.laser_sniper_barrel": "Лазерное Оружие: Снайперский Ствол",
-  "item.nukacraft.laser_auto_barrel": "Лазерное Оружие: Auto Barrel",
-  "item.nukacraft.laser_protectron_barrel": "Лазерное Оружие: Protectron Hand",
+  "item.nukacraft.laser_auto_barrel": "Лазерное Оружие: Автоматический Ствол",
+  "item.nukacraft.laser_protectron_barrel": "Лазерное Оружие: Рука Протектрона",
 
   "item.nukacraft.laser_tactical_grip": "Лазерное Оружие: Тяжелый Приклад",
   "item.nukacraft.laser_long_grip": "Лазерное Оружие: Длинный Приклад",
   "item.nukacraft.laser_weighted_grip": "Лазерное Оружие: Тяжелый Приклад",
 
   "item.nukacraft.laser_long_scout_optics": "Лазерное Оружие: Длинный Прицел Разведчика",
-  "item.nukacraft.laser_all_vision": "Лазерное Оружие: Модуль Наблюдения 'All Vision'",
+  "item.nukacraft.laser_all_vision": "Модуль Наблюдения 'All Vision'",
 
   "item.nukacraft.flamer_long_barrel": "Огнемёт: Длинный Ствол",
   "item.nukacraft.flamer_compress_barrel": "Огнемёт: Компрессионное Сопло",

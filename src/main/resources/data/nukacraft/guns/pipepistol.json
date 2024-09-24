@@ -61,56 +61,56 @@
       "ntgl:barrel": [
         {
           "name": "barrel_1",
-          "item": "nukacraft:handmade_silencer",
+          "item": "nukacraft:pipe_silencer",
           "hide": [
             "muzzle_flash"
           ]
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:handmade_flame_hider",
+          "item": "nukacraft:pipe_flame_hider",
           "hide": [
             "muzzle_flash"
           ]
         },
         {
           "name": "barrel_3",
-          "item": "nukacraft:handmade_compensator"
+          "item": "nukacraft:pipe_compensator"
         },
         {
           "name": "barrel_4",
-          "item": "nukacraft:handmade_heavy_barrel"
+          "item": "nukacraft:pipe_heavy_barrel"
         },
         {
           "name": "barrel_5",
-          "item": "nukacraft:handmade_long_barrel"
+          "item": "nukacraft:pipe_long_barrel"
         }
       ],
       "ntgl:stock": [
         {
           "name": "grip_1",
-          "item": "nukacraft:handmade_tactical_grip",
+          "item": "nukacraft:pipe_tactical_grip",
           "hide": [
             "grip_default"
           ]
         },
         {
           "name": "grip_2",
-          "item": "nukacraft:handmade_pistol_grip",
+          "item": "nukacraft:pipe_pistol_grip",
           "hide": [
             "grip_default"
           ]
         },
         {
           "name": "grip_3",
-          "item": "nukacraft:handmade_long_grip",
+          "item": "nukacraft:pipe_long_grip",
           "hide": [
             "grip_default"
           ]
         },
         {
           "name": "grip_4",
-          "item": "nukacraft:handmade_carbine_grip",
+          "item": "nukacraft:pipe_carbine_grip",
           "hide": [
             "grip_default"
           ]
@@ -134,6 +134,13 @@
         {
           "name": "magazine_3",
           "item": "nukacraft:pistol_drum_magazine",
+          "hide": [
+            "magazine_default"
+          ]
+        },
+        {
+          "name": "magazine_4",
+          "item": "nukacraft:pistol_huge_magazine",
           "hide": [
             "magazine_default"
           ]

@@ -44,7 +44,7 @@
       "ntgl:scope": [
         {
           "name": "scope_1",
-          "item": "nukacraft:pistol_holographic_sight"
+          "item": "nukacraft:pistol_collimator_sight"
         },
         {
           "name": "scope_2",
@@ -53,6 +53,18 @@
         {
           "name": "scope_3",
           "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_4",
+          "item": "nukacraft:pistol_holographic_sight"
+        },
+        {
+          "name": "scope_5",
+          "item": "nukacraft:pistol_scout_sight"
+        },
+        {
+          "name": "scope_6",
+          "item": "nukacraft:laser_all_vision"
         }
       ],
       "ntgl:barrel": [

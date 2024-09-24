@@ -51,7 +51,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> ITEM_LASER_RIFLE_RELOAD = register("item.laser_rifle.reload");
 
     public static final RegistryObject<SoundEvent> ITEM_MINIGUN_FIRE = register("item.minigun.fire");
-
+    public static final RegistryObject<SoundEvent> ITEM_MINIGUN_RELOAD = register("item.minigun.reload");
     public static final RegistryObject<SoundEvent> ITEM_38MM_FIRE = register("item.pistol38mm.fire");
     public static final RegistryObject<SoundEvent> ITEM_38MM_ENCHANTED_FIRE = register("item.pistol38mm.enchanted_fire");
     public static final RegistryObject<SoundEvent> ITEM_38MM_SILENCED_FIRE = register("item.pistol38mm.silenced_fire");
@@ -74,6 +74,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PIPBOY_UP = register("gui.pipboy.pipboy_up");
     public static final RegistryObject<SoundEvent> PIPBOY_DOWN = register("gui.pipboy.pipboy_down");
     public static final RegistryObject<SoundEvent> PIPBOY_TAB = register("gui.pipboy.pipboy_tab");
+
+    public static final RegistryObject<SoundEvent> ASSAULTRON_FIRE = register("entity.assaultron.fire");
 
     public static RegistryObject<SoundEvent> register(String key) {
         return SOUNDS.register(key, () -> SoundEvent.createVariableRangeEvent(nukaResource(key)));
