@@ -5,6 +5,8 @@ import com.nukateam.ntgl.common.base.gun.GripType;
 import com.nukateam.ntgl.common.data.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
 
+import java.util.Set;
+
 public class GunModifiers {
     public static final IGunModifier SILENCED = new IGunModifier() {
         @Override
@@ -78,8 +80,9 @@ public class GunModifiers {
     };
     public static final IGunModifier SET_AUTO_FIRE = new IGunModifier() {
         @Override
-        public FireMode modifyFireMod(FireMode fireMode) {
-            return FireMode.AUTO;
+        public Set<FireMode> modifyFireModes(Set<FireMode> fireMode) {
+            fireMode.add(FireMode.AUTO);
+            return fireMode;
         }
     };
 
