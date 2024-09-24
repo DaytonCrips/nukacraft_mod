@@ -3,6 +3,7 @@ package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 import com.nukateam.example.common.data.interfaces.IExplosiveOnHit;
 import com.nukateam.nukacraft.common.data.utils.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OwnableBlockEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.PowerArmorFrame;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,14 +31,20 @@ public class LandMineBlock extends BaseEntityBlock implements IExplosiveOnHit {
     }
 
     @Override
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity entity) {
         var blockEntity = pLevel.getBlockEntity(pPos);
 
         if (!pLevel.isClientSide && blockEntity instanceof OwnableBlockEntity ownable) {
-            if (!(ownable.getOwner().equals(pEntity.getUUID().toString()))) {
+            if (!isOwner(entity, ownable) && (!(entity instanceof PowerArmorFrame frame) ||
+                                    !frame.hasControllingPassenger() ||
+                                    !isOwner(frame.getControllingPassenger(), ownable))) {
                 explode(pLevel, pPos);
             }
         }
+    }
+
+    private static boolean isOwner(Entity pEntity, OwnableBlockEntity ownable) {
+        return ownable.getOwner().equals(pEntity.getUUID().toString());
     }
 
     public void explode(Level pLevel, BlockPos pPos) {
