@@ -18,6 +18,20 @@
         1.521484375
       ]
     },
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        -1.5,
+        0
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        -1.5,
+        0
+      ]
+    },
     "ground": {
       "scale": [
         0.7,

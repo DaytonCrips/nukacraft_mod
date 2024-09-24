@@ -36,16 +36,24 @@
     "attachments": {
       "ntgl:scope": [
         {
-          "name": "scope_1",
-          "item": "nukacraft:laser_long_scout_optics"
+          "name": "scope_5",
+          "item": "nukacraft:pistol_collimator_sight"
         },
         {
-          "name": "scope_2",
-          "item": "nukacraft:pistol_scout_optics"
+          "name": "scope_1",
+          "item": "nukacraft:pistol_holographic_sight"
+        },
+        {
+          "name": "scope_6",
+          "item": "nukacraft:pistol_hunting_optics"
         },
         {
           "name": "scope_3",
           "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_scout_sight"
         },
         {
           "name": "scope_4",

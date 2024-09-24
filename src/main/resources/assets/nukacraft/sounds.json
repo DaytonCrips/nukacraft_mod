@@ -20,6 +20,7 @@
    "item.fatman.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/fatman/reload" }]},
    "item.fatman.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/fatman/fire" }]},
    "item.minigun.fire":                 { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/minigun/fire" }]},
+   "item.minigun.reload":                 { "subtitle": "subtitle.nukacraft.reload",           "sounds": [{ "name": "nukacraft:item/minigun/reload" }]},
 
    "item.shotgun.fire":                 { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/shotgun/fire" }]},
    "item.shotgun.silenced_fire":        { "subtitle": "subtitle.nukacraft.fire.silenced",  "sounds": [{ "name": "nukacraft:item/shotgun/silenced_fire" }]},
@@ -95,7 +96,7 @@
    "item.flamer.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/flamer/fire" }]},
    "item.flamer.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/flamer/reload" }]},
    "item.flamer.cock":                  { "subtitle": "subtitle.nukacraft.cock",           "sounds": [{ "name": "nukacraft:item/flamer/cock" }]},
-
+   "item.military_flamer.reload":                  { "subtitle": "subtitle.nukacraft.reload",           "sounds": [{ "name": "nukacraft:item/military_flamer/reload" }]},
 
    "item.powdergun.fire":                  { "subtitle": "subtitle.nukacraft.fire",           "sounds": [{ "name": "nukacraft:item/powdergun/fire" }]},
    "item.powdergun.reload":                { "subtitle": "subtitle.nukacraft.reload",         "sounds": [{ "name": "nukacraft:item/powdergun/reload" }]},

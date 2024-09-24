@@ -18,23 +18,23 @@ public class WeaponAttachments {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, NukaCraftMod.MOD_ID);
 
     /* Scope Attachments */
-    @DataGen(path = "attachments")
+    //@DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_COLLIMATOR_SIGHT = ITEMS.register("pistol_collimator_sight",
             () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
-    @DataGen(path = "attachments")
+    //@DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_HOLOGRAPHIC_SIGHT = ITEMS.register("pistol_holographic_sight",
             () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
-    @DataGen(path = "attachments")
+    //@DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_HUNTING_OPTICS = ITEMS.register("pistol_hunting_optics",
             () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
-    @DataGen(path = "attachments")
+    //@DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_IRON_SIGHT = ITEMS.register("pistol_iron_sight",
             () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
-    @DataGen(path = "attachments")
+    //@DataGen(path = "attachments")
     public static final RegistryObject<Item> PISTOL_SCOUT_SIGHT = ITEMS.register("pistol_scout_sight",
             () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
@@ -187,7 +187,7 @@ public class WeaponAttachments {
             () -> new BarrelItem(Barrel.create(1.0F, GunModifiers.REDUCED_LASER_RATE_lvl1, GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_DAMAGE_lvl1, GunModifiers.EXTEND_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
-    public static final RegistryObject<Item> GATLING_LASER_SEVEN_BARREL = ITEMS.register("gatling_laser_seven_barrel",
+    public static final RegistryObject<Item> GATLING_LASER_EIGHT_BARREL = ITEMS.register("gatling_laser_eight_barrel",
             () -> new BarrelItem(Barrel.create(1.0F, GunModifiers.EXTEND_LASER_RATE_lvl1, GunModifiers.REDUCED_DAMAGE_lvl2), new Item.Properties().stacksTo(1)));
 
     @DataGen(path = "attachments")
@@ -274,7 +274,8 @@ public class WeaponAttachments {
     public static final RegistryObject<Item> TESLA_OVERHEAT_BARREL = ITEMS.register("tesla_overheat_barrel",
             () -> new BarrelItem(Barrel.create(1.0F, GunModifiers.REDUCED_RECOIL_LVL1, GunModifiers.REDUCED_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
 
-
+    public static final RegistryObject<Item> TESLA_IRON_SIGHT = ITEMS.register("tesla_iron_sight",
+            () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
     /* Laser Barrel Attachments */
 
     @DataGen(path = "attachments")
@@ -306,9 +307,9 @@ public class WeaponAttachments {
 
     /* Laser Scope Attachments */
 
-    @DataGen(path = "attachments")
-    public static final RegistryObject<Item> LASER_LONG_SCOUT_SIGHT = ITEMS.register("laser_long_scout_optics",
-            () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
+//    @DataGen(path = "attachments")
+//    public static final RegistryObject<Item> LASER_LONG_SCOUT_SIGHT = ITEMS.register("laser_long_scout_optics",
+//            () -> new ScopeItem(Attachments.SHORT_SCOPE, new Item.Properties().stacksTo(1)));
 
 //    @DataGen(path = "attachments")
 //    public static final RegistryObject<Item> LASER_SCOUT_SIGHT = ITEMS.register("laser_scout_optics",

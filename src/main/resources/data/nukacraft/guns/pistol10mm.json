@@ -56,19 +56,23 @@
         {
           "name": "scope_5",
           "item": "nukacraft:pistol_scout_sight"
+        },
+        {
+          "name": "scope_6",
+          "item": "nukacraft:laser_all_vision"
         }
       ],
       "ntgl:barrel": [
         {
           "name": "barrel_1",
-          "item": "nukacraft:pistol_flame_hider",
+          "item": "nukacraft:pistol_silencer",
           "hide": [
             "muzzle_flash"
           ]
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:pistol_long_barrel"
+          "item": "nukacraft:pistol_flame_hider"
         },
         {
           "name": "barrel_3",
@@ -80,7 +84,7 @@
         },
         {
           "name": "barrel_5",
-          "item": "nukacraft:pistol_silencer"
+          "item": "nukacraft:pistol_long_barrel"
         }
       ],
       "ntgl:stock": [
@@ -92,14 +96,14 @@
           ]
         },
         {
-          "name": "grip_2",
+          "name": "grip_3",
           "item": "nukacraft:pistol_tactical_grip",
           "hide": [
             "grip_default"
           ]
         },
         {
-          "name": "grip_3",
+          "name": "grip_2",
           "item": "nukacraft:pistol_weighted_grip",
           "hide": [
             "grip_default"

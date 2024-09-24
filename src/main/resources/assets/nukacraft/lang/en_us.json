@@ -64,7 +64,7 @@
   "item.nukacraft.gatling_laser_correction_lens": "Gatling Laser: Correction Lens",
 
   "item.nukacraft.gatling_laser_triple_barrel": "Gatling Laser: Triple Barrel",
-  "item.nukacraft.gatling_laser_seven_barrel": "Gatling Laser: Seven Barrel",
+  "item.nukacraft.gatling_laser_eight_barrel": "Gatling Laser: Eight Barrel",
   "item.nukacraft.gatling_laser_industrial_barrel": "Gatling Laser: Industrial Barrel",
 
 
@@ -78,7 +78,7 @@
   "item.nukacraft.pump_weighted_grip": "Pump Shotgun: Weighted Stock",
 
   "item.nukacraft.tesla_tactical_grip": "Tesla Rifle: Tactical Stock",
-
+  "item.nukacraft.tesla_iron_sight": "Tesla Rifle: Sight",
   "item.nukacraft.tesla_auto_barrel": "Tesla Rifle: Auto Barrel",
   "item.nukacraft.tesla_charging_barrel": "Tesla Rifle: Charging Barrel",
   "item.nukacraft.tesla_rail_barrel": "Tesla Rifle: Rail Barrel",
@@ -93,7 +93,7 @@
   "item.nukacraft.laser_weighted_grip": "Laser Gun: Weighted Stock",
 
   "item.nukacraft.laser_long_scout_optics": "Laser Gun: Long Scout Scope",
-  "item.nukacraft.laser_all_vision": "Laser Gun: Observation Module 'All Vision'",
+  "item.nukacraft.laser_all_vision": "Observation Module 'All Vision'",
 
   "item.nukacraft.flamer_long_barrel": "Flamer: Long Barrel",
   "item.nukacraft.flamer_compress_barrel": "Flamer: Compress Nozzle",

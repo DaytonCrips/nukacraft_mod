@@ -22,7 +22,7 @@
   },
   "sounds": {
     "fire": "nukacraft:item.flamer.fire",
-    "reload": "nukacraft:item.flamer.reload",
+    "reload": "nukacraft:item.military_flamer.reload",
     "cock": "nukacraft:item.flamer.cock"
   },
   "modules": {

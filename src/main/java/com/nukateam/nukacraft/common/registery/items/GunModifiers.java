@@ -86,7 +86,7 @@ public class GunModifiers {
     public static final IGunModifier EXTEND_LASER_RATE_lvl2 = new IGunModifier() {
         @Override
         public int modifyFireRate(int rate) {
-            return 3;
+            return 1;
         }
     };
 

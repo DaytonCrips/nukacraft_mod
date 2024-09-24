@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nukacraft:item/attachments/gatling_laser_beam_splitter"
+  }
+}
