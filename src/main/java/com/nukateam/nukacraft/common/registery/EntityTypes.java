@@ -26,6 +26,15 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY =
             registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
 
+    public static final RegistryObject<EntityType<MirvGrenadeEntity>> MIRV_GRENADE_ENTITY =
+            registerBasic("mirv_grenade_entity", MirvGrenadeEntity::new);
+    public static final RegistryObject<EntityType<HolyGrenadeEntity>> HOLY_GRENADE_ENTITY =
+            registerBasic("holy_grenade_entity", HolyGrenadeEntity::new);
+    public static final RegistryObject<EntityType<FireGrenadeEntity>> FIRE_GRENADE_ENTITY =
+            registerBasic("fire_grenade_entity", FireGrenadeEntity::new);
+    public static final RegistryObject<EntityType<DynamiteStickEntity>> DYNAMITE_STICK_ENTITY =
+            registerBasic("dynamite_stick_entity", DynamiteStickEntity::new);
+
     public static final RegistryObject<EntityType<Entity>> CHAIRENTITY =
             registerEntity("chairblockentity", Builder
                     .of(ChairBlockEntity::new, MobCategory.MISC)

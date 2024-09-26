@@ -37,7 +37,7 @@ public class BaseballGrenadeEntity extends ThrowableGrenadeEntity {
 
     @Override
     protected void onHit(HitResult result) {
-        createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), true);
+        createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), false);
         this.remove(RemovalReason.KILLED);
     }
 }

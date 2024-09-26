@@ -1,8 +1,8 @@
 {
 	"credit": "NukaTeam's Work",
 	"textures": {
-		"1": "nukacraft:item/grenade",
-		"particle": "nukacraft:item/grenade"
+		"1": "nukacraft:item/holy_grenade",
+		"particle": "nukacraft:item/holy_grenade"
 	},
 	"elements": [
 		{
@@ -16,6 +16,14 @@
 				"west": {"uv": [0, 0, 4, 4], "texture": "#1"},
 				"up": {"uv": [4, 0, 8, 4], "texture": "#1"},
 				"down": {"uv": [4, 4, 8, 8], "texture": "#1"}
+			}
+		},
+		{
+			"from": [6, -0.1, 10.02],
+			"to": [10, 3.9, 10.02],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 7, 7.5]},
+			"faces": {
+				"south": {"uv": [5, 11, 0, 16], "texture": "#1"}
 			}
 		},
 		{

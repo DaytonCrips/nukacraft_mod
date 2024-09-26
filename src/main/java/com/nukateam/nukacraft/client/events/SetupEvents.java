@@ -13,6 +13,7 @@ import com.nukateam.nukacraft.client.render.renderers.block.PowerAmorStationRend
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
 import com.nukateam.nukacraft.client.render.renderers.projectile.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
+import com.nukateam.nukacraft.common.foundation.entities.misc.DynamiteStickEntity;
 import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
@@ -57,6 +58,10 @@ public class SetupEvents {
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MININUKE.get(), MiniNukeRenderer::new);
         event.registerEntityRenderer(BASEBALL_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
+        event.registerEntityRenderer(MIRV_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
+        event.registerEntityRenderer(HOLY_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
+        event.registerEntityRenderer(FIRE_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
+        event.registerEntityRenderer(DYNAMITE_STICK_ENTITY.get(), ThrowableGrenadeRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);

@@ -38,6 +38,7 @@
   "block.nukacraft.ash_smoker": "Пепельный Гейзер",
   "block.nukacraft.ash_stone": "Пепельный Камень",
   "block.nukacraft.ashdirt": "Пепельный Блок",
+  "block.nukacraft.pa_station_block": "Станция Силовой Брони",
   "block.nukacraft.ashgrass": "Пепельная Трава",
   "block.nukacraft.ashrose": "Пепельная Роза",
   "block.nukacraft.aster": "Астра",
@@ -399,7 +400,9 @@
   "item.nukacraft.stock_shield": "Тяжелое Оружие: Баллистический Щит",
 
 
-
+  "item.nukacraft.dynamite_stick": "Шашка Динамита",
+  "item.nukacraft.grenade_mirv": "Высокомощная Граната",
+  "item.nukacraft.holy_grenade": "Святая Граната",
   "item.nukacraft.irradiated_beetroot_seed": "Облучённые Семена Свеклы",
   "item.nukacraft.abraxo_cleaner": "Чистящее Средство «Абраксо»",
   "item.nukacraft.acid_bucket": "Ведро кислоты",
@@ -421,6 +424,7 @@
   "item.nukacraft.aster_tea": "Чай с Астрой",
   "item.nukacraft.atom": "§6Атомное Правосудие",
   "item.nukacraft.baseball_bat": "Бита",
+  "item.nukacraft.incendiary_grenade": "Зажигательная Граната",
   "item.nukacraft.baseball_grenade": "Бейбольная Граната",
   "item.nukacraft.bblight": "Яркая Чума",
   "item.nukacraft.bbloodleaf": "Чёрный Кроволист",

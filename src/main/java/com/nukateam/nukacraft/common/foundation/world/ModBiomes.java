@@ -77,7 +77,7 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.POISON_GRASS);
 
 
-        //ModDefaultFeatures.addPoisonValleyOres(biomeBuilder);
+        ModDefaultFeatures.addPoisonValleyOres(biomeBuilder);
 
         ModDefaultFeatures.addAshTrees(biomeBuilder);
         ModDefaultFeatures.addAshStone(biomeBuilder);
@@ -110,7 +110,7 @@ public class ModBiomes {
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.STRANGE_GRASS);
 
-        //ModDefaultFeatures.addSavageDivideOres(biomeBuilder);
+        ModDefaultFeatures.addSavageDivideOres(biomeBuilder);
 
         ModDefaultFeatures.addImmortalGreenTrees(biomeBuilder);
         ModDefaultFeatures.addCommonBerryBush(biomeBuilder);
@@ -158,7 +158,7 @@ public class ModBiomes {
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BLOATFLY.get(), 1, 1, 1));
         mobBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityTypes.BRAHMIN.get(), 1, 1, 1));
 
-        //ModDefaultFeatures.addCranberryBogOres(biomeBuilder);
+        ModDefaultFeatures.addCranberryBogOres(biomeBuilder);
 
         ModDefaultFeatures.addDewdropTrees(biomeBuilder);
         BiomeDefaultFeatures.addSwampClayDisk(biomeBuilder);
@@ -191,7 +191,7 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.GRASS_ASH);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.GLOW_GRASS);
 
-        //ModDefaultFeatures.addGlowSeaOres(biomeBuilder);
+        ModDefaultFeatures.addGlowSeaOres(biomeBuilder);
 
         ModDefaultFeatures.addGlowTrees(biomeBuilder);
 
@@ -226,7 +226,7 @@ public class ModBiomes {
                 .ambientParticle(new AmbientParticleSettings(ParticleTypes.SMOKE, 0.0219f))
                 .build();
 
-        //ModDefaultFeatures.addAshHeapOres(biomeBuilder);
+        ModDefaultFeatures.addAshHeapOres(biomeBuilder);
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegetationPlacements.GRASS_ASH);
         ModDefaultFeatures.addAshHeapTrees(biomeBuilder);

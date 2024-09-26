@@ -13,7 +13,8 @@
     "damage": 9.0,
     "spread": 1.0,
     "ammo": [
-      "nukacraft:round10mm"
+      "nukacraft:round10mm",
+      "nukacraft:round10mm_piercing"
     ]
   },
   "sounds": {

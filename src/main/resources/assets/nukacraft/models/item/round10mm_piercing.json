@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "nukacraft:item/pa_station_block"
+    "layer0": "nukacraft:item/round10mm_piercing"
   }
 }

@@ -1,0 +1,76 @@
+{
+  "general": {
+    "rate": 3,
+    "gripType": "nukacraft:one_handed",
+    "loadingType": "magazine",
+    "maxAmmo": 5,
+    "reloadTime": 50,
+    "reloadAmount": 2,
+    "recoilAngle": 5.0,
+    "recoilKick": 0.3,
+    "recoilAdsReduction": 0.25,
+    "alwaysSpread": true,
+    "damage": 7,
+    "spread": 1.0,
+    "ammo": [
+      "nukacraft:fusion_cell"
+    ]
+  },
+  "sounds": {
+    "fire": "nukacraft:item.laser_pistol.fire",
+    "reload": "nukacraft:item.laser_pistol.reload",
+    "cock": "nukacraft:item.laser_pistol.cock",
+    "silencedFire": "nukacraft:item.laser_pistol.silenced_fire",
+    "enchantedFire": "nukacraft:item.laser_pistol.enchanted_fire"
+  },
+  "modules": {
+    "zoom": {
+      "xOffset": 0,
+      "yOffset": 6,
+      "zOffset": 3,
+      "fovModifier": 0.7
+    },
+    "attachments": {
+      "ntgl:scope": [
+        {
+          "name": "scope_5",
+          "item": "nukacraft:pistol_collimator_sight"
+        },
+        {
+          "name": "scope_1",
+          "item": "nukacraft:pistol_holographic_sight"
+        },
+        {
+          "name": "scope_6",
+          "item": "nukacraft:pistol_hunting_optics"
+        },
+        {
+          "name": "scope_3",
+          "item": "nukacraft:pistol_iron_sight"
+        },
+        {
+          "name": "scope_2",
+          "item": "nukacraft:pistol_scout_sight"
+        },
+        {
+          "name": "scope_4",
+          "item": "nukacraft:laser_all_vision"
+        }
+      ],
+      "ntgl:barrel": [
+        {
+          "name": "barrel_1",
+          "item": "nukacraft:laser_sniper_barrel"
+        },
+        {
+          "name": "barrel_2",
+          "item": "nukacraft:laser_auto_barrel"
+        },
+        {
+          "name": "barrel_3",
+          "item": "nukacraft:laser_protectron_barrel"
+        }
+      ]
+    }
+  }
+}
