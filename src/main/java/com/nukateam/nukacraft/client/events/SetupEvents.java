@@ -11,10 +11,9 @@ import com.nukateam.nukacraft.client.render.renderers.block.GearDoorRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.OpenGearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.block.PowerAmorStationRenderer;
 import com.nukateam.nukacraft.client.render.renderers.entity.*;
+import com.nukateam.nukacraft.client.render.renderers.items.SpearRenderer;
 import com.nukateam.nukacraft.client.render.renderers.projectile.*;
 import com.nukateam.nukacraft.common.data.constants.PipboyPages;
-import com.nukateam.nukacraft.common.foundation.entities.misc.DynamiteStickEntity;
-import com.nukateam.nukacraft.common.registery.ModProjectiles;
 import com.nukateam.nukacraft.common.registery.ModTileEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -66,7 +65,7 @@ public class SetupEvents {
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
         event.registerEntityRenderer(CHAIRENTITY.get(), (context) -> new ChairEntityRenderer(context));
-        event.registerEntityRenderer(HANDMADE_SPEAR_ENTITY.get(), HandmadeSpearRenderer::new);
+        event.registerEntityRenderer(HANDMADE_SPEAR_ENTITY.get(), SpearEntityRenderer::new);
 
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(RAIDER.get(), RaiderRenderer::new);

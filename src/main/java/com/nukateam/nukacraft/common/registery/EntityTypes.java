@@ -8,8 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -52,9 +50,9 @@ public class EntityTypes {
 //                    .<>of(ThrownSpearEntity::new, MobCategory.MISC)
 //                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
 
-    public static final RegistryObject<EntityType<HandmadeSpearEntity>> HANDMADE_SPEAR_ENTITY =
+    public static final RegistryObject<EntityType<SpearEntity>> HANDMADE_SPEAR_ENTITY =
             registerEntity("handmade_spear_entity", Builder
-                    .<HandmadeSpearEntity>of(HandmadeSpearEntity::new, MobCategory.MISC)
+                    .<SpearEntity>of(SpearEntity::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
 
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
