@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +21,12 @@ import java.util.function.BiFunction;
 import static net.minecraft.world.entity.EntityType.Builder;
 
 public class EntityTypes {
+
+
+
+
+
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NukaCraftMod.MOD_ID);
 
@@ -39,6 +46,16 @@ public class EntityTypes {
             registerEntity("chairblockentity", Builder
                     .of(ChairBlockEntity::new, MobCategory.MISC)
                     .sized(0f, 0f));
+
+    public static final RegistryObject<EntityType<Entity>> SPEAR_ENTITY =
+            registerEntity("spear_entity", Builder
+                    .of(ThrownSpearEntity::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
+
+    public static final RegistryObject<EntityType<HandmadeSpearEntity>> HANDMADE_SPEAR_ENTITY =
+            registerEntity("handmade_spear_entity", Builder
+                    .of(HandmadeSpearEntity::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
 
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
             registerEntity("deathclaw", Builder

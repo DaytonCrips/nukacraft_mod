@@ -40,6 +40,7 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> WEAPONPARTS = ITEMS.register("weapon_parts",
             () -> new Item(new Item.Properties()));
+
     @DataGen
     public static final RegistryObject<Item> SCRAP = ITEMS.register("scrap",
             () -> new Item(new Item.Properties()));

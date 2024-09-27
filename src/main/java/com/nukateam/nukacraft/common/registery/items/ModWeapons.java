@@ -12,6 +12,8 @@ import com.nukateam.nukacraft.common.foundation.items.guns.*;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -107,6 +109,10 @@ public class ModWeapons {
     public static final RegistryObject<Item> HATCHET = ITEMS.register("hatchet",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, 0,
                     new Item.Properties()));
+
+//    public static final RegistryObject<Item> HANDMADE_SPEAR = ITEMS.register("handmade_spear",
+//            () -> new HandmadeSpearItem(Tiers.IRON, 6, -3.2F,(new Item.Properties())));
+
 
     public static final RegistryObject<Item> FIRE_AXE = ITEMS.register("fireaxe",
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 2, -3,
