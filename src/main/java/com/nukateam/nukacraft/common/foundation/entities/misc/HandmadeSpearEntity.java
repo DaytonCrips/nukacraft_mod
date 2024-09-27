@@ -41,21 +41,14 @@ public class HandmadeSpearEntity extends ThrownSpearEntity {
         this.handmadeSpearItem = new ItemStack((ItemLike)ModWeapons.HANDMADE_SPEAR.get());
     }
 
-    public HandmadeSpearEntity(EntityType<? extends AbstractArrow> type, Level world, LivingEntity entity, ItemStack stack) {
-        super(type, entity, world);
-        this.handmadeSpearItem = new ItemStack((ItemLike)ModWeapons.HANDMADE_SPEAR.get());
-        this.handmadeSpearItem = stack.copy();
-        this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(stack));
-        this.entityData.set(ID_FOIL, stack.hasFoil());
+    public HandmadeSpearEntity(Level pLevel, LivingEntity pShooter, ItemStack pStack) {
+        super(EntityType.TRIDENT, pShooter, pLevel);
+        this.handmadeSpearItem = new ItemStack(Items.TRIDENT);
+        this.handmadeSpearItem = pStack.copy();
+        this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(pStack));
+        this.entityData.set(ID_FOIL, pStack.hasFoil());
     }
 
-    public HandmadeSpearEntity(EntityType<Entity> entityEntityType, Level level) {
-        super((EntityType<? extends AbstractArrow>) entityEntityType, level);
-    }
-
-    public HandmadeSpearEntity(Level pLevel, Player $$4, ItemStack pStack) {
-        super();
-    }
 
 
     protected void defineSynchedData() {

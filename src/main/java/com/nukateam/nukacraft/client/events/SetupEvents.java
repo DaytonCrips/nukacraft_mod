@@ -66,6 +66,7 @@ public class SetupEvents {
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
         event.registerEntityRenderer(CHAIRENTITY.get(), (context) -> new ChairEntityRenderer(context));
+        event.registerEntityRenderer(HANDMADE_SPEAR_ENTITY.get(), HandmadeSpearRenderer::new);
 
         event.registerEntityRenderer(DEATHCLAW.get(), DeathclawRenderer::new);
         event.registerEntityRenderer(RAIDER.get(), RaiderRenderer::new);

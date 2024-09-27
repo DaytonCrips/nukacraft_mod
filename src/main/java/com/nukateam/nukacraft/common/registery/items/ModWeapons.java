@@ -9,6 +9,7 @@ import com.nukateam.nukacraft.common.foundation.ModTiers;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
+import com.nukateam.nukacraft.common.foundation.items.misc.HandmadeSpearItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
 
 import net.minecraft.world.item.Item;
@@ -110,8 +111,8 @@ public class ModWeapons {
             () -> new SimpleMeleeWeapon(ModTiers.LOWSTEEL, 1, 0,
                     new Item.Properties()));
 
-//    public static final RegistryObject<Item> HANDMADE_SPEAR = ITEMS.register("handmade_spear",
-//            () -> new HandmadeSpearItem(Tiers.IRON, 6, -3.2F,(new Item.Properties())));
+    public static final RegistryObject<Item> HANDMADE_SPEAR = ITEMS.register("handmade_spear",
+            () -> new HandmadeSpearItem(Tiers.IRON, 6, -3.2F,(new Item.Properties())));
 
 
     public static final RegistryObject<Item> FIRE_AXE = ITEMS.register("fireaxe",

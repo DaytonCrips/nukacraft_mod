@@ -2,7 +2,16 @@ package com.nukateam.nukacraft.common.foundation.items.misc;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.nukateam.nukacraft.client.render.renderers.entity.HandmadeSpearRenderer;
+import com.nukateam.nukacraft.client.render.renderers.items.PipBoyRenderer;
 import com.nukateam.nukacraft.common.foundation.entities.misc.HandmadeSpearEntity;
+import mod.azure.azurelib.animatable.GeoItem;
+import mod.azure.azurelib.animatable.client.RenderProvider;
+import mod.azure.azurelib.core.animatable.GeoAnimatable;
+import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.core.animation.AnimatableManager;
+import mod.azure.azurelib.util.AzureLibUtil;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,7 +35,12 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class HandmadeSpearItem extends SwordItem implements Vanishable {
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+public class HandmadeSpearItem extends SwordItem implements Vanishable, GeoAnimatable, GeoItem {
+    private final Supplier<Object> renderProvider = GeoItem.makeRenderer((GeoItem) this);
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     EntityType<? extends HandmadeSpearEntity> type;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
@@ -121,5 +135,38 @@ public class HandmadeSpearItem extends SwordItem implements Vanishable {
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
         return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public double getTick(Object o) {
+        return 0;
+    }
+
+    @Override
+    public void createRenderer(Consumer<Object> consumer) {
+        consumer.accept(new RenderProvider() {
+            private HandmadeSpearRenderer renderer = null;
+
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (renderer == null)
+                    renderer = new HandmadeSpearRenderer();
+                return this.renderer;
+            }
+        });
+    }
+
+
+    public Supplier<Object> getRenderProvider() {
+        return renderProvider;
     }
 }

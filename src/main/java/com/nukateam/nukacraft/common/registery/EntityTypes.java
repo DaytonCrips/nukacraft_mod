@@ -47,14 +47,14 @@ public class EntityTypes {
                     .of(ChairBlockEntity::new, MobCategory.MISC)
                     .sized(0f, 0f));
 
-    public static final RegistryObject<EntityType<Entity>> SPEAR_ENTITY =
-            registerEntity("spear_entity", Builder
-                    .of(ThrownSpearEntity::new, MobCategory.MISC)
-                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
+//    public static final RegistryObject<EntityType<Entity>> SPEAR_ENTITY =
+//            registerEntity("spear_entity", Builder
+//                    .<>of(ThrownSpearEntity::new, MobCategory.MISC)
+//                    .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
 
     public static final RegistryObject<EntityType<HandmadeSpearEntity>> HANDMADE_SPEAR_ENTITY =
             registerEntity("handmade_spear_entity", Builder
-                    .of(HandmadeSpearEntity::new, MobCategory.MISC)
+                    .<HandmadeSpearEntity>of(HandmadeSpearEntity::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
 
     public static final RegistryObject<EntityType<Deathclaw>> DEATHCLAW =
