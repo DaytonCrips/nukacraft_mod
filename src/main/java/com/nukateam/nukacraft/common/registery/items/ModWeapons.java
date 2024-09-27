@@ -9,13 +9,11 @@ import com.nukateam.nukacraft.common.foundation.ModTiers;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
-import com.nukateam.nukacraft.common.foundation.items.misc.HandmadeSpearItem;
+import com.nukateam.nukacraft.common.foundation.items.misc.SpearItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.TridentItem;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -112,7 +110,7 @@ public class ModWeapons {
                     new Item.Properties()));
 
     public static final RegistryObject<Item> HANDMADE_SPEAR = ITEMS.register("handmade_spear",
-            () -> new HandmadeSpearItem(Tiers.IRON, 6, -3.2F,(new Item.Properties())));
+            () -> new SpearItem(Tiers.IRON, 6, -3.2F,(new Item.Properties())));
 
 
     public static final RegistryObject<Item> FIRE_AXE = ITEMS.register("fireaxe",
