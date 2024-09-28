@@ -31,8 +31,8 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY =
             registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
 
-    public static final RegistryObject<EntityType<CocktailMolotovEntity>> COCKTAIL_MOLOTOV_ENTITY =
-            registerBasic("cocktail_molotov_entity", CocktailMolotovEntity::new);
+    public static final RegistryObject<EntityType<MolotovEntity>> COCKTAIL_MOLOTOV_ENTITY =
+            registerBasic("cocktail_molotov_entity", MolotovEntity::new);
 
     public static final RegistryObject<EntityType<MolotovColaEntity>> MOLOTOV_COLA_ENTITY =
             registerBasic("molotov_cola_entity", MolotovColaEntity::new);

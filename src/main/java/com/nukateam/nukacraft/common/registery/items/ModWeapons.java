@@ -1,17 +1,17 @@
 package com.nukateam.nukacraft.common.registery.items;
 
+import com.nukateam.ntgl.common.foundation.entity.StunGrenadeEntity;
 import com.nukateam.ntgl.common.foundation.item.AmmoItem;
 import com.nukateam.ntgl.common.foundation.item.GrenadeItem;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
-import com.nukateam.ntgl.common.foundation.item.StunGrenadeItem;
 import com.nukateam.nukacraft.NukaCraftMod;
-import com.nukateam.nukacraft.common.foundation.ModTiers;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
+import com.nukateam.nukacraft.common.foundation.ModTiers;
+import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
-import com.nukateam.nukacraft.common.foundation.items.misc.SpearItem;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
-
+import com.nukateam.nukacraft.common.foundation.items.misc.SpearItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -176,19 +176,37 @@ public class ModWeapons {
 //    public static final RegistryObject<Item> HANDMADE_FLASHER  = ITEMS.register("handmade_flashhider", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.HANDMADE_FLASHER), new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties()));
-    public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties(), 20 * 4));
-    public static final RegistryObject<Item> MIRV_GRENADE = ITEMS.register("grenade_mirv", () -> new MirvGrenadeItem(new Item.Properties(), 30 * 4));
-    public static final RegistryObject<Item> HOLY_GRENADE = ITEMS.register("holy_grenade", () -> new HolyGrenadeItem(new Item.Properties(), 30 * 4));
-    public static final RegistryObject<Item> GRENADE_FIRE= ITEMS.register("incendiary_grenade", () -> new FireGrenadeItem(new Item.Properties(), 25 * 4));
-    public static final RegistryObject<Item> GRENADE_FIRE_FLOATER= ITEMS.register("flame_floater_grenade", () -> new FlameFloaterGrenadeItem(new Item.Properties(), 25 * 4));
-    public static final RegistryObject<Item> GRENADE_TOXIC_FLOATER= ITEMS.register("toxic_floater_grenade", () -> new FlameFloaterGrenadeItem(new Item.Properties(), 25 * 4));
-    public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () -> new BaseGrenadeItem(new Item.Properties(), 20 * 4));
-    public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties(), 72000));
-    public static final RegistryObject<Item> MOLOTOV_COCKTAIL = ITEMS.register("cocktail_molotov", () -> new CocktailMolotovItem(new Item.Properties(), 20 * 4));
-    public static final RegistryObject<Item> MOLOTOV_COLA = ITEMS.register("molotov_cola", () -> new MolotovColaItem(new Item.Properties(), 20 * 4));
-    public static final RegistryObject<Item> MININUKE = registerAmmo("mini_nuke");
-    public static final RegistryObject<Item> DYNAMITE_STICK = ITEMS.register("dynamite_stick", () -> new DynamiteStickItem(new Item.Properties(), 20 * 4));
 
+    public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties(), 20 * 4));
+
+    public static final RegistryObject<Item> MIRV_GRENADE = ITEMS.register("grenade_mirv", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 30 * 4, MirvGrenadeEntity::new));
+
+    public static final RegistryObject<Item> HOLY_GRENADE = ITEMS.register("holy_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 30 * 4, HolyGrenadeEntity::new));
+
+    public static final RegistryObject<Item> GRENADE_FIRE = ITEMS.register("incendiary_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 25 * 4, FireGrenadeEntity::new));
+
+    public static final RegistryObject<Item> GRENADE_FIRE_FLOATER = ITEMS.register("flame_floater_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 25 * 4, FlameFloaterGrenadeEntity::new));
+
+    public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, BaseballGrenadeEntity::new));
+
+    public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 72000, StunGrenadeEntity::new));
+
+    public static final RegistryObject<Item> MOLOTOV_COCKTAIL = ITEMS.register("molotov", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, MolotovEntity::new));
+
+    public static final RegistryObject<Item> MOLOTOV_COLA = ITEMS.register("molotov_cola", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, MolotovColaEntity::new));
+
+    public static final RegistryObject<Item> DYNAMITE_STICK = ITEMS.register("dynamite_stick", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, DynamiteStickEntity::new));
+
+    public static final RegistryObject<Item> MININUKE = registerAmmo("mini_nuke");
 
     //Rounds
     @DataGen

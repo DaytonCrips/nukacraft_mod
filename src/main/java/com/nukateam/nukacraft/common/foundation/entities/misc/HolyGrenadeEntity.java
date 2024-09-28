@@ -56,7 +56,7 @@ public class HolyGrenadeEntity extends ThrowableGrenadeEntity {
     }
 
     public void onDeath() {
-        GrenadeEntity.createExplosion(this, ((Double) Config.COMMON.grenades.explosionRadius.get()).floatValue() + 6, true);
+        GrenadeEntity.createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue() + 6, true);
     }
 
     public boolean alwaysAccepts() {
