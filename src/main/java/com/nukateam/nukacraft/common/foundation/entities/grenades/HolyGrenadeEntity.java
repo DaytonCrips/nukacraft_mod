@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.misc;
+package com.nukateam.nukacraft.common.foundation.entities.grenades;
 
 import com.nukateam.ntgl.Config;
 import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
@@ -37,10 +37,6 @@ public class HolyGrenadeEntity extends ThrowableGrenadeEntity {
         this.setItem(new ItemStack(HOLY_GRENADE.get()));
         this.setMaxLife(timeLeft);
     }
-
-    protected void defineSynchedData() {
-    }
-
     public void tick() {
         super.tick();
         this.prevRotation = this.rotation;

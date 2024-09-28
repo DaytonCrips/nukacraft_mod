@@ -7,7 +7,7 @@ import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.ModTiers;
-import com.nukateam.nukacraft.common.foundation.entities.misc.*;
+import com.nukateam.nukacraft.common.foundation.entities.grenades.*;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
@@ -175,9 +175,11 @@ public class ModWeapons {
 //    public static final RegistryObject<Item> OLD_SILENCER  = ITEMS.register("old_silencer", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.OLD_SILENCER), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
 //    public static final RegistryObject<Item> HANDMADE_FLASHER  = ITEMS.register("handmade_flashhider", () -> new BarrelItem(Barrel.create(2, ExtraGunModifiers.HANDMADE_FLASHER), new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () -> new AmmoItem(new Item.Properties()));
+    public static final RegistryObject<Item> MISSILE = ITEMS.register("missile", () ->
+            new AmmoItem(new Item.Properties()));
 
-    public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () -> new GrenadeItem(new Item.Properties(), 20 * 4));
+    public static final RegistryObject<Item> GRENADE = ITEMS.register("grenade", () ->
+            new GrenadeItem(new Item.Properties(), 20 * 4));
 
     public static final RegistryObject<Item> MIRV_GRENADE = ITEMS.register("grenade_mirv", () ->
             new BaseGrenadeItem<>(new Item.Properties(), 30 * 4, MirvGrenadeEntity::new));

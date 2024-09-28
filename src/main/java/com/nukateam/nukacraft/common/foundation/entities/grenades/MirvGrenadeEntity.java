@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.misc;
+package com.nukateam.nukacraft.common.foundation.entities.grenades;
 
 import com.nukateam.ntgl.Config;
 import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
@@ -22,14 +22,6 @@ public class MirvGrenadeEntity extends ThrowableGrenadeEntity {
         super(entityType, worldIn);
     }
 
-    public MirvGrenadeEntity(EntityType<? extends ThrowableItemEntity> entityType, Level world, LivingEntity entity) {
-        super(entityType, world, entity);
-        this.setShouldBounce(true);
-        this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(MIRV_GRENADE.get()));
-        this.setMaxLife(60);
-    }
-
     public MirvGrenadeEntity(Level world, LivingEntity entity, int timeLeft) {
         super(EntityTypes.MIRV_GRENADE_ENTITY.get(), world, entity);
         this.setShouldBounce(true);
@@ -37,10 +29,6 @@ public class MirvGrenadeEntity extends ThrowableGrenadeEntity {
         this.setItem(new ItemStack(MIRV_GRENADE.get()));
         this.setMaxLife(timeLeft);
     }
-
-    protected void defineSynchedData() {
-    }
-
     public void tick() {
         super.tick();
         this.prevRotation = this.rotation;

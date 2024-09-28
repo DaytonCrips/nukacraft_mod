@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.misc;
+package com.nukateam.nukacraft.common.foundation.entities.grenades;
 
 import com.nukateam.ntgl.Config;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;

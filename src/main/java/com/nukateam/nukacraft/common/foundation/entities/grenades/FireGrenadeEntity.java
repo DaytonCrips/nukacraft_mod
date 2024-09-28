@@ -1,12 +1,15 @@
-package com.nukateam.nukacraft.common.foundation.entities.misc;
+package com.nukateam.nukacraft.common.foundation.entities.grenades;
 
 import com.nukateam.ntgl.Config;
 import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ProjectileEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableItemEntity;
+import com.nukateam.ntgl.common.foundation.init.ModSounds;
 import com.nukateam.ntgl.common.foundation.world.ProjectileExplosion;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
+import com.nukateam.nukacraft.common.registery.items.ModWeapons;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -16,37 +19,49 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.HitResult;
 
-import static com.nukateam.nukacraft.common.registery.items.ModWeapons.MOLOTOV_COLA;
+import static com.nukateam.nukacraft.common.registery.items.ModWeapons.GRENADE_FIRE;
+import static com.nukateam.nukacraft.common.registery.items.ModWeapons.MIRV_GRENADE;
 
-public class MolotovColaEntity  extends ThrowableGrenadeEntity {
-    public MolotovColaEntity(EntityType<? extends ThrowableItemEntity> entityType, Level worldIn) {
+public class FireGrenadeEntity  extends ThrowableGrenadeEntity {
+    public float rotation;
+    public float prevRotation;
+
+    public FireGrenadeEntity(EntityType<? extends ThrowableItemEntity> entityType, Level worldIn) {
         super(entityType, worldIn);
     }
 
-    public MolotovColaEntity(EntityType<? extends ThrowableItemEntity> entityType, Level world, LivingEntity entity) {
-        super(entityType, world, entity);
+    public FireGrenadeEntity(Level world, LivingEntity entity, int timeLeft) {
+        super(EntityTypes.FIRE_GRENADE_ENTITY.get(), world, entity);
         this.setShouldBounce(true);
         this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(MOLOTOV_COLA.get()));
-        this.setMaxLife(20 * 3);
-    }
-
-    public MolotovColaEntity(Level world, LivingEntity entity, int timeLeft) {
-        super(EntityTypes.MOLOTOV_COLA_ENTITY.get(), world, entity);
-        this.setShouldBounce(true);
-        this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(MOLOTOV_COLA.get()));
+        this.setItem(new ItemStack(GRENADE_FIRE.get()));
         this.setMaxLife(timeLeft);
     }
+    public void tick() {
+        super.tick();
+        this.prevRotation = this.rotation;
+        double speed = this.getDeltaMovement().length();
+        if (speed > 0.1) {
+            this.rotation = (float)((double)this.rotation + speed * 50.0);
+        }
+
+        if (this.level().isClientSide) {
+            this.level().addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY() + 0.25, this.getZ(), 0.0, 0.0, 0.0);
+        }
+
+    }
+
+    public boolean alwaysAccepts() {
+        return super.alwaysAccepts();
+    }
+
+
 
     @Override
-    protected void onHit(HitResult result) {
-        createFireExplosion(this, 2.0F, true);
-        GrenadeEntity.createExplosion(this, ((Double) Config.COMMON.grenades.explosionRadius.get()).floatValue(), false);
-        this.remove(Entity.RemovalReason.KILLED);
-    }
+    public void onDeath(){
+        createFireExplosion(this, 2.0F, true);}
+
 
 
     private static void createFireExplosion(Entity entity, float radius, boolean forceNone)
@@ -56,7 +71,6 @@ public class MolotovColaEntity  extends ThrowableGrenadeEntity {
             return;
 
         world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1.0F, 1.0F);
-        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
         DamageSource source = entity instanceof ProjectileEntity projectile ? entity.damageSources().explosion(entity, projectile.getShooter()) : null;
         Explosion.BlockInteraction mode = Explosion.BlockInteraction.KEEP;
         Explosion explosion = new ProjectileExplosion(world, entity, source, null, entity.getX(), entity.getY(), entity.getZ(), radius, true, mode);

@@ -2,6 +2,7 @@ package com.nukateam.nukacraft.common.registery;
 
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.ChairBlockEntity;
+import com.nukateam.nukacraft.common.foundation.entities.grenades.*;
 import com.nukateam.nukacraft.common.foundation.entities.misc.*;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.*;
 import net.minecraft.resources.ResourceLocation;
@@ -19,12 +20,6 @@ import java.util.function.BiFunction;
 import static net.minecraft.world.entity.EntityType.Builder;
 
 public class EntityTypes {
-
-
-
-
-
-
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES
             = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NukaCraftMod.MOD_ID);
 
@@ -39,12 +34,16 @@ public class EntityTypes {
 
     public static final RegistryObject<EntityType<MirvGrenadeEntity>> MIRV_GRENADE_ENTITY =
             registerBasic("mirv_grenade_entity", MirvGrenadeEntity::new);
+
     public static final RegistryObject<EntityType<HolyGrenadeEntity>> HOLY_GRENADE_ENTITY =
             registerBasic("holy_grenade_entity", HolyGrenadeEntity::new);
+
     public static final RegistryObject<EntityType<FireGrenadeEntity>> FIRE_GRENADE_ENTITY =
             registerBasic("fire_grenade_entity", FireGrenadeEntity::new);
+
     public static final RegistryObject<EntityType<FireGrenadeEntity>> FIRE_FLOATER_GRENADE_ENTITY =
             registerBasic("fire_floater_grenade_entity", FireGrenadeEntity::new);
+
     public static final RegistryObject<EntityType<DynamiteStickEntity>> DYNAMITE_STICK_ENTITY =
             registerBasic("dynamite_stick_entity", DynamiteStickEntity::new);
 
