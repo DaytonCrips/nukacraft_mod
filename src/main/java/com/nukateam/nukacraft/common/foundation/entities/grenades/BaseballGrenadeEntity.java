@@ -19,14 +19,6 @@ public class BaseballGrenadeEntity extends ThrowableGrenadeEntity {
         super(entityType, worldIn);
     }
 
-    public BaseballGrenadeEntity(EntityType<? extends ThrowableItemEntity> entityType, Level world, LivingEntity entity) {
-        super(entityType, world, entity);
-        this.setShouldBounce(true);
-        this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(BASEBALL_GRENADE.get()));
-        this.setMaxLife(20 * 3);
-    }
-
     public BaseballGrenadeEntity(Level world, LivingEntity entity, int timeLeft) {
         super(EntityTypes.BASEBALL_GRENADE_ENTITY.get(), world, entity);
         this.setShouldBounce(true);
