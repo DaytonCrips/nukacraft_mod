@@ -31,12 +31,20 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<BaseballGrenadeEntity>> BASEBALL_GRENADE_ENTITY =
             registerBasic("baseball_grenade_entity", BaseballGrenadeEntity::new);
 
+    public static final RegistryObject<EntityType<CocktailMolotovEntity>> COCKTAIL_MOLOTOV_ENTITY =
+            registerBasic("cocktail_molotov_entity", CocktailMolotovEntity::new);
+
+    public static final RegistryObject<EntityType<MolotovColaEntity>> MOLOTOV_COLA_ENTITY =
+            registerBasic("molotov_cola_entity", MolotovColaEntity::new);
+
     public static final RegistryObject<EntityType<MirvGrenadeEntity>> MIRV_GRENADE_ENTITY =
             registerBasic("mirv_grenade_entity", MirvGrenadeEntity::new);
     public static final RegistryObject<EntityType<HolyGrenadeEntity>> HOLY_GRENADE_ENTITY =
             registerBasic("holy_grenade_entity", HolyGrenadeEntity::new);
     public static final RegistryObject<EntityType<FireGrenadeEntity>> FIRE_GRENADE_ENTITY =
             registerBasic("fire_grenade_entity", FireGrenadeEntity::new);
+    public static final RegistryObject<EntityType<FireGrenadeEntity>> FIRE_FLOATER_GRENADE_ENTITY =
+            registerBasic("fire_floater_grenade_entity", FireGrenadeEntity::new);
     public static final RegistryObject<EntityType<DynamiteStickEntity>> DYNAMITE_STICK_ENTITY =
             registerBasic("dynamite_stick_entity", DynamiteStickEntity::new);
 

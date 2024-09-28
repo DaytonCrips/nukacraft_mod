@@ -180,8 +180,11 @@ public class ModWeapons {
     public static final RegistryObject<Item> MIRV_GRENADE = ITEMS.register("grenade_mirv", () -> new MirvGrenadeItem(new Item.Properties(), 30 * 4));
     public static final RegistryObject<Item> HOLY_GRENADE = ITEMS.register("holy_grenade", () -> new HolyGrenadeItem(new Item.Properties(), 30 * 4));
     public static final RegistryObject<Item> GRENADE_FIRE= ITEMS.register("incendiary_grenade", () -> new FireGrenadeItem(new Item.Properties(), 25 * 4));
+    public static final RegistryObject<Item> GRENADE_FIRE_FLOATER= ITEMS.register("flame_floater_grenade", () -> new FlameFloaterGrenadeItem(new Item.Properties(), 25 * 4));
     public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () -> new BaseGrenadeItem(new Item.Properties(), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties(), 72000));
+    public static final RegistryObject<Item> MOLOTOV_COCKTAIL = ITEMS.register("cocktail_molotov", () -> new CocktailMolotovItem(new Item.Properties(), 20 * 4));
+    public static final RegistryObject<Item> MOLOTOV_COLA = ITEMS.register("molotov_cola", () -> new MolotovColaItem(new Item.Properties(), 20 * 4));
     public static final RegistryObject<Item> MININUKE = registerAmmo("mini_nuke");
     public static final RegistryObject<Item> DYNAMITE_STICK = ITEMS.register("dynamite_stick", () -> new DynamiteStickItem(new Item.Properties(), 20 * 4));
 
@@ -189,29 +192,49 @@ public class ModWeapons {
     //Rounds
     @DataGen
     public static final RegistryObject<Item> ROUND10MM = registerAmmo("round10mm");
+    @DataGen
     public static final RegistryObject<Item> ROUND10MM_PIERCING = registerAmmo("round10mm_piercing");
+//    public static final RegistryObject<Item> ROUND10MM_INCENDIARY = registerAmmo("round10mm_incendiary");
     @DataGen
     public static final RegistryObject<Item> ROUND38 = registerAmmo("round38");
+    @DataGen
+    public static final RegistryObject<Item> ROUND38_PIERCING = registerAmmo("round38_piercing");
     @DataGen
     public static final RegistryObject<Item> STEEL_BALLS = registerAmmo("steel_ball");
     @DataGen
     public static final RegistryObject<Item> ROUND45 = registerAmmo("round45");
     @DataGen
+    public static final RegistryObject<Item> ROUND45_PIERCING = registerAmmo("round45_piercing");
+    @DataGen
     public static final RegistryObject<Item> ROUND5MM = registerAmmo("round5mm");
+    @DataGen
+    public static final RegistryObject<Item> ROUND5MM_PIERCING = registerAmmo("round5mm_piercing");
     @DataGen
     public static final RegistryObject<Item> ROUND44 = registerAmmo("round44");
     @DataGen
+    public static final RegistryObject<Item> ROUND44_PIERCING = registerAmmo("round44_piercing");
+    @DataGen
     public static final RegistryObject<Item> ROUND50 = registerAmmo("round50");
+    @DataGen
+    public static final RegistryObject<Item> ROUND50_PIERCING = registerAmmo("round50_piercing");
     @DataGen
     public static final RegistryObject<Item> ROUND380 = registerAmmo("round380");
     @DataGen
+    public static final RegistryObject<Item> ROUND380_piercing = registerAmmo("round380_piercing");
+    @DataGen
     public static final RegistryObject<Item> ROUND556 = registerAmmo("round556");
+    @DataGen
+    public static final RegistryObject<Item> ROUND556_PIERCING = registerAmmo("round556_piercing");
     @DataGen
     public static final RegistryObject<Item> SHOT_SHELL = registerAmmo("shotshell");
     @DataGen
     public static final RegistryObject<Item> ROUND127 = registerAmmo("round127");
     @DataGen
+    public static final RegistryObject<Item> ROUND127_PIERCING = registerAmmo("round127_piercing");
+    @DataGen
     public static final RegistryObject<Item> ROUND22 = registerAmmo("round22");
+    @DataGen
+    public static final RegistryObject<Item> ROUND22_PIERCING = registerAmmo("round22_piercing");
     @DataGen
     public static final RegistryObject<Item> FUSION_CELL = registerAmmo("fusion_cell");
     @DataGen

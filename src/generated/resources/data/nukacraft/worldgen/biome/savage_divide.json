@@ -18,7 +18,13 @@
     [],
     [],
     [],
-    [],
+    [
+      "minecraft:ore_gold",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_iron_upper"
+    ],
     [],
     [],
     [

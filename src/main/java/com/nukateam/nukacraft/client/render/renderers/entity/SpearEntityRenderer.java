@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.ThrownTridentRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 
 public class SpearEntityRenderer extends GeoEntityRenderer<SpearEntity> {
     public SpearEntityRenderer(EntityRendererProvider.Context renderManager) {
@@ -23,8 +24,10 @@ public class SpearEntityRenderer extends GeoEntityRenderer<SpearEntity> {
                        MultiBufferSource bufferSource, int packedLight) {
         poseStack.pushPose();
         {
-            poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, entity.yRotO, entity.getYRot()) - 90.0F));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTick, entity.xRotO, entity.getXRot()) + 90.0F));
+            poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, entity.yRotO, entity.getYRot()) + 180.0F));
+            poseStack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(partialTick, entity.xRotO, entity.getXRot()) + 180.0F));
+            //poseStack.mulPose(Axis.XP.rotationDegrees(Mth.lerp(partialTick, entity.yRotO, entity.getXRot()) + 180.0F));
+
             super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
         }
         poseStack.popPose();

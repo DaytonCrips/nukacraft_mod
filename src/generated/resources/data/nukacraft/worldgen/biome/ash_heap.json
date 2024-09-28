@@ -23,6 +23,15 @@
     [],
     [],
     [
+      "minecraft:ore_copper",
+      "nukacraft:ore_alumi",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_iron_upper",
+      "nukacraft:ore_lead",
+      "nukacraft:ore_silver",
+      "nukacraft:ore_black_titan",
       "minecraft:disk_clay"
     ],
     [],

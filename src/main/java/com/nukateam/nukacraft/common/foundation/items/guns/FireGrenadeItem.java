@@ -5,6 +5,7 @@ import com.nukateam.ntgl.common.foundation.init.ModSounds;
 import com.nukateam.ntgl.common.foundation.item.GrenadeItem;
 import com.nukateam.nukacraft.common.foundation.entities.misc.DynamiteStickEntity;
 import com.nukateam.nukacraft.common.foundation.entities.misc.FireGrenadeEntity;
+import com.nukateam.nukacraft.common.foundation.entities.misc.FlameFloaterGrenadeEntity;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -17,7 +18,7 @@ public class FireGrenadeItem extends GrenadeItem {
 
     @Override
     public ThrowableGrenadeEntity create(Level world, LivingEntity entity, int timeLeft) {
-        return new FireGrenadeEntity(world, entity, timeLeft);
+        return new FlameFloaterGrenadeEntity(world, entity, timeLeft);
     }
 
     @Override
