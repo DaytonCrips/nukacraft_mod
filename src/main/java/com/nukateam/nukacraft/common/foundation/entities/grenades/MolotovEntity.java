@@ -3,6 +3,8 @@ package com.nukateam.nukacraft.common.foundation.entities.grenades;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableItemEntity;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +29,10 @@ public class MolotovEntity extends ThrowableGrenadeEntity {
 
     @Override
     protected void onHit(HitResult result) {
+        assert Minecraft.getInstance().level != null;
+        Minecraft.getInstance().level.addParticle(ParticleTypes.EXPLOSION,
+                this.getX(), this.getY(), this.getZ(),
+                1.0D, 0.0D, 0.0D);
         GrenadeUtils.createFireExplosion(this, 2.0F, true);
         this.remove(Entity.RemovalReason.KILLED);
     }
