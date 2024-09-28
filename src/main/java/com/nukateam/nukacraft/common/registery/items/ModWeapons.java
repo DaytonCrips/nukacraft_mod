@@ -181,6 +181,7 @@ public class ModWeapons {
     public static final RegistryObject<Item> HOLY_GRENADE = ITEMS.register("holy_grenade", () -> new HolyGrenadeItem(new Item.Properties(), 30 * 4));
     public static final RegistryObject<Item> GRENADE_FIRE= ITEMS.register("incendiary_grenade", () -> new FireGrenadeItem(new Item.Properties(), 25 * 4));
     public static final RegistryObject<Item> GRENADE_FIRE_FLOATER= ITEMS.register("flame_floater_grenade", () -> new FlameFloaterGrenadeItem(new Item.Properties(), 25 * 4));
+    public static final RegistryObject<Item> GRENADE_TOXIC_FLOATER= ITEMS.register("toxic_floater_grenade", () -> new FlameFloaterGrenadeItem(new Item.Properties(), 25 * 4));
     public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () -> new BaseGrenadeItem(new Item.Properties(), 20 * 4));
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () -> new StunGrenadeItem(new Item.Properties(), 72000));
     public static final RegistryObject<Item> MOLOTOV_COCKTAIL = ITEMS.register("cocktail_molotov", () -> new CocktailMolotovItem(new Item.Properties(), 20 * 4));

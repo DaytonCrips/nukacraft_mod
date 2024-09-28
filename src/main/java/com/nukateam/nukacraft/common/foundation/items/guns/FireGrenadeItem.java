@@ -18,7 +18,7 @@ public class FireGrenadeItem extends GrenadeItem {
 
     @Override
     public ThrowableGrenadeEntity create(Level world, LivingEntity entity, int timeLeft) {
-        return new FlameFloaterGrenadeEntity(world, entity, timeLeft);
+        return new FireGrenadeEntity(world, entity, timeLeft);
     }
 
     @Override
