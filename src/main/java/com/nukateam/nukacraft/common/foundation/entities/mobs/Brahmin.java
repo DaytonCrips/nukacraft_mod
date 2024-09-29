@@ -23,11 +23,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.IForgeShearable;
 import org.jetbrains.annotations.NotNull;
@@ -40,9 +42,12 @@ import static com.nukateam.nukacraft.common.registery.EntityTypes.BRAHMIN;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
 
 public class Brahmin extends Cow implements GeoEntity, Shearable, IForgeShearable {
+    private static final EntityDataAccessor<Boolean> HAS_BALLS = SynchedEntityData.defineId(Brahmin.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
-    private static final EntityDataAccessor<Boolean> HAS_BALLS = SynchedEntityData.defineId(Brahmin.class, EntityDataSerializers.BOOLEAN);
+    @Nullable
+    private BlockPos jukebox;
+    private boolean partyBrahmin;
 
     public Brahmin(EntityType<? extends Cow> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -137,13 +142,37 @@ public class Brahmin extends Cow implements GeoEntity, Shearable, IForgeShearabl
             controller.setAnimationSpeed(1);
             var animation = begin();
 
-            if (event.isMoving()) {
+            if(isPartyBrahmin() && !hasBalls()){
+                animation.thenLoop("dance");
+            }
+            else if (event.isMoving()) {
                 animation.thenLoop("walk");
             }
+
             else return PlayState.STOP;
 
             return event.setAndContinue(animation);
         }));
+    }
+
+    @Override
+    public void setRecordPlayingNearby(BlockPos pPos, boolean pIsPartying) {
+        this.jukebox = pPos;
+        this.partyBrahmin = pIsPartying;
+    }
+
+    @Override
+    public boolean canBreed() {
+        return hasBalls();
+    }
+
+    @Override
+    public boolean canFallInLove() {
+        return super.canFallInLove() && hasBalls();
+    }
+
+    public boolean isPartyBrahmin() {
+        return this.partyBrahmin;
     }
 
     @Override
