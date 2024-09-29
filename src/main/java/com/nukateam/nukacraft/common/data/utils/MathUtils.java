@@ -12,4 +12,17 @@ public class MathUtils {
                 (i / j) :
                 (i / j) + 1;
     }
+
+    public static float smin(float a, float b, float k) {
+        float h = Math.max(k - Math.abs(a - b), 0.0F) / k;
+        return Math.min(a, b) - h * h * k * (1.0F / 4.0F);
+    }
+
+    public static float sampleNoise3D(int x, int y, int z, float simplexSampleRate) {
+        return (float) ((ACSimplexNoise.noise(
+                (x + simplexSampleRate) / simplexSampleRate,
+                (y + simplexSampleRate) / simplexSampleRate,
+                (z + simplexSampleRate) / simplexSampleRate))
+        );
+    }
 }

@@ -1,12 +1,11 @@
 package com.nukateam.nukacraft.common.foundation.sounds;
 
-import com.nukateam.nukacraft.common.data.interfaces.UnlimitedPitch;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 
-public class NuclearExplosionSound extends AbstractTickableSoundInstance implements UnlimitedPitch {
+public class NuclearExplosionSound extends AbstractTickableSoundInstance {
     private final int duration;
     private final int fadesAt;
     private final float fadeInBy;

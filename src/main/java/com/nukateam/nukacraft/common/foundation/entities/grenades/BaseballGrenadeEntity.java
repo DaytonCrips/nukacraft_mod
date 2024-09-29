@@ -1,4 +1,4 @@
-package com.nukateam.nukacraft.common.foundation.entities.misc;
+package com.nukateam.nukacraft.common.foundation.entities.grenades;
 
 import com.nukateam.ntgl.Config;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
@@ -19,14 +19,6 @@ public class BaseballGrenadeEntity extends ThrowableGrenadeEntity {
         super(entityType, worldIn);
     }
 
-    public BaseballGrenadeEntity(EntityType<? extends ThrowableItemEntity> entityType, Level world, LivingEntity entity) {
-        super(entityType, world, entity);
-        this.setShouldBounce(true);
-        this.setGravityVelocity(0.05F);
-        this.setItem(new ItemStack(BASEBALL_GRENADE.get()));
-        this.setMaxLife(20 * 3);
-    }
-
     public BaseballGrenadeEntity(Level world, LivingEntity entity, int timeLeft) {
         super(EntityTypes.BASEBALL_GRENADE_ENTITY.get(), world, entity);
         this.setShouldBounce(true);
@@ -37,7 +29,7 @@ public class BaseballGrenadeEntity extends ThrowableGrenadeEntity {
 
     @Override
     protected void onHit(HitResult result) {
-        createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), true);
+        createExplosion(this, Config.COMMON.grenades.explosionRadius.get().floatValue(), false);
         this.remove(RemovalReason.KILLED);
     }
 }

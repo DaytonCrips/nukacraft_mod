@@ -1,6 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.entities.misc;
 
-import com.nukateam.nukacraft.common.data.utils.ACMath;
+import com.nukateam.nukacraft.common.data.utils.MathUtils;
 import mod.azure.azurelib.animatable.GeoEntity;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
@@ -158,8 +158,8 @@ public class NuclearExplosionEntity extends SimpleEntity implements GeoEntity {
             for (int z = 0; z < 16; z++) {
                 for (int y = 15; y >= 0; y--) {
                     carve.set(chunkCorner.getX() + x, Mth.clamp(chunkCorner.getY() + y, level().getMinBuildHeight(), level().getMaxBuildHeight()), chunkCorner.getZ() + z);
-                    float widthSimplexNoise = (ACMath.sampleNoise3D(carve.getX(), carve.getY(), carve.getZ(), radius) - 0.5F) * 0.45F + 0.55F;
-                    double yDist = ACMath.smin(0.6F - Math.abs(this.blockPosition().getY() - carve.getY()) / (float) radius, 0.6F, 0.2F);
+                    float widthSimplexNoise = (MathUtils.sampleNoise3D(carve.getX(), carve.getY(), carve.getZ(), radius) - 0.5F) * 0.45F + 0.55F;
+                    double yDist = MathUtils.smin(0.6F - Math.abs(this.blockPosition().getY() - carve.getY()) / (float) radius, 0.6F, 0.2F);
                     double distToCenter = carve.distToLowCornerSqr(this.blockPosition().getX(), carve.getY() - 1, this.blockPosition().getZ());
                     double targetRadius = yDist * (radius + widthSimplexNoise * radius) * radius;
                     if (distToCenter <= targetRadius) {

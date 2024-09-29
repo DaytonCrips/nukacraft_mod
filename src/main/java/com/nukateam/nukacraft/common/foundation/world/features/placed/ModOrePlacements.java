@@ -36,23 +36,23 @@ public class ModOrePlacements {
         );
 
         context.register(ORE_SILVER, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_SILVER_PLACE),
-                commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))))
+                commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(20))))
         );
 
         context.register(ORE_BLACK_TITAN, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_BLACK_TITAN_PLACE),
-                commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))))
-        );
-
-        context.register(ORE_URAN, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_URAN_PLACE),
                 commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))))
         );
 
+        context.register(ORE_URAN, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_URAN_PLACE),
+                commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(11))))
+        );
+
         context.register(ORE_ULTRACITE, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_ULTRACITE_PLACE),
-                commonOrePlacement(3, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))))
+                commonOrePlacement(4, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15))))
         );
 
         context.register(ORE_ALUMINIUM, new PlacedFeature(features.getOrThrow(OreFeatures.ORE_ALUMINIUM_PLACE),
-                commonOrePlacement(5, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))))
+                commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))))
         );
     }
 

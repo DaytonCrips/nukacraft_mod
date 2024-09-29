@@ -14,7 +14,8 @@
     "alwaysSpread": true,
     "spread": 6.0,
     "ammo": [
-      "nukacraft:round5mm"
+      "nukacraft:round5mm",
+      "nukacraft:round5mm_piercing"
     ]
   },
   "sounds": {

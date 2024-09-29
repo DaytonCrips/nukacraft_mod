@@ -2,9 +2,9 @@ package com.nukateam.nukacraft.common.foundation.goals;
 
 import com.nukateam.ntgl.client.data.handler.ShootingHandler;
 import com.nukateam.ntgl.common.base.config.Gun;
-import com.nukateam.ntgl.common.base.network.ServerPlayHandler;
 import com.nukateam.ntgl.common.foundation.init.ModSyncedDataKeys;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
+import com.nukateam.ntgl.common.network.ServerPlayHandler;
 import com.nukateam.ntgl.common.network.message.C2SMessageShoot;
 import com.nukateam.nukacraft.common.data.interfaces.IGunUser;
 import net.minecraft.util.TimeUtil;
