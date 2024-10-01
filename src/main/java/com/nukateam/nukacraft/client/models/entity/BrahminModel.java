@@ -13,13 +13,6 @@ public class BrahminModel extends EntityModel<Brahmin> {
     @Override
     public ResourceLocation getModelResource(Brahmin object) {
         return getResource(object, "geo/entity/", ".geo.json");
-
-        var s = new PowerArmorRenderer();
-
-        s.getModel();
-
-
-
     }
 
     @Override

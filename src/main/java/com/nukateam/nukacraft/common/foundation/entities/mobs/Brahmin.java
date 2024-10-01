@@ -75,7 +75,7 @@ public class Brahmin extends Cow implements GeoEntity, Shearable, IForgeShearabl
         super.defineSynchedData();
         entityData.define(HAS_BALLS, true);
     }
-
+    
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
@@ -83,9 +83,9 @@ public class Brahmin extends Cow implements GeoEntity, Shearable, IForgeShearabl
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        this.hasBalls(pCompound.getBoolean("hasBalls"));
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.hasBalls(compound.getBoolean("hasBalls"));
     }
 
     @Nullable

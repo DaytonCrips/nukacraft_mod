@@ -41,7 +41,9 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
         poseStack.pushPose();
         {
             if (bone.getName().contains("head") && animatable.isBaby()) {
-                setScale(1.5f);
+                bone.setScaleX(1.5f);
+                bone.setScaleY(1.5f);
+                bone.setScaleZ(1.5f);
             }
 
             super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer,
