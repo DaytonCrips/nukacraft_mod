@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
+import com.jetug.chassis_core.mixin.client.InventoryScreenMixin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
