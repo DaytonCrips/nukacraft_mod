@@ -31,14 +31,14 @@
         },
         {
           "name": "barrel_2",
-          "item": "nukacraft:flamer_compress_barrel",
+          "item": "nukacraft:flamer_evaporative_barrel",
           "hide": [
             "barrel_default"
           ]
         },
         {
           "name": "barrel_3",
-          "item": "nukacraft:flamer_evaporative_barrel",
+          "item": "nukacraft:flamer_compress_barrel",
           "hide": [
             "barrel_default"
           ]

@@ -1,0 +1,123 @@
+{
+  "name": "nukacraft:shelter/shelter_terminators",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_1",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_2",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_3",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_4",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_large_room_0",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_large_room_1",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_5",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_6",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_7",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_8",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_room_9",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_corridor_terminator_0",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_corridor_terminator_1",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

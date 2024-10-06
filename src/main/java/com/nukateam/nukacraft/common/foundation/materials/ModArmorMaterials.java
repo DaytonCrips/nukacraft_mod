@@ -16,22 +16,24 @@ import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
     WOOD("wood", 3, new int[]{1, 3, 2, 1}, 0, SoundEvents.ARMOR_EQUIP_TURTLE,
             0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),
-    HARDLEATHER("leather", 3, new int[]{2, 3, 3, 2}, 2, SoundEvents.ARMOR_EQUIP_TURTLE,
+    CLOTH("cloth", 3, new int[]{1, 1, 1, 1}, 0, SoundEvents.ARMOR_EQUIP_LEATHER,
+            0.0F, 0.0F, () -> Ingredient.of(Items.OAK_LOG)),
+    HARDLEATHER("leather", 3, new int[]{2, 3, 3, 2}, 2, SoundEvents.ARMOR_EQUIP_LEATHER,
             0.0F, 0.0F, () -> Ingredient.of(ModItems.LEATHERHARD.get())),
-    RAIDER("raider", 3, new int[]{2, 4, 3, 3}, 5, SoundEvents.ARMOR_EQUIP_TURTLE,
+    RAIDER("raider", 3, new int[]{2, 4, 3, 3}, 5, SoundEvents.ARMOR_EQUIP_IRON,
             0.0F, 0.0F, () -> Ingredient.of(ModItems.SCRAP.get())),
-    METAL("metal", 4, new int[]{3, 4, 4, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+    METAL("metal", 4, new int[]{3, 4, 4, 3}, 6, SoundEvents.ARMOR_EQUIP_IRON,
             0.2F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
-    TRAPPER("trapper", 4, new int[]{4, 5, 5, 3}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+    TRAPPER("trapper", 4, new int[]{4, 5, 5, 3}, 6, SoundEvents.ARMOR_EQUIP_CHAIN,
             0.1F, 0.1F, () -> Ingredient.of(ModItems.STEELING.get())),
 
-    SCOUT("scout", 4, new int[]{5, 6, 6, 4}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+    SCOUT("scout", 4, new int[]{5, 6, 6, 4}, 6, SoundEvents.ARMOR_EQUIP_CHAIN,
             0.2F, 0.2F, () -> Ingredient.of(ModItems.STEELING.get())),
 
-    COMBAT("combat", 4, new int[]{7, 8, 8, 6}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+    COMBAT("combat", 4, new int[]{7, 8, 8, 6}, 6, SoundEvents.ARMOR_EQUIP_NETHERITE,
             0.3F, 0.3F, () -> Ingredient.of(ModItems.STEELING.get())),
 
-    ROBOT("robot", 4, new int[]{8, 9, 9, 7}, 6, SoundEvents.ARMOR_EQUIP_TURTLE,
+    ROBOT("robot", 4, new int[]{8, 9, 9, 7}, 6, SoundEvents.ARMOR_EQUIP_NETHERITE,
             0.6F, 0.3F, () -> Ingredient.of(ModItems.STEELING.get()));
 
     public static final Map<ArmorItem.Type, Integer> TYPE_ID = Map.of(

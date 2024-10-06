@@ -5,6 +5,7 @@ import com.nukateam.ntgl.common.foundation.entity.GrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableGrenadeEntity;
 import com.nukateam.ntgl.common.foundation.entity.ThrowableItemEntity;
 import com.nukateam.nukacraft.common.registery.EntityTypes;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,5 +33,19 @@ public class MolotovColaEntity  extends ThrowableGrenadeEntity {
         GrenadeUtils.createFireExplosion(this, 2.0F, true);
         GrenadeEntity.createExplosion(this, ((Double) Config.COMMON.grenades.explosionRadius.get()).floatValue(), false);
         this.remove(Entity.RemovalReason.KILLED);
+    }
+    @Override
+    public void tick() {
+        super.tick();
+        this.prevRotation = this.rotation;
+        var speed = this.getDeltaMovement().length();
+        if (speed > 0.1)
+            this.rotation = (float) ((double) this.rotation + speed * 50.0);
+
+        if (this.level().isClientSide) {
+            this.level().addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY() + 0.25, this.getZ(), 0.0, 0.0, 0.0);
+            this.level().addParticle(ParticleTypes.FLAME, true, this.getX() , this.getY() + 0.25, this.getZ(), 0.0, 0.0, 0.0);
+        }
+
     }
 }

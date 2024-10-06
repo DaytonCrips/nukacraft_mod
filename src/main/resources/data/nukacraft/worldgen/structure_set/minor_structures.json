@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "nukacraft:shelter",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 734441625,
+    "spacing": 25,
+    "separation": 20,
+    "type": "minecraft:random_spread"
+  }
+}

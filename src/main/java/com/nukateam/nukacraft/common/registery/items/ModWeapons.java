@@ -10,6 +10,7 @@ import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.data.annotation.DataGen;
 import com.nukateam.nukacraft.common.foundation.ModTiers;
 import com.nukateam.nukacraft.common.foundation.entities.grenades.*;
+import com.nukateam.nukacraft.common.foundation.entities.misc.ToxicFloaterGrenadeEntity;
 import com.nukateam.nukacraft.common.foundation.items.frame.FusionCoreItem;
 import com.nukateam.nukacraft.common.foundation.items.guns.*;
 import com.nukateam.nukacraft.common.foundation.items.misc.SimpleMeleeWeapon;
@@ -195,11 +196,14 @@ public class ModWeapons {
     public static final RegistryObject<Item> GRENADE_FIRE_FLOATER = ITEMS.register("flame_floater_grenade", () ->
             new BaseGrenadeItem<>(new Item.Properties(), 25 * 4, FlameFloaterGrenadeEntity::new));
 
+    public static final RegistryObject<Item> GRENADE_TOXIC_FLOATER = ITEMS.register("toxic_floater_grenade", () ->
+            new BaseGrenadeItem<>(new Item.Properties(), 25 * 4, ToxicFloaterGrenadeEntity::new));
+
     public static final RegistryObject<Item> BASEBALL_GRENADE = ITEMS.register("baseball_grenade", () ->
             new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, BaseballGrenadeEntity::new));
 
     public static final RegistryObject<Item> STUN_GRENADE = ITEMS.register("stun_grenade", () ->
-            new BaseGrenadeItem<>(new Item.Properties(), 72000, StunGrenadeEntity::new));
+            new BaseGrenadeItem<>(new Item.Properties(), 15 * 4, StunGrenadeEntity::new));
 
     public static final RegistryObject<Item> MOLOTOV_COCKTAIL = ITEMS.register("molotov", () ->
             new BaseGrenadeItem<>(new Item.Properties(), 20 * 4, MolotovEntity::new, null));
