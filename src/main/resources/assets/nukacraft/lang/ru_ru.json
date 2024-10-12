@@ -567,8 +567,8 @@
   "item.nukacraft.katana": "Катана",
   "item.nukacraft.komi": "Молот для Комми",
   "item.nukacraft.lamp": "Электритовая Лампа",
-  "item.nukacraft.laser_pistol": "Лазерная Пистолет",
-  "item.nukacraft.laser_rifle": "Лазерная Карабин",
+  "item.nukacraft.laser_pistol": "Лазерный Пистолет",
+  "item.nukacraft.laser_rifle": "Лазерный Карабин",
   "item.nukacraft.lead": "Свинцовый Слиток",
   "item.nukacraft.leadnugget": "Кусочек Свинца",
   "item.nukacraft.leadplate": "Свинцовая Плита",
@@ -685,7 +685,7 @@
   "item.nukacraft.round10mm_piercing": "Бронебойный Патрон 10мм",
   "item.nukacraft.round38_piercing": "Бронебойный .38 Патрон",
   "item.nukacraft.round45_piercing": "Бронебойный .45 Патрон",
-  "item.nukacraft.classic_laser_pistol": "Классичейский Лазерный Пистолет",
+  "item.nukacraft.classic_laser_pistol": "Классический Лазерный Пистолет",
   "item.nukacraft.molotov": "Коктейль Молотова",
   "item.nukacraft.molotov_cola": "Молотов Кола",
   "item.nukacraft.flame_floater_grenade": "Граната Огненного Плавуна",
@@ -804,7 +804,22 @@
   "item.nukacraft.x02_torso": "§cНагрудник X-02",
   "item.nukacraft.xander_root": "Корень Сандер",
 
-
+  "item.nukacraft.bucket_black": "Чёрная Краска",
+  "item.nukacraft.bucket_brown": "Коричневая Краска",
+  "item.nukacraft.bucket_cyan": "Бирюзовая Краска",
+  "item.nukacraft.bucket_green": "Зелёная Краска",
+  "item.nukacraft.bucket_blue": "Синяя Краска",
+  "item.nukacraft.bucket_gray": "Серая Краска",
+  "item.nukacraft.bucket_light_blue": "Голубая Краска",
+  "item.nukacraft.bucket_light_gray": "Светло-Серая Краска",
+  "item.nukacraft.bucket_lime": "Лаймовая Краска",
+  "item.nukacraft.bucket_magenta": "Тёмно-Розовая Краска",
+  "item.nukacraft.bucket_orange": "Оранжевая Краска",
+  "item.nukacraft.bucket_pink": "Розовая Краска",
+  "item.nukacraft.bucket_purple": "Фиолетовая Краска",
+  "item.nukacraft.bucket_red": "Красная Краска",
+  "item.nukacraft.bucket_white": "Белая Краска",
+  "item.nukacraft.bucket_yellow": "Жёлтая Краска",
 
 
   "itemGroup.nuka_armor": "Nukacraft: Броня",
@@ -841,11 +856,24 @@
 
 
 
-  "skin.default" : "§7§oЧистая",
-  "skin.rust" : "§7§oРжавая",
-
-
-
+  "skin.default" : "§4§oРжавая",
+  "skin.clear" : "§7§oЧистая",
+  "skin.black" : "§b§oЧёрная Краска",
+  "skin.brown" : "§b§oКоричневая Краска",
+  "skin.cyan" : "§b§oБирюзовая Краска",
+  "skin.green" : "§b§oЗелёная Краска",
+  "skin.blue" : "§b§oСиняя Краска",
+  "skin.gray" : "§b§oСерая Краска",
+  "skin.light_blue" : "§b§oГолубая Краска",
+  "skin.light_gray" : "§b§oСветло-Серая Краска",
+  "skin.lime" : "§b§oЛаймовая Краска",
+  "skin.magenta" : "§b§oТёмно-Розовая Краска",
+  "skin.orange" : "§b§oОранжевая Краска",
+  "skin.pink" : "§b§oРозовая Краска",
+  "skin.purple" : "§b§oФиолетовая Краска",
+  "skin.red" : "§b§oКрасная Краска",
+  "skin.white" : "§b§oБелая Краска",
+  "skin.yellow" : "§b§oЖёлтая Краска",
 
 
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nukacraft:item/power_armor/x01/x01_torso_red"
+  }
+}

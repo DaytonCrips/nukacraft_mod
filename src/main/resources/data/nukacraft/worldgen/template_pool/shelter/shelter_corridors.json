@@ -56,6 +56,15 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+	{
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelter_catwalk_corridor_3",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
     {
       "weight": 1,
       "element": {
