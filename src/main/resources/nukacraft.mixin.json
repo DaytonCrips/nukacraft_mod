@@ -10,8 +10,10 @@
     "common.PathNavigationMixin"
   ],
   "client": [
+    "client.AbstractContainerScreenMixin",
     "client.GameRendererMixin",
     "client.GuiMixin",
+    "client.InventoryScreenMixin",
     "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin"
   ],
