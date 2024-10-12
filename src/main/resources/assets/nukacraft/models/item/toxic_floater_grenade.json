@@ -2,8 +2,8 @@
 	"credit": "Model by MrCrayfish (https://twitter.com/MrCrayfish) using Blockbench",
 	"parent": "nukacraft:item/grenade",
 	"textures": {
-		"1": "nukacraft:item/ice_floater_grenade",
-		"particle": "nukacraft:item/ice_floater_grenade"
+		"1": "nukacraft:item/toxic_floater_grenade",
+		"particle": "nukacraft:item/toxic_floater_grenade"
 	},
 	"elements": [
 		{

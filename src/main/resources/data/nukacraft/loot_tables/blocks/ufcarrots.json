@@ -1,5 +1,3 @@
-
-
 {
   "type": "minecraft:block",
   "pools": [
@@ -17,7 +15,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "nukacraft:ufcarrots",
                   "properties": {
-                    "age": "3"
+                    "age": "7"
                   }
                 }
               ],
@@ -56,7 +54,7 @@
           "condition": "minecraft:block_state_property",
           "block": "nukacraft:ufcarrots",
           "properties": {
-            "age": "3"
+            "age": "7"
           }
         }
       ]

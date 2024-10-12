@@ -1,0 +1,61 @@
+
+{
+  "name": "nukacraft:shelter/shelter_passages",
+  "fallback": "nukacraft:shelter/shelter_terminators",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_passage_1",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_passage_2",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_passage_3",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_passage_4",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_large_room_0",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "nukacraft:shelter/shelters_large_room_1",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

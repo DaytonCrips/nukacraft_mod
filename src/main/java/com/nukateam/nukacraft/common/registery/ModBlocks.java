@@ -342,6 +342,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> SHOWER_TAP = registerBlock("shower_tap",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of()
                     .strength(0.4f).noCollission()));
+
+    public static final RegistryObject<Block> OFFICE_CHAIR = registerBlock("office_chair",
+            () -> new ChairBlock(0.4f, BlockBehaviour.Properties.of()
+                    .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
+    public static final RegistryObject<Block> TECH_CHAIR = registerBlock("tech_chair",
+            () -> new ChairBlock(0.3f, BlockBehaviour.Properties.of()
+                    .strength(0.3f).lightLevel((p_50892_) -> {return 1;})));
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> TABLE_LAMP = registerBlock("table_lamp",
             () -> new CustomModelBlock(BlockBehaviour.Properties.of()
@@ -986,6 +993,10 @@ public class ModBlocks {
 
     @DataGen(type = ResourceType.BLOCK)
     public static final RegistryObject<Block> STORAGE = registerBlock("storage1",
+            () -> new BasicStorageBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
+                    .strength(1f), "SideHalf"));
+
+    public static final RegistryObject<Block> MEDIC_STORAGE = registerBlock("medic_storage",
             () -> new BasicStorageBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD)
                     .strength(1f), "SideHalf"));
 

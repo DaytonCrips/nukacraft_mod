@@ -1,0 +1,15 @@
+{
+  "name": "nukacraft:shelter/shelter_start",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "nukacraft:shelter/shelter_passage_0",
+        "processors": "nukacraft:shelter_processor",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

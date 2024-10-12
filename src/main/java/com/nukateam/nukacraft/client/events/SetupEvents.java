@@ -64,6 +64,7 @@ public class SetupEvents {
         event.registerEntityRenderer(FIRE_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
         event.registerEntityRenderer(DYNAMITE_STICK_ENTITY.get(), ThrowableGrenadeRenderer::new);
         event.registerEntityRenderer(FIRE_FLOATER_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
+        event.registerEntityRenderer(TOXIC_FLOATER_GRENADE_ENTITY.get(), ThrowableGrenadeRenderer::new);
         event.registerEntityRenderer(POWER_ARMOR_FRAME.get(), PowerArmorRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION.get(), EmptyRenderer::new);
         event.registerEntityRenderer(NUCLEAR_EXPLOSION_EFFECT.get(), NuclearExplosionRenderer::new);
@@ -80,7 +81,6 @@ public class SetupEvents {
         event.registerEntityRenderer(SECURITRON.get(), SecuritronRenderer::new);
 
         event.registerEntityRenderer(ASSAULTRON_LASER_PROJECTILE.get(), AssaultronLaserRenderer::new);
-
         event.registerBlockEntityRenderer(ModTileEntities.PA_STATION_ENTITY.get(), (context) -> new PowerAmorStationRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.GEARDOOR_ENTITY.get(), (context) -> new GearDoorRenderer());
         event.registerBlockEntityRenderer(ModTileEntities.OPENGEAR_ENTITY.get(), (context) -> new OpenGearRenderer());

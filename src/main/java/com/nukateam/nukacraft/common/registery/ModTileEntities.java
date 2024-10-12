@@ -22,6 +22,8 @@ public class ModTileEntities {
 
     public static final RegistryObject<BlockEntityType<PowerArmorStationEntity>> PA_STATION_ENTITY = register("pa_station_tile_entity",
             PowerArmorStationEntity::new, () -> new Block[]{ModBlocks.PA_STATION.get()});
+
+
     public static final RegistryObject<BlockEntityType<GearDoorEntity>> GEARDOOR_ENTITY = register("geardoor_tile_entity",
             GearDoorEntity::new, () -> new Block[]{ModBlocks.GEAR_DOOR.get()});
 

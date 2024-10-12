@@ -26,6 +26,10 @@ public class ModArmorItems {
     @DataGen(path = "armor")
     public static final ArmorStorage LEATHER_SET = registerArmorSet("leather", ModArmorMaterials.HARDLEATHER);
     @DataGen(path = "armor")
+    public static final ArmorStorage VAULT_DWELLER_SET = registerClothSet("vault_dweller", ModArmorMaterials.CLOTH);
+    @DataGen(path = "armor")
+    public static final ArmorStorage VAULT_SCIENTIST_SET = registerClothSetWithoutBoots("vault_science", ModArmorMaterials.CLOTH);
+    @DataGen(path = "armor")
     public static final ArmorStorage RAIDER_SET = registerArmorSet("raiders", ModArmorMaterials.RAIDER);
     @DataGen(path = "armor")
     public static final ArmorStorage METAL_SET = registerArmorSet("metal", ModArmorMaterials.METAL);
@@ -33,6 +37,8 @@ public class ModArmorItems {
     public static final ArmorStorage TRAPPER_SET = registerArmorSet("trapper", ModArmorMaterials.TRAPPER);
     @DataGen(path = "armor")
     public static final ArmorStorage SCOUT_SET = registerArmorSet("scout", ModArmorMaterials.SCOUT);
+    @DataGen(path = "armor")
+    public static final ArmorStorage VAULT_SECURITY_SET = registerArmorSet("vault_security", ModArmorMaterials.SCOUT);
     @DataGen(path = "armor")
     public static final ArmorStorage COMBAT_SET = registerArmorSet("combat", ModArmorMaterials.COMBAT);
     @DataGen(path = "armor")
@@ -52,6 +58,35 @@ public class ModArmorItems {
                 Pair.of(ArmorItem.Type.CHESTPLATE, "chest"),
                 Pair.of(ArmorItem.Type.LEGGINGS, "leggins"),
                     Pair.of(ArmorItem.Type.BOOTS, "boots"));
+
+        for (var slot : armorSlots) {
+            var item = registerArmor(name + "_" + slot.getSecond(), name, material, slot.getFirst());
+            armorSet.put(slot.getFirst(), item);
+        }
+
+        return armorSet;
+    }
+
+    private static ArmorStorage registerClothSet(String name, ArmorMaterial material) {
+        var armorSet = new ArmorStorage();
+        var armorSlots = List.of(
+                Pair.of(ArmorItem.Type.CHESTPLATE, "chest"),
+                Pair.of(ArmorItem.Type.LEGGINGS, "leggins"),
+                Pair.of(ArmorItem.Type.BOOTS, "boots"));
+
+        for (var slot : armorSlots) {
+            var item = registerArmor(name + "_" + slot.getSecond(), name, material, slot.getFirst());
+            armorSet.put(slot.getFirst(), item);
+        }
+
+        return armorSet;
+    }
+
+    private static ArmorStorage registerClothSetWithoutBoots(String name, ArmorMaterial material) {
+        var armorSet = new ArmorStorage();
+        var armorSlots = List.of(
+                Pair.of(ArmorItem.Type.CHESTPLATE, "chest"),
+                Pair.of(ArmorItem.Type.LEGGINGS, "leggins"));
 
         for (var slot : armorSlots) {
             var item = registerArmor(name + "_" + slot.getSecond(), name, material, slot.getFirst());

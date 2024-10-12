@@ -36,4 +36,19 @@ public class MolotovEntity extends ThrowableGrenadeEntity {
         GrenadeUtils.createFireExplosion(this, 2.0F, true);
         this.remove(Entity.RemovalReason.KILLED);
     }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.prevRotation = this.rotation;
+        var speed = this.getDeltaMovement().length();
+        if (speed > 0.1)
+            this.rotation = (float) ((double) this.rotation + speed * 50.0);
+
+        if (this.level().isClientSide) {
+            this.level().addParticle(ParticleTypes.SMOKE, true, this.getX(), this.getY() + 0.25, this.getZ(), 0.0, 0.0, 0.0);
+            this.level().addParticle(ParticleTypes.FLAME, true, this.getX() , this.getY() + 0.25, this.getZ(), 0.0, 0.0, 0.0);
+        }
+
+    }
 }
