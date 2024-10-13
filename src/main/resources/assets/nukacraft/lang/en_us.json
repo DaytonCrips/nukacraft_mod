@@ -103,7 +103,8 @@
   "item.nukacraft.stock_shield": "Heavy Weapons: Ballistic Shield",
 
 
-
+  "item.nukacraft.repair_kit": "Repair Kit",
+  "item.nukacraft.elite_repair_kit": "Super Repair Kit",
   "item.nukacraft.acid": "Acid",
   "item.nukacraft.handmade_spear": "Handmade Spear",
   "item.nukacraft.adhesive": "Adhesive",
@@ -410,6 +411,26 @@
   "item.nukacraft.dogwood": "Dogwood",
   "item.nukacraft.electronum": "Electrite",
   "item.nukacraft.emcp": "Empty Cup",
+
+  "item.nukacraft.bucket_black": "Black Paint",
+  "item.nukacraft.bucket_brown": "Brown Paint",
+  "item.nukacraft.bucket_cyan": "Cyan Paint",
+  "item.nukacraft.bucket_green": "Green Paint",
+  "item.nukacraft.bucket_blue": "Blue Paint",
+  "item.nukacraft.bucket_gray": "Gray Paint",
+  "item.nukacraft.bucket_light_blue": "Light Blue Paint",
+  "item.nukacraft.bucket_light_gray": "Light Gray Paint",
+  "item.nukacraft.bucket_lime": "Lime Paint",
+  "item.nukacraft.bucket_magenta": "Magenta Paint",
+  "item.nukacraft.bucket_orange": "Orange Paint",
+  "item.nukacraft.bucket_pink": "Pink Paint",
+  "item.nukacraft.bucket_purple": "Purple Paint",
+  "item.nukacraft.bucket_red": "Red Paint",
+  "item.nukacraft.bucket_white": "White Paint",
+  "item.nukacraft.bucket_yellow": "Yellow Paint",
+
+
+
   "item.nukacraft.empty_cola": "Empty Cola",
   "item.nukacraft.fertilizer": "Fertilizer",
   "item.nukacraft.fiber": "Fiberglass",
@@ -856,8 +877,25 @@
   "painting.nukacraft.quantcola.title": "Quant Nuka-Cola Promo",
   "painting.nukacraft.sugar_bomb_promo.title": "Sugar Bombs Promo",
 
-  "skin.default" : "§7§oDefault",
-  "skin.rust" : "§7§oRusty",
+  "skin.default" : "§4§oRusty",
+  "skin.clear" : "§7§oClear",
+  "skin.black" : "§b§oBlack Paint",
+  "skin.brown" : "§b§oBrown Paint",
+  "skin.cyan" : "§b§oCyan Paint",
+  "skin.green" : "§b§oGreen Paint",
+  "skin.blue" : "§b§oBlue Paint",
+  "skin.gray" : "§b§oGray Paint",
+  "skin.light_blue" : "§b§oLight Blue Paint",
+  "skin.light_gray" : "§b§oLight Gray Paint",
+  "skin.lime" : "§b§oLime Paint",
+  "skin.magenta" : "§b§oMagenta Paint",
+  "skin.orange" : "§b§oOrange Paint",
+  "skin.pink" : "§b§oPink Paint",
+  "skin.purple" : "§b§oPurple Paint",
+  "skin.red" : "§b§oRed Paint",
+  "skin.white" : "§b§oWhite Paint",
+  "skin.yellow" : "§b§oYellow Paint",
+
   "itemGroup.power_armor": "NukaCraft: Power Armor",
   "generator.nukacraft.fallout_wasteland": "Wasteland",
 

@@ -2,6 +2,23 @@
   "parent" : "nukacraft:config/model/base/left_arm.json",
   "model": "nukacraft:geo/power_armor/x02_cryo.geo.json",
   "texture": {
-    "default": "nukacraft:textures/power_armor/x02_cryo.png"
+    "default": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_rust.png",
+    "clear": "nukacraft:textures/power_armor/x02_cryo/x02_cryo.png",
+    "black": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_black.png",
+    "brown": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_brown.png",
+    "cyan": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_cyan.png",
+    "green": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_green.png",
+    "blue": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_blue.png",
+    "gray": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_gray.png",
+    "light_gray": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_light_gray.png",
+    "light_blue": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_light_blue.png",
+    "lime": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_lime.png",
+    "magenta": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_magenta.png",
+    "orange": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_orange.png",
+    "pink": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_pink.png",
+    "purple": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_purple.png",
+    "red": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_red.png",
+    "white": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_white.png",
+    "yellow": "nukacraft:textures/power_armor/x02_cryo/x02_cryo_yellow.png"
   }
 }
