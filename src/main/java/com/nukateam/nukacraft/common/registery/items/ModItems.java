@@ -38,7 +38,12 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> WEAPONPARTS = ITEMS.register("weapon_parts",
             () -> new Item(new Item.Properties()));
-
+    @DataGen
+    public static final RegistryObject<Item> REPAIR_KIT = ITEMS.register("repair_kit",
+            () -> new RepairKitItem(200, new Item.Properties().durability(2500)));
+    @DataGen
+    public static final RegistryObject<Item> ELITE_REPAIR_KIT = ITEMS.register("elite_repair_kit",
+            () -> new RepairKitItem(500, new Item.Properties().durability(5000)));
     @DataGen
     public static final RegistryObject<Item> BUCKET_BLACK = ITEMS.register("bucket_black",
             () -> new PaintjobItem("black", new Item.Properties().durability(12)));

@@ -41,7 +41,7 @@ public class PowerArmorItems {
     public static final PowerArmorStorage T51_SET = registerArmorSet("t51", T51);
     @DataGen(path = "power_armor/t60")
     public static final PowerArmorStorage T60_SET = registerArmorSet("t60", T60);
-    //@DataGen(path = "power_armor/x01")
+    @DataGen(path = "power_armor/x01")
     public static final PowerArmorStorage X01_SET = registerArmorSet("x01", X01);
     @DataGen(path = "power_armor/x02")
     public static final PowerArmorStorage X02_SET = registerArmorSet("x02", X02);

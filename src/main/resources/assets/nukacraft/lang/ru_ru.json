@@ -402,7 +402,8 @@
 
   "item.nukacraft.stock_shield": "Тяжелое Оружие: Баллистический Щит",
 
-
+  "item.nukacraft.repair_kit": "Ремонтный Набор",
+  "item.nukacraft.elite_repair_kit": "Супер Ремонтный Набор",
   "item.nukacraft.dynamite_stick": "Шашка Динамита",
   "item.nukacraft.grenade_mirv": "Высокомощная Граната",
   "item.nukacraft.holy_grenade": "Святая Граната",
