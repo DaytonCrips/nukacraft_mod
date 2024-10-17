@@ -21,6 +21,26 @@
     "speed": 150,
     "life": 6
   },
+  "textures": {
+    "default" : "nukacraft:laser_rifle_default",
+    "blue"    : "nukacraft:laser_rifle_blue",
+    "light_blue"    : "nukacraft:laser_rifle_light_blue",
+    "black"   : "nukacraft:laser_rifle_black",
+    "brown"   : "nukacraft:laser_rifle_brown",
+    "gray"    : "nukacraft:laser_rifle_gray",
+    "light_gray"    : "nukacraft:laser_rifle_light_gray",
+    "cyan"    : "nukacraft:laser_rifle_cyan",
+    "green"   : "nukacraft:laser_rifle_green",
+    "orange"   : "nukacraft:laser_rifle_orange",
+    "yellow"   : "nukacraft:laser_rifle_yellow",
+    "red"   : "nukacraft:laser_rifle_red",
+    "purple"   : "nukacraft:laser_rifle_purple",
+    "white"   : "nukacraft:laser_rifle_white",
+    "magenta"   : "nukacraft:laser_rifle_magenta",
+    "lime"   : "nukacraft:laser_rifle_lime",
+    "pink"    : "nukacraft:laser_rifle_pink",
+    "clean"    : "nukacraft:laser_rifle_clean"
+  },
   "sounds": {
     "fire": "nukacraft:item.laser_rifle.fire",
     "reload": "nukacraft:item.laser_rifle.reload",

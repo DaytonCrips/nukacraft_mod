@@ -29,6 +29,26 @@
       "zOffset": -3.81
     }
   },
+    "textures": {
+      "default" : "nukacraft:shotgun_default",
+      "blue"    : "nukacraft:shotgun_blue",
+      "light_blue"    : "nukacraft:shotgun_light_blue",
+      "black"   : "nukacraft:shotgun_black",
+      "brown"   : "nukacraft:shotgun_brown",
+      "gray"    : "nukacraft:shotgun_gray",
+      "light_gray"    : "nukacraft:shotgun_light_gray",
+      "cyan"    : "nukacraft:shotgun_cyan",
+      "green"   : "nukacraft:shotgun_green",
+      "orange"   : "nukacraft:shotgun_orange",
+      "yellow"   : "nukacraft:shotgun_yellow",
+      "red"   : "nukacraft:shotgun_red",
+      "purple"   : "nukacraft:shotgun_purple",
+      "white"   : "nukacraft:shotgun_white",
+      "magenta"   : "nukacraft:shotgun_magenta",
+      "lime"   : "nukacraft:shotgun_lime",
+      "pink"    : "nukacraft:shotgun_pink",
+      "clean"    : "nukacraft:shotgun_clean"
+    },
   "modules": {
     "zoom": {
       "xOffset": 0.0,

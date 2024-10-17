@@ -15,6 +15,26 @@
     "fire": "nukacraft:item.fatman.fire",
     "reload": "nukacraft:item.fatman.reload"
   },
+  "textures": {
+    "default" : "nukacraft:fatman_default",
+    "blue"    : "nukacraft:fatman_blue",
+    "light_blue"    : "nukacraft:fatman_light_blue",
+    "black"   : "nukacraft:fatman_black",
+    "brown"   : "nukacraft:fatman_brown",
+    "gray"    : "nukacraft:fatman_gray",
+    "light_gray"    : "nukacraft:fatman_light_gray",
+    "cyan"    : "nukacraft:fatman_cyan",
+    "green"   : "nukacraft:fatman_green",
+    "orange"   : "nukacraft:fatman_orange",
+    "yellow"   : "nukacraft:fatman_yellow",
+    "red"   : "nukacraft:fatman_red",
+    "purple"   : "nukacraft:fatman_purple",
+    "white"   : "nukacraft:fatman_white",
+    "magenta"   : "nukacraft:fatman_magenta",
+    "lime"   : "nukacraft:fatman_lime",
+    "pink"    : "nukacraft:fatman_pink",
+    "clean"    : "nukacraft:fatman_clean"
+  },
   "display": {
     "flash": {
       "yOffset": 4.3,

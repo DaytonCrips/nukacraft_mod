@@ -19,6 +19,26 @@
     "reload": "nukacraft:item.flamer.reload",
     "cock": "nukacraft:item.flamer.cock"
   },
+  "textures": {
+    "default" : "nukacraft:handmade_flamer_default",
+    "blue"    : "nukacraft:handmade_flamer_blue",
+    "light_blue"    : "nukacraft:handmade_flamer_light_blue",
+    "black"   : "nukacraft:handmade_flamer_black",
+    "brown"   : "nukacraft:handmade_flamer_brown",
+    "gray"    : "nukacraft:handmade_flamer_gray",
+    "light_gray"    : "nukacraft:handmade_flamer_light_gray",
+    "cyan"    : "nukacraft:handmade_flamer_cyan",
+    "green"   : "nukacraft:handmade_flamer_green",
+    "orange"   : "nukacraft:handmade_flamer_orange",
+    "yellow"   : "nukacraft:handmade_flamer_yellow",
+    "red"   : "nukacraft:handmade_flamer_red",
+    "purple"   : "nukacraft:handmade_flamer_purple",
+    "white"   : "nukacraft:handmade_flamer_white",
+    "magenta"   : "nukacraft:handmade_flamer_magenta",
+    "lime"   : "nukacraft:handmade_flamer_lime",
+    "pink"    : "nukacraft:handmade_flamer_pink",
+    "clean"    : "nukacraft:handmade_flamer_clean"
+  },
   "modules": {
     "attachments": {
       "ntgl:barrel": [
