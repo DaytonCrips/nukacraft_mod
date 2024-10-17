@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.armor;
 
+import com.jetug.chassis_core.common.foundation.item.StackUtils;
 import com.nukateam.example.common.data.interfaces.IResourceProvider;
 import com.nukateam.nukacraft.client.render.renderers.armor.ArmorRenderer;
 import mod.azure.azurelib.animatable.GeoItem;
@@ -8,17 +9,24 @@ import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import mod.azure.azurelib.util.AzureLibUtil;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static com.jetug.chassis_core.common.foundation.item.StackUtils.getVariant;
 
 public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvider {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -77,7 +85,15 @@ public class GeoArmorItem extends ArmorItem implements GeoItem, IResourceProvide
             }
         });
     }
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag isAdvanced) {
+        super.appendHoverText(stack, level, list, isAdvanced);
+        var variant = getVariant(stack);
+        if (variant.equals("default")) {
+            list.add(Component.translatable("skin.clear"));
+        } else list.add(Component.translatable("skin." + variant));
 
+    }
     @Override
     public Supplier<Object> getRenderProvider() {
         return renderProvider;

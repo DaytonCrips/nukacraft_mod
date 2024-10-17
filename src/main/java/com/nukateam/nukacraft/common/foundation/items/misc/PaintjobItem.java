@@ -33,8 +33,6 @@ public class PaintjobItem extends Item {
 //                    pStack.setDamageValue(pStack.getDamageValue() - 1);
 //                } else if (pStack.getDamageValue() == 12)
 //                    pStack.shrink(1);
-
-
                 return true;
             }
         }
