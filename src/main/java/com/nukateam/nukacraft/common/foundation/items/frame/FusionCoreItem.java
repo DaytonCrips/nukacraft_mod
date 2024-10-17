@@ -1,14 +1,14 @@
 package com.nukateam.nukacraft.common.foundation.items.frame;
 
 import com.jetug.chassis_core.common.foundation.item.ChassisEquipment;
-import com.nukateam.ntgl.common.base.NetworkAmmoManager;
+import com.nukateam.ntgl.common.base.NetworkManager;
 import com.nukateam.ntgl.common.base.config.Ammo;
 import com.nukateam.ntgl.common.foundation.item.interfaces.IAmmo;
 import net.minecraft.world.item.Item;
 
 import static com.nukateam.nukacraft.common.data.constants.PowerArmorPrats.FUSION_CORE;
 
-public class FusionCoreItem extends ChassisEquipment implements IAmmo {
+public class FusionCoreItem extends ChassisEquipment implements IAmmo<Ammo> {
     private Ammo ammo;
 
     public FusionCoreItem(Item.Properties pProperties) {
@@ -21,7 +21,7 @@ public class FusionCoreItem extends ChassisEquipment implements IAmmo {
     }
 
     @Override
-    public void setAmmo(NetworkAmmoManager.Supplier supplier) {
-        this.ammo = supplier.getAmmo();
+    public void setConfig(NetworkManager.Supplier supplier) {
+        this.ammo = (Ammo) supplier.getConfig();
     }
 }
