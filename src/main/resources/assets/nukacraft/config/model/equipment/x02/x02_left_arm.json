@@ -3,7 +3,7 @@
   "model": "nukacraft:geo/power_armor/x02.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/x02/x02_rust.png",
-    "clear": "nukacraft:textures/power_armor/x02/x02.png",
+    "clean": "nukacraft:textures/power_armor/x02/x02.png",
     "black": "nukacraft:textures/power_armor/x02/x02_black.png",
     "brown": "nukacraft:textures/power_armor/x02/x02_brown.png",
     "cyan": "nukacraft:textures/power_armor/x02/x02_cyan.png",

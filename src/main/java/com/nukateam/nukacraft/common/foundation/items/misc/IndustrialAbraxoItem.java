@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
@@ -18,10 +19,12 @@ public class IndustrialAbraxoItem extends Item {
 
     @Override
     public boolean overrideStackedOnOther(ItemStack pStack, Slot pSlot, ClickAction pAction, Player pPlayer) {
+        ItemStack slotItem = pSlot.getItem();
+        boolean isPaintable = (slotItem.getItem() instanceof ArmorPart || slotItem.getItem() instanceof GunItem);
         if (pAction == ClickAction.SECONDARY) {
-            ItemStack slotItem = pSlot.getItem();
-            if (slotItem.getItem() instanceof ArmorPart && !(Objects.equals(StackUtils.getVariant(slotItem), "clear"))) {
-                StackUtils.setVariant(slotItem, "clear");
+
+            if (isPaintable && !(Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
+                StackUtils.setVariant(slotItem, "clean");
                 pStack.shrink(1);
                 return true;
             }

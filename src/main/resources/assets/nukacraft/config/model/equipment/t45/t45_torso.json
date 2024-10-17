@@ -4,7 +4,7 @@
 
   "texture": {
     "default": "nukacraft:textures/power_armor/t45/t45_rust.png",
-    "clear": "nukacraft:textures/power_armor/t45/t45.png",
+    "clean": "nukacraft:textures/power_armor/t45/t45.png",
     "black": "nukacraft:textures/power_armor/t45/t45_black.png",
     "brown": "nukacraft:textures/power_armor/t45/t45_brown.png",
     "cyan": "nukacraft:textures/power_armor/t45/t45_cyan.png",

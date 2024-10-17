@@ -3,7 +3,7 @@
   "model": "nukacraft:geo/power_armor/excavator.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/exc/exc_rust.png",
-    "clear": "nukacraft:textures/power_armor/exc/exc.png",
+    "clean": "nukacraft:textures/power_armor/exc/exc.png",
     "black": "nukacraft:textures/power_armor/exc/exc_black.png",
     "brown": "nukacraft:textures/power_armor/exc/exc_brown.png",
     "cyan": "nukacraft:textures/power_armor/exc/exc_cyan.png",

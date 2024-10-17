@@ -25,7 +25,7 @@ public class ArmorPart extends ChassisArmor {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         var stack = pPlayer.getItemInHand(pUsedHand);
-        //StackUtils.setVariant(stack, "clear");
+        //StackUtils.setVariant(stack, "clean);
         StackUtils.setAttachment(stack, "back", "jetpack");
 
         return super.use(pLevel, pPlayer, pUsedHand);

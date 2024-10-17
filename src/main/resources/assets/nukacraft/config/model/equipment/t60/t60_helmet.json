@@ -4,7 +4,7 @@
 
   "texture": {
     "default": "nukacraft:textures/power_armor/t60/t60_rust.png",
-    "clear": "nukacraft:textures/power_armor/t60/t60.png",
+    "clean": "nukacraft:textures/power_armor/t60/t60.png",
     "black": "nukacraft:textures/power_armor/t60/t60_black.png",
     "brown": "nukacraft:textures/power_armor/t60/t60_brown.png",
     "cyan": "nukacraft:textures/power_armor/t60/t60_cyan.png",
