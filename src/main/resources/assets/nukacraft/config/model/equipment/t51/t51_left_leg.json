@@ -3,7 +3,7 @@
   "model": "nukacraft:geo/power_armor/t51.geo.json",
   "texture": {
     "default": "nukacraft:textures/power_armor/t51/t51_rust.png",
-    "clear": "nukacraft:textures/power_armor/t51/t51.png",
+    "clean": "nukacraft:textures/power_armor/t51/t51.png",
     "black": "nukacraft:textures/power_armor/t51/t51_black.png",
     "brown": "nukacraft:textures/power_armor/t51/t51_brown.png",
     "cyan": "nukacraft:textures/power_armor/t51/t51_cyan.png",

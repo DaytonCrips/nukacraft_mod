@@ -381,6 +381,11 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> ABRAXOCLEANER = ITEMS.register("abraxo_cleaner",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+
+    @DataGen
+    public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
+            () -> new IndustrialAbraxoItem(new Item.Properties().rarity(Rarity.RARE)));
+
     @DataGen
     public static final RegistryObject<Item> STEELBOWL = ITEMS.register("steelbowl",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
@@ -388,9 +393,6 @@ public class ModItems {
     @DataGen
     public static final RegistryObject<Item> SPICES = ITEMS.register("spices",
             () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
-    @DataGen
-    public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",
-            () -> new IndustrialAbraxoItem(new Item.Properties().rarity(Rarity.RARE)));
 //    @DataGen
 //    public static final RegistryObject<Item> PIEZODIVIDE = ITEMS.register("piezonucleic_divider",
 //            () -> new Item(new Item.Properties()));

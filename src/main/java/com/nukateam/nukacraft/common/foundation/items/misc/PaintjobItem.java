@@ -1,6 +1,7 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
 import com.jetug.chassis_core.common.foundation.item.StackUtils;
+import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.common.foundation.items.frame.ArmorPart;
 import net.minecraft.nbt.CompoundTag;
@@ -20,9 +21,11 @@ public class PaintjobItem extends Item {
     }
     @Override
     public boolean overrideStackedOnOther(ItemStack pStack, Slot pSlot, ClickAction pAction, Player pPlayer) {
+        ItemStack slotItem = pSlot.getItem();
+        boolean isPaintable = (slotItem.getItem() instanceof ArmorPart || slotItem.getItem() instanceof GunItem);
         if (pAction == ClickAction.SECONDARY) {
-            ItemStack slotItem = pSlot.getItem();
-            if (slotItem.getItem() instanceof ArmorPart && (Objects.equals(StackUtils.getVariant(slotItem), "clear"))) {
+
+            if (isPaintable && (Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
                 StackUtils.setVariant(slotItem, paintjob);
                 if (pStack.getDamageValue() == 12) {
                     pStack.shrink(1);
@@ -33,8 +36,6 @@ public class PaintjobItem extends Item {
 //                    pStack.setDamageValue(pStack.getDamageValue() - 1);
 //                } else if (pStack.getDamageValue() == 12)
 //                    pStack.shrink(1);
-
-
                 return true;
             }
         }

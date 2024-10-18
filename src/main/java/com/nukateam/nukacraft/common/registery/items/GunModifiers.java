@@ -1,7 +1,7 @@
 package com.nukateam.nukacraft.common.registery.items;
 
-import com.nukateam.ntgl.common.base.gun.FireMode;
-import com.nukateam.ntgl.common.base.gun.GripType;
+import com.nukateam.ntgl.common.base.holders.FireMode;
+import com.nukateam.ntgl.common.base.holders.GripType;
 import com.nukateam.ntgl.common.data.interfaces.IGunModifier;
 import net.minecraft.util.Mth;
 

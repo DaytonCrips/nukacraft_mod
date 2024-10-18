@@ -23,6 +23,26 @@
     "silencedFire": "nukacraft:item.laser_pistol.silenced_fire",
     "enchantedFire": "nukacraft:item.laser_pistol.enchanted_fire"
   },
+  "textures": {
+    "default" : "nukacraft:classic_laser_pistol_default",
+    "blue"    : "nukacraft:classic_laser_pistol_blue",
+    "light_blue"    : "nukacraft:classic_laser_pistol_light_blue",
+    "black"   : "nukacraft:classic_laser_pistol_black",
+    "brown"   : "nukacraft:classic_laser_pistol_brown",
+    "gray"    : "nukacraft:classic_laser_pistol_gray",
+    "light_gray"    : "nukacraft:classic_laser_pistol_light_gray",
+    "cyan"    : "nukacraft:classic_laser_pistol_cyan",
+    "green"   : "nukacraft:classic_laser_pistol_green",
+    "orange"   : "nukacraft:classic_laser_pistol_orange",
+    "yellow"   : "nukacraft:classic_laser_pistol_yellow",
+    "red"   : "nukacraft:classic_laser_pistol_red",
+    "purple"   : "nukacraft:classic_laser_pistol_purple",
+    "white"   : "nukacraft:classic_laser_pistol_white",
+    "magenta"   : "nukacraft:classic_laser_pistol_magenta",
+    "lime"   : "nukacraft:classic_laser_pistol_lime",
+    "pink"    : "nukacraft:classic_laser_pistol_pink",
+    "clean"    : "nukacraft:classic_laser_pistol_clean"
+  },
   "modules": {
     "zoom": {
       "xOffset": 0,

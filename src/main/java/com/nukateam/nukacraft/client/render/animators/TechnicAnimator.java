@@ -5,6 +5,7 @@ import com.nukateam.ntgl.client.animators.ItemAnimator;
 import com.nukateam.ntgl.client.render.renderers.GeoDynamicItemRenderer;
 import mod.azure.azurelib.core.animation.AnimatableManager;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -26,8 +27,12 @@ public class TechnicAnimator extends ItemAnimator implements IResourceProvider {
         return "nukacraft";
     }
 
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {}
+
+    @Override
+    public ItemStack getStack() {
+        return null;
+    }
 }
 

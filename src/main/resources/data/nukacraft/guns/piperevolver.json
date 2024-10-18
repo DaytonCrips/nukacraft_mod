@@ -23,6 +23,7 @@
     "silencedFire": "nukacraft:item.pistol45mm.silenced_fire",
     "enchantedFire": "nukacraft:item.pistol45mm.enchanted_fire"
   },
+
   "modules": {
     "zoom": {
       "xOffset": 0.0,
