@@ -56,16 +56,18 @@ public class GearDoorBlock extends BaseEntityBlock {
 //    }
 
 
-    public void doorInteraction(BlockState state, Level pLevel, BlockPos pos) {
-        var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
-        filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());
+    public void doorCloseInteraction(BlockState state, Level pLevel, BlockPos pos) {
+        if (PipBoyUtils.hasPipboy()) {
+            var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
+            filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());
 
-        for (var entry : state.getValues().entrySet()) {
-            Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-            newState = newState.setValue(property, (Comparable) entry.getValue());
+            for (var entry : state.getValues().entrySet()) {
+                Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                newState = newState.setValue(property, (Comparable) entry.getValue());
+            }
+
+            pLevel.setBlock(pos, newState, 3);
         }
-
-        pLevel.setBlock(pos, newState, 3);
     }
 
     @Override
