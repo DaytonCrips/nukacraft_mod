@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
-import com.jetug.chassis_core.common.util.helpers.PlayerUtils;
 import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
@@ -33,8 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.nukateam.nukacraft.common.registery.items.ModArmorItems.PIP_BOY_D;
-
 public class GearDoorBlock extends BaseEntityBlock {
     private static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
@@ -50,22 +47,26 @@ public class GearDoorBlock extends BaseEntityBlock {
         return new GearDoorEntity(pos, pState);
     }
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
-        if (PipBoyUtils.hasPipboy(player)) {
-            var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
-            filledEraser(pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+//    @Override
+//    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
+//        if (PipBoyUtils.hasPipboy(player)) {
+//
+//            return InteractionResult.SUCCESS;
+//        } else return InteractionResult.FAIL;
+//    }
 
-            for (var entry : pState.getValues().entrySet()) {
-                Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                newState = newState.setValue(property, (Comparable) entry.getValue());
-            }
 
-            pLevel.setBlock(pos, newState, 3);
-            return InteractionResult.SUCCESS;
-        } else return InteractionResult.FAIL;
+    public void doorInteraction(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
+        var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
+        filledEraser(pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+
+        for (var entry : pState.getValues().entrySet()) {
+            Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+            newState = newState.setValue(property, (Comparable) entry.getValue());
+        }
+
+        pLevel.setBlock(pos, newState, 3);
     }
-
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());

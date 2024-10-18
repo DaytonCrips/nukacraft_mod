@@ -127,9 +127,7 @@ public class OpenGearBlock extends BaseEntityBlock {
         }
     }
 
-
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public void doorInteraction(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
         filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.GEAR_DOOR.get().defaultBlockState();
@@ -143,8 +141,11 @@ public class OpenGearBlock extends BaseEntityBlock {
             }
             pLevel.setBlock(pos, newState, 3);
         }
-        return InteractionResult.SUCCESS;
     }
+//    @Override
+//    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+//
+//    }
 
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
