@@ -56,17 +56,18 @@ public class GearDoorBlock extends BaseEntityBlock {
 //    }
 
 
-    public void doorInteraction(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
+    public void doorInteraction(BlockState state, Level pLevel, BlockPos pos) {
         var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
-        filledEraser(pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+        filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());
 
-        for (var entry : pState.getValues().entrySet()) {
+        for (var entry : state.getValues().entrySet()) {
             Property property = newState.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
             newState = newState.setValue(property, (Comparable) entry.getValue());
         }
 
         pLevel.setBlock(pos, newState, 3);
     }
+
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());

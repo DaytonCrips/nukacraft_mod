@@ -6,8 +6,6 @@ import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +44,7 @@ public class OpenGearBlock extends BaseEntityBlock {
         return new OpenGearEntity(pos, pState);
     }
 
-    protected void filledFrame(BlockState block, Level world, BlockState baseState, int base_x, int base_y, int base_z) {
+    protected void fillFrame(BlockState block, Level world, BlockState baseState, int base_x, int base_y, int base_z) {
         switch (baseState.getValue(FACING)) {
             case NORTH:
                 for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
@@ -127,8 +124,9 @@ public class OpenGearBlock extends BaseEntityBlock {
         }
     }
 
-    public void doorInteraction(BlockState pState, Level pLevel, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
-        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+    public void doorInteraction(BlockState pState, Level pLevel, BlockPos pos) {
+        fillFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.GEAR_DOOR.get().defaultBlockState();
             for (var entry : pState.getValues().entrySet()) {
@@ -142,10 +140,6 @@ public class OpenGearBlock extends BaseEntityBlock {
             pLevel.setBlock(pos, newState, 3);
         }
     }
-//    @Override
-//    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-//
-//    }
 
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
@@ -155,7 +149,7 @@ public class OpenGearBlock extends BaseEntityBlock {
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-        filledFrame(Blocks.AIR.defaultBlockState(), level, state, pos.getX(), pos.getY(), pos.getZ());
+        fillFrame(Blocks.AIR.defaultBlockState(), level, state, pos.getX(), pos.getY(), pos.getZ());
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 
