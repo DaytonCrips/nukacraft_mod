@@ -1,7 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.blocks.blocks;
 
 import com.nukateam.nukacraft.NukaCraftMod;
+import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,13 +31,13 @@ public class DoorTerminalBlock extends CustomModelBlock {
 
                     if ((pLevel.getBlockState(posXYZ).getBlock() instanceof GearDoorBlock gearDoor)) {
                         gearDoor.doorCloseInteraction(doorBlockState, pLevel, posXYZ);
-                        NukaCraftMod.LOGGER.debug(doorBlockState.getBlock() + " - Block");
+                        pLevel.playSound(pPlayer, posXYZ, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
                         return InteractionResult.SUCCESS;
                     }
 
                     if (pLevel.getBlockState(posXYZ).getBlock() instanceof OpenGearBlock gearDoor) {
                         gearDoor.doorOpenInteraction(doorBlockState, pLevel, posXYZ);
-                        NukaCraftMod.LOGGER.debug(doorBlockState.getBlock() + " - Block");
+                        pLevel.playSound(pPlayer, posXYZ, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
                         return InteractionResult.SUCCESS;
                     }
                 }

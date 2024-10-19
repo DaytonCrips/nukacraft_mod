@@ -71,6 +71,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RUMBLE = register("misc.nuke.nuclear_explosion_rumble");
     public static final RegistryObject<SoundEvent> NUCLEAR_EXPLOSION_RINGING = register("misc.nuke.nuclear_explosion_ringing");
 
+    public static final RegistryObject<SoundEvent> VAULT_DOOR_INTERACT = register("misc.vaultdoor.interact");
+
     public static final RegistryObject<SoundEvent> PIPBOY_UP = register("gui.pipboy.pipboy_up");
     public static final RegistryObject<SoundEvent> PIPBOY_DOWN = register("gui.pipboy.pipboy_down");
     public static final RegistryObject<SoundEvent> PIPBOY_TAB = register("gui.pipboy.pipboy_tab");

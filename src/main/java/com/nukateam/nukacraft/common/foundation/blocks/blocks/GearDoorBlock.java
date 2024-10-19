@@ -57,6 +57,7 @@ public class GearDoorBlock extends BaseEntityBlock {
 
 
     public void doorCloseInteraction(BlockState state, Level pLevel, BlockPos pos) {
+
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
             filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());
