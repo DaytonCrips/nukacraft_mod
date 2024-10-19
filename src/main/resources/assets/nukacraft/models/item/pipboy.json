@@ -32,13 +32,13 @@
     },
     "firstperson_righthand": {
       "rotation": [
-        -11,
-        129,
-        17
+        -103.79,
+        15.97,
+        134.67
       ],
       "translation": [
         0,
-        1.25,
+        4,
         0
       ]
     },
