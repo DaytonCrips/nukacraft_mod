@@ -7,10 +7,10 @@
     "reloadAmount": 2,
     "recoilAngle": 5.6,
     "recoilKick": 0.8,
-    "damage": 7.0,
     "recoilAdsReduction": 0.27,
     "alwaysSpread": true,
     "spread": 1.4,
+    "damage": 7.0,
     "ammo": [
       "nukacraft:round45",
       "nukacraft:round45_piercing"

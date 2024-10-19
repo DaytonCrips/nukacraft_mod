@@ -41,6 +41,10 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
                                   float red, float green, float blue, float alpha) {
         poseStack.pushPose();
         {
+            bone.setScaleX(1.0f);
+            bone.setScaleY(1.0f);
+            bone.setScaleZ(1.0f);
+
             if (bone.getName().contains("head") && animatable.isBaby()) {
                 bone.setScaleX(1.5f);
                 bone.setScaleY(1.5f);
