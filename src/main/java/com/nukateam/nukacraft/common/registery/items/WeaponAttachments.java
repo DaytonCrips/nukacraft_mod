@@ -285,7 +285,7 @@ public class WeaponAttachments {
 
     //@DataGen(path = "attachments")
     public static final RegistryObject<Item> LASER_AUTO_BARREL = ITEMS.register("laser_auto_barrel",
-            () -> new BarrelItem(Barrel.create(1.0F,GunModifiers.EXTEND_LASER_RATE_lvl2, GunModifiers.SET_AUTO_FIRE, GunModifiers.EXTEND_RECOIL_LVL2,GunModifiers.REDUCED_DAMAGE_lvl2, GunModifiers.REDUCED_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
+            () -> new BarrelItem(Barrel.create(1.0F, GunModifiers.EXTEND_LASER_RATE_lvl2, GunModifiers.SET_AUTO_FIRE, GunModifiers.EXTEND_RECOIL_LVL2,GunModifiers.REDUCED_DAMAGE_lvl2, GunModifiers.REDUCED_DISTANCE_LVL2), new Item.Properties().stacksTo(1)));
 
     //@DataGen(path = "attachments")
     public static final RegistryObject<Item> LASER_PROTECTRON_BARREL = ITEMS.register("laser_protectron_barrel",
