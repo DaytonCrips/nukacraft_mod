@@ -4,8 +4,10 @@ import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.GearDoorEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -56,8 +58,8 @@ public class GearDoorBlock extends BaseEntityBlock {
 //    }
 
 
-    public void doorCloseInteraction(BlockState state, Level pLevel, BlockPos pos) {
-
+    public void doorCloseInteraction(Player pPlayer, BlockState state, Level pLevel, BlockPos pos) {
+        pLevel.playSound(pPlayer, pos, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
             filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());

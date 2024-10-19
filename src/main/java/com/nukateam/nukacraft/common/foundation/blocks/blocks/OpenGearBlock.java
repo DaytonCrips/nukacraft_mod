@@ -4,8 +4,10 @@ import com.nukateam.ntgl.common.data.util.VoxelShapeHelper;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.entities.blocks.OpenGearEntity;
 import com.nukateam.nukacraft.common.registery.ModBlocks;
+import com.nukateam.nukacraft.common.registery.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -129,7 +131,8 @@ public class OpenGearBlock extends BaseEntityBlock {
 
 
 
-    public void doorOpenInteraction(BlockState pState, Level pLevel, BlockPos pos) {
+    public void doorOpenInteraction(Player pPlayer, BlockState pState, Level pLevel, BlockPos pos) {
+        pLevel.playSound(pPlayer, pos, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
         fillFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.GEAR_DOOR.get().defaultBlockState();
