@@ -101,7 +101,7 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Brahmin>> BRAHMIN =
             registerEntity("brahmin", Builder
                     .of(Brahmin::new, MobCategory.CREATURE)
-                    .sized(1.0f, 1.0f));
+                    .sized(1.5f, 1.5f));
 
     public static final RegistryObject<EntityType<Bloatfly>> BLOATFLY =
             registerEntity("bloatfly", Builder

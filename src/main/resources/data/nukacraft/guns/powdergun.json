@@ -10,7 +10,7 @@
     "recoilAdsReduction": 0.6,
     "projectileAmount": 6,
     "alwaysSpread": true,
-    "damage": 10.0,
+    "damage": 15.0,
     "spread": 20.0,
     "ammo": [
       "nukacraft:steel_ball"
