@@ -29,6 +29,26 @@
       "zOffset": -3.81
     }
   },
+  "textures": {
+    "default" : "nukacraft:tesla_rifle_default",
+    "blue"    : "nukacraft:tesla_rifle_blue",
+    "light_blue"    : "nukacraft:tesla_rifle_light_blue",
+    "black"   : "nukacraft:tesla_rifle_black",
+    "brown"   : "nukacraft:tesla_rifle_brown",
+    "gray"    : "nukacraft:tesla_rifle_gray",
+    "light_gray"    : "nukacraft:tesla_rifle_light_gray",
+    "cyan"    : "nukacraft:tesla_rifle_cyan",
+    "green"   : "nukacraft:tesla_rifle_green",
+    "orange"   : "nukacraft:tesla_rifle_orange",
+    "yellow"   : "nukacraft:tesla_rifle_yellow",
+    "red"   : "nukacraft:tesla_rifle_red",
+    "purple"   : "nukacraft:tesla_rifle_purple",
+    "white"   : "nukacraft:tesla_rifle_white",
+    "magenta"   : "nukacraft:tesla_rifle_magenta",
+    "lime"   : "nukacraft:tesla_rifle_lime",
+    "pink"    : "nukacraft:tesla_rifle_pink",
+    "clean"    : "nukacraft:tesla_rifle_clean"
+  },
   "modules": {
     "zoom": {
       "xOffset": 0.0,

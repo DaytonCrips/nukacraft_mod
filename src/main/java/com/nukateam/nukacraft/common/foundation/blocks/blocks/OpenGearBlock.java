@@ -47,7 +47,7 @@ public class OpenGearBlock extends BaseEntityBlock {
         return new OpenGearEntity(pos, pState);
     }
 
-    protected void filledFrame(BlockState block, Level world, BlockState baseState, int base_x, int base_y, int base_z) {
+    protected void fillFrame(BlockState block, Level world, BlockState baseState, int base_x, int base_y, int base_z) {
         switch (baseState.getValue(FACING)) {
             case NORTH:
                 for (var posBlocks = 1; posBlocks < 4; posBlocks++) {
@@ -128,9 +128,9 @@ public class OpenGearBlock extends BaseEntityBlock {
     }
 
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        filledFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
+
+    public void doorOpenInteraction(BlockState pState, Level pLevel, BlockPos pos) {
+        fillFrame(ModBlocks.FILLERBARRIER.get().defaultBlockState(), pLevel, pState, pos.getX(), pos.getY(), pos.getZ());
         if (PipBoyUtils.hasPipboy()) {
             var newState = ModBlocks.GEAR_DOOR.get().defaultBlockState();
             for (var entry : pState.getValues().entrySet()) {
@@ -143,7 +143,6 @@ public class OpenGearBlock extends BaseEntityBlock {
             }
             pLevel.setBlock(pos, newState, 3);
         }
-        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -154,7 +153,7 @@ public class OpenGearBlock extends BaseEntityBlock {
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
-        filledFrame(Blocks.AIR.defaultBlockState(), level, state, pos.getX(), pos.getY(), pos.getZ());
+        fillFrame(Blocks.AIR.defaultBlockState(), level, state, pos.getX(), pos.getY(), pos.getZ());
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 

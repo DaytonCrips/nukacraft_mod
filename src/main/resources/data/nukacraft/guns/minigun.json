@@ -22,6 +22,26 @@
     "fire": "nukacraft:item.minigun.fire",
     "reload": "nukacraft:item.minigun.reload"
   },
+  "textures": {
+    "default" : "nukacraft:minigun_default",
+    "blue"    : "nukacraft:minigun_blue",
+    "light_blue"    : "nukacraft:minigun_light_blue",
+    "black"   : "nukacraft:minigun_black",
+    "brown"   : "nukacraft:minigun_brown",
+    "gray"    : "nukacraft:minigun_gray",
+    "light_gray"    : "nukacraft:minigun_light_gray",
+    "cyan"    : "nukacraft:minigun_cyan",
+    "green"   : "nukacraft:minigun_green",
+    "orange"   : "nukacraft:minigun_orange",
+    "yellow"   : "nukacraft:minigun_yellow",
+    "red"   : "nukacraft:minigun_red",
+    "purple"   : "nukacraft:minigun_purple",
+    "white"   : "nukacraft:minigun_white",
+    "magenta"   : "nukacraft:minigun_magenta",
+    "lime"   : "nukacraft:minigun_lime",
+    "pink"    : "nukacraft:minigun_pink",
+    "clean"    : "nukacraft:minigun_clean"
+  },
   "modules": {
   "attachments": {
     "ntgl:barrel": [

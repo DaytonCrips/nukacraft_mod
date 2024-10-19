@@ -23,6 +23,26 @@
     "speed": 150,
     "life": 8
   },
+  "textures": {
+    "default" : "nukacraft:gatling_laser_default",
+    "blue"    : "nukacraft:gatling_laser_blue",
+    "light_blue"    : "nukacraft:gatling_laser_light_blue",
+    "black"   : "nukacraft:gatling_laser_black",
+    "brown"   : "nukacraft:gatling_laser_brown",
+    "gray"    : "nukacraft:gatling_laser_gray",
+    "light_gray"    : "nukacraft:gatling_laser_light_gray",
+    "cyan"    : "nukacraft:gatling_laser_cyan",
+    "green"   : "nukacraft:gatling_laser_green",
+    "orange"   : "nukacraft:gatling_laser_orange",
+    "yellow"   : "nukacraft:gatling_laser_yellow",
+    "red"   : "nukacraft:gatling_laser_red",
+    "purple"   : "nukacraft:gatling_laser_purple",
+    "white"   : "nukacraft:gatling_laser_white",
+    "magenta"   : "nukacraft:gatling_laser_magenta",
+    "lime"   : "nukacraft:gatling_laser_lime",
+    "pink"    : "nukacraft:gatling_laser_pink",
+    "clean"    : "nukacraft:gatling_laser_clean"
+  },
   "sounds": {
     "fire": "nukacraft:item.laser_gatling.fire",
     "reload": "nukacraft:item.laser_gatling.reload",

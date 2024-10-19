@@ -3,7 +3,7 @@
 	"animations": {
 		"close": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 10,
+			"animation_length": 8,
 			"bones": {
 				"bone": {
 					"rotation": {
@@ -39,14 +39,11 @@
 					}
 				},
 				"gear": {
-					"relative_to": {
-						"rotation": "entity"
-					},
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, -90]
 						},
-						"1.6": {
+						"3.0": {
 							"vector": [0, 0, 0]
 						}
 					},
@@ -54,10 +51,10 @@
 						"0.0": {
 							"vector": [-48, 0, 13]
 						},
-						"1.6": {
+						"3.0": {
 							"vector": [0.1, 0, 13.83]
 						},
-						"2.1": {
+						"4.5": {
 							"vector": [0, 0, 0]
 						}
 					}
@@ -66,17 +63,17 @@
 		},
 		"open": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 2.1,
+			"animation_length": 5,
 			"bones": {
 				"gear": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"0.4": {
+						"1.8": {
 							"vector": [0, 0, 0]
 						},
-						"2.1": {
+						"4.5": {
 							"vector": [0, 0, -90]
 						}
 					},
@@ -84,10 +81,10 @@
 						"0.0": {
 							"vector": [0, 0, 0]
 						},
-						"0.4": {
+						"1.8": {
 							"vector": [0.1, 0, 13.83]
 						},
-						"2.1": {
+						"4.5": {
 							"vector": [-48, 0, 13]
 						}
 					}

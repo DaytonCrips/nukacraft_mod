@@ -55,6 +55,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> GEAR_DOOR = registerBlockWithoutItem("geardoor",
             () -> new GearDoorBlock(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).explosionResistance(30f).noOcclusion()));
 
+    public static final RegistryObject<Block> DOOR_TERMINAL = registerBlock("door_terminal", () -> new DoorTerminalBlock(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(1)));
+
     public static final RegistryObject<Block> PA_STATION = registerBlock("pa_station_block",
             () -> new PowerArmorStation(BlockBehaviour.Properties.of().sound(SoundType.STONE).mapColor(MapColor.STONE).strength(30f).noCollission().explosionResistance(30f).noOcclusion()));
 

@@ -19,7 +19,6 @@ public class GearDoorEntity extends BlockEntity implements GeoBlockEntity {
     public GearDoorEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModTileEntities.GEARDOOR_ENTITY.get(), pPos, pBlockState);
     }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "doorControl", 0, event -> {

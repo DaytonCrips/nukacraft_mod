@@ -23,7 +23,26 @@
     "silencedFire": "nukacraft:item.pistol45mm.silenced_fire",
     "enchantedFire": "nukacraft:item.pistol45mm.enchanted_fire"
   },
-
+  "textures": {
+    "default" : "nukacraft:piperevolver_default",
+    "blue"    : "nukacraft:piperevolver_blue",
+    "light_blue"    : "nukacraft:piperevolver_light_blue",
+    "black"   : "nukacraft:piperevolver_black",
+    "brown"   : "nukacraft:piperevolver_brown",
+    "gray"    : "nukacraft:piperevolver_gray",
+    "light_gray"    : "nukacraft:piperevolver_light_gray",
+    "cyan"    : "nukacraft:piperevolver_cyan",
+    "green"   : "nukacraft:piperevolver_green",
+    "orange"   : "nukacraft:piperevolver_orange",
+    "yellow"   : "nukacraft:piperevolver_yellow",
+    "red"   : "nukacraft:piperevolver_red",
+    "purple"   : "nukacraft:piperevolver_purple",
+    "white"   : "nukacraft:piperevolver_white",
+    "magenta"   : "nukacraft:piperevolver_magenta",
+    "lime"   : "nukacraft:piperevolver_lime",
+    "pink"    : "nukacraft:piperevolver_pink",
+    "clean"    : "nukacraft:piperevolver_clean"
+  },
   "modules": {
     "zoom": {
       "xOffset": 0.0,

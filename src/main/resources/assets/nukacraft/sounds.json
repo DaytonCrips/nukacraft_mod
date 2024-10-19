@@ -59,6 +59,8 @@
    "misc.nuke.nuclear_explosion_rumble" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:misc/nuke/nuclear_explosion_rumble" }]},
    "misc.nuke.nuclear_explosion_ringing": { "subtitle": "subtitle.nukacraft.nuclear_explosion_ringing", "sounds": [{ "name": "nukacraft:misc/nuke/nuclear_explosion_ringing" }]},
 
+   "misc.vaultdoor.interact": { "subtitle": "subtitle.nukacraft.vault_door_work", "sounds": [{ "name": "nukacraft:misc/vaultdoor/interact" }]},
+
    "gui.pipboy.pipboy_up" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
    "gui.pipboy.pipboy_down" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
    "gui.pipboy.pipboy_tab" : { "subtitle": "subtitle.nukacraft.nuclear_explosion_rumble" , "sounds": [{ "name": "nukacraft:gui/pipboy/pipboy_up" }]},
