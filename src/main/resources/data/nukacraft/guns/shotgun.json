@@ -2,7 +2,7 @@
   "general": {
     "rate": 15,
     "gripType": "ntgl:two_handed",
-    "loadingType": "per_cartridge",
+    "loadingType": "ntgl:per_cartridge",
     "maxAmmo": 6,
     "reloadTime": 10,
     "reloadAmount": 1,
@@ -12,6 +12,7 @@
     "projectileAmount": 6,
     "alwaysSpread": true,
     "spread": 10.0,
+    "damage": 20.0,
     "ammo": [
       "nukacraft:shotshell"
     ]
