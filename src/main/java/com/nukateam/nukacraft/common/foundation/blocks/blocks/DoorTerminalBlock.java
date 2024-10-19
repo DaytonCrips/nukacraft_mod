@@ -30,14 +30,14 @@ public class DoorTerminalBlock extends CustomModelBlock {
                     var doorBlockState = pLevel.getBlockState(posXYZ);
 
                     if ((pLevel.getBlockState(posXYZ).getBlock() instanceof GearDoorBlock gearDoor)) {
-                        gearDoor.doorCloseInteraction(doorBlockState, pLevel, posXYZ);
-                        pLevel.playSound(pPlayer, posXYZ, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
+                        gearDoor.doorCloseInteraction(pPlayer, doorBlockState, pLevel, posXYZ);
+
                         return InteractionResult.SUCCESS;
                     }
 
                     if (pLevel.getBlockState(posXYZ).getBlock() instanceof OpenGearBlock gearDoor) {
-                        gearDoor.doorOpenInteraction(doorBlockState, pLevel, posXYZ);
-                        pLevel.playSound(pPlayer, posXYZ, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
+                        gearDoor.doorOpenInteraction(pPlayer, doorBlockState, pLevel, posXYZ);
+
                         return InteractionResult.SUCCESS;
                     }
                 }
