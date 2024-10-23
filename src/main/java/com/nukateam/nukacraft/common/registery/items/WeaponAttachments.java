@@ -90,12 +90,6 @@ public class WeaponAttachments {
     public static final RegistryObject<Item> PISTOL_QUICK_MAGAZINE = ITEMS.register("pistol_quick_magazine",
             () -> new MagazineItem(Magazine.create(60, GunModifiers.QUICK_MAG, GunModifiers.EXTEND_KICKING_LVL3), new Item.Properties().stacksTo(1)));
 
-
-
-
-
-
-
     /* Handmade Grip Attachmentы */
 
     //@DataGen(path = "attachments")

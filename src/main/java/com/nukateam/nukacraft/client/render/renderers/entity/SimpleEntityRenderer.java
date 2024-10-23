@@ -41,14 +41,10 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
                                   float red, float green, float blue, float alpha) {
         poseStack.pushPose();
         {
-            bone.setScaleX(1.0f);
-            bone.setScaleY(1.0f);
-            bone.setScaleZ(1.0f);
+            scaleBone(bone, 1.0f);
 
             if (bone.getName().contains("head") && animatable.isBaby()) {
-                bone.setScaleX(1.5f);
-                bone.setScaleY(1.5f);
-                bone.setScaleZ(1.5f);
+                scaleBone(bone, 1.5f);
             }
 
             super.renderRecursively(poseStack, animatable, bone, renderType, bufferSource, buffer,
@@ -56,6 +52,12 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
                     packedLight, packedOverlay, red, green, blue, alpha);
         }
         poseStack.popPose();
+    }
+
+    private static void scaleBone(GeoBone bone, float value) {
+        bone.setScaleX(value);
+        bone.setScaleY(value);
+        bone.setScaleZ(value);
     }
 
     private static void scale(PoseStack poseStack, float scale) {
@@ -66,7 +68,7 @@ public class SimpleEntityRenderer<T extends LivingEntity & GeoAnimatable> extend
         return scale;
     }
 
-    public SimpleEntityRenderer setScale(float scale) {
+    public SimpleEntityRenderer<T> setScale(float scale) {
         this.scale = scale;
         return this;
     }

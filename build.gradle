@@ -159,7 +159,7 @@ dependencies {
     implementation fg.deobf("mod.azure.azurelib:azurelib-neo-1.20.1:2.0.30")
 //
     implementation fg.deobf('com.jetug:chassis_core:1.20.1-2.6.1')
-    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.5.0')
+    implementation fg.deobf('com.nukateam:ntgl:1.20.1-1.5.1')
 
 //    implementation fg.deobf('curse.maven:chassiscore-908954:5395256')
 //    implementation fg.deobf('curse.maven:ntgl-998474:5396045')
