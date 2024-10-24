@@ -1,5 +1,9 @@
 package com.nukateam.nukacraft.common.foundation.items.misc;
 
+import com.nukateam.geo.interfaces.DynamicGeoItem;
+import com.nukateam.geo.render.DynamicGeoItemRenderer;
+import com.nukateam.ntgl.Ntgl;
+import com.nukateam.ntgl.client.render.renderers.DefaultGunRendererGeo;
 import com.nukateam.nukacraft.client.render.renderers.items.PipBoyRenderer;
 import com.nukateam.nukacraft.common.data.utils.PipBoyUtils;
 import com.nukateam.nukacraft.common.foundation.container.PipBoyMenu;
@@ -27,6 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,13 +39,13 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class PipBoyItem extends Item implements GeoItem {
+public class PipBoyItem extends Item implements DynamicGeoItem {
     public static final String ATLAS_ID = "atlasID";
     public static final String SCREEN = "screen";
-
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
     private final String skin;
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
+    private final Lazy<PipBoyRenderer> RENDERER = Lazy.of(() -> new PipBoyRenderer());
 
     public PipBoyItem(String skin, Properties pProperties) {
         super(pProperties);
@@ -51,28 +56,9 @@ public class PipBoyItem extends Item implements GeoItem {
         return new ResourceLocation("nukacraft:textures/screens/" + pipBoyItem.skin + "_pipboy.png");
     }
 
-    public static void openPipboyScreen(ServerPlayer player) {
-        if (!PipBoyUtils.hasPipboy(player)) return;
-//        PipBoyUtils.start(SlotUtils.getPipboyStack(player), getPipboy(player).getSkin(), player);
-        PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
-    }
-
-    public static void openPipboyScreen(ServerPlayer serverPlayer, BlockPos blockPos) {
-        NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
-            @Override
-            public Component getDisplayName() {
-                return Component.literal("Sadzxc");
-            }
-
-            @Override
-            public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
-            }
-        }, blockPos);
-    }
-
-    public String getSkin() {
-        return skin;
+    @Override
+    public DynamicGeoItemRenderer getRenderer() {
+        return RENDERER.get();
     }
 
     @Override
@@ -103,7 +89,8 @@ public class PipBoyItem extends Item implements GeoItem {
         if (player instanceof ServerPlayer serverPlayer
                 && player.getOffhandItem().getItem() instanceof PipBoyItem
                 && player.isShiftKeyDown()) {
-            openPipboyScreen(serverPlayer);
+            if(Ntgl.isDebugging())
+                openPipboyScreen(serverPlayer);
         }
 
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, stack);
@@ -117,8 +104,10 @@ public class PipBoyItem extends Item implements GeoItem {
 //        } else {
 //            list.add(Component.translatable("pipboy.nukacraft.screencolor").append(Component.translatable("color.display." + item.getOrCreateTag().getString(COLOR))));
 //        }
-        list.add(Component.translatable("pipboy.nukacraft.handselect"));
-        list.add(Component.translatable("pipboy.nukacraft.clicks"));
+        if(Ntgl.isDebugging()) {
+            list.add(Component.translatable("pipboy.nukacraft.handselect"));
+            list.add(Component.translatable("pipboy.nukacraft.clicks"));
+        }
     }
 
     @Override
@@ -130,22 +119,47 @@ public class PipBoyItem extends Item implements GeoItem {
         return cache;
     }
 
-    @Override
-    public void createRenderer(Consumer<Object> consumer) {
-        consumer.accept(new RenderProvider() {
-            private PipBoyRenderer renderer = null;
-
-            @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                if (renderer == null)
-                    renderer = new PipBoyRenderer();
-                return this.renderer;
-            }
-        });
-    }
+//    @Override
+//    public void createRenderer(Consumer<Object> consumer) {
+//        consumer.accept(new RenderProvider() {
+//            private PipBoyRenderer renderer = null;
+//
+//            @Override
+//            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+//                if (renderer == null)
+//                    renderer = new PipBoyRenderer();
+//                return this.renderer;
+//            }
+//        });
+//    }
 
     @Override
     public Supplier<Object> getRenderProvider() {
         return renderProvider;
+    }
+
+    public String getSkin() {
+        return skin;
+    }
+
+    public static void openPipboyScreen(ServerPlayer player) {
+        if (!PipBoyUtils.hasPipboy(player)) return;
+//        PipBoyUtils.start(SlotUtils.getPipboyStack(player), getPipboy(player).getSkin(), player);
+        if(Ntgl.isDebugging())
+            PipBoyItem.openPipboyScreen(player, new BlockPos(0, 0, 0));
+    }
+
+    public static void openPipboyScreen(ServerPlayer serverPlayer, BlockPos blockPos) {
+        NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
+            @Override
+            public Component getDisplayName() {
+                return Component.literal("Sadzxc");
+            }
+
+            @Override
+            public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+                return new PipBoyMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(blockPos));
+            }
+        }, blockPos);
     }
 }

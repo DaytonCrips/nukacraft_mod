@@ -9,12 +9,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class TechnicAnimator extends ItemAnimator implements IResourceProvider {
-    public TechnicAnimator(ItemDisplayContext transformType) {
+public class PipboyAnimator extends ItemAnimator implements IResourceProvider {
+    public PipboyAnimator(ItemDisplayContext transformType) {
         super(transformType);
     }
 
-    public TechnicAnimator(ItemDisplayContext itemDisplayContext, DynamicGeoItemRenderer<TechnicAnimator> technicAnimatorGeoDynamicItemRenderer) {
+    public PipboyAnimator(ItemDisplayContext itemDisplayContext, DynamicGeoItemRenderer<PipboyAnimator> technicAnimatorGeoDynamicItemRenderer) {
         super(itemDisplayContext);
     }
 

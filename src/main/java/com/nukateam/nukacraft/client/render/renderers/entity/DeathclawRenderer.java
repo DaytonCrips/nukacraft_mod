@@ -1,7 +1,5 @@
 package com.nukateam.nukacraft.client.render.renderers.entity;
 
-import com.nukateam.ntgl.client.animators.GunAnimator;
-import com.nukateam.ntgl.client.model.GeoGunModel;
 import com.nukateam.nukacraft.client.models.entity.DeathclawModel;
 import com.nukateam.nukacraft.common.foundation.entities.mobs.Deathclaw;
 import mod.azure.azurelib.renderer.GeoEntityRenderer;

@@ -130,7 +130,7 @@ public class PipBoyScreen extends AbstractContainerScreen<PipBoyMenu> {
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         for (int i = 0; i < 10; i++) {
             var text = Component.translatable(page_buffer[i]);
-            var fontColor = PipBoyUtils.getPipboyColor(minecraft.player).getIntColor();
+            var fontColor = PipBoyUtils.getScreenColor(minecraft.player).getIntColor();
 
             graphics.drawString(this.font, text, -150, -92   + (i * 13), fontColor, false);
 

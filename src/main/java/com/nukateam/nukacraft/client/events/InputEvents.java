@@ -1,5 +1,6 @@
 package com.nukateam.nukacraft.client.events;
 
+import com.nukateam.ntgl.Ntgl;
 import com.nukateam.nukacraft.client.render.gui.pipboy.PipBoyScreen;
 import com.nukateam.nukacraft.common.network.packets.PipboyScreenPacket;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,7 @@ public class InputEvents {
     public static void onKeyInput(InputEvent.Key event) {
         var options = Minecraft.getInstance().options;
 
-        if (event.getAction() == GLFW.GLFW_PRESS) {
+        if (event.getAction() == GLFW.GLFW_PRESS && Ntgl.isDebugging()) {
             if (KEY_MAP.isDown()) {
                 PipBoyScreen.openMap();
             }
