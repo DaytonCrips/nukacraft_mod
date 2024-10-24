@@ -59,8 +59,9 @@ public class GearDoorBlock extends BaseEntityBlock {
 
 
     public void doorCloseInteraction(Player pPlayer, BlockState state, Level pLevel, BlockPos pos) {
-        pLevel.playSound(pPlayer, pos, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
+
         if (PipBoyUtils.hasPipboy()) {
+            pLevel.playSound(pPlayer, pos, ModSounds.VAULT_DOOR_INTERACT.get(), SoundSource.BLOCKS, 0.2f, 1);
             var newState = ModBlocks.OPENGEAR.get().defaultBlockState();
             filledEraser(pLevel, state, pos.getX(), pos.getY(), pos.getZ());
 

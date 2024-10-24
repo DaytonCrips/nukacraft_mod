@@ -42,13 +42,5 @@
       "zOffset": -8.01,
       "size": 2.0
     }
-  },
-  "modules": {
-    "zoom": {
-      "xOffset": 3.5,
-      "yOffset": 4.3,
-      "zOffset": 16.0,
-      "fovModifier": 0.5
-    }
   }
 }

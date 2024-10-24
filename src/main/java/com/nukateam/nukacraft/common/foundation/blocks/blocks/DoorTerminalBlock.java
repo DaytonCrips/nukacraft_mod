@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -26,6 +27,7 @@ public class DoorTerminalBlock extends CustomModelBlock {
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 7; x++) {
                 for (int z = 0; z < 7; z++) {
+
                     var posXYZ = new BlockPos(positionX + x, positionY + y, positionZ + z);
                     var doorBlockState = pLevel.getBlockState(posXYZ);
 

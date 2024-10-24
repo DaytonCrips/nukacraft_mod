@@ -380,7 +380,7 @@ public class ModItems {
 
     @DataGen
     public static final RegistryObject<Item> ABRAXOCLEANER = ITEMS.register("abraxo_cleaner",
-            () -> new Item(new Item.Properties().rarity(Rarity.COMMON)));
+            () -> new AbraxoCleanerItem(new Item.Properties().rarity(Rarity.COMMON)));
 
     @DataGen
     public static final RegistryObject<Item> INDAABRAXOCLEANER = ITEMS.register("inda_abraxo_cleaner",

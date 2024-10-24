@@ -3,7 +3,7 @@
     "rate": 5,
     "gripType": "ntgl:two_handed",
     "maxAmmo": 1,
-    "reloadTime": 80,
+    "reloadTime": 120,
     "reloadAmount": 1,
     "recoilAngle": 15.0,
     "recoilKick": 1,
@@ -22,6 +22,26 @@
     "cock": "nukacraft:item.powdergun.cock",
     "silencedFire": "nukacraft:item.shotgun.silenced_fire",
     "enchantedFire": "nukacraft:item.shotgun.enchanted_fire"
+  },
+  "textures": {
+    "default" : "nukacraft:powdergun_rust",
+    "blue"    : "nukacraft:powdergun_blue",
+    "light_blue"    : "nukacraft:powdergun_light_blue",
+    "black"   : "nukacraft:powdergun_black",
+    "brown"   : "nukacraft:powdergun_brown",
+    "gray"    : "nukacraft:powdergun_gray",
+    "light_gray"    : "nukacraft:powdergun_light_gray",
+    "cyan"    : "nukacraft:powdergun_cyan",
+    "green"   : "nukacraft:powdergun_green",
+    "orange"   : "nukacraft:powdergun_orange",
+    "yellow"   : "nukacraft:powdergun_yellow",
+    "red"   : "nukacraft:powdergun_red",
+    "purple"   : "nukacraft:powdergun_purple",
+    "white"   : "nukacraft:powdergun_white",
+    "magenta"   : "nukacraft:powdergun_magenta",
+    "lime"   : "nukacraft:powdergun_lime",
+    "pink"    : "nukacraft:powdergun_pink",
+    "clean"    : "nukacraft:powdergun"
   },
   "display": {
     "flash": {
