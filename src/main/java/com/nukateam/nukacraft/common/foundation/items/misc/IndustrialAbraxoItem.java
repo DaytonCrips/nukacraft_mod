@@ -25,7 +25,8 @@ public class IndustrialAbraxoItem extends Item {
         if (pAction == ClickAction.SECONDARY) {
             if (isPaintable && !(Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
                 StackUtils.setVariant(slotItem, "clean");
-                pStack.shrink(1);
+                if(!pPlayer.isCreative())
+                    pStack.shrink(1);
                 return true;
             }
         }

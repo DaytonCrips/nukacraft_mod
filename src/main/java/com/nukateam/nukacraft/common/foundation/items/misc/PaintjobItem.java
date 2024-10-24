@@ -27,15 +27,11 @@ public class PaintjobItem extends Item {
 
             if (isPaintable && (Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
                 StackUtils.setVariant(slotItem, paintjob);
-                if (pStack.getDamageValue() == 12) {
-                    pStack.shrink(1);
-                } else
-                    pStack.setDamageValue(pStack.getDamageValue() + 1);
-
-//                if (!(pStack.getDamageValue() == 12)) {
-//                    pStack.setDamageValue(pStack.getDamageValue() - 1);
-//                } else if (pStack.getDamageValue() == 12)
-//                    pStack.shrink(1);
+                if(!pPlayer.isCreative()) {
+                    if (pStack.getDamageValue() == 12)
+                        pStack.shrink(1);
+                    else pStack.setDamageValue(pStack.getDamageValue() + 1);
+                }
                 return true;
             }
         }

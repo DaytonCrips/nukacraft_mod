@@ -23,16 +23,17 @@ public class AbraxoCleanerItem extends Item {
         boolean isPaintable = (slotItem.getItem() instanceof PipBoyItem);
         //boolean isPaintable = (slotItem.getItem() instanceof ArmorPart || slotItem.getItem() instanceof GunItem);
         if (pAction == ClickAction.SECONDARY) {
-//            if ((slotItem.getItem() instanceof PipBoyItem) && !(Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
-//                StackUtils.setVariant(slotItem, "clean");
+            if (isPaintable && !(Objects.equals(StackUtils.getVariant(slotItem), "clean"))) {
+                StackUtils.setVariant(slotItem, "clean");
+                if(!pPlayer.isCreative())
+                    pStack.shrink(1);
+                return true;
+            }
+//            if (isPaintable && !(Objects.equals(((PipBoyItem) slotItem.getItem()).getVariant(), "clean"))) {
+//                ((PipBoyItem) slotItem.getItem()).setVariant("clean");
 //                pStack.shrink(1);
 //                return true;
 //            }
-            if (isPaintable && !(Objects.equals(((PipBoyItem) slotItem.getItem()).getVariant(), "clean"))) {
-                ((PipBoyItem) slotItem.getItem()).setVariant("clean");
-                pStack.shrink(1);
-                return true;
-            }
         }
         return false;
     }

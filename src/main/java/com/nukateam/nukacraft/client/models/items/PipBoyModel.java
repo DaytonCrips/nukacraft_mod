@@ -18,7 +18,7 @@ public class PipBoyModel extends GeoModel<PipboyAnimator> implements IGlowingMod
     @Override
     public ResourceLocation getTextureResource(PipboyAnimator pipBoyItem) {
         var variant = StackUtils.getVariant(pipBoyItem.getStack());
-        return nukaResource("textures/item/pipboy/" + variant + "_pipboy.png");
+        return nukaResource("textures/item/pipboy/pipboy2000_" + variant + ".png");
     }
 
     @Override
@@ -28,6 +28,6 @@ public class PipBoyModel extends GeoModel<PipboyAnimator> implements IGlowingMod
 
     @Override
     public ResourceLocation getGlowingTextureResource(PipboyAnimator animatable) {
-        return nukaResource("textures/item/pipboy/default_pipboy_glowmask.png");
+        return nukaResource("textures/item/pipboy/pipboy_glowmask.png");
     }
 }
