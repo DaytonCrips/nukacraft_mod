@@ -1,6 +1,5 @@
 package com.nukateam.nukacraft.common.foundation.entities.mobs;
 
-import com.nukateam.ntgl.client.data.handler.ShootingHandler;
 import com.nukateam.nukacraft.NukaCraftMod;
 import com.nukateam.nukacraft.client.helpers.AnimationHelper;
 import com.nukateam.nukacraft.client.models.entity.EntityModel;
@@ -24,25 +23,23 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Lazy;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.nukateam.nukacraft.client.render.renderers.entity.DeathclawRenderer.DEATHCLAW_MODEL;
 import static mod.azure.azurelib.core.animation.AnimatableManager.ControllerRegistrar;
 import static mod.azure.azurelib.core.animation.RawAnimation.begin;
-import static net.minecraft.advancements.critereon.SlimePredicate.sized;
 import static net.minecraft.network.syncher.SynchedEntityData.defineId;
 
 public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
@@ -76,7 +73,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, this.getClass()));
-        if(getVariant() == SecuritronVariant.BERSERK || getVariant() == SecuritronVariant.DAMAGED)
+        if (getVariant() == SecuritronVariant.BERSERK || getVariant() == SecuritronVariant.DAMAGED)
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Raider.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
@@ -117,16 +114,14 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
         var item = getGun();
-        if(!item.isEmpty()) {
+        if (!item.isEmpty()) {
             try {
                 GunAttackGoal.shoot(this, true);
 //                ShootingHandler.get().fire(this, item);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 NukaCraftMod.LOGGER.error(e.getMessage(), e);
             }
-        }
-        else setupGuns();
+        } else setupGuns();
     }
 
     @Override
@@ -143,7 +138,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
 
     @Override
     public void setTarget(@Nullable LivingEntity target) {
-        if(getVariant() == SecuritronVariant.MUGGY)
+        if (getVariant() == SecuritronVariant.MUGGY)
             target = null;
 
         super.setTarget(target);
@@ -166,7 +161,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
     @Override
     public void tick() {
         super.tick();
-        if(isServerSide){
+        if (isServerSide) {
             getEntityData().set(HAS_TARGET, getTarget() != null);
         }
     }
@@ -193,19 +188,16 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
             var controller = event.getController();
             var animation = begin();
             controller.setAnimationSpeed(1);
-            var currentAnimation = controller.getCurrentAnimation();
 
             if (hasTarget()) {
                 var animationName = isUpgraded() ? "laser_mode" : "gun_mode";
                 animation.thenPlayAndHold(animationName);
                 animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
-            }
-            else if(controller.getCurrentAnimation() != null){
+            } else if (controller.getCurrentAnimation() != null) {
                 var animationName = isUpgraded() ? "laser_mode_end" : "gun_mode_end";
                 animation.thenPlay(animationName);
                 animationHelper.get().syncAnimation(event, animationName, SHOOTING_START_TIME);
-            }
-            else return PlayState.STOP;
+            } else return PlayState.STOP;
 
             return event.setAndContinue(animation);
         };
@@ -220,8 +212,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
             if (event.isMoving()) {
                 animation.thenLoop("walk");
                 controller.setAnimationSpeed(2);
-            }
-            else {
+            } else {
                 animation.thenLoop("idle");
             }
 
@@ -231,18 +222,18 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
 
     @NotNull
     private AnimationController.AnimationStateHandler<Securitron> animateAntena() {
-        return event -> event.setAndContinue( begin().thenLoop("antena"));
+        return event -> event.setAndContinue(begin().thenLoop("antena"));
     }
 
     public void hasTarget(boolean hasTarget) {
         getEntityData().set(HAS_TARGET, hasTarget);
     }
 
-    public boolean hasTarget(){
+    public boolean hasTarget() {
         return getEntityData().get(HAS_TARGET);
     }
 
-    public int getAttackDelay(){
+    public int getAttackDelay() {
         return SHOOTING_START_TIME;
     }
 
@@ -262,7 +253,7 @@ public class Securitron extends PathfinderMob implements GeoEntity, IGunUser {
         this.entityData.set(VARIANT, pTypeVariant);
     }
 
-    private boolean isUpgraded(){
+    private boolean isUpgraded() {
         return getVariant().isUpgraded();
     }
 }

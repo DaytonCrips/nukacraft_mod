@@ -8,10 +8,14 @@ import com.nukateam.nukacraft.common.registery.ModAttributes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import static com.nukateam.nukacraft.common.data.constants.Nbt.COLOR;
 import static com.nukateam.nukacraft.common.data.utils.Resources.nukaResource;
 
 public class PipBoyUtils {
@@ -31,11 +35,19 @@ public class PipBoyUtils {
         var mc = Minecraft.getInstance();
         if (mc.player == null) return;
 
-        var color = getPipboyColor(mc.player);
+        var color = getScreenColor(mc.player);
         RenderSystem.setShaderColor(color.red, color.green, color.blue, alpha);
     }
 
-    public static NbtColor getPipboyColor(@NotNull Player player) {
+    public static void setScreenColor(@NotNull NbtColor color, @NotNull Player player){
+        var stack = PipBoyUtils.getPipboyStack(player);
+        if (stack.getItem() instanceof PipBoyItem) {
+            var pipBoyTag = stack.getOrCreateTag();
+            pipBoyTag.put(COLOR, color.serializeNBT());
+        }
+    }
+
+    public static NbtColor getScreenColor(@NotNull Player player) {
         var pipboyStack = getPipboyStack(player);
         var pipboyTag = pipboyStack.getOrCreateTag();
         var color = new NbtColor();

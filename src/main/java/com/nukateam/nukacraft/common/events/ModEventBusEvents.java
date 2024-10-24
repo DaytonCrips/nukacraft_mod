@@ -15,7 +15,6 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-//        var registeredEntities = EntityTypes.ENTITY_TYPES.getEntries();
         event.put(EntityTypes.DEATHCLAW.get(), Deathclaw.createAttributes().build());
         event.put(EntityTypes.POWER_ARMOR_FRAME.get(), PowerArmorFrame.createAttributes().build());
         event.put(EntityTypes.RAIDER.get(), Raider.createAttributes().build());

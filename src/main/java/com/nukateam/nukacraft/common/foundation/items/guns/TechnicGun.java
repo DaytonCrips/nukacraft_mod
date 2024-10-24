@@ -1,7 +1,6 @@
 package com.nukateam.nukacraft.common.foundation.items.guns;
 
-import com.nukateam.ntgl.client.render.renderers.DefaultGunRenderer;
-import com.nukateam.ntgl.client.render.renderers.DynamicGunRenderer;
+import com.nukateam.geo.render.DynamicGeoItemRenderer;
 import com.nukateam.ntgl.common.foundation.item.GunItem;
 import com.nukateam.nukacraft.client.render.renderers.items.TechnicGunRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,7 +16,7 @@ public class TechnicGun extends GunItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public DynamicGunRenderer getRenderer() {
+    public DynamicGeoItemRenderer getRenderer() {
         return GUN_RENDERER.get();
     }
 }

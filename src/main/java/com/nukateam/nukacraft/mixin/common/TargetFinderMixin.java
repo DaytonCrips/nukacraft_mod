@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import static com.nukateam.nukacraft.common.data.utils.PowerArmorUtils.getPowerArmor;
 
-@Mixin(TargetFinder.class)
+/*@Mixin(TargetFinder.class)
 public abstract class TargetFinderMixin {
     @Inject(method = "getInitialTargets(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;D)Ljava/util/List;",
             at = @At(value = "HEAD"), cancellable = true, remap = false)
@@ -45,4 +45,4 @@ public abstract class TargetFinderMixin {
         cir.setReturnValue(entities);
         cir.cancel();
     }
-}
+}*/
